@@ -1,18 +1,23 @@
 {
-  "fingerprint": "a1a286a126a49b600ff5d2345eae226a37721929c683771f9b8c6c15c7336db0",
+  "fingerprint": "ebd583f7ffca3ee4d964229767a424ed7789214165a1abfe628333c505570057",
   "models": [
     {
-      "alias": "jev-latest",
-      "id": "jev-1.13.0",
-      "status": "current"
+      "id": "jev-latest",
+      "kind": "alias",
+      "target": "jev-1.13.0"
     },
     {
-      "alias": "jev-preview",
+      "id": "jev-preview",
+      "kind": "alias",
+      "target": "jev-1.13.0"
+    },
+    {
       "id": "jev-1.13.0",
-      "status": "current"
+      "kind": "versioned",
+      "label": "Jev 1.13"
     }
   ],
-  "observed_at": "2026-09-21T15:03:35.476813Z",
+  "observed_at": "2026-09-21T15:20:48.814105Z",
   "provenance": [
     {
       "sha256": "9d20bb3c90a0147532d0b20ddc4c64579391be7842e965543b27bad684eeb4d6",

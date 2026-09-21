@@ -3,16 +3,18 @@
     "discovered_pages": 109,
     "status": "up_to_date"
   },
-  "fingerprint": "d8b59a36858059cd0a3c29bb02cddde872cc53c7e42dc15a39f3c4b322645095",
+  "fingerprint": "bbe1417c99aa4b42d8c9c8e4916905d482e368c8af750993f3e0f9d4784d7abf",
   "grace_period_days": 3,
   "javascript": {
+    "discrepancies": [],
     "status": "up_to_date",
     "tag": "v0.6.0",
     "version": "0.6.0"
   },
-  "last_successful_observation": "2026-09-21T15:05:23.099687Z",
-  "observed_at": "2026-09-21T15:05:23.105724Z",
+  "last_successful_observation": "2026-09-21T15:20:48.818225Z",
+  "observed_at": "2026-09-21T15:20:48.822833Z",
   "python": {
+    "discrepancies": [],
     "status": "up_to_date",
     "tag": "v0.7.0",
     "version": "0.7.0"

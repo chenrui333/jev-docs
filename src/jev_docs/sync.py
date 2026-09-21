@@ -15,7 +15,7 @@ import time
 import xml.etree.ElementTree as ET
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -195,7 +195,10 @@ def excerpt(content: str, pattern: str, limit: int = 420) -> str | None:
     start = max(0, content.rfind("\n", 0, match.start()) + 1)
     end = content.find("\n\n", match.end())
     end = len(content) if end < 0 else end
-    return re.sub(r"\s+", " ", content[start:end]).strip()[:limit]
+    snippet = re.sub(r"\s+", " ", content[start:end]).strip()
+    if len(snippet) <= limit:
+        return snippet
+    return snippet[:limit].rsplit(" ", 1)[0].rstrip() + "..."
 
 
 PRACTICE_RULES: tuple[dict[str, Any], ...] = (
@@ -375,6 +378,24 @@ def observed_state(value: dict[str, Any], previous: dict[str, Any] | None) -> di
     return payload
 
 
+def actionable_discrepancies(freshness: dict[str, Any], now: datetime) -> list[str]:
+    observed_at = freshness.get("observed_at")
+    grace_days = freshness.get("grace_period_days", 3)
+    if not isinstance(observed_at, str) or not isinstance(grace_days, int):
+        return []
+    try:
+        first_seen = datetime.fromisoformat(observed_at.replace("Z", "+00:00")).astimezone(UTC)
+    except ValueError:
+        return []
+    if now - first_seen < timedelta(days=grace_days):
+        return []
+    return [
+        name
+        for name in ("python", "javascript")
+        if freshness.get(name, {}).get("status") == "discrepancy"
+    ]
+
+
 def artifact_manifest(
     artifact: Artifact, previous: dict[str, Any] | None, title: str = "", description: str = ""
 ) -> dict[str, Any]:
@@ -425,6 +446,94 @@ def parse_release_notes(text: str) -> list[dict[str, Any]]:
         ]
         result.append({"version": match.group(1), "date": match.group(2), "notes": bullets[:12]})
     return result
+
+
+def version_tuple(value: Any) -> tuple[int, ...] | None:
+    if not isinstance(value, str):
+        return None
+    match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", value.strip())
+    return tuple(int(part) for part in match.groups()) if match else None
+
+
+def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]:
+    """Reconcile registry, tag, and release evidence without choosing silently."""
+    discrepancies: list[str] = []
+    malformed: list[str] = []
+    tag_map: dict[str, str] = {}
+    if not isinstance(tags, list):
+        malformed.append("tags_not_a_list")
+        tags = []
+    for index, entry in enumerate(tags):
+        if not isinstance(entry, dict) or not isinstance(entry.get("name"), str):
+            malformed.append(f"tag_entry_{index}_malformed")
+            continue
+        commit = entry.get("commit")
+        sha = commit.get("sha") if isinstance(commit, dict) else None
+        if not isinstance(sha, str):
+            malformed.append(f"tag_entry_{index}_missing_commit")
+            continue
+        tag_map[entry["name"]] = sha
+    release_records: list[dict[str, Any]] = []
+    if not isinstance(releases, list):
+        malformed.append("releases_not_a_list")
+        releases = []
+    for index, entry in enumerate(releases):
+        if not isinstance(entry, dict) or not isinstance(entry.get("tag_name"), str):
+            malformed.append(f"release_entry_{index}_malformed")
+            continue
+        release_records.append(entry)
+    expected_tag = f"v{version}" if version_tuple(version) else None
+    matching_release = next(
+        (entry for entry in release_records if entry["tag_name"] == expected_tag), None
+    )
+    if expected_tag and expected_tag not in tag_map:
+        discrepancies.append("registry_version_missing_git_tag")
+    if expected_tag and matching_release is None:
+        discrepancies.append("registry_version_missing_github_release")
+    registry_version = version_tuple(version)
+    source_versions = [
+        version_tuple(entry["tag_name"])
+        for entry in release_records
+        if version_tuple(entry["tag_name"])
+    ] + [version_tuple(name) for name in tag_map if version_tuple(name)]
+    if registry_version and source_versions and max(source_versions) > registry_version:
+        discrepancies.append("git_source_ahead_of_registry")
+    if registry_version and source_versions and registry_version > max(source_versions):
+        discrepancies.append("registry_ahead_of_git_source")
+    if malformed:
+        discrepancies.append("malformed_release_metadata")
+    return {
+        "source_tag": expected_tag if expected_tag in tag_map else None,
+        "source_commit": tag_map.get(expected_tag) if expected_tag else None,
+        "release_history": [
+            {
+                "tag": entry["tag_name"],
+                "version": entry["tag_name"].removeprefix("v"),
+                "published_at": entry.get("published_at"),
+                "name": entry.get("name"),
+                "source_url": entry.get("html_url"),
+            }
+            for entry in release_records
+        ],
+        "available_tags": sorted(tag_map),
+        "discrepancies": sorted(set(discrepancies)),
+        "malformed_metadata": malformed,
+    }
+
+
+def extract_models(content: str) -> list[dict[str, str]]:
+    """Extract only the explicit model/alias tables from the models page."""
+    models: list[dict[str, str]] = []
+    for match in re.finditer(r"^\|\s*([^|`]+?)\s*\|\s*`([^`]+)`\s*\|", content, re.MULTILINE):
+        label, model_id = match.groups()
+        if label.strip().lower() in {"jev 1.13", "jev 1.13.0"} or label.strip().lower().startswith(
+            "jev "
+        ):
+            models.append({"kind": "versioned", "id": model_id, "label": label.strip()})
+    for match in re.finditer(r"^\|\s*`([^`]+)`\s*\|\s*`([^`]+)`\s*\|", content, re.MULTILINE):
+        alias, target = match.groups()
+        models.append({"kind": "alias", "id": alias, "target": target})
+    return sorted(models, key=lambda item: (item["kind"], item["id"]))
 
 
 def sdk_snapshot(
@@ -490,28 +599,13 @@ def sdk_snapshot(
     artifacts[registry_id] = Artifact(
         registry_id, "package-registry", registry_url, registry_response.body
     )
-    version = (
-        registry["info"]["version"] if package_kind == "python" else registry["dist-tags"]["latest"]
-    )
-    tags_by_name = {
-        entry.get("name"): entry.get("commit", {}).get("sha")
-        for entry in tags
-        if isinstance(entry, dict)
-    }
-    source_tag = f"v{version}"
-    release = next((item for item in releases if item.get("tag_name") == source_tag), None)
-    release_history = []
-    for item in releases:
-        if item.get("tag_name"):
-            release_history.append(
-                {
-                    "tag": item["tag_name"],
-                    "version": item["tag_name"].removeprefix("v"),
-                    "published_at": item.get("published_at"),
-                    "name": item.get("name"),
-                    "source_url": item.get("html_url"),
-                }
-            )
+    if package_kind == "python":
+        version = registry.get("info", {}).get("version") if isinstance(registry, dict) else None
+    else:
+        dist_tags = registry.get("dist-tags", {}) if isinstance(registry, dict) else {}
+        version = dist_tags.get("latest") if isinstance(dist_tags, dict) else None
+    release_info = release_provenance(version, tags, releases)
+    release_history = release_info["release_history"]
     notes = parse_release_notes(changelog_content or "")
     for item in release_history:
         note = next((note for note in notes if note["version"] == item["version"]), None)
@@ -522,8 +616,8 @@ def sdk_snapshot(
         "package": package,
         "repository": f"https://github.com/{repo}",
         "version": version,
-        "source_tag": source_tag if release else None,
-        "source_commit": tags_by_name.get(source_tag),
+        "source_tag": release_info["source_tag"],
+        "source_commit": release_info["source_commit"],
         "main_commit": head.get("sha"),
         "runtime": {package_kind: runtime},
         "public_surface": {
@@ -534,6 +628,7 @@ def sdk_snapshot(
             release_history,
             key=lambda item: (item.get("published_at") or "", item.get("tag") or ""),
         ),
+        "available_tags": release_info["available_tags"],
         "provenance": [
             {
                 "source_id": config_artifact.source_id,
@@ -546,9 +641,8 @@ def sdk_snapshot(
                 "sha256": sha256_bytes(registry_response.body),
             },
         ],
-        "discrepancy": None
-        if release and tags_by_name.get(source_tag)
-        else "package version has no matching GitHub release/tag commit",
+        "discrepancies": release_info["discrepancies"],
+        "malformed_release_metadata": release_info["malformed_metadata"],
     }
     return observed_state(state, previous)
 
@@ -648,19 +742,30 @@ def derive_state(
     models = observed_state(
         {
             "schema_version": SCHEMA,
-            "models": [
-                {"id": "jev-1.13.0", "alias": "jev-latest", "status": "current"},
-                {"id": "jev-1.13.0", "alias": "jev-preview", "status": "current"},
-            ],
+            "models": extract_models(contents.get("docs:models", "")),
             "provenance": provenance(["docs:models"]),
         },
         previous_state.get("models"),
+    )
+    skill_artifact = artifacts.get("skill:typesafe-ai")
+    skill = observed_state(
+        {
+            "schema_version": SCHEMA,
+            "commit": skill_artifact.upstream_commit if skill_artifact else None,
+            "source": {
+                "source_id": skill_artifact.source_id if skill_artifact else "skill:typesafe-ai",
+                "url": skill_artifact.url if skill_artifact else source_url("skill:typesafe-ai"),
+                "sha256": skill_artifact.sha256 if skill_artifact else None,
+            },
+        },
+        previous_state.get("skill"),
     )
     return {
         "primitives": primitives,
         "api": api,
         "models": models,
         "practices": derive_practices(contents, artifacts, previous_state.get("practices")),
+        "skill": skill,
     }
 
 
@@ -673,18 +778,29 @@ def event_id(entity: str, change: str, before: str | None, after: str | None) ->
 def semantic_events(
     old_state: dict[str, Any], new_state: dict[str, Any], observed_at: str
 ) -> list[dict[str, Any]]:
+    specs = {
+        "primitives": ("primitive", "id"),
+        "practices": ("practice", "id"),
+        "api": ("api", "singleton"),
+        "models": ("model", "singleton"),
+        "sdk-python": ("sdk", "singleton"),
+        "sdk-javascript": ("sdk", "singleton"),
+        "skill": ("skill", "singleton"),
+    }
     events: list[dict[str, Any]] = []
-    for name in ("primitives", "api", "models", "practices"):
+    for name, (category, key_mode) in specs.items():
         old_items = old_item_map(old_state.get(name), "id")
         new_items = old_item_map(new_state.get(name), "id")
-        if name in {"api", "models"}:
+        if key_mode == "singleton":
             old_value = old_state.get(name)
             new_value = new_state.get(name)
             old_items = {name: old_value} if old_value else {}
             new_items = {name: new_value} if new_value else {}
         for entity_key in sorted(set(old_items) | set(new_items)):
-            before = sha256_json(old_items[entity_key]) if entity_key in old_items else None
-            after = sha256_json(new_items[entity_key]) if entity_key in new_items else None
+            before_value = semantic_projection(name, old_items.get(entity_key))
+            after_value = semantic_projection(name, new_items.get(entity_key))
+            before = sha256_json(before_value) if entity_key in old_items else None
+            after = sha256_json(after_value) if entity_key in new_items else None
             if before == after:
                 continue
             change = "added" if before is None else "removed" if after is None else "modified"
@@ -694,7 +810,7 @@ def semantic_events(
                     "schema_version": SCHEMA,
                     "id": event_id(f"{name}:{entity_key}", change, before, after),
                     "observed_at": observed_at,
-                    "category": "practice" if name == "practices" else name.rstrip("s"),
+                    "category": category,
                     "entity": entity_key,
                     "change": change,
                     "summary": item.get("summary", f"{name} {entity_key} changed"),
@@ -706,6 +822,117 @@ def semantic_events(
                 }
             )
     return events
+
+
+def practice_projection(item: dict[str, Any] | None) -> dict[str, Any] | None:
+    if item is None:
+        return None
+    return {key: item.get(key) for key in ("id", "category", "status", "summary", "first_seen")}
+
+
+def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any] | None:
+    if item is None:
+        return None
+    if name == "practices":
+        return practice_projection(item)
+    if name == "primitives":
+        return {key: item.get(key) for key in ("id", "name", "summary", "observed_title")}
+    if name == "models":
+        return {"models": item.get("models", [])}
+    if name == "api":
+        return {
+            key: item.get(key)
+            for key in (
+                "endpoint",
+                "request_fields",
+                "question_types",
+                "model_default",
+                "response_shape",
+            )
+        }
+    if name.startswith("sdk-"):
+        return {
+            key: item.get(key)
+            for key in (
+                "package",
+                "version",
+                "source_tag",
+                "source_commit",
+                "runtime",
+                "public_surface",
+                "release_history",
+                "discrepancies",
+            )
+        }
+    if name == "skill":
+        return {"commit": item.get("commit")}
+    return item
+
+
+def source_events(
+    old_manifest: dict[str, Any], new_manifest: dict[str, Any], observed_at: str
+) -> list[dict[str, Any]]:
+    def docs(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
+        return {
+            item["source_id"]: item
+            for item in manifest.get("artifacts", [])
+            if item.get("source_type") == "documentation" and item.get("source_id")
+        }
+
+    old_docs = docs(old_manifest)
+    new_docs = docs(new_manifest)
+    events: list[dict[str, Any]] = []
+    for source_id in sorted(set(old_docs) | set(new_docs)):
+        before_item = old_docs.get(source_id)
+        after_item = new_docs.get(source_id)
+        before = before_item.get("sha256") if before_item else None
+        after = after_item.get("sha256") if after_item else None
+        if before == after:
+            continue
+        change = "added" if before is None else "removed" if after is None else "modified"
+        item = after_item or before_item
+        events.append(
+            {
+                "schema_version": SCHEMA,
+                "id": event_id(f"source:{source_id}", change, before, after),
+                "observed_at": observed_at,
+                "category": "documentation",
+                "entity": source_id,
+                "change": change,
+                "summary": f"Documentation page {source_id} {change} in successful discovery.",
+                "before_sha256": before,
+                "after_sha256": after,
+                "sources": [
+                    {
+                        "source_id": source_id,
+                        "url": item.get("canonical_url"),
+                        "sha256": item.get("sha256"),
+                    }
+                ],
+            }
+        )
+    return events
+
+
+def deduplicate_events(
+    candidates: Iterable[dict[str, Any]], existing_ids: set[str]
+) -> list[dict[str, Any]]:
+    seen = set(existing_ids)
+    result = []
+    for event in sorted(candidates, key=lambda item: item["id"]):
+        if event["id"] in seen:
+            continue
+        seen.add(event["id"])
+        result.append(event)
+    return result
+
+
+def rollup_events(
+    existing: Iterable[dict[str, Any]], new_events: Iterable[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    by_id = {event["id"]: event for event in existing}
+    by_id.update({event["id"]: event for event in new_events})
+    return [by_id[event_id] for event_id in sorted(by_id)]
 
 
 def load_history_events(events_dir: Path) -> set[str]:
@@ -824,6 +1051,9 @@ def validate_tree(root: Path, strict: bool = False) -> None:
         "state/source-coverage.json",
         "state/freshness.json",
         "state/practices.json",
+        "state/sdk-python.json",
+        "state/sdk-javascript.json",
+        "state/skill.json",
         "BEST_PRACTICES.md",
     ]
     missing = [path for path in required if not (root / path).exists()]
@@ -838,6 +1068,11 @@ def validate_tree(root: Path, strict: bool = False) -> None:
     for item in practices.get("items", []):
         if item["status"] == "recommended" and not item.get("sources"):
             raise RuntimeError(f"recommended practice lacks provenance: {item['id']}")
+        for evidence in item.get("sources", []):
+            if not all(evidence.get(key) for key in ("source_id", "url", "sha256", "excerpt")):
+                raise RuntimeError(f"incomplete practice provenance: {item['id']}")
+            if len(evidence["excerpt"]) > 420:
+                raise RuntimeError(f"practice excerpt is too long: {item['id']}")
     for path in (root / "events").glob("*.json"):
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
@@ -859,7 +1094,6 @@ def promote(stage: Path, root: Path) -> None:
 def synchronize(
     root: Path = ROOT, client: HTTPClient | None = None, strict: bool = False
 ) -> dict[str, Any]:
-    del strict
     client = client or HTTPClient()
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -869,7 +1103,15 @@ def synchronize(
     previous_freshness = read_json(root / "state/freshness.json", {}) or {}
     previous_state = {
         name: read_json(root / f"state/{name}.json")
-        for name in ("primitives", "api", "models", "practices", "sdk-python", "sdk-javascript")
+        for name in (
+            "primitives",
+            "api",
+            "models",
+            "practices",
+            "sdk-python",
+            "sdk-javascript",
+            "skill",
+        )
     }
     try:
         sitemap_warning = None
@@ -973,13 +1215,6 @@ def synchronize(
     state["sdk-python"] = python
     state["sdk-javascript"] = javascript
     observed = utc_now().isoformat().replace("+00:00", "Z")
-    old_events_state = {name: previous_state.get(name) for name in state}
-    new_events = (
-        semantic_events(old_events_state, state, observed) if all(previous_state.values()) else []
-    )
-    existing_ids = load_history_events(root / "events")
-    new_events = [event for event in new_events if event["id"] not in existing_ids]
-    day = iso_day(utc_now())
     old_docs = {
         item["source_id"]: item
         for item in previous_docs_manifest.get("artifacts", [])
@@ -1000,20 +1235,35 @@ def synchronize(
         for sid, artifact in sorted(artifacts.items())
         if artifact.source_type not in {"documentation", "documentation-discovery"}
     ]
+    new_docs_manifest = {"schema_version": SCHEMA, "artifacts": docs_items}
+    old_events_state = {name: previous_state.get(name) for name in state}
+    baseline_exists = (root / "events/baseline.json").exists()
+    candidates = (
+        source_events(previous_docs_manifest, new_docs_manifest, observed)
+        if baseline_exists
+        else []
+    )
+    if baseline_exists and all(previous_state.values()):
+        candidates.extend(semantic_events(old_events_state, state, observed))
+    existing_ids = load_history_events(root / "events")
+    new_events = deduplicate_events(candidates, existing_ids)
+    day = iso_day(utc_now())
     coverage = build_coverage(discovered, artifacts, index, discovery_method, sitemap_warning)
     freshness = observed_state(
         {
             "schema_version": SCHEMA,
             "docs": {"status": "up_to_date", "discovered_pages": len(discovered)},
             "python": {
-                "status": "up_to_date" if python["source_tag"] else "discrepancy",
+                "status": "up_to_date" if not python["discrepancies"] else "discrepancy",
                 "version": python["version"],
                 "tag": python["source_tag"],
+                "discrepancies": python["discrepancies"],
             },
             "javascript": {
-                "status": "up_to_date" if javascript["source_tag"] else "discrepancy",
+                "status": "up_to_date" if not javascript["discrepancies"] else "discrepancy",
                 "version": javascript["version"],
                 "tag": javascript["source_tag"],
+                "discrepancies": javascript["discrepancies"],
             },
             "skill": {"status": "observed", "commit": skill_commit},
             "grace_period_days": 3,
@@ -1026,6 +1276,13 @@ def synchronize(
         )
     else:
         freshness["last_successful_observation"] = observed
+    if strict:
+        actionable = actionable_discrepancies(freshness, utc_now())
+        if actionable:
+            names = ", ".join(actionable)
+            raise RuntimeError(
+                f"strict sync failed; SDK release discrepancy persisted beyond grace period: {names}"
+            )
     old_source_items = {
         item["source_id"]: item
         for item in previous_sources.get("artifacts", [])
@@ -1081,11 +1338,11 @@ def synchronize(
                     "documentation_page_count": len(discovered),
                 },
             )
-        all_day_events = []
+        existing_day_events: list[dict[str, Any]] = []
         existing_day_path = root / f"events/{day}.json"
         if existing_day_path.exists():
-            all_day_events = read_json(existing_day_path, {}).get("events", [])
-        all_day_events.extend(new_events)
+            existing_day_events = read_json(existing_day_path, {}).get("events", [])
+        all_day_events = rollup_events(existing_day_events, new_events)
         if new_events:
             write_json(
                 events_dir / f"{day}.json",

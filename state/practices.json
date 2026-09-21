@@ -1,5 +1,5 @@
 {
-  "fingerprint": "8d9d1e3a31949e6a8fdde6f17fc20908b86a5834979219c4a7b15cde7c488fff",
+  "fingerprint": "352122a0bf45fdd5ab2faa9643321dad00e475352ade6c98de8f031abfa5dc4d",
   "items": [
     {
       "category": "decision-boundary",
@@ -32,7 +32,7 @@
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
         },
         {
-          "excerpt": "Ask one narrow, coherent judgment per question. Split independently useful dimensions, without destroying the relationship being judged. A bounded action selection or contextual interpretation is valid; atomic does not mean literal fact extraction or a one-sentence limit. Strings work for simple questions. Use structured objects or arrays when definitions, contrasts, exclusions, or examples clarify instructions or cr",
+          "excerpt": "Ask one narrow, coherent judgment per question. Split independently useful dimensions, without destroying the relationship being judged. A bounded action selection or contextual interpretation is valid; atomic does not mean literal fact extraction or a one-sentence limit. Strings work for simple questions. Use structured objects or arrays when definitions, contrasts, exclusions, or examples clarify instructions or...",
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
@@ -55,7 +55,7 @@
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
         },
         {
-          "excerpt": "**Ask independent questions over the same state together**, including useful speculative questions. They run in parallel and cannot see one another's answers. State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure actu",
+          "excerpt": "**Ask independent questions over the same state together**, including useful speculative questions. They run in parallel and cannot see one another's answers. State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure...",
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
@@ -242,7 +242,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-09-21T15:03:35.486464Z",
+  "observed_at": "2026-09-21T15:26:44.271981Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",

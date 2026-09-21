@@ -63,7 +63,10 @@ is the last-known-good guarantee. GitHub Actions runs strict validation and a
 12-hour schedule with concurrency protection; it can push only generated
 changes using the standard token. Freshness reports whether the observed package
 metadata, tags, skill commit, and docs discovery agree at the time of a
-successful run.
+successful run. The first SDK release discrepancy is observed with a three-day
+grace period; if the same discrepancy remains after that period, strict
+synchronization fails before promotion. A transient fetch failure remains an
+immediate failed run and does not update freshness.
 
 ## Deferred work
 

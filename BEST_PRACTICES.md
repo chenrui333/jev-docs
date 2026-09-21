@@ -12,7 +12,7 @@ Ask independent questions over the same state together so the model can evaluate
 
 Evidence:
 - [docs:patterns/fan-out](https://docs.typesafe.ai/patterns/fan-out.md) — Because TypeSafe supports sending many questions in a single API call, we recommend putting all of the questions your system needs in a single request, and then using code to decide what is relevant after the fact. All questions are evaluated in parallel, so adding more questions usually has little effect on response time.
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md) — **Ask independent questions over the same state together**, including useful speculative questions. They run in parallel and cannot see one another's answers. State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure actu
+- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md) — **Ask independent questions over the same state together**, including useful speculative questions. They run in parallel and cannot see one another's answers. State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure...
 
 ### explicit-speculative-premises — `recommended`
 
@@ -72,7 +72,7 @@ Ask narrow, coherent, typed questions with explicit instructions and criteria ra
 
 Evidence:
 - [docs:concepts/how-to-build-with-system-one](https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md) — * Break broad judgments into narrow, typed questions with explicit instructions and criteria. * Give each question only the context it needs. * Use probabilities and confidence to act, ask for review, or escalate. * Ask independent questions together, then compose their answers in code. </Info>
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md) — Ask one narrow, coherent judgment per question. Split independently useful dimensions, without destroying the relationship being judged. A bounded action selection or contextual interpretation is valid; atomic does not mean literal fact extraction or a one-sentence limit. Strings work for simple questions. Use structured objects or arrays when definitions, contrasts, exclusions, or examples clarify instructions or cr
+- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md) — Ask one narrow, coherent judgment per question. Split independently useful dimensions, without destroying the relationship being judged. A bounded action selection or contextual interpretation is valid; atomic does not mean literal fact extraction or a one-sentence limit. Strings work for simple questions. Use structured objects or arrays when definitions, contrasts, exclusions, or examples clarify instructions or...
 
 ## State construction
 

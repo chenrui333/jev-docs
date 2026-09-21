@@ -1,0 +1,11 @@
+{
+  "commit": "65a39f393687675ce170e6094757de20370365b9",
+  "fingerprint": "e1f91ab2df8b5a8d7d77cfc85b8026a602d0cf95693c6d7820fea252c41e6e11",
+  "observed_at": "2026-09-21T15:20:48.814118Z",
+  "schema_version": 1,
+  "source": {
+    "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+    "source_id": "skill:typesafe-ai",
+    "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+  }
+}

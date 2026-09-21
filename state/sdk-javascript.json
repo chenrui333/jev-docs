@@ -1,8 +1,13 @@
 {
-  "discrepancy": null,
-  "fingerprint": "28fd8e64e66062525cd4594e04e08659ae027a4fd755e434749f224678b6b0c1",
+  "available_tags": [
+    "v0.5.7",
+    "v0.6.0"
+  ],
+  "discrepancies": [],
+  "fingerprint": "1a1a3183e5d32bfaf4486a5cacb5fd7ff280ae49865682fc5584fb8a3d848650",
   "main_commit": "66880ccded6cb642dc1809620c2b108c33730214",
-  "observed_at": "2026-09-21T15:03:35.476514Z",
+  "malformed_release_metadata": [],
+  "observed_at": "2026-09-21T15:20:48.813761Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {

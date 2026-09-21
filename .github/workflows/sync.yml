@@ -40,4 +40,5 @@ jobs:
           git add BEST_PRACTICES.md sources state events changes
           git diff --cached --quiet && exit 0
           git commit -s -m "chore(sync): update TypeSafe evidence"
-          git push
+          # A normal push rejects the update if main advanced after checkout.
+          git push origin HEAD:main

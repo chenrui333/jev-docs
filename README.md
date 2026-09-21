@@ -73,7 +73,9 @@ GitHub Actions runs pull-request validation and a strict synchronization every
 12 hours, with manual `workflow_dispatch`. Scheduled runs use concurrency
 protection, require no TypeSafe API key, and commit only actual generated
 changes. A failed discovery or source fetch leaves the last-known-good generated
-state untouched and fails loudly.
+state untouched and fails loudly. An SDK package/tag discrepancy is allowed a
+three-day observation grace period, then causes strict synchronization to fail
+until the upstream evidence converges.
 
 ## Local usage
 
