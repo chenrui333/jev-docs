@@ -1,0 +1,36 @@
+state/source-coverage.json
+  s_989e3cd476c267::t_2e49e5f51f2122 3,14-15,781-782
+tests/test_sync.py
+  s_989e3cd476c267::t_9995a8f841c7f0 15,289-314
+  s_989e3cd476c267::t_fd60d949cc6965 25,59-61,403,405-407
+  s_50afb5ca2f81ef::t_ee49e532fd176c 315-316
+src/jev_docs/sync.py
+  s_989e3cd476c267::t_74d59679ad6d11 1226
+  s_989e3cd476c267::t_c209512bbdc6a9 170-180,1081-1082,1097-1102,1106,1117-1120,1180,1225,1227-1229,1334-1342
+docs/DESIGN.md
+  s_989e3cd476c267::t_de70f899dcb041 38-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "62d83102d9d523af9b8ac67348aa43a9d723746e",
+  "prompts": {},
+  "sessions": {
+    "s_50afb5ca2f81ef": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c438-b6f4-7301-9048-37dd24fc7116",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    },
+    "s_989e3cd476c267": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c46f-bf68-7421-b4d8-f1a2edc34542",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
