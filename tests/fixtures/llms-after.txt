@@ -1,0 +1,4 @@
+# Fixture documentation index
+
+- [State](https://docs.typesafe.ai/concepts/state.md)
+- [Noul](https://docs.typesafe.ai/primitives/noul.md)
