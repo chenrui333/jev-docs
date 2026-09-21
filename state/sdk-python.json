@@ -5,10 +5,10 @@
     "v0.7.0"
   ],
   "discrepancies": [],
-  "fingerprint": "3b9d088e3d9d64203b38d383f75b5003dd9688bf2d33351f6e350f4fae8dc6f8",
+  "fingerprint": "8df8321664d2fb85db22cc67e095670df2f358aa902ae6e233677c7180398e93",
   "main_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
   "malformed_release_metadata": [],
-  "observed_at": "2026-09-21T15:20:47.405935Z",
+  "observed_at": "2026-09-21T15:36:24.527007Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
@@ -17,7 +17,7 @@
       "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/main/pyproject.toml"
     },
     {
-      "sha256": "77b598412d09c95c4636c95d79591c784e91802d94898b350d780432db416883",
+      "sha256": "47deec71c490e4aaed041316ff7c3377f40b937f6d7cf9e24010c3d2c76dbab3",
       "source_id": "registry:pypi:typesafe-sdk",
       "url": "https://pypi.org/pypi/typesafe-sdk/json"
     }

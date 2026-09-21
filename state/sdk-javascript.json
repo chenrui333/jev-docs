@@ -4,10 +4,10 @@
     "v0.6.0"
   ],
   "discrepancies": [],
-  "fingerprint": "1a1a3183e5d32bfaf4486a5cacb5fd7ff280ae49865682fc5584fb8a3d848650",
+  "fingerprint": "8893be1a1ac70c5da31b87f881d4e2e3defba645ff49b1b6a86ebaa90d548518",
   "main_commit": "66880ccded6cb642dc1809620c2b108c33730214",
   "malformed_release_metadata": [],
-  "observed_at": "2026-09-21T15:20:48.813761Z",
+  "observed_at": "2026-09-21T15:36:26.747056Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {
@@ -16,7 +16,7 @@
       "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/main/package.json"
     },
     {
-      "sha256": "878ac45031737723a669290afa6e5102d26015b680227815e9015b5dc676bbba",
+      "sha256": "8d11d3d01304a3d90607d90d95f8eb9953b6811a205b695e5ff14485e6e3cb37",
       "source_id": "registry:npm:@typesafe-ai/sdk",
       "url": "https://registry.npmjs.org/@typesafe-ai%2fsdk"
     }

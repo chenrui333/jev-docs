@@ -29,6 +29,9 @@ from jev_docs.sync import (
     semantic_events,
     sha256_bytes,
     source_events,
+    stable_release_evidence,
+    stable_repository_evidence,
+    stable_tag_evidence,
     synchronize,
 )
 
@@ -89,6 +92,26 @@ def test_bounded_retry_and_hash() -> None:
     assert (
         sha256_bytes(b"hello") == "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
     )
+
+
+def test_github_evidence_ignores_volatile_metadata() -> None:
+    repository = {
+        "full_name": "typesafe-ai/example",
+        "default_branch": "main",
+        "archived": False,
+        "visibility": "public",
+        "license": {"key": "mit"},
+        "pushed_at": "2026-09-20T00:00:00Z",
+        "stargazers_count": 1,
+    }
+    changed = {**repository, "pushed_at": "2026-09-21T00:00:00Z", "stargazers_count": 2}
+    assert stable_repository_evidence(repository) == stable_repository_evidence(changed)
+    assert stable_tag_evidence(
+        [{"name": "v1.0.0", "commit": {"sha": "abc"}, "zipball_url": "volatile"}]
+    ) == [{"commit": {"sha": "abc"}, "name": "v1.0.0"}]
+    assert stable_release_evidence(
+        [{"tag_name": "v1.0.0", "published_at": "today", "assets": [{"download_count": 1}]}]
+    ) == [{"html_url": None, "name": None, "published_at": "today", "tag_name": "v1.0.0"}]
 
 
 def test_permanent_failure_is_visible() -> None:

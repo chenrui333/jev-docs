@@ -426,6 +426,51 @@ def github_json(client: HTTPClient, path: str) -> tuple[Any, Response]:
     return json.loads(response.body), response
 
 
+def evidence_bytes(value: Any) -> bytes:
+    return canonical_json(value).encode()
+
+
+def stable_repository_evidence(value: Any) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        return {"malformed": type(value).__name__}
+    return {
+        key: value.get(key)
+        for key in ("full_name", "default_branch", "archived", "visibility", "license")
+    }
+
+
+def stable_tag_evidence(value: Any) -> Any:
+    if not isinstance(value, list):
+        return {"malformed": type(value).__name__}
+    return sorted(
+        (
+            {"name": item.get("name"), "commit": {"sha": item.get("commit", {}).get("sha")}}
+            if isinstance(item, dict) and isinstance(item.get("commit"), dict)
+            else {"malformed": True}
+            for item in value
+        ),
+        key=canonical_json,
+    )
+
+
+def stable_release_evidence(value: Any) -> Any:
+    if not isinstance(value, list):
+        return {"malformed": type(value).__name__}
+    return sorted(
+        (
+            {key: item.get(key) for key in ("tag_name", "published_at", "name", "html_url")}
+            if isinstance(item, dict)
+            else {"malformed": True}
+            for item in value
+        ),
+        key=canonical_json,
+    )
+
+
+def stable_head_evidence(value: Any) -> dict[str, Any]:
+    return {"sha": value.get("sha")} if isinstance(value, dict) else {"malformed": True}
+
+
 def parse_simple_toml_value(text: str, key: str) -> str | None:
     match = re.search(rf"^{re.escape(key)}\s*=\s*[\"']([^\"']+)[\"']", text, re.MULTILINE)
     return match.group(1) if match else None
@@ -552,12 +597,15 @@ def sdk_snapshot(
         f"github:{repo}:repository",
         "github-api",
         f"{GITHUB_API}{metadata_path}",
-        repo_response.body,
+        evidence_bytes(stable_repository_evidence(repo_meta)),
     )
     tags_path = f"/repos/{repo}/tags?per_page=100"
     tags, tags_response = github_json(client, tags_path)
     artifacts[f"github:{repo}:tags"] = Artifact(
-        f"github:{repo}:tags", "github-api", f"{GITHUB_API}{tags_path}", tags_response.body
+        f"github:{repo}:tags",
+        "github-api",
+        f"{GITHUB_API}{tags_path}",
+        evidence_bytes(stable_tag_evidence(tags)),
     )
     releases_path = f"/repos/{repo}/releases?per_page=100"
     releases, releases_response = github_json(client, releases_path)
@@ -565,13 +613,16 @@ def sdk_snapshot(
         f"github:{repo}:releases",
         "github-api",
         f"{GITHUB_API}{releases_path}",
-        releases_response.body,
+        evidence_bytes(stable_release_evidence(releases)),
     )
-    branch = repo_meta.get("default_branch", "main")
+    branch = repo_meta.get("default_branch", "main") if isinstance(repo_meta, dict) else "main"
     head_path = f"/repos/{repo}/commits/{branch}"
     head, head_response = github_json(client, head_path)
     artifacts[f"github:{repo}:head"] = Artifact(
-        f"github:{repo}:head", "github-api", f"{GITHUB_API}{head_path}", head_response.body
+        f"github:{repo}:head",
+        "github-api",
+        f"{GITHUB_API}{head_path}",
+        evidence_bytes(stable_head_evidence(head)),
     )
     raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{config_path}"
     config_response = client.get(raw_url)
@@ -596,14 +647,16 @@ def sdk_snapshot(
         runtime = config.get("engines", {}).get("node", "unknown")
         public_surface = ["TypeSafeClient", "choice", "noul", "score"]
         registry_id = f"registry:npm:{package}"
-    artifacts[registry_id] = Artifact(
-        registry_id, "package-registry", registry_url, registry_response.body
-    )
     if package_kind == "python":
         version = registry.get("info", {}).get("version") if isinstance(registry, dict) else None
+        registry_evidence = {"version": version}
     else:
         dist_tags = registry.get("dist-tags", {}) if isinstance(registry, dict) else {}
         version = dist_tags.get("latest") if isinstance(dist_tags, dict) else None
+        registry_evidence = {"latest": version}
+    artifacts[registry_id] = Artifact(
+        registry_id, "package-registry", registry_url, evidence_bytes(registry_evidence)
+    )
     release_info = release_provenance(version, tags, releases)
     release_history = release_info["release_history"]
     notes = parse_release_notes(changelog_content or "")
@@ -638,7 +691,7 @@ def sdk_snapshot(
             {
                 "source_id": registry_id,
                 "url": registry_url,
-                "sha256": sha256_bytes(registry_response.body),
+                "sha256": artifacts[registry_id].sha256,
             },
         ],
         "discrepancies": release_info["discrepancies"],
@@ -1186,7 +1239,7 @@ def synchronize(
             "github:typesafe-ai/skills:commit",
             "github-api",
             f"{GITHUB_API}{skill_path}",
-            skill_commit_response.body,
+            evidence_bytes({"sha": skill_commit}),
         )
         python = sdk_snapshot(
             client,
