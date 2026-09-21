@@ -1,0 +1,33 @@
+state/sdk-python.json
+  s_989e3cd476c267::t_19d640b3b63366 8,11,20
+src/jev_docs/sync.py
+  s_989e3cd476c267::t_572bd890d8ee1f 461
+  s_989e3cd476c267::t_bf75c4f88b478a 1242
+  s_989e3cd476c267::t_a49fbb4da9ecd5 694
+  s_989e3cd476c267::t_8c1306eeff21ae 429-460,462-473,600,605-608,616,618,622-625,652,656-659
+tests/test_sync.py
+  s_989e3cd476c267::t_88d0a5b5a1b387 32-34,97-114
+  s_989e3cd476c267::t_f6cb79afd0a43a 115-116
+sources/github.typesafe-ai/manifest.json
+  s_989e3cd476c267::t_0ed1781d23c7dc 4,9-10,19,24-25,49,54-55,64,69-70,79,84-85,94,99-100,124,129-130,139,144-145,154,159-160,169,174-175,184,189-190
+state/sdk-javascript.json
+  s_989e3cd476c267::t_19d640b3b63366 7,10,19
+state/sources.json
+  s_989e3cd476c267::t_0ed1781d23c7dc 1654,1659-1660,1669,1674-1675,1699,1704-1705,1714,1719-1720,1729,1734-1735,1744,1749-1750,1774,1779-1780,1789,1794-1795,1804,1809-1810,1819,1824-1825,1834,1839-1840
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "4e0c0a2765202f230ac0eda9bf7c052f7e142806",
+  "prompts": {},
+  "sessions": {
+    "s_989e3cd476c267": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c46f-bf68-7421-b4d8-f1a2edc34542",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
