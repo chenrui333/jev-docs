@@ -1,0 +1,44 @@
+state/source-coverage.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-779
+events/baseline.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-8
+state/freshness.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-5,7-12,15-25
+  s_989e3cd476c267::t_f1ec56cf927c56 6,13-14
+state/primitives.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-40
+state/sdk-python.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-64
+state/sdk-javascript.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-60
+sources/docs.typesafe.ai/manifest.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-1656
+state/api.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-25
+state/practices.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-254
+state/sources.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-1867
+state/models.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-24
+BEST_PRACTICES.md
+  s_989e3cd476c267::t_def0b9d36ff14d 1-111
+sources/github.typesafe-ai/manifest.json
+  s_989e3cd476c267::t_def0b9d36ff14d 1-216
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ac1dfb615aec942658811f040cba6342bb146967",
+  "prompts": {},
+  "sessions": {
+    "s_989e3cd476c267": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c46f-bf68-7421-b4d8-f1a2edc34542",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
