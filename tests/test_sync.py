@@ -12,6 +12,7 @@ from jev_docs.sync import (
     HTTPClient,
     Response,
     actionable_discrepancies,
+    build_coverage,
     deduplicate_events,
     derive_practices,
     docs_canonical_url,
@@ -21,6 +22,7 @@ from jev_docs.sync import (
     normalize_url,
     observed_state,
     parse_llms,
+    parse_llms_exclusions,
     parse_sitemap,
     release_provenance,
     render_best_practices,
@@ -53,6 +55,9 @@ def test_url_normalization_and_deduplication() -> None:
     assert parse_llms(text) == [
         ("https://docs.typesafe.ai/concepts/state.md", "State", ""),
         ("https://docs.typesafe.ai/primitives.md", "Relative", "summary"),
+    ]
+    assert parse_llms_exclusions(text) == [
+        {"reason": "external-host", "title": "Other", "url": "https://example.com/other.md"}
     ]
 
 
@@ -281,6 +286,34 @@ def test_discovery_failure_cannot_infer_documentation_removal(tmp_path: Path) ->
     assert state.read_text() == "last-known-good"
 
 
+def test_source_coverage_tracks_discovery_delta_and_exclusions() -> None:
+    page = Artifact(
+        "docs:new",
+        "documentation",
+        "https://docs.typesafe.ai/new",
+        b"new",
+    )
+    index = Artifact(
+        "docs:llms.txt",
+        "documentation-discovery",
+        "https://docs.typesafe.ai/llms.txt",
+        b"index",
+    )
+    coverage = build_coverage(
+        [(page.url, "New", "")],
+        {page.source_id: page},
+        index,
+        "llms.txt",
+        None,
+        {"pages": [{"source_id": "docs:gone"}]},
+        [{"url": "https://example.com/other", "title": "Other", "reason": "external-host"}],
+    )
+    assert coverage["newly_discovered"] == ["docs:new"]
+    assert coverage["disappeared"] == ["docs:gone"]
+    assert coverage["intentionally_excluded"][0]["reason"] == "external-host"
+    assert coverage["removal_safe"]
+
+
 def test_partial_upstream_failure_does_not_promote_staged_state(tmp_path: Path) -> None:
     marker = tmp_path / "state-marker"
     marker.write_text("last-known-good")
@@ -367,7 +400,11 @@ def test_committed_source_coverage_has_unique_complete_pages() -> None:
     coverage = json.loads((root / "state/source-coverage.json").read_text())
     pages = coverage["pages"]
     assert coverage["complete"]
+    assert coverage["removal_safe"]
     assert coverage["fetched_count"] == coverage["discovered_count"]
+    assert coverage["retained_count"] == coverage["fetched_count"]
+    assert coverage["newly_discovered"] == []
+    assert coverage["disappeared"] == []
     assert len(pages) == len({page["source_id"] for page in pages})
     assert len(pages) == len({page["canonical_url"] for page in pages})
 

@@ -1,5 +1,6 @@
 {
   "complete": true,
+  "disappeared": [],
   "discovered_count": 109,
   "discovery": {
     "method": "llms.txt",
@@ -10,6 +11,8 @@
   },
   "failed_count": 0,
   "fetched_count": 109,
+  "intentionally_excluded": [],
+  "newly_discovered": [],
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
@@ -775,5 +778,7 @@
       "title": "Classification using confidence"
     }
   ],
+  "removal_safe": true,
+  "retained_count": 109,
   "schema_version": 1
 }

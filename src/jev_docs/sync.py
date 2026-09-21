@@ -167,6 +167,17 @@ def parse_llms(text: str, base: str = DOCS_ROOT) -> list[tuple[str, str, str]]:
     return results
 
 
+def parse_llms_exclusions(text: str, base: str = DOCS_ROOT) -> list[dict[str, str]]:
+    """Record links intentionally excluded because they are outside the docs host."""
+    exclusions: dict[str, dict[str, str]] = {}
+    for match in re.finditer(r"-\s*\[([^]]+)\]\(([^)]+)\)", text):
+        title, raw_url = match.groups()
+        url = normalize_url(raw_url, base)
+        if urlsplit(url).netloc != "docs.typesafe.ai":
+            exclusions[url] = {"url": url, "title": title.strip(), "reason": "external-host"}
+    return [exclusions[url] for url in sorted(exclusions)]
+
+
 def parse_sitemap(text: str) -> dict[str, str]:
     result: dict[str, str] = {}
     root = ET.fromstring(text)
@@ -1067,6 +1078,8 @@ def build_coverage(
     index: Artifact,
     discovery_method: str,
     sitemap_warning: str | None,
+    previous: dict[str, Any] | None = None,
+    intentionally_excluded: list[dict[str, str]] | None = None,
 ) -> dict[str, Any]:
     pages = []
     for url, title, _description in discovered:
@@ -1081,9 +1094,16 @@ def build_coverage(
                 "sha256": artifact.sha256 if artifact else None,
             }
         )
+    current_ids = {page["source_id"] for page in pages}
+    previous_ids = {
+        page["source_id"]
+        for page in (previous or {}).get("pages", [])
+        if isinstance(page, dict) and page.get("source_id")
+    }
     return {
         "schema_version": SCHEMA,
         "complete": True,
+        "removal_safe": True,
         "discovery": {
             "url": index.url,
             "source_id": index.source_id,
@@ -1094,6 +1114,10 @@ def build_coverage(
         "discovered_count": len(discovered),
         "fetched_count": sum(page["status"] == "fetched" for page in pages),
         "failed_count": sum(page["status"] == "failed" for page in pages),
+        "retained_count": sum(page["status"] == "fetched" for page in pages),
+        "newly_discovered": sorted(current_ids - previous_ids),
+        "disappeared": sorted(previous_ids - current_ids),
+        "intentionally_excluded": intentionally_excluded or [],
         "pages": pages,
     }
 
@@ -1153,6 +1177,7 @@ def synchronize(
         read_json(root / "sources/github.typesafe-ai/manifest.json", {}) or {}
     )
     previous_sources = read_json(root / "state/sources.json", {}) or {}
+    previous_coverage = read_json(root / "state/source-coverage.json", {}) or {}
     previous_freshness = read_json(root / "state/freshness.json", {}) or {}
     previous_state = {
         name: read_json(root / f"state/{name}.json")
@@ -1197,6 +1222,11 @@ def synchronize(
             sitemap_warning = str(index_error)
         if not discovered:
             raise FetchError("documentation discovery returned no same-host pages")
+        intentionally_excluded = (
+            parse_llms_exclusions(index_response.body.decode("utf-8"))
+            if index.source_id == "docs:llms.txt"
+            else []
+        )
         artifacts: dict[str, Artifact] = {index.source_id: index}
         contents: dict[str, str] = {index.source_id: index.content.decode("utf-8")}
         descriptions: dict[str, tuple[str, str]] = {
@@ -1301,7 +1331,15 @@ def synchronize(
     existing_ids = load_history_events(root / "events")
     new_events = deduplicate_events(candidates, existing_ids)
     day = iso_day(utc_now())
-    coverage = build_coverage(discovered, artifacts, index, discovery_method, sitemap_warning)
+    coverage = build_coverage(
+        discovered,
+        artifacts,
+        index,
+        discovery_method,
+        sitemap_warning,
+        previous_coverage,
+        intentionally_excluded,
+    )
     freshness = observed_state(
         {
             "schema_version": SCHEMA,

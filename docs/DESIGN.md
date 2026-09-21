@@ -35,6 +35,10 @@ projects are unrelated to the Jev/System One documentation evidence boundary.
 - `sources/` contains one manifest per source family.
 - `state/` contains stable JSON snapshots with explicit schema versions and
   provenance.
+- `state/source-coverage.json` records discovered, fetched, retained,
+  intentionally excluded, newly discovered, and disappeared pages. Successful
+  discovery sets `removal_safe`; failed discovery never promotes a replacement
+  coverage snapshot.
 - `BEST_PRACTICES.md` is rendered only from `state/practices.json`.
 - `events/` contains stable-ID semantic changes. `events/baseline.json` marks
   the initial snapshot without manufacturing additions.
