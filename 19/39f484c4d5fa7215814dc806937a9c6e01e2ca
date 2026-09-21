@@ -1,0 +1,32 @@
+tests/fixtures/llms-after.txt
+  s_989e3cd476c267::t_730bf200af0957 1-4
+tests/test_sync.py
+  s_989e3cd476c267::t_f2e62cf2022aa7 4,329-331,333-335
+  s_989e3cd476c267::t_305aedc17e1d1c 22,326-328,332,336-349
+  s_989e3cd476c267::t_6fdc6c87916db1 15,28
+  s_989e3cd476c267::t_730bf200af0957 18,20,25,27,31,202-238,242-258,279-281,324-325,350-361,380-381,387-411
+  s_989e3cd476c267::t_ddac6b6520dfc9 14,412-424
+  s_989e3cd476c267::t_237194191cf5cc 13
+  s_989e3cd476c267::t_e2ad69de4e8166 166-193,362-379,382-386
+  s_989e3cd476c267::t_a4c2eab23ccea8 282-323
+  s_989e3cd476c267::t_87c8ba05fa73ee 239-241
+  s_989e3cd476c267::t_88a531bb99e742 259-278
+tests/fixtures/llms-before.txt
+  s_989e3cd476c267::t_730bf200af0957 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1939f484c4d5fa7215814dc806937a9c6e01e2ca",
+  "prompts": {},
+  "sessions": {
+    "s_989e3cd476c267": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c46f-bf68-7421-b4d8-f1a2edc34542",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
