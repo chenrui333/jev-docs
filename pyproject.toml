@@ -1,0 +1,28 @@
+[project]
+name = "jev-docs"
+version = "0.1.0"
+description = "Provenance-first history of Jev and TypeSafe System One"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Rui Chen" }]
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0,<9",
+  "ruff>=0.9,<1",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["src"]

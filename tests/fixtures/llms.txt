@@ -1,0 +1,4 @@
+# TypeSafe AI
+
+- [State](/concepts/state.md): State guidance
+- [Choice](/primitives/choice.md): Choice guidance
