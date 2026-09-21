@@ -1,0 +1,60 @@
+{
+  "discrepancy": null,
+  "fingerprint": "28fd8e64e66062525cd4594e04e08659ae027a4fd755e434749f224678b6b0c1",
+  "main_commit": "66880ccded6cb642dc1809620c2b108c33730214",
+  "observed_at": "2026-09-21T15:03:35.476514Z",
+  "package": "@typesafe-ai/sdk",
+  "provenance": [
+    {
+      "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+      "source_id": "github:typesafe-ai/typesafe-sdk-js:package.json",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/main/package.json"
+    },
+    {
+      "sha256": "878ac45031737723a669290afa6e5102d26015b680227815e9015b5dc676bbba",
+      "source_id": "registry:npm:@typesafe-ai/sdk",
+      "url": "https://registry.npmjs.org/@typesafe-ai%2fsdk"
+    }
+  ],
+  "public_surface": {
+    "entry_points": [
+      "TypeSafeClient",
+      "choice",
+      "noul",
+      "score"
+    ],
+    "primitives": [
+      "Choice",
+      "Noul",
+      "Score"
+    ]
+  },
+  "release_history": [
+    {
+      "documented_changes": [],
+      "name": "v0.5.7 (2026-09-11)",
+      "published_at": "2026-09-12T04:13:23Z",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.5.7",
+      "tag": "v0.5.7",
+      "version": "0.5.7"
+    },
+    {
+      "documented_changes": [
+        "accept `Score.criteria` as an ordered sequence instead of a dictionary keyed by integers"
+      ],
+      "name": "v0.6.0 (2026-09-15)",
+      "published_at": "2026-09-15T18:17:21Z",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.6.0",
+      "tag": "v0.6.0",
+      "version": "0.6.0"
+    }
+  ],
+  "repository": "https://github.com/typesafe-ai/typesafe-sdk-js",
+  "runtime": {
+    "javascript": ">=20"
+  },
+  "schema_version": 1,
+  "source_commit": "66880ccded6cb642dc1809620c2b108c33730214",
+  "source_tag": "v0.6.0",
+  "version": "0.6.0"
+}

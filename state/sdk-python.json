@@ -1,0 +1,64 @@
+{
+  "discrepancy": null,
+  "fingerprint": "31c97d056d39ed3eaabf14bcf70e7e898a51287229da146df4f34f634fe3e9d0",
+  "main_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
+  "observed_at": "2026-09-21T15:03:34.022764Z",
+  "package": "typesafe-sdk",
+  "provenance": [
+    {
+      "sha256": "42b81115e9507a6dd94ce279e341236f41aa8d9e756f4d6ac42235e893f64222",
+      "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/main/pyproject.toml"
+    },
+    {
+      "sha256": "77b598412d09c95c4636c95d79591c784e91802d94898b350d780432db416883",
+      "source_id": "registry:pypi:typesafe-sdk",
+      "url": "https://pypi.org/pypi/typesafe-sdk/json"
+    }
+  ],
+  "public_surface": {
+    "entry_points": [
+      "TypeSafeClient",
+      "AsyncTypeSafeClient",
+      "Choice",
+      "Noul",
+      "Score"
+    ],
+    "primitives": [
+      "Choice",
+      "Noul",
+      "Score"
+    ]
+  },
+  "release_history": [
+    {
+      "name": "v0.5.7 (2026-09-12)",
+      "published_at": "2026-09-11T23:06:00Z",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.5.7",
+      "tag": "v0.5.7",
+      "version": "0.5.7"
+    },
+    {
+      "name": "v0.6.0 (2026-09-15)",
+      "published_at": "2026-09-15T10:23:29Z",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.6.0",
+      "tag": "v0.6.0",
+      "version": "0.6.0"
+    },
+    {
+      "name": "v0.7.0 (2026-09-18)",
+      "published_at": "2026-09-18T09:12:41Z",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.0",
+      "tag": "v0.7.0",
+      "version": "0.7.0"
+    }
+  ],
+  "repository": "https://github.com/typesafe-ai/typesafe-sdk-python",
+  "runtime": {
+    "python": ">=3.10"
+  },
+  "schema_version": 1,
+  "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
+  "source_tag": "v0.7.0",
+  "version": "0.7.0"
+}

@@ -1,0 +1,254 @@
+{
+  "fingerprint": "8d9d1e3a31949e6a8fdde6f17fc20908b86a5834979219c4a7b15cde7c488fff",
+  "items": [
+    {
+      "category": "decision-boundary",
+      "first_seen": null,
+      "id": "deterministic-before-jev",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "* Keep control flow, deterministic rules, and side effects in code. * Break broad judgments into narrow, typed questions with explicit instructions and criteria. * Give each question only the context it needs. * Use probabilities and confidence to act, ask for review, or escalate. * Ask independent questions together, then compose their answers in code. </Info>",
+          "sha256": "d9f4d34c1349bf5acb55c99d6a1651eacfc481ad8d1f78ccb8776769da729a49",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Keep deterministic rules, calculations, exact lookups, control flow, and side effects in code; use Jev where semantic judgment is needed."
+    },
+    {
+      "category": "question-design",
+      "first_seen": null,
+      "id": "narrow-coherent-questions",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "* Break broad judgments into narrow, typed questions with explicit instructions and criteria. * Give each question only the context it needs. * Use probabilities and confidence to act, ask for review, or escalate. * Ask independent questions together, then compose their answers in code. </Info>",
+          "sha256": "d9f4d34c1349bf5acb55c99d6a1651eacfc481ad8d1f78ccb8776769da729a49",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "excerpt": "Ask one narrow, coherent judgment per question. Split independently useful dimensions, without destroying the relationship being judged. A bounded action selection or contextual interpretation is valid; atomic does not mean literal fact extraction or a one-sentence limit. Strings work for simple questions. Use structured objects or arrays when definitions, contrasts, exclusions, or examples clarify instructions or cr",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Ask narrow, coherent, typed questions with explicit instructions and criteria rather than hiding several judgments in one broad question."
+    },
+    {
+      "category": "batching",
+      "first_seen": null,
+      "id": "batch-independent-questions",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "Because TypeSafe supports sending many questions in a single API call, we recommend putting all of the questions your system needs in a single request, and then using code to decide what is relevant after the fact. All questions are evaluated in parallel, so adding more questions usually has little effect on response time.",
+          "sha256": "8d7a251ea6b735cb4994c1e0a95166cc0b3febce7d18189c3aa5e1673f182c91",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "excerpt": "**Ask independent questions over the same state together**, including useful speculative questions. They run in parallel and cannot see one another's answers. State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure actu",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Ask independent questions over the same state together so the model can evaluate them in parallel and code can compose the answers."
+    },
+    {
+      "category": "batching",
+      "first_seen": null,
+      "id": "explicit-speculative-premises",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "> Send many questions in a single call, including speculative ones, and let your code decide what's relevant.",
+          "sha256": "8d7a251ea6b735cb4994c1e0a95166cc0b3febce7d18189c3aa5e1673f182c91",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "excerpt": "State each speculative premise explicitly; code consumes the applicable answers. A second request is warranted when an earlier answer is needed to fetch evidence, construct new state, or determine the next options. Extra questions still use tokens; measure actual request budgets, cost, and end-to-end latency.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Speculative questions are acceptable in a batch, but their premises must be stated explicitly and code must decide which answers are relevant."
+    },
+    {
+      "category": "confidence",
+      "first_seen": null,
+      "id": "choice-confidence-concentration",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "<p className=\"mt-3\">TypeSafe computes confidence from how the probability is spread across the options. All of it on one option gives 1.0; the more evenly it spreads, the lower the confidence. This demo uses <code>(3 × largest probability − 1) / 2</code> to approximate confidence for three options.</p> </details> </section>; }",
+          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "excerpt": "concentration, not overall workflow correctness or permission to act. A Noul near 0.5 means similar probability for yes and no, not medium intensity. Several acceptable alternatives can also spread probability; low confidence need not invalidate a harmless preference choice. Ignore uncertainty on unused branches.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Choice confidence summarizes concentration of the competing option probabilities; it is not a guarantee that the selected answer is correct."
+    },
+    {
+      "category": "confidence",
+      "first_seen": null,
+      "id": "confidence-is-not-permission",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "The 0.5 confidence floor catches anything the model reports as genuinely uncertain. Above that, the threshold for acting without confirmation is higher for a destructive operation than for a read-only one. Your code encodes the risk tolerance.",
+          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Confidence is an uncertainty signal. Keep the permission to act, review, or escalate explicit in application code."
+    },
+    {
+      "category": "primitives",
+      "first_seen": null,
+      "id": "noul-is-yes-probability",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "A Noul value runs from 0 to 1, but it's not a scale of the thing you asked about. It is the probability that the answer is yes. If the question is really about degree, the value does not measure the degree. Below, \"Is the candidate strong in Python?\" is asked about four candidates, next to a [Score](/primitives/score) with four levels: no experience, some familiarity, regular use in a job, deep expertise.",
+          "sha256": "aa7bff0d04bd42614e0e851a9ad4917ccc6287c882bc5dece7689b085ef789e6",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "A Noul value is the probability that a yes/no proposition is true; a value near 0.5 means uncertainty between yes and no, not medium intensity."
+    },
+    {
+      "category": "question-design",
+      "first_seen": null,
+      "id": "candidate-must-be-present",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "selection, check candidate coverage: the model cannot choose an omitted value.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Candidate selection questions can only select a value that is actually present in the candidate state or criteria."
+    },
+    {
+      "category": "thresholds",
+      "first_seen": null,
+      "id": "domain-calibrated-thresholds",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "The correct threshold values depend on your domain and the performance of the model for your use case. Start with conservative thresholds, test with your own data, and adjust as you observe results. </Note>",
+          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "excerpt": "the user's data and consequences. Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act. A Noul near 0.5 means similar probability for yes and no, not medium intensity. Several acceptable alternatives can also spread probability; low confidence need not invalidate a harmless preference choice. Ignore uncertainty on unused branches.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Choose thresholds from the application's data, model performance, and consequences; do not treat cookbook thresholds as universal defaults."
+    },
+    {
+      "category": "verification",
+      "first_seen": null,
+      "id": "typed-output-is-not-truth",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "are unchanged. Typed output guarantees the interface, not truth. System One models are trained for calibrated decisions; validate their performance in the target domain.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Typed output guarantees interface shape, not truth; test representative cases and resulting application behavior."
+    },
+    {
+      "category": "state",
+      "first_seen": null,
+      "id": "observed-state-distinct-from-inference",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "The state contains the content and supporting facts. [Questions](/primitives) define the judgments the model should make about that material. For example, keep the refund request and policy in the state, then ask whether the customer requested a refund and whether the policy supports it.",
+          "sha256": "6871d59470c6af330b10be302a7382ab4c175ee8994886ad48df2fe6bb315462",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state.md"
+        },
+        {
+          "excerpt": "facts, and check freshness before applying a result to a changed situation.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "Keep observed application state and inferred model judgments conceptually distinct, and check freshness before applying a result to changed state."
+    },
+    {
+      "category": "verification",
+      "first_seen": null,
+      "id": "diagnose-failure-layers",
+      "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+      "last_verified": "2026-09-21",
+      "sources": [
+        {
+          "excerpt": "outcome. Separate missing evidence, model errors, code errors, and service failures. Treat cookbook thresholds and demo results as examples to evaluate, not universal rules or permanent model limitations. Keep API credentials server-side in web apps.",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "status": "recommended",
+      "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
+    }
+  ],
+  "observed_at": "2026-09-21T15:03:35.486464Z",
+  "schema_version": 1,
+  "status_vocabulary": [
+    "recommended",
+    "discouraged",
+    "anti_pattern",
+    "deprecated",
+    "unknown"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "endpoint": "POST https://api.typesafe.ai/v1/systemone",
+  "fingerprint": "8159ae8fbd08cc21c984557830a6a1fae88b5c7eb5bcabc87e75f66f1945a9b8",
+  "model_default": "jev-latest",
+  "observed_at": "2026-09-21T15:03:35.476778Z",
+  "provenance": [
+    {
+      "sha256": "7ea1c82d9d16bd06e3d38885a5292548293f91e6d1ade4682c27398ced51a9e5",
+      "source_id": "docs:api",
+      "url": "https://docs.typesafe.ai/api.md"
+    }
+  ],
+  "question_types": [
+    "choice",
+    "score",
+    "noul"
+  ],
+  "request_fields": [
+    "model",
+    "state",
+    "questions"
+  ],
+  "response_shape": "answers map keyed by question id",
+  "schema_version": 1
+}

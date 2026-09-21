@@ -1,0 +1,40 @@
+{
+  "fingerprint": "b2389b04611506b9cec7c84d120ba60dcde0c7ef638b2398108ded2c2f77dc64",
+  "items": [
+    {
+      "id": "choice",
+      "name": "Choice",
+      "observed_title": "Choice",
+      "source": {
+        "sha256": "4c55085131f8f2d7ae1faefdec52b1c7b379d40657d701cd2c786021cfe9dac9",
+        "source_id": "docs:primitives/choice",
+        "url": "https://docs.typesafe.ai/primitives/choice"
+      },
+      "summary": "Select one option from a defined set."
+    },
+    {
+      "id": "noul",
+      "name": "Noul",
+      "observed_title": "Noul",
+      "source": {
+        "sha256": "aa7bff0d04bd42614e0e851a9ad4917ccc6287c882bc5dece7689b085ef789e6",
+        "source_id": "docs:primitives/noul",
+        "url": "https://docs.typesafe.ai/primitives/noul"
+      },
+      "summary": "Evaluate whether a yes/no proposition is true and return its yes probability."
+    },
+    {
+      "id": "score",
+      "name": "Score",
+      "observed_title": "Score",
+      "source": {
+        "sha256": "5afe0db1d2d108c3bf35f73f5fddbfcd2b9ade2d3c6f553af8a02b2bfd005ae9",
+        "source_id": "docs:primitives/score",
+        "url": "https://docs.typesafe.ai/primitives/score"
+      },
+      "summary": "Rate content against ordered, descriptive levels."
+    }
+  ],
+  "observed_at": "2026-09-21T15:03:35.476737Z",
+  "schema_version": 1
+}
