@@ -1,0 +1,63 @@
+state/skill.json
+  s_989e3cd476c267::t_d3da8b1a34c042 1-11
+BEST_PRACTICES.md
+  s_989e3cd476c267::t_c034ab9937029e 15,75
+state/sources.json
+  s_989e3cd476c267::t_c034ab9937029e 1719-1720
+state/models.json
+  s_989e3cd476c267::t_d3da8b1a34c042 2,5-12,16-17,20
+state/sdk-python.json
+  s_989e3cd476c267::t_d3da8b1a34c042 2-8,10-11
+sources/github.typesafe-ai/manifest.json
+  s_989e3cd476c267::t_c034ab9937029e 69-70
+state/sdk-javascript.json
+  s_989e3cd476c267::t_d3da8b1a34c042 2-7,9-10
+docs/DESIGN.md
+  s_989e3cd476c267::t_1cff026718de0f 66-69
+README.md
+  s_989e3cd476c267::t_1cff026718de0f 76-78
+state/practices.json
+  s_989e3cd476c267::t_c034ab9937029e 2,35,58,245
+src/jev_docs/sync.py
+  s_989e3cd476c267::t_63f630b8041172 845-851
+  s_989e3cd476c267::t_e7bbfa1a4c44cd 602-608,619-620,631,644-645
+  s_989e3cd476c267::t_3892f069b8b2b8 1054-1056,1071-1075
+  s_989e3cd476c267::t_a4c2eab23ccea8 458,529-531,830,1241-1245
+  s_989e3cd476c267::t_94c83c0d4964b2 1106-1114,1238-1239,1247-1250
+  s_989e3cd476c267::t_f169c899064493 18,381-398,1279-1285
+  s_989e3cd476c267::t_0c1ef9e50e35f7 451-457,459-528,532-538
+  s_989e3cd476c267::t_6efe58e64bc374 1240,1246
+  s_989e3cd476c267::t_c42bdb4da4b715 745,750-762,768
+  s_989e3cd476c267::t_61846a21e2378c 781-789,791,794,802-803,813,827-829,831-832,872-935
+  s_989e3cd476c267::t_8cdc966530329c 1257,1260,1263,1266
+  s_989e3cd476c267::t_173ed6b838543c 198-201,800-801,833-844,852-871,1341,1344-1345
+  s_982c42b205fc4b::t_9318fcf2fc9d40 936-937
+.github/workflows/sync.yml
+  s_989e3cd476c267::t_65a94d9e8bb8df 43-44
+state/freshness.json
+  s_989e3cd476c267::t_d3da8b1a34c042 6,9,14-15,17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "67d9aeef153bf5a88db0427f69c73c51669457c9",
+  "prompts": {},
+  "sessions": {
+    "s_982c42b205fc4b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0bd16-a695-7490-905b-cfd4ccca30c7",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    },
+    "s_989e3cd476c267": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c46f-bf68-7421-b4d8-f1a2edc34542",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
