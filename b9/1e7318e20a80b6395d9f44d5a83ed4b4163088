@@ -1,0 +1,25 @@
+.github/workflows/sync.yml
+  s_d467d85e818320::t_333639577cb320 19,22,26-38,40,42-43,53-65
+.github/workflows/ci.yml
+  s_d467d85e818320::t_333639577cb320 15-16,20
+pyproject.toml
+  s_d467d85e818320::t_333639577cb320 29-31
+.github/scripts/sync_diagnostics.py
+  s_d467d85e818320::t_333639577cb320 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b91e7318e20a80b6395d9f44d5a83ed4b4163088",
+  "prompts": {},
+  "sessions": {
+    "s_d467d85e818320": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0dfe7-e2d3-72a0-934e-3f76ba8f78bd",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
