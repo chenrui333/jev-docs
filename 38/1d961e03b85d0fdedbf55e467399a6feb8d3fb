@@ -1,0 +1,26 @@
+src/jev_docs/sync.py
+  s_d467d85e818320::t_99feeb8333e346 162,1105-1106,1125-1143
+  s_d467d85e818320::t_3dbf5fd2453abf 1144-1149,1167,1235-1237,1358-1362,1474
+tests/test_sync.py
+  s_d467d85e818320::t_7b0b9e50358662 38,57-58,407
+docs/DESIGN.md
+  s_d467d85e818320::t_a767c993018224 7-8,38-40
+tests/test_transactions.py
+  s_d467d85e818320::t_c30f8ca0ee09b6 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "381d961e03b85d0fdedbf55e467399a6feb8d3fb",
+  "prompts": {},
+  "sessions": {
+    "s_d467d85e818320": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0dfe7-e2d3-72a0-934e-3f76ba8f78bd",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
