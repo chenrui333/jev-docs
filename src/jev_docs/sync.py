@@ -22,6 +22,9 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
+from jev_docs.inventories import cookbooks, model_limitations, render_limitations
+from jev_docs.text import excerpt
+
 ROOT = Path(__file__).resolve().parents[2]
 DOCS_ROOT = "https://docs.typesafe.ai"
 DOCS_INDEX = f"{DOCS_ROOT}/llms.txt"
@@ -199,20 +202,21 @@ def title_from_markdown(content: str, fallback: str) -> str:
     return re.sub(r"[*`]", "", match.group(1)).strip() if match else fallback
 
 
-def excerpt(content: str, pattern: str, limit: int = 420) -> str | None:
-    match = re.search(pattern, content, re.IGNORECASE | re.MULTILINE)
-    if not match:
-        return None
-    start = max(0, content.rfind("\n", 0, match.start()) + 1)
-    end = content.find("\n\n", match.end())
-    end = len(content) if end < 0 else end
-    snippet = re.sub(r"\s+", " ", content[start:end]).strip()
-    if len(snippet) <= limit:
-        return snippet
-    return snippet[:limit].rsplit(" ", 1)[0].rstrip() + "..."
-
-
 PRACTICE_RULES: tuple[dict[str, Any], ...] = (
+    {
+        "id": "jev-complements-generative-agents",
+        "category": "agent-integration",
+        "summary": "Use coding agents to write software that calls Jev for bounded structured decisions such as routing, classification, scoring and guardrails. Jev does not replace their generative base model or write code or converse.",
+        "patterns": [r"Jev is not a drop-in replacement"],
+        "sources": ["docs:introduction/coding-agents"],
+    },
+    {
+        "id": "prefer-typed-decisions-over-prompt-parsing",
+        "category": "agent-integration",
+        "summary": "For decisions expressible as TypeSafe's typed questions, consider replacing fragile generative return-JSON prompts with typed decision calls. This guidance does not cover arbitrary text generation or every JSON task.",
+        "patterns": [r"Replace a fragile prompt.*return JSON"],
+        "sources": ["docs:introduction/coding-agents"],
+    },
     {
         "id": "deterministic-before-jev",
         "category": "decision-boundary",
@@ -489,6 +493,7 @@ def parse_simple_toml_value(text: str, key: str) -> str | None:
 
 def parse_release_notes(text: str) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
+    text = re.sub(r"<h2\b[^>]*>\s*(.*?)\s*</h2>", r"## \1", text, flags=re.S)
     headings = list(
         re.finditer(r"^\s*#+\s*v?(\d+\.\d+\.\d+)\s*\(([^)]+)\)", text, re.MULTILINE | re.IGNORECASE)
     )
@@ -496,7 +501,7 @@ def parse_release_notes(text: str) -> list[dict[str, Any]]:
         end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
         block = text[match.end() : end]
         bullets = [
-            re.sub(r"\s+", " ", line[2:].strip())
+            re.sub(r"\s+", " ", line.strip()[2:].strip())
             for line in block.splitlines()
             if line.strip().startswith(("-", "*"))
         ]
@@ -565,6 +570,7 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
             {
                 "tag": entry["tag_name"],
                 "version": entry["tag_name"].removeprefix("v"),
+                "source_commit": tag_map.get(entry["tag_name"]),
                 "published_at": entry.get("published_at"),
                 "name": entry.get("name"),
                 "source_url": entry.get("html_url"),
@@ -590,6 +596,110 @@ def extract_models(content: str) -> list[dict[str, str]]:
         alias, target = match.groups()
         models.append({"kind": "alias", "id": alias, "target": target})
     return sorted(models, key=lambda item: (item["kind"], item["id"]))
+
+
+# Explicit release-note rules, deliberately not an API compatibility analyzer.
+PYTHON_CAPABILITY_RULES = (
+    (
+        "python-pydantic-serialization",
+        r"ser/de library.*pydantic",
+        "Pydantic serialization replaces msgspec.",
+    ),
+    (
+        "python-response-model",
+        r"system_one.*response_model",
+        "system_one accepts a Pydantic response_model for additional type safety.",
+    ),
+    (
+        "python-api-key-validation",
+        r"validate the API key early and exclude the value from logged exceptions",
+        "Validate API keys early without including their values in logged exceptions.",
+    ),
+    (
+        "python-gateway-examples",
+        r"examples for usage with AI gateways",
+        "Documented examples for using the Python SDK with AI gateways.",
+    ),
+    ("python-http2-extra", r"add.*http2.*extra", "Optional typesafe-sdk[http2] dependencies."),
+    ("python-http2-usage", r"document.*HTTP/2", "Documented HTTP/2 usage for the Python SDK."),
+)
+
+
+def python_capabilities(client, artifacts, repo, releases, registry, live_notes, previous=()):
+    """Only attribute a capability to a registry version with matching immutable source."""
+    items = []
+    for release in releases:
+        version = release["version"]
+        live = next((n for n in live_notes if n["version"] == version), None)
+        if (
+            not live
+            or not release.get("source_commit")
+            or version not in registry.get("releases", {})
+        ):
+            continue
+        rules = [
+            rule
+            for rule in PYTHON_CAPABILITY_RULES
+            if any(re.search(rule[1], note, re.I) for note in live["notes"])
+        ]
+        if not rules:
+            continue
+        commit = release["source_commit"]
+        evidence = []
+        for path in ("pyproject.toml", "docs/changelog.md"):
+            url = f"https://raw.githubusercontent.com/{repo}/{commit}/{path}"
+            response = client.get(url)
+            sid = f"github:{repo}:{release['tag']}:{path}"
+            artifact = Artifact(
+                sid,
+                "github-source",
+                url,
+                response.body,
+                upstream_commit=commit,
+                source_tag=release["tag"],
+            )
+            artifacts[sid] = artifact
+            evidence.append({"source_id": sid, "url": url, "sha256": artifact.sha256})
+            if path == "pyproject.toml":
+                if parse_simple_toml_value(response.body.decode(), "version") != version:
+                    raise RuntimeError(
+                        f"release config does not match registry version: {repo} {version}"
+                    )
+            else:
+                notes = next(
+                    (
+                        n
+                        for n in parse_release_notes(response.body.decode())
+                        if n["version"] == version
+                    ),
+                    None,
+                )
+        if not notes:
+            raise RuntimeError(f"immutable release changelog lacks {version}")
+        for ident, pattern, summary in rules:
+            matching = [note for note in notes["notes"] if re.search(pattern, note, re.I)]
+            if matching:
+                items.append(
+                    {
+                        "id": ident,
+                        "introduced": version,
+                        "status": "documented",
+                        "summary": summary,
+                        "source_tag": release["tag"],
+                        "source_commit": commit,
+                        "evidence": matching,
+                        "provenance": evidence,
+                    }
+                )
+    # Later notes can mention the same feature again; preserve its earliest
+    # verified introduction rather than creating duplicate identities.
+    by_id = {}
+    for item in sorted(items, key=lambda item: version_tuple(item["introduced"])):
+        by_id.setdefault(item["id"], item)
+    for item in previous:
+        if item["id"] not in by_id:
+            by_id[item["id"]] = {**item, "status": "unknown"}
+    return [by_id[key] for key in sorted(by_id)]
 
 
 def sdk_snapshot(
@@ -635,10 +745,14 @@ def sdk_snapshot(
         f"{GITHUB_API}{head_path}",
         evidence_bytes(stable_head_evidence(head)),
     )
-    raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{config_path}"
+    raw_url = f"https://raw.githubusercontent.com/{repo}/{head['sha']}/{config_path}"
     config_response = client.get(raw_url)
     config_artifact = Artifact(
-        f"github:{repo}:{config_path}", "github-source", raw_url, config_response.body
+        f"github:{repo}:{config_path}",
+        "github-source",
+        raw_url,
+        config_response.body,
+        upstream_commit=head["sha"],
     )
     artifacts[config_artifact.source_id] = config_artifact
     if package_kind == "python":
@@ -660,7 +774,10 @@ def sdk_snapshot(
         registry_id = f"registry:npm:{package}"
     if package_kind == "python":
         version = registry.get("info", {}).get("version") if isinstance(registry, dict) else None
-        registry_evidence = {"version": version}
+        registry_evidence = {
+            "version": version,
+            "published_versions": sorted(registry.get("releases", {})),
+        }
     else:
         dist_tags = registry.get("dist-tags", {}) if isinstance(registry, dict) else {}
         version = dist_tags.get("latest") if isinstance(dist_tags, dict) else None
@@ -673,8 +790,13 @@ def sdk_snapshot(
     notes = parse_release_notes(changelog_content or "")
     for item in release_history:
         note = next((note for note in notes if note["version"] == item["version"]), None)
-        if note:
+        if note and item.get("source_commit"):
             item["documented_changes"] = note["notes"]
+            sid = f"docs:sdk/{package_kind}/changelog"
+            if sid in artifacts:
+                item["documented_changes_provenance"] = [
+                    {"source_id": sid, "url": artifacts[sid].url, "sha256": artifacts[sid].sha256}
+                ]
     state = {
         "schema_version": SCHEMA,
         "package": package,
@@ -705,10 +827,99 @@ def sdk_snapshot(
                 "sha256": artifacts[registry_id].sha256,
             },
         ],
+        "capabilities": python_capabilities(
+            client,
+            artifacts,
+            repo,
+            release_history,
+            registry,
+            notes,
+            (previous or {}).get("capabilities", []),
+        )
+        if package_kind == "python"
+        else [],
         "discrepancies": release_info["discrepancies"],
         "malformed_release_metadata": release_info["malformed_metadata"],
     }
     return observed_state(state, previous)
+
+
+def evaluation_tool_snapshot(client, artifacts, previous):
+    repo = "typesafe-ai/system-one-adapter-python"
+    metadata = {}
+    for surface, suffix, projection in (
+        ("repository", "", stable_repository_evidence),
+        ("tags", "/tags?per_page=100", stable_tag_evidence),
+        ("releases", "/releases?per_page=100", stable_release_evidence),
+    ):
+        value, response = github_json(client, f"/repos/{repo}{suffix}")
+        metadata[surface] = value
+        sid = f"github:{repo}:{surface}"
+        artifacts[sid] = Artifact(
+            sid, "official_evaluation_tool", response.url, evidence_bytes(projection(value))
+        )
+    releases = [
+        item
+        for item in metadata["releases"]
+        if version_tuple(item.get("tag_name"))
+        and not item.get("prerelease")
+        and not item.get("draft")
+    ]
+    if not releases:
+        raise RuntimeError("evaluation tool has no stable release evidence")
+    release = max(releases, key=lambda item: version_tuple(item["tag_name"]))
+    version = release["tag_name"].removeprefix("v")
+    info = release_provenance(version, metadata["tags"], releases)
+    if not info["source_commit"]:
+        raise RuntimeError("evaluation tool release has no matching immutable tag")
+    sources = []
+    for path in ("README.md", "pyproject.toml"):
+        url = f"https://raw.githubusercontent.com/{repo}/{info['source_commit']}/{path}"
+        response = client.get(url)
+        sid = f"github:{repo}:{path}"
+        artifact = Artifact(
+            sid,
+            "official_evaluation_tool",
+            url,
+            response.body,
+            upstream_commit=info["source_commit"],
+            source_tag=info["source_tag"],
+        )
+        artifacts[sid] = artifact
+        sources.append({"source_id": sid, "url": url, "sha256": artifact.sha256})
+        if path == "README.md":
+            readme = response.body.decode()
+        elif parse_simple_toml_value(response.body.decode(), "version") != version:
+            raise RuntimeError("evaluation tool release/config mismatch")
+    purpose = excerpt(readme, r"Useful for comparing TypeSafe")
+    compatibility = excerpt(readme, r"drop-in replacement", 420)
+    if not purpose or not compatibility:
+        raise RuntimeError("evaluation tool purpose/compatibility evidence unrecognized")
+    providers = [
+        name
+        for extra, name in (
+            ("openai", "OpenAI-compatible"),
+            ("anthropic", "Anthropic"),
+            ("gemini", "Gemini"),
+        )
+        if f"system-one-adapter[{extra}]" in readme
+    ]
+    return observed_state(
+        {
+            "schema_version": SCHEMA,
+            "source_class": "official_evaluation_tool",
+            "repository": f"https://github.com/{repo}",
+            "version": version,
+            "source_tag": info["source_tag"],
+            "source_commit": info["source_commit"],
+            "purpose": purpose,
+            "compatibility": compatibility,
+            "provider_families": providers,
+            "provenance": sources,
+            "scope": "Official LLM-backed comparison tool; not Jev model state, API contract, SDK release stream, or benchmark evidence.",
+        },
+        previous,
+    )
 
 
 def derive_practices(
@@ -850,9 +1061,37 @@ def semantic_events(
         "sdk-python": ("sdk", "singleton"),
         "sdk-javascript": ("sdk", "singleton"),
         "skill": ("skill", "singleton"),
+        "model-limitations": ("model_limitation", "id"),
+        "cookbooks": ("cookbook", "id"),
+        "evaluation-tool": ("evaluation_tool", "singleton"),
     }
     events: list[dict[str, Any]] = []
     for name, (category, key_mode) in specs.items():
+        if (
+            name in {"model-limitations", "cookbooks", "evaluation-tool"}
+            and old_state.get(name) is None
+            and new_state.get(name)
+        ):
+            value = new_state[name]
+            baseline_items = value.get("items", [value])
+            after = sha256_json([semantic_projection(name, item) for item in baseline_items])
+            events.append(
+                {
+                    "schema_version": SCHEMA,
+                    "id": event_id(name, "baseline", None, after),
+                    "observed_at": observed_at,
+                    "category": category,
+                    "entity": name,
+                    "change": "baseline",
+                    "summary": f"Established {name} tracking with {len(baseline_items)} tracked entries; no historical additions inferred.",
+                    "before_sha256": None,
+                    "after_sha256": after,
+                    "sources": [
+                        source for item in baseline_items for source in item.get("provenance", [])
+                    ],
+                }
+            )
+            continue
         old_items = old_item_map(old_state.get(name), "id")
         new_items = old_item_map(new_state.get(name), "id")
         if key_mode == "singleton":
@@ -877,7 +1116,12 @@ def semantic_events(
                     "category": category,
                     "entity": entity_key,
                     "change": change,
-                    "summary": item.get("summary", f"{name} {entity_key} changed"),
+                    "summary": item.get("summary")
+                    or (
+                        f"{item.get('package')} {old_items.get(entity_key, {}).get('version', 'unknown')} → {item.get('version')}; release guidance and capability evidence updated."
+                        if name.startswith("sdk-")
+                        else f"{name} {entity_key} changed"
+                    ),
                     "before_sha256": before,
                     "after_sha256": after,
                     "sources": item.get("sources")
@@ -897,6 +1141,10 @@ def practice_projection(item: dict[str, Any] | None) -> dict[str, Any] | None:
 def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any] | None:
     if item is None:
         return None
+    if name in {"model-limitations", "cookbooks"}:
+        return {
+            key: value for key, value in item.items() if key not in {"provenance", "last_reviewed"}
+        }
     if name == "practices":
         return practice_projection(item)
     if name == "primitives":
@@ -915,7 +1163,7 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
             )
         }
     if name.startswith("sdk-"):
-        return {
+        projection = {
             key: item.get(key)
             for key in (
                 "package",
@@ -925,8 +1173,29 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
                 "runtime",
                 "public_surface",
                 "release_history",
+                "capabilities",
                 "discrepancies",
             )
+        }
+        # Provenance enrichment alone is not SDK behavior/release evolution.
+        projection["release_history"] = [
+            {
+                key: value
+                for key, value in release.items()
+                if key not in {"source_commit", "documented_changes_provenance"}
+            }
+            for release in item.get("release_history", [])
+        ]
+        projection["capabilities"] = [
+            {key: value for key, value in capability.items() if key != "provenance"}
+            for capability in item.get("capabilities", [])
+        ]
+        return projection
+    if name == "evaluation-tool":
+        return {
+            key: value
+            for key, value in item.items()
+            if key not in {"provenance", "observed_at", "fingerprint"}
         }
     if name == "skill":
         return {"commit": item.get("commit")}
@@ -1174,6 +1443,52 @@ def validate_tree(root: Path, strict: bool = False) -> None:
                 raise RuntimeError(f"incomplete practice provenance: {item['id']}")
             if len(evidence["excerpt"]) > 420:
                 raise RuntimeError(f"practice excerpt is too long: {item['id']}")
+    sources = {
+        item["source_id"]: item for item in read_json(root / "state/sources.json")["artifacts"]
+    }
+    if coverage.get("schema_version") == 2:
+        for name in ("model-limitations", "cookbooks", "evaluation-tool"):
+            if not (root / f"state/{name}.json").exists():
+                raise RuntimeError(f"missing structured state: {name}")
+    for name in (
+        "model-limitations",
+        "cookbooks",
+        "evaluation-tool",
+        "sdk-python",
+        "sdk-javascript",
+    ):
+        value = read_json(root / f"state/{name}.json")
+        if value is None:
+            continue
+        items = value.get("items", [value]) + value.get("capabilities", [])
+        ids = [item["id"] for item in items if "id" in item]
+        if len(ids) != len(set(ids)):
+            raise RuntimeError(f"duplicate structured identity: {name}")
+        for item in items:
+            evidence = item.get("provenance", [])
+            if not evidence:
+                raise RuntimeError(f"missing structured provenance: {name}")
+            for source in evidence:
+                if not all(source.get(key) for key in ("source_id", "url", "sha256")):
+                    raise RuntimeError(f"incomplete structured provenance: {name}")
+                current = sources.get(source["source_id"])
+                if item.get("status") != "unknown" and (
+                    not current or source["sha256"] != current["sha256"]
+                ):
+                    raise RuntimeError(
+                        f"structured provenance does not match retained artifact: {name}"
+                    )
+            if name == "model-limitations" and not item["id"].startswith(item["model"] + ":"):
+                raise RuntimeError("limitation identity is not model-specific")
+            if "introduced" in item and not all(
+                item["source_commit"] in source["url"] for source in evidence
+            ):
+                raise RuntimeError("capability lacks immutable release provenance")
+    limitations = read_json(root / "state/model-limitations.json")
+    if limitations is not None and (
+        root / "MODEL_LIMITATIONS.md"
+    ).read_text() != render_limitations(limitations):
+        raise RuntimeError("model limitations rendering disagrees with state")
     for path in (root / "events").glob("*.json"):
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
@@ -1193,9 +1508,14 @@ def promote(stage: Path, root: Path) -> None:
 
 
 def synchronize(
-    root: Path = ROOT, client: HTTPClient | None = None, strict: bool = False
+    root: Path = ROOT,
+    client: HTTPClient | None = None,
+    strict: bool = False,
+    attempt: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     client = client or HTTPClient()
+    attempt = attempt if attempt is not None else {}
+    attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
         read_json(root / "sources/github.typesafe-ai/manifest.json", {}) or {}
@@ -1213,6 +1533,9 @@ def synchronize(
             "sdk-python",
             "sdk-javascript",
             "skill",
+            "model-limitations",
+            "cookbooks",
+            "evaluation-tool",
         )
     }
     try:
@@ -1242,6 +1565,16 @@ def synchronize(
             if index.source_id == "docs:llms.txt"
             else []
         )
+        current_ids = {docs_source_id(url) for url, _, _ in discovered}
+        old_ids = {page["source_id"] for page in previous_coverage.get("pages", [])}
+        attempt.update(
+            {
+                "phase": "fetch",
+                "discovered_page_count": len(current_ids),
+                "newly_discovered": sorted(current_ids - old_ids),
+                "disappeared": sorted(old_ids - current_ids),
+            }
+        )
         artifacts: dict[str, Artifact] = {index.source_id: index}
         contents: dict[str, str] = {index.source_id: index.content.decode("utf-8")}
         descriptions: dict[str, tuple[str, str]] = {
@@ -1267,9 +1600,7 @@ def synchronize(
         skill_path = "/repos/typesafe-ai/skills/commits?path=skills/typesafe-ai/SKILL.md&per_page=1"
         skill_commits, skill_commit_response = github_json(client, skill_path)
         skill_commit = skill_commits[0]["sha"] if skill_commits else None
-        skill_url = (
-            "https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md"
-        )
+        skill_url = f"https://raw.githubusercontent.com/typesafe-ai/skills/{skill_commit}/skills/typesafe-ai/SKILL.md"
         skill_response = client.get(skill_url)
         skill_artifact = Artifact(
             "skill:typesafe-ai",
@@ -1309,7 +1640,23 @@ def synchronize(
     except (ET.ParseError, FetchError, UnicodeError, KeyError, json.JSONDecodeError) as exc:
         raise RuntimeError(f"sync aborted; last-known-good state was not changed: {exc}") from exc
 
+    attempt["phase"] = "derivation"
+    attempt["candidate_sdk_versions"] = {
+        "python": python["version"],
+        "javascript": javascript["version"],
+    }
     state = derive_state(contents, artifacts, previous_state)
+    state["model-limitations"] = observed_state(
+        model_limitations(contents, artifacts, previous_state.get("model-limitations")),
+        previous_state.get("model-limitations"),
+    )
+    state["cookbooks"] = observed_state(
+        cookbooks(contents, artifacts, discovered, previous_state.get("cookbooks")),
+        previous_state.get("cookbooks"),
+    )
+    state["evaluation-tool"] = evaluation_tool_snapshot(
+        client, artifacts, previous_state.get("evaluation-tool")
+    )
     state["sdk-python"] = python
     state["sdk-javascript"] = javascript
     observed = utc_now().isoformat().replace("+00:00", "Z")
@@ -1341,10 +1688,15 @@ def synchronize(
         if baseline_exists
         else []
     )
-    if baseline_exists and all(previous_state.values()):
+    if baseline_exists:
         candidates.extend(semantic_events(old_events_state, state, observed))
     existing_ids = load_history_events(root / "events")
     new_events = deduplicate_events(candidates, existing_ids)
+    attempt["candidate_event_count"] = len(new_events)
+    attempt["candidate_event_counts"] = {
+        category: sum(e["category"] == category for e in new_events)
+        for category in sorted({e["category"] for e in new_events})
+    }
     day = iso_day(utc_now())
     coverage = build_coverage(
         discovered,
@@ -1434,6 +1786,7 @@ def synchronize(
             **state,
         }.items():
             write_json(stage / f"state/{name}.json", value)
+        (stage / "MODEL_LIMITATIONS.md").write_text(render_limitations(state["model-limitations"]))
         (stage / "BEST_PRACTICES.md").write_text(render_best_practices(state["practices"]))
         events_dir = stage / "events"
         events_dir.mkdir(parents=True, exist_ok=True)
@@ -1461,8 +1814,11 @@ def synchronize(
             )
             (stage / "changes").mkdir(parents=True, exist_ok=True)
             (stage / f"changes/{day}.md").write_text(render_daily_report(day, all_day_events))
+        attempt["phase"] = "validation"
         validate_tree(stage, strict=True)
+        attempt["phase"] = "promotion"
         promote(stage, root)
+        attempt["phase"] = "sync-complete"
     finally:
         shutil.rmtree(stage, ignore_errors=True)
     return {
@@ -1480,18 +1836,34 @@ def main(argv: list[str] | None = None) -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
     sync_parser = subparsers.add_parser("sync")
     sync_parser.add_argument("--strict", action="store_true")
+    sync_parser.add_argument(
+        "--diagnostics", type=Path, help="Write attempt metadata outside canonical state"
+    )
     validate_parser = subparsers.add_parser("validate")
     validate_parser.add_argument("--strict", action="store_true")
     args = parser.parse_args(argv)
+    attempt = {
+        "attempt_timestamp": utc_now().isoformat().replace("+00:00", "Z"),
+        "result": "failure",
+    }
     try:
         if args.command == "sync":
-            print(json.dumps(synchronize(ROOT, strict=args.strict), sort_keys=True))
+            print(
+                json.dumps(synchronize(ROOT, strict=args.strict, attempt=attempt), sort_keys=True)
+            )
+            attempt["result"] = "success"
         else:
             validate_tree(ROOT, strict=args.strict)
             print("validation passed")
     except (RuntimeError, FetchError) as exc:
+        attempt["result"] = "failure"
+        # Do not persist arbitrary exception strings, response bodies or local paths.
+        attempt["error_type"] = type(exc).__name__
         print(f"jev-docs: {exc}", file=sys.stderr)
         return 1
+    finally:
+        if args.command == "sync" and args.diagnostics:
+            write_json(args.diagnostics, attempt)
     return 0
 
 

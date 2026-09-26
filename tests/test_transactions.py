@@ -41,6 +41,8 @@ class PublicSources:
             ]
         elif "/commits/" in url:
             body = {"sha": "b" * 40}
+        elif url.endswith("README.md") and "system-one-adapter-python" in url:
+            body = "A drop-in replacement backed by LLM APIs.\n\nUseful for comparing TypeSafe against an LLM.\n\nInstall system-one-adapter[openai]."
         elif url.endswith("pyproject.toml"):
             body = 'version = "0.1.0"\nrequires-python = ">=3.10"\n'
         elif url.endswith("package.json"):
@@ -98,3 +100,36 @@ def test_scheduled_upstream_addition_transaction(tmp_path: Path):
     with pytest.raises(RuntimeError, match="last-known-good"):
         synchronize(tmp_path, upstream, strict=True)
     assert snapshot(tmp_path) == promoted
+
+
+def test_failed_derivation_keeps_tree_and_reports_candidate_discovery(tmp_path):
+    upstream = PublicSources()
+    synchronize(tmp_path, upstream, strict=True)
+    baseline = snapshot(tmp_path)
+    upstream.pages["cookbooks"] = "# Changed index format without recognizable rows"
+    attempt = {}
+    with pytest.raises(RuntimeError, match="malformed cookbook"):
+        synchronize(tmp_path, upstream, strict=True, attempt=attempt)
+    assert snapshot(tmp_path) == baseline
+    assert attempt["phase"] == "derivation"
+    assert attempt["newly_discovered"] == ["docs:cookbooks"]
+    assert attempt["candidate_sdk_versions"] == {"python": "0.1.0", "javascript": "0.1.0"}
+
+
+def test_cli_attempt_diagnostics_never_expose_exception_body(tmp_path, monkeypatch):
+    from jev_docs import sync
+
+    diagnostic = tmp_path / "attempt.json"
+
+    def fail(*args, **kwargs):
+        kwargs["attempt"]["phase"] = "fetch"
+        raise RuntimeError("private response body")
+
+    monkeypatch.setattr(sync, "synchronize", fail)
+    assert sync.main(["sync", "--diagnostics", str(diagnostic)]) == 1
+    report = json.loads(diagnostic.read_text())
+    assert report["result"] == "failure" and report["phase"] == "fetch"
+    assert "private" not in diagnostic.read_text()
+    monkeypatch.setattr(sync, "synchronize", lambda *args, **kwargs: {"events": 0})
+    assert sync.main(["sync", "--diagnostics", str(diagnostic)]) == 0
+    assert json.loads(diagnostic.read_text())["result"] == "success"

@@ -8,7 +8,7 @@ does not speak for TypeSafe.
 
 ## What is tracked
 
-V1 observes official TypeSafe sources only:
+The synchronizer observes official TypeSafe sources only:
 
 - the live documentation index at [`docs.typesafe.ai/llms.txt`](https://docs.typesafe.ai/llms.txt),
   its discovered Markdown pages, and the public sitemap;
@@ -16,12 +16,14 @@ V1 observes official TypeSafe sources only:
 - the official Python and JavaScript SDK repositories, their public package
   metadata, Git tags/releases, and documented changelogs;
 
-The directly relevant `system-one-adapter-python` repository was investigated
-but is excluded from canonical state: it is a drop-in LLM-backed alternative,
-not an official TypeSafe product surface. The `typesafe-ai.github.io` repository
-was also checked and excluded because it is a static landing page rather than
-the authoritative documentation tree. Other organization repositories are
-unrelated infrastructure, demos, or model-serving projects and are outside V1.
+The TypeSafe-owned [`system-one-adapter-python`](https://github.com/typesafe-ai/system-one-adapter-python)
+is tracked separately as an `official_evaluation_tool`: an LLM-backed,
+System One-compatible comparison tool. Its version, immutable commit, documented
+purpose and provider families are metadata, not Jev model capabilities, SDK
+parity, API guarantees, recommendations, or benchmark rankings.
+`typesafe-ai.github.io` remains excluded because it is a static landing page
+rather than the authoritative documentation tree. Unrelated infrastructure,
+demos and model-serving projects remain outside scope.
 
 The synchronizer does not copy the hosted documentation wholesale. It records
 URLs, discovery metadata, content hashes, timestamps, and small excerpts needed
@@ -34,6 +36,16 @@ documentation. It does not relicense TypeSafe material.
 
 - [`BEST_PRACTICES.md`](BEST_PRACTICES.md) is the concise current guide for
   humans and coding agents.
+- [`MODEL_LIMITATIONS.md`](MODEL_LIMITATIONS.md) describes upstream-documented
+  weaknesses of specific model versions, separately from the stable programming
+  model and model identity/alias state. Missing guidance becomes `unknown`, not fixed.
+- [`state/cookbooks.json`](state/cookbooks.json) lists official recipes by category
+  and difficulty, with concise upstream descriptions. `indexed` and `discovered`
+  record the cookbook index and `llms.txt` independently; neither overwrites the
+  other. Descriptions can contain upstream example results; they are not validated
+  benchmarks or general performance guarantees. For architecture-level patterns,
+  use the [official pattern guide](https://docs.typesafe.ai/patterns); its pages
+  are already discoverable in source coverage.
 - [`state/`](state/) is deterministic structured current state. Every meaningful
   derived item carries source URLs and hashes.
 - [`sources/`](sources/) contains source manifests, not a bulk web mirror.
@@ -44,7 +56,10 @@ documentation. It does not relicense TypeSafe material.
   events occur.
 - `state/sdk-python.json` and `state/sdk-javascript.json` keep the SDK release
   streams independent. A mutable `main` commit is never treated as a package
-  release.
+  release. Python capabilities are attributed only after matching a published
+  package version, tag commit, release configuration and immutable changelog.
+  JavaScript capability parity is not inferred; an empty capability list means
+  this extractor has no independently established entries.
 
 ## Provenance and history
 
@@ -72,14 +87,20 @@ partial source fetch cannot erase a recommendation.
 GitHub Actions runs pull-request validation and a strict synchronization every
 12 hours, with manual `workflow_dispatch`. Scheduled runs use concurrency
 protection, require no TypeSafe API key, and commit only actual generated
-changes. A failed discovery or source fetch leaves the last-known-good generated
-state untouched and fails loudly. An SDK package/tag discrepancy is allowed a
+changes. Per-attempt `newly_discovered` and `disappeared` IDs are returned by sync;
+durable coverage contains the current complete inventory. This lets a successful
+addition land without requiring a cleanup commit on the next unchanged run.
+Failed scheduled/manual runs upload a small `sync-failed-attempt` artifact with
+the baseline SHA, failure phase and available candidate counts/versions. It is
+attempt metadata, never canonical history. A failed discovery or source fetch
+leaves the last-known-good generated state untouched and fails loudly. An SDK package/tag discrepancy is allowed a
 three-day observation grace period, then causes strict synchronization to fail
 until the upstream evidence converges.
 
 ## Local usage
 
-Python 3.10+ is supported. With `uv` installed:
+Python 3.10+ is supported. The tested uv version is pinned in `pyproject.toml`
+and used by both local commands and setup-uv. With that `uv` version installed:
 
 ```bash
 just setup
@@ -101,5 +122,5 @@ this repository must use `git commit -s`.
 
 Community posts, third-party integrations, `awesome-jev`, private APIs,
 benchmarks, full AST compatibility analysis, and a full hosted-doc mirror are
-outside V1. A future `field-notes/` layer may add clearly separated community
-evidence without mixing it into canonical state.
+outside scope. A provenance-separated `field-notes/` layer remains deferred;
+community interest alone does not justify ingesting claims into canonical state.

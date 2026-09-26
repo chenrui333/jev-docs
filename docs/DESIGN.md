@@ -1,4 +1,4 @@
-# V1 design
+# Synchronizer design
 
 ## Evidence boundary
 
@@ -23,8 +23,10 @@ TypeSafe documentation.
 
 The organization inventory was checked during bootstrap. `skills`,
 `typesafe-sdk-python`, and `typesafe-sdk-js` are included. The
-`system-one-adapter-python` project is directly relevant but excluded because
-it is an LLM-backed alternative rather than canonical TypeSafe guidance.
+`system-one-adapter-python` project is observed separately as an
+`official_evaluation_tool`, using its stable release tag/commit, versioned README
+and configuration. It is an LLM-backed alternative and never a Jev capability
+or API/SDK guarantee. Provider families are explicit README evidence, not parity.
 `typesafe-ai.github.io` is a static landing page and is excluded. LLaDA,
 Overwatch, daggerverse, pulumi-clickhouse, vllm, and other organization
 projects are unrelated to the Jev/System One documentation evidence boundary.
@@ -79,3 +81,56 @@ V1 does not reconstruct a mutable hosted-doc timeline, mirror full pages, run
 AST compatibility analysis, ingest community material, or infer deprecation from
 absence. Those features require stronger evidence and should remain separate
 from the canonical layer.
+
+## Structured official guidance
+
+`state/model-limitations.json` uses IDs scoped by the page's explicit model
+applicability and section anchor. Second- and third-level headings retain the
+upstream distinctions, including numeric/counting/score subtopics. Summaries and
+mitigations are bounded source excerpts, not global claims. Missing sections or
+pages retain last-known evidence with `unknown` status; a successful observation
+can change that status back to `documented`. No absence establishes a fix. A
+later model receives independent IDs and cannot overwrite the older model.
+`MODEL_LIMITATIONS.md` is a deterministic rendering of this state.
+
+`state/cookbooks.json` reads the index's category, link, description and level
+columns. Unknown table formats fail before promotion. It unions index entries
+with discovered cookbook pages, keeping membership in each surface explicit;
+category and level stay null for discovery-only entries. Removal means absent
+from both successfully observed navigation surfaces, never deprecation. A missing
+previously tracked index fails rather than erasing the inventory. A separate
+patterns inventory is deferred: existing page metadata and the official pattern
+index already expose it, without a second hierarchy to maintain.
+
+The coding-agent practices apply to bounded typed decisions inside software,
+not replacement of a generative agent's base model or every JSON task. Evidence
+excerpts remove known presentation wrappers and prefer paragraph/list/sentence
+boundaries. Comparisons and unknown angle-bracket text are preserved; oversized
+sentences use an explicit omission marker, or return unknown when the matching
+claim cannot fit. This is intentionally not a Markdown/HTML renderer.
+
+Python capability rules recognize a small set of explicit changelog statements.
+HTML and Markdown release headings are supported. Attribution requires registry
+membership, a release/tag commit, matching versioned package configuration and
+matching notes fetched at that commit. Lost capability evidence retains the
+previous record as unknown, never deprecated. Mutable usage pages remain documentation
+evidence and do not establish introduction versions. No AST analysis or cross-SDK
+parity is inferred. Skill content and SDK configuration are fetched at resolved
+commits to avoid mixing a moving branch's body with an earlier commit hash.
+
+New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
+historical additions. Subsequent additions, modifications and navigation removals
+use the existing stable event IDs. Model limitation absence changes status to
+unknown. Source hashes and review dates alone do not create limitation or cookbook
+semantic events; they remain provenance updates.
+
+## Runtime and failed attempts
+
+`sync --diagnostics PATH` writes bounded per-attempt metadata outside canonical
+state. The workflow adds its failure phase and checkout SHA and uploads that file
+on failure, including validation or push failures after successful observation.
+It excludes raw exceptions, bodies, credentials and machine paths. Available
+fields reflect the last completed phase; missing counts are unknown, never zero.
+The exact tested uv version is shared through `tool.uv.required-version`, and
+workflow installs use the lockfile. Actions retain immutable SHA pins on stable
+Node 24 releases. Compilation is checked in both CI and scheduled synchronization.

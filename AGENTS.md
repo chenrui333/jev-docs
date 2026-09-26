@@ -35,7 +35,7 @@ append-safe semantic history. It does not speak for or represent TypeSafe.
 ## Generated versus authored files
 
 The synchronizer owns `sources/`, `state/`, `events/`, `changes/`, and
-`BEST_PRACTICES.md`. Change these through the synchronizer or its rendering
+`BEST_PRACTICES.md` / `MODEL_LIMITATIONS.md`. Change these through the synchronizer or its rendering
 rules, not by hand, unless repairing an explicitly identified generated-state
 issue. `events/baseline.json` is generated bootstrap history and must retain
 its special baseline semantics.
