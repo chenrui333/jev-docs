@@ -159,7 +159,7 @@ def parse_llms(text: str, base: str = DOCS_ROOT) -> list[tuple[str, str, str]]:
     seen: set[str] = set()
     for match in re.finditer(r"-\s*\[([^]]+)\]\(([^)]+)\)(?::\s*(.*))?", text):
         title, raw_url, description = match.groups()
-        url = normalize_url(raw_url, base)
+        url = docs_canonical_url(normalize_url(raw_url, base))
         if urlsplit(url).netloc != "docs.typesafe.ai" or url in seen:
             continue
         seen.add(url)
@@ -1102,8 +1102,8 @@ def build_coverage(
     }
     return {
         "schema_version": SCHEMA,
-        "complete": True,
-        "removal_safe": True,
+        "complete": all(page["status"] == "fetched" for page in pages),
+        "removal_safe": discovery_method == "llms.txt",
         "discovery": {
             "url": index.url,
             "source_id": index.source_id,
@@ -1120,6 +1120,31 @@ def build_coverage(
         "intentionally_excluded": intentionally_excluded or [],
         "pages": pages,
     }
+
+
+def validate_coverage(coverage: dict[str, Any]) -> None:
+    """Validate completeness, not whether a successful observation found changes."""
+    pages = coverage["pages"]
+    ids = {page["source_id"] for page in pages}
+    urls = {page["canonical_url"] for page in pages}
+    if len(ids) != len(pages) or len(urls) != len(pages):
+        raise RuntimeError("duplicate documentation page in coverage")
+    if not coverage.get("complete") or not coverage.get("removal_safe"):
+        raise RuntimeError("source coverage is incomplete or not removal-safe")
+    if any(page["status"] != "fetched" or not page["sha256"] for page in pages):
+        raise RuntimeError("source coverage contains unfetched pages")
+    if (
+        any(
+            coverage[key] != len(pages)
+            for key in ("discovered_count", "fetched_count", "retained_count")
+        )
+        or coverage["failed_count"]
+    ):
+        raise RuntimeError("source coverage counts disagree")
+    added = set(coverage.get("newly_discovered", []))
+    removed = set(coverage.get("disappeared", []))
+    if not added <= ids or removed & ids:
+        raise RuntimeError("source coverage delta disagrees with current pages")
 
 
 def validate_tree(root: Path, strict: bool = False) -> None:
@@ -1139,8 +1164,7 @@ def validate_tree(root: Path, strict: bool = False) -> None:
     for path in (root / "state").glob("*.json"):
         json.loads(path.read_text())
     coverage = read_json(root / "state/source-coverage.json")
-    if strict and not coverage.get("complete"):
-        raise RuntimeError("source coverage is not complete")
+    validate_coverage(coverage)
     practices = read_json(root / "state/practices.json")
     for item in practices.get("items", []):
         if item["status"] == "recommended" and not item.get("sources"):
@@ -1208,18 +1232,9 @@ def synchronize(
                 sitemap_lastmod = parse_sitemap(sitemap_response.body.decode("utf-8"))
             except FetchError as exc:
                 sitemap_warning = str(exc)
-        except FetchError as index_error:
-            sitemap_response = client.get(DOCS_SITEMAP)
-            sitemap_lastmod = parse_sitemap(sitemap_response.body.decode("utf-8"))
-            discovered = []
-            for canonical in sorted(sitemap_lastmod):
-                path = urlsplit(canonical).path.rsplit("/", 1)[-1] or "index"
-                discovered.append((f"{canonical}.md", path.replace("-", " "), "Sitemap fallback"))
-            index = Artifact(
-                "docs:sitemap.xml", "documentation-discovery", DOCS_SITEMAP, sitemap_response.body
-            )
-            discovery_method = "sitemap.xml"
-            sitemap_warning = str(index_error)
+        except FetchError:
+            # A different index cannot prove removals from the canonical llms index.
+            raise
         if not discovered:
             raise FetchError("documentation discovery returned no same-host pages")
         intentionally_excluded = (
@@ -1340,6 +1355,11 @@ def synchronize(
         previous_coverage,
         intentionally_excluded,
     )
+    validate_coverage(coverage)
+    discovery_delta = {key: coverage.pop(key) for key in ("newly_discovered", "disappeared")}
+    # Attempt deltas belong in the result/diagnostics. Persisting them requires a
+    # cleanup commit on the next identical run and violates idempotence.
+    coverage["schema_version"] = 2
     freshness = observed_state(
         {
             "schema_version": SCHEMA,
@@ -1451,6 +1471,7 @@ def synchronize(
         "practices": len(state["practices"]["items"]),
         "events": len(new_events),
         "day": day,
+        **discovery_delta,
     }
 
 

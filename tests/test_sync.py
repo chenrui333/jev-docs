@@ -35,6 +35,7 @@ from jev_docs.sync import (
     stable_repository_evidence,
     stable_tag_evidence,
     synchronize,
+    validate_coverage,
 )
 
 
@@ -53,8 +54,8 @@ def test_url_normalization_and_deduplication() -> None:
     - [Relative](/primitives.md): summary
     """
     assert parse_llms(text) == [
-        ("https://docs.typesafe.ai/concepts/state.md", "State", ""),
-        ("https://docs.typesafe.ai/primitives.md", "Relative", "summary"),
+        ("https://docs.typesafe.ai/concepts/state", "State", ""),
+        ("https://docs.typesafe.ai/primitives", "Relative", "summary"),
     ]
     assert parse_llms_exclusions(text) == [
         {"reason": "external-host", "title": "Other", "url": "https://example.com/other.md"}
@@ -403,8 +404,7 @@ def test_committed_source_coverage_has_unique_complete_pages() -> None:
     assert coverage["removal_safe"]
     assert coverage["fetched_count"] == coverage["discovered_count"]
     assert coverage["retained_count"] == coverage["fetched_count"]
-    assert coverage["newly_discovered"] == []
-    assert coverage["disappeared"] == []
+    validate_coverage(coverage)
     assert len(pages) == len({page["source_id"] for page in pages})
     assert len(pages) == len({page["canonical_url"] for page in pages})
 

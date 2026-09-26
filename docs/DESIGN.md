@@ -4,9 +4,8 @@
 
 The canonical web discovery input is `https://docs.typesafe.ai/llms.txt`.
 The synchronizer follows same-host links from that index and records the public
-sitemap's `lastmod` values when available. If the index is unavailable, the
-sitemap is a fallback; if discovery cannot be established, the run fails and
-does not remove old state. Mintlify's `.md` representation is used for Markdown
+sitemap's `lastmod` values when available. If the canonical index is unavailable, the run fails and preserves old state.
+A working sitemap cannot establish removals from a failed canonical index. Mintlify's `.md` representation is used for Markdown
 fetches, with the normal page form as a bounded fallback when a Markdown
 response is unavailable.
 
@@ -36,7 +35,9 @@ projects are unrelated to the Jev/System One documentation evidence boundary.
 - `state/` contains stable JSON snapshots with explicit schema versions and
   provenance.
 - `state/source-coverage.json` records discovered, fetched, retained,
-  intentionally excluded, newly discovered, and disappeared pages. Successful
+  and intentionally excluded pages. Per-attempt newly discovered and disappeared
+  IDs are returned by sync rather than persisted: clearing a transient delta must
+  not require a follow-up commit. Successful
   discovery sets `removal_safe`; failed discovery never promotes a replacement
   coverage snapshot.
 - `BEST_PRACTICES.md` is rendered only from `state/practices.json`.
