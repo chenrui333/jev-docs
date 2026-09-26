@@ -1,0 +1,224 @@
+{
+  "fingerprint": "b1681a8a547648eda78fa10fd083c0bddc49d6562f904fe33e94d18521483adf",
+  "items": [
+    {
+      "id": "jev-1.13:adversarial-content",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "be explicit in the criteria. Test your integration thoroughly before deploying it to many users.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
+        }
+      ],
+      "section": "adversarial-content",
+      "section_text_sha256": "55575a729128f6bbe95d0838d34ea232cc90955469a11aba1e77d3d1eb599559",
+      "status": "documented",
+      "summary": "State is data, and jev-1.13 does not treat it as hostile by default.",
+      "title": "Adversarial content"
+    },
+    {
+      "id": "jev-1.13:common-sense-structural-invariants",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "don't rely on expected structural invariance, and word questions to mean directly what you want. Don't carry a threshold tuned on a Noul over to a Choice, and don't hold the model to arithmetic identities between separate questions. A Choice over options and one Noul per option answer different questions: the Choice is relative, settling which option, while each Noul is absolute and can be low for all of them. The skill suggestion cookbook uses both on the same shortlist, the Choice to pick a skill and the Nouls to decide whether to suggest one at all.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#common-sense-structural-invariants"
+        }
+      ],
+      "section": "common-sense-structural-invariants",
+      "section_text_sha256": "defd9f8ab1861262dbc4b3b119ce3c0011459c788eadc4a97880f5019f7b839e",
+      "status": "documented",
+      "summary": "jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model.",
+      "title": "Common-sense structural invariants"
+    },
+    {
+      "id": "jev-1.13:contradictory-instructions-and-criteria",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "treat the criteria as an extension of the instruction. Align the two using clear and precise language.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
+        }
+      ],
+      "section": "contradictory-instructions-and-criteria",
+      "section_text_sha256": "7f5456c18c04af6e6c4f5bd2364cecf33670e07694c4f7331ea96f79bf84b9a1",
+      "status": "documented",
+      "summary": "When the instructions and the criteria ask for different things, jev-1.13 might get confused.",
+      "title": "Contradictory instructions and criteria"
+    },
+    {
+      "id": "jev-1.13:counting",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "count in code. When you want to count items matching some criteria, iterate in code over the candidates and ask one question for each, then add up the answers yourself.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
+        }
+      ],
+      "section": "counting",
+      "section_text_sha256": "88eeb3d33ed56e2abd0b5535bc06f64ddbb5a964815b9d81db81dc495b68e32e",
+      "status": "documented",
+      "summary": "jev-1.13 does not count reliably. This covers characters in a word, occurrences of a term in a passage, and items in a long list. The model recognizes the shape of an answer rather than tallying, and the error grows with the size of the thing being counted.",
+      "title": "Counting"
+    },
+    {
+      "id": "jev-1.13:date-and-time-comparison",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "split the work. Extraction is a judgment, so give it to the model. Arithmetic is not, so keep it in code.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
+        }
+      ],
+      "section": "date-and-time-comparison",
+      "section_text_sha256": "6b530f8d3222d718ed74cbc5eec8cc1272166d17758743abdabc02d0d7e7b7f4",
+      "status": "documented",
+      "summary": "jev-1.13 reads dates as text, not as ordered quantities.",
+      "title": "Date and time comparison"
+    },
+    {
+      "id": "jev-1.13:generation",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "when the answer space is bounded, turn extraction into a Choice over the options rather than asking for the value itself. If you really need to generate text... there are other models for that.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
+        }
+      ],
+      "section": "generation",
+      "section_text_sha256": "909fe1da53fa433f3dd367dcab2d5b5119e6b7865ce6095a0086a81cffa72c31",
+      "status": "documented",
+      "summary": "jev-1.13 is not trained to generate text. While you can force it to by chaining choices, this will not work well and will be very slow. For data extraction, it is better to extract possible options using regex or a generative model and let jev-1.13 pick the correct extraction.",
+      "title": "Generation"
+    },
+    {
+      "id": "jev-1.13:indirection",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "write your instructions as directly as possible. When possible, identify the relevant parts of state by name.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
+        }
+      ],
+      "section": "indirection",
+      "section_text_sha256": "c55e59fc8850bd46b652d644b75775216b182c700124475cd125c4640dbedaa4",
+      "status": "documented",
+      "summary": "Instructions carrying double negatives or complex indirection are answered less reliably. A question about a property of a property or something that requires multiple hops of reasoning costs accuracy.",
+      "title": "Indirection"
+    },
+    {
+      "id": "jev-1.13:large-state-full-of-irrelevant-detail",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "retrieve and filter in code first, and send only the fields the question needs. When it's not possible to filter in state, you can use a Noul to filter for relevance. The classifying RAG passages cookbook has a worked example.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
+        }
+      ],
+      "section": "large-state-full-of-irrelevant-detail",
+      "section_text_sha256": "9f576c42fb0d3487fbdccd99af0f9e3cb3a34076d0d7ac1ddb61a05c3aec4b91",
+      "status": "documented",
+      "summary": "Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input produced a wrong answer.",
+      "title": "Large state full of irrelevant detail"
+    },
+    {
+      "id": "jev-1.13:literal-reading",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "state the exact condition in the instructions. Be specific. Put boundary cases in the criteria. When you look at a wrong answer and find yourself explaining what you really meant, that explanation is the missing half of the instruction. Where interpretation is unavoidable, split it into two literal questions and combine them in code.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
+        }
+      ],
+      "section": "literal-reading",
+      "section_text_sha256": "77fc11629b076dfbd74ab69cbde6bb42a75c60ef250beb0888ec51bf50d8930d",
+      "status": "documented",
+      "summary": "jev-1.13 answers the question you wrote, not the one you meant. Scoping words, negations, and implied conditions are read at face value. A question will be answered based on the words written in the instruction, whereas a person might have read the intent behind the instructions.",
+      "title": "Literal reading"
+    },
+    {
+      "id": "jev-1.13:math-and-numbers",
+      "last_reviewed": "2026-09-17",
+      "mitigation": null,
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
+        }
+      ],
+      "section": "math-and-numbers",
+      "section_text_sha256": "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
+      "status": "documented",
+      "summary": "Jev is not a calculator. We strongly recommend implementing any mathematical logic in code. Jev will perform better on semantic questions than mathematical ones.",
+      "title": "Math and Numbers"
+    },
+    {
+      "id": "jev-1.13:math-using-score",
+      "last_reviewed": "2026-09-17",
+      "mitigation": null,
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
+        }
+      ],
+      "section": "math-using-score",
+      "section_text_sha256": "afc388f9a43dd79780da058f7389457d593ad6637370c04250dcba3c76e3d52f",
+      "status": "documented",
+      "summary": "Please do not use score outputs (e.g., expectations and probability) to compute the exact magnitude of a number between two levels of a criterion.",
+      "title": "Math using score"
+    },
+    {
+      "id": "jev-1.13:numeric-representations",
+      "last_reviewed": "2026-09-17",
+      "mitigation": "do the conversion in code and pass in either the computed number or a named bucket. Keep the model for the part that is genuinely a judgment, such as whether a color reads as a warning.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "e69329bd32e91ac08f0bd2681ceb4aacc34923b9190e29c15c8f75d8e22950e2",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
+        }
+      ],
+      "section": "numeric-representations",
+      "section_text_sha256": "722c47f75f08f4f40eec13a4fe5266cba6d8568beb657a13109a40c888024ead",
+      "status": "documented",
+      "summary": "jev-1.13 will perform better on semantic representations than numeric. For example, questions about colors using hex values will underperform compared to those using the English names. Given RGB triples or hex values it cannot reliably judge whether two values are near each other.",
+      "title": "Numeric representations"
+    }
+  ],
+  "observed_at": "2026-09-26T23:12:26.043158Z",
+  "schema_version": 1,
+  "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
+}

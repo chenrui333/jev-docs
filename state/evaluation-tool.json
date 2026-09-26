@@ -1,0 +1,30 @@
+{
+  "compatibility": "A drop-in replacement for typesafe_sdk's system_one evaluation API, backed by LLM APIs instead of TypeSafe.",
+  "fingerprint": "9f56615cfeecd7ccf8cc24f3f3658fa4e1341b41e6588ee1097cf4a4ec072de6",
+  "observed_at": "2026-09-26T23:12:27.026821Z",
+  "provenance": [
+    {
+      "sha256": "511e16b17c0bb50586f1b8a58c3f9ea96ef6e263f91af1c71368d3f72a334ca9",
+      "source_id": "github:typesafe-ai/system-one-adapter-python:README.md",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/system-one-adapter-python/e1d4cc938204b22fc5a3c3aca7044072fe3f712d/README.md"
+    },
+    {
+      "sha256": "ebb5541c39c91459c0f8afabff564e32a803ebba4bc8b9e775417a75b4dc32e2",
+      "source_id": "github:typesafe-ai/system-one-adapter-python:pyproject.toml",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/system-one-adapter-python/e1d4cc938204b22fc5a3c3aca7044072fe3f712d/pyproject.toml"
+    }
+  ],
+  "provider_families": [
+    "OpenAI-compatible",
+    "Anthropic",
+    "Gemini"
+  ],
+  "purpose": "Useful for comparing TypeSafe against an LLM on cost/speed/intelligence.",
+  "repository": "https://github.com/typesafe-ai/system-one-adapter-python",
+  "schema_version": 1,
+  "scope": "Official LLM-backed comparison tool; not Jev model state, API contract, SDK release stream, or benchmark evidence.",
+  "source_class": "official_evaluation_tool",
+  "source_commit": "e1d4cc938204b22fc5a3c3aca7044072fe3f712d",
+  "source_tag": "v0.2.1",
+  "version": "0.2.1"
+}

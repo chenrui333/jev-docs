@@ -1,0 +1,404 @@
+{
+  "fingerprint": "36e271207c16d1b46f4007967ea0767e3adb273374f1d2a9d9a1d2ae2157c0b9",
+  "items": [
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/autoformat",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c23355f56ea56518792f8432ed2b4ca11771e01ff430922d8db2c27864ab34ac",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat.md"
+        }
+      ],
+      "summary": "Reconstructs Markdown from plain text that lost its formatting in two requests: one stitches hard-wrapped lines back together, one classifies every block (heading, list, code, callout).",
+      "title": "Structure recovery",
+      "url": "https://docs.typesafe.ai/cookbooks/autoformat"
+    },
+    {
+      "category": "classification",
+      "discovered": true,
+      "id": "cookbooks/autoresearch_feature_discovery",
+      "indexed": true,
+      "level": "Advanced",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "00ee0cfff9cfd670ee87656fe38ce5f3588ac2f56cb0181b156c02a657a7f03b",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md"
+        }
+      ],
+      "summary": "Runs an autoresearch loop that proposes TypeSafe questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor.",
+      "title": "Autoresearch feature discovery",
+      "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/citation_check",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "2497e2c62a4c5fb2d1aca1c4031fb7bd39948d27b13f18e1db07d8c5777cd529",
+          "source_id": "docs:cookbooks/citation_check",
+          "url": "https://docs.typesafe.ai/cookbooks/citation_check.md"
+        }
+      ],
+      "summary": "Catch wrong or hallucinated citations by checking against the source document. One Choice question decides whether the quote's context supports the claim.",
+      "title": "Double-checking citations",
+      "url": "https://docs.typesafe.ai/cookbooks/citation_check"
+    },
+    {
+      "category": "classification",
+      "discovered": true,
+      "id": "cookbooks/classification_using_confidence",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "20afd8e6c651de25c5a0fbfec2fde98a202f181066b2a5b391f1ffcb7ed5e377",
+          "source_id": "docs:cookbooks/classification_using_confidence",
+          "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence.md"
+        }
+      ],
+      "summary": "Classify SEC annual reports into 75 industry groups with one Choice each, then read the answer's own confidence to decide whether to report that group or the broader division above it.",
+      "title": "Classification using confidence",
+      "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/classifying_rag_passages",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "fbe9208da48e2bdada3c671a02e5dc55954660b2e283a85f0f2df1b596c090e3",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
+        }
+      ],
+      "summary": "Score each retrieved passage with one TypeSafe request, then decide in code which ones reach the answering model.",
+      "title": "Classifying RAG passages",
+      "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+    },
+    {
+      "category": "self-consistency",
+      "discovered": true,
+      "id": "cookbooks/consistency_choice_cookbook",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "e0444c2c4e9c9440595692eaa2806157d43080adc525f94fe5c204b2d7bafe36",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
+        }
+      ],
+      "summary": "Add an uncertain outcome to moderation decisions and compare label agreement with the share of automatic actions.",
+      "title": "Self-consistency: choices",
+      "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
+    },
+    {
+      "category": "self-consistency",
+      "discovered": true,
+      "id": "cookbooks/consistency_noul_cookbook",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "cee9cb98c52cfbf588e0dda5defd0ba0c0d78e1162df7f20ba7bed1ece9935ff",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
+        }
+      ],
+      "summary": "Route uncertain probabilities to human review while keeping the underlying noul values visible.",
+      "title": "Self-consistency: nouls",
+      "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
+    },
+    {
+      "category": "extraction",
+      "discovered": true,
+      "id": "cookbooks/date_extraction_cookbook",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c216cb3d293a07eadb64464b2f9b1d2a8e1670efc309cbfb6acd92724f386300",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
+        }
+      ],
+      "summary": "Extracts absolute and relative dates by asking TypeSafe for the parts named in a document, then resolving and validating them in code with confidence-based review.",
+      "title": "Date extraction",
+      "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/entity_alignment",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "efa473b53ff4a2c353a8320ed6b89729b2d72f4fdf860e9c12fe0fb2500c58cc",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md"
+        }
+      ],
+      "summary": "Decides which of 450 candidate pairs from two beer catalogues describe the same product using one Score question plus three companion Nouls that surface which fields disagree.",
+      "title": "Knowledge graph entity alignment",
+      "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/function_calling",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "d6301a7e0e6ed229e2c54deed160c1007a902885232c05fc30f0781fb6d40535",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
+        }
+      ],
+      "summary": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware TypeSafe questions.",
+      "title": "Function calling",
+      "url": "https://docs.typesafe.ai/cookbooks/function_calling"
+    },
+    {
+      "category": "classification",
+      "discovered": true,
+      "id": "cookbooks/hierarchical_classification",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "5525161d2b5597a29bd315a58aa817fe00e6bc2470cb31ece0530dbb8221dbfe",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification.md"
+        }
+      ],
+      "summary": "Classifies documents through deep patent, retail product, biomedical, and source-code hierarchies using parallel beam search over TypeSafe Choice probabilities.",
+      "title": "Hierarchical classification",
+      "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/llm_guardrails",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "fb5935988e2c470ee0979b40e648d641b97604802093a1a6bf56d64dedd3e0d0",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md"
+        }
+      ],
+      "summary": "Screen every message going into and out of an LLM app with one TypeSafe request, thresholding hazard probabilities and severity to pass, review, block, or route.",
+      "title": "Guardrails for LLMs",
+      "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+    },
+    {
+      "category": "batching",
+      "discovered": true,
+      "id": "cookbooks/parallel_questions",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "53dfe4516fd67b9bfc5abc9a50a6f4db6426b5b2951d41cd91e2fec45aded2fe",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md"
+        }
+      ],
+      "summary": "Runs a 13-question regulatory briefing over the GDPR Wikipedia article, showing that batching every question into one TypeSafe call is 12.2x cheaper and 10.0x faster with no change in answers.",
+      "title": "Parallel questions",
+      "url": "https://docs.typesafe.ai/cookbooks/parallel_questions"
+    },
+    {
+      "category": "extraction",
+      "discovered": true,
+      "id": "cookbooks/pre_parsed_value_extraction_cookbook",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c9ebb87b822ba958664b28b4e214e322dd62540c0964ea317d54da531a0fa6bd",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md"
+        }
+      ],
+      "summary": "Uses regexes to find candidate emails, phone numbers, and amounts, then has TypeSafe select the requested span so code can normalize a verbatim value.",
+      "title": "Pre-parsed value extraction",
+      "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/rerank_typesafe",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "5397e56dcdcff36dcba9f2200c0c494baed957eada0364db96075053af7eaa5c",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
+        }
+      ],
+      "summary": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one TypeSafe question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%.",
+      "title": "Re-ranking",
+      "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
+    },
+    {
+      "category": "extraction",
+      "discovered": true,
+      "id": "cookbooks/sde_cascade",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "03675753d74f2a08c746afe04c4f4283b55e5c6931d58a6ca9c6268b954a1a2f",
+          "source_id": "docs:cookbooks/sde_cascade",
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md"
+        }
+      ],
+      "summary": "Uses a 2-stage structured-data-extraction cascade (mini → verify → reasoning) to get most of the quality of a big reasoning model at a fraction of the cost.",
+      "title": "SDE cascade",
+      "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/semantic_find",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "7e30135ddc6758bc00806f3d58784a80466d77655c29a815ce10b396c356de74",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find.md"
+        }
+      ],
+      "summary": "Build semantic search for GitHub's Terms of Service. In one request, score 218 line ids against a plain-language query with a Choice question, and use a Noul question to check whether the document contains an answer.",
+      "title": "Line-by-line search",
+      "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+    },
+    {
+      "category": "how-to",
+      "discovered": true,
+      "id": "cookbooks/skill_suggestion",
+      "indexed": true,
+      "level": "Intermediate",
+      "provenance": [
+        {
+          "sha256": "bbf49df970d14d18d6b58d0852c0ae416329c004aa88fc39777b32e5172b5ac3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "97109e23a38ffeeda0a7533cb0abebe3a9a2203c1c63adcfce9b703fd249eb8e",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
+        }
+      ],
+      "summary": "Picks at most one skill for an agent turn out of the 182 in Nous Research's Hermes catalog, using two TypeSafe requests to rank and re-check the top candidates.",
+      "title": "Skill suggestion",
+      "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+    }
+  ],
+  "observed_at": "2026-09-26T23:12:26.044306Z",
+  "schema_version": 1,
+  "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
+}

@@ -2,22 +2,164 @@
   "available_tags": [
     "v0.5.7",
     "v0.6.0",
-    "v0.7.0"
+    "v0.7.0",
+    "v0.7.1",
+    "v0.7.2"
+  ],
+  "capabilities": [
+    {
+      "evidence": [
+        "validate the API key early and exclude the value from logged exceptions"
+      ],
+      "id": "python-api-key-validation",
+      "introduced": "0.7.1",
+      "provenance": [
+        {
+          "sha256": "1f09a249894002f45a3b7519840f69ba087a1e3eca94cd639e363e47b1d2326e",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.1:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/0ffd094c72ed9445223060b24ffd7a56aa781fb4/pyproject.toml"
+        },
+        {
+          "sha256": "911f46d0f019540f70dcb2dccb23f5286d229cb5dec3960e7595ce40810643fe",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.1:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/0ffd094c72ed9445223060b24ffd7a56aa781fb4/docs/changelog.md"
+        }
+      ],
+      "source_commit": "0ffd094c72ed9445223060b24ffd7a56aa781fb4",
+      "source_tag": "v0.7.1",
+      "status": "documented",
+      "summary": "Validate API keys early without including their values in logged exceptions."
+    },
+    {
+      "evidence": [
+        "add examples for usage with AI gateways"
+      ],
+      "id": "python-gateway-examples",
+      "introduced": "0.7.1",
+      "provenance": [
+        {
+          "sha256": "1f09a249894002f45a3b7519840f69ba087a1e3eca94cd639e363e47b1d2326e",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.1:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/0ffd094c72ed9445223060b24ffd7a56aa781fb4/pyproject.toml"
+        },
+        {
+          "sha256": "911f46d0f019540f70dcb2dccb23f5286d229cb5dec3960e7595ce40810643fe",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.1:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/0ffd094c72ed9445223060b24ffd7a56aa781fb4/docs/changelog.md"
+        }
+      ],
+      "source_commit": "0ffd094c72ed9445223060b24ffd7a56aa781fb4",
+      "source_tag": "v0.7.1",
+      "status": "documented",
+      "summary": "Documented examples for using the Python SDK with AI gateways."
+    },
+    {
+      "evidence": [
+        "add `http2` extra to `typesafe-sdk` package"
+      ],
+      "id": "python-http2-extra",
+      "introduced": "0.7.2",
+      "provenance": [
+        {
+          "sha256": "a55a234195c21367b332c9915fd7283842f1872a3df9f6b379980841d9559bd8",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.2:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f078f1e208a0d885154dc758344ae4fce77ac168/pyproject.toml"
+        },
+        {
+          "sha256": "d4f7023b78465692a0bf6571463f065dab5dcf59a1aa7363477adb1c2e70f885",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.2:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f078f1e208a0d885154dc758344ae4fce77ac168/docs/changelog.md"
+        }
+      ],
+      "source_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
+      "source_tag": "v0.7.2",
+      "status": "documented",
+      "summary": "Optional typesafe-sdk[http2] dependencies."
+    },
+    {
+      "evidence": [
+        "document `typesafe-sdk` usage with HTTP/2 support"
+      ],
+      "id": "python-http2-usage",
+      "introduced": "0.7.2",
+      "provenance": [
+        {
+          "sha256": "a55a234195c21367b332c9915fd7283842f1872a3df9f6b379980841d9559bd8",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.2:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f078f1e208a0d885154dc758344ae4fce77ac168/pyproject.toml"
+        },
+        {
+          "sha256": "d4f7023b78465692a0bf6571463f065dab5dcf59a1aa7363477adb1c2e70f885",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.2:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f078f1e208a0d885154dc758344ae4fce77ac168/docs/changelog.md"
+        }
+      ],
+      "source_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
+      "source_tag": "v0.7.2",
+      "status": "documented",
+      "summary": "Documented HTTP/2 usage for the Python SDK."
+    },
+    {
+      "evidence": [
+        "ser/de library has been changed from `msgspec` to `pydantic`"
+      ],
+      "id": "python-pydantic-serialization",
+      "introduced": "0.7.0",
+      "provenance": [
+        {
+          "sha256": "42b81115e9507a6dd94ce279e341236f41aa8d9e756f4d6ac42235e893f64222",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.0:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/2ce5c65f13646cab6e6f782328194c9d85f3300a/pyproject.toml"
+        },
+        {
+          "sha256": "65797513cb964ef902ddc0c2fdff43002dfd160a06cd25e591352a72e4f123f7",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.0:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/2ce5c65f13646cab6e6f782328194c9d85f3300a/docs/changelog.md"
+        }
+      ],
+      "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
+      "source_tag": "v0.7.0",
+      "status": "documented",
+      "summary": "Pydantic serialization replaces msgspec."
+    },
+    {
+      "evidence": [
+        "the `system_one` method now accepts a new `response_model` argument that can be set to a desired `pydantic` model for additional _type-safety_"
+      ],
+      "id": "python-response-model",
+      "introduced": "0.7.0",
+      "provenance": [
+        {
+          "sha256": "42b81115e9507a6dd94ce279e341236f41aa8d9e756f4d6ac42235e893f64222",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.0:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/2ce5c65f13646cab6e6f782328194c9d85f3300a/pyproject.toml"
+        },
+        {
+          "sha256": "65797513cb964ef902ddc0c2fdff43002dfd160a06cd25e591352a72e4f123f7",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.0:docs/changelog.md",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/2ce5c65f13646cab6e6f782328194c9d85f3300a/docs/changelog.md"
+        }
+      ],
+      "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
+      "source_tag": "v0.7.0",
+      "status": "documented",
+      "summary": "system_one accepts a Pydantic response_model for additional type safety."
+    }
   ],
   "discrepancies": [],
-  "fingerprint": "8df8321664d2fb85db22cc67e095670df2f358aa902ae6e233677c7180398e93",
-  "main_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
+  "fingerprint": "ba45ecaf600d77f17197926553787f1910075bbc09315f57f4625cb433836ba1",
+  "main_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
   "malformed_release_metadata": [],
-  "observed_at": "2026-09-21T15:36:24.527007Z",
+  "observed_at": "2026-09-26T23:12:24.854741Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
-      "sha256": "42b81115e9507a6dd94ce279e341236f41aa8d9e756f4d6ac42235e893f64222",
+      "sha256": "a55a234195c21367b332c9915fd7283842f1872a3df9f6b379980841d9559bd8",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/main/pyproject.toml"
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f078f1e208a0d885154dc758344ae4fce77ac168/pyproject.toml"
     },
     {
-      "sha256": "47deec71c490e4aaed041316ff7c3377f40b937f6d7cf9e24010c3d2c76dbab3",
+      "sha256": "d37237357df010105e0ea5b2a4314ed5c8a72753b99d760740640cefe1e650fd",
       "source_id": "registry:pypi:typesafe-sdk",
       "url": "https://pypi.org/pypi/typesafe-sdk/json"
     }
@@ -38,25 +180,101 @@
   },
   "release_history": [
     {
+      "documented_changes": [],
+      "documented_changes_provenance": [
+        {
+          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
       "name": "v0.5.7 (2026-09-12)",
       "published_at": "2026-09-11T23:06:00Z",
+      "source_commit": "f307bce731f6de17a3d9267311c20d699ae17694",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.5.7",
       "tag": "v0.5.7",
       "version": "0.5.7"
     },
     {
+      "documented_changes": [
+        "accept `Score.criteria` as an ordered sequence instead of a dictionary keyed by integers",
+        "improve type annotations on SDK inputs to accept abstract types like `Mapping` and `Sequence`",
+        "improve error messages to include http details and metadata",
+        "handle invalid values in `RetryPolicy`",
+        "make exceptions and responses picklable",
+        "link more concepts from main [docs](https://docs.typesafe.ai/)"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
       "name": "v0.6.0 (2026-09-15)",
       "published_at": "2026-09-15T10:23:29Z",
+      "source_commit": "420ef4ffb612d5a539a1e0f0fe883ff6770340af",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.6.0",
       "tag": "v0.6.0",
       "version": "0.6.0"
     },
     {
+      "documented_changes": [
+        "ser/de library has been changed from `msgspec` to `pydantic`",
+        "`str` subclasses are now correctly serialized as strings instead of lists of characters",
+        "the `system_one` method now accepts a new `response_model` argument that can be set to a desired `pydantic` model for additional *type-safety*"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
       "name": "v0.7.0 (2026-09-18)",
       "published_at": "2026-09-18T09:12:41Z",
+      "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.0",
       "tag": "v0.7.0",
       "version": "0.7.0"
+    },
+    {
+      "documented_changes": [
+        "validate the API key early and exclude the value from logged exceptions",
+        "add examples for usage with AI gateways"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
+      "name": "v0.7.1 (2026-09-21)",
+      "published_at": "2026-09-21T15:58:04Z",
+      "source_commit": "0ffd094c72ed9445223060b24ffd7a56aa781fb4",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.1",
+      "tag": "v0.7.1",
+      "version": "0.7.1"
+    },
+    {
+      "documented_changes": [
+        "add `http2` extra to `typesafe-sdk` package",
+        "document `typesafe-sdk` usage with HTTP/2 support"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
+      "name": "v0.7.2 (2026-09-26)",
+      "published_at": "2026-09-26T21:20:32Z",
+      "source_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.2",
+      "tag": "v0.7.2",
+      "version": "0.7.2"
     }
   ],
   "repository": "https://github.com/typesafe-ai/typesafe-sdk-python",
@@ -64,7 +282,7 @@
     "python": ">=3.10"
   },
   "schema_version": 1,
-  "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
-  "source_tag": "v0.7.0",
-  "version": "0.7.0"
+  "source_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
+  "source_tag": "v0.7.2",
+  "version": "0.7.2"
 }

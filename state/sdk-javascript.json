@@ -3,17 +3,18 @@
     "v0.5.7",
     "v0.6.0"
   ],
+  "capabilities": [],
   "discrepancies": [],
-  "fingerprint": "8893be1a1ac70c5da31b87f881d4e2e3defba645ff49b1b6a86ebaa90d548518",
+  "fingerprint": "a127a1d83b9e204c2cdb3220b092958c2b50babd64bcb23e1a0a4f41c3f5ece6",
   "main_commit": "66880ccded6cb642dc1809620c2b108c33730214",
   "malformed_release_metadata": [],
-  "observed_at": "2026-09-21T15:36:26.747056Z",
+  "observed_at": "2026-09-26T23:12:26.002005Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {
       "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:package.json",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/main/package.json"
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/66880ccded6cb642dc1809620c2b108c33730214/package.json"
     },
     {
       "sha256": "8d11d3d01304a3d90607d90d95f8eb9953b6811a205b695e5ff14485e6e3cb37",
@@ -37,8 +38,16 @@
   "release_history": [
     {
       "documented_changes": [],
+      "documented_changes_provenance": [
+        {
+          "sha256": "73389d4c01993603a0c943aa04d491ef92670a358e413e74a5aac4891661250d",
+          "source_id": "docs:sdk/javascript/changelog",
+          "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
+        }
+      ],
       "name": "v0.5.7 (2026-09-11)",
       "published_at": "2026-09-12T04:13:23Z",
+      "source_commit": "04b2ad750cc26281cf9085bd21832ea33fb35d0d",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.5.7",
       "tag": "v0.5.7",
       "version": "0.5.7"
@@ -47,8 +56,16 @@
       "documented_changes": [
         "accept `Score.criteria` as an ordered sequence instead of a dictionary keyed by integers"
       ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "73389d4c01993603a0c943aa04d491ef92670a358e413e74a5aac4891661250d",
+          "source_id": "docs:sdk/javascript/changelog",
+          "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
+        }
+      ],
       "name": "v0.6.0 (2026-09-15)",
       "published_at": "2026-09-15T18:17:21Z",
+      "source_commit": "66880ccded6cb642dc1809620c2b108c33730214",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.6.0",
       "tag": "v0.6.0",
       "version": "0.6.0"
