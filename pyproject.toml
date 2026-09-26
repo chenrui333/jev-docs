@@ -26,3 +26,6 @@ ignore = ["E501"]
 testpaths = ["tests"]
 addopts = "-ra"
 pythonpath = ["src"]
+
+[tool.uv]
+required-version = "==0.9.22"
