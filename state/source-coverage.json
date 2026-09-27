@@ -343,7 +343,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage",
-      "sha256": "6c711b829f62dd152194b066c1a853fb9a0b73cfa180e9b035f41ece360783f9",
+      "sha256": "cf3feca83e9c784273562dc21d1bc64003ea521275f16aa7775c1abf241ea285",
       "source_id": "docs:sdk/python/usage",
       "status": "fetched",
       "title": "Usage"
