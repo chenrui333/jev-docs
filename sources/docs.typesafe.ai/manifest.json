@@ -1666,19 +1666,19 @@
       "upstream_last_modified": "2026-09-26T21:22:17.190Z"
     },
     {
-      "bytes": 17497,
+      "bytes": 19333,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage",
       "description": "Guides and patterns for working with the TypeSafe Python SDK.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/usage.md",
-      "observed_at": "2026-09-27T16:59:40.334195Z",
-      "sha256": "cf3feca83e9c784273562dc21d1bc64003ea521275f16aa7775c1abf241ea285",
+      "observed_at": "2026-09-28T19:49:05.589357Z",
+      "sha256": "7a9f63b8b6f4c536fbab00eefd91a3b814d45462f620b8fc39d723201bab245f",
       "source_id": "docs:sdk/python/usage",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-27T11:16:55.816Z"
+      "upstream_last_modified": "2026-09-28T10:25:05.673Z"
     }
   ],
   "schema_version": 1,

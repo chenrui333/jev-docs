@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-28",
+  "events": [
+    {
+      "after_sha256": "7a9f63b8b6f4c536fbab00eefd91a3b814d45462f620b8fc39d723201bab245f",
+      "before_sha256": "cf3feca83e9c784273562dc21d1bc64003ea521275f16aa7775c1abf241ea285",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage",
+      "id": "52ddeeab26c7edadcbe84fd2",
+      "observed_at": "2026-09-28T19:49:05.586125Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7a9f63b8b6f4c536fbab00eefd91a3b814d45462f620b8fc39d723201bab245f",
+          "source_id": "docs:sdk/python/usage",
+          "url": "https://docs.typesafe.ai/sdk/python/usage"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
