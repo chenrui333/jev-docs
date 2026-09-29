@@ -1,5 +1,5 @@
 {
-  "fingerprint": "219ee95cbd941ae5f958ef0065cd56dcb25f190fb4e16bba408bc20682ae777c",
+  "fingerprint": "60917dcd9e3ac9655b3c863e52397720db05a40cdd3a11f74a8247c2b1b27b17",
   "items": [
     {
       "category": "agent-integration",
@@ -10,7 +10,7 @@
       "sources": [
         {
           "excerpt": "If you found TypeSafe while looking for a model to plug into your coding agent, start here. Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools. Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.",
-          "sha256": "e61ec46260302e87e21ca65fe2a1d67ae6c2741a4a586645ace5dd7d9f501175",
+          "sha256": "591c36ffd02bacc587c880584a042c6ca1ae94f3775f67c56d289d23531aa831",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
@@ -27,7 +27,7 @@
       "sources": [
         {
           "excerpt": "Replace a fragile prompt that asks an LLM to \"return JSON\" with a call that returns typed values by construction.",
-          "sha256": "e61ec46260302e87e21ca65fe2a1d67ae6c2741a4a586645ace5dd7d9f501175",
+          "sha256": "591c36ffd02bacc587c880584a042c6ca1ae94f3775f67c56d289d23531aa831",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
@@ -170,7 +170,7 @@
       "sources": [
         {
           "excerpt": "A Noul value runs from 0 to 1, but it's not a scale of the thing you asked about. It is the probability that the answer is yes. If the question is really about degree, the value does not measure the degree. Below, \"Is the candidate strong in Python?\" is asked about four candidates, next to a Score with four levels: no experience, some familiarity, regular use in a job, deep expertise.",
-          "sha256": "aa7bff0d04bd42614e0e851a9ad4917ccc6287c882bc5dece7689b085ef789e6",
+          "sha256": "8b04eed7b25e1e30368e4379bbe6bede7fc0b77578f7546f193f946bd11c405a",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md"
         }
@@ -244,7 +244,7 @@
       "sources": [
         {
           "excerpt": "The state contains the content and supporting facts. Questions define the judgments the model should make about that material. For example, keep the refund request and policy in the state, then ask whether the customer requested a refund and whether the policy supports it.",
-          "sha256": "6871d59470c6af330b10be302a7382ab4c175ee8994886ad48df2fe6bb315462",
+          "sha256": "0c78c1a347bdf97b5067655c2ff4bf9ae6f1ea1af601b54fbeac1beeecab5271",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md"
         },
@@ -276,7 +276,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-09-26T23:12:26.041746Z",
+  "observed_at": "2026-09-29T05:45:58.261736Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",
