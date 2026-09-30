@@ -294,7 +294,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
-      "sha256": "2f808305a59eff809cdb74f13344b6583579a200af38495ae3017335eb584e9f",
+      "sha256": "c4ebee942e3fef93bfc12c1bce5c04ea9f3e03fd3267dcdd4b76183c83c0639c",
       "source_id": "docs:models",
       "status": "fetched",
       "title": "Models"

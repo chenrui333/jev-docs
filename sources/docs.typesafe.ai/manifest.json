@@ -526,19 +526,19 @@
       "upstream_last_modified": "2026-09-18T00:35:09.879Z"
     },
     {
-      "bytes": 6577,
+      "bytes": 6571,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-09-29T05:45:59.137779Z",
-      "sha256": "2f808305a59eff809cdb74f13344b6583579a200af38495ae3017335eb584e9f",
+      "observed_at": "2026-09-30T05:35:09.761350Z",
+      "sha256": "c4ebee942e3fef93bfc12c1bce5c04ea9f3e03fd3267dcdd4b76183c83c0639c",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.965Z"
+      "upstream_last_modified": "2026-09-29T23:51:22.612Z"
     },
     {
       "bytes": 1477,

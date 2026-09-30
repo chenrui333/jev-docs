@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-30",
+  "events": [
+    {
+      "after_sha256": "c4ebee942e3fef93bfc12c1bce5c04ea9f3e03fd3267dcdd4b76183c83c0639c",
+      "before_sha256": "2f808305a59eff809cdb74f13344b6583579a200af38495ae3017335eb584e9f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "f6ef47e4d080658422fbb705",
+      "observed_at": "2026-09-30T05:35:09.759638Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c4ebee942e3fef93bfc12c1bce5c04ea9f3e03fd3267dcdd4b76183c83c0639c",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
