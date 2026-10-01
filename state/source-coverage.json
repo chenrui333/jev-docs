@@ -14,777 +14,777 @@
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
-      "sha256": "e484b102dfe5bc25d71b4601712499835d02777da2d5dee4541436dd0c4a6c8a",
+      "sha256": "df1ed7ec91afcaa1d35f3a4f9d4b3ba33d2e816e472c64a1870f8ed885963c67",
       "source_id": "docs:introduction",
       "status": "fetched",
       "title": "Introduction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
-      "sha256": "c30183944985b269c49939140272f9eec885895df346f19d76cf9b04e18073d2",
+      "sha256": "ff4d66b466bc4a4748ae911fc51e1dc489ee363876263b4e271eb1f22b8cc9aa",
       "source_id": "docs:introduction/quickstart",
       "status": "fetched",
       "title": "Quick start"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/coding-agents",
-      "sha256": "591c36ffd02bacc587c880584a042c6ca1ae94f3775f67c56d289d23531aa831",
+      "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
       "source_id": "docs:introduction/coding-agents",
       "status": "fetched",
       "title": "Jev with coding agents"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
-      "sha256": "8fcbbe46f7b5449a3c73f4e49a24dd06aa0812c0d2edfd77c050edfdf9274f05",
+      "sha256": "4dd749d672520170b99113c870ca8aff93e16212075b210c8797849d8ba24fbc",
       "source_id": "docs:concepts/use-case-map",
       "status": "fetched",
       "title": "Example use cases"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/system-one",
-      "sha256": "bd5ecf9c18ad8abb6847576ab630dde9529622bfd41bf02961aa84609a77dadd",
+      "sha256": "a9a536be92d9c906c02f8aee6c28622a563bbe4a1ead5078d9bc48fe3612f265",
       "source_id": "docs:concepts/system-one",
       "status": "fetched",
       "title": "System One"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/state",
-      "sha256": "0c78c1a347bdf97b5067655c2ff4bf9ae6f1ea1af601b54fbeac1beeecab5271",
+      "sha256": "8ed5a4e719cf2414759fed92463c203855f1fb4bf02b685746cd4858481375a5",
       "source_id": "docs:concepts/state",
       "status": "fetched",
       "title": "State"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "eb51deaaa836e919f10ecbb9b5731e89e25aeff9d2a73173d12141c66bf635f5",
+      "sha256": "fe67e1062c34ffef8f64ba5e541d00159214cd15c48f6c19ef46c25a6357a294",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
-      "sha256": "4c55085131f8f2d7ae1faefdec52b1c7b379d40657d701cd2c786021cfe9dac9",
+      "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
       "source_id": "docs:primitives/choice",
       "status": "fetched",
       "title": "Choice"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
-      "sha256": "ee6afe3494b816770e34df1551d0a64659f2682a42879de5349e76db11e5e018",
+      "sha256": "a0a39b9c01f5ac3616efae071bf23f879bbe3fb12b0af2169932dbb71dd83d32",
       "source_id": "docs:primitives/score",
       "status": "fetched",
       "title": "Score"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/noul",
-      "sha256": "8b04eed7b25e1e30368e4379bbe6bede7fc0b77578f7546f193f946bd11c405a",
+      "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
       "source_id": "docs:primitives/noul",
       "status": "fetched",
       "title": "Noul"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/advanced",
-      "sha256": "7fc102da510626951b513921902b70513e07718d072daf844e360757efab7af1",
+      "sha256": "650a61153fe3d16619e57c8f81fc03b570d663c40dd2fe94df6e57db6c906f62",
       "source_id": "docs:primitives/advanced",
       "status": "fetched",
       "title": "Advanced: structure"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+      "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
-      "sha256": "d9f4d34c1349bf5acb55c99d6a1651eacfc481ad8d1f78ccb8776769da729a49",
+      "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "status": "fetched",
       "title": "How to build with TypeSafe"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/machine-learning-primer",
-      "sha256": "45e6a22bc175f2ce1c404271dd26559179a6f6a83bde2dfcdbd963dbc1649551",
+      "sha256": "62f4354cfcdc00c5ec3e4865bc6b6a79900042c26c3afea0e67d88537e980121",
       "source_id": "docs:introduction/machine-learning-primer",
       "status": "fetched",
       "title": "AI primer"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns",
-      "sha256": "570ac5ae2a4502846bd7da05fd10696a6ddb17e0bb3dadf5ab1246622d3a3006",
+      "sha256": "2e4e92e424f23e4e0af622f61551cf43d2d608591f2d14bb776b86fe9a92a523",
       "source_id": "docs:patterns",
       "status": "fetched",
       "title": "Patterns"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
-      "sha256": "8d7a251ea6b735cb4994c1e0a95166cc0b3febce7d18189c3aa5e1673f182c91",
+      "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
       "source_id": "docs:patterns/fan-out",
       "status": "fetched",
       "title": "Speculative fan-out"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/confidence-routing",
-      "sha256": "7a4de8d39a24c5d6b7e74b1b170fbbe101ca69419af39bac6da4e0c1f678b7bf",
+      "sha256": "3d156395f69856e2cdadb9405a23fa3f08b5ecf4274c3cd81d844d8bbe860b0e",
       "source_id": "docs:patterns/confidence-routing",
       "status": "fetched",
       "title": "Confidence-gated routing"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/composite-scoring",
-      "sha256": "538f42d614fbf29cbfa0aa9fee1859651083a0b67c4b31a21d2710f3fe84d9f5",
+      "sha256": "043dc1d58d91a823f9da3ef47d018340b357ed78857a94a56b5220718d106147",
       "source_id": "docs:patterns/composite-scoring",
       "status": "fetched",
       "title": "Composite scoring"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/intent-routing",
-      "sha256": "84b670d502b3f41165a901495688dc7bd586ff3082854f5432a7a4962d697cfb",
+      "sha256": "b4a6d42a9a1d90211bc1ab81539520157630e5d404c918360b26db53afc41bae",
       "source_id": "docs:patterns/intent-routing",
       "status": "fetched",
       "title": "Intent routing"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "0fa0717f3815425ffcd79c40a49a6db38134c5c794cd04797db8263830f3c6c0",
+      "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
-      "sha256": "037ce3ab766d0966d761ca668ec9b808eda52bdb752ba78924defa29b6089f14",
+      "sha256": "7d0a90fc22b71703d4dc38a901032afbe5a22bb911134d553654f143a9a6fd41",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "status": "fetched",
       "title": "Self-consistency: nouls"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
-      "sha256": "adbff767c226d0b94671778ca8d49c3fc6bf1de6ef1253de88829f1efcb5ecc4",
+      "sha256": "a1a8481c676fd4b6419a9f26feeacd1f223624cb17f438ac8b640597bbc03900",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "status": "fetched",
       "title": "Self-consistency: choices"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
-      "sha256": "53dfe4516fd67b9bfc5abc9a50a6f4db6426b5b2951d41cd91e2fec45aded2fe",
+      "sha256": "1f4574474139321a1e05b31887a18ffe1dd3235169276aa4b600c6ebc110aee8",
       "source_id": "docs:cookbooks/parallel_questions",
       "status": "fetched",
       "title": "Parallel questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
-      "sha256": "5397e56dcdcff36dcba9f2200c0c494baed957eada0364db96075053af7eaa5c",
+      "sha256": "7d8969ab0d851fb0296d5e86c53eac03f3ba3dc0b779aecd7903604f51a6ce11",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "status": "fetched",
       "title": "Re-ranking"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "7e30135ddc6758bc00806f3d58784a80466d77655c29a815ce10b396c356de74",
+      "sha256": "92b23c001081fd4244a99e7162e87f8152306865c2906af8922fcc29587171d6",
       "source_id": "docs:cookbooks/semantic_find",
       "status": "fetched",
       "title": "Line-by-line search"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
-      "sha256": "c23355f56ea56518792f8432ed2b4ca11771e01ff430922d8db2c27864ab34ac",
+      "sha256": "cb5db3e079d337d0b5923e1d122a9c65612e342061d42939ed1aea130f3a58ba",
       "source_id": "docs:cookbooks/autoformat",
       "status": "fetched",
       "title": "Structure recovery"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
-      "sha256": "d6301a7e0e6ed229e2c54deed160c1007a902885232c05fc30f0781fb6d40535",
+      "sha256": "c03cd58ac34dca4e282bfda4b21df943f27c0d652d49ad6b8bac1afa47f8856c",
       "source_id": "docs:cookbooks/function_calling",
       "status": "fetched",
       "title": "Function calling"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
-      "sha256": "fb53dc000c8bad01e45f64210fefedbc27ab5b87d7037a77dd23d2654629105b",
+      "sha256": "c59bf591db3d45e20b90a93a4526775e5188c479c6366b9a4267cb37ab51fc90",
       "source_id": "docs:cookbooks/skill_suggestion",
       "status": "fetched",
       "title": "Skill suggestion"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
-      "sha256": "efa473b53ff4a2c353a8320ed6b89729b2d72f4fdf860e9c12fe0fb2500c58cc",
+      "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
       "source_id": "docs:cookbooks/entity_alignment",
       "status": "fetched",
       "title": "Knowledge graph entity alignment"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "fbe9208da48e2bdada3c671a02e5dc55954660b2e283a85f0f2df1b596c090e3",
+      "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
       "title": "Classifying RAG passages"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/citation_check",
-      "sha256": "2497e2c62a4c5fb2d1aca1c4031fb7bd39948d27b13f18e1db07d8c5777cd529",
+      "sha256": "76bdeead0640f4963815aba7c4cbafe7812cb619b678606998f1735a808fd3f6",
       "source_id": "docs:cookbooks/citation_check",
       "status": "fetched",
       "title": "Double-checking citations"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
-      "sha256": "fb5935988e2c470ee0979b40e648d641b97604802093a1a6bf56d64dedd3e0d0",
+      "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
       "source_id": "docs:cookbooks/llm_guardrails",
       "status": "fetched",
       "title": "Guardrails for LLMs"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
-      "sha256": "03675753d74f2a08c746afe04c4f4283b55e5c6931d58a6ca9c6268b954a1a2f",
+      "sha256": "90ab0294cb0d83b0ece3343edf11c6d492ce0236f4e21b434bbdbcb7c5500b74",
       "source_id": "docs:cookbooks/sde_cascade",
       "status": "fetched",
       "title": "SDE cascade"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
-      "sha256": "c216cb3d293a07eadb64464b2f9b1d2a8e1670efc309cbfb6acd92724f386300",
+      "sha256": "28565d596103548298c3a26f3dce11c1d2e9e21e59608e84044cfb7134914cca",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "status": "fetched",
       "title": "Date extraction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
-      "sha256": "c9ebb87b822ba958664b28b4e214e322dd62540c0964ea317d54da531a0fa6bd",
+      "sha256": "a5242dbf4df6dcae3bbf374047026714c1801cdc126b39bc4bca99212dd1a1c9",
       "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
       "status": "fetched",
       "title": "Pre-parsed value extraction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
-      "sha256": "2b1b095b87306e41f2d73ae6d009e6e733f08f0fe27948d798b3fd922ca2c275",
+      "sha256": "c88074597b5d49a2a19b35626688467f8a8186a730ec0074041858499aff2455",
       "source_id": "docs:cookbooks/hierarchical_classification",
       "status": "fetched",
       "title": "Hierarchical classification"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
-      "sha256": "af2595f41e8cb26ca4116f346e7e269502bcf2892e8cb6e810883ddb7f5f5768",
+      "sha256": "24e0854e5a5846c269142d2a57abfb8aa90d63c37231b03036ed08f1e9989b72",
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "status": "fetched",
       "title": "Autoresearch feature discovery"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
-      "sha256": "20afd8e6c651de25c5a0fbfec2fde98a202f181066b2a5b391f1ffcb7ed5e377",
+      "sha256": "6b5bed0126a9df1dac941760a57f82b5a336d866b03a0634ff4a845c4c146f35",
       "source_id": "docs:cookbooks/classification_using_confidence",
       "status": "fetched",
       "title": "Classification using confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos",
-      "sha256": "df111cec8c2653209cb7c44f20bc7359619a3807bb16b60870ab2190fb47359b",
+      "sha256": "4faa2fa2b75622e6eb908fa0356e3dec8ec3ffb5a254bae30d378339ce4d288c",
       "source_id": "docs:demos",
       "status": "fetched",
       "title": "Demos"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
-      "sha256": "155c0af9a4ae31d2e283ee77147bc3a0bbaba45e15568a2382c29cc75f0adde4",
+      "sha256": "ea60b22f89269d95d1b974f72ddfa755a0aafa0d3b162882d10cde3d4b3379e6",
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
-      "sha256": "c4ebee942e3fef93bfc12c1bce5c04ea9f3e03fd3267dcdd4b76183c83c0639c",
+      "sha256": "da8014e39b651b7e7ae21a74826e5437d274257a63a3d5c594474934f7b639df",
       "source_id": "docs:models",
       "status": "fetched",
       "title": "Models"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/api",
-      "sha256": "0252c4126fdaa45c537fa83718f90d544890a878a12324690294dfeee9f0849e",
+      "sha256": "6b760275f89341fe15cff80c28aacae94d7d0c0c99afcd987ec0bca680b5713a",
       "source_id": "docs:api",
       "status": "fetched",
       "title": "API reference"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
-      "sha256": "5ed8f74a133760523a67674f0feaac6ac88d9f1d242574ce3c9c4965f6e037c4",
+      "sha256": "58150a9cecb9b9727c6039b14e0dfea7f2e3cb9be6ee14611b7df9cc8e0c94c7",
       "source_id": "docs:agent-skill",
       "status": "fetched",
       "title": "Agent skill"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/legal",
-      "sha256": "2d4a97a13e7b06b469bcd2c2fdcbf8b6c3aa0e56949eac67e8897ba5633aed7d",
+      "sha256": "cc96ee6f2d53a89a76b21dc0df6102e5982d2583aa9ad95971d8bebc9de55897",
       "source_id": "docs:legal",
       "status": "fetched",
       "title": "Legal"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
-      "sha256": "e5f4d10c3f67fa93de403530cd8b0ef9d3178223dfcced8961b48260c849f501",
+      "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
       "source_id": "docs:model-jaggedness/jev-1.13",
       "status": "fetched",
       "title": "Jev 1.13 jaggedness"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk",
-      "sha256": "bbd9d2eaad4c605150fcead2dcb1fdb8415a10f6e5481186e185e7e8d4826a97",
+      "sha256": "874e852726f1aa5567e69e2b748d7432b691d45a755b0cdbfb4fddcc5e838d35",
       "source_id": "docs:sdk",
       "status": "fetched",
       "title": "Client SDKs"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python",
-      "sha256": "6b8fa10843621f6090026ed81259e5b420eadaa9af6f2370de63097d3486875a",
+      "sha256": "ff4564cfcf2b577f36be5f6bb6bb0ee5f4f39306af1a39357316a54c81f92279",
       "source_id": "docs:sdk/python",
       "status": "fetched",
       "title": "TypeSafe Python SDK"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage",
-      "sha256": "bf5ce8360b16a97f203f8ad1c54693a6d41f27ea6a98412617a6f1ada3c38be7",
+      "sha256": "a6b916b9d87b3722fe6692b049480f99e0083f24b9853831ee2edd38ddc6764d",
       "source_id": "docs:sdk/python/usage",
       "status": "fetched",
       "title": "Usage"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/changelog",
-      "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+      "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
       "source_id": "docs:sdk/python/changelog",
       "status": "fetched",
       "title": "Changelog"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api",
-      "sha256": "fd58d0024e6269c295ed83e0397c0e19477d0f7a8b2b666dde496a1c6524bcaa",
+      "sha256": "9b5fde7a25687f53e3b824736c4c94fb958065298b80aafc7c2de63d693a4a48",
       "source_id": "docs:sdk/python/api",
       "status": "fetched",
       "title": "API reference"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/async",
-      "sha256": "f45f04e87431ce9e21cdb90e074066a23ab962b3c870d316f9092682923d7fa2",
+      "sha256": "4caa60c0eafbda1da734fe640ea2f43776a79d6f4a128bae3595bdf7a9029ade",
       "source_id": "docs:sdk/python/api/clients/async",
       "status": "fetched",
       "title": "Asynchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync",
-      "sha256": "55a144c0161e9b22dc3cf1b2134f9c64ae28348ead2ef4a269e39fbe4757d8f6",
+      "sha256": "1524df5a9dc8bc6e0306fbdffd4b9d5ca2da49a54949276d43b6ff4a11bab338",
       "source_id": "docs:sdk/python/api/clients/sync",
       "status": "fetched",
       "title": "Synchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
-      "sha256": "cbad949affff140bc00a090b37748c52f1239ec0e98f308012eceb562fdaaa0a",
+      "sha256": "60da0a09dc5b4115665a001344929912430f52ce381228f5a70bce8a59ee61ed",
       "source_id": "docs:sdk/python/api/types/questions",
       "status": "fetched",
       "title": "Questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/responses",
-      "sha256": "7b0167d010dc165b6584939a550c8ec35d31c003f0e8095638a46a037b6f6f8a",
+      "sha256": "03efd826c4334bd7260cae2fd980a9ae01a934f8714e58ea59093389a14bb6ad",
       "source_id": "docs:sdk/python/api/types/responses",
       "status": "fetched",
       "title": "Answers and responses"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/retries",
-      "sha256": "bdf94b25ae1d23a0784c9e1affcf0363e80deb56089a0e48d3e3860bb5181cc9",
+      "sha256": "6b1137deabfac2926e08356504f02dc856892b2d061cfeedf762535c328c5ec1",
       "source_id": "docs:sdk/python/api/retries",
       "status": "fetched",
       "title": "Retries"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/common",
-      "sha256": "bda3f01322aa1a0fdff3d5603278330dc3396fc377eabd21eb4336cce365c241",
+      "sha256": "d93bf202cbbd2eeebb7f91af476b803400bd8ebe81b7c6013027d8b7c8c461bd",
       "source_id": "docs:sdk/python/api/types/common",
       "status": "fetched",
       "title": "Common types"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/exceptions",
-      "sha256": "c1cec8b4f1e4c8d258f18a40acf8736e34be3c6b0bd0915189d2542624447fad",
+      "sha256": "8d0ea798ce78a4e69cba889eaa9696766a09e82575b35fe79a34ce068808c7ba",
       "source_id": "docs:sdk/python/api/exceptions",
       "status": "fetched",
       "title": "Exceptions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/constants",
-      "sha256": "dfcd6bfd691412058b2ea06c9a44414f5126e4aea06d7bf7071600f42a9b5003",
+      "sha256": "73d81e80043ed07af283b07b484ed2e7a309823d6e11e79f239956b8c5e741b9",
       "source_id": "docs:sdk/python/api/constants",
       "status": "fetched",
       "title": "Constants"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript",
-      "sha256": "25ba04f5b55819bee85e21d9184b7b8c807a81e95754baef4b05157240a2e1bb",
+      "sha256": "269059683486938fd93c9ef675ed93d7b38c5ce9151b0baa892837bb79e55cc2",
       "source_id": "docs:sdk/javascript",
       "status": "fetched",
       "title": "JavaScript SDK"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/changelog",
-      "sha256": "73389d4c01993603a0c943aa04d491ef92670a358e413e74a5aac4891661250d",
+      "sha256": "6204f65e88fd44beee8a5515b4f7e6d566eb8203cac2e7838c12db1cb8890381",
       "source_id": "docs:sdk/javascript/changelog",
       "status": "fetched",
       "title": "Changelog"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api",
-      "sha256": "e8abd954c9eb20d338d07cb3397bd933f3fe5633237b9ff7bd73c6dd290e51c8",
+      "sha256": "8a593d34f66b64f099d6610aae78f460dbcb3afc5e3b58ff649ad076b28b6f42",
       "source_id": "docs:sdk/javascript/api",
       "status": "fetched",
       "title": "API reference"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIConnectionError",
-      "sha256": "a20405bd5c86d947fd7cfea9d04afc79c03a7634382911ba82038b88c43c7ecd",
+      "sha256": "c0c606422c5421971b5807f66bd67a12e3d292d157debedfcc23b9845a802b78",
       "source_id": "docs:sdk/javascript/api/classes/APIConnectionError",
       "status": "fetched",
       "title": "Class: APIConnectionError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIError",
-      "sha256": "99fdf20f20bd67faf0b1fecb915079b2e87dbf9e12fb19c22e4dc0ff8a887b7a",
+      "sha256": "5d7a12451f08d98e507f3b7ff2b32a835827c9fcdd9d8cb3f246500d99a0e4a4",
       "source_id": "docs:sdk/javascript/api/classes/APIError",
       "status": "fetched",
       "title": "Class: APIError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIPromise",
-      "sha256": "0d00c57977f2777183bc2dcf7019f4293a89dd2e76fe3706b3b3db80a069ceb3",
+      "sha256": "2a1c74759dfd10c8fed4e051802cfb59cc2f8720889f010440a59e97a1f6cae4",
       "source_id": "docs:sdk/javascript/api/classes/APIPromise",
       "status": "fetched",
       "title": "Class: APIPromise<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APITimeoutError",
-      "sha256": "c0bdf6e807b322d559704b16e4fd1d0379c3decc63c98471dbd8374cc5f5468c",
+      "sha256": "dfb22f9e8b0a5b40c156569ff18bae410fca0b6da8000717dc1cd96f0d7b574d",
       "source_id": "docs:sdk/javascript/api/classes/APITimeoutError",
       "status": "fetched",
       "title": "Class: APITimeoutError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIUserAbortError",
-      "sha256": "f7db36a7ca8eab94e01e8a452ef23f183245770f0915ea64dd7ea17484fe5d88",
+      "sha256": "dac5bfd48bd2be4077d1e2d6e3c26105b345b3ca250400eee832a3d5eadad747",
       "source_id": "docs:sdk/javascript/api/classes/APIUserAbortError",
       "status": "fetched",
       "title": "Class: APIUserAbortError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/AuthenticationError",
-      "sha256": "8420db7d6a927cc0ed598d80b509a04d7e2fcdc78ebb8fe23e4c3113de81fc7d",
+      "sha256": "6059e775cfd5efcfbaba12fcd19a48225bc97edb5723ebbada0e8b3c2c68c8b8",
       "source_id": "docs:sdk/javascript/api/classes/AuthenticationError",
       "status": "fetched",
       "title": "Class: AuthenticationError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/BadRequestError",
-      "sha256": "ac95c8e0d1ca8ad1a9e61947374439047fd6fc5595369b8c8b9aa02a9323f979",
+      "sha256": "2463ee449a0728a535c464b7a916feec7f7cfa6c787f372682e406448783b743",
       "source_id": "docs:sdk/javascript/api/classes/BadRequestError",
       "status": "fetched",
       "title": "Class: BadRequestError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/InternalServerError",
-      "sha256": "e878d63c8d1970545d9376dd9ce0ab92110af0009dc3a802d235c153d381b986",
+      "sha256": "dda08eedad85bd5516e862748dff570239b41774c53d297d29653763d17ecc07",
       "source_id": "docs:sdk/javascript/api/classes/InternalServerError",
       "status": "fetched",
       "title": "Class: InternalServerError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/NotFoundError",
-      "sha256": "29ee86c3e039c786e07484580663a963a4a5c87418079ee1743899f647174a00",
+      "sha256": "3434c1a3f9198998224473bcfaf68d0e84e2831e72bf5f5ab893d0cfee67cfbf",
       "source_id": "docs:sdk/javascript/api/classes/NotFoundError",
       "status": "fetched",
       "title": "Class: NotFoundError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/PermissionDeniedError",
-      "sha256": "1d5c7a29683e93133df42ce6b937d19e8344c5b45a9133a966039a164b5bc3cf",
+      "sha256": "d0c4b4c0666dfe09828238e2e3908560d0853711b5b54d6eae3654893180071b",
       "source_id": "docs:sdk/javascript/api/classes/PermissionDeniedError",
       "status": "fetched",
       "title": "Class: PermissionDeniedError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/RateLimitError",
-      "sha256": "4e552a0610a26794cb68ac08e17ab6402534004e825b73e177408ecd854efdf0",
+      "sha256": "11def3d900207697e5fe5163b2ccf90da0bcffacc35383a2bd69de249b43b648",
       "source_id": "docs:sdk/javascript/api/classes/RateLimitError",
       "status": "fetched",
       "title": "Class: RateLimitError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeClient",
-      "sha256": "3831ede08860c95daa182c33a5c3dc698f92d30990df88f7d6af764d989d2347",
+      "sha256": "d06e51285de022bed9deabe2fc8c4f91ddda0f9f38a9297535c7e1cd5cda79d3",
       "source_id": "docs:sdk/javascript/api/classes/TypeSafeClient",
       "status": "fetched",
       "title": "Class: TypeSafeClient"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeError",
-      "sha256": "a1eb2d99ba005a680324f062842dfeef9a6bf7267508521eee2b87c3cfe12556",
+      "sha256": "0ca02d89bea4a591d624dc462a6d7bb198cbf9a758772b1e8e96b62016ab93c5",
       "source_id": "docs:sdk/javascript/api/classes/TypeSafeError",
       "status": "fetched",
       "title": "Class: TypeSafeError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/UnprocessableEntityError",
-      "sha256": "4620ac84c0bef57460dacf4b85b42ac3b3597a9b059bd13ff5cf644db27af366",
+      "sha256": "ff95eb411c61d56ed4dfc1f26146eeaf700d20baaaadffc37130b14ccd1120c7",
       "source_id": "docs:sdk/javascript/api/classes/UnprocessableEntityError",
       "status": "fetched",
       "title": "Class: UnprocessableEntityError"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceQuestion",
-      "sha256": "3eeef7d78386649011c5d4f1c792976a546f77e4904ff824d488b2634af567da",
+      "sha256": "82c0a35cfb782a954da2dc31e269fcc273447c7c6c9cc5d959d7c5968bfbc0a6",
       "source_id": "docs:sdk/javascript/api/interfaces/ChoiceQuestion",
       "status": "fetched",
       "title": "Interface: ChoiceQuestion<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceResponse",
-      "sha256": "4325f9f44b85549c68ea4fff2e79d8c24dbd6a44103589a8752ab40003885d06",
+      "sha256": "d06a957fe92af44639a97319c0cf56082ef11e243a8dfd64f093480de400d87f",
       "source_id": "docs:sdk/javascript/api/interfaces/ChoiceResponse",
       "status": "fetched",
       "title": "Interface: ChoiceResponse<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Logger",
-      "sha256": "9ebf6cdbafffbece6faf32e249747c48eec372785fc14ccf74a1c7ab6ebe32b7",
+      "sha256": "e3b49455b725f3a766d0e8e3dc02243a314ccbec61f337a667238f14d6581b9d",
       "source_id": "docs:sdk/javascript/api/interfaces/Logger",
       "status": "fetched",
       "title": "Interface: Logger"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ModelCard",
-      "sha256": "4427f8c944169d2bb3ed64ea08894b6a138d9b5bb7fa0e20db56e142320461bb",
+      "sha256": "8a7bd6545efb68fda0371cf747a038ce261ebc5f44e2bae139cb2274bd3da997",
       "source_id": "docs:sdk/javascript/api/interfaces/ModelCard",
       "status": "fetched",
       "title": "Interface: ModelCard"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Models",
-      "sha256": "335e3d5c1d3fb2c048d81dfc6c4aeaf93365bfa78f8ee281c74224729e9d63e1",
+      "sha256": "d68ed24aa95b6cfc185201da18a03b3df9b305a340a02ab157435867c83ee459",
       "source_id": "docs:sdk/javascript/api/interfaces/Models",
       "status": "fetched",
       "title": "Interface: Models"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulQuestion",
-      "sha256": "0968d15de4642b9f18f6a2902081067f2404127c5f2ccacb14ef14d99d46ea96",
+      "sha256": "dd49aae30b34e0e5942611aa08cb9ac008b0f9270e4c9fbc5bd5eef979761385",
       "source_id": "docs:sdk/javascript/api/interfaces/NoulQuestion",
       "status": "fetched",
       "title": "Interface: NoulQuestion"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulResponse",
-      "sha256": "6227fefaed88bd826c07d8183f752990c9af6b5b52468dda49335fc6a99eb1bf",
+      "sha256": "4c978ecf12bdd329c2468e81b1cdbe32f070c758e21f33e01c532c52e6c15b00",
       "source_id": "docs:sdk/javascript/api/interfaces/NoulResponse",
       "status": "fetched",
       "title": "Interface: NoulResponse"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Questions",
-      "sha256": "35a610a7c3f857d320fdc7db8f53415434b60948ff3013d8d69a331611c4c48a",
+      "sha256": "508f221b34597ac915ae94cabfe6daa829156142fcee2b20b5c9e07c47cd0512",
       "source_id": "docs:sdk/javascript/api/interfaces/Questions",
       "status": "fetched",
       "title": "Interface: Questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/RequestOptions",
-      "sha256": "81fae66c86b0b25f88536144d656f3f8ecf20588658a24b488514d22091d67ee",
+      "sha256": "48b8d64541f9baf8b266c324df48a50ee622ec8f0cd1f7c4619cb35f29c07f88",
       "source_id": "docs:sdk/javascript/api/interfaces/RequestOptions",
       "status": "fetched",
       "title": "Interface: RequestOptions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/RetryPolicy",
-      "sha256": "ecaf1ae900811fdb14829e188bb398347d1d8b549d01d24953eab1eabef5eddb",
+      "sha256": "85f6633028b04475606bba7e784fbd6db3d08ca861c5fa6e33afa243dc2b4b8b",
       "source_id": "docs:sdk/javascript/api/interfaces/RetryPolicy",
       "status": "fetched",
       "title": "Interface: RetryPolicy"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ScoreQuestion",
-      "sha256": "cf3a67c335854ba7aea0564f1fc6dcfaa91ea70831bf7c42444c1986eda934db",
+      "sha256": "23960b9224205758da776d76dbcbf21975233947fed5048b09197da16913d58d",
       "source_id": "docs:sdk/javascript/api/interfaces/ScoreQuestion",
       "status": "fetched",
       "title": "Interface: ScoreQuestion<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ScoreResponse",
-      "sha256": "f9f1d1f6da5db8d8a32512e07839973d05a19e5742fa0d943754ec9e1897d3ff",
+      "sha256": "9db7752262f2e1d76df123dfc26fa97f4483e0bade858456cbd1ed6cc9678dee",
       "source_id": "docs:sdk/javascript/api/interfaces/ScoreResponse",
       "status": "fetched",
       "title": "Interface: ScoreResponse<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequest",
-      "sha256": "a9cc654ab780c1b63390cec607ba42fc91625545e70410ae348bfecd2ed447e5",
+      "sha256": "c2f8d6a326fefca098f6d8331dd26f5721f523e16dbaf2f77f2fed81f2253ed4",
       "source_id": "docs:sdk/javascript/api/interfaces/SystemOneRequest",
       "status": "fetched",
       "title": "Interface: SystemOneRequest<Q>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequestPayload",
-      "sha256": "97088e861eac6197f5c9d0f242191070d65e0d45a0c6e05d70e5df6b982fb74e",
+      "sha256": "50dcc14c938af2f75afdcff95a34a86e62b6395f4a0effc98e10e2d2606ce84f",
       "source_id": "docs:sdk/javascript/api/interfaces/SystemOneRequestPayload",
       "status": "fetched",
       "title": "Interface: SystemOneRequestPayload"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneResult",
-      "sha256": "7cb2e4e7a724cd7841310f2e119e55a8ca9b55b9c94191ad36c76713cee08ced",
+      "sha256": "de54fe865040fdb8edb2440528af9a3ad02aa1b6838fd0058cde5036966a364f",
       "source_id": "docs:sdk/javascript/api/interfaces/SystemOneResult",
       "status": "fetched",
       "title": "Interface: SystemOneResult<Q>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TypeSafeClientConfig",
-      "sha256": "5780a70b4f0bc12433b1cebc8810e22ad6c5298fcec7fb77163770af483a1f69",
+      "sha256": "60beed43998f14205e7fac512b890822f8f6f930d7039957feed517b88cf7230",
       "source_id": "docs:sdk/javascript/api/interfaces/TypeSafeClientConfig",
       "status": "fetched",
       "title": "Interface: TypeSafeClientConfig"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Usage",
-      "sha256": "89166ea2f5f82c1265440869fb7ed753ff5980122ecf6ff847588fb64ec3cb0a",
+      "sha256": "6c31113ae0000cbfd34b4220a8d4333c3941f654549981d89a9335444f2c31d6",
       "source_id": "docs:sdk/javascript/api/interfaces/Usage",
       "status": "fetched",
       "title": "Interface: Usage"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/WithResponse",
-      "sha256": "ad47903342ef004b6b29e2f8112e0217ba26439bcb40cfbbc09bb6f65f3bb782",
+      "sha256": "90ff30334b4b6f63e49cdc157f2c914817c9886043299f9d8f6c14f82b8ec306",
       "source_id": "docs:sdk/javascript/api/interfaces/WithResponse",
       "status": "fetched",
       "title": "Interface: WithResponse<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ChoiceCriteria",
-      "sha256": "095bfad4b4840048f5fe7e8e9b65059a7f98c2472f331bd2bc8f2d8f27653d50",
+      "sha256": "a511eba6b5666eee2323e476bb126e868d498d0d486c743a06143c3642dae74d",
       "source_id": "docs:sdk/javascript/api/type-aliases/ChoiceCriteria",
       "status": "fetched",
       "title": "Type Alias: ChoiceCriteria"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Description",
-      "sha256": "4891a677386abdb276a91f0be7a9d96c5168798f13daf56eeb4cd256c88dc318",
+      "sha256": "92052bd2c7a1bdcd0e837c5942f506800d4e7ebc61c798a3f6199eab7e9d4910",
       "source_id": "docs:sdk/javascript/api/type-aliases/Description",
       "status": "fetched",
       "title": "Type Alias: Description"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/EntryType",
-      "sha256": "25eddb598adc30e458b2a88df4b28d6ac7833c523e07b9e51fe485a99aa20f0b",
+      "sha256": "355a76ef34c00823acc4c71af7764fc2c25c9175c79cebb82cb90e6a3f4181e7",
       "source_id": "docs:sdk/javascript/api/type-aliases/EntryType",
       "status": "fetched",
       "title": "Type Alias: EntryType"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/EnvVar",
-      "sha256": "d10173bb6e14432a2b4c8563c534768aafe3bed9f987433ff0f4804b0aff3916",
+      "sha256": "2c979f608bbbd3223980fe5e705dd154515caf5de40cfc66956503de4a0787fb",
       "source_id": "docs:sdk/javascript/api/type-aliases/EnvVar",
       "status": "fetched",
       "title": "Type Alias: EnvVar"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Fetch",
-      "sha256": "17e01b94c2f9794a9a4c6b732b0172a9ab9bc7188b9ed306528ddc742c2c8f5d",
+      "sha256": "fa9814843bb1c0515d536cb494f866fff7621a5c4713335bd3c0291e0e374ac8",
       "source_id": "docs:sdk/javascript/api/type-aliases/Fetch",
       "status": "fetched",
       "title": "Type Alias: Fetch"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/JsonValue",
-      "sha256": "10f9f35278cc9c8059f45e13c9e16581ecdc848db015eaae46e4593975c6e030",
+      "sha256": "d8c50dd0f6e64e149ef77c4f6ec84f646e705175a4a8fa7636b5d36c375b0d66",
       "source_id": "docs:sdk/javascript/api/type-aliases/JsonValue",
       "status": "fetched",
       "title": "Type Alias: JsonValue"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/LogLevel",
-      "sha256": "dba7f4b1a63b6f7f2da62013ffefc152660867c508d2cb580de8c6983b5efe11",
+      "sha256": "df1424fcfc1ce91f694150312ff6b2935ca8ab7a81ffe9571a0aa179e3b2b227",
       "source_id": "docs:sdk/javascript/api/type-aliases/LogLevel",
       "status": "fetched",
       "title": "Type Alias: LogLevel"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Question",
-      "sha256": "f58601370daa9df78ea740d7bdd970c79e73d929b0c6c20cf6de0ae2f9ca5f20",
+      "sha256": "1e2bcda7a1644062945c733115e2da903a28e8d4349b7a53c8d48e64e2a3abb3",
       "source_id": "docs:sdk/javascript/api/type-aliases/Question",
       "status": "fetched",
       "title": "Type Alias: Question"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ResultFor",
-      "sha256": "e5575bb40e49aadc08996e758ba55c1d4399a4c99a0332eee82a6a2a03121573",
+      "sha256": "411004d64c3a2613881de525ee6d588d4cfa1f47c3284370ddb685c133323091",
       "source_id": "docs:sdk/javascript/api/type-aliases/ResultFor",
       "status": "fetched",
       "title": "Type Alias: ResultFor<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ScoreCriteria",
-      "sha256": "6f01554f2569f2c9d71acbf548dfa7d6e2c439886d13921cdee5584e09eff21e",
+      "sha256": "3599c4a136502d17c03f817cdd886cb72fa4475696b43b88abe94c6ddab5504c",
       "source_id": "docs:sdk/javascript/api/type-aliases/ScoreCriteria",
       "status": "fetched",
       "title": "Type Alias: ScoreCriteria"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ScoreLegend",
-      "sha256": "4ee7b3f292648e093a9eb3946e3a6924ff44e8fba8161faab040c02adfaadaf5",
+      "sha256": "ead596841cbea63f6d3dee2ba263f2b53d84dda4dde1ca3f749a817b9f2f3bfd",
       "source_id": "docs:sdk/javascript/api/type-aliases/ScoreLegend",
       "status": "fetched",
       "title": "Type Alias: ScoreLegend<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ScoreOf",
-      "sha256": "257c8140349b19766082e0bb91550090660265ea932d9ee2887156af8ef61434",
+      "sha256": "98098e9e3e33a943a57eb380df83db07328eb3862cc87e4a1cac7589751785c2",
       "source_id": "docs:sdk/javascript/api/type-aliases/ScoreOf",
       "status": "fetched",
       "title": "Type Alias: ScoreOf<T>"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/ENV",
-      "sha256": "52a78017fdd446b976eb37589e3ece060228055cbd78f9a5f0568ed69146781f",
+      "sha256": "3e8f16fa7e6137f432a6c5ee33329038d0b469234fe38bbd3431eb095929d125",
       "source_id": "docs:sdk/javascript/api/variables/ENV",
       "status": "fetched",
       "title": "Variable: ENV"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/LOG_LEVELS",
-      "sha256": "0d5646a6c2fd3ef63b0037f2d43a159ff588841298ff15808adc51d10e5a8fa7",
+      "sha256": "8625f9eae048383a30915bc0585a494605d706d43a6bfd8574c737311b0540f2",
       "source_id": "docs:sdk/javascript/api/variables/LOG_LEVELS",
       "status": "fetched",
       "title": "Variable: LOG_LEVELS"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/VERSION",
-      "sha256": "de1e098300ddc35807ac8152b31ca2674a9f9f52a17e3595670a2758cd5c2e1b",
+      "sha256": "3c9b18c8dad4b2f0a45b62662fa3ac69d05168a3ae06af1309b80762209a99de",
       "source_id": "docs:sdk/javascript/api/variables/VERSION",
       "status": "fetched",
       "title": "Variable: VERSION"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/choice",
-      "sha256": "971e2ac7f5ef762fac9afb4aa481350296938872cb886cf198162018b36f30a8",
+      "sha256": "3c880415afc18a8498a5484863e5eb5bfa998dc33cf1d2999bdbc5c16b12bfa8",
       "source_id": "docs:sdk/javascript/api/functions/choice",
       "status": "fetched",
       "title": "Function: choice()"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/noul",
-      "sha256": "496c8ffa64162d5fdf4aca671f7f363672ffb25de8f666b28753810b7820e1bd",
+      "sha256": "f8f94ce2dbdce0aa841dfe043a5c4163980fcd72211ab9dba858ea179cd1e663",
       "source_id": "docs:sdk/javascript/api/functions/noul",
       "status": "fetched",
       "title": "Function: noul()"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/score",
-      "sha256": "2f7bd6acff7da9a8fa6e88a8f9cc0b9b7040df039f6d5072a3187729ff155783",
+      "sha256": "0792d52afd3afc54303fce693c7c42534e57a2b8ce369cc11fb6340fb327b135",
       "source_id": "docs:sdk/javascript/api/functions/score",
       "status": "fetched",
       "title": "Function: score()"

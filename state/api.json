@@ -1,11 +1,11 @@
 {
   "endpoint": "POST https://api.typesafe.ai/v1/systemone",
-  "fingerprint": "159f31b523b9f516f4a15ab090c6ee93af431c6ce0c975cbe09cb5ea61e5c535",
+  "fingerprint": "c8d3b64b67414c8aa8fac047e7f695bc001eb78143205956b1204c20beec4fea",
   "model_default": "jev-latest",
-  "observed_at": "2026-09-29T05:45:58.215897Z",
+  "observed_at": "2026-10-01T18:26:35.469736Z",
   "provenance": [
     {
-      "sha256": "0252c4126fdaa45c537fa83718f90d544890a878a12324690294dfeee9f0849e",
+      "sha256": "6b760275f89341fe15cff80c28aacae94d7d0c0c99afcd987ec0bca680b5713a",
       "source_id": "docs:api",
       "url": "https://docs.typesafe.ai/api.md"
     }

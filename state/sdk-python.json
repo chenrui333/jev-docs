@@ -147,10 +147,10 @@
     }
   ],
   "discrepancies": [],
-  "fingerprint": "ba45ecaf600d77f17197926553787f1910075bbc09315f57f4625cb433836ba1",
+  "fingerprint": "0f28eb672769a11652c616e1c0a17a2c1cf07c7005bd44f8a409ca2ecb3c28a8",
   "main_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
   "malformed_release_metadata": [],
-  "observed_at": "2026-09-26T23:12:24.854741Z",
+  "observed_at": "2026-10-01T18:26:34.288790Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
@@ -183,7 +183,7 @@
       "documented_changes": [],
       "documented_changes_provenance": [
         {
-          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -206,7 +206,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -226,7 +226,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -245,7 +245,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -264,7 +264,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "5a106cf423ea4e81d41a7f3d026a020cce9e1648d86a1611a7b823797c1c285c",
+          "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }

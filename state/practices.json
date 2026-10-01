@@ -1,5 +1,5 @@
 {
-  "fingerprint": "60917dcd9e3ac9655b3c863e52397720db05a40cdd3a11f74a8247c2b1b27b17",
+  "fingerprint": "b3372d5bb16527afd4be6221d58e31daa9552b697509cfd121d7fde1d0c522e3",
   "items": [
     {
       "category": "agent-integration",
@@ -10,7 +10,7 @@
       "sources": [
         {
           "excerpt": "If you found TypeSafe while looking for a model to plug into your coding agent, start here. Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools. Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.",
-          "sha256": "591c36ffd02bacc587c880584a042c6ca1ae94f3775f67c56d289d23531aa831",
+          "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
@@ -27,7 +27,7 @@
       "sources": [
         {
           "excerpt": "Replace a fragile prompt that asks an LLM to \"return JSON\" with a call that returns typed values by construction.",
-          "sha256": "591c36ffd02bacc587c880584a042c6ca1ae94f3775f67c56d289d23531aa831",
+          "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
@@ -44,7 +44,7 @@
       "sources": [
         {
           "excerpt": "Keep control flow, deterministic rules, and side effects in code.",
-          "sha256": "d9f4d34c1349bf5acb55c99d6a1651eacfc481ad8d1f78ccb8776769da729a49",
+          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
         }
@@ -61,7 +61,7 @@
       "sources": [
         {
           "excerpt": "Break broad judgments into narrow, typed questions with explicit instructions and criteria.",
-          "sha256": "d9f4d34c1349bf5acb55c99d6a1651eacfc481ad8d1f78ccb8776769da729a49",
+          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
         },
@@ -84,7 +84,7 @@
       "sources": [
         {
           "excerpt": "Because TypeSafe supports sending many questions in a single API call, we recommend putting all of the questions your system needs in a single request, and then using code to decide what is relevant after the fact. All questions are evaluated in parallel, so adding more questions usually has little effect on response time.",
-          "sha256": "8d7a251ea6b735cb4994c1e0a95166cc0b3febce7d18189c3aa5e1673f182c91",
+          "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
         },
@@ -107,7 +107,7 @@
       "sources": [
         {
           "excerpt": "Send many questions in a single call, including speculative ones, and let your code decide what's relevant.",
-          "sha256": "8d7a251ea6b735cb4994c1e0a95166cc0b3febce7d18189c3aa5e1673f182c91",
+          "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
         },
@@ -130,7 +130,7 @@
       "sources": [
         {
           "excerpt": "TypeSafe computes confidence from how the probability is spread across the options. All of it on one option gives 1.0; the more evenly it spreads, the lower the confidence. This demo uses (3 × largest probability − 1) / 2 to approximate confidence for three options.",
-          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         },
@@ -153,7 +153,7 @@
       "sources": [
         {
           "excerpt": "The 0.5 confidence floor catches anything the model reports as genuinely uncertain. Above that, the threshold for acting without confirmation is higher for a destructive operation than for a read-only one. Your code encodes the risk tolerance.",
-          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         }
@@ -170,7 +170,7 @@
       "sources": [
         {
           "excerpt": "A Noul value runs from 0 to 1, but it's not a scale of the thing you asked about. It is the probability that the answer is yes. If the question is really about degree, the value does not measure the degree. Below, \"Is the candidate strong in Python?\" is asked about four candidates, next to a Score with four levels: no experience, some familiarity, regular use in a job, deep expertise.",
-          "sha256": "8b04eed7b25e1e30368e4379bbe6bede7fc0b77578f7546f193f946bd11c405a",
+          "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md"
         }
@@ -204,7 +204,7 @@
       "sources": [
         {
           "excerpt": "The correct threshold values depend on your domain and the performance of the model for your use case. Start with conservative thresholds, test with your own data, and adjust as you observe results.",
-          "sha256": "97dafe98b77979906a2ad456013dd85a70dcecd109d0644b096817d910997ea5",
+          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         },
@@ -244,7 +244,7 @@
       "sources": [
         {
           "excerpt": "The state contains the content and supporting facts. Questions define the judgments the model should make about that material. For example, keep the refund request and policy in the state, then ask whether the customer requested a refund and whether the policy supports it.",
-          "sha256": "0c78c1a347bdf97b5067655c2ff4bf9ae6f1ea1af601b54fbeac1beeecab5271",
+          "sha256": "8ed5a4e719cf2414759fed92463c203855f1fb4bf02b685746cd4858481375a5",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md"
         },
@@ -276,7 +276,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-09-29T05:45:58.261736Z",
+  "observed_at": "2026-10-01T18:26:35.519127Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",

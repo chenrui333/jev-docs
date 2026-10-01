@@ -1,12 +1,12 @@
 {
-  "fingerprint": "fd3090011d21836dd6b270a1642473a0137c357094713439cf21f261085cacce",
+  "fingerprint": "fc305aa75226a788601f31be63e284b1d45cd02e76a1f10d8ad5835dd995dfbd",
   "items": [
     {
       "id": "choice",
       "name": "Choice",
       "observed_title": "Choice",
       "source": {
-        "sha256": "4c55085131f8f2d7ae1faefdec52b1c7b379d40657d701cd2c786021cfe9dac9",
+        "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
         "source_id": "docs:primitives/choice",
         "url": "https://docs.typesafe.ai/primitives/choice"
       },
@@ -17,7 +17,7 @@
       "name": "Noul",
       "observed_title": "Noul",
       "source": {
-        "sha256": "8b04eed7b25e1e30368e4379bbe6bede7fc0b77578f7546f193f946bd11c405a",
+        "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
         "source_id": "docs:primitives/noul",
         "url": "https://docs.typesafe.ai/primitives/noul"
       },
@@ -28,13 +28,13 @@
       "name": "Score",
       "observed_title": "Score",
       "source": {
-        "sha256": "ee6afe3494b816770e34df1551d0a64659f2682a42879de5349e76db11e5e018",
+        "sha256": "a0a39b9c01f5ac3616efae071bf23f879bbe3fb12b0af2169932dbb71dd83d32",
         "source_id": "docs:primitives/score",
         "url": "https://docs.typesafe.ai/primitives/score"
       },
       "summary": "Rate content against ordered, descriptive levels."
     }
   ],
-  "observed_at": "2026-09-29T05:45:58.215844Z",
+  "observed_at": "2026-10-01T18:26:35.469695Z",
   "schema_version": 1
 }
