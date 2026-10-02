@@ -3,7 +3,7 @@
   "discovered_count": 111,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "3bad966207794ce900ebc81759fd48185cd2d1f287df13a08ae4d601e96450fd",
+    "sha256": "4151e8fd18e5494580571957beff0933e18aecbea2ac7826d3bf53184e8a6a40",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"

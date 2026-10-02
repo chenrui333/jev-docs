@@ -496,13 +496,13 @@
       "upstream_last_modified": "2026-09-24T16:15:16.215Z"
     },
     {
-      "bytes": 16019,
+      "bytes": 16132,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-09-26T23:12:27.035801Z",
-      "sha256": "3bad966207794ce900ebc81759fd48185cd2d1f287df13a08ae4d601e96450fd",
+      "observed_at": "2026-10-02T05:39:53.252513Z",
+      "sha256": "4151e8fd18e5494580571957beff0933e18aecbea2ac7826d3bf53184e8a6a40",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -538,7 +538,7 @@
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-29T23:51:22.612Z"
+      "upstream_last_modified": "2026-10-02T03:01:44.625Z"
     },
     {
       "bytes": 1590,
