@@ -91,7 +91,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+      "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"

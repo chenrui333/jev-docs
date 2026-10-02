@@ -1,5 +1,5 @@
 {
-  "fingerprint": "b3372d5bb16527afd4be6221d58e31daa9552b697509cfd121d7fde1d0c522e3",
+  "fingerprint": "1d6966a27f4b44266f133e93d34b22557899c01fa12189786923b47c3653e5f6",
   "items": [
     {
       "category": "agent-integration",
@@ -129,8 +129,8 @@
       "last_verified": "2026-09-21",
       "sources": [
         {
-          "excerpt": "TypeSafe computes confidence from how the probability is spread across the options. All of it on one option gives 1.0; the more evenly it spreads, the lower the confidence. This demo uses (3 × largest probability − 1) / 2 to approximate confidence for three options.",
-          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+          "excerpt": "This gives 0 at $p = 0.5$ and 1 at $p = 0$ or $p = 1$. It is also the Choice formula below applied to a yes-or-no Choice, so it sits on the same scale as Choice confidence.",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         },
@@ -153,7 +153,7 @@
       "sources": [
         {
           "excerpt": "The 0.5 confidence floor catches anything the model reports as genuinely uncertain. Above that, the threshold for acting without confirmation is higher for a destructive operation than for a read-only one. Your code encodes the risk tolerance.",
-          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         }
@@ -204,7 +204,7 @@
       "sources": [
         {
           "excerpt": "The correct threshold values depend on your domain and the performance of the model for your use case. Start with conservative thresholds, test with your own data, and adjust as you observe results.",
-          "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
         },
@@ -276,7 +276,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-01T18:26:35.519127Z",
+  "observed_at": "2026-10-02T17:53:12.248622Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",

@@ -45,7 +45,7 @@ Evidence:
 Choice confidence summarizes concentration of the competing option probabilities; it is not a guarantee that the selected answer is correct.
 
 Evidence:
-- [docs:confidence](https://docs.typesafe.ai/confidence.md) — TypeSafe computes confidence from how the probability is spread across the options. All of it on one option gives 1.0; the more evenly it spreads, the lower the confidence. This demo uses (3 × largest probability − 1) / 2 to approximate confidence for three options.
+- [docs:confidence](https://docs.typesafe.ai/confidence.md) — This gives 0 at $p = 0.5$ and 1 at $p = 0$ or $p = 1$. It is also the Choice formula below applied to a yes-or-no Choice, so it sits on the same scale as Choice confidence.
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.
 
 ### confidence-is-not-permission — `recommended`

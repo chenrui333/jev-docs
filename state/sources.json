@@ -91,19 +91,19 @@
       "upstream_last_modified": "2026-09-16T18:42:06.986Z"
     },
     {
-      "bytes": 11509,
+      "bytes": 24090,
       "canonical_url": "https://docs.typesafe.ai/confidence",
       "description": "How TypeSafe reports certainty, how it differs from probability, and how to use it to control system behavior.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/confidence.md",
-      "observed_at": "2026-10-01T18:26:36.593980Z",
-      "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+      "observed_at": "2026-10-02T17:53:12.866590Z",
+      "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
       "source_id": "docs:confidence",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:37.926Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.605Z"
     },
     {
       "bytes": 5944,
@@ -538,7 +538,7 @@
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T03:01:44.625Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.579Z"
     },
     {
       "bytes": 1590,
@@ -718,7 +718,7 @@
       "source_type": "documentation",
       "title": "JavaScript SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.956Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.569Z"
     },
     {
       "bytes": 3440,
@@ -733,7 +733,7 @@
       "source_type": "documentation",
       "title": "API reference",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.955Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.564Z"
     },
     {
       "bytes": 1001,
@@ -748,7 +748,7 @@
       "source_type": "documentation",
       "title": "Class: APIConnectionError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.975Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.578Z"
     },
     {
       "bytes": 2303,
@@ -763,7 +763,7 @@
       "source_type": "documentation",
       "title": "Class: APIError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.963Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.560Z"
     },
     {
       "bytes": 3686,
@@ -778,7 +778,7 @@
       "source_type": "documentation",
       "title": "Class: APIPromise<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.972Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.568Z"
     },
     {
       "bytes": 1056,
@@ -793,7 +793,7 @@
       "source_type": "documentation",
       "title": "Class: APITimeoutError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.966Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.555Z"
     },
     {
       "bytes": 893,
@@ -808,7 +808,7 @@
       "source_type": "documentation",
       "title": "Class: APIUserAbortError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.959Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.564Z"
     },
     {
       "bytes": 2511,
@@ -823,7 +823,7 @@
       "source_type": "documentation",
       "title": "Class: AuthenticationError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.969Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.557Z"
     },
     {
       "bytes": 2496,
@@ -838,7 +838,7 @@
       "source_type": "documentation",
       "title": "Class: BadRequestError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.965Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.556Z"
     },
     {
       "bytes": 2529,
@@ -853,7 +853,7 @@
       "source_type": "documentation",
       "title": "Class: InternalServerError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.967Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.557Z"
     },
     {
       "bytes": 2492,
@@ -868,7 +868,7 @@
       "source_type": "documentation",
       "title": "Class: NotFoundError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.963Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.558Z"
     },
     {
       "bytes": 2514,
@@ -883,7 +883,7 @@
       "source_type": "documentation",
       "title": "Class: PermissionDeniedError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.971Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.575Z"
     },
     {
       "bytes": 2692,
@@ -898,7 +898,7 @@
       "source_type": "documentation",
       "title": "Class: RateLimitError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.968Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.561Z"
     },
     {
       "bytes": 3488,
@@ -913,7 +913,7 @@
       "source_type": "documentation",
       "title": "Class: TypeSafeClient",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.969Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.565Z"
     },
     {
       "bytes": 882,
@@ -928,7 +928,7 @@
       "source_type": "documentation",
       "title": "Class: TypeSafeError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.970Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.559Z"
     },
     {
       "bytes": 2535,
@@ -943,7 +943,7 @@
       "source_type": "documentation",
       "title": "Class: UnprocessableEntityError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.902Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.469Z"
     },
     {
       "bytes": 890,
@@ -958,7 +958,7 @@
       "source_type": "documentation",
       "title": "Function: choice()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.901Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.470Z"
     },
     {
       "bytes": 1365,
@@ -973,7 +973,7 @@
       "source_type": "documentation",
       "title": "Function: noul()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.897Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.462Z"
     },
     {
       "bytes": 885,
@@ -988,7 +988,7 @@
       "source_type": "documentation",
       "title": "Function: score()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.890Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.490Z"
     },
     {
       "bytes": 947,
@@ -1003,7 +1003,7 @@
       "source_type": "documentation",
       "title": "Interface: ChoiceQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.890Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.468Z"
     },
     {
       "bytes": 1095,
@@ -1018,7 +1018,7 @@
       "source_type": "documentation",
       "title": "Interface: ChoiceResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.901Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.465Z"
     },
     {
       "bytes": 1148,
@@ -1033,7 +1033,7 @@
       "source_type": "documentation",
       "title": "Interface: Logger",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.900Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.469Z"
     },
     {
       "bytes": 654,
@@ -1048,7 +1048,7 @@
       "source_type": "documentation",
       "title": "Interface: ModelCard",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.893Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.471Z"
     },
     {
       "bytes": 739,
@@ -1063,7 +1063,7 @@
       "source_type": "documentation",
       "title": "Interface: Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.892Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.488Z"
     },
     {
       "bytes": 1168,
@@ -1078,7 +1078,7 @@
       "source_type": "documentation",
       "title": "Interface: NoulQuestion",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.903Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.489Z"
     },
     {
       "bytes": 560,
@@ -1093,7 +1093,7 @@
       "source_type": "documentation",
       "title": "Interface: NoulResponse",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.889Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.467Z"
     },
     {
       "bytes": 440,
@@ -1108,7 +1108,7 @@
       "source_type": "documentation",
       "title": "Interface: Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.890Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.465Z"
     },
     {
       "bytes": 1032,
@@ -1123,7 +1123,7 @@
       "source_type": "documentation",
       "title": "Interface: RequestOptions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.889Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.463Z"
     },
     {
       "bytes": 2146,
@@ -1138,7 +1138,7 @@
       "source_type": "documentation",
       "title": "Interface: RetryPolicy",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.886Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.457Z"
     },
     {
       "bytes": 946,
@@ -1153,7 +1153,7 @@
       "source_type": "documentation",
       "title": "Interface: ScoreQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.891Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.462Z"
     },
     {
       "bytes": 1252,
@@ -1168,7 +1168,7 @@
       "source_type": "documentation",
       "title": "Interface: ScoreResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.892Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.454Z"
     },
     {
       "bytes": 1156,
@@ -1183,7 +1183,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneRequest<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.883Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.453Z"
     },
     {
       "bytes": 1405,
@@ -1198,7 +1198,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneRequestPayload",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.893Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.467Z"
     },
     {
       "bytes": 941,
@@ -1213,7 +1213,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneResult<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.902Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.452Z"
     },
     {
       "bytes": 2314,
@@ -1228,7 +1228,7 @@
       "source_type": "documentation",
       "title": "Interface: TypeSafeClientConfig",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.900Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.457Z"
     },
     {
       "bytes": 629,
@@ -1243,7 +1243,7 @@
       "source_type": "documentation",
       "title": "Interface: Usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.887Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.458Z"
     },
     {
       "bytes": 825,
@@ -1258,7 +1258,7 @@
       "source_type": "documentation",
       "title": "Interface: WithResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.885Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.459Z"
     },
     {
       "bytes": 512,
@@ -1273,7 +1273,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ChoiceCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.887Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.459Z"
     },
     {
       "bytes": 435,
@@ -1288,7 +1288,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Description",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.881Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.455Z"
     },
     {
       "bytes": 509,
@@ -1303,7 +1303,7 @@
       "source_type": "documentation",
       "title": "Type Alias: EntryType",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.882Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.464Z"
     },
     {
       "bytes": 381,
@@ -1318,7 +1318,7 @@
       "source_type": "documentation",
       "title": "Type Alias: EnvVar",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.881Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.464Z"
     },
     {
       "bytes": 547,
@@ -1333,7 +1333,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Fetch",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.888Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.460Z"
     },
     {
       "bytes": 478,
@@ -1348,7 +1348,7 @@
       "source_type": "documentation",
       "title": "Type Alias: JsonValue",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.880Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.466Z"
     },
     {
       "bytes": 440,
@@ -1363,7 +1363,7 @@
       "source_type": "documentation",
       "title": "Type Alias: LogLevel",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.884Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.452Z"
     },
     {
       "bytes": 455,
@@ -1378,7 +1378,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Question",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.883Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.456Z"
     },
     {
       "bytes": 681,
@@ -1393,7 +1393,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ResultFor<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.885Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.451Z"
     },
     {
       "bytes": 504,
@@ -1408,7 +1408,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.886Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.455Z"
     },
     {
       "bytes": 558,
@@ -1423,7 +1423,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreLegend<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.879Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.461Z"
     },
     {
       "bytes": 635,
@@ -1438,7 +1438,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreOf<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.877Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.449Z"
     },
     {
       "bytes": 1152,
@@ -1453,7 +1453,7 @@
       "source_type": "documentation",
       "title": "Variable: ENV",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.878Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.450Z"
     },
     {
       "bytes": 429,
@@ -1468,7 +1468,7 @@
       "source_type": "documentation",
       "title": "Variable: LOG_LEVELS",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.884Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.448Z"
     },
     {
       "bytes": 370,
@@ -1483,7 +1483,7 @@
       "source_type": "documentation",
       "title": "Variable: VERSION",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.882Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.448Z"
     },
     {
       "bytes": 621,
@@ -1498,7 +1498,7 @@
       "source_type": "documentation",
       "title": "Changelog",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T17:21:10.879Z"
+      "upstream_last_modified": "2026-10-02T05:55:34.471Z"
     },
     {
       "bytes": 3827,

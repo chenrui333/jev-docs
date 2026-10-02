@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-02",
+  "events": [
+    {
+      "after_sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+      "before_sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:confidence",
+      "id": "65dd7d4d425b9045f5e5e2fa",
+      "observed_at": "2026-10-02T17:53:12.856479Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence"
+        }
+      ],
+      "summary": "Documentation page docs:confidence modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
