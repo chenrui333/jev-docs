@@ -1,14 +1,14 @@
 {
-  "fingerprint": "b021962f75e5bc854eb60d1a90a0eed9722cd596a6b4e76193b538d601a7d44a",
+  "fingerprint": "5b5bee75875ae2c1ef4db81efe4b11de7bd904f2d6ad60b17b24475b9282e80b",
   "items": [
     {
       "id": "jev-1.13:adversarial-content",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "be explicit in the criteria. Test your integration thoroughly before deploying it to many users.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
         }
@@ -18,6 +18,24 @@
       "status": "documented",
       "summary": "State is data, and jev-1.13 does not treat it as hostile by default.",
       "title": "Adversarial content"
+    },
+    {
+      "id": "jev-1.13:choice-option-order",
+      "last_reviewed": "2026-10-02",
+      "mitigation": "reorder the options to double check that the answer stays consistent.",
+      "model": "jev-1.13",
+      "provenance": [
+        {
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
+        }
+      ],
+      "section": "choice-option-order",
+      "section_text_sha256": "34dc9e81163307bf55f1bebcbf9bcda15c751dbf990b06674644eba6ecac2967",
+      "status": "documented",
+      "summary": "In some cases, we observed that the order of a Choice's options can affect the answer, and jev-1.13 leans toward the option that comes first.",
+      "title": "Choice option order"
     },
     {
       "id": "jev-1.13:common-sense-structural-invariants",
@@ -33,18 +51,18 @@
       ],
       "section": "common-sense-structural-invariants",
       "section_text_sha256": "f5d18200f162450a87dba7a85f0d0a0b8c3fd94d665e008ff917cc8b3d62ea8f",
-      "status": "documented",
+      "status": "unknown",
       "summary": "jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model.",
       "title": "Common-sense structural invariants"
     },
     {
       "id": "jev-1.13:contradictory-instructions-and-criteria",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "treat the criteria as an extension of the instruction. Align the two using clear and precise language.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
         }
@@ -57,12 +75,12 @@
     },
     {
       "id": "jev-1.13:counting",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "count in code. When you want to count items matching some criteria, iterate in code over the candidates and ask one question for each, then add up the answers yourself.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
         }
@@ -75,12 +93,12 @@
     },
     {
       "id": "jev-1.13:date-and-time-comparison",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "split the work. Extraction is a judgment, so give it to the model. Arithmetic is not, so keep it in code.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
         }
@@ -93,12 +111,12 @@
     },
     {
       "id": "jev-1.13:generation",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "when the answer space is bounded, turn extraction into a Choice over the options rather than asking for the value itself. If you really need to generate text... there are other models for that.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
         }
@@ -111,12 +129,12 @@
     },
     {
       "id": "jev-1.13:indirection",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "write your instructions as directly as possible. When possible, identify the relevant parts of state by name.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
         }
@@ -129,12 +147,12 @@
     },
     {
       "id": "jev-1.13:large-state-full-of-irrelevant-detail",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "retrieve and filter in code first, and send only the fields the question needs. When it's not possible to filter in state, you can use a Noul to filter for relevance. The classifying RAG passages cookbook has a worked example.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
         }
@@ -147,12 +165,12 @@
     },
     {
       "id": "jev-1.13:literal-reading",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "state the exact condition in the instructions. Be specific. Put boundary cases in the criteria. When you look at a wrong answer and find yourself explaining what you really meant, that explanation is the missing half of the instruction. Where interpretation is unavoidable, split it into two literal questions and combine them in code.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
         }
@@ -165,12 +183,12 @@
     },
     {
       "id": "jev-1.13:math-and-numbers",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
         }
@@ -183,12 +201,12 @@
     },
     {
       "id": "jev-1.13:math-using-score",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
         }
@@ -201,12 +219,12 @@
     },
     {
       "id": "jev-1.13:numeric-representations",
-      "last_reviewed": "2026-09-17",
+      "last_reviewed": "2026-10-02",
       "mitigation": "do the conversion in code and pass in either the computed number or a named bucket. Keep the model for the part that is genuinely a judgment, such as whether a color reads as a warning.",
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
         }
@@ -218,7 +236,7 @@
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-01T18:26:35.522616Z",
+  "observed_at": "2026-10-03T05:20:34.123643Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }

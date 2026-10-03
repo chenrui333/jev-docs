@@ -294,7 +294,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
-      "sha256": "da8014e39b651b7e7ae21a74826e5437d274257a63a3d5c594474934f7b639df",
+      "sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
       "source_id": "docs:models",
       "status": "fetched",
       "title": "Models"
@@ -322,7 +322,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
-      "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+      "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
       "source_id": "docs:model-jaggedness/jev-1.13",
       "status": "fetched",
       "title": "Jev 1.13 jaggedness"

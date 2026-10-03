@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-03",
+  "events": [
+    {
+      "after_sha256": "80d5e33bfe8b43d5e227199b10bdfe187a8e47e2f6c91c4aec06f0ed1bcbfe38",
+      "before_sha256": "77973282a47f69c9c90c48cd6fc0c8590e8170ce525fdf6b30aaecafe9dd4c10",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:common-sense-structural-invariants",
+      "id": "76f14bd63611472e6c5255bb",
+      "observed_at": "2026-10-03T05:20:34.756271Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#common-sense-structural-invariants"
+        }
+      ],
+      "summary": "jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model."
+    },
+    {
+      "after_sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+      "before_sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:model-jaggedness/jev-1.13",
+      "id": "a24e9061f588561bb3c89cea",
+      "observed_at": "2026-10-03T05:20:34.756271Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13"
+        }
+      ],
+      "summary": "Documentation page docs:model-jaggedness/jev-1.13 modified in successful discovery."
+    },
+    {
+      "after_sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
+      "before_sha256": "da8014e39b651b7e7ae21a74826e5437d274257a63a3d5c594474934f7b639df",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "c2e47d37131acc458a5334a9",
+      "observed_at": "2026-10-03T05:20:34.756271Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    },
+    {
+      "after_sha256": "7ebe951448bcb2b49eca1cbb1af6af659ca1f16d02368582cf50d2a74a5c04eb",
+      "before_sha256": null,
+      "category": "model_limitation",
+      "change": "added",
+      "entity": "jev-1.13:choice-option-order",
+      "id": "defe0e740c9191effaa6643f",
+      "observed_at": "2026-10-03T05:20:34.756271Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
+        }
+      ],
+      "summary": "In some cases, we observed that the order of a Choice's options can affect the answer, and jev-1.13 leans toward the option that comes first."
+    }
+  ],
+  "schema_version": 1
+}

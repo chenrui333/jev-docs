@@ -511,19 +511,19 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 10849,
+      "bytes": 9346,
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
       "description": "Jev isn't perfect. Here are some jagged edges we are aware of with jev-1.13. Many of these will be fixed in later versions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md",
-      "observed_at": "2026-10-01T18:26:36.585319Z",
-      "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+      "observed_at": "2026-10-03T05:20:34.758029Z",
+      "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
       "source_id": "docs:model-jaggedness/jev-1.13",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Jev 1.13 jaggedness",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-18T00:35:09.879Z"
+      "upstream_last_modified": "2026-10-02T22:05:14.261Z"
     },
     {
       "bytes": 6684,
@@ -531,14 +531,14 @@
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-10-01T18:26:36.585347Z",
-      "sha256": "da8014e39b651b7e7ae21a74826e5437d274257a63a3d5c594474934f7b639df",
+      "observed_at": "2026-10-03T05:20:34.758068Z",
+      "sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.579Z"
+      "upstream_last_modified": "2026-10-02T21:41:24.659Z"
     },
     {
       "bytes": 1590,

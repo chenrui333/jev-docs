@@ -6,7 +6,7 @@ Generated from [structured state](state/model-limitations.json). These describe 
 
 ## jev-1.13 / Adversarial content
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 State is data, and jev-1.13 does not treat it as hostile by default.
 
@@ -14,9 +14,19 @@ Upstream mitigation: be explicit in the criteria. Test your integration thorough
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content)
 
+## jev-1.13 / Choice option order
+
+Status: `documented`. Upstream last reviewed: 2026-10-02.
+
+In some cases, we observed that the order of a Choice's options can affect the answer, and jev-1.13 leans toward the option that comes first.
+
+Upstream mitigation: reorder the options to double check that the answer stays consistent.
+
+[Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order)
+
 ## jev-1.13 / Common-sense structural invariants
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `unknown`. Upstream last reviewed: 2026-09-17.
 
 jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model.
 
@@ -26,7 +36,7 @@ Upstream mitigation: don't rely on expected structural invariance, and word ques
 
 ## jev-1.13 / Contradictory instructions and criteria
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 When the instructions and the criteria ask for different things, jev-1.13 might get confused.
 
@@ -36,7 +46,7 @@ Upstream mitigation: treat the criteria as an extension of the instruction. Alig
 
 ## jev-1.13 / Counting
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 jev-1.13 does not count reliably. This covers characters in a word, occurrences of a term in a passage, and items in a long list. The model recognizes the shape of an answer rather than tallying, and the error grows with the size of the thing being counted.
 
@@ -46,7 +56,7 @@ Upstream mitigation: count in code. When you want to count items matching some c
 
 ## jev-1.13 / Date and time comparison
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 jev-1.13 reads dates as text, not as ordered quantities.
 
@@ -56,7 +66,7 @@ Upstream mitigation: split the work. Extraction is a judgment, so give it to the
 
 ## jev-1.13 / Generation
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 jev-1.13 is not trained to generate text. While you can force it to by chaining choices, this will not work well and will be very slow. For data extraction, it is better to extract possible options using regex or a generative model and let jev-1.13 pick the correct extraction.
 
@@ -66,7 +76,7 @@ Upstream mitigation: when the answer space is bounded, turn extraction into a Ch
 
 ## jev-1.13 / Indirection
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 Instructions carrying double negatives or complex indirection are answered less reliably. A question about a property of a property or something that requires multiple hops of reasoning costs accuracy.
 
@@ -76,7 +86,7 @@ Upstream mitigation: write your instructions as directly as possible. When possi
 
 ## jev-1.13 / Large state full of irrelevant detail
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input produced a wrong answer.
 
@@ -86,7 +96,7 @@ Upstream mitigation: retrieve and filter in code first, and send only the fields
 
 ## jev-1.13 / Literal reading
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 jev-1.13 answers the question you wrote, not the one you meant. Scoping words, negations, and implied conditions are read at face value. A question will be answered based on the words written in the instruction, whereas a person might have read the intent behind the instructions.
 
@@ -96,7 +106,7 @@ Upstream mitigation: state the exact condition in the instructions. Be specific.
 
 ## jev-1.13 / Math and Numbers
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 Jev is not a calculator. We strongly recommend implementing any mathematical logic in code. Jev will perform better on semantic questions than mathematical ones.
 
@@ -104,7 +114,7 @@ Jev is not a calculator. We strongly recommend implementing any mathematical log
 
 ## jev-1.13 / Math using score
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 Please do not use score outputs (e.g., expectations and probability) to compute the exact magnitude of a number between two levels of a criterion.
 
@@ -112,7 +122,7 @@ Please do not use score outputs (e.g., expectations and probability) to compute 
 
 ## jev-1.13 / Numeric representations
 
-Status: `documented`. Upstream last reviewed: 2026-09-17.
+Status: `documented`. Upstream last reviewed: 2026-10-02.
 
 jev-1.13 will perform better on semantic representations than numeric. For example, questions about colors using hex values will underperform compared to those using the English names. Given RGB triples or hex values it cannot reliably judge whether two values are near each other.
 
