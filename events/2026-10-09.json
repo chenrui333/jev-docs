@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-09",
+  "events": [
+    {
+      "after_sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+      "before_sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/changelog",
+      "id": "6fdaa9368ccfa8e80b3df5fe",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/changelog modified in successful discovery."
+    },
+    {
+      "after_sha256": "bd11cbe5cbcb81e1fc03c1ab6deb0c06f7574a60b7b411f41d01d84e386e5cb9",
+      "before_sha256": "a6b916b9d87b3722fe6692b049480f99e0083f24b9853831ee2edd38ddc6764d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage",
+      "id": "71cb7f1d4cc385a48ad0ddd7",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bd11cbe5cbcb81e1fc03c1ab6deb0c06f7574a60b7b411f41d01d84e386e5cb9",
+          "source_id": "docs:sdk/python/usage",
+          "url": "https://docs.typesafe.ai/sdk/python/usage"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage modified in successful discovery."
+    },
+    {
+      "after_sha256": "8add73041d0fe7697f2cf0d6a1ca474e6680b77df7f2122907e75e56667e3c8a",
+      "before_sha256": "60da0a09dc5b4115665a001344929912430f52ce381228f5a70bce8a59ee61ed",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/questions",
+      "id": "8295d17167ab2459e9d4df01",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8add73041d0fe7697f2cf0d6a1ca474e6680b77df7f2122907e75e56667e3c8a",
+          "source_id": "docs:sdk/python/api/types/questions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/questions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "532d089427fda9214c60cd4598631616f86626d91c6380fdbbfdbd9c3a2cbf35",
+      "before_sha256": "31904461e4fb8d68d5c7737db874caf9e8236205fa490639608259f0eea944b8",
+      "category": "sdk",
+      "change": "modified",
+      "entity": "sdk-python",
+      "id": "e28110ddd3135026730c3424",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b8817f1e0de52c46a29b88d717fa4db6258644b98b40c50810a2d6c1a20e5994",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/e70bf99a89f27102247613bcd5d1aa8923a1cda9/pyproject.toml"
+        },
+        {
+          "sha256": "4a13312d53edaa27baa61cb4ae432d38148f7f0b22f40f5b1c976292475b94f2",
+          "source_id": "registry:pypi:typesafe-sdk",
+          "url": "https://pypi.org/pypi/typesafe-sdk/json"
+        }
+      ],
+      "summary": "typesafe-sdk 0.7.2 → 0.7.4; release guidance and capability evidence updated."
+    },
+    {
+      "after_sha256": "fb00e8573113563f5555c42e4536fa6ad5d843ad9c47d0c3af2b3b70b83a150b",
+      "before_sha256": "4caa60c0eafbda1da734fe640ea2f43776a79d6f4a128bae3595bdf7a9029ade",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/async",
+      "id": "e4a8bc019b917f5055d5edec",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "fb00e8573113563f5555c42e4536fa6ad5d843ad9c47d0c3af2b3b70b83a150b",
+          "source_id": "docs:sdk/python/api/clients/async",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/async"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/async modified in successful discovery."
+    },
+    {
+      "after_sha256": "d07de11ccd0f2bd2da415498d863b80cb20908de1ce9429e159e3b01a12e00a2",
+      "before_sha256": "1524df5a9dc8bc6e0306fbdffd4b9d5ca2da49a54949276d43b6ff4a11bab338",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/sync",
+      "id": "faec4f138923eef6a9928df2",
+      "observed_at": "2026-10-09T18:22:15.652388Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d07de11ccd0f2bd2da415498d863b80cb20908de1ce9429e159e3b01a12e00a2",
+          "source_id": "docs:sdk/python/api/clients/sync",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/sync"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/sync modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

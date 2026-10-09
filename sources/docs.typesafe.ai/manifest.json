@@ -1531,34 +1531,34 @@
       "upstream_last_modified": "2026-09-18T09:14:15.483Z"
     },
     {
-      "bytes": 32688,
+      "bytes": 32762,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/async",
       "description": "Use AsyncTypeSafeClient to ask questions, list models, and configure asynchronous TypeSafe API requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/clients/async.md",
-      "observed_at": "2026-10-01T18:26:36.587078Z",
-      "sha256": "4caa60c0eafbda1da734fe640ea2f43776a79d6f4a128bae3595bdf7a9029ade",
+      "observed_at": "2026-10-09T18:22:15.655640Z",
+      "sha256": "fb00e8573113563f5555c42e4536fa6ad5d843ad9c47d0c3af2b3b70b83a150b",
       "source_id": "docs:sdk/python/api/clients/async",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Asynchronous client",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-21T16:04:18.058Z"
+      "upstream_last_modified": "2026-10-09T09:52:56.169Z"
     },
     {
-      "bytes": 32080,
+      "bytes": 32154,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync",
       "description": "Use TypeSafeClient to ask questions, list models, and configure synchronous TypeSafe API requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync.md",
-      "observed_at": "2026-10-01T18:26:36.587141Z",
-      "sha256": "1524df5a9dc8bc6e0306fbdffd4b9d5ca2da49a54949276d43b6ff4a11bab338",
+      "observed_at": "2026-10-09T18:22:15.655715Z",
+      "sha256": "d07de11ccd0f2bd2da415498d863b80cb20908de1ce9429e159e3b01a12e00a2",
       "source_id": "docs:sdk/python/api/clients/sync",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Synchronous client",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-21T16:04:18.057Z"
+      "upstream_last_modified": "2026-10-09T09:52:56.171Z"
     },
     {
       "bytes": 1895,
@@ -1621,19 +1621,19 @@
       "upstream_last_modified": "2026-09-18T09:14:15.476Z"
     },
     {
-      "bytes": 30129,
+      "bytes": 33442,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
       "description": "Provide state and ask yes/no, choice, and score questions using objects or dictionaries.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/questions.md",
-      "observed_at": "2026-10-01T18:26:36.587312Z",
-      "sha256": "60da0a09dc5b4115665a001344929912430f52ce381228f5a70bce8a59ee61ed",
+      "observed_at": "2026-10-09T18:22:15.655888Z",
+      "sha256": "8add73041d0fe7697f2cf0d6a1ca474e6680b77df7f2122907e75e56667e3c8a",
       "source_id": "docs:sdk/python/api/types/questions",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-18T09:14:15.518Z"
+      "upstream_last_modified": "2026-10-09T09:52:56.166Z"
     },
     {
       "bytes": 38738,
@@ -1651,34 +1651,34 @@
       "upstream_last_modified": "2026-09-18T09:14:15.519Z"
     },
     {
-      "bytes": 2192,
+      "bytes": 2662,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/changelog",
       "description": "Python clients for the TypeSafe AI API",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/changelog.md",
-      "observed_at": "2026-10-01T18:26:36.587408Z",
-      "sha256": "686ef1baf6cfe2b15c669f5cbccdf28f4e6e7ef3aafc7123f6864f868d74a821",
+      "observed_at": "2026-10-09T18:22:15.656022Z",
+      "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
       "source_id": "docs:sdk/python/changelog",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Changelog",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-26T21:22:17.190Z"
+      "upstream_last_modified": "2026-10-09T09:52:56.165Z"
     },
     {
-      "bytes": 19092,
+      "bytes": 21965,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage",
       "description": "Guides and patterns for working with the TypeSafe Python SDK.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/usage.md",
-      "observed_at": "2026-10-01T18:26:36.587457Z",
-      "sha256": "a6b916b9d87b3722fe6692b049480f99e0083f24b9853831ee2edd38ddc6764d",
+      "observed_at": "2026-10-09T18:22:15.656085Z",
+      "sha256": "bd11cbe5cbcb81e1fc03c1ab6deb0c06f7574a60b7b411f41d01d84e386e5cb9",
       "source_id": "docs:sdk/python/usage",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-28T10:25:05.673Z"
+      "upstream_last_modified": "2026-10-09T09:52:56.167Z"
     }
   ],
   "schema_version": 1,
