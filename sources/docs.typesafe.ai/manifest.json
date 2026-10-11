@@ -106,19 +106,19 @@
       "upstream_last_modified": "2026-10-02T05:55:34.605Z"
     },
     {
-      "bytes": 5944,
+      "bytes": 6375,
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
       "description": "End-to-end recipes that show TypeSafe in real problems, from a few questions to full pipelines.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks.md",
-      "observed_at": "2026-10-01T18:26:36.583881Z",
-      "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+      "observed_at": "2026-10-11T05:49:38.961964Z",
+      "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
       "source_id": "docs:cookbooks",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Cookbooks",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T05:54:44.189Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.551Z"
     },
     {
       "bytes": 40995,
@@ -149,6 +149,21 @@
       "title": "Autoresearch feature discovery",
       "upstream_commit": null,
       "upstream_last_modified": "2026-09-22T08:57:49.391Z"
+    },
+    {
+      "bytes": 28845,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
+      "description": "Let Jev decide which requests and answers are worth remembering, then wrap the Jev call in a small function that adds memories to later calls.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/basic_memory.md",
+      "observed_at": "2026-10-11T05:49:38.962213Z",
+      "sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+      "source_id": "docs:cookbooks/basic_memory",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Simple memory system",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-11T05:15:34.553Z"
     },
     {
       "bytes": 15367,
@@ -496,13 +511,13 @@
       "upstream_last_modified": "2026-09-24T16:15:16.215Z"
     },
     {
-      "bytes": 16132,
+      "bytes": 16353,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-02T05:39:53.244872Z",
-      "sha256": "4151e8fd18e5494580571957beff0933e18aecbea2ac7826d3bf53184e8a6a40",
+      "observed_at": "2026-10-11T05:49:38.963441Z",
+      "sha256": "2f18013dc6b20d8d102330d988dd546e91448542c69ebcfa3551283f08e6e856",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -538,7 +553,7 @@
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T21:41:24.659Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.508Z"
     },
     {
       "bytes": 1590,
@@ -718,7 +733,7 @@
       "source_type": "documentation",
       "title": "JavaScript SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.569Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.508Z"
     },
     {
       "bytes": 3440,
@@ -733,7 +748,7 @@
       "source_type": "documentation",
       "title": "API reference",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.564Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.500Z"
     },
     {
       "bytes": 1001,
@@ -748,7 +763,7 @@
       "source_type": "documentation",
       "title": "Class: APIConnectionError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.578Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.503Z"
     },
     {
       "bytes": 2303,
@@ -763,7 +778,7 @@
       "source_type": "documentation",
       "title": "Class: APIError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.560Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.502Z"
     },
     {
       "bytes": 3686,
@@ -778,7 +793,7 @@
       "source_type": "documentation",
       "title": "Class: APIPromise<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.568Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.509Z"
     },
     {
       "bytes": 1056,
@@ -793,7 +808,7 @@
       "source_type": "documentation",
       "title": "Class: APITimeoutError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.555Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.510Z"
     },
     {
       "bytes": 893,
@@ -808,7 +823,7 @@
       "source_type": "documentation",
       "title": "Class: APIUserAbortError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.564Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.505Z"
     },
     {
       "bytes": 2511,
@@ -823,7 +838,7 @@
       "source_type": "documentation",
       "title": "Class: AuthenticationError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.557Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.505Z"
     },
     {
       "bytes": 2496,
@@ -838,7 +853,7 @@
       "source_type": "documentation",
       "title": "Class: BadRequestError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.556Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.507Z"
     },
     {
       "bytes": 2529,
@@ -853,7 +868,7 @@
       "source_type": "documentation",
       "title": "Class: InternalServerError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.557Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.506Z"
     },
     {
       "bytes": 2492,
@@ -868,7 +883,7 @@
       "source_type": "documentation",
       "title": "Class: NotFoundError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.558Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.504Z"
     },
     {
       "bytes": 2514,
@@ -883,7 +898,7 @@
       "source_type": "documentation",
       "title": "Class: PermissionDeniedError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.575Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.513Z"
     },
     {
       "bytes": 2692,
@@ -898,7 +913,7 @@
       "source_type": "documentation",
       "title": "Class: RateLimitError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.561Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.511Z"
     },
     {
       "bytes": 3488,
@@ -913,7 +928,7 @@
       "source_type": "documentation",
       "title": "Class: TypeSafeClient",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.565Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.501Z"
     },
     {
       "bytes": 882,
@@ -928,7 +943,7 @@
       "source_type": "documentation",
       "title": "Class: TypeSafeError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.559Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.503Z"
     },
     {
       "bytes": 2535,
@@ -943,7 +958,7 @@
       "source_type": "documentation",
       "title": "Class: UnprocessableEntityError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.469Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.398Z"
     },
     {
       "bytes": 890,
@@ -958,7 +973,7 @@
       "source_type": "documentation",
       "title": "Function: choice()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.470Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.398Z"
     },
     {
       "bytes": 1365,
@@ -973,7 +988,7 @@
       "source_type": "documentation",
       "title": "Function: noul()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.462Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.397Z"
     },
     {
       "bytes": 885,
@@ -988,7 +1003,7 @@
       "source_type": "documentation",
       "title": "Function: score()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.490Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.405Z"
     },
     {
       "bytes": 947,
@@ -1003,7 +1018,7 @@
       "source_type": "documentation",
       "title": "Interface: ChoiceQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.468Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.404Z"
     },
     {
       "bytes": 1095,
@@ -1018,7 +1033,7 @@
       "source_type": "documentation",
       "title": "Interface: ChoiceResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.465Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.404Z"
     },
     {
       "bytes": 1148,
@@ -1033,7 +1048,7 @@
       "source_type": "documentation",
       "title": "Interface: Logger",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.469Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.402Z"
     },
     {
       "bytes": 654,
@@ -1048,7 +1063,7 @@
       "source_type": "documentation",
       "title": "Interface: ModelCard",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.471Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.403Z"
     },
     {
       "bytes": 739,
@@ -1063,7 +1078,7 @@
       "source_type": "documentation",
       "title": "Interface: Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.488Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.380Z"
     },
     {
       "bytes": 1168,
@@ -1078,7 +1093,7 @@
       "source_type": "documentation",
       "title": "Interface: NoulQuestion",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.489Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.380Z"
     },
     {
       "bytes": 560,
@@ -1093,7 +1108,7 @@
       "source_type": "documentation",
       "title": "Interface: NoulResponse",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.467Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.379Z"
     },
     {
       "bytes": 440,
@@ -1108,7 +1123,7 @@
       "source_type": "documentation",
       "title": "Interface: Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.465Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.379Z"
     },
     {
       "bytes": 1032,
@@ -1123,7 +1138,7 @@
       "source_type": "documentation",
       "title": "Interface: RequestOptions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.463Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.378Z"
     },
     {
       "bytes": 2146,
@@ -1138,7 +1153,7 @@
       "source_type": "documentation",
       "title": "Interface: RetryPolicy",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.457Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.378Z"
     },
     {
       "bytes": 946,
@@ -1153,7 +1168,7 @@
       "source_type": "documentation",
       "title": "Interface: ScoreQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.462Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.377Z"
     },
     {
       "bytes": 1252,
@@ -1168,7 +1183,7 @@
       "source_type": "documentation",
       "title": "Interface: ScoreResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.454Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.432Z"
     },
     {
       "bytes": 1156,
@@ -1183,7 +1198,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneRequest<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.453Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.431Z"
     },
     {
       "bytes": 1405,
@@ -1198,7 +1213,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneRequestPayload",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.467Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.389Z"
     },
     {
       "bytes": 941,
@@ -1213,7 +1228,7 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneResult<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.452Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.391Z"
     },
     {
       "bytes": 2314,
@@ -1228,7 +1243,7 @@
       "source_type": "documentation",
       "title": "Interface: TypeSafeClientConfig",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.457Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.385Z"
     },
     {
       "bytes": 629,
@@ -1243,7 +1258,7 @@
       "source_type": "documentation",
       "title": "Interface: Usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.458Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.382Z"
     },
     {
       "bytes": 825,
@@ -1258,7 +1273,7 @@
       "source_type": "documentation",
       "title": "Interface: WithResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.459Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.384Z"
     },
     {
       "bytes": 512,
@@ -1273,7 +1288,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ChoiceCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.459Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.382Z"
     },
     {
       "bytes": 435,
@@ -1288,7 +1303,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Description",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.455Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.397Z"
     },
     {
       "bytes": 509,
@@ -1303,7 +1318,7 @@
       "source_type": "documentation",
       "title": "Type Alias: EntryType",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.464Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.396Z"
     },
     {
       "bytes": 381,
@@ -1318,7 +1333,7 @@
       "source_type": "documentation",
       "title": "Type Alias: EnvVar",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.464Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.386Z"
     },
     {
       "bytes": 547,
@@ -1333,7 +1348,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Fetch",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.460Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.390Z"
     },
     {
       "bytes": 478,
@@ -1348,7 +1363,7 @@
       "source_type": "documentation",
       "title": "Type Alias: JsonValue",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.466Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.386Z"
     },
     {
       "bytes": 440,
@@ -1363,7 +1378,7 @@
       "source_type": "documentation",
       "title": "Type Alias: LogLevel",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.452Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.391Z"
     },
     {
       "bytes": 455,
@@ -1378,7 +1393,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Question",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.456Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.387Z"
     },
     {
       "bytes": 681,
@@ -1393,7 +1408,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ResultFor<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.451Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.387Z"
     },
     {
       "bytes": 504,
@@ -1408,7 +1423,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.455Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.384Z"
     },
     {
       "bytes": 558,
@@ -1423,7 +1438,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreLegend<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.461Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.388Z"
     },
     {
       "bytes": 635,
@@ -1438,7 +1453,7 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreOf<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.449Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.388Z"
     },
     {
       "bytes": 1152,
@@ -1453,7 +1468,7 @@
       "source_type": "documentation",
       "title": "Variable: ENV",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.450Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.401Z"
     },
     {
       "bytes": 429,
@@ -1468,7 +1483,7 @@
       "source_type": "documentation",
       "title": "Variable: LOG_LEVELS",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.448Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.389Z"
     },
     {
       "bytes": 370,
@@ -1483,7 +1498,7 @@
       "source_type": "documentation",
       "title": "Variable: VERSION",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.448Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.401Z"
     },
     {
       "bytes": 621,
@@ -1498,7 +1513,7 @@
       "source_type": "documentation",
       "title": "Changelog",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T05:55:34.471Z"
+      "upstream_last_modified": "2026-10-11T05:15:34.383Z"
     },
     {
       "bytes": 3827,

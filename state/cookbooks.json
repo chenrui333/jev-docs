@@ -1,15 +1,15 @@
 {
-  "fingerprint": "b7f6141542f9041cd3c0739b5ab4884ff42bc101a33f3237a7c96973b6c0b045",
+  "fingerprint": "591f760e332c748c2a4edfc466d87c873a1fee0055bcb48fa9141925fe5eaf36",
   "items": [
     {
-      "category": "how-to",
+      "category": "extraction",
       "discovered": true,
       "id": "cookbooks/autoformat",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -24,14 +24,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/autoformat"
     },
     {
-      "category": "classification",
+      "category": "techniques",
       "discovered": true,
       "id": "cookbooks/autoresearch_feature_discovery",
       "indexed": true,
       "level": "Advanced",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -46,14 +46,36 @@
       "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
     },
     {
-      "category": "how-to",
+      "category": "llms-and-agents",
+      "discovered": true,
+      "id": "cookbooks/basic_memory",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory.md"
+        }
+      ],
+      "summary": "Let Jev decide which requests and answers are worth remembering, then wrap the Jev call in a small function that adds memories to later calls.",
+      "title": "Simple memory system",
+      "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+    },
+    {
+      "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/citation_check",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -75,7 +97,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -90,14 +112,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence"
     },
     {
-      "category": "how-to",
+      "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/classifying_rag_passages",
       "indexed": true,
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -112,14 +134,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
     },
     {
-      "category": "self-consistency",
+      "category": "techniques",
       "discovered": true,
       "id": "cookbooks/consistency_choice_cookbook",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -134,14 +156,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
     },
     {
-      "category": "self-consistency",
+      "category": "techniques",
       "discovered": true,
       "id": "cookbooks/consistency_noul_cookbook",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -163,7 +185,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -178,14 +200,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
     },
     {
-      "category": "how-to",
+      "category": "search-and-matching",
       "discovered": true,
       "id": "cookbooks/entity_alignment",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -200,14 +222,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
     },
     {
-      "category": "how-to",
+      "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/function_calling",
       "indexed": true,
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -229,7 +251,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -244,14 +266,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
     },
     {
-      "category": "how-to",
+      "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/llm_guardrails",
       "indexed": true,
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -266,14 +288,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
     },
     {
-      "category": "batching",
+      "category": "techniques",
       "discovered": true,
       "id": "cookbooks/parallel_questions",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -295,7 +317,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -310,14 +332,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
     },
     {
-      "category": "how-to",
+      "category": "search-and-matching",
       "discovered": true,
       "id": "cookbooks/rerank_typesafe",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -339,7 +361,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -354,14 +376,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
     },
     {
-      "category": "how-to",
+      "category": "search-and-matching",
       "discovered": true,
       "id": "cookbooks/semantic_find",
       "indexed": true,
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -376,14 +398,14 @@
       "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
     },
     {
-      "category": "how-to",
+      "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/skill_suggestion",
       "indexed": true,
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -398,7 +420,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
     }
   ],
-  "observed_at": "2026-10-01T18:26:35.524497Z",
+  "observed_at": "2026-10-11T05:49:37.576469Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

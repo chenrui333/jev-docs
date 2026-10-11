@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 111,
+  "discovered_count": 112,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "4151e8fd18e5494580571957beff0933e18aecbea2ac7826d3bf53184e8a6a40",
+    "sha256": "2f18013dc6b20d8d102330d988dd546e91448542c69ebcfa3551283f08e6e856",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 111,
+  "fetched_count": 112,
   "intentionally_excluded": [],
   "pages": [
     {
@@ -147,52 +147,10 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+      "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
-      "sha256": "7d0a90fc22b71703d4dc38a901032afbe5a22bb911134d553654f143a9a6fd41",
-      "source_id": "docs:cookbooks/consistency_noul_cookbook",
-      "status": "fetched",
-      "title": "Self-consistency: nouls"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
-      "sha256": "a1a8481c676fd4b6419a9f26feeacd1f223624cb17f438ac8b640597bbc03900",
-      "source_id": "docs:cookbooks/consistency_choice_cookbook",
-      "status": "fetched",
-      "title": "Self-consistency: choices"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
-      "sha256": "1f4574474139321a1e05b31887a18ffe1dd3235169276aa4b600c6ebc110aee8",
-      "source_id": "docs:cookbooks/parallel_questions",
-      "status": "fetched",
-      "title": "Parallel questions"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
-      "sha256": "7d8969ab0d851fb0296d5e86c53eac03f3ba3dc0b779aecd7903604f51a6ce11",
-      "source_id": "docs:cookbooks/rerank_typesafe",
-      "status": "fetched",
-      "title": "Re-ranking"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "92b23c001081fd4244a99e7162e87f8152306865c2906af8922fcc29587171d6",
-      "source_id": "docs:cookbooks/semantic_find",
-      "status": "fetched",
-      "title": "Line-by-line search"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
-      "sha256": "cb5db3e079d337d0b5923e1d122a9c65612e342061d42939ed1aea130f3a58ba",
-      "source_id": "docs:cookbooks/autoformat",
-      "status": "fetched",
-      "title": "Structure recovery"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
@@ -209,18 +167,11 @@
       "title": "Skill suggestion"
     },
     {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
-      "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
-      "source_id": "docs:cookbooks/entity_alignment",
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
+      "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
+      "source_id": "docs:cookbooks/llm_guardrails",
       "status": "fetched",
-      "title": "Knowledge graph entity alignment"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
-      "source_id": "docs:cookbooks/classifying_rag_passages",
-      "status": "fetched",
-      "title": "Classifying RAG passages"
+      "title": "Guardrails for LLMs"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/citation_check",
@@ -230,11 +181,32 @@
       "title": "Double-checking citations"
     },
     {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
-      "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
-      "source_id": "docs:cookbooks/llm_guardrails",
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
+      "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
+      "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
-      "title": "Guardrails for LLMs"
+      "title": "Classifying RAG passages"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
+      "sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+      "source_id": "docs:cookbooks/basic_memory",
+      "status": "fetched",
+      "title": "Simple memory system"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+      "sha256": "c88074597b5d49a2a19b35626688467f8a8186a730ec0074041858499aff2455",
+      "source_id": "docs:cookbooks/hierarchical_classification",
+      "status": "fetched",
+      "title": "Hierarchical classification"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
+      "sha256": "6b5bed0126a9df1dac941760a57f82b5a336d866b03a0634ff4a845c4c146f35",
+      "source_id": "docs:cookbooks/classification_using_confidence",
+      "status": "fetched",
+      "title": "Classification using confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
@@ -258,11 +230,53 @@
       "title": "Pre-parsed value extraction"
     },
     {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
-      "sha256": "c88074597b5d49a2a19b35626688467f8a8186a730ec0074041858499aff2455",
-      "source_id": "docs:cookbooks/hierarchical_classification",
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
+      "sha256": "cb5db3e079d337d0b5923e1d122a9c65612e342061d42939ed1aea130f3a58ba",
+      "source_id": "docs:cookbooks/autoformat",
       "status": "fetched",
-      "title": "Hierarchical classification"
+      "title": "Structure recovery"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
+      "sha256": "7d8969ab0d851fb0296d5e86c53eac03f3ba3dc0b779aecd7903604f51a6ce11",
+      "source_id": "docs:cookbooks/rerank_typesafe",
+      "status": "fetched",
+      "title": "Re-ranking"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+      "sha256": "92b23c001081fd4244a99e7162e87f8152306865c2906af8922fcc29587171d6",
+      "source_id": "docs:cookbooks/semantic_find",
+      "status": "fetched",
+      "title": "Line-by-line search"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
+      "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
+      "source_id": "docs:cookbooks/entity_alignment",
+      "status": "fetched",
+      "title": "Knowledge graph entity alignment"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
+      "sha256": "a1a8481c676fd4b6419a9f26feeacd1f223624cb17f438ac8b640597bbc03900",
+      "source_id": "docs:cookbooks/consistency_choice_cookbook",
+      "status": "fetched",
+      "title": "Self-consistency: choices"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
+      "sha256": "7d0a90fc22b71703d4dc38a901032afbe5a22bb911134d553654f143a9a6fd41",
+      "source_id": "docs:cookbooks/consistency_noul_cookbook",
+      "status": "fetched",
+      "title": "Self-consistency: nouls"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
+      "sha256": "1f4574474139321a1e05b31887a18ffe1dd3235169276aa4b600c6ebc110aee8",
+      "source_id": "docs:cookbooks/parallel_questions",
+      "status": "fetched",
+      "title": "Parallel questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
@@ -270,13 +284,6 @@
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "status": "fetched",
       "title": "Autoresearch feature discovery"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
-      "sha256": "6b5bed0126a9df1dac941760a57f82b5a336d866b03a0634ff4a845c4c146f35",
-      "source_id": "docs:cookbooks/classification_using_confidence",
-      "status": "fetched",
-      "title": "Classification using confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos",
@@ -791,6 +798,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 111,
+  "retained_count": 112,
   "schema_version": 2
 }

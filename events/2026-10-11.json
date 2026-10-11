@@ -1,0 +1,364 @@
+{
+  "date": "2026-10-11",
+  "events": [
+    {
+      "after_sha256": "5d6a42853d971a8f79c51b54e6e73834f506a8025fa491a02f3be25b2ac3a3d1",
+      "before_sha256": "9e6c24c01e3b4f3bdbc04e8193c6029043b880b16da892092eab28493c5c8011",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/skill_suggestion",
+      "id": "002e2c0acbe06b1a9cb5ee5e",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c59bf591db3d45e20b90a93a4526775e5188c479c6366b9a4267cb37ab51fc90",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
+        }
+      ],
+      "summary": "Picks at most one skill for an agent turn out of the 182 in Nous Research's Hermes catalog, using two TypeSafe requests to rank and re-check the top candidates."
+    },
+    {
+      "after_sha256": "e913d09dbee605cc9431b00dc627a348a6b6a2ef3be6c1a5c6f372cc63a1e2b1",
+      "before_sha256": "4bbd0eee5b902449bfe1d88c52bcd76ddbf3e0c3bd171f0981d8c9a0e3835c10",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/citation_check",
+      "id": "101f4bb7b283d71639df427c",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "76bdeead0640f4963815aba7c4cbafe7812cb619b678606998f1735a808fd3f6",
+          "source_id": "docs:cookbooks/citation_check",
+          "url": "https://docs.typesafe.ai/cookbooks/citation_check.md"
+        }
+      ],
+      "summary": "Catch wrong or hallucinated citations by checking against the source document. One Choice question decides whether the quote's context supports the claim."
+    },
+    {
+      "after_sha256": "fa42ae962e0c1e6c2761196d645fc5d7a1a94d6dfcab96bad14f9e5c3ac1f6d1",
+      "before_sha256": "0bd6520356ad88384ae3c8c475708a1fb52d5c46bc81759195b858250bb2d565",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/semantic_find",
+      "id": "1875089b0c3e3504505675f4",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "92b23c001081fd4244a99e7162e87f8152306865c2906af8922fcc29587171d6",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find.md"
+        }
+      ],
+      "summary": "Build semantic search for GitHub's Terms of Service. In one request, score 218 line ids against a plain-language query with a Choice question, and use a Noul question to check whether the document contains an answer."
+    },
+    {
+      "after_sha256": "790d707d7ce1f153e304bbc1a83fccc63b6731f3bdbe6d14d0062f11abe3395d",
+      "before_sha256": "ffdcd6952c1f99a953abea974324be9aef33f73d82cd565694b6fdffd94974c2",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/consistency_noul_cookbook",
+      "id": "384ca5231fb2054948934eff",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "7d0a90fc22b71703d4dc38a901032afbe5a22bb911134d553654f143a9a6fd41",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
+        }
+      ],
+      "summary": "Route uncertain probabilities to human review while keeping the underlying noul values visible."
+    },
+    {
+      "after_sha256": "29b3964b684347672e379a7d200f2f48d71a43ce2533a46b089c2c0303c7c1c8",
+      "before_sha256": "de5c19d3a70fd893a4b4eab680335f30934c01b59aff6bc6875d6d85b29b57ac",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/classifying_rag_passages",
+      "id": "3fa572765fd256d8a5de6b1e",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
+        }
+      ],
+      "summary": "Score each retrieved passage with one TypeSafe request, then decide in code which ones reach the answering model."
+    },
+    {
+      "after_sha256": "d74ca78173c9fa930e7f29764fc431f7f9e8e4c80721965b5427a2207c224735",
+      "before_sha256": "a96507454e943f8f04b6582706fcc3916af1f5782abff50dd949e15f2db20e3a",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/entity_alignment",
+      "id": "58ecd4cf58f66222698abf70",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md"
+        }
+      ],
+      "summary": "Decides which of 450 candidate pairs from two beer catalogues describe the same product using one Score question plus three companion Nouls that surface which fields disagree."
+    },
+    {
+      "after_sha256": "c58fe5c4d07c36f381f5d0e40de6ffe9e61f8af2807f5e8abf22ea51b7ffbb52",
+      "before_sha256": "1f21cffb1217ae74601cbfa1adbfc0cf02bdd5b4b80810b984ea62746d060aed",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/llm_guardrails",
+      "id": "5fcae7b1b1be499fb05b1939",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md"
+        }
+      ],
+      "summary": "Screen every message going into and out of an LLM app with one TypeSafe request, thresholding hazard probabilities and severity to pass, review, block, or route."
+    },
+    {
+      "after_sha256": "fdc652ffea34d5ef73d9e7463dbfe9fdbdaa12195859ed31f525f6cd29bcb8ab",
+      "before_sha256": "f8c2c6bee9ee925ea9adcc06f60522d64613ea408ab26e5670aafcc8e808db88",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/consistency_choice_cookbook",
+      "id": "8dffcd71677fd15993f31a49",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "a1a8481c676fd4b6419a9f26feeacd1f223624cb17f438ac8b640597bbc03900",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
+        }
+      ],
+      "summary": "Add an uncertain outcome to moderation decisions and compare label agreement with the share of automatic actions."
+    },
+    {
+      "after_sha256": "738a077762e191b8c5be409a08dc6e070a04c2bb3487539e2c6df1740064e334",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/basic_memory",
+      "id": "91ebbf470b6ea70e4ccd2988",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory.md"
+        }
+      ],
+      "summary": "Let Jev decide which requests and answers are worth remembering, then wrap the Jev call in a small function that adds memories to later calls."
+    },
+    {
+      "after_sha256": "0738cac0c17632db4385cf3fcf3a9ba0992ca468dbaad1857b15b1b7080500fc",
+      "before_sha256": "3517e47bd7b3e6bb4a28148e419cf09bb4e458493b445fe4256e98e69f2be664",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/autoformat",
+      "id": "92ed275e9872a9a882a3711b",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "cb5db3e079d337d0b5923e1d122a9c65612e342061d42939ed1aea130f3a58ba",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat.md"
+        }
+      ],
+      "summary": "Reconstructs Markdown from plain text that lost its formatting in two requests: one stitches hard-wrapped lines back together, one classifies every block (heading, list, code, callout)."
+    },
+    {
+      "after_sha256": "8d76f61439c878868377616f140a09714ee3f09f4a60abc8cc343b07f428df95",
+      "before_sha256": "bea896434c0d62fbe356d5f7b9a928b3e9adc44684f703d51a84ff0c0d5291af",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/function_calling",
+      "id": "b647f6ed618f669622cf71a1",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "c03cd58ac34dca4e282bfda4b21df943f27c0d652d49ad6b8bac1afa47f8856c",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
+        }
+      ],
+      "summary": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware TypeSafe questions."
+    },
+    {
+      "after_sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+      "before_sha256": "45f9d361808ab00c9bd7d9fbd814ecaa7e557836dc1d4f739cdb31480a08cc54",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "badbc5560033d51713145325",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "6bdfc52f7032ef14a4d7c4b00918811a6bf84fa60be66feff2b35dae40eaea02",
+      "before_sha256": "dff0da4163124e5516c186508f7ee5eeecd73f89a5a58bce3414f311fe33803a",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/parallel_questions",
+      "id": "c9cdf9bb82195c8bcce68253",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "1f4574474139321a1e05b31887a18ffe1dd3235169276aa4b600c6ebc110aee8",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md"
+        }
+      ],
+      "summary": "Runs a 13-question regulatory briefing over the GDPR Wikipedia article, showing that batching every question into one TypeSafe call is 12.2x cheaper and 10.0x faster with no change in answers."
+    },
+    {
+      "after_sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/basic_memory",
+      "id": "dc36f584c5875d596b9582d8",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/basic_memory added in successful discovery."
+    },
+    {
+      "after_sha256": "5cd8f32d11eaa0c7c2f0913ce557fe239ad811d22add18dffe02d57c9a0c69f0",
+      "before_sha256": "47441d07450718cc8108113fc2140db7ac3d9d80e162ec04db586cfe9ebbfd94",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/autoresearch_feature_discovery",
+      "id": "ecbdbe6afaa0cd4448deb3a5",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "24e0854e5a5846c269142d2a57abfb8aa90d63c37231b03036ed08f1e9989b72",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md"
+        }
+      ],
+      "summary": "Runs an autoresearch loop that proposes TypeSafe questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor."
+    },
+    {
+      "after_sha256": "5b95b7064e2886d3cd1fad6cbda46c0f3496e8820c3078a583f377019359e4ea",
+      "before_sha256": "1c3734c1244208858dd8d4f9a7a8c547c826287df23caf01d9a37824d0e2ee66",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/rerank_typesafe",
+      "id": "fcd9c88b394c0e0a7d111664",
+      "observed_at": "2026-10-11T05:49:38.961516Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "7d8969ab0d851fb0296d5e86c53eac03f3ba3dc0b779aecd7903604f51a6ce11",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
+        }
+      ],
+      "summary": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one TypeSafe question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%."
+    }
+  ],
+  "schema_version": 1
+}
