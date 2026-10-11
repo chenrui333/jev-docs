@@ -421,19 +421,19 @@
       "upstream_last_modified": "2026-08-26T17:44:36.352Z"
     },
     {
-      "bytes": 3938,
+      "bytes": 3920,
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
       "description": "Demo code: a smart home assistant that uses TypeSafe to evaluate user requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos/smart-home.md",
-      "observed_at": "2026-10-01T18:26:36.585114Z",
-      "sha256": "ea60b22f89269d95d1b974f72ddfa755a0aafa0d3b162882d10cde3d4b3379e6",
+      "observed_at": "2026-10-11T17:41:46.600682Z",
+      "sha256": "ec928346966d7634de65e1877cec1b5741d1a0319fdfc3a6ea99641b408cbc5a",
       "source_id": "docs:demos/smart-home",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Smart home assistant demo",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-16T21:01:13.482Z"
+      "upstream_last_modified": "2026-10-11T05:58:47.754Z"
     },
     {
       "bytes": 4227,

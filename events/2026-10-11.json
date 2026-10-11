@@ -71,6 +71,24 @@
       "summary": "Build semantic search for GitHub's Terms of Service. In one request, score 218 line ids against a plain-language query with a Choice question, and use a Noul question to check whether the document contains an answer."
     },
     {
+      "after_sha256": "ec928346966d7634de65e1877cec1b5741d1a0319fdfc3a6ea99641b408cbc5a",
+      "before_sha256": "ea60b22f89269d95d1b974f72ddfa755a0aafa0d3b162882d10cde3d4b3379e6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/smart-home",
+      "id": "3267f3ee34d72edb94bc9f89",
+      "observed_at": "2026-10-11T17:41:46.599124Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ec928346966d7634de65e1877cec1b5741d1a0319fdfc3a6ea99641b408cbc5a",
+          "source_id": "docs:demos/smart-home",
+          "url": "https://docs.typesafe.ai/demos/smart-home"
+        }
+      ],
+      "summary": "Documentation page docs:demos/smart-home modified in successful discovery."
+    },
+    {
       "after_sha256": "790d707d7ce1f153e304bbc1a83fccc63b6731f3bdbe6d14d0062f11abe3395d",
       "before_sha256": "ffdcd6952c1f99a953abea974324be9aef33f73d82cd565694b6fdffd94974c2",
       "category": "cookbook",

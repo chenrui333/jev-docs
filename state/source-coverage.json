@@ -294,7 +294,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
-      "sha256": "ea60b22f89269d95d1b974f72ddfa755a0aafa0d3b162882d10cde3d4b3379e6",
+      "sha256": "ec928346966d7634de65e1877cec1b5741d1a0319fdfc3a6ea99641b408cbc5a",
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"
