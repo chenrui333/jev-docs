@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 112,
+  "discovered_count": 113,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "2f18013dc6b20d8d102330d988dd546e91448542c69ebcfa3551283f08e6e856",
+    "sha256": "667dc7dc4b369e1fee45318118746e048ecc24820509e98455767f1d012bdebb",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 112,
+  "fetched_count": 113,
   "intentionally_excluded": [],
   "pages": [
     {
@@ -147,7 +147,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+      "sha256": "e49ea32fec37ca43ce7b83108f5de02d9e2cd3de8a0cfb4fb0ca4ad02de65a85",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
@@ -207,6 +207,13 @@
       "source_id": "docs:cookbooks/classification_using_confidence",
       "status": "fetched",
       "title": "Classification using confidence"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
+      "sha256": "5cb7a3d1d62eafccc48a0962f1fa9a2f3f4f6c6b5acac17b7ec51ff01d99d8fb",
+      "source_id": "docs:cookbooks/twitch_chat_filter",
+      "status": "fetched",
+      "title": "Twitch chat filter"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
@@ -798,6 +805,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 112,
+  "retained_count": 113,
   "schema_version": 2
 }

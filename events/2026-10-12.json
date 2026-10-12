@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-12",
+  "events": [
+    {
+      "after_sha256": "629575183f4f1a81998c209d5a9c3650f245ef7fb5b1bf5bfaaa94c64e26ba3b",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/twitch_chat_filter",
+      "id": "19ee934ee1418bd7b296e9a4",
+      "observed_at": "2026-10-12T21:17:31.701447Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e49ea32fec37ca43ce7b83108f5de02d9e2cd3de8a0cfb4fb0ca4ad02de65a85",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "5cb7a3d1d62eafccc48a0962f1fa9a2f3f4f6c6b5acac17b7ec51ff01d99d8fb",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md"
+        }
+      ],
+      "summary": "Hide insults, spam, and unasked-for gameplay tips in Twitch chat, blur spoilers, and highlight questions. Each message gets one TypeSafe request containing multiple questions. Up to eight messages are processed concurrently, and the rules are defined in code."
+    },
+    {
+      "after_sha256": "5cb7a3d1d62eafccc48a0962f1fa9a2f3f4f6c6b5acac17b7ec51ff01d99d8fb",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/twitch_chat_filter",
+      "id": "8d5010861f0adf7481cf103a",
+      "observed_at": "2026-10-12T21:17:31.701447Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5cb7a3d1d62eafccc48a0962f1fa9a2f3f4f6c6b5acac17b7ec51ff01d99d8fb",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/twitch_chat_filter added in successful discovery."
+    },
+    {
+      "after_sha256": "e49ea32fec37ca43ce7b83108f5de02d9e2cd3de8a0cfb4fb0ca4ad02de65a85",
+      "before_sha256": "b7d2b611551b8f5c3078b1521177e479c50bb4fcf905708a41b65938b4080324",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "948c0bd087aff2eb0fdd85c6",
+      "observed_at": "2026-10-12T21:17:31.701447Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e49ea32fec37ca43ce7b83108f5de02d9e2cd3de8a0cfb4fb0ca4ad02de65a85",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
