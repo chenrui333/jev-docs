@@ -1,5 +1,5 @@
 {
-  "fingerprint": "885af68a041ad4819be3aefa33378198aa1afe77ef9e628b4cc273cbf2beb539",
+  "fingerprint": "c912d67f05a0f639570a01f025b7723d558e1db339bb921e10082d86b0665e51",
   "items": [
     {
       "category": "extraction",
@@ -124,7 +124,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
+          "sha256": "a1267a404b72d1b08df7648e28542f0c1689df217c05070333d8562eddc8627e",
           "source_id": "docs:cookbooks/classifying_rag_passages",
           "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
         }
@@ -212,7 +212,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
+          "sha256": "c5aa6dba0b497d9b95dcfaad4381501ab0c0a260a254481be50b80d5996d5145",
           "source_id": "docs:cookbooks/entity_alignment",
           "url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md"
         }
@@ -278,7 +278,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
+          "sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
           "source_id": "docs:cookbooks/llm_guardrails",
           "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md"
         }
@@ -442,7 +442,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
     }
   ],
-  "observed_at": "2026-10-12T21:17:30.670221Z",
+  "observed_at": "2026-10-13T06:48:53.569111Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

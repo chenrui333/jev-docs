@@ -1,5 +1,5 @@
 {
-  "fingerprint": "1d6966a27f4b44266f133e93d34b22557899c01fa12189786923b47c3653e5f6",
+  "fingerprint": "ba00cd36117bf6ace630d26e37f6cacae84bb3d0227a97f7e7907ad9ebf4c6d2",
   "items": [
     {
       "category": "agent-integration",
@@ -84,7 +84,7 @@
       "sources": [
         {
           "excerpt": "Because TypeSafe supports sending many questions in a single API call, we recommend putting all of the questions your system needs in a single request, and then using code to decide what is relevant after the fact. All questions are evaluated in parallel, so adding more questions usually has little effect on response time.",
-          "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
+          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
         },
@@ -107,7 +107,7 @@
       "sources": [
         {
           "excerpt": "Send many questions in a single call, including speculative ones, and let your code decide what's relevant.",
-          "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
+          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
         },
@@ -276,7 +276,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-02T17:53:12.248622Z",
+  "observed_at": "2026-10-13T06:48:53.565535Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",

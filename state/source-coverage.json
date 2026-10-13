@@ -3,7 +3,7 @@
   "discovered_count": 113,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "667dc7dc4b369e1fee45318118746e048ecc24820509e98455767f1d012bdebb",
+    "sha256": "4acbbf437e9f58674240fb12859a7befa8bac5866bb221398f08382c0abc8b4d",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
@@ -14,14 +14,14 @@
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
-      "sha256": "df1ed7ec91afcaa1d35f3a4f9d4b3ba33d2e816e472c64a1870f8ed885963c67",
+      "sha256": "8fa5dd1b6e7d05a10c6ff5fcdd443d08209d980ab028a8f3f230842f4f445314",
       "source_id": "docs:introduction",
       "status": "fetched",
       "title": "Introduction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
-      "sha256": "ff4d66b466bc4a4748ae911fc51e1dc489ee363876263b4e271eb1f22b8cc9aa",
+      "sha256": "2277c88ee1c78d20c7dcc18af40400651e37d0800c4e2ed47d904e3b71edea5a",
       "source_id": "docs:introduction/quickstart",
       "status": "fetched",
       "title": "Quick start"
@@ -119,14 +119,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
-      "sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
+      "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
       "source_id": "docs:patterns/fan-out",
       "status": "fetched",
       "title": "Speculative fan-out"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/confidence-routing",
-      "sha256": "3d156395f69856e2cdadb9405a23fa3f08b5ecf4274c3cd81d844d8bbe860b0e",
+      "sha256": "61906b78d3cbf2285849a3920844fb8bf26035609c94699bd6cc6b28a88047c9",
       "source_id": "docs:patterns/confidence-routing",
       "status": "fetched",
       "title": "Confidence-gated routing"
@@ -140,7 +140,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/intent-routing",
-      "sha256": "b4a6d42a9a1d90211bc1ab81539520157630e5d404c918360b26db53afc41bae",
+      "sha256": "94aeca51a9c36b044876850ec8ac2b23dccff60506334ad1795796bb5fa760a6",
       "source_id": "docs:patterns/intent-routing",
       "status": "fetched",
       "title": "Intent routing"
@@ -168,7 +168,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
-      "sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
+      "sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
       "source_id": "docs:cookbooks/llm_guardrails",
       "status": "fetched",
       "title": "Guardrails for LLMs"
@@ -182,7 +182,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
+      "sha256": "a1267a404b72d1b08df7648e28542f0c1689df217c05070333d8562eddc8627e",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
       "title": "Classifying RAG passages"
@@ -259,7 +259,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
-      "sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
+      "sha256": "c5aa6dba0b497d9b95dcfaad4381501ab0c0a260a254481be50b80d5996d5145",
       "source_id": "docs:cookbooks/entity_alignment",
       "status": "fetched",
       "title": "Knowledge graph entity alignment"

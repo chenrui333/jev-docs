@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-13",
+  "events": [
+    {
+      "after_sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
+      "before_sha256": "aa9dbed8188e07606e74fc0866f0b23493d8f5f3cdea65a3edefcfb55881f43e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/llm_guardrails",
+      "id": "3054fa644b60dfb9d884924f",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/llm_guardrails modified in successful discovery."
+    },
+    {
+      "after_sha256": "8fa5dd1b6e7d05a10c6ff5fcdd443d08209d980ab028a8f3f230842f4f445314",
+      "before_sha256": "df1ed7ec91afcaa1d35f3a4f9d4b3ba33d2e816e472c64a1870f8ed885963c67",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction",
+      "id": "4cb0019b6b38ba3bc4902466",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8fa5dd1b6e7d05a10c6ff5fcdd443d08209d980ab028a8f3f230842f4f445314",
+          "source_id": "docs:introduction",
+          "url": "https://docs.typesafe.ai/introduction"
+        }
+      ],
+      "summary": "Documentation page docs:introduction modified in successful discovery."
+    },
+    {
+      "after_sha256": "2277c88ee1c78d20c7dcc18af40400651e37d0800c4e2ed47d904e3b71edea5a",
+      "before_sha256": "ff4d66b466bc4a4748ae911fc51e1dc489ee363876263b4e271eb1f22b8cc9aa",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "5586161bd7c3d24533d25f45",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "2277c88ee1c78d20c7dcc18af40400651e37d0800c4e2ed47d904e3b71edea5a",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    },
+    {
+      "after_sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+      "before_sha256": "f78bd972e2f24338c03c99f2ab4c2d1c46666e27c085ee703b661a96b6da7543",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/fan-out",
+      "id": "9de7a25cd300c2f97f2456e1",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/fan-out modified in successful discovery."
+    },
+    {
+      "after_sha256": "a1267a404b72d1b08df7648e28542f0c1689df217c05070333d8562eddc8627e",
+      "before_sha256": "c0e8075add0790efb51ea298281c5fb1a2510a108012449c425e5af4a61c66e1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classifying_rag_passages",
+      "id": "ad866649667576f7491ac1d0",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a1267a404b72d1b08df7648e28542f0c1689df217c05070333d8562eddc8627e",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "c5aa6dba0b497d9b95dcfaad4381501ab0c0a260a254481be50b80d5996d5145",
+      "before_sha256": "4042aa07e351032b4ebf0799b25df9427845f7860afaebe8d8e387aa495b8db0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/entity_alignment",
+      "id": "bef00bfedd0f33ebfa6e25eb",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c5aa6dba0b497d9b95dcfaad4381501ab0c0a260a254481be50b80d5996d5145",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/entity_alignment modified in successful discovery."
+    },
+    {
+      "after_sha256": "61906b78d3cbf2285849a3920844fb8bf26035609c94699bd6cc6b28a88047c9",
+      "before_sha256": "3d156395f69856e2cdadb9405a23fa3f08b5ecf4274c3cd81d844d8bbe860b0e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/confidence-routing",
+      "id": "c5de02c2089acdaedaa14d42",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "61906b78d3cbf2285849a3920844fb8bf26035609c94699bd6cc6b28a88047c9",
+          "source_id": "docs:patterns/confidence-routing",
+          "url": "https://docs.typesafe.ai/patterns/confidence-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/confidence-routing modified in successful discovery."
+    },
+    {
+      "after_sha256": "94aeca51a9c36b044876850ec8ac2b23dccff60506334ad1795796bb5fa760a6",
+      "before_sha256": "b4a6d42a9a1d90211bc1ab81539520157630e5d404c918360b26db53afc41bae",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/intent-routing",
+      "id": "ef09fe9d344c82bc931f20dc",
+      "observed_at": "2026-10-13T06:48:54.899225Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "94aeca51a9c36b044876850ec8ac2b23dccff60506334ad1795796bb5fa760a6",
+          "source_id": "docs:patterns/intent-routing",
+          "url": "https://docs.typesafe.ai/patterns/intent-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/intent-routing modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
