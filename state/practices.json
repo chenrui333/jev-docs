@@ -1,5 +1,5 @@
 {
-  "fingerprint": "ba00cd36117bf6ace630d26e37f6cacae84bb3d0227a97f7e7907ad9ebf4c6d2",
+  "fingerprint": "1b29dd740333433db0f972cac30f5fe4dbd707cffa31dffc4ccbd285bc60c166",
   "items": [
     {
       "category": "agent-integration",
@@ -244,7 +244,7 @@
       "sources": [
         {
           "excerpt": "The state contains the content and supporting facts. Questions define the judgments the model should make about that material. For example, keep the refund request and policy in the state, then ask whether the customer requested a refund and whether the policy supports it.",
-          "sha256": "8ed5a4e719cf2414759fed92463c203855f1fb4bf02b685746cd4858481375a5",
+          "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md"
         },
@@ -276,7 +276,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-13T06:48:53.565535Z",
+  "observed_at": "2026-10-15T04:42:33.873546Z",
   "schema_version": 1,
   "status_vocabulary": [
     "recommended",

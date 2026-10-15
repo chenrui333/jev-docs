@@ -6,7 +6,8 @@
     "v0.7.1",
     "v0.7.2",
     "v0.7.3",
-    "v0.7.4"
+    "v0.7.4",
+    "v0.7.5"
   ],
   "capabilities": [
     {
@@ -149,19 +150,19 @@
     }
   ],
   "discrepancies": [],
-  "fingerprint": "63a84cc75a0169a2c07cf8bf38dbe276d4526bc599eb732066c12d20a24505cd",
-  "main_commit": "e70bf99a89f27102247613bcd5d1aa8923a1cda9",
+  "fingerprint": "66cabefdf421b683ea53a64df1937381a766163362286d500a706d5c7760cdef",
+  "main_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-09T18:22:13.581321Z",
+  "observed_at": "2026-10-15T04:42:32.183878Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
-      "sha256": "b8817f1e0de52c46a29b88d717fa4db6258644b98b40c50810a2d6c1a20e5994",
+      "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/e70bf99a89f27102247613bcd5d1aa8923a1cda9/pyproject.toml"
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml"
     },
     {
-      "sha256": "4a13312d53edaa27baa61cb4ae432d38148f7f0b22f40f5b1c976292475b94f2",
+      "sha256": "ecaaf93f3c44ed2757d15916cf1f1aa44b7513288943ca31e13e458f34d4d470",
       "source_id": "registry:pypi:typesafe-sdk",
       "url": "https://pypi.org/pypi/typesafe-sdk/json"
     }
@@ -185,7 +186,7 @@
       "documented_changes": [],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -208,7 +209,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -228,7 +229,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -247,7 +248,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -266,7 +267,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -287,7 +288,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -300,12 +301,46 @@
       "version": "0.7.3"
     },
     {
+      "documented_changes": [
+        "serialize non-finite numbers as strings instead of invalid JSON tokens"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
       "name": "v0.7.4 (2026-10-09)",
       "published_at": "2026-10-09T15:47:26Z",
       "source_commit": "e70bf99a89f27102247613bcd5d1aa8923a1cda9",
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.4",
       "tag": "v0.7.4",
       "version": "0.7.4"
+    },
+    {
+      "documented_changes": [
+        "split usage guide into Basic and Advanced pages",
+        "add docs for working with images",
+        "add docs for `Box` type",
+        "enable request body compression with `zstd` by default (non-official APIs may not support this immediately)",
+        "support `Image` assets from raw bytes, file paths, base64 strings, and PIL objects",
+        "support `Box` questions and answers",
+        "reference assets in text with `attach_assets`"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
+      "name": "v0.7.5 (2026-10-14)",
+      "published_at": "2026-10-14T21:21:50Z",
+      "source_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.5",
+      "tag": "v0.7.5",
+      "version": "0.7.5"
     }
   ],
   "repository": "https://github.com/typesafe-ai/typesafe-sdk-python",
@@ -313,7 +348,7 @@
     "python": ">=3.10"
   },
   "schema_version": 1,
-  "source_commit": "e70bf99a89f27102247613bcd5d1aa8923a1cda9",
-  "source_tag": "v0.7.4",
-  "version": "0.7.4"
+  "source_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
+  "source_tag": "v0.7.5",
+  "version": "0.7.5"
 }

@@ -1,23 +1,24 @@
 {
   "available_tags": [
     "v0.5.7",
-    "v0.6.0"
+    "v0.6.0",
+    "v0.7.0"
   ],
   "capabilities": [],
   "discrepancies": [],
-  "fingerprint": "9b0583a86b4194d7257591aa27f9a7cfb96ee67163f27ea056cea078adfcd318",
-  "main_commit": "66880ccded6cb642dc1809620c2b108c33730214",
+  "fingerprint": "3ad51613e278dad6345c04a212d9231f4da88f10f9b370a18990d7c755699190",
+  "main_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-01T18:26:35.469482Z",
+  "observed_at": "2026-10-15T04:42:33.830696Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {
-      "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+      "sha256": "5b91ef13fa6bc4b943fb18f148420cfb42292855e339949482c08617521045b7",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:package.json",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/66880ccded6cb642dc1809620c2b108c33730214/package.json"
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json"
     },
     {
-      "sha256": "8d11d3d01304a3d90607d90d95f8eb9953b6811a205b695e5ff14485e6e3cb37",
+      "sha256": "1e1e90bba892b6dc4ab01db81f195f28cdac7812ba978c72f022f47f97b32725",
       "source_id": "registry:npm:@typesafe-ai/sdk",
       "url": "https://registry.npmjs.org/@typesafe-ai%2fsdk"
     }
@@ -40,7 +41,7 @@
       "documented_changes": [],
       "documented_changes_provenance": [
         {
-          "sha256": "6204f65e88fd44beee8a5515b4f7e6d566eb8203cac2e7838c12db1cb8890381",
+          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
           "source_id": "docs:sdk/javascript/changelog",
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
@@ -58,7 +59,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "6204f65e88fd44beee8a5515b4f7e6d566eb8203cac2e7838c12db1cb8890381",
+          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
           "source_id": "docs:sdk/javascript/changelog",
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
@@ -69,14 +70,41 @@
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.6.0",
       "tag": "v0.6.0",
       "version": "0.6.0"
+    },
+    {
+      "documented_changes": [
+        "require Node.js 22 or newer",
+        "stop exporting request payload types",
+        "support images, as an experimental feature enabled with the `TypeSafe-Danger-Zone-Images: true` header: create them with `image()` or `Image.fromBase64()`, then place them in `state`, question instructions, or criteria, write them into text with `withAssets` and `withAssets.join`, or reference them by names you choose in `assets`",
+        "add `box` questions, which locate what their instructions describe in an image; use them with the `jev-preview` model",
+        "compress request bodies of 1 KiB or more with zstd on Node.js 22.15 or newer; pass `compression: false` to send them uncompressed",
+        "allow null token counts in usage",
+        "add more request validation checks",
+        "reject the returned promise for invalid requests instead of throwing",
+        "accept score criteria lists built at runtime",
+        "stop an unhandled rejection on Node.js 22 when a request times out or is aborted mid-body"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
+          "source_id": "docs:sdk/javascript/changelog",
+          "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
+        }
+      ],
+      "name": "v0.7.0 (2026-10-14)",
+      "published_at": "2026-10-14T21:21:31Z",
+      "source_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-js/releases/tag/v0.7.0",
+      "tag": "v0.7.0",
+      "version": "0.7.0"
     }
   ],
   "repository": "https://github.com/typesafe-ai/typesafe-sdk-js",
   "runtime": {
-    "javascript": ">=20"
+    "javascript": ">=22"
   },
   "schema_version": 1,
-  "source_commit": "66880ccded6cb642dc1809620c2b108c33730214",
-  "source_tag": "v0.6.0",
-  "version": "0.6.0"
+  "source_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
+  "source_tag": "v0.7.0",
+  "version": "0.7.0"
 }

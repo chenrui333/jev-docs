@@ -1,23 +1,23 @@
 {
   "docs": {
-    "discovered_pages": 113,
+    "discovered_pages": 128,
     "status": "up_to_date"
   },
-  "fingerprint": "4364616aee62148301256c8b57f2974833c3a86971b9da66f83925ad857d803a",
+  "fingerprint": "aef9f8d439d0f5acd02b6d085604b992af97caad07a250e95296132d25942348",
   "grace_period_days": 3,
   "javascript": {
     "discrepancies": [],
     "status": "up_to_date",
-    "tag": "v0.6.0",
-    "version": "0.6.0"
+    "tag": "v0.7.0",
+    "version": "0.7.0"
   },
-  "last_successful_observation": "2026-10-12T21:17:31.701447Z",
-  "observed_at": "2026-10-12T21:17:31.707893Z",
+  "last_successful_observation": "2026-10-15T04:42:35.036485Z",
+  "observed_at": "2026-10-15T04:42:35.046620Z",
   "python": {
     "discrepancies": [],
     "status": "up_to_date",
-    "tag": "v0.7.4",
-    "version": "0.7.4"
+    "tag": "v0.7.5",
+    "version": "0.7.5"
   },
   "schema_version": 1,
   "skill": {

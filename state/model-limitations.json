@@ -1,5 +1,5 @@
 {
-  "fingerprint": "5b5bee75875ae2c1ef4db81efe4b11de7bd904f2d6ad60b17b24475b9282e80b",
+  "fingerprint": "ce99529a203a823f15e4a1c12541bc66772ba128e76363745779ab534b8c21a2",
   "items": [
     {
       "id": "jev-1.13:adversarial-content",
@@ -8,7 +8,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
         }
@@ -26,7 +26,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
         }
@@ -62,7 +62,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
         }
@@ -80,7 +80,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
         }
@@ -98,7 +98,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
         }
@@ -116,7 +116,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
         }
@@ -134,7 +134,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
         }
@@ -152,13 +152,13 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
         }
       ],
       "section": "large-state-full-of-irrelevant-detail",
-      "section_text_sha256": "9f576c42fb0d3487fbdccd99af0f9e3cb3a34076d0d7ac1ddb61a05c3aec4b91",
+      "section_text_sha256": "2c143c92dc1d093ab96ead10fae277fa744e9e32674381cdfaea750b9b35125b",
       "status": "documented",
       "summary": "Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input produced a wrong answer.",
       "title": "Large state full of irrelevant detail"
@@ -170,7 +170,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
         }
@@ -188,7 +188,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
         }
@@ -206,7 +206,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
         }
@@ -224,7 +224,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
         }
@@ -236,7 +236,7 @@
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-03T05:20:34.123643Z",
+  "observed_at": "2026-10-15T04:42:33.875231Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }

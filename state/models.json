@@ -1,5 +1,5 @@
 {
-  "fingerprint": "0a5bd20629f338f7f4a6b0d7a27dacdbab412995366426edf13c3352afcc826b",
+  "fingerprint": "041bac1571ae0f7a0334fc117effd1fad4ae33506402064c89395e024fc9438e",
   "models": [
     {
       "id": "jev-latest",
@@ -9,18 +9,13 @@
     {
       "id": "jev-preview",
       "kind": "alias",
-      "target": "jev-1.13.0"
-    },
-    {
-      "id": "jev-1.13.0",
-      "kind": "versioned",
-      "label": "Jev 1.13"
+      "target": "jev-1.14.0"
     }
   ],
-  "observed_at": "2026-10-03T05:20:34.069974Z",
+  "observed_at": "2026-10-15T04:42:33.831317Z",
   "provenance": [
     {
-      "sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
+      "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",
       "source_id": "docs:models",
       "url": "https://docs.typesafe.ai/models.md"
     }

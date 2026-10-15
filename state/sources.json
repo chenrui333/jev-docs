@@ -1,34 +1,34 @@
 {
   "artifacts": [
     {
-      "bytes": 5911,
+      "bytes": 5905,
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
       "description": "Drop-in skill for Claude Code, Codex, and other agent environments.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/agent-skill.md",
-      "observed_at": "2026-10-01T18:26:36.595569Z",
-      "sha256": "58150a9cecb9b9727c6039b14e0dfea7f2e3cb9be6ee14611b7df9cc8e0c94c7",
+      "observed_at": "2026-10-15T04:42:35.048718Z",
+      "sha256": "c3f8411c9fbdbe4dd6c0800f1aa14acf63bd297415f3e9a9fabd8c8429c9b24d",
       "source_id": "docs:agent-skill",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Agent skill",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-12T05:53:29.732Z"
+      "upstream_last_modified": "2026-10-14T21:07:12.427Z"
     },
     {
-      "bytes": 11344,
+      "bytes": 12905,
       "canonical_url": "https://docs.typesafe.ai/api",
       "description": "Full HTTP API reference for the TypeSafe evaluation endpoint.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/api.md",
-      "observed_at": "2026-10-01T18:26:36.595540Z",
-      "sha256": "6b760275f89341fe15cff80c28aacae94d7d0c0c99afcd987ec0bca680b5713a",
+      "observed_at": "2026-10-15T04:42:35.048692Z",
+      "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
       "source_id": "docs:api",
       "source_tag": null,
       "source_type": "documentation",
       "title": "API reference",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:37.927Z"
+      "upstream_last_modified": "2026-10-14T21:07:12.428Z"
     },
     {
       "bytes": 41034,
@@ -46,34 +46,34 @@
       "upstream_last_modified": "2026-09-20T02:53:37.925Z"
     },
     {
-      "bytes": 3669,
+      "bytes": 3617,
       "canonical_url": "https://docs.typesafe.ai/concepts/state",
       "description": "What state is, how to structure it, and how to give a System One model the context it needs.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/state.md",
-      "observed_at": "2026-10-01T18:26:36.593645Z",
-      "sha256": "8ed5a4e719cf2414759fed92463c203855f1fb4bf02b685746cd4858481375a5",
+      "observed_at": "2026-10-15T04:42:35.046890Z",
+      "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
       "source_id": "docs:concepts/state",
       "source_tag": null,
       "source_type": "documentation",
       "title": "State",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:37.924Z"
+      "upstream_last_modified": "2026-10-14T21:07:12.429Z"
     },
     {
-      "bytes": 3903,
+      "bytes": 3933,
       "canonical_url": "https://docs.typesafe.ai/concepts/system-one",
       "description": "System One models make fast, structured decisions for software. Jev is TypeSafe's flagship model and the first System One model.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/system-one.md",
-      "observed_at": "2026-10-01T18:26:36.593621Z",
-      "sha256": "a9a536be92d9c906c02f8aee6c28622a563bbe4a1ead5078d9bc48fe3612f265",
+      "observed_at": "2026-10-15T04:42:35.046870Z",
+      "sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
       "source_id": "docs:concepts/system-one",
       "source_tag": null,
       "source_type": "documentation",
       "title": "System One",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-17T11:55:10.949Z"
+      "upstream_last_modified": "2026-10-14T21:07:12.427Z"
     },
     {
       "bytes": 11155,
@@ -451,19 +451,34 @@
       "upstream_last_modified": "2026-10-11T05:58:47.754Z"
     },
     {
-      "bytes": 4667,
+      "bytes": 22161,
+      "canonical_url": "https://docs.typesafe.ai/images",
+      "description": "Send images in a System One request: in the state, inside a question's instructions, and as the criteria a question is judged against.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/images.md",
+      "observed_at": "2026-10-15T04:42:35.047208Z",
+      "sha256": "9dfbc3387fb0730435331ef41271287f1d9720ce4f37e09cce25b3643c4901b8",
+      "source_id": "docs:images",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Images",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T22:02:51.736Z"
+    },
+    {
+      "bytes": 4691,
       "canonical_url": "https://docs.typesafe.ai/introduction",
       "description": "Jev is TypeSafe's flagship model and the first System One model. Send state and typed questions; get structured answers your code can use directly.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction.md",
-      "observed_at": "2026-10-13T06:48:54.910849Z",
-      "sha256": "8fa5dd1b6e7d05a10c6ff5fcdd443d08209d980ab028a8f3f230842f4f445314",
+      "observed_at": "2026-10-15T04:42:35.046756Z",
+      "sha256": "f1dbcd1857df8903bdfdbab4acba8aca88f9711d399dea1f6588c8a7a34ea926",
       "source_id": "docs:introduction",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Introduction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-13T00:38:47.528Z"
+      "upstream_last_modified": "2026-10-14T21:07:11.416Z"
     },
     {
       "bytes": 3934,
@@ -496,19 +511,19 @@
       "upstream_last_modified": "2026-09-05T03:03:56.868Z"
     },
     {
-      "bytes": 15092,
+      "bytes": 15088,
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
       "description": "Get up and running with Jev in 5 minutes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction/quickstart.md",
-      "observed_at": "2026-10-13T06:48:54.910893Z",
-      "sha256": "2277c88ee1c78d20c7dcc18af40400651e37d0800c4e2ed47d904e3b71edea5a",
+      "observed_at": "2026-10-15T04:42:35.046795Z",
+      "sha256": "ea75cde163d62593569c9284a7931800b5cf4f6d2c094c5c0a81b93db274effc",
       "source_id": "docs:introduction/quickstart",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Quick start",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.172Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.278Z"
     },
     {
       "bytes": 1168,
@@ -526,13 +541,13 @@
       "upstream_last_modified": "2026-09-24T16:15:16.215Z"
     },
     {
-      "bytes": 16655,
+      "bytes": 18372,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-13T06:48:54.910811Z",
-      "sha256": "4acbbf437e9f58674240fb12859a7befa8bac5866bb221398f08382c0abc8b4d",
+      "observed_at": "2026-10-15T04:42:35.046727Z",
+      "sha256": "99f746d2570aa97898ad0e62042b9b5b703e54c3f1142ce4cf4b7ff15b5782ae",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -541,34 +556,34 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 9346,
+      "bytes": 9395,
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
       "description": "Jev isn't perfect. Here are some jagged edges we are aware of with jev-1.13. Many of these will be fixed in later versions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md",
-      "observed_at": "2026-10-03T05:20:34.768464Z",
-      "sha256": "5d471be7c8d2a359a81979b7bcf2c2fab536a198d4e50155c4233380d5c03986",
+      "observed_at": "2026-10-15T04:42:35.048762Z",
+      "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
       "source_id": "docs:model-jaggedness/jev-1.13",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Jev 1.13 jaggedness",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-02T22:05:14.261Z"
+      "upstream_last_modified": "2026-10-14T19:53:28.496Z"
     },
     {
-      "bytes": 6684,
+      "bytes": 7971,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-10-03T05:20:34.768339Z",
-      "sha256": "15351adaab85874b5f1a942fc2fdf3c7b3ecadcc936d580793d734855a0038f3",
+      "observed_at": "2026-10-15T04:42:35.048656Z",
+      "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.122Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.743Z"
     },
     {
       "bytes": 1590,
@@ -646,19 +661,19 @@
       "upstream_last_modified": "2026-10-13T00:38:47.537Z"
     },
     {
-      "bytes": 24185,
+      "bytes": 24649,
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "description": "The three TypeSafe question types (Choice, Score, Noul), the typed answers they return, how to choose between them, and how to ask several at once.",
+      "description": "The TypeSafe question types, the typed answers they return, how to choose between them, and how to ask several at once.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives.md",
-      "observed_at": "2026-10-01T18:26:36.593697Z",
-      "sha256": "fe67e1062c34ffef8f64ba5e541d00159214cd15c48f6c19ef46c25a6357a294",
+      "observed_at": "2026-10-15T04:42:35.046939Z",
+      "sha256": "acffba767407ea5e21373ec6083c6f6a7536380b1bd508023b6d397e8ae6b8a5",
       "source_id": "docs:primitives",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Primitives (Questions)",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:36.020Z"
+      "upstream_last_modified": "2026-10-14T21:07:11.418Z"
     },
     {
       "bytes": 18943,
@@ -674,6 +689,21 @@
       "title": "Advanced: structure",
       "upstream_commit": null,
       "upstream_last_modified": "2026-09-15T00:21:18.995Z"
+    },
+    {
+      "bytes": 8955,
+      "canonical_url": "https://docs.typesafe.ai/primitives/box",
+      "description": "A Box is a System One question type for finding where something is in an image. The answer is the four edges of a box around it, as fractions of the image's width and height.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/primitives/box.md",
+      "observed_at": "2026-10-15T04:42:35.047137Z",
+      "sha256": "d75c3d1d52e913819140d17d9ca3a2fee15b9bea849ef66a96dbf08eefb59a95",
+      "source_id": "docs:primitives/box",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Box",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T22:02:51.731Z"
     },
     {
       "bytes": 26907,
@@ -736,34 +766,34 @@
       "upstream_last_modified": "2026-09-12T04:19:16.535Z"
     },
     {
-      "bytes": 1415,
+      "bytes": 6874,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript.md",
-      "observed_at": "2026-10-01T18:26:36.596167Z",
-      "sha256": "269059683486938fd93c9ef675ed93d7b38c5ce9151b0baa892837bb79e55cc2",
+      "observed_at": "2026-10-15T04:42:35.049314Z",
+      "sha256": "e97bef8031ae1db7d1172c642e3d7f642323a130bde0acfcfde533bd66afff1a",
       "source_id": "docs:sdk/javascript",
       "source_tag": null,
       "source_type": "documentation",
       "title": "JavaScript SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.144Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.765Z"
     },
     {
-      "bytes": 3440,
+      "bytes": 4038,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api.md",
-      "observed_at": "2026-10-01T18:26:36.596207Z",
-      "sha256": "8a593d34f66b64f099d6610aae78f460dbcb3afc5e3b58ff649ad076b28b6f42",
+      "observed_at": "2026-10-15T04:42:35.049352Z",
+      "sha256": "4b1cbf108ff75a309011234a671b5e31ddf68bdaaf07e5a947321e461c4d476a",
       "source_id": "docs:sdk/javascript/api",
       "source_tag": null,
       "source_type": "documentation",
       "title": "API reference",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.133Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.760Z"
     },
     {
       "bytes": 1001,
@@ -778,7 +808,7 @@
       "source_type": "documentation",
       "title": "Class: APIConnectionError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.132Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.748Z"
     },
     {
       "bytes": 2303,
@@ -793,7 +823,7 @@
       "source_type": "documentation",
       "title": "Class: APIError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.145Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.747Z"
     },
     {
       "bytes": 3686,
@@ -808,7 +838,7 @@
       "source_type": "documentation",
       "title": "Class: APIPromise<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.123Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.745Z"
     },
     {
       "bytes": 1056,
@@ -823,7 +853,7 @@
       "source_type": "documentation",
       "title": "Class: APITimeoutError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.129Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.760Z"
     },
     {
       "bytes": 893,
@@ -838,7 +868,7 @@
       "source_type": "documentation",
       "title": "Class: APIUserAbortError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.121Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.749Z"
     },
     {
       "bytes": 2511,
@@ -853,7 +883,7 @@
       "source_type": "documentation",
       "title": "Class: AuthenticationError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.130Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.767Z"
     },
     {
       "bytes": 2496,
@@ -868,7 +898,22 @@
       "source_type": "documentation",
       "title": "Class: BadRequestError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.131Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.747Z"
+    },
+    {
+      "bytes": 1800,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/Image",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/Image.md",
+      "observed_at": "2026-10-15T04:42:35.049478Z",
+      "sha256": "cb64ec58201609918d8808307c5163512a86407c02574519ae73ea411c25dd31",
+      "source_id": "docs:sdk/javascript/api/classes/Image",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Class: Image",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.751Z"
     },
     {
       "bytes": 2529,
@@ -883,7 +928,7 @@
       "source_type": "documentation",
       "title": "Class: InternalServerError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.139Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.764Z"
     },
     {
       "bytes": 2492,
@@ -898,7 +943,7 @@
       "source_type": "documentation",
       "title": "Class: NotFoundError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.120Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.755Z"
     },
     {
       "bytes": 2514,
@@ -913,7 +958,7 @@
       "source_type": "documentation",
       "title": "Class: PermissionDeniedError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.137Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.763Z"
     },
     {
       "bytes": 2692,
@@ -928,22 +973,22 @@
       "source_type": "documentation",
       "title": "Class: RateLimitError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.137Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.759Z"
     },
     {
-      "bytes": 3488,
+      "bytes": 4197,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeClient",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeClient.md",
-      "observed_at": "2026-10-01T18:26:36.596471Z",
-      "sha256": "d06e51285de022bed9deabe2fc8c4f91ddda0f9f38a9297535c7e1cd5cda79d3",
+      "observed_at": "2026-10-15T04:42:35.049563Z",
+      "sha256": "e4d9f9ae6588e03ae6f0d8fc29f10109e55c91b328396dcf29ff34cc6fc7ae05",
       "source_id": "docs:sdk/javascript/api/classes/TypeSafeClient",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Class: TypeSafeClient",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.138Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.766Z"
     },
     {
       "bytes": 882,
@@ -958,7 +1003,7 @@
       "source_type": "documentation",
       "title": "Class: TypeSafeError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.123Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.755Z"
     },
     {
       "bytes": 2535,
@@ -973,7 +1018,22 @@
       "source_type": "documentation",
       "title": "Class: UnprocessableEntityError",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.031Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.754Z"
+    },
+    {
+      "bytes": 1015,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/box",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/box.md",
+      "observed_at": "2026-10-15T04:42:35.050263Z",
+      "sha256": "8bc908442c57863c09475a97ada0ed7daeb2c1a43bccfd7347e17185634fa891",
+      "source_id": "docs:sdk/javascript/api/functions/box",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Function: box()",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.741Z"
     },
     {
       "bytes": 890,
@@ -988,52 +1048,82 @@
       "source_type": "documentation",
       "title": "Function: choice()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.033Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.761Z"
     },
     {
-      "bytes": 1365,
-      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/noul",
+      "bytes": 1414,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/image",
       "description": "",
       "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/noul.md",
-      "observed_at": "2026-10-01T18:26:36.597224Z",
-      "sha256": "f8f94ce2dbdce0aa841dfe043a5c4163980fcd72211ab9dba858ea179cd1e663",
-      "source_id": "docs:sdk/javascript/api/functions/noul",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/image.md",
+      "observed_at": "2026-10-15T04:42:35.050293Z",
+      "sha256": "f067f10bea6a0f1fb0fd53f4053301283ef8d53bd5214da79d04f29257d85913",
+      "source_id": "docs:sdk/javascript/api/functions/image",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Function: noul()",
+      "title": "Function: image()",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.030Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.750Z"
     },
     {
-      "bytes": 885,
-      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/score",
+      "bytes": 1063,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxCoordinates",
       "description": "",
       "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/functions/score.md",
-      "observed_at": "2026-10-01T18:26:36.597243Z",
-      "sha256": "0792d52afd3afc54303fce693c7c42534e57a2b8ce369cc11fb6340fb327b135",
-      "source_id": "docs:sdk/javascript/api/functions/score",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxCoordinates.md",
+      "observed_at": "2026-10-15T04:42:35.049607Z",
+      "sha256": "f50ff6b9e6569be401b24cc16622eaf1baab903d6e21cc9e26819dc231f56997",
+      "source_id": "docs:sdk/javascript/api/interfaces/BoxCoordinates",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Function: score()",
+      "title": "Interface: BoxCoordinates",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.029Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.742Z"
     },
     {
-      "bytes": 947,
+      "bytes": 676,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxQuestion",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxQuestion.md",
+      "observed_at": "2026-10-15T04:42:35.049622Z",
+      "sha256": "37675cf46f17d58f3a7d47e255c5b4f134dbcff192739535375f51c103eba42e",
+      "source_id": "docs:sdk/javascript/api/interfaces/BoxQuestion",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Interface: BoxQuestion",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.741Z"
+    },
+    {
+      "bytes": 771,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxResponse",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxResponse.md",
+      "observed_at": "2026-10-15T04:42:35.049636Z",
+      "sha256": "a5a0937ad9229c34899ed24ee0edab39f23678b4e8d589504eea2615d93bd091",
+      "source_id": "docs:sdk/javascript/api/interfaces/BoxResponse",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Interface: BoxResponse",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.758Z"
+    },
+    {
+      "bytes": 979,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceQuestion",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceQuestion.md",
-      "observed_at": "2026-10-01T18:26:36.596530Z",
-      "sha256": "82c0a35cfb782a954da2dc31e269fcc273447c7c6c9cc5d959d7c5968bfbc0a6",
+      "observed_at": "2026-10-15T04:42:35.049653Z",
+      "sha256": "d2f55653416cc888904c6c6f8ad41e59d0e4b0addbfd2ed5c0628c6c2ccdb76a",
       "source_id": "docs:sdk/javascript/api/interfaces/ChoiceQuestion",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Interface: ChoiceQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.029Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.762Z"
     },
     {
       "bytes": 1095,
@@ -1048,7 +1138,7 @@
       "source_type": "documentation",
       "title": "Interface: ChoiceResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.028Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.746Z"
     },
     {
       "bytes": 1148,
@@ -1063,7 +1153,7 @@
       "source_type": "documentation",
       "title": "Interface: Logger",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.027Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.744Z"
     },
     {
       "bytes": 654,
@@ -1078,7 +1168,7 @@
       "source_type": "documentation",
       "title": "Interface: ModelCard",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.027Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.749Z"
     },
     {
       "bytes": 739,
@@ -1093,22 +1183,22 @@
       "source_type": "documentation",
       "title": "Interface: Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.026Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.761Z"
     },
     {
-      "bytes": 1168,
+      "bytes": 1253,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulQuestion",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulQuestion.md",
-      "observed_at": "2026-10-01T18:26:36.596629Z",
-      "sha256": "dd49aae30b34e0e5942611aa08cb9ac008b0f9270e4c9fbc5bd5eef979761385",
+      "observed_at": "2026-10-15T04:42:35.049725Z",
+      "sha256": "cc918f8e7f6c7927c1c235cece2b3d66b97138589d1d45cb8310308d1155b24d",
       "source_id": "docs:sdk/javascript/api/interfaces/NoulQuestion",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Interface: NoulQuestion",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.025Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.656Z"
     },
     {
       "bytes": 560,
@@ -1123,7 +1213,7 @@
       "source_type": "documentation",
       "title": "Interface: NoulResponse",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.025Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.655Z"
     },
     {
       "bytes": 440,
@@ -1138,7 +1228,7 @@
       "source_type": "documentation",
       "title": "Interface: Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.024Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.654Z"
     },
     {
       "bytes": 1032,
@@ -1153,7 +1243,7 @@
       "source_type": "documentation",
       "title": "Interface: RequestOptions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.024Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.654Z"
     },
     {
       "bytes": 2146,
@@ -1168,7 +1258,7 @@
       "source_type": "documentation",
       "title": "Interface: RetryPolicy",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.023Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.653Z"
     },
     {
       "bytes": 946,
@@ -1183,7 +1273,7 @@
       "source_type": "documentation",
       "title": "Interface: ScoreQuestion<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.022Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.653Z"
     },
     {
       "bytes": 1252,
@@ -1198,37 +1288,22 @@
       "source_type": "documentation",
       "title": "Interface: ScoreResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.022Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.652Z"
     },
     {
-      "bytes": 1156,
+      "bytes": 1615,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequest",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequest.md",
-      "observed_at": "2026-10-01T18:26:36.596766Z",
-      "sha256": "c2f8d6a326fefca098f6d8331dd26f5721f523e16dbaf2f77f2fed81f2253ed4",
+      "observed_at": "2026-10-15T04:42:35.049831Z",
+      "sha256": "4a8067a5e6be088b31a1e010e1fdc3938530e6927ba237efd3d32caaf33ac5ed",
       "source_id": "docs:sdk/javascript/api/interfaces/SystemOneRequest",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Interface: SystemOneRequest<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.021Z"
-    },
-    {
-      "bytes": 1405,
-      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequestPayload",
-      "description": "",
-      "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequestPayload.md",
-      "observed_at": "2026-10-01T18:26:36.596788Z",
-      "sha256": "50dcc14c938af2f75afdcff95a34a86e62b6395f4a0effc98e10e2d2606ce84f",
-      "source_id": "docs:sdk/javascript/api/interfaces/SystemOneRequestPayload",
-      "source_tag": null,
-      "source_type": "documentation",
-      "title": "Interface: SystemOneRequestPayload",
-      "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.033Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.651Z"
     },
     {
       "bytes": 941,
@@ -1243,37 +1318,52 @@
       "source_type": "documentation",
       "title": "Interface: SystemOneResult<Q>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.032Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.651Z"
     },
     {
-      "bytes": 2314,
+      "bytes": 1042,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TextWithAssets",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TextWithAssets.md",
+      "observed_at": "2026-10-15T04:42:35.049861Z",
+      "sha256": "fea8e76c4ad6774d8a7fdb094b692bb1efbc76501bdcaaeab34a9d083361b028",
+      "source_id": "docs:sdk/javascript/api/interfaces/TextWithAssets",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Interface: TextWithAssets",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.650Z"
+    },
+    {
+      "bytes": 2726,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TypeSafeClientConfig",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TypeSafeClientConfig.md",
-      "observed_at": "2026-10-01T18:26:36.596863Z",
-      "sha256": "60beed43998f14205e7fac512b890822f8f6f930d7039957feed517b88cf7230",
+      "observed_at": "2026-10-15T04:42:35.049879Z",
+      "sha256": "49389d842fc6e9bd8ab346a4b0ec8351711bfd953a74dfc520bbaf06f23097c4",
       "source_id": "docs:sdk/javascript/api/interfaces/TypeSafeClientConfig",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Interface: TypeSafeClientConfig",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.031Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.649Z"
     },
     {
-      "bytes": 629,
+      "bytes": 727,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Usage",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Usage.md",
-      "observed_at": "2026-10-01T18:26:36.596883Z",
-      "sha256": "6c31113ae0000cbfd34b4220a8d4333c3941f654549981d89a9335444f2c31d6",
+      "observed_at": "2026-10-15T04:42:35.049895Z",
+      "sha256": "91f47022890eb3f3b8588cbd1a2ca8f686cefea5e1448e21f48d2cdce11565aa",
       "source_id": "docs:sdk/javascript/api/interfaces/Usage",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Interface: Usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.019Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.649Z"
     },
     {
       "bytes": 825,
@@ -1288,7 +1378,22 @@
       "source_type": "documentation",
       "title": "Interface: WithResponse<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.036Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.659Z"
+    },
+    {
+      "bytes": 405,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Asset",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Asset.md",
+      "observed_at": "2026-10-15T04:42:35.049926Z",
+      "sha256": "766723d162531aa3679ee754dfb6de89752e92bae551dd36b036573bb6177e10",
+      "source_id": "docs:sdk/javascript/api/type-aliases/Asset",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Type Alias: Asset",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.658Z"
     },
     {
       "bytes": 512,
@@ -1303,7 +1408,37 @@
       "source_type": "documentation",
       "title": "Type Alias: ChoiceCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.035Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.658Z"
+    },
+    {
+      "bytes": 454,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Compression",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Compression.md",
+      "observed_at": "2026-10-15T04:42:35.049954Z",
+      "sha256": "73bf0ef0266ed4b23c242ef0b5cbf805bfa3a94e7dcae5186ccce1d37510e325",
+      "source_id": "docs:sdk/javascript/api/type-aliases/Compression",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Type Alias: Compression",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.635Z"
+    },
+    {
+      "bytes": 609,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ContentValue",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ContentValue.md",
+      "observed_at": "2026-10-15T04:42:35.049969Z",
+      "sha256": "4a817169dbeaff7b495fe22d7dc43f4b51c7185345348e2ee54ee491dba23ce3",
+      "source_id": "docs:sdk/javascript/api/type-aliases/ContentValue",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Type Alias: ContentValue",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.635Z"
     },
     {
       "bytes": 435,
@@ -1318,22 +1453,22 @@
       "source_type": "documentation",
       "title": "Type Alias: Description",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.035Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.634Z"
     },
     {
-      "bytes": 509,
+      "bytes": 653,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/EntryType",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/EntryType.md",
-      "observed_at": "2026-10-01T18:26:36.596961Z",
-      "sha256": "355a76ef34c00823acc4c71af7764fc2c25c9175c79cebb82cb90e6a3f4181e7",
+      "observed_at": "2026-10-15T04:42:35.050010Z",
+      "sha256": "2dea7fa515d8234f93d8b2e5a64c618c9ab969d93b8acdd9a204fa8e3b09e7c0",
       "source_id": "docs:sdk/javascript/api/type-aliases/EntryType",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Type Alias: EntryType",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.034Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.633Z"
     },
     {
       "bytes": 381,
@@ -1348,7 +1483,7 @@
       "source_type": "documentation",
       "title": "Type Alias: EnvVar",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.012Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.633Z"
     },
     {
       "bytes": 547,
@@ -1363,7 +1498,7 @@
       "source_type": "documentation",
       "title": "Type Alias: Fetch",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.011Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.632Z"
     },
     {
       "bytes": 478,
@@ -1378,7 +1513,7 @@
       "source_type": "documentation",
       "title": "Type Alias: JsonValue",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.010Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.631Z"
     },
     {
       "bytes": 440,
@@ -1393,37 +1528,37 @@
       "source_type": "documentation",
       "title": "Type Alias: LogLevel",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.009Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.631Z"
     },
     {
-      "bytes": 455,
+      "bytes": 471,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Question",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/Question.md",
-      "observed_at": "2026-10-01T18:26:36.597051Z",
-      "sha256": "1e2bcda7a1644062945c733115e2da903a28e8d4349b7a53c8d48e64e2a3abb3",
+      "observed_at": "2026-10-15T04:42:35.050082Z",
+      "sha256": "e0f6967b59a8a6cedd774edbb7d8033a9a17c3a6cc07488cbfa79511c24efba2",
       "source_id": "docs:sdk/javascript/api/type-aliases/Question",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Type Alias: Question",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.009Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.630Z"
     },
     {
-      "bytes": 681,
+      "bytes": 719,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ResultFor",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ResultFor.md",
-      "observed_at": "2026-10-01T18:26:36.597069Z",
-      "sha256": "411004d64c3a2613881de525ee6d588d4cfa1f47c3284370ddb685c133323091",
+      "observed_at": "2026-10-15T04:42:35.050099Z",
+      "sha256": "2640d8a53fa4b7b774290fa318c59593ee77edd454efb75c81a6fece9618945e",
       "source_id": "docs:sdk/javascript/api/type-aliases/ResultFor",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Type Alias: ResultFor<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.008Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.629Z"
     },
     {
       "bytes": 504,
@@ -1438,22 +1573,22 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreCriteria",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.020Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.680Z"
     },
     {
-      "bytes": 558,
+      "bytes": 571,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ScoreLegend",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/ScoreLegend.md",
-      "observed_at": "2026-10-01T18:26:36.597107Z",
-      "sha256": "ead596841cbea63f6d3dee2ba263f2b53d84dda4dde1ca3f749a817b9f2f3bfd",
+      "observed_at": "2026-10-15T04:42:35.050128Z",
+      "sha256": "c43042d37f5d12e80ba28c025f678f9725662d67bd8b66d0bf19e7816a4db48d",
       "source_id": "docs:sdk/javascript/api/type-aliases/ScoreLegend",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Type Alias: ScoreLegend<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.019Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.679Z"
     },
     {
       "bytes": 635,
@@ -1468,7 +1603,22 @@
       "source_type": "documentation",
       "title": "Type Alias: ScoreOf<T>",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.059Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.648Z"
+    },
+    {
+      "bytes": 604,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/SentContent",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/type-aliases/SentContent.md",
+      "observed_at": "2026-10-15T04:42:35.050157Z",
+      "sha256": "22f902c37ab3df1befc8b35fb1c52f8e2483f6b18b78c0057369dd678a8ac668",
+      "source_id": "docs:sdk/javascript/api/type-aliases/SentContent",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Type Alias: SentContent<T>",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.646Z"
     },
     {
       "bytes": 1152,
@@ -1483,7 +1633,7 @@
       "source_type": "documentation",
       "title": "Variable: ENV",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.057Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.645Z"
     },
     {
       "bytes": 429,
@@ -1498,7 +1648,7 @@
       "source_type": "documentation",
       "title": "Variable: LOG_LEVELS",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.017Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.639Z"
     },
     {
       "bytes": 370,
@@ -1506,44 +1656,89 @@
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/VERSION.md",
-      "observed_at": "2026-10-01T18:26:36.597184Z",
-      "sha256": "3c9b18c8dad4b2f0a45b62662fa3ac69d05168a3ae06af1309b80762209a99de",
+      "observed_at": "2026-10-15T04:42:35.050232Z",
+      "sha256": "7ae45d20ede9189a99c57ec22a49b692797f29af4c3a0c50058f57308823571f",
       "source_id": "docs:sdk/javascript/api/variables/VERSION",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Variable: VERSION",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.015Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.645Z"
     },
     {
-      "bytes": 621,
+      "bytes": 2154,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/noul",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/noul.md",
+      "observed_at": "2026-10-15T04:42:35.050200Z",
+      "sha256": "f185c62ce5211eccb5f9e228c682213387fa8c7fead91c3fc1ff76cd6e892b9a",
+      "source_id": "docs:sdk/javascript/api/variables/noul",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Variable: noul",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.647Z"
+    },
+    {
+      "bytes": 1808,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/score",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/score.md",
+      "observed_at": "2026-10-15T04:42:35.050217Z",
+      "sha256": "b974f27348aa8be91b953e1d389ce02e7db9c496f176c5fb6f07f09806c4109a",
+      "source_id": "docs:sdk/javascript/api/variables/score",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Variable: score",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.637Z"
+    },
+    {
+      "bytes": 1823,
+      "canonical_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/withAssets",
+      "description": "",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/javascript/api/variables/withAssets.md",
+      "observed_at": "2026-10-15T04:42:35.050247Z",
+      "sha256": "7884d23386a8db58b7518d5baf3b9ee3be358d38660a4a868f88a448e13b38f1",
+      "source_id": "docs:sdk/javascript/api/variables/withAssets",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Variable: withAssets",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:29:53.657Z"
+    },
+    {
+      "bytes": 1631,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript/changelog",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript/changelog.md",
-      "observed_at": "2026-10-01T18:26:36.596185Z",
-      "sha256": "6204f65e88fd44beee8a5515b4f7e6d566eb8203cac2e7838c12db1cb8890381",
+      "observed_at": "2026-10-15T04:42:35.049332Z",
+      "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
       "source_id": "docs:sdk/javascript/changelog",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Changelog",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T23:58:50.013Z"
+      "upstream_last_modified": "2026-10-14T21:29:53.644Z"
     },
     {
-      "bytes": 3827,
+      "bytes": 4148,
       "canonical_url": "https://docs.typesafe.ai/sdk/python",
       "description": "Install the TypeSafe Python SDK and get started with asynchronous or synchronous API calls.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python.md",
-      "observed_at": "2026-10-01T18:26:36.595665Z",
-      "sha256": "ff4564cfcf2b577f36be5f6bb6bb0ee5f4f39306af1a39357316a54c81f92279",
+      "observed_at": "2026-10-15T04:42:35.048800Z",
+      "sha256": "d553ed54513002c58c62027c2de76734fefb4270c5b591dad35bc5670403d407",
       "source_id": "docs:sdk/python",
       "source_tag": null,
       "source_type": "documentation",
       "title": "TypeSafe Python SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-26T21:22:17.189Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.104Z"
     },
     {
       "bytes": 736,
@@ -1561,34 +1756,34 @@
       "upstream_last_modified": "2026-09-18T09:14:15.483Z"
     },
     {
-      "bytes": 32762,
+      "bytes": 38626,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/async",
       "description": "Use AsyncTypeSafeClient to ask questions, list models, and configure asynchronous TypeSafe API requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/clients/async.md",
-      "observed_at": "2026-10-09T18:22:15.664319Z",
-      "sha256": "fb00e8573113563f5555c42e4536fa6ad5d843ad9c47d0c3af2b3b70b83a150b",
+      "observed_at": "2026-10-15T04:42:35.048951Z",
+      "sha256": "dda33893109cbd5d053b26a01eb4255be91e0c4efedddf4519aa5bfe6987653b",
       "source_id": "docs:sdk/python/api/clients/async",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Asynchronous client",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-09T09:52:56.169Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.093Z"
     },
     {
-      "bytes": 32154,
+      "bytes": 37991,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync",
       "description": "Use TypeSafeClient to ask questions, list models, and configure synchronous TypeSafe API requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync.md",
-      "observed_at": "2026-10-09T18:22:15.664378Z",
-      "sha256": "d07de11ccd0f2bd2da415498d863b80cb20908de1ce9429e159e3b01a12e00a2",
+      "observed_at": "2026-10-15T04:42:35.049026Z",
+      "sha256": "779ee50b1ff655cbbce5633bd0dce335c388a937da99a5c2cbc9907ca1f7137c",
       "source_id": "docs:sdk/python/api/clients/sync",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Synchronous client",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-09T09:52:56.171Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.096Z"
     },
     {
       "bytes": 1895,
@@ -1636,79 +1831,109 @@
       "upstream_last_modified": "2026-09-15T18:15:54.317Z"
     },
     {
-      "bytes": 3055,
+      "bytes": 9633,
+      "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/assets",
+      "description": "Attach assets to System One requests and reference them from request content.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/assets.md",
+      "observed_at": "2026-10-15T04:42:35.049115Z",
+      "sha256": "b4e4e7c566075b6550771f1dee259ec61bbfc4928d31a1515690fd1888c3923c",
+      "source_id": "docs:sdk/python/api/types/assets",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Assets",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:23:09.116Z"
+    },
+    {
+      "bytes": 4837,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/common",
       "description": "Common types for TypeSafe API SDK.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/common.md",
-      "observed_at": "2026-10-01T18:26:36.596100Z",
-      "sha256": "d93bf202cbbd2eeebb7f91af476b803400bd8ebe81b7c6013027d8b7c8c461bd",
+      "observed_at": "2026-10-15T04:42:35.049251Z",
+      "sha256": "c84a0b9417ea310f65754fcc6d1454bb816dfb6e66fc252a0ce3dcca36427ac1",
       "source_id": "docs:sdk/python/api/types/common",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Common types",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-18T09:14:15.476Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.092Z"
     },
     {
-      "bytes": 33442,
+      "bytes": 39710,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
       "description": "Provide state and ask yes/no, choice, and score questions using objects or dictionaries.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/questions.md",
-      "observed_at": "2026-10-09T18:22:15.664439Z",
-      "sha256": "8add73041d0fe7697f2cf0d6a1ca474e6680b77df7f2122907e75e56667e3c8a",
+      "observed_at": "2026-10-15T04:42:35.049094Z",
+      "sha256": "a4dc58128c471806ca2bb98e804cee04c53d1f735768aba67e083e7f79c507ec",
       "source_id": "docs:sdk/python/api/types/questions",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-09T09:52:56.166Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.097Z"
     },
     {
-      "bytes": 38738,
+      "bytes": 50557,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/responses",
       "description": "Read answers, confidence scores, token usage, and available models returned by the TypeSafe API.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/responses.md",
-      "observed_at": "2026-10-01T18:26:36.596038Z",
-      "sha256": "03efd826c4334bd7260cae2fd980a9ae01a934f8714e58ea59093389a14bb6ad",
+      "observed_at": "2026-10-15T04:42:35.049196Z",
+      "sha256": "6bc6f77216906580e51e3f2f8a27189a3df81e8792390fae23f3b3b96447abfe",
       "source_id": "docs:sdk/python/api/types/responses",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Answers and responses",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-18T09:14:15.519Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.094Z"
     },
     {
-      "bytes": 2662,
+      "bytes": 3372,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/changelog",
       "description": "Python clients for the TypeSafe AI API",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/changelog.md",
-      "observed_at": "2026-10-09T18:22:15.664241Z",
-      "sha256": "3b156d9904f7f145d13864764637726dd67b8e7b2883c6f664f0a2f78f06d7e1",
+      "observed_at": "2026-10-15T04:42:35.048871Z",
+      "sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
       "source_id": "docs:sdk/python/changelog",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Changelog",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-09T09:52:56.165Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.094Z"
     },
     {
-      "bytes": 21965,
-      "canonical_url": "https://docs.typesafe.ai/sdk/python/usage",
-      "description": "Guides and patterns for working with the TypeSafe Python SDK.",
+      "bytes": 8932,
+      "canonical_url": "https://docs.typesafe.ai/sdk/python/usage/advanced",
+      "description": "Performance tuning, logging, and forward compatibility for the TypeSafe Python SDK.",
       "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/sdk/python/usage.md",
-      "observed_at": "2026-10-09T18:22:15.664215Z",
-      "sha256": "bd11cbe5cbcb81e1fc03c1ab6deb0c06f7574a60b7b411f41d01d84e386e5cb9",
-      "source_id": "docs:sdk/python/usage",
+      "fetch_url": "https://docs.typesafe.ai/sdk/python/usage/advanced.md",
+      "observed_at": "2026-10-15T04:42:35.048851Z",
+      "sha256": "30d88a3443a7d1c88c611c0ccd94955b9735e44bb59366aa9793852945d6b860",
+      "source_id": "docs:sdk/python/usage/advanced",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Usage",
+      "title": "Advanced usage",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-09T09:52:56.167Z"
+      "upstream_last_modified": "2026-10-14T21:23:09.096Z"
+    },
+    {
+      "bytes": 20454,
+      "canonical_url": "https://docs.typesafe.ai/sdk/python/usage/basic",
+      "description": "Guides and patterns for working with the TypeSafe Python SDK.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/sdk/python/usage/basic.md",
+      "observed_at": "2026-10-15T04:42:35.048830Z",
+      "sha256": "25a9e959ef68bb9c3302b99fb8456aa35782ff4ee41c7bb31bfe92e7c58221cb",
+      "source_id": "docs:sdk/python/usage/basic",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Basic usage",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-14T21:23:09.085Z"
     },
     {
       "bytes": 50,
@@ -1806,8 +2031,8 @@
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-js/commits/main",
-      "observed_at": "2026-09-21T15:35:43.714138Z",
-      "sha256": "99af43298ad42f97255a3b7c1696c4345ee52ce471ecac11bff5fcd348a22de3",
+      "observed_at": "2026-10-15T04:42:35.050390Z",
+      "sha256": "5b330bff06745ebe571fd64ec1165917b1607e697b7f6603aa882d8184a3659b",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:head",
       "source_tag": null,
       "source_type": "github-api",
@@ -1816,28 +2041,28 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 2385,
-      "canonical_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/66880ccded6cb642dc1809620c2b108c33730214/package.json",
+      "bytes": 2380,
+      "canonical_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json",
       "description": "",
       "discovered_via": null,
-      "fetch_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/66880ccded6cb642dc1809620c2b108c33730214/package.json",
-      "observed_at": "2026-09-21T15:03:35.497813Z",
-      "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+      "fetch_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json",
+      "observed_at": "2026-10-15T04:42:35.050397Z",
+      "sha256": "5b91ef13fa6bc4b943fb18f148420cfb42292855e339949482c08617521045b7",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:package.json",
       "source_tag": null,
       "source_type": "github-source",
       "title": "",
-      "upstream_commit": "66880ccded6cb642dc1809620c2b108c33730214",
+      "upstream_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
       "upstream_last_modified": null
     },
     {
-      "bytes": 339,
+      "bytes": 508,
       "canonical_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-js/releases?per_page=100",
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-js/releases?per_page=100",
-      "observed_at": "2026-09-21T15:35:43.714132Z",
-      "sha256": "00012e9db985ffe73433b8369b32c6e1a26a25fb02d1ce8a07778ed97fec4633",
+      "observed_at": "2026-10-15T04:42:35.050385Z",
+      "sha256": "2abfa3fbff8a13e30fb7a3c3412267816ff8e9cba99996fa23daee59e95cd181",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:releases",
       "source_tag": null,
       "source_type": "github-api",
@@ -1861,13 +2086,13 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 157,
+      "bytes": 235,
       "canonical_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-js/tags?per_page=100",
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-js/tags?per_page=100",
-      "observed_at": "2026-09-21T15:35:43.714125Z",
-      "sha256": "eb9347fb6ea2d3e87719d4e12934f1a37065b0ee5670f765b3d7f63f4f32e396",
+      "observed_at": "2026-10-15T04:42:35.050380Z",
+      "sha256": "9990852c0f473e306cc9aa0b97448e19d08cb7526398e552ef161630d8b3bbbc",
       "source_id": "github:typesafe-ai/typesafe-sdk-js:tags",
       "source_tag": null,
       "source_type": "github-api",
@@ -1881,8 +2106,8 @@
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-python/commits/main",
-      "observed_at": "2026-10-09T18:22:15.665561Z",
-      "sha256": "9a30637753ffe07c0d565852044ab3602647fcf9c5f0b5022d6558ed5a435c23",
+      "observed_at": "2026-10-15T04:42:35.050332Z",
+      "sha256": "adf66bbdc9e36dcb57036e4bd6a68ceb051ae0b5219efb5768fb564c6a32951b",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:head",
       "source_tag": null,
       "source_type": "github-api",
@@ -1891,28 +2116,28 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 2765,
-      "canonical_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/e70bf99a89f27102247613bcd5d1aa8923a1cda9/pyproject.toml",
+      "bytes": 3260,
+      "canonical_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml",
       "description": "",
       "discovered_via": null,
-      "fetch_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/e70bf99a89f27102247613bcd5d1aa8923a1cda9/pyproject.toml",
-      "observed_at": "2026-10-09T18:22:15.665570Z",
-      "sha256": "b8817f1e0de52c46a29b88d717fa4db6258644b98b40c50810a2d6c1a20e5994",
+      "fetch_url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml",
+      "observed_at": "2026-10-15T04:42:35.050341Z",
+      "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
       "source_tag": null,
       "source_type": "github-source",
       "title": "",
-      "upstream_commit": "e70bf99a89f27102247613bcd5d1aa8923a1cda9",
+      "upstream_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
       "upstream_last_modified": null
     },
     {
-      "bytes": 1212,
+      "bytes": 1385,
       "canonical_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-python/releases?per_page=100",
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-python/releases?per_page=100",
-      "observed_at": "2026-10-09T18:22:15.665556Z",
-      "sha256": "c9bcdf7c03c63df6e45744cd37fc53f3db6fd082b3e34c4f6c5b82a60168d4d6",
+      "observed_at": "2026-10-15T04:42:35.050328Z",
+      "sha256": "7c38e356e5239d8e4f3a8288a91b2a8022c33e742e0c680d958b74e19614d929",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:releases",
       "source_tag": null,
       "source_type": "github-api",
@@ -1936,13 +2161,13 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 547,
+      "bytes": 625,
       "canonical_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-python/tags?per_page=100",
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://api.github.com/repos/typesafe-ai/typesafe-sdk-python/tags?per_page=100",
-      "observed_at": "2026-10-09T18:22:15.665547Z",
-      "sha256": "cfebc372a1015c4f27d30d76dc77dbeab88e83f9022928aec827c446acc4a0ba",
+      "observed_at": "2026-10-15T04:42:35.050320Z",
+      "sha256": "c6d23bcd8797ae56b9c339f968bca727d174385226fee47f18340a4ab46013fa",
       "source_id": "github:typesafe-ai/typesafe-sdk-python:tags",
       "source_tag": null,
       "source_type": "github-api",
@@ -2046,8 +2271,8 @@
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://registry.npmjs.org/@typesafe-ai%2fsdk",
-      "observed_at": "2026-09-21T15:35:43.714150Z",
-      "sha256": "8d11d3d01304a3d90607d90d95f8eb9953b6811a205b695e5ff14485e6e3cb37",
+      "observed_at": "2026-10-15T04:42:35.050401Z",
+      "sha256": "1e1e90bba892b6dc4ab01db81f195f28cdac7812ba978c72f022f47f97b32725",
       "source_id": "registry:npm:@typesafe-ai/sdk",
       "source_tag": null,
       "source_type": "package-registry",
@@ -2056,13 +2281,13 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 108,
+      "bytes": 116,
       "canonical_url": "https://pypi.org/pypi/typesafe-sdk/json",
       "description": "",
       "discovered_via": null,
       "fetch_url": "https://pypi.org/pypi/typesafe-sdk/json",
-      "observed_at": "2026-10-09T18:22:15.665575Z",
-      "sha256": "4a13312d53edaa27baa61cb4ae432d38148f7f0b22f40f5b1c976292475b94f2",
+      "observed_at": "2026-10-15T04:42:35.050345Z",
+      "sha256": "ecaaf93f3c44ed2757d15916cf1f1aa44b7513288943ca31e13e458f34d4d470",
       "source_id": "registry:pypi:typesafe-sdk",
       "source_tag": null,
       "source_type": "package-registry",
