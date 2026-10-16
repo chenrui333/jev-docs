@@ -451,19 +451,19 @@
       "upstream_last_modified": "2026-10-11T05:58:47.754Z"
     },
     {
-      "bytes": 22161,
+      "bytes": 22184,
       "canonical_url": "https://docs.typesafe.ai/images",
       "description": "Send images in a System One request: in the state, inside a question's instructions, and as the criteria a question is judged against.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/images.md",
-      "observed_at": "2026-10-15T04:42:35.047208Z",
-      "sha256": "9dfbc3387fb0730435331ef41271287f1d9720ce4f37e09cce25b3643c4901b8",
+      "observed_at": "2026-10-16T04:34:40.194394Z",
+      "sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
       "source_id": "docs:images",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Images",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T22:02:51.736Z"
+      "upstream_last_modified": "2026-10-15T22:12:06.556Z"
     },
     {
       "bytes": 4691,

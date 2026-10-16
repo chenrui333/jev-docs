@@ -98,7 +98,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/images",
-      "sha256": "9dfbc3387fb0730435331ef41271287f1d9720ce4f37e09cce25b3643c4901b8",
+      "sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
       "source_id": "docs:images",
       "status": "fetched",
       "title": "Images"

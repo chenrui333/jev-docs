@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-16",
+  "events": [
+    {
+      "after_sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
+      "before_sha256": "9dfbc3387fb0730435331ef41271287f1d9720ce4f37e09cce25b3643c4901b8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:images",
+      "id": "3c1483db594ffad2d21d1726",
+      "observed_at": "2026-10-16T04:34:40.186864Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
+          "source_id": "docs:images",
+          "url": "https://docs.typesafe.ai/images"
+        }
+      ],
+      "summary": "Documentation page docs:images modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
