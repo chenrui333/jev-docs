@@ -387,16 +387,60 @@ def test_recovery_keeps_original_batch_before_a_different_new_observation(tmp_pa
     assert (tmp_path / "changes/2026-10-03.md").is_file()
 
 
+@pytest.mark.parametrize(
+    ("fault", "message"),
+    [
+        ("duplicate", "recorded in"),
+        ("dangling", "missing predecessor"),
+        ("cross-category", "crosses category or entity"),
+        ("cross-entity", "crosses category or entity"),
+        ("branched", "multiple successors"),
+        ("cyclic", "cycle"),
+    ],
+)
 @pytest.mark.parametrize("strict", [False, True])
-def test_corrupt_cross_day_history_aborts_before_fetch_or_promotion(tmp_path, monkeypatch, strict):
+def test_corrupt_cross_day_history_aborts_before_fetch_or_promotion(
+    tmp_path, monkeypatch, strict, fault, message
+):
     restart_sync(tmp_path, "A", "2026-10-01")
     restart_sync(tmp_path, "B", "2026-10-02")
     restart_sync(tmp_path, "A", "2026-10-03")
-    first_day = json.loads((tmp_path / "events/2026-10-02.json").read_text())
+    first_path = tmp_path / "events/2026-10-02.json"
+    first_day = json.loads(first_path.read_text())
     second_path = tmp_path / "events/2026-10-03.json"
     second_day = json.loads(second_path.read_text())
-    second_day["events"][0]["id"] = first_day["events"][0]["id"]
+    first = next(
+        event
+        for event in first_day["events"]
+        if (event["category"], event["entity"]) == ("documentation", "docs:primitives/choice")
+    )
+    second = next(
+        event
+        for event in second_day["events"]
+        if (event["category"], event["entity"]) == ("documentation", "docs:primitives/choice")
+    )
+    if fault == "duplicate":
+        second["id"] = first["id"]
+    elif fault == "dangling":
+        second["previous_event_id"] = "missing-event"
+    elif fault in {"cross-category", "cross-entity"}:
+        other = next(
+            event
+            for event in first_day["events"]
+            if event["category"] == ("primitive" if fault == "cross-category" else "documentation")
+            and event["entity"]
+            == ("choice" if fault == "cross-category" else "docs:primitives/score")
+        )
+        second["previous_event_id"] = other["id"]
+    elif fault == "branched":
+        second_day["events"].append({**second, "id": "extra-successor"})
+    elif fault == "cyclic":
+        first["previous_event_id"] = second["id"]
+    first_path.write_text(json.dumps(first_day))
     second_path.write_text(json.dumps(second_day))
+    (tmp_path / "changes/2026-10-03.md").write_text(
+        sync_module.render_daily_report("2026-10-03", second_day["events"])
+    )
     before = snapshot(tmp_path)
     fetched = []
     promoted = []
@@ -413,8 +457,54 @@ def test_corrupt_cross_day_history_aborts_before_fetch_or_promotion(tmp_path, mo
 
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-04T00:00:00Z")
     monkeypatch.setattr(sync_module, "promote", reject_promotion)
-    with pytest.raises(RuntimeError, match="recorded in"):
+    monkeypatch.setattr(sync_module, "ROOT", tmp_path)
+    assert sync_module.main(["validate", "--strict"]) == 1
+    with pytest.raises(RuntimeError, match=message):
         synchronize(tmp_path, TrackingSources(), strict=strict)
     assert fetched == []
     assert promoted == []
     assert snapshot(tmp_path) == before
+
+
+def test_mixed_legacy_roots_and_chains_extend_on_the_same_day(tmp_path):
+    for day, value in enumerate(("A", "B", "A", "B"), start=1):
+        restart_sync(tmp_path, value, f"2026-10-{day:02d}")
+    # Multiple unlinked roots for an entity are legitimate pre-chain history.
+    for day in ("2026-10-02", "2026-10-03"):
+        path = tmp_path / f"events/{day}.json"
+        data = json.loads(path.read_text())
+        for event in data["events"]:
+            event.pop("previous_event_id")
+        path.write_text(json.dumps(data))
+    preserved = {event["id"]: event for event in history(tmp_path)}
+    sync_module.validate_tree(tmp_path, strict=True)
+    assert restart_sync(tmp_path, "A", "2026-10-04")["events"] == 4
+    assert len(history(tmp_path)) == 16
+    for event in history(tmp_path):
+        if event["id"] in preserved:
+            assert event == preserved[event["id"]]
+    assert restart_sync(tmp_path, "A", "2026-10-05")["events"] == 0
+
+
+def test_staged_graph_requires_and_validates_retained_predecessors(tmp_path):
+    import shutil
+
+    previous = tmp_path / "previous"
+    previous.mkdir()
+    restart_sync(previous, "A", "2026-10-01")
+    restart_sync(previous, "B", "2026-10-02")
+    stage = tmp_path / "stage"
+    shutil.copytree(previous, stage)
+    restart_sync(stage, "A", "2026-10-03")
+    (stage / "events/baseline.json").unlink()
+    (stage / "events/2026-10-02.json").unlink()
+    (stage / "changes/2026-10-02.md").unlink()
+    with pytest.raises(RuntimeError, match="missing predecessor"):
+        sync_module.validate_tree(stage, strict=True)
+    sync_module.validate_tree(stage, strict=True, history_root=previous)
+    path = stage / "events/2026-10-03.json"
+    data = json.loads(path.read_text())
+    data["events"][0]["previous_event_id"] = "missing-from-both-trees"
+    path.write_text(json.dumps(data))
+    with pytest.raises(RuntimeError, match="missing predecessor"):
+        sync_module.validate_tree(stage, strict=True, history_root=previous)

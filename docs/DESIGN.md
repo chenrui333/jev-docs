@@ -174,6 +174,17 @@ IDs across older event files, inconsistent historical reports or other existing
 tree-integrity failures abort the run; validating only the new stage cannot hide
 them. This preflight also applies to non-strict synchronization.
 
+Strict history validation also requires every non-null predecessor to exist in
+the same `(category, entity)` group, permits at most one successor per event, and
+rejects cycles. Multiple unlinked legacy roots remain valid; no historical links
+are invented. These checks also apply to `validate --strict`.
+
+Staged validation uses the retained history as context, overlaying staged event
+and report files by day. A current-day rollup therefore replaces that day's
+validation view instead of duplicating its old records, while predecessors from
+earlier days remain available. The complete merged graph is checked before
+promotion without copying historical files into the publication batch.
+
 This is recoverable multi-file promotion, not an instantaneous snapshot for
 readers that ignore the lock. Interrupted files can be temporarily inconsistent
 until recovery; validation/publication must wait for completion. Missing or

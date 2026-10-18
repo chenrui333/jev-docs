@@ -1894,7 +1894,38 @@ def validate_coverage(coverage: dict[str, Any]) -> None:
         raise RuntimeError("source coverage delta disagrees with current pages")
 
 
-def validate_tree(root: Path, strict: bool = False) -> None:
+def _validate_event_graph(events: dict[str, dict[str, Any]]) -> None:
+    successors: dict[str, str] = {}
+    for ident, event in events.items():
+        previous_id = event.get("previous_event_id")
+        if previous_id is None:
+            # Legacy records need not form a single chain for each entity.
+            continue
+        if not isinstance(previous_id, str) or previous_id not in events:
+            raise RuntimeError(f"event {ident} has missing predecessor {previous_id}")
+        previous = events[previous_id]
+        if (event.get("category"), event.get("entity")) != (
+            previous.get("category"),
+            previous.get("entity"),
+        ):
+            raise RuntimeError(f"event {ident} predecessor crosses category or entity")
+        if previous_id in successors:
+            raise RuntimeError(f"event {previous_id} has multiple successors")
+        successors[previous_id] = ident
+
+    completed: set[str] = set()
+    for ident in events:
+        chain: set[str] = set()
+        current: str | None = ident
+        while current is not None and current not in completed:
+            if current in chain:
+                raise RuntimeError(f"event {current} predecessor chain contains a cycle")
+            chain.add(current)
+            current = events[current].get("previous_event_id")
+        completed.update(chain)
+
+
+def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None = None) -> None:
     if (root / PENDING).exists() or (root / PENDING).is_symlink():
         raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
@@ -1986,8 +2017,15 @@ def validate_tree(root: Path, strict: bool = False) -> None:
         root / "MODEL_LIMITATIONS.md"
     ).read_text() != render_limitations(limitations):
         raise RuntimeError("model limitations rendering disagrees with state")
+    event_paths: dict[str, Path] = {}
+    report_paths: dict[str, Path] = {}
+    for history in (history_root, root):
+        if history is not None:
+            event_paths.update({path.stem: path for path in (history / "events").glob("*.json")})
+            report_paths.update({path.stem: path for path in (history / "changes").glob("*.md")})
     seen_event_ids: dict[str, str] = {}
-    for path in sorted((root / "events").glob("*.json")):
+    events_by_id: dict[str, dict[str, Any]] = {}
+    for _, path in sorted(event_paths.items()):
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
         if len(ids) != len(set(ids)):
@@ -2000,18 +2038,20 @@ def validate_tree(root: Path, strict: bool = False) -> None:
             if ident in seen_event_ids:
                 raise RuntimeError(f"event {ident} recorded in {seen_event_ids[ident]} and {path}")
             seen_event_ids[ident] = str(path)
+        events_by_id.update({event["id"]: event for event in data.get("events", [])})
         if data.get("date") != path.stem:
             raise RuntimeError(f"event file date disagrees with its name: {path}")
-        report = root / f"changes/{path.stem}.md"
-        if not report.exists() or report.read_text() != render_daily_report(
-            path.stem, data.get("events", [])
+        report = report_paths.get(path.stem)
+        if (
+            report is None
+            or not report.exists()
+            or report.read_text() != render_daily_report(path.stem, data.get("events", []))
         ):
             raise RuntimeError(f"daily report disagrees with events: {report}")
     if strict:
-        event_days = {path.stem for path in (root / "events").glob("*.json")} - {"baseline"}
-        orphaned = sorted(
-            path.name for path in (root / "changes").glob("*.md") if path.stem not in event_days
-        )
+        _validate_event_graph(events_by_id)
+        event_days = set(event_paths) - {"baseline"}
+        orphaned = sorted(path.name for day, path in report_paths.items() if day not in event_days)
         if orphaned:
             raise RuntimeError(f"daily reports without event files: {', '.join(orphaned)}")
     if "state/practices.json" not in (root / "BEST_PRACTICES.md").read_text():
@@ -2396,7 +2436,7 @@ def _synchronize(
             (stage / "changes").mkdir(parents=True, exist_ok=True)
             (stage / f"changes/{day}.md").write_text(render_daily_report(day, all_day_events))
         attempt["phase"] = "validation"
-        validate_tree(stage, strict=True)
+        validate_tree(stage, strict=True, history_root=root)
         attempt["phase"] = "promotion"
         promote(stage, root)
         attempt["phase"] = "sync-complete"
