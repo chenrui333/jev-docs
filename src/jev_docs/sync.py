@@ -2074,6 +2074,8 @@ def synchronize(
 ) -> dict[str, Any]:
     with synchronization_lock(root):
         recover_pending(root)
+        if (root / "events/baseline.json").exists():
+            validate_tree(root, strict=True)
         return _synchronize(root, client, strict, attempt)
 
 

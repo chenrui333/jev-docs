@@ -168,6 +168,12 @@ transaction explicitly: rerun `just sync` to recover it rather than deleting the
 journal. A failed new fetch can therefore follow successful recovery of an older,
 already validated observation.
 
+After recovery, an established baseline passes strict validation of the complete
+retained tree before the next observation loads its baseline or fetches sources. Duplicate
+IDs across older event files, inconsistent historical reports or other existing
+tree-integrity failures abort the run; validating only the new stage cannot hide
+them. This preflight also applies to non-strict synchronization.
+
 This is recoverable multi-file promotion, not an instantaneous snapshot for
 readers that ignore the lock. Interrupted files can be temporarily inconsistent
 until recovery; validation/publication must wait for completion. Missing or

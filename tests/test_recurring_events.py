@@ -385,3 +385,36 @@ def test_recovery_keeps_original_batch_before_a_different_new_observation(tmp_pa
     assert (tmp_path / "changes/2026-10-02.md").is_file()
     assert (tmp_path / "events/2026-10-02.json").is_file()
     assert (tmp_path / "changes/2026-10-03.md").is_file()
+
+
+@pytest.mark.parametrize("strict", [False, True])
+def test_corrupt_cross_day_history_aborts_before_fetch_or_promotion(tmp_path, monkeypatch, strict):
+    restart_sync(tmp_path, "A", "2026-10-01")
+    restart_sync(tmp_path, "B", "2026-10-02")
+    restart_sync(tmp_path, "A", "2026-10-03")
+    first_day = json.loads((tmp_path / "events/2026-10-02.json").read_text())
+    second_path = tmp_path / "events/2026-10-03.json"
+    second_day = json.loads(second_path.read_text())
+    second_day["events"][0]["id"] = first_day["events"][0]["id"]
+    second_path.write_text(json.dumps(second_day))
+    before = snapshot(tmp_path)
+    fetched = []
+    promoted = []
+    upstream = sources("B")
+
+    class TrackingSources:
+        def get(self, url):
+            fetched.append(url)
+            return upstream.get(url)
+
+    def reject_promotion(stage, root):
+        promoted.append((stage, root))
+        pytest.fail("corrupt historical events must fail before promotion")
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-04T00:00:00Z")
+    monkeypatch.setattr(sync_module, "promote", reject_promotion)
+    with pytest.raises(RuntimeError, match="recorded in"):
+        synchronize(tmp_path, TrackingSources(), strict=strict)
+    assert fetched == []
+    assert promoted == []
+    assert snapshot(tmp_path) == before
