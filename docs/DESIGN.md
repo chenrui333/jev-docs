@@ -6,8 +6,10 @@ The canonical web discovery input is `https://docs.typesafe.ai/llms.txt`.
 The synchronizer follows same-host links from that index and records the public
 sitemap's `lastmod` values when available. If the canonical index is unavailable, the run fails and preserves old state.
 A working sitemap cannot establish removals from a failed canonical index. Mintlify's `.md` representation is used for Markdown
-fetches, with the normal page form as a bounded fallback when a Markdown
-response is unavailable.
+fetches. The normal page form is used only when the Markdown URL returns 404; a
+transient Markdown failure fails the run instead of recording different bytes.
+Redirects must stay on the requested scheme and host, so content from another
+origin is never attributed to an official source.
 
 GitHub and package registries are separate immutable-or-mutable provenance
 streams. A released SDK is identified by package version, matching Git tag, and
