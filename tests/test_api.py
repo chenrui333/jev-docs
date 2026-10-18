@@ -659,3 +659,29 @@ def test_element_attributes_cannot_establish_or_conflict_with_active_endpoint():
         REFERENCE.replace("## Evaluation endpoint", "## Evaluation endpoint\n" + metadata)
     )
     assert with_real["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"
+
+
+@pytest.mark.parametrize(
+    "opening,closing",
+    [
+        ("<blockquote>", "</blockquote>"),
+        ("<code>", "</code>"),
+        ("<pre>", "</pre>"),
+        ("<script>", "</script>"),
+        ("<style>", "</style>"),
+        ("<!--", "-->"),
+    ],
+)
+def test_inactive_container_literals_in_attributes_cannot_remove_real_parameters(opening, closing):
+    start = REFERENCE.index('<ParamField body="model"')
+    end = REFERENCE.index("</ParamField>", start) + len("</ParamField>")
+    declaration = REFERENCE[start:end]
+    wrapped = (
+        f"<span title='{opening}'>Metadata</span>\n"
+        + declaration
+        + f"\n<span title='{closing}'>Metadata</span>"
+    )
+    api = derive(REFERENCE.replace(declaration, wrapped))
+    assert api["request_fields"] == ["model", "questions", "state"]
+    assert api["required_fields"] == ["model", "questions", "state"]
+    assert api["model_required"] is True

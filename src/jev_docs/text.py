@@ -3,6 +3,8 @@
 import html
 import re
 
+from jev_docs.markup import _markup
+
 
 def clean_text(content: str) -> str:
     # Only presentation tags: preserve comparisons and unknown angle-bracket text.
@@ -50,8 +52,23 @@ def excerpt(content: str, pattern: str, limit: int = 420) -> str | None:
 
 
 def without_comments(content: str) -> str:
-    """Discard inactive HTML comments, including an unclosed trailing comment."""
-    return re.sub(r"<!--[\s\S]*?(?:-->|\Z)", "\n", content)
+    """Discard actual comments, never comment markers in element metadata."""
+    tokens, _incomplete = _markup(content)
+    parts = []
+    position = 0
+    for token in tokens:
+        if token.escaped or not (
+            token.kind == "meta"
+            and token.name == "comment"
+            or token.kind == "incomplete"
+            and token.raw.startswith("<!--")
+        ):
+            continue
+        if token.start >= position:
+            parts.extend((content[position : token.start], "\n\n"))
+        position = max(position, token.end)
+    parts.append(content[position:])
+    return "".join(parts)
 
 
 class _MarkdownDepthError(ValueError):
@@ -133,21 +150,23 @@ def without_code_examples(content: str, *, keep_http: bool = False) -> str:
     containers: list[str] = []
     parts: list[str] = []
     position = 0
-    pattern = (
-        r"""<\s*(/?)\s*(code|pre|script|style|blockquote)\b(?:(?:"[^"]*"|'[^']*'|[^"'<>])*>|)"""
-    )
-    for tag in re.finditer(pattern, content, re.I):
-        if not tag[0].endswith(">"):
-            return ""  # An incomplete delimiter cannot prove a safe surrounding scope.
+    tokens, _incomplete = _markup(content)
+    blocked = {"code", "pre", "script", "style", "blockquote"}
+    for token in tokens:
+        if token.kind == "incomplete" and re.match(
+            r"</?(?:code|pre|script|style|blockquote)\b", token.raw, re.I
+        ):
+            return ""
+        if token.name not in blocked or token.escaped:
+            continue
         if not containers:
-            parts.append(content[position : tag.start()])
-        if tag[1]:
-            if containers and containers[-1] == tag[2].lower():
-                containers.pop()
-        elif not tag[0].rstrip().endswith("/>"):
-            containers.append(tag[2].lower())
+            parts.append(content[position : token.start])
+        if token.kind == "start":
+            containers.append(token.name)
+        elif token.kind == "end" and containers and containers[-1] == token.name:
+            containers.pop()
         parts.append("\n\n")
-        position = tag.end()
+        position = token.end
     if not containers:
         parts.append(content[position:])
     # Keep quoted HTML delimiters through the scan: removing only the opener
