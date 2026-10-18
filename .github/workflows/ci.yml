@@ -11,13 +11,18 @@ permissions:
 jobs:
   checks:
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # Lowest supported (requires-python) and the runtime used by scheduled sync.
+        python: ["3.10", "3.12"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
           enable-cache: true
-      - run: uv python install 3.12
-      - run: uv sync --locked --dev --python 3.12
+      - run: uv python install ${{ matrix.python }}
+      - run: uv sync --locked --dev --python ${{ matrix.python }}
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest
