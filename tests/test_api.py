@@ -557,3 +557,21 @@ def test_supported_nested_fence_preserves_only_active_contract_fields():
     ]
     page = REFERENCE.replace("## Request body", "## Request body\n" + "\n".join(lines) + "\n\n")
     assert derive(page)["request_fields"] == ["model", "questions", "state"]
+
+
+@pytest.mark.parametrize(
+    "example",
+    [
+        "```html\n<code>\n```\n\n",
+        "~~~html\n<pre>\n~~~\n\n",
+        "    <script>\n\n",
+        "```markdown\n<!--\n```\n\n",
+        "`<code>`\n\n",
+    ],
+)
+def test_unmatched_example_html_cannot_consume_later_active_contract(example):
+    page = REFERENCE.replace("## Request body", "## Request body\n" + example)
+    api = derive(page)
+    assert api["request_fields"] == ["model", "questions", "state"]
+    assert api["model_required"] is True
+    assert api["question_types"] == ["choice", "noul", "score"]

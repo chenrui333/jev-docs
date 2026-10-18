@@ -81,7 +81,32 @@ def markdown_tokens(content: str):
 
 def without_code_examples(content: str) -> str:
     """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
+    # Markdown examples are data: an unmatched HTML tag/comment inside one
+    # must not consume active prose after the closing fence.
+    tokens = markdown_tokens(content)
+    if tokens is None:
+        return ""
+    excluded = set()
+    for token in tokens:
+        if token.map and token.type in {"fence", "code_block", "blockquote_open"}:
+            excluded.update(range(*token.map))
+    content = "".join(
+        "\n" if line_number in excluded else line
+        for line_number, line in enumerate(content.splitlines(keepends=True))
+    )
     content = without_comments(content)
+    content = re.sub(
+        r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)",
+        lambda match: (
+            match[0]
+            if match[2].strip()
+            and not re.search(r"[<>\s]", match[2].strip())
+            and not re.search(r"[\r\n]", match[2])
+            else "\n\n"
+        ),
+        content,
+        flags=re.S,
+    )
     containers: list[str] = []
     parts: list[str] = []
     position = 0
@@ -97,28 +122,4 @@ def without_code_examples(content: str) -> str:
         position = tag.end()
     if not containers:
         parts.append(content[position:])
-    content = "".join(parts)
-    # MDX declarations remain opaque text, not raw-HTML blocks swallowing fences.
-    tokens = markdown_tokens(content)
-    if tokens is None:
-        return ""
-    excluded = set()
-    for token in tokens:
-        if token.map and token.type in {"fence", "code_block", "blockquote_open"}:
-            excluded.update(range(*token.map))
-    prose = [
-        "\n" if line_number in excluded else line
-        for line_number, line in enumerate(content.splitlines(keepends=True))
-    ]
-    return re.sub(
-        r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)",
-        lambda match: (
-            match[0]
-            if match[2].strip()
-            and not re.search(r"\s", match[2].strip())
-            and not re.search(r"[\r\n]", match[2])
-            else "\n\n"
-        ),
-        "".join(prose),
-        flags=re.S,
-    )
+    return "".join(parts)
