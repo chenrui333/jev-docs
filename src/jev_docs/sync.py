@@ -396,22 +396,53 @@ def observed_state(value: dict[str, Any], previous: dict[str, Any] | None) -> di
     return payload
 
 
-def actionable_discrepancies(freshness: dict[str, Any], now: datetime) -> list[str]:
-    observed_at = freshness.get("observed_at")
-    grace_days = freshness.get("grace_period_days", 3)
-    if not isinstance(observed_at, str) or not isinstance(grace_days, int):
-        return []
+def parse_utc(value: Any) -> datetime | None:
+    if not isinstance(value, str):
+        return None
     try:
-        first_seen = datetime.fromisoformat(observed_at.replace("Z", "+00:00")).astimezone(UTC)
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(UTC)
     except ValueError:
+        return None
+
+
+def sdk_freshness(
+    snapshot: dict[str, Any], previous: dict[str, Any], previous_freshness: dict[str, Any]
+) -> dict[str, Any]:
+    entry = {
+        "status": "discrepancy" if snapshot["discrepancies"] else "up_to_date",
+        "version": snapshot["version"],
+        "tag": snapshot["source_tag"],
+        "discrepancies": snapshot["discrepancies"],
+    }
+    if entry["status"] == "discrepancy":
+        # The grace period belongs to this SDK's continuous discrepancy, not to the
+        # whole freshness snapshot: unrelated docs, skill or other-SDK changes must
+        # not restart it. Older snapshots lack the field; their snapshot timestamp is
+        # the best retained evidence of when the discrepancy was already present.
+        first = None
+        if previous.get("status") == "discrepancy":
+            first = previous.get("discrepancy_first_observed") or previous_freshness.get(
+                "observed_at"
+            )
+        entry["discrepancy_first_observed"] = first or utc_now().isoformat().replace("+00:00", "Z")
+    return entry
+
+
+def actionable_discrepancies(freshness: dict[str, Any], now: datetime) -> list[str]:
+    grace_days = freshness.get("grace_period_days", 3)
+    if not isinstance(grace_days, int):
         return []
-    if now - first_seen < timedelta(days=grace_days):
-        return []
-    return [
-        name
-        for name in ("python", "javascript")
-        if freshness.get(name, {}).get("status") == "discrepancy"
-    ]
+    actionable = []
+    for name in ("python", "javascript"):
+        entry = freshness.get(name, {})
+        if entry.get("status") != "discrepancy":
+            continue
+        first_seen = parse_utc(
+            entry.get("discrepancy_first_observed") or freshness.get("observed_at")
+        )
+        if first_seen and now - first_seen >= timedelta(days=grace_days):
+            actionable.append(name)
+    return actionable
 
 
 def artifact_manifest(
@@ -1719,18 +1750,12 @@ def synchronize(
         {
             "schema_version": SCHEMA,
             "docs": {"status": "up_to_date", "discovered_pages": len(discovered)},
-            "python": {
-                "status": "up_to_date" if not python["discrepancies"] else "discrepancy",
-                "version": python["version"],
-                "tag": python["source_tag"],
-                "discrepancies": python["discrepancies"],
-            },
-            "javascript": {
-                "status": "up_to_date" if not javascript["discrepancies"] else "discrepancy",
-                "version": javascript["version"],
-                "tag": javascript["source_tag"],
-                "discrepancies": javascript["discrepancies"],
-            },
+            "python": sdk_freshness(
+                python, previous_freshness.get("python", {}), previous_freshness
+            ),
+            "javascript": sdk_freshness(
+                javascript, previous_freshness.get("javascript", {}), previous_freshness
+            ),
             "skill": {"status": "observed", "commit": skill_commit},
             "grace_period_days": 3,
         },
