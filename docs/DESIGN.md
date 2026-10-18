@@ -51,9 +51,11 @@ projects are unrelated to the Jev/System One documentation evidence boundary.
   regenerated; only the current day's report can receive additional events.
 
 The generated state uses stable JSON ordering and preserves an artifact's first
-observation timestamp while its content hash is unchanged. This avoids clock-
-driven churn while retaining meaningful observation timestamps. Events use a
-SHA-256 identity over schema, entity, change type, and before/after hashes.
+observation timestamp and sitemap `lastmod` while its content hash is unchanged.
+This avoids clock- and redeploy-driven churn while retaining meaningful
+observation timestamps. `state/sources.json` and the per-family `sources/`
+manifests share one record per artifact. Events use a SHA-256 identity over
+schema, entity, change type, and before/after hashes.
 
 ## Practices
 

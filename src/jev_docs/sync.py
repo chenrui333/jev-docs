@@ -36,6 +36,7 @@ DOCS_SITEMAP = f"{DOCS_ROOT}/sitemap.xml"
 GITHUB_API = "https://api.github.com"
 USER_AGENT = "jev-docs-sync/0.1 (+https://github.com/chenrui333/jev-docs)"
 SCHEMA = 1
+DOCS_SOURCE_TYPES = frozenset({"documentation", "documentation-discovery"})
 
 
 def canonical_json(value: Any) -> str:
@@ -472,6 +473,12 @@ def artifact_manifest(
     artifact: Artifact, previous: dict[str, Any] | None, title: str = "", description: str = ""
 ) -> dict[str, Any]:
     same = previous and previous.get("sha256") == artifact.sha256
+    # Sitemap lastmod moves on site redeploys and sitemap outages without content
+    # changes. While the content hash is unchanged, keep the lastmod recorded with
+    # that content, including an absent one.
+    last_modified = (
+        previous.get("upstream_last_modified") if same else artifact.upstream_last_modified
+    )
     return {
         "source_id": artifact.source_id,
         "source_type": artifact.source_type,
@@ -480,7 +487,7 @@ def artifact_manifest(
         else artifact.url,
         "fetch_url": artifact.url,
         "discovered_via": artifact.discovered_via,
-        "upstream_last_modified": artifact.upstream_last_modified,
+        "upstream_last_modified": last_modified,
         "upstream_commit": artifact.upstream_commit,
         "source_tag": artifact.source_tag,
         "sha256": artifact.sha256,
@@ -1666,7 +1673,6 @@ def synchronize(
     previous_github_manifest = (
         read_json(root / "sources/github.typesafe-ai/manifest.json", {}) or {}
     )
-    previous_sources = read_json(root / "state/sources.json", {}) or {}
     previous_coverage = read_json(root / "state/source-coverage.json", {}) or {}
     previous_freshness = read_json(root / "state/freshness.json", {}) or {}
     previous_state = {
@@ -1821,15 +1827,21 @@ def synchronize(
         for item in previous_github_manifest.get("artifacts", [])
         if isinstance(item, dict) and item.get("source_id")
     }
-    docs_items = [
-        artifact_manifest(artifact, old_docs.get(sid), *descriptions.get(sid, ("", "")))
+    # One record per artifact, shared by the family manifests and state/sources.json,
+    # so both files always carry the same observation metadata.
+    records = {
+        sid: artifact_manifest(
+            artifact,
+            (old_docs if artifact.source_type in DOCS_SOURCE_TYPES else old_github).get(sid),
+            *descriptions.get(sid, ("", "")),
+        )
         for sid, artifact in sorted(artifacts.items())
-        if artifact.source_type in {"documentation", "documentation-discovery"}
+    }
+    docs_items = [
+        record for record in records.values() if record["source_type"] in DOCS_SOURCE_TYPES
     ]
     github_items = [
-        artifact_manifest(artifact, old_github.get(sid))
-        for sid, artifact in sorted(artifacts.items())
-        if artifact.source_type not in {"documentation", "documentation-discovery"}
+        record for record in records.values() if record["source_type"] not in DOCS_SOURCE_TYPES
     ]
     new_docs_manifest = {"schema_version": SCHEMA, "artifacts": docs_items}
     old_events_state = {name: previous_state.get(name) for name in state}
@@ -1891,24 +1903,11 @@ def synchronize(
             raise RuntimeError(
                 f"strict sync failed; SDK release discrepancy persisted beyond grace period: {names}"
             )
-    old_source_items = {
-        item["source_id"]: item
-        for item in previous_sources.get("artifacts", [])
-        if isinstance(item, dict) and item.get("source_id")
-    }
     sources = {
         "schema_version": SCHEMA,
         "scope": "official TypeSafe public sources only",
         "documentation_license_note": "Hosted documentation is observed by metadata, hashes, and short excerpts; it is not bulk mirrored or relicensed.",
-        "artifacts": sorted(
-            [
-                artifact_manifest(
-                    artifact, old_source_items.get(sid), *descriptions.get(sid, ("", ""))
-                )
-                for sid, artifact in artifacts.items()
-            ],
-            key=lambda item: item["source_id"],
-        ),
+        "artifacts": list(records.values()),
     }
     stage = Path(tempfile.mkdtemp(prefix="jev-docs-stage-", dir=root.parent))
     try:
