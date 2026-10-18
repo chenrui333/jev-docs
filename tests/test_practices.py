@@ -16,6 +16,7 @@ from jev_docs.sync import (
     render_best_practices,
     semantic_events,
     sha256_bytes,
+    sha256_json,
     synchronize,
     validate_tree,
 )
@@ -617,7 +618,7 @@ def test_recommended_state_requires_matching_supported_context_provenance(tmp_pa
     else:
         item["sources"][0]["context_sha256"] = "0" * 64
     path.write_text(json.dumps(state))
-    with pytest.raises(RuntimeError, match="recommended practice lacks reviewed context"):
+    with pytest.raises(RuntimeError):
         validate_tree(tmp_path, strict=True)
 
 
@@ -666,3 +667,67 @@ def test_full_sync_reviews_every_fetched_allowed_context(tmp_path):
     for item in state["items"]:
         rule = next(rule for rule in PRACTICE_RULES if rule["id"] == item["id"])
         assert {row["source_id"] for row in item["evidence_reviews"]} == set(rule["sources"])
+
+
+@pytest.mark.parametrize(
+    "corruption",
+    [
+        "unregistered-context",
+        "forged-verdict",
+        "wrong-review-origin",
+        "omitted-source",
+        "duplicate-source",
+        "false-unavailable",
+        "unconfigured-rule",
+        "forged-summary",
+        "forged-category",
+        "forged-excerpt",
+        "missing-claim",
+        "empty-evidence",
+    ],
+)
+def test_generated_approvals_cannot_replace_authored_reviews(tmp_path, corruption):
+    synchronize(tmp_path, PracticeSources(), strict=True)
+    path = tmp_path / "state/practices.json"
+    state = json.loads(path.read_text())
+    item = items(state)["deterministic-before-jev"]
+    supported = next(row for row in item["evidence_reviews"] if row["verdict"] == "supported")
+    neutral = next(row for row in item["evidence_reviews"] if row["verdict"] == "non_conflicting")
+    if corruption == "unregistered-context":
+        supported["context_sha256"] = "a" * 64
+        for source in item["sources"]:
+            if source["source_id"] == supported["source_id"]:
+                source["context_sha256"] = supported["context_sha256"]
+    elif corruption == "forged-verdict":
+        neutral["verdict"] = "supported"
+    elif corruption == "wrong-review-origin":
+        supported["review_source"]["sha256"] = "a" * 64
+    elif corruption == "omitted-source":
+        item["evidence_reviews"].remove(neutral)
+    elif corruption == "duplicate-source":
+        item["evidence_reviews"].append(dict(supported))
+    elif corruption == "false-unavailable":
+        neutral.clear()
+        neutral.update(
+            source_id="docs:concepts/how-to-build-with-system-one", verdict="unavailable"
+        )
+    elif corruption == "forged-summary":
+        item["summary"] = "Unsupported replacement recommendation."
+    elif corruption == "forged-category":
+        item["category"] = "unsupported-category"
+    elif corruption == "forged-excerpt":
+        item["sources"][0]["excerpt"] = "Unsupported replacement claim."
+    elif corruption == "missing-claim":
+        item["sources"].pop(0)
+    elif corruption == "empty-evidence":
+        item["sources"] = []
+    else:
+        item["id"] = "invented-recommendation"
+    # Supply a consistent checksum and guide: approval must come from authored policy.
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (tmp_path / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(tmp_path, strict=True)

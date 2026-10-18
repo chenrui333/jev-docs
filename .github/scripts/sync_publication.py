@@ -8,6 +8,7 @@ import re
 import shutil
 import stat
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -265,6 +266,18 @@ def apply(args):
                 "unsupported generated file mode",
             )
             generated_path(args.repo, name.decode("utf-8"))
+            if name == b"state/practices.json":
+                # Import policy from this trusted checkout, never artifact-controlled data.
+                sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+                from jev_docs.practice_reviews import PRACTICE_EVIDENCE_POLICY
+
+                require(modes[1] != b"000000", "practice state cannot be deleted")
+                payload = json.loads(history_blob(args.repo, metadata.split()[3].decode("ascii")))
+                require(
+                    isinstance(payload, dict)
+                    and payload.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY,
+                    "changed practice state must use the current evidence policy",
+                )
         validate_history(args.repo, args.baseline, entries)
     git(args.repo, "apply", "--index", "--check", "-", input=patch)
     git(args.repo, "apply", "--index", "-", input=patch)

@@ -451,3 +451,27 @@ def test_publication_preserves_immutable_history(repository, tmp_path, change):
             for p in target.rglob("*")
             if p.is_file() and ".git" not in p.parts
         }
+
+
+@pytest.mark.parametrize("policy", [None, "legacy-policy", "reviewed-contexts-v1"])
+def test_changed_practice_state_cannot_downgrade_approval_policy(repository, tmp_path, policy):
+    path = repository / "state/practices.json"
+    original = json.dumps({"items": [], "legacy": True})
+    path.write_text(original)
+    git(repository, "add", ".")
+    git(repository, "commit", "-m", "trusted legacy practice state")
+    candidate = {"items": [], "evidence_policy": policy}
+    path.write_text(json.dumps(candidate))
+    baseline, artifact, packed = prepare(repository, tmp_path)
+    assert packed.returncode == 0, packed.stderr
+    restore(repository)
+    path.write_text(original)
+    git(repository, "add", "--", "state/practices.json")
+    applied = invoke(repository, artifact, baseline, command="apply")
+    if policy == "reviewed-contexts-v1":
+        assert applied.returncode == 0, applied.stderr
+        assert json.loads(path.read_text()) == candidate
+    else:
+        assert applied.returncode != 0
+        assert path.read_text() == original
+        assert git(repository, "diff", "--cached") == ""

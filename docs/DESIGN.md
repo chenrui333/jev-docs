@@ -477,6 +477,13 @@ only line endings, trailing whitespace, and repeated blank lines normalize.
 The separate passage extractor excludes examples. Evidence records retain both
 the raw artifact hash and reviewed context hash, while `evidence_reviews` explains
 unknown or conflicting observations. Historical citations remain separate.
+Strict validation independently checks the complete configured source set and
+looks up every approving review in the authored registry, including its verdict
+and review-origin URL/hash. Recomputed generated fingerprints do not confer
+approval. A fetched source cannot be relabeled unavailable to bypass review.
+The publication boundary requires the current evidence policy whenever practice
+state changes; unchanged trusted legacy state remains readable.
+
 
 To review a changed source:
 

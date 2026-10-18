@@ -2936,6 +2936,39 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
     for item in practices.get("items", []):
         if item["status"] != "recommended":
             continue
+        if practices.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY:
+            rule = next((rule for rule in PRACTICE_RULES if rule["id"] == item["id"]), None)
+            reviews = item.get("evidence_reviews", [])
+            identities = [review.get("source_id") for review in reviews]
+            if (
+                rule is None
+                or not item.get("sources")
+                or any(item.get(key) != rule[key] for key in ("category", "summary"))
+                or len(identities) != len(set(identities))
+                or set(identities) != set(rule["sources"])
+            ):
+                raise RuntimeError(f"recommended practice lacks reviewed context: {item['id']}")
+            for review in reviews:
+                sid, verdict = review["source_id"], review.get("verdict")
+                current = sources.get(sid)
+                if verdict == "unavailable" and current is None:
+                    continue
+                context_hash = review.get("context_sha256")
+                approved = (
+                    REVIEWED_PRACTICE_CONTEXTS.get(sid, {}).get(context_hash, {})
+                    if isinstance(context_hash, str)
+                    else {}
+                )
+                if (
+                    verdict not in {"supported", "non_conflicting"}
+                    or approved.get("verdicts", {}).get(item["id"]) != verdict
+                    or review.get("review_source")
+                    != {"url": approved.get("source_url"), "sha256": approved.get("source_sha256")}
+                    or not current
+                    or review.get("sha256") != current["sha256"]
+                    or review.get("url") != current["fetch_url"]
+                ):
+                    raise RuntimeError(f"recommended practice lacks authored review: {item['id']}")
         # Historical sources describe prior observations, not current support.
         for evidence in item.get("sources", []):
             current = sources.get(evidence["source_id"])
@@ -2963,6 +2996,16 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                     )
                 ):
                     raise RuntimeError(f"recommended practice lacks reviewed context: {item['id']}")
+                expected_claims = {claim for _digest, claim in rule["claims"]}
+                cited_claims = {
+                    ref.get("excerpt")
+                    for ref in item["sources"]
+                    if ref.get("source_id") == evidence["source_id"]
+                }
+                if cited_claims != expected_claims:
+                    raise RuntimeError(
+                        f"recommended practice lacks literal claim bundle: {item['id']}"
+                    )
     # Only recorded observations assert a current fetch; absent optional sources
     # and unknown practices' historical evidence need not have retained artifacts.
     for source_id, digest in practices.get("source_observations", {}).items():
