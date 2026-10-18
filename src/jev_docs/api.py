@@ -140,15 +140,19 @@ def extract_api(contents, artifacts, previous=None):
         "No explicit optional model default is documented; recommended/example aliases are not defaults.",
     )
     questions = section(text, "Question types")
-    type_tags = [attributes(tag) for tag in field_tags(questions, "ParamField")]
-    types = sorted(
-        {
-            a["type"].strip('"')
-            for a in type_tags
-            if a.get("body") == "type" and re.fullmatch(r'"[a-z][a-z0-9_-]*"', a.get("type", ""))
-        }
+    type_tags = [(tag, attributes(tag)) for tag in field_tags(questions, "ParamField")]
+    declarations = [
+        (tag, attrs["type"].strip('"'))
+        for tag, attrs in type_tags
+        if attrs.get("body") == "type"
+        and re.fullmatch(r'"[a-z][a-z0-9_-]*"', attrs.get("type", ""))
+    ]
+    types = sorted({name for _, name in declarations})
+    fact(
+        "question_types",
+        types or None,
+        ["<ParamField" + tag + ">" for tag, _ in declarations],
     )
-    fact("question_types", types or None, [f'type="{name}"' for name in types])
     response = section(text, "Response body")
     answers = [
         tag

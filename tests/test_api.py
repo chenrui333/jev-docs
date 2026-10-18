@@ -51,6 +51,10 @@ def test_required_model_is_not_a_default_inferred_from_an_example():
     assert api["properties"]["model_required"]["status"] == "verified"
     assert api["properties"]["model_default"]["status"] == "unknown"
     assert api["question_types"] == ["choice", "noul", "score"]
+    # Extraction normalizes entity-encoded literals, but evidence stays verbatim.
+    for evidence in api["properties"]["question_types"]["evidence"]:
+        assert evidence["excerpt"] in REFERENCE
+        assert "&#x22;" in evidence["excerpt"]
 
 
 def test_optional_default_requires_an_explicit_declaration():
