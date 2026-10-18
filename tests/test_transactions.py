@@ -202,25 +202,25 @@ class RedeployedSitemap(PublicSources):
 
     def get(self, url):
         if url.endswith("/sitemap.xml"):
-            body = (
-                "<urlset><url><loc>https://docs.typesafe.ai/page</loc>"
-                f"<lastmod>{self.lastmod}</lastmod></url></urlset>"
-            )
+            lastmod = f"<lastmod>{self.lastmod}</lastmod>" if self.lastmod else ""
+            body = f"<urlset><url><loc>https://docs.typesafe.ai/page</loc>{lastmod}</url></urlset>"
             return Response(url, body.encode(), {})
         return super().get(url)
 
 
 def test_sitemap_lastmod_alone_does_not_churn_and_manifests_agree(tmp_path, monkeypatch):
     upstream = RedeployedSitemap()
+    upstream.lastmod = None
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
     synchronize(tmp_path, upstream, strict=True)
     promoted = snapshot(tmp_path)
 
-    # A site redeploy bumps lastmod without changing page content.
-    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
-    upstream.lastmod = "2026-10-02T00:00:00Z"
-    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
-    assert snapshot(tmp_path) == promoted
+    # Sitemap metadata appearing, or a redeploy bumping it, without a content change.
+    for day, lastmod in (("02", "2026-10-02T00:00:00Z"), ("03", "2026-10-03T00:00:00Z")):
+        monkeypatch.setenv("JEVDOCS_OBSERVED_AT", f"2026-10-{day}T00:00:00Z")
+        upstream.lastmod = lastmod
+        assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+        assert snapshot(tmp_path) == promoted
 
     # A content change records the lastmod observed with the new content.
     upstream.pages["page"] = "# A public page\n\nRevised evidence.\n"
@@ -229,8 +229,8 @@ def test_sitemap_lastmod_alone_does_not_churn_and_manifests_agree(tmp_path, monk
     github = json.loads((tmp_path / "sources/github.typesafe-ai/manifest.json").read_text())
     sources = json.loads((tmp_path / "state/sources.json").read_text())
     page = next(item for item in docs["artifacts"] if item["source_id"] == "docs:page")
-    assert page["upstream_last_modified"] == "2026-10-02T00:00:00Z"
-    assert page["observed_at"] == "2026-10-02T00:00:00Z"
+    assert page["upstream_last_modified"] == "2026-10-03T00:00:00Z"
+    assert page["observed_at"] == "2026-10-03T00:00:00Z"
     assert sources["artifacts"] == sorted(
         docs["artifacts"] + github["artifacts"], key=lambda item: item["source_id"]
     )

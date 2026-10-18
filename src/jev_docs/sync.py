@@ -473,11 +473,12 @@ def artifact_manifest(
     artifact: Artifact, previous: dict[str, Any] | None, title: str = "", description: str = ""
 ) -> dict[str, Any]:
     same = previous and previous.get("sha256") == artifact.sha256
-    # Sitemap lastmod moves on site redeploys without content changes. While the
-    # content hash is unchanged, keep the lastmod recorded with that content.
-    last_modified = artifact.upstream_last_modified
-    if same and previous.get("upstream_last_modified"):
-        last_modified = previous["upstream_last_modified"]
+    # Sitemap lastmod moves on site redeploys and sitemap outages without content
+    # changes. While the content hash is unchanged, keep the lastmod recorded with
+    # that content, including an absent one.
+    last_modified = (
+        previous.get("upstream_last_modified") if same else artifact.upstream_last_modified
+    )
     return {
         "source_id": artifact.source_id,
         "source_type": artifact.source_type,
