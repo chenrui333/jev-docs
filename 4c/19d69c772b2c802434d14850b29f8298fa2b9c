@@ -1,0 +1,18 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 125-135
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 1661-1692,1767-1772,1774-1775,1788,1791-1795,1799-1801,2124
+tests/test_recurring_events.py
+  h_9df9c32c3f321d 390-400,402-404,408-409,412-439,441-443,460-462,467-510
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4c19d69c772b2c802434d14850b29f8298fa2b9c",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
