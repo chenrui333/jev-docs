@@ -313,7 +313,7 @@ def test_failed_sync_does_not_promote_partial_state(tmp_path: Path) -> None:
 
     with pytest.raises(RuntimeError, match="last-known-good"):
         synchronize(tmp_path, client=Offline())
-    assert list(tmp_path.iterdir()) == []
+    assert list(tmp_path.iterdir()) == [tmp_path / ".jev-docs.lock"]
 
 
 def manifest_from_fixture(path: Path, contents: dict[str, bytes]) -> dict:
@@ -418,7 +418,7 @@ def test_partial_upstream_failure_does_not_promote_staged_state(tmp_path: Path) 
     with pytest.raises(RuntimeError, match="last-known-good"):
         synchronize(tmp_path, client=Partial())
     assert marker.read_text() == "last-known-good"
-    assert sorted(path.name for path in tmp_path.iterdir()) == ["state-marker"]
+    assert sorted(path.name for path in tmp_path.iterdir()) == [".jev-docs.lock", "state-marker"]
 
 
 def test_practice_evidence_changes_are_not_semantic_changes_without_status_change() -> None:

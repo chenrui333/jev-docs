@@ -26,6 +26,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
+from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
 
 # datetime.UTC requires Python 3.11; the project supports Python 3.10.
 UTC = timezone.utc
@@ -1676,6 +1677,56 @@ def source_events(
     return events
 
 
+def chain_events(
+    candidates: Iterable[dict[str, Any]], historical: Iterable[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Identify transitions by their predecessor, not their observation clock."""
+    ordered = sorted(historical, key=lambda event: event.get("observed_at") or "")
+    by_id = {event["id"]: event for event in ordered}
+    children: dict[str, list[dict[str, Any]]] = {}
+    for event in ordered:
+        previous = event.get("previous_event_id")
+        if previous in by_id:
+            children.setdefault(previous, []).append(event)
+    latest: dict[tuple[str, str], dict[str, Any]] = {}
+    visited: set[str] = set()
+    for root in ordered:
+        if root.get("previous_event_id") in by_id:
+            continue
+        pending = [root]
+        while pending:
+            event = pending.pop()
+            if event["id"] in visited:
+                raise RuntimeError("event history contains a cycle")
+            visited.add(event["id"])
+            latest[(event["category"], event["entity"])] = event
+            pending.extend(reversed(children.get(event["id"], [])))
+    if len(visited) != len(by_id):
+        raise RuntimeError("event history contains a cycle")
+
+    result = []
+    transition_keys = ("change", "before_sha256", "after_sha256")
+    for candidate in candidates:
+        key = (candidate["category"], candidate["entity"])
+        previous = latest.get(key)
+        event = dict(candidate)
+        if previous and all(
+            candidate.get(field) == previous.get(field) for field in transition_keys
+        ):
+            # Events may already be durable while their corresponding state is not.
+            event["id"] = previous["id"]
+            event["previous_event_id"] = previous.get("previous_event_id")
+        else:
+            event["previous_event_id"] = previous["id"] if previous else None
+            if previous:
+                event["id"] = hashlib.sha256(
+                    f"jev-docs-event-chain-v1|{candidate['id']}|{previous['id']}".encode()
+                ).hexdigest()[:24]
+        latest[key] = event
+        result.append(event)
+    return result
+
+
 def deduplicate_events(
     candidates: Iterable[dict[str, Any]], existing_ids: set[str]
 ) -> list[dict[str, Any]]:
@@ -1697,16 +1748,14 @@ def rollup_events(
     return [by_id[event_id] for event_id in sorted(by_id)]
 
 
-def load_history_events(events_dir: Path) -> set[str]:
-    ids: set[str] = set()
+def load_history_events(events_dir: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
     for path in sorted(events_dir.glob("*.json")):
         data = read_json(path, {})
-        ids.update(
-            event["id"]
-            for event in data.get("events", [])
-            if isinstance(event, dict) and event.get("id")
+        records.extend(
+            event for event in data.get("events", []) if isinstance(event, dict) and event.get("id")
         )
-    return ids
+    return records
 
 
 def render_best_practices(practices: dict[str, Any]) -> str:
@@ -1845,7 +1894,40 @@ def validate_coverage(coverage: dict[str, Any]) -> None:
         raise RuntimeError("source coverage delta disagrees with current pages")
 
 
-def validate_tree(root: Path, strict: bool = False) -> None:
+def _validate_event_graph(events: dict[str, dict[str, Any]]) -> None:
+    successors: dict[str, str] = {}
+    for ident, event in events.items():
+        previous_id = event.get("previous_event_id")
+        if previous_id is None:
+            # Legacy records need not form a single chain for each entity.
+            continue
+        if not isinstance(previous_id, str) or previous_id not in events:
+            raise RuntimeError(f"event {ident} has missing predecessor {previous_id}")
+        previous = events[previous_id]
+        if (event.get("category"), event.get("entity")) != (
+            previous.get("category"),
+            previous.get("entity"),
+        ):
+            raise RuntimeError(f"event {ident} predecessor crosses category or entity")
+        if previous_id in successors:
+            raise RuntimeError(f"event {previous_id} has multiple successors")
+        successors[previous_id] = ident
+
+    completed: set[str] = set()
+    for ident in events:
+        chain: set[str] = set()
+        current: str | None = ident
+        while current is not None and current not in completed:
+            if current in chain:
+                raise RuntimeError(f"event {current} predecessor chain contains a cycle")
+            chain.add(current)
+            current = events[current].get("previous_event_id")
+        completed.update(chain)
+
+
+def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None = None) -> None:
+    if (root / PENDING).exists() or (root / PENDING).is_symlink():
+        raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
         "state/sources.json",
         "state/source-coverage.json",
@@ -1935,8 +2017,15 @@ def validate_tree(root: Path, strict: bool = False) -> None:
         root / "MODEL_LIMITATIONS.md"
     ).read_text() != render_limitations(limitations):
         raise RuntimeError("model limitations rendering disagrees with state")
+    event_paths: dict[str, Path] = {}
+    report_paths: dict[str, Path] = {}
+    for history in (history_root, root):
+        if history is not None:
+            event_paths.update({path.stem: path for path in (history / "events").glob("*.json")})
+            report_paths.update({path.stem: path for path in (history / "changes").glob("*.md")})
     seen_event_ids: dict[str, str] = {}
-    for path in sorted((root / "events").glob("*.json")):
+    events_by_id: dict[str, dict[str, Any]] = {}
+    for _, path in sorted(event_paths.items()):
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
         if len(ids) != len(set(ids)):
@@ -1949,33 +2038,26 @@ def validate_tree(root: Path, strict: bool = False) -> None:
             if ident in seen_event_ids:
                 raise RuntimeError(f"event {ident} recorded in {seen_event_ids[ident]} and {path}")
             seen_event_ids[ident] = str(path)
+        events_by_id.update({event["id"]: event for event in data.get("events", [])})
         if data.get("date") != path.stem:
             raise RuntimeError(f"event file date disagrees with its name: {path}")
-        report = root / f"changes/{path.stem}.md"
-        if not report.exists() or report.read_text() != render_daily_report(
-            path.stem, data.get("events", [])
+        report = report_paths.get(path.stem)
+        if (
+            report is None
+            or not report.exists()
+            or report.read_text() != render_daily_report(path.stem, data.get("events", []))
         ):
             raise RuntimeError(f"daily report disagrees with events: {report}")
     if strict:
-        event_days = {path.stem for path in (root / "events").glob("*.json")} - {"baseline"}
-        orphaned = sorted(
-            path.name for path in (root / "changes").glob("*.md") if path.stem not in event_days
-        )
+        _validate_event_graph(events_by_id)
+        event_days = set(event_paths) - {"baseline"}
+        orphaned = sorted(path.name for day, path in report_paths.items() if day not in event_days)
         if orphaned:
             raise RuntimeError(f"daily reports without event files: {', '.join(orphaned)}")
     if "state/practices.json" not in (root / "BEST_PRACTICES.md").read_text():
         raise RuntimeError("best-practices guide is not linked to generated state")
     if strict and (root / "BEST_PRACTICES.md").read_text() != render_best_practices(practices):
         raise RuntimeError("best-practices rendering disagrees with state")
-
-
-def promote(stage: Path, root: Path) -> None:
-    for source in stage.rglob("*"):
-        if source.is_dir():
-            continue
-        target = root / source.relative_to(stage)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        os.replace(source, target)
 
 
 def sdk_evidence_stream(source_id: str) -> str | None:
@@ -2029,10 +2111,24 @@ def synchronize(
     strict: bool = False,
     attempt: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    client = client or HTTPClient()
     attempt = attempt if attempt is not None else {}
-    attempt["publication_eligible"] = False
-    attempt.pop("health_errors", None)
+    attempt.update(phase="recovery", publication_eligible=False)
+    for key in ("health_errors", "last_successful_fetch", "last_successful_sync"):
+        attempt.pop(key, None)
+    with synchronization_lock(root):
+        recover_pending(root)
+        if (root / "events/baseline.json").exists():
+            validate_tree(root, strict=True)
+        return _synchronize(root, client, strict, attempt)
+
+
+def _synchronize(
+    root: Path,
+    client: HTTPClient | None,
+    strict: bool,
+    attempt: dict[str, Any],
+) -> dict[str, Any]:
+    client = client or HTTPClient()
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -2233,8 +2329,10 @@ def synchronize(
     )
     if baseline_exists:
         candidates.extend(semantic_events(old_events_state, state, observed))
-    existing_ids = load_history_events(root / "events")
-    new_events = deduplicate_events(candidates, existing_ids)
+    historical = load_history_events(root / "events")
+    new_events = deduplicate_events(
+        chain_events(candidates, historical), {event["id"] for event in historical}
+    )
     attempt["candidate_event_count"] = len(new_events)
     attempt["candidate_event_counts"] = {
         category: sum(e["category"] == category for e in new_events)
@@ -2338,7 +2436,7 @@ def synchronize(
             (stage / "changes").mkdir(parents=True, exist_ok=True)
             (stage / f"changes/{day}.md").write_text(render_daily_report(day, all_day_events))
         attempt["phase"] = "validation"
-        validate_tree(stage, strict=True)
+        validate_tree(stage, strict=True, history_root=root)
         attempt["phase"] = "promotion"
         promote(stage, root)
         attempt["phase"] = "sync-complete"
@@ -2386,8 +2484,9 @@ def main(argv: list[str] | None = None) -> int:
             )
             attempt["result"] = "success"
         else:
-            validate_tree(ROOT, strict=args.strict)
-            print("validation passed")
+            with synchronization_lock(ROOT):
+                validate_tree(ROOT, strict=args.strict)
+                print("validation passed")
     except (RuntimeError, FetchError) as exc:
         attempt["result"] = "failure"
         # Do not persist arbitrary exception strings, response bodies or local paths.

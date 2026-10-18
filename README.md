@@ -99,10 +99,11 @@ durable coverage contains the current complete inventory. This lets a successful
 addition land without requiring a cleanup commit on the next unchanged run.
 Failed scheduled/manual runs upload a small `sync-failed-attempt` artifact with
 the baseline SHA, failure phase and available candidate counts/versions. It is
-attempt metadata, never canonical history. A failed discovery or source fetch
-leaves the last-known-good generated state untouched and fails loudly. An SDK package/tag discrepancy is allowed a
-three-day observation grace period, then causes strict synchronization to fail
-until the upstream evidence converges.
+attempt metadata, never canonical history. Failed discovery or source fetch fails
+loudly without promoting that observation. A restart first recovers any earlier
+validated promotion, retaining its original events before observing new sources.
+An SDK package/tag discrepancy is allowed a three-day observation grace period,
+then causes strict synchronization to fail until the upstream evidence converges.
 
 ## Local usage
 
@@ -123,6 +124,14 @@ just check-strict
 check` validates generated JSON and provenance. `just check-strict` additionally
 requires event IDs to be unique across all history, each `changes/` report to be
 the rendering of its `events/` file, and `BEST_PRACTICES.md` to match its state.
+
+If interrupted promotion leaves `.jev-docs-pending/`, validation fails explicitly.
+Rerun `just sync` to recover the original batch; do not delete the pending journal.
+The ignored `.jev-docs.lock` serializes local writers and stays in place after use.
+Recurring transitions retain distinct predecessor-linked event IDs, while retries
+and unchanged observations remain deduplicated. See [the design](docs/DESIGN.md)
+for recovery boundaries.
+
 Run `actionlint` separately to validate workflow syntax; the
 live scheduled workflow additionally performs a strict sync. All commits in
 this repository must use `git commit -s`.
