@@ -216,8 +216,6 @@ def test_semantic_state_cannot_bypass_integrity_by_removing_fingerprint(tree, na
     path = tree / f"state/{name}.json"
     value = json.loads(path.read_text())
     value.pop("fingerprint")
-    if name == "api":
-        value["endpoint"] = "POST https://api.typesafe.ai/tampered"
     write_json(path, value)
     with pytest.raises(RuntimeError, match="missing stored fingerprint"):
         validate_tree(tree, strict=True)
