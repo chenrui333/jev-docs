@@ -1,0 +1,16 @@
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 620-639,641-675,1094-1098,1102,1205-1206,1219-1235
+tests/test_sync.py
+  h_9df9c32c3f321d 18,450-490
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8cfd2f29a2b97140b097eaab0027c05a653bb453",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
