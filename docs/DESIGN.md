@@ -264,14 +264,21 @@ immutable. Only capability claims checked against matching configuration and
 changelog bytes at the tag commit receive immutable introduction attribution.
 Absent or mismatching capability evidence remains unknown, not deprecated.
 
-SDK state records `release_evidence_policy: tag-verified-v1`. The first migration
-of an existing legacy SDK snapshot establishes a `baseline` event with an
-explicit local-extraction/provenance correction summary, not an upstream
+SDK state records `release_evidence_policy: tag-verified-v1`. A migration-only
+correction of an existing legacy SDK snapshot establishes a `baseline` event
+with an explicit local-extraction/provenance correction summary, not an upstream
 release change. This includes migrations where main and release happen to
-match. Repeated observations do not repeat that baseline. Curated surface
-`source_class`/`scope` and mutable-note source-class labels are provenance
-metadata, excluded from semantic behavior comparison; subsequent actual runtime
-or release behavior changes retain their normal events.
+match. A concurrent package-version change or change between known release
+tags/commits retains its normal `modified` event rather than being hidden by
+the policy migration. Repeated observations do not repeat either event.
+Curated surface `source_class`/`scope` and mutable-note source-class labels are
+provenance metadata, excluded from semantic behavior comparison; subsequent
+actual runtime or release behavior changes retain their normal events.
+
+Stable release reconciliation excludes valid SemVer prereleases and releases
+marked prerelease or draft. Their presence does not invalidate a matching stable
+release or imply that stable Git source is ahead of the registry. Malformed
+release records still fail closed, including malformed prerelease/draft records.
 
 New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
 historical additions. Subsequent additions, modifications and navigation removals

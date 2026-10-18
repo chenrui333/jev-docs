@@ -585,21 +585,21 @@ def test_unrecognized_models_layout_fails_instead_of_dropping_identities(page) -
 def test_release_provenance_preserves_disagreements() -> None:
     current = release_provenance(
         "0.7.0",
-        [{"name": "v0.7.0", "commit": {"sha": "commit-07"}}],
+        [{"name": "v0.7.0", "commit": {"sha": "7" * 40}}],
         [{"tag_name": "v0.7.0", "published_at": "2026-09-18"}],
     )
     assert current["source_tag"] == "v0.7.0"
-    assert current["source_commit"] == "commit-07"
+    assert current["source_commit"] == "7" * 40
     assert current["discrepancies"] == []
     registry_ahead = release_provenance(
         "0.8.0",
-        [{"name": "v0.7.0", "commit": {"sha": "commit-07"}}],
+        [{"name": "v0.7.0", "commit": {"sha": "7" * 40}}],
         [{"tag_name": "v0.7.0"}],
     )
     assert "registry_ahead_of_git_source" in registry_ahead["discrepancies"]
     tag_ahead = release_provenance(
         "0.7.0",
-        [{"name": "v0.8.0", "commit": {"sha": "commit-08"}}],
+        [{"name": "v0.8.0", "commit": {"sha": "8" * 40}}],
         [{"tag_name": "v0.8.0"}],
     )
     assert "git_source_ahead_of_registry" in tag_ahead["discrepancies"]

@@ -249,6 +249,25 @@ def test_unresolved_release_runtime_stays_unknown_without_main_fallback(kind, pr
     assert all("raw.githubusercontent.com" not in p["url"] for p in state["provenance"])
 
 
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+@pytest.mark.parametrize(
+    "sha",
+    ["main", "refs/heads/main", "../main", "abc", "g" * 40, "a" * 39, "a" * 41],
+)
+def test_invalid_release_commit_never_attributes_source_evidence(kind, sha):
+    upstream = ReleaseSources(kind)
+    upstream.tags[0]["commit"]["sha"] = sha
+    state, artifacts = release_snapshot(upstream)
+    assert "malformed_release_metadata" in state["discrepancies"]
+    assert state["malformed_release_metadata"] == ["tag_entry_0_invalid_commit"]
+    assert state["source_commit"] is None and state["source_tag"] is None
+    assert state["release_history"][0]["source_commit"] is None
+    assert state["runtime"] == {kind: "unknown"}
+    assert state["capabilities"] == []
+    assert not any("raw.githubusercontent.com" in url for url in upstream.requested)
+    assert not any(a.source_type == "github-source" for a in artifacts.values())
+
+
 @pytest.mark.parametrize(
     "metadata",
     [None, {}, [None], [{"tag_name": "v0.1.0", "published_at": {}}]],
@@ -401,3 +420,84 @@ def test_release_provenance_labels_do_not_create_semantic_behavior_events(kind):
     changed["runtime"][kind] = ">=999"
     events = semantic_events({key: current}, {key: changed}, "today")
     assert len(events) == 1 and events[0]["change"] == "modified"
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_stable_release_ignores_prerelease_and_draft_metadata(kind):
+    upstream = ReleaseSources(kind)
+    for tag, extra in [
+        ("v0.8.0-rc.1", {}),
+        ("v0.8.0-beta.2", {"prerelease": True}),
+        ("v0.8.0", {"draft": True}),
+    ]:
+        upstream.tags.append({"name": tag, "commit": {"sha": "c" * 40}})
+        upstream.releases.append({"tag_name": tag, **extra})
+    # Draft tags are not normally public; do not manufacture one for this fixture.
+    upstream.tags.pop()
+    state, _ = release_snapshot(upstream)
+    assert state["discrepancies"] == []
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {kind: ">=3.10" if kind == "python" else ">=18"}
+    assert [item["tag"] for item in state["release_history"]] == ["v0.1.0"]
+
+
+def test_policy_upgrade_preserves_concurrent_release_event_once(tmp_path, monkeypatch):
+    from test_transactions import snapshot
+
+    from jev_docs.sync import canonical_json, observed_state, synchronize
+
+    upstream = ReleaseSources()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / "state/sdk-python.json"
+    legacy = json.loads(sdk_path.read_text())
+    legacy.pop("release_evidence_policy")
+    legacy.pop("fingerprint")
+    sdk_path.write_text(canonical_json(observed_state(legacy, None)) + "\n")
+    baseline = (tmp_path / "events/baseline.json").read_bytes()
+    upstream.registry_version = upstream.config_version = "0.2.0"
+    upstream.release_commit = "c" * 40
+    upstream.tags.append({"name": "v0.2.0", "commit": {"sha": upstream.release_commit}})
+    upstream.releases.append({"tag_name": "v0.2.0", "published_at": "2026-10-02"})
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    result = synchronize(tmp_path, upstream, strict=True)
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    sdk_events = [event for event in events if event["entity"] == "sdk-python"]
+    assert len(sdk_events) == 1 and sdk_events[0]["change"] == "modified"
+    assert (tmp_path / "events/baseline.json").read_bytes() == baseline
+    before = snapshot(tmp_path)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize("field,value", [("source_tag", "v0.1.1"), ("source_commit", "c" * 40)])
+def test_policy_upgrade_does_not_hide_changed_release_identity(field, value):
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    current, _ = release_snapshot(ReleaseSources())
+    legacy = copy.deepcopy(current)
+    legacy.pop("release_evidence_policy")
+    current[field] = value
+    events = semantic_events({"sdk-python": legacy}, {"sdk-python": current}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
+
+
+@pytest.mark.parametrize(
+    "record",
+    [
+        {"tag_name": "v0.8.0-rc.1", "published_at": {}},
+        {"tag_name": "v0.8.0-01"},
+        {"draft": True},
+        {"prerelease": True},
+    ],
+)
+def test_excluded_release_metadata_still_rejects_malformed_records(record):
+    upstream = ReleaseSources()
+    upstream.releases.append(record)
+    state, _ = release_snapshot(upstream)
+    assert "malformed_release_metadata" in state["discrepancies"]
+    assert state["source_commit"] is None
+    assert state["runtime"] == {"python": "unknown"}

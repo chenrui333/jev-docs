@@ -65,6 +65,9 @@ not rewritten; their older excerpts remain part of the recorded history.
   streams independent. A mutable `main` commit is never treated as a package
   release. Python capabilities are attributed only after matching a published
   package version, tag commit, release configuration and immutable changelog.
+  Tag commits must be full 40-character hexadecimal GitHub SHAs; malformed
+  identities are explicit release-metadata discrepancies, never source pins
+  for current or historical releases. Unresolved release runtime stays unknown.
   JavaScript capability parity is not inferred; an empty capability list means
   this extractor has no independently established entries.
 

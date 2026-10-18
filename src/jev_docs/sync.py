@@ -829,6 +829,9 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         if not isinstance(sha, str) or not sha:
             malformed.append(f"tag_entry_{index}_missing_commit")
             continue
+        if re.fullmatch(r"[0-9a-fA-F]{40}", sha) is None:
+            malformed.append(f"tag_entry_{index}_invalid_commit")
+            continue
         if entry["name"] in tag_map and tag_map[entry["name"]] != sha:
             malformed.append(f"tag_entry_{index}_conflicting_commit")
         tag_map[entry["name"]] = sha
@@ -837,15 +840,27 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         malformed.append("releases_not_a_list")
         releases = []
     for index, entry in enumerate(releases):
+        prerelease_tag = (
+            isinstance(entry, dict)
+            and isinstance(entry.get("tag_name"), str)
+            and re.fullmatch(
+                r"v?\d+\.\d+\.\d+-(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)"
+                r"(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*"
+                r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
+                entry["tag_name"],
+            )
+        )
         if (
             not isinstance(entry, dict)
-            or not version_tuple(entry.get("tag_name"))
+            or not (version_tuple(entry.get("tag_name")) or prerelease_tag)
             or any(
                 entry.get(key) is not None and not isinstance(entry[key], str)
                 for key in ("published_at", "name", "html_url")
             )
         ):
             malformed.append(f"release_entry_{index}_malformed")
+            continue
+        if prerelease_tag or entry.get("draft") is True or entry.get("prerelease") is True:
             continue
         release_records.append(entry)
     expected_tag = f"v{version}" if version_tuple(version) else None
@@ -1511,6 +1526,12 @@ def semantic_events(
                 and not old_items[entity_key].get("release_evidence_policy")
                 and new_items.get(entity_key, {}).get("release_evidence_policy")
                 == "tag-verified-v1"
+                and not any(
+                    old_items[entity_key].get(field) is not None
+                    and new_items.get(entity_key, {}).get(field) is not None
+                    and old_items[entity_key][field] != new_items[entity_key][field]
+                    for field in ("version", "source_tag", "source_commit")
+                )
             )
             if before == after and not sdk_policy_baseline:
                 continue
