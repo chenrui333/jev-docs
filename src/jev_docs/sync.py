@@ -37,7 +37,9 @@ DOCS_SITEMAP = f"{DOCS_ROOT}/sitemap.xml"
 GITHUB_API = "https://api.github.com"
 USER_AGENT = "jev-docs-sync/0.1 (+https://github.com/chenrui333/jev-docs)"
 SCHEMA = 1
-DOCS_SOURCE_TYPES = frozenset({"documentation", "documentation-discovery"})
+DOCS_SOURCE_TYPES = frozenset(
+    {"documentation", "documentation-discovery", "historical-documentation"}
+)
 
 
 def canonical_json(value: Any) -> str:
@@ -1873,6 +1875,23 @@ def validate_tree(root: Path, strict: bool = False) -> None:
     sources = {
         item["source_id"]: item for item in read_json(root / "state/sources.json")["artifacts"]
     }
+    for kind in ("python", "javascript"):
+        sdk = read_json(root / f"state/sdk-{kind}.json", {})
+        for release in sdk.get("release_history", []):
+            for evidence in release.get("documented_changes_provenance", []):
+                record = sources.get(evidence.get("source_id"), {})
+                if not record or record["sha256"] != evidence.get("sha256"):
+                    raise RuntimeError(
+                        f"SDK changelog provenance does not match retained evidence: {kind}"
+                    )
+    freshness = read_json(root / "state/freshness.json", {})
+    for kind in ("python", "javascript"):
+        for evidence in freshness.get(kind, {}).get("candidate_provenance", []):
+            record = sources.get(evidence.get("source_id"), {})
+            if not record or evidence.get("sha256") != record["sha256"]:
+                raise RuntimeError(
+                    f"Candidate SDK provenance does not match retained evidence: {kind}"
+                )
     if coverage.get("schema_version") == 2:
         for name in ("model-limitations", "cookbooks", "evaluation-tool"):
             if not (root / f"state/{name}.json").exists():
@@ -1959,6 +1978,51 @@ def promote(stage: Path, root: Path) -> None:
         os.replace(source, target)
 
 
+def sdk_evidence_stream(source_id: str) -> str | None:
+    for kind, repo, registry in (
+        ("python", "typesafe-ai/typesafe-sdk-python", "registry:pypi:typesafe-sdk"),
+        ("javascript", "typesafe-ai/typesafe-sdk-js", "registry:npm:@typesafe-ai/sdk"),
+    ):
+        if source_id.startswith(f"github:{repo}:") or source_id == registry:
+            return kind
+    return None
+
+
+def retain_changelog_citations(snapshot, records, previous_records):
+    """Keep historical mutable-doc citations distinct from current navigation."""
+    retained = copy.deepcopy(snapshot)
+    changed = False
+    for release in retained.get("release_history", []):
+        for evidence in release.get("documented_changes_provenance", []):
+            sid = evidence["source_id"]
+            current = records.get(sid)
+            if current and current["sha256"] == evidence["sha256"]:
+                continue
+            previous = previous_records.get(sid)
+            if not previous or previous["sha256"] != evidence["sha256"]:
+                raise RuntimeError("retained SDK changelog citation has no matching source record")
+            identity = (
+                sid
+                if previous["source_type"] == "historical-documentation"
+                else f"retained:{sid}:{evidence['sha256']}"
+            )
+            records[identity] = {
+                **previous,
+                "source_id": identity,
+                "source_type": "historical-documentation",
+                "original_source_id": previous.get("original_source_id", sid),
+            }
+            if identity != sid:
+                evidence["source_id"] = identity
+                changed = True
+    if not changed:
+        return snapshot
+    payload = {
+        key: value for key, value in retained.items() if key not in {"observed_at", "fingerprint"}
+    }
+    return observed_state(payload, snapshot)
+
+
 def synchronize(
     root: Path = ROOT,
     client: HTTPClient | None = None,
@@ -1967,6 +2031,8 @@ def synchronize(
 ) -> dict[str, Any]:
     client = client or HTTPClient()
     attempt = attempt if attempt is not None else {}
+    attempt["publication_eligible"] = False
+    attempt.pop("health_errors", None)
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -2103,8 +2169,16 @@ def synchronize(
     state["evaluation-tool"] = evaluation_tool_snapshot(
         client, artifacts, previous_state.get("evaluation-tool")
     )
-    state["sdk-python"] = python
-    state["sdk-javascript"] = javascript
+    sdk_candidates = {"python": python, "javascript": javascript}
+    held_streams = {
+        kind
+        for kind, candidate in sdk_candidates.items()
+        if candidate["discrepancies"]
+        and previous_state.get(f"sdk-{kind}") is not None
+        and not previous_state[f"sdk-{kind}"].get("discrepancies")
+    }
+    for kind, candidate in sdk_candidates.items():
+        state[f"sdk-{kind}"] = previous_state[f"sdk-{kind}"] if kind in held_streams else candidate
     observed = utc_now().isoformat().replace("+00:00", "Z")
     old_docs = {
         item["source_id"]: item
@@ -2118,14 +2192,31 @@ def synchronize(
     }
     # One record per artifact, shared by the family manifests and state/sources.json,
     # so both files always carry the same observation metadata.
-    records = {
-        sid: artifact_manifest(
-            artifact,
-            (old_docs if artifact.source_type in DOCS_SOURCE_TYPES else old_github).get(sid),
-            *descriptions.get(sid, ("", "")),
+    records = {}
+    for sid, artifact in sorted(artifacts.items()):
+        identity = f"candidate:{sid}" if sdk_evidence_stream(sid) in held_streams else sid
+        family = old_docs if artifact.source_type in DOCS_SOURCE_TYPES else old_github
+        record = artifact_manifest(artifact, family.get(identity), *descriptions.get(sid, ("", "")))
+        records[identity] = {**record, "source_id": identity}
+    held_metadata = {}
+    for kind in sorted(held_streams):
+        held_metadata[kind] = {
+            "state_retained": True,
+            "retained_version": state[f"sdk-{kind}"]["version"],
+            "candidate_provenance": [
+                {"source_id": sid, "url": record["fetch_url"], "sha256": record["sha256"]}
+                for sid, record in records.items()
+                if sid.startswith("candidate:")
+                and sdk_evidence_stream(sid.removeprefix("candidate:")) == kind
+            ],
+        }
+        records.update(
+            {sid: record for sid, record in old_github.items() if sdk_evidence_stream(sid) == kind}
         )
-        for sid, artifact in sorted(artifacts.items())
-    }
+        state[f"sdk-{kind}"] = retain_changelog_citations(
+            state[f"sdk-{kind}"], records, {**old_github, **old_docs}
+        )
+    records = dict(sorted(records.items()))
     docs_items = [
         record for record in records.values() if record["source_type"] in DOCS_SOURCE_TYPES
     ]
@@ -2168,12 +2259,16 @@ def synchronize(
         {
             "schema_version": SCHEMA,
             "docs": {"status": "up_to_date", "discovered_pages": len(discovered)},
-            "python": sdk_freshness(
-                python, previous_freshness.get("python", {}), previous_freshness
-            ),
-            "javascript": sdk_freshness(
-                javascript, previous_freshness.get("javascript", {}), previous_freshness
-            ),
+            "python": {
+                **sdk_freshness(python, previous_freshness.get("python", {}), previous_freshness),
+                **held_metadata.get("python", {}),
+            },
+            "javascript": {
+                **sdk_freshness(
+                    javascript, previous_freshness.get("javascript", {}), previous_freshness
+                ),
+                **held_metadata.get("javascript", {}),
+            },
             "skill": {"status": "observed", "commit": skill_commit},
             "grace_period_days": 3,
         },
@@ -2185,13 +2280,8 @@ def synchronize(
         )
     else:
         freshness["last_successful_observation"] = observed
-    if strict:
-        actionable = actionable_discrepancies(freshness, utc_now())
-        if actionable:
-            names = ", ".join(actionable)
-            raise RuntimeError(
-                f"strict sync failed; SDK release discrepancy persisted beyond grace period: {names}"
-            )
+    health_errors = actionable_discrepancies(freshness, utc_now())
+    attempt["health_errors"] = health_errors
     sources = {
         "schema_version": SCHEMA,
         "scope": "official TypeSafe public sources only",
@@ -2254,12 +2344,22 @@ def synchronize(
         attempt["phase"] = "sync-complete"
     finally:
         shutil.rmtree(stage, ignore_errors=True)
+    # Publication is allowed only after the complete, internally consistent tree is
+    # validated and promoted. Health failure stays visible via exit status/diagnostics.
+    attempt["publication_eligible"] = True
+    if strict and health_errors:
+        names = ", ".join(health_errors)
+        raise RuntimeError(
+            "strict sync health failed; SDK release discrepancy persisted beyond grace period: "
+            f"{names}; validated independent evidence published, unresolved SDK evidence remains explicit"
+        )
     return {
         "pages": len(discovered),
         "artifacts": len(artifacts),
         "practices": len(state["practices"]["items"]),
         "events": len(new_events),
         "day": day,
+        "health_errors": health_errors,
         **discovery_delta,
     }
 
