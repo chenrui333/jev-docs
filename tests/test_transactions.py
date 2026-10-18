@@ -116,6 +116,57 @@ def test_failed_derivation_keeps_tree_and_reports_candidate_discovery(tmp_path):
     assert attempt["candidate_sdk_versions"] == {"python": "0.1.0", "javascript": "0.1.0"}
 
 
+class UntaggedPythonRelease(PublicSources):
+    """PyPI publishes a version that has no matching Git tag or GitHub release."""
+
+    def get(self, url):
+        if "pypi.org" in url:
+            body = {"info": {"version": "0.2.0"}, "releases": {"0.1.0": [], "0.2.0": []}}
+            return Response(url, json.dumps(body).encode(), {})
+        return super().get(url)
+
+
+def test_unrelated_changes_do_not_restart_sdk_discrepancy_grace_period(tmp_path, monkeypatch):
+    upstream = UntaggedPythonRelease()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    assert json.loads((tmp_path / "state/freshness.json").read_text())["python"]["status"] == (
+        "discrepancy"
+    )
+
+    # A docs change inside the grace period changes the freshness snapshot but must
+    # not restart the discrepancy's grace period.
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    upstream.pages["another"] = "# Another page"
+    synchronize(tmp_path, upstream, strict=True)
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    upstream.pages["third"] = "# Third page"
+    promoted = snapshot(tmp_path)
+    with pytest.raises(RuntimeError, match="beyond grace period: python"):
+        synchronize(tmp_path, upstream, strict=True)
+    assert snapshot(tmp_path) == promoted
+    freshness = json.loads((tmp_path / "state/freshness.json").read_text())
+    assert freshness["observed_at"] == "2026-10-02T00:00:00Z"
+    assert freshness["python"]["discrepancy_first_observed"] == "2026-10-01T00:00:00Z"
+
+    # Convergence clears the discrepancy; a later recurrence starts a new period.
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-06T00:00:00Z")
+    synchronize(tmp_path, PublicSources(), strict=True)
+    assert (
+        "discrepancy_first_observed"
+        not in json.loads((tmp_path / "state/freshness.json").read_text())["python"]
+    )
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-07T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    assert (
+        json.loads((tmp_path / "state/freshness.json").read_text())["python"][
+            "discrepancy_first_observed"
+        ]
+        == "2026-10-07T00:00:00Z"
+    )
+
+
 def test_cli_attempt_diagnostics_never_expose_exception_body(tmp_path, monkeypatch):
     from jev_docs import sync
 
