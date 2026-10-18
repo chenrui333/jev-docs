@@ -26,6 +26,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
+from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
 
 # datetime.UTC requires Python 3.11; the project supports Python 3.10.
 UTC = timezone.utc
@@ -1676,6 +1677,56 @@ def source_events(
     return events
 
 
+def chain_events(
+    candidates: Iterable[dict[str, Any]], historical: Iterable[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Identify transitions by their predecessor, not their observation clock."""
+    ordered = sorted(historical, key=lambda event: event.get("observed_at") or "")
+    by_id = {event["id"]: event for event in ordered}
+    children: dict[str, list[dict[str, Any]]] = {}
+    for event in ordered:
+        previous = event.get("previous_event_id")
+        if previous in by_id:
+            children.setdefault(previous, []).append(event)
+    latest: dict[tuple[str, str], dict[str, Any]] = {}
+    visited: set[str] = set()
+    for root in ordered:
+        if root.get("previous_event_id") in by_id:
+            continue
+        pending = [root]
+        while pending:
+            event = pending.pop()
+            if event["id"] in visited:
+                raise RuntimeError("event history contains a cycle")
+            visited.add(event["id"])
+            latest[(event["category"], event["entity"])] = event
+            pending.extend(reversed(children.get(event["id"], [])))
+    if len(visited) != len(by_id):
+        raise RuntimeError("event history contains a cycle")
+
+    result = []
+    transition_keys = ("change", "before_sha256", "after_sha256")
+    for candidate in candidates:
+        key = (candidate["category"], candidate["entity"])
+        previous = latest.get(key)
+        event = dict(candidate)
+        if previous and all(
+            candidate.get(field) == previous.get(field) for field in transition_keys
+        ):
+            # Events may already be durable while their corresponding state is not.
+            event["id"] = previous["id"]
+            event["previous_event_id"] = previous.get("previous_event_id")
+        else:
+            event["previous_event_id"] = previous["id"] if previous else None
+            if previous:
+                event["id"] = hashlib.sha256(
+                    f"jev-docs-event-chain-v1|{candidate['id']}|{previous['id']}".encode()
+                ).hexdigest()[:24]
+        latest[key] = event
+        result.append(event)
+    return result
+
+
 def deduplicate_events(
     candidates: Iterable[dict[str, Any]], existing_ids: set[str]
 ) -> list[dict[str, Any]]:
@@ -1697,16 +1748,14 @@ def rollup_events(
     return [by_id[event_id] for event_id in sorted(by_id)]
 
 
-def load_history_events(events_dir: Path) -> set[str]:
-    ids: set[str] = set()
+def load_history_events(events_dir: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
     for path in sorted(events_dir.glob("*.json")):
         data = read_json(path, {})
-        ids.update(
-            event["id"]
-            for event in data.get("events", [])
-            if isinstance(event, dict) and event.get("id")
+        records.extend(
+            event for event in data.get("events", []) if isinstance(event, dict) and event.get("id")
         )
-    return ids
+    return records
 
 
 def render_best_practices(practices: dict[str, Any]) -> str:
@@ -1846,6 +1895,8 @@ def validate_coverage(coverage: dict[str, Any]) -> None:
 
 
 def validate_tree(root: Path, strict: bool = False) -> None:
+    if (root / PENDING).exists() or (root / PENDING).is_symlink():
+        raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
         "state/sources.json",
         "state/source-coverage.json",
@@ -1969,13 +2020,6 @@ def validate_tree(root: Path, strict: bool = False) -> None:
         raise RuntimeError("best-practices rendering disagrees with state")
 
 
-def promote(stage: Path, root: Path) -> None:
-    for source in stage.rglob("*"):
-        if source.is_dir():
-            continue
-        target = root / source.relative_to(stage)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        os.replace(source, target)
 
 
 def sdk_evidence_stream(source_id: str) -> str | None:
@@ -2022,12 +2066,22 @@ def retain_changelog_citations(snapshot, records, previous_records):
     }
     return observed_state(payload, snapshot)
 
-
 def synchronize(
     root: Path = ROOT,
     client: HTTPClient | None = None,
     strict: bool = False,
     attempt: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    with synchronization_lock(root):
+        recover_pending(root)
+        return _synchronize(root, client, strict, attempt)
+
+
+def _synchronize(
+    root: Path,
+    client: HTTPClient | None,
+    strict: bool,
+    attempt: dict[str, Any] | None,
 ) -> dict[str, Any]:
     client = client or HTTPClient()
     attempt = attempt if attempt is not None else {}
@@ -2233,8 +2287,10 @@ def synchronize(
     )
     if baseline_exists:
         candidates.extend(semantic_events(old_events_state, state, observed))
-    existing_ids = load_history_events(root / "events")
-    new_events = deduplicate_events(candidates, existing_ids)
+    historical = load_history_events(root / "events")
+    new_events = deduplicate_events(
+        chain_events(candidates, historical), {event["id"] for event in historical}
+    )
     attempt["candidate_event_count"] = len(new_events)
     attempt["candidate_event_counts"] = {
         category: sum(e["category"] == category for e in new_events)
@@ -2386,8 +2442,9 @@ def main(argv: list[str] | None = None) -> int:
             )
             attempt["result"] = "success"
         else:
-            validate_tree(ROOT, strict=args.strict)
-            print("validation passed")
+            with synchronization_lock(ROOT):
+                validate_tree(ROOT, strict=args.strict)
+                print("validation passed")
     except (RuntimeError, FetchError) as exc:
         attempt["result"] = "failure"
         # Do not persist arbitrary exception strings, response bodies or local paths.

@@ -56,8 +56,18 @@ The generated state uses stable JSON ordering and preserves an artifact's first
 observation timestamp and sitemap `lastmod` while its content hash is unchanged.
 This avoids clock- and redeploy-driven churn while retaining meaningful
 observation timestamps. `state/sources.json` and the per-family `sources/`
-manifests share one record per artifact. Events use a SHA-256 identity over
-schema, entity, change type, and before/after hashes.
+manifests share one record per artifact. A first-ever transition keeps the legacy
+SHA-256 identity over schema, entity, change type, and before/after hashes.
+Subsequent transitions are identified by that legacy base ID plus their latest
+persisted predecessor ID, scoped by `(category, entity)`. New records retain
+`previous_event_id` for audit; existing historical IDs and records are untouched.
+An A→B→A→B sequence therefore records all three transitions. A candidate with
+the same change type and before/after hashes as its latest event reuses that ID,
+so replay after events were persisted ahead of state does not invent a recurrence.
+No-op observations produce no candidate. Observation timestamps never enter an ID.
+Predecessor links order new chains even if clocks move backwards; unchained
+legacy records use `observed_at`, then sorted filename and stored record order
+as a stable tie-breaker.
 
 ## Practices
 
@@ -132,6 +142,39 @@ truncating evidence. Projected entries are deduplicated and canonically ordered,
 including the `draft` and `prerelease` decision flags (defaulting to false when
 absent). Changing either flag changes the evidence hash, and conflicting flag
 records survive pagination deduplication; volatile counters remain excluded.
+
+### Interrupted promotion
+
+Synchronization holds an exclusive, nonblocking POSIX `flock` on the ignored
+`.jev-docs.lock` for recovery, observation and promotion. An overlapping local
+synchronizer fails before reading its baseline or fetching sources; process exit
+releases the lock. The lock file remains in place to preserve lock identity.
+
+After staged validation, the synchronizer writes immutable candidate bytes,
+checksums and an exact generated-path manifest into ignored `.jev-docs-pending/`.
+Files and directories are flushed before writing the final `READY` marker.
+Promotion copies from those retained candidates and atomically replaces individual
+targets: daily reports first, their event files next, state and source snapshots
+afterwards, and the first-bootstrap marker last. After all targets are flushed,
+`READY` is durably removed before journal cleanup.
+
+On restart, synchronization rolls a ready batch forward **before** reading state
+or observing upstream again. Recovery keeps the original event dates, IDs and
+bytes even across midnight or when the next upstream observation differs.
+Incomplete journal preparation or cleanup without `READY` is safely discarded.
+All journal paths are allowlisted and every candidate checksum and path is checked
+before any replacement; symlinks are rejected. Validation refuses a pending
+transaction explicitly: rerun `just sync` to recover it rather than deleting the
+journal. A failed new fetch can therefore follow successful recovery of an older,
+already validated observation.
+
+This is recoverable multi-file promotion, not an instantaneous snapshot for
+readers that ignore the lock. Interrupted files can be temporarily inconsistent
+until recovery; validation/publication must wait for completion. Missing or
+corrupted journal candidates fail closed and need operator repair. The
+synchronizer does not reconstruct gaps from pre-journal interruptions or
+transitions already omitted by legacy deduplication, and never rewrites history
+to guess them.
 
 ## Deferred work
 
