@@ -1,0 +1,20 @@
+.github/workflows/ci.yml
+  h_9df9c32c3f321d 25
+README.md
+  h_9df9c32c3f321d 116-119
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 1492-1493,1498-1512,1515-1516
+tests/test_transactions.py
+  h_9df9c32c3f321d 119-149
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "61055485c034f52d1f45c774bf0cc211e126e11d",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
