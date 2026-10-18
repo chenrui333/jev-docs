@@ -1,0 +1,38 @@
+README.md
+  h_9df9c32c3f321d 95-117
+docs/DESIGN.md
+  h_9df9c32c3f321d 100-122,415-450
+pyproject.toml
+  h_9df9c32c3f321d 9
+src/jev_docs/practice_reviews.py
+  h_9df9c32c3f321d 1-84
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 28-33,339-341,347-368,375-384,391-403,411-415,423-435,443-451,459-464,471-487,495-507,515-519,527-539,547-555,563-567,575-583,592-593,595-596,598-602,604-653,1579,1616-1617,1624-1632,1637-1643,1653,1758-1776,1793-1808,1845-1874,1953-1983,1985-1997,2006-2007,2017-2021,2260,2268-2272,2290-2293,2301-2326,2507-2544,2707,2893
+src/jev_docs/text.py
+  h_9df9c32c3f321d 50-138
+tests/conftest.py
+  h_9df9c32c3f321d 1-25
+tests/fixtures/practice-passages.json
+  h_9df9c32c3f321d 1-27
+tests/test_inventories.py
+  h_9df9c32c3f321d 239,241-244,247-253
+tests/test_metadata.py
+  h_9df9c32c3f321d 3,6,13-34,41,57,88,99,109
+tests/test_practices.py
+  h_9df9c32c3f321d 1-651
+tests/test_sync.py
+  h_9df9c32c3f321d 274-275,277-289
+uv.lock
+  h_9df9c32c3f321d 40,51-54,62-82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "15e4cb18808a4c7b9c35c773411f6adae0cd286a",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
