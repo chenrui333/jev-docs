@@ -15,7 +15,7 @@ import time
 import xml.etree.ElementTree as ET
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -24,6 +24,9 @@ from urllib.request import Request, urlopen
 
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
+
+# datetime.UTC requires Python 3.11; the project supports Python 3.10.
+UTC = timezone.utc
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS_ROOT = "https://docs.typesafe.ai"
