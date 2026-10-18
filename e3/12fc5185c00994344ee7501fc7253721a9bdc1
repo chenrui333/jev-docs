@@ -1,0 +1,20 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 97,101-107,148-151
+src/jev_docs/inventories.py
+  h_9df9c32c3f321d 83-101,103-108,136,143,155,168-171,263-266
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 1246-1251,1258-1271
+tests/test_inventories.py
+  h_9df9c32c3f321d 4,9,153-181
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e312fc5185c00994344ee7501fc7253721a9bdc1",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
