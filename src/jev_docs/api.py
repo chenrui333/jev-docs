@@ -21,12 +21,51 @@ def section(text, title):
 
 
 def attributes(tag):
-    return {key: html.unescape(value) for key, value in re.findall(r'([\w-]+)="([^"]*)"', tag)}
+    """Accept the reference's narrow attribute syntax, never partial attributes."""
+    attrs = {}
+    remaining = tag.strip().removesuffix("/").rstrip()
+    while remaining:
+        token = re.match(r'([\w-]+)(?:\s*=\s*("[^"]*"|\{[^{}]*\}))?(?=\s|$)', remaining)
+        if not token or token[1] in attrs:
+            return None
+        key, raw = token[1], token[2]
+        if key == "required":
+            attrs[key] = {None: True, "{true}": True, "{false}": False}.get(raw)
+        elif raw is not None and raw.startswith('"'):
+            attrs[key] = html.unescape(raw[1:-1])
+        else:
+            return None
+        remaining = remaining[token.end() :].lstrip()
+    return attrs or None
 
 
 def field_tags(text, component):
-    # A quoted type (e.g. map<string, Answer>) can itself contain '>'.
-    return re.findall(rf'<{component}\b((?:"[^"]*"|[^">])*)>', text)
+    # Quoted types and unsupported expressions can themselves contain '>'.
+    tags = re.findall(rf"""<{component}\b((?:"[^"]*"|'[^']*'|\{{[^{{}}]*\}}|[^"'{{>])*)>""", text)
+    # An unparsed opening must not silently shrink an otherwise verified list.
+    if len(tags) != len(re.findall(rf"<{component}\b", text)):
+        tags.append("")
+    return tags
+
+
+def without_fences(text):
+    lines = []
+    fence = None
+    for line in text.splitlines(keepends=True):
+        marker = re.match(r"^\s*(`{3,}|~{3,})(.*)$", line)
+        if fence is None:
+            if marker:
+                fence = marker[1]
+            else:
+                lines.append(line)
+        elif (
+            marker
+            and marker[1][0] == fence[0]
+            and len(marker[1]) >= len(fence)
+            and not marker[2].strip()
+        ):
+            fence = None
+    return "".join(lines)
 
 
 def extract_api(contents, artifacts, previous=None):
@@ -107,29 +146,39 @@ def extract_api(contents, artifacts, previous=None):
     endpoint = section(text, "Evaluation endpoint")
     lines = re.findall(r"^(POST https://[^\s`]+)\s*$", endpoint, re.M)
     fact("endpoint", lines[0] if len(set(lines)) == 1 else None, lines)
-    body = section(text, "Request body")
+    reference = without_fences(text)
+    body = section(reference, "Request body")
     declarations = {}
     # Top-level request entries are outside nested Expandable blocks.
     top = re.sub(r"<Expandable\b[\s\S]*?</Expandable>", "", body)
     tags = field_tags(top, "ParamField")
+    names_known = bool(tags)
     for tag in tags:
         attrs = attributes(tag)
-        name = attrs.get("body")
+        name = attrs.get("body") if attrs else None
         if name:
-            required = bool(re.search(r"(?:^|\s)required(?:\s|$|/)", tag))
+            required = attrs.get("required", False)
             declarations.setdefault(name, []).append((required, attrs, "<ParamField" + tag + ">"))
-    consistent = declarations and all(
-        len({row[0] for row in rows}) == 1 for rows in declarations.values()
+        else:
+            names_known = False
+    consistent = names_known and all(
+        rows[0][0] is not None and len({row[0] for row in rows}) == 1
+        for rows in declarations.values()
     )
     passages = [row[2] for rows in declarations.values() for row in rows]
-    fact("request_fields", sorted(declarations) if consistent else None, passages)
+    fact("request_fields", sorted(declarations) if names_known else None, passages)
     fact(
         "required_fields",
         sorted(name for name, rows in declarations.items() if rows[0][0]) if consistent else None,
         passages,
     )
     model = declarations.get("model", [])
-    model_ok = bool(model) and len({(r[0], r[1].get("default")) for r in model}) == 1
+    model_ok = (
+        bool(model)
+        and names_known
+        and model[0][0] is not None
+        and len({(r[0], r[1].get("default")) for r in model}) == 1
+    )
     fact("model_required", model[0][0] if model_ok else None, [r[2] for r in model])
     default = model[0][1].get("default") if model_ok else None
     # Required and default simultaneously is contradictory, not permission to omit.
@@ -139,39 +188,58 @@ def extract_api(contents, artifacts, previous=None):
         [r[2] for r in model],
         "No explicit optional model default is documented; recommended/example aliases are not defaults.",
     )
-    questions = section(text, "Question types")
+    questions = section(reference, "Question types")
     type_tags = [(tag, attributes(tag)) for tag in field_tags(questions, "ParamField")]
     declarations = [
         (tag, attrs["type"].strip('"'))
         for tag, attrs in type_tags
-        if attrs.get("body") == "type"
+        if attrs
+        and attrs.get("body") == "type"
         and re.fullmatch(r'"[a-z][a-z0-9_-]*"', attrs.get("type", ""))
     ]
+    types_known = all(
+        attrs is not None
+        and (
+            attrs.get("body") != "type"
+            or re.fullmatch(r'"[a-z][a-z0-9_-]*"', attrs.get("type", ""))
+        )
+        for _, attrs in type_tags
+    )
     types = sorted({name for _, name in declarations})
     fact(
         "question_types",
-        types or None,
+        types if types and types_known else None,
         ["<ParamField" + tag + ">" for tag, _ in declarations],
     )
-    response = section(text, "Response body")
+    response = section(reference, "Response body")
+    response_tags = [(tag, attributes(tag)) for tag in field_tags(response, "ResponseField")]
     answers = [
-        tag
-        for tag in field_tags(response, "ResponseField")
-        if attributes(tag).get("name") == "answers"
+        (tag, attrs) for tag, attrs in response_tags if attrs and attrs.get("name") == "answers"
     ]
-    correlation = re.search(r"[^.\n<>]*same (?:ids|keys)[^.\n<>]*\.?", response, re.I)
+    # Full affirmative sentences only: no substring match inside negation,
+    # quotations, examples, or sentences with an unsupported qualification.
+    sentences = (
+        "Same ids you provided.",
+        "One answer per question, returned under the same ids you provided.",
+        "One [Answer](#answer-types) per question, keyed by the same ids you used in questions.",
+    )
+    prose = response
+    for tag, _ in response_tags:
+        prose = prose.replace("<ResponseField" + tag + ">", "\n")
+    prose = prose.replace("</ResponseField>", "\n")
+    correlation = [line.strip() for line in prose.splitlines() if line.strip() in sentences]
     shape = (
         "answers map keyed by question id"
         if len(answers) == 1
-        and attributes(answers[0]).get("type", "").startswith("map<")
+        and all(attrs is not None for _, attrs in response_tags)
+        and answers[0][1].get("type", "") == "map<string, Answer>"
         and correlation
         else None
     )
     fact(
         "response_shape",
         shape,
-        ["<ResponseField" + tag + ">" for tag in answers]
-        + ([correlation[0].strip()] if correlation else []),
+        ["<ResponseField" + tag + ">" for tag, _ in answers] + correlation,
     )
     return {
         "schema_version": 1,

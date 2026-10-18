@@ -87,6 +87,17 @@ the hosted site does not expose a trustworthy immutable page history through the
 tracked surfaces. SDK and skill history can include earlier dates when Git tags,
 releases, or commit history provide them. Unknown history stays unknown.
 
+API claims use only explicit canonical reference declarations, not fenced
+examples. Unsupported attribute syntax or an unknown question-type declaration
+leaves the affected claim unknown with a warning rather than verifying a partial
+list. Conflicting requiredness does not erase independently known request field
+names. Response key correlation requires a recognized affirmative source sentence;
+evidence excerpts remain verbatim. A required model's example alias is not a
+default, and correcting local assumptions is not an upstream history event.
+If canonical source bytes also changed during that migration, the API baseline
+records the first verified snapshot without inferring historical API behavior;
+documentation source events independently record the changed bytes.
+
 Practice statuses are `recommended`, `discouraged`, `anti_pattern`,
 `deprecated`, or `unknown`. A practice disappearing from one page is not marked
 deprecated automatically: removal requires explicit evidence, so a failed or

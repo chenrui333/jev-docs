@@ -1718,10 +1718,33 @@ def semantic_events(
                 and "properties" not in (old_items.get(entity_key) or {})
             ):
                 change = "baseline"
-                tracking_note = (
-                    "Established claim-level HTTP reference verification; corrected repository "
-                    "assumptions, not an upstream API introduction or contract change."
-                )
+                old_api = old_items.get(entity_key) or {}
+                old_hashes = {
+                    source.get("sha256")
+                    for source in old_api.get("provenance", [])
+                    if source.get("source_id") == "docs:api" and source.get("sha256")
+                }
+                new_hashes = {
+                    source.get("sha256")
+                    for source in item.get("provenance", [])
+                    if source.get("source_id") == "docs:api" and source.get("sha256")
+                }
+                if len(old_hashes) == len(new_hashes) == 1 and old_hashes == new_hashes:
+                    tracking_note = (
+                        "Established claim-level HTTP reference verification; corrected repository "
+                        "assumptions, not an upstream API introduction or contract change."
+                    )
+                else:
+                    source_note = (
+                        "upstream source changed; "
+                        if old_hashes and new_hashes and old_hashes != new_hashes
+                        else ""
+                    )
+                    tracking_note = (
+                        "Established first verified snapshot of the HTTP reference; "
+                        + source_note
+                        + "no historical API behavior inferred from earlier curated assumptions."
+                    )
             events.append(
                 {
                     "schema_version": SCHEMA,
