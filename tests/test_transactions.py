@@ -142,12 +142,18 @@ def test_unrelated_changes_do_not_restart_sdk_discrepancy_grace_period(tmp_path,
 
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
     upstream.pages["third"] = "# Third page"
-    promoted = snapshot(tmp_path)
+    sdk_before = (tmp_path / "state/sdk-python.json").read_bytes()
     with pytest.raises(RuntimeError, match="beyond grace period: python"):
         synchronize(tmp_path, upstream, strict=True)
-    assert snapshot(tmp_path) == promoted
+    # Expired health still fails, but independent valid docs are now publishable.
+    assert (tmp_path / "state/sdk-python.json").read_bytes() == sdk_before
+    assert "docs:third" in {
+        page["source_id"]
+        for page in json.loads((tmp_path / "state/source-coverage.json").read_text())["pages"]
+    }
+    validate_tree(tmp_path, strict=True)
     freshness = json.loads((tmp_path / "state/freshness.json").read_text())
-    assert freshness["observed_at"] == "2026-10-02T00:00:00Z"
+    assert freshness["observed_at"] == "2026-10-05T00:00:00Z"
     assert freshness["python"]["discrepancy_first_observed"] == "2026-10-01T00:00:00Z"
 
     # Convergence clears the discrepancy; a later recurrence starts a new period.

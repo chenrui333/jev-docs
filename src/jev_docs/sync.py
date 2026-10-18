@@ -1873,6 +1873,14 @@ def validate_tree(root: Path, strict: bool = False) -> None:
     sources = {
         item["source_id"]: item for item in read_json(root / "state/sources.json")["artifacts"]
     }
+    freshness = read_json(root / "state/freshness.json", {})
+    for kind in ("python", "javascript"):
+        for evidence in freshness.get(kind, {}).get("candidate_provenance", []):
+            record = sources.get(evidence.get("source_id"), {})
+            if not record or evidence.get("sha256") != record["sha256"]:
+                raise RuntimeError(
+                    f"Candidate SDK provenance does not match retained evidence: {kind}"
+                )
     if coverage.get("schema_version") == 2:
         for name in ("model-limitations", "cookbooks", "evaluation-tool"):
             if not (root / f"state/{name}.json").exists():
@@ -1957,6 +1965,16 @@ def promote(stage: Path, root: Path) -> None:
         target = root / source.relative_to(stage)
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(source, target)
+
+
+def sdk_evidence_stream(source_id: str) -> str | None:
+    for kind, repo, registry in (
+        ("python", "typesafe-ai/typesafe-sdk-python", "registry:pypi:typesafe-sdk"),
+        ("javascript", "typesafe-ai/typesafe-sdk-js", "registry:npm:@typesafe-ai/sdk"),
+    ):
+        if source_id.startswith(f"github:{repo}:") or source_id == registry:
+            return kind
+    return None
 
 
 def synchronize(
@@ -2103,8 +2121,16 @@ def synchronize(
     state["evaluation-tool"] = evaluation_tool_snapshot(
         client, artifacts, previous_state.get("evaluation-tool")
     )
-    state["sdk-python"] = python
-    state["sdk-javascript"] = javascript
+    sdk_candidates = {"python": python, "javascript": javascript}
+    held_streams = {
+        kind
+        for kind, candidate in sdk_candidates.items()
+        if candidate["discrepancies"]
+        and previous_state.get(f"sdk-{kind}") is not None
+        and not previous_state[f"sdk-{kind}"].get("discrepancies")
+    }
+    for kind, candidate in sdk_candidates.items():
+        state[f"sdk-{kind}"] = previous_state[f"sdk-{kind}"] if kind in held_streams else candidate
     observed = utc_now().isoformat().replace("+00:00", "Z")
     old_docs = {
         item["source_id"]: item
@@ -2118,14 +2144,28 @@ def synchronize(
     }
     # One record per artifact, shared by the family manifests and state/sources.json,
     # so both files always carry the same observation metadata.
-    records = {
-        sid: artifact_manifest(
-            artifact,
-            (old_docs if artifact.source_type in DOCS_SOURCE_TYPES else old_github).get(sid),
-            *descriptions.get(sid, ("", "")),
+    records = {}
+    for sid, artifact in sorted(artifacts.items()):
+        identity = f"candidate:{sid}" if sdk_evidence_stream(sid) in held_streams else sid
+        family = old_docs if artifact.source_type in DOCS_SOURCE_TYPES else old_github
+        record = artifact_manifest(artifact, family.get(identity), *descriptions.get(sid, ("", "")))
+        records[identity] = {**record, "source_id": identity}
+    held_metadata = {}
+    for kind in sorted(held_streams):
+        held_metadata[kind] = {
+            "state_retained": True,
+            "retained_version": state[f"sdk-{kind}"]["version"],
+            "candidate_provenance": [
+                {"source_id": sid, "url": record["fetch_url"], "sha256": record["sha256"]}
+                for sid, record in records.items()
+                if sid.startswith("candidate:")
+                and sdk_evidence_stream(sid.removeprefix("candidate:")) == kind
+            ],
+        }
+        records.update(
+            {sid: record for sid, record in old_github.items() if sdk_evidence_stream(sid) == kind}
         )
-        for sid, artifact in sorted(artifacts.items())
-    }
+    records = dict(sorted(records.items()))
     docs_items = [
         record for record in records.values() if record["source_type"] in DOCS_SOURCE_TYPES
     ]
@@ -2168,12 +2208,16 @@ def synchronize(
         {
             "schema_version": SCHEMA,
             "docs": {"status": "up_to_date", "discovered_pages": len(discovered)},
-            "python": sdk_freshness(
-                python, previous_freshness.get("python", {}), previous_freshness
-            ),
-            "javascript": sdk_freshness(
-                javascript, previous_freshness.get("javascript", {}), previous_freshness
-            ),
+            "python": {
+                **sdk_freshness(python, previous_freshness.get("python", {}), previous_freshness),
+                **held_metadata.get("python", {}),
+            },
+            "javascript": {
+                **sdk_freshness(
+                    javascript, previous_freshness.get("javascript", {}), previous_freshness
+                ),
+                **held_metadata.get("javascript", {}),
+            },
             "skill": {"status": "observed", "commit": skill_commit},
             "grace_period_days": 3,
         },
@@ -2185,13 +2229,8 @@ def synchronize(
         )
     else:
         freshness["last_successful_observation"] = observed
-    if strict:
-        actionable = actionable_discrepancies(freshness, utc_now())
-        if actionable:
-            names = ", ".join(actionable)
-            raise RuntimeError(
-                f"strict sync failed; SDK release discrepancy persisted beyond grace period: {names}"
-            )
+    health_errors = actionable_discrepancies(freshness, utc_now())
+    attempt["health_errors"] = health_errors
     sources = {
         "schema_version": SCHEMA,
         "scope": "official TypeSafe public sources only",
@@ -2254,12 +2293,22 @@ def synchronize(
         attempt["phase"] = "sync-complete"
     finally:
         shutil.rmtree(stage, ignore_errors=True)
+    # Publication is allowed only after the complete, internally consistent tree is
+    # validated and promoted. Health failure stays visible via exit status/diagnostics.
+    attempt["publication_eligible"] = True
+    if strict and health_errors:
+        names = ", ".join(health_errors)
+        raise RuntimeError(
+            "strict sync health failed; SDK release discrepancy persisted beyond grace period: "
+            f"{names}; validated independent evidence published, SDK state retained"
+        )
     return {
         "pages": len(discovered),
         "artifacts": len(artifacts),
         "practices": len(state["practices"]["items"]),
         "events": len(new_events),
         "day": day,
+        "health_errors": health_errors,
         **discovery_delta,
     }
 

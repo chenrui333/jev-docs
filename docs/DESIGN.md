@@ -70,18 +70,28 @@ audit the interpretation without downloading the full source.
 
 ## Failure and freshness semantics
 
-Discovery and required source fetches happen before any repository output is
-promoted. A failed run exits nonzero and leaves generated state untouched. This
-is the last-known-good guarantee. GitHub Actions runs strict validation and a
-12-hour schedule with concurrency protection; it can push only generated
-changes using the standard token. Freshness reports whether the observed package
-metadata, tags, skill commit, and docs discovery agree at the time of a
-successful run. Each SDK records `discrepancy_first_observed` when its release
-discrepancy starts and keeps it while successful observations still show a
-discrepancy, so unrelated docs, skill or other-SDK changes cannot restart the
-three-day grace period. If the discrepancy persists beyond that period, strict
-synchronization fails before promotion; convergence clears the field. A transient
-fetch failure remains an immediate failed run and does not update freshness.
+Discovery and required source fetches complete before publication. A transport,
+parse or tree-integrity failure exits nonzero without publishing new evidence.
+Successful discovery can establish navigation removals; failed discovery cannot.
+SDK release-reconciliation health is separate: an inconsistent candidate cannot
+overwrite an existing healthy SDK snapshot, even during its grace period.
+
+While an SDK is unhealthy, its previous state and exact retained source records stay
+together. Candidate source records have `candidate:` identities and are referenced by
+freshness `candidate_provenance`, so current registry observations never overwrite
+the hashes supporting the retained SDK. Freshness records both candidate and retained
+versions. Without a healthy prior snapshot, explicitly unresolved bootstrap state
+remains unknown rather than inventing a release.
+
+Each SDK keeps `discrepancy_first_observed` throughout a continuous discrepancy.
+After three days strict sync still exits nonzero and reports every expired SDK,
+but completes validation and publication of independent valid evidence first.
+Diagnostics set `publication_eligible=true` only after the full tree is validated
+and promoted, with `phase=sync-complete` and explicit `health_errors`. Publication
+automation may commit this consistent tree while the workflow remains failed for
+SDK health. Ordinary fetch/parse/integrity failures never grant that eligibility.
+Repeated unhealthy observations without source changes are byte-idempotent.
+Convergence clears the discrepancy and advances the release state normally.
 
 Public HTTP requests use a 20-second timeout and two retries (three total
 attempts). Transport failures, HTTP 5xx and 429 retry with bounded backoff.
