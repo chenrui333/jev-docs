@@ -1,6 +1,7 @@
 """Narrow, claim-level extraction of the official HTTP reference, not examples."""
 
 import copy
+import hashlib
 import html
 import re
 
@@ -14,10 +15,44 @@ FIELDS = (
     "response_shape",
 )
 
+# Reviewed from https://docs.typesafe.ai/api.md, retained page SHA-256
+# 37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6.
+# Hash the COMPLETE Response body section, including examples, after normalizing
+# line endings, trailing line whitespace, and outer whitespace only.
+REVIEWED_RESPONSE_SECTION_SHA256 = (
+    "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924"
+)
+REVIEWED_RESPONSE_EVIDENCE = (
+    '<ResponseField name="answers" type="map<string, Answer>" required>',
+    "One answer per question, returned under the same ids you provided.",
+)
+
 
 def section(text, title):
-    match = re.search(rf"^## {re.escape(title)}\s*$([\s\S]*?)(?=^## |\Z)", text, re.M)
-    return match[1] if match else ""
+    matches = list(re.finditer(rf"^## {re.escape(title)}\s*$([\s\S]*?)(?=^## |\Z)", text, re.M))
+    # Duplicate authoritative sections are conflicting context, not first-one-wins.
+    return matches[0][1] if len(matches) == 1 else ""
+
+
+def without_expandables(text):
+    """Remove complete nested map-entry descriptions, rejecting unbalanced markup."""
+    chunks = []
+    depth = 0
+    end = 0
+    for match in re.finditer(r'<(/?)Expandable\b(?:"[^"]*"|[^">])*>', text, re.I):
+        if depth == 0:
+            chunks.append(text[end : match.start()])
+        if match[1]:
+            depth -= 1
+            if depth < 0:
+                return None
+        elif not match[0].rstrip().endswith("/>"):
+            depth += 1
+        end = match.end()
+    if depth:
+        return None
+    chunks.append(text[end:])
+    return "".join(chunks)
 
 
 def attributes(tag):
@@ -153,8 +188,8 @@ def extract_api(contents, artifacts, previous=None):
     body = section(reference, "Request body")
     declarations = {}
     # Top-level request entries are outside nested Expandable blocks.
-    top = re.sub(r"<Expandable\b[\s\S]*?</Expandable>", "", body)
-    tags = field_tags(top, "ParamField")
+    top = without_expandables(body)
+    tags = field_tags(top, "ParamField") if top is not None else []
     names_known = bool(tags)
     for tag in tags:
         attrs = attributes(tag)
@@ -214,52 +249,30 @@ def extract_api(contents, artifacts, previous=None):
         types if types and types_known else None,
         ["<ParamField" + tag + ">" for tag, _ in declarations],
     )
-    response = section(reference, "Response body")
-    response_tags = [(tag, attributes(tag)) for tag in field_tags(response, "ResponseField")]
-    answers = [
-        (tag, attrs) for tag, attrs in response_tags if attrs and attrs.get("name") == "answers"
-    ]
-    # Full affirmative sentences only: no substring match inside negation,
-    # quotations, examples, or sentences with an unsupported qualification.
-    sentences = (
-        "Same ids you provided.",
-        "One answer per question, returned under the same ids you provided.",
-        "One [Answer](#answer-types) per question, keyed by the same ids you used in questions.",
-    )
-    prose = response
-    for tag, _ in response_tags:
-        prose = prose.replace("<ResponseField" + tag + ">", "\n")
-    prose = prose.replace("</ResponseField>", "\n")
-    correlation = [line.strip() for line in prose.splitlines() if line.strip() in sentences]
-    contradictory = any(
-        re.search(r"\b(?:ids?|keys?)\b", line, re.I)
-        and re.search(
-            r"\b(?:not|never|no|different|unrelated|uncorrelated|cannot|can't|don't|doesn't|won't)\b",
-            line,
-            re.I,
-        )
-        for line in prose.splitlines()
-    )
-    shape = (
-        "answers map keyed by question id"
-        if len(answers) == 1
-        and all(attrs is not None for _, attrs in response_tags)
-        and answers[0][1].get("type", "") == "map<string, Answer>"
-        and correlation
-        and not contradictory
-        else None
-    )
+    # Free-form prose is not a declaration grammar. This repository interpretation
+    # applies only to a reviewed complete context, never familiar sentence fragments.
+    response = section(text, "Response body")
+    normalized_response = "\n".join(line.rstrip() for line in response.splitlines()).strip()
+    response_sha256 = hashlib.sha256(normalized_response.encode()).hexdigest()
+    reviewed = response_sha256 == REVIEWED_RESPONSE_SECTION_SHA256
     fact(
         "response_shape",
-        shape,
-        ["<ResponseField" + tag + ">" for tag, _ in answers] + correlation,
+        "answers map keyed by question id" if reviewed else None,
+        REVIEWED_RESPONSE_EVIDENCE,
+        "The complete Response body context is not a reviewed revision; review it before relying on response correlation.",
+    )
+    properties["response_shape"].update(
+        method="reviewed_reference_interpretation",
+        interpretation="Explicit repository interpretation of a reviewed canonical Response body revision, not automatic prose extraction.",
+        reviewed_section_sha256=REVIEWED_RESPONSE_SECTION_SHA256,
+        observed_section_sha256=response_sha256,
     )
     return {
         "schema_version": 1,
         **{key: properties[key]["value"] for key in FIELDS},
         "properties": properties,
         "status_vocabulary": ["verified", "inferred", "unknown"],
-        "interpretation": "Only explicit reference declarations are verified. Inferred would mean example-derived; no examples establish defaults or requiredness.",
+        "interpretation": "Explicit reference declarations are extracted; response_shape is a repository interpretation gated by a reviewed complete section hash. Examples never establish defaults or requiredness.",
         "provenance": provenance,
         "missing_sources": [old_sources[s] for s in missing],
         "warnings": warnings,

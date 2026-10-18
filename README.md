@@ -87,13 +87,16 @@ the hosted site does not expose a trustworthy immutable page history through the
 tracked surfaces. SDK and skill history can include earlier dates when Git tags,
 releases, or commit history provide them. Unknown history stays unknown.
 
-API claims use only explicit canonical reference declarations, not fenced
+API declaration claims use explicit canonical reference declarations, not fenced
 examples. Unsupported attribute syntax or an unknown question-type declaration
 leaves the affected claim unknown with a warning rather than verifying a partial
 list. Conflicting requiredness does not erase independently known request field
-names. Response key correlation requires a recognized affirmative source sentence
-and no contradictory response-key wording. Evidence excerpts remain verbatim;
-declarations exceeding the 240-character evidence bound leave affected claims
+names. Response key correlation is an explicitly reviewed repository interpretation,
+not automatic prose extraction: it applies only to the complete reviewed Response
+body section SHA-256, including examples. An unreviewed context stays unknown even
+when familiar affirmative fragments remain. Properties record the reviewed and
+observed section hashes, method, interpretation label, and bounded verbatim evidence.
+Declarations exceeding the 240-character evidence bound leave affected claims
 unknown rather than clipping away their proof. A required model's example alias
 is not a default, and correcting local assumptions is not an upstream history event.
 If canonical source bytes also changed during that migration, the API baseline

@@ -398,18 +398,32 @@ means first observation of that content revision, and attempt diagnostics cover 
 ## HTTP contract verification
 
 `state/api.json` retains flat values for readers and adds claim-level `properties`.
-`verified` means an explicit canonical reference declaration was extracted;
+`verified` means an explicit canonical declaration was extracted, or the
+`response_shape` repository interpretation matches its complete reviewed section.
 `inferred` is reserved for example-derived interpretation (none is currently used);
-`unknown` means absent, ambiguous or contradictory evidence. A recommended alias in
-an example is not a server default. The current HTTP reference requires `model`;
-`model_default` stays null without an explicit optional default declaration.
+`unknown` means absent, unsupported, ambiguous, or unreviewed evidence. A recommended
+alias in an example is not a server default. The current HTTP reference requires
+`model`; `model_default` stays null without an explicit optional default declaration.
 
 The extractor scopes parameter declarations to Request body, excluding nested map
-entries; question literals and response map declarations have their own sections.
-Every verified property carries URL, source identity, hash and a bounded declaration
-excerpt. Missing references remain in `missing_sources` and actionable sync warnings.
-An unavailable declaration has no current flat value; its previous verified fact is
+entries and fenced examples; question literals have their own section. Free-form
+response correlation prose is not practical to parse conservatively with affirmative
+patterns or expanding negation denylists. Instead, `response_shape` uses
+`method: reviewed_reference_interpretation`, an explicit repository interpretation
+label, and the SHA-256 of the complete reviewed Response body section, including
+examples. Normalize line endings, trailing line whitespace, and outer whitespace
+only. Any other context requires review and yields unknown with a warning, even
+if its familiar affirmative sentence remains. Production policy contains only the
+actual reviewed official revision, not synthetic fixture hashes. The reviewed and
+observed section hashes plus source URL/hash reconstruct the review boundary.
+
+Every verified property carries URL, source identity, hash, and bounded verbatim
+evidence; overlong proof leaves the claim unknown rather than truncating away its
+attributes. Missing references remain in `missing_sources` and actionable warnings.
+An unavailable claim has no current flat value; its previous verified fact is
 retained as `last_known`. Legacy hand-curated values are `curated_unverified`, never
-retroactively verified. Fetch failures still abort before publication. Existing event
+retroactively verified. Verification loss/recovery emits `verification_changed`,
+with earlier sources explicitly historical; verified-to-verified fact changes
+remain `modified`. Fetch failures still abort before publication. Existing event
 files are not rewritten when extraction corrects an older repository assumption.
 

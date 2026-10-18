@@ -1,3 +1,5 @@
+import hashlib
+
 import pytest
 from test_transactions import PublicSources, snapshot
 
@@ -21,9 +23,49 @@ POST https://api.typesafe.ai/v1/systemone
 <ParamField body="type" type="&#x22;noul&#x22;" required />
 ### Score
 <ParamField body="type" type="&#x22;score&#x22;" required />
-## Response body
-<ResponseField name="answers" type="map<string, Answer>" required>Same ids you provided.</ResponseField>
 """
+# Exact, bounded Response body section from the reviewed official API page.
+RESPONSE = """
+One answer per question, returned under the same ids you provided.
+
+<ResponseField name="model" type="string" required>
+  The model that performed the evaluation.
+</ResponseField>
+
+<ResponseField name="answers" type="map<string, Answer>" required>
+  One [Answer](#answer-types) per question, keyed by the same ids you used in questions.
+
+  <Expandable title="map entries">
+    <ResponseField name="‹question id›" type="Answer">
+      The same id you chose in questions.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="usage" type="object" required>
+  Token usage for the request.
+
+  <Expandable title="properties">
+    <ResponseField name="input_tokens" type="integer" />
+
+    <ResponseField name="output_tokens" type="integer" />
+  </Expandable>
+</ResponseField>
+
+```json Example response theme={null}
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "is_urgent": {
+      "type": "noul",
+      "noul": 0.95
+    }
+  },
+  "usage": { "input_tokens": 296, "output_tokens": 20 }
+}
+```
+"""
+REFERENCE += "## Response body\n" + RESPONSE
 
 
 def derive(text=REFERENCE, previous=None):
@@ -136,7 +178,7 @@ def test_requiredness_uses_attributes_not_quoted_words(attribute, expected):
     ],
 )
 def test_nonaffirmative_response_correlation_is_unknown(sentence):
-    api = derive(REFERENCE.replace("Same ids you provided.", sentence))
+    api = derive(REFERENCE.replace("returned under the same ids you provided.", sentence))
     assert api["response_shape"] is None
     assert any("response_shape is unknown" in w for w in api["warnings"])
 
@@ -152,23 +194,60 @@ def test_fenced_examples_do_not_establish_declarations_or_correlation():
     api = derive(page)
     assert api["request_fields"] == ["model", "questions", "state"]
     assert api["question_types"] == ["choice", "noul", "score"]
-    fenced = REFERENCE.replace("Same ids you provided.", "\n```text\nSame ids you provided.\n```\n")
+    fenced = REFERENCE.replace(
+        "returned under the same ids you provided.", "\n```text\nSame ids you provided.\n```\n"
+    )
     assert derive(fenced)["response_shape"] is None
 
 
 @pytest.mark.parametrize(
-    "sentence",
+    "addition",
     [
+        "Answer IDs differ from question IDs.",
+        "Answers aren't keyed by question IDs.",
         "Same ids you provided.",
-        "One answer per question, returned under the same ids you provided.",
-        "One [Answer](#answer-types) per question, keyed by the same ids you used in questions.",
+        "An unrelated usage note.",
     ],
 )
-def test_affirmative_response_evidence_is_verbatim(sentence):
-    page = REFERENCE.replace("Same ids you provided.", sentence)
+def test_unreviewed_response_context_is_unknown_even_with_familiar_affirmation(addition):
+    page = REFERENCE + "\n" + addition + "\n"
     api = derive(page)
+    assert api["response_shape"] is None
+    prop = api["properties"]["response_shape"]
+    assert prop["method"] == "reviewed_reference_interpretation"
+    assert "review" in prop["reason"].lower()
+    assert any("response_shape is unknown" in w for w in api["warnings"])
+    for name in (
+        "endpoint",
+        "request_fields",
+        "required_fields",
+        "model_required",
+        "question_types",
+    ):
+        assert api[name] == derive()[name]
+
+
+def test_reviewed_response_interpretation_has_verbatim_evidence_and_section_hash():
+    api = derive()
+    prop = api["properties"]["response_shape"]
+    assert prop["method"] == "reviewed_reference_interpretation"
+    normalized = "\n".join(line.rstrip() for line in RESPONSE.splitlines()).strip()
+    assert prop["reviewed_section_sha256"] == hashlib.sha256(normalized.encode()).hexdigest()
+    assert prop["observed_section_sha256"] == prop["reviewed_section_sha256"]
+    assert "repository interpretation" in prop["interpretation"]
     assert api["response_shape"] == "answers map keyed by question id"
-    assert all(e["excerpt"] in page for e in api["properties"]["response_shape"]["evidence"])
+    assert all(e["excerpt"] in REFERENCE and len(e["excerpt"]) <= 240 for e in prop["evidence"])
+
+
+def test_review_scope_includes_fenced_response_examples_but_not_other_sections():
+    page = REFERENCE.replace('"output_tokens": 20', '"output_tokens": 21')
+    assert derive(page)["response_shape"] is None
+    assert (
+        derive(REFERENCE + "\n## Other section\nUnreviewed prose.")["response_shape"]
+        == derive()["response_shape"]
+    )
+    whitespace_only = REFERENCE.replace("\n", "  \r\n")
+    assert derive(whitespace_only)["response_shape"] == derive()["response_shape"]
 
 
 def test_missing_citations_remain_historical_and_warn_until_restored():
@@ -309,3 +388,33 @@ def test_api_transaction_is_idempotent_and_fetch_failure_preserves_tree(tmp_path
     with pytest.raises(RuntimeError, match="last-known-good"):
         synchronize(tmp_path, upstream, strict=True)
     assert snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize(
+    "title,claim",
+    [("Request body", "request_fields"), ("Response body", "response_shape")],
+)
+def test_duplicate_authoritative_sections_do_not_hide_conflicts(title, claim):
+    page = REFERENCE + f"\n## {title}\nConflicting, unreviewed declarations.\n"
+    api = derive(page)
+    assert api["properties"][claim]["status"] == "unknown"
+    assert api[claim] is None
+    assert api["endpoint"] == derive()["endpoint"]
+
+
+def test_nested_map_entries_are_not_promoted_to_request_parameters():
+    nested = (
+        '<Expandable title="entries"><Expandable title="inner">'
+        '<ParamField body="nested" type="string" /></Expandable>'
+    )
+    page = REFERENCE.replace('<Expandable title="entries">', nested)
+    api = derive(page)
+    assert api["request_fields"] == ["model", "questions", "state"]
+    assert api["required_fields"] == ["model", "questions", "state"]
+
+
+def test_unbalanced_map_entry_markup_makes_request_contract_unknown():
+    api = derive(REFERENCE.replace("</Expandable>", "", 1))
+    assert api["request_fields"] is None
+    assert api["model_required"] is None
+    assert api["endpoint"] == derive()["endpoint"]
