@@ -2156,7 +2156,9 @@ def semantic_events(
                     "after_sha256": after,
                     "sources": verification_sources
                     if verification_sources is not None
-                    else _practice_event_sources(old_items.get(entity_key), new_items.get(entity_key))
+                    else _practice_event_sources(
+                        old_items.get(entity_key), new_items.get(entity_key)
+                    )
                     if name == "practices"
                     else item.get("sources")
                     or item.get("provenance")
