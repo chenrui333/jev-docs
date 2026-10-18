@@ -151,11 +151,25 @@ def without_code_examples(content: str, *, keep_http: bool = False) -> str:
     parts: list[str] = []
     position = 0
     tokens, _incomplete = _markup(content)
-    blocked = {"code", "pre", "script", "style", "blockquote", "template"}
+    blocked = {
+        "code",
+        "pre",
+        "script",
+        "style",
+        "blockquote",
+        "template",
+        "noscript",
+        "textarea",
+        "xmp",
+        "iframe",
+        "noembed",
+        "noframes",
+        "title",
+        "plaintext",
+    }
+    incomplete_container = r"</?(?:" + "|".join(sorted(blocked)) + r")\b"
     for token in tokens:
-        if token.kind == "incomplete" and re.match(
-            r"</?(?:code|pre|script|style|blockquote|template)\b", token.raw, re.I
-        ):
+        if token.kind == "incomplete" and re.match(incomplete_container, token.raw, re.I):
             return ""
         if token.name not in blocked or token.escaped:
             continue
@@ -167,6 +181,8 @@ def without_code_examples(content: str, *, keep_http: bool = False) -> str:
             containers.pop()
         parts.append("\n\n")
         position = token.end
+        if token.name == "plaintext" and token.kind == "start":
+            break  # HTML plaintext consumes the remaining document, including closing-tag text.
     if not containers:
         parts.append(content[position:])
     # Keep quoted HTML delimiters through the scan: removing only the opener

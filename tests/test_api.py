@@ -703,3 +703,16 @@ def test_metadata_heading_does_not_conflict_with_real_request_section():
     api = derive(REFERENCE.replace("## Request body", metadata + "\n\n## Request body"))
     assert api["request_fields"] == ["model", "questions", "state"]
     assert api["model_required"] is True
+
+
+@pytest.mark.parametrize(
+    "container",
+    ["noscript", "textarea", "xmp", "iframe", "noembed", "noframes", "title", "plaintext"],
+)
+def test_raw_text_and_fallback_containers_cannot_define_contract_fields(container):
+    ghost = '<ParamField body="ghost" type="string" required />'
+    page = REFERENCE.replace(
+        "## Request body", f"## Request body\n<{container}>{ghost}</{container}>\n"
+    )
+    expected = None if container == "plaintext" else ["model", "questions", "state"]
+    assert derive(page)["request_fields"] == expected
