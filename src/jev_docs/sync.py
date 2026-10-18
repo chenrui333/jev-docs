@@ -1206,6 +1206,7 @@ def sdk_snapshot(
         "source_commit": release_info["source_commit"],
         "main_commit": head.get("sha") if isinstance(head, dict) else None,
         "runtime": {package_kind: runtime},
+        "release_evidence_policy": "tag-verified-v1",
         "public_surface": {
             "source_class": "curated",
             "scope": "Manually curated SDK overview; not verified for this release.",
@@ -1504,10 +1505,24 @@ def semantic_events(
             after_value = semantic_projection(name, new_items.get(entity_key))
             before = sha256_json(before_value) if entity_key in old_items else None
             after = sha256_json(after_value) if entity_key in new_items else None
-            if before == after:
+            sdk_policy_baseline = (
+                name.startswith("sdk-")
+                and entity_key in old_items
+                and not old_items[entity_key].get("release_evidence_policy")
+                and new_items.get(entity_key, {}).get("release_evidence_policy")
+                == "tag-verified-v1"
+            )
+            if before == after and not sdk_policy_baseline:
                 continue
             change = "added" if before is None else "removed" if after is None else "modified"
             tracking_note = None
+            if sdk_policy_baseline:
+                change = "baseline"
+                tracking_note = (
+                    f"Established {name} tag-verified release evidence tracking; "
+                    "local correction of legacy SDK extraction/provenance, "
+                    "not an upstream release change."
+                )
             if name in CODE_DEFINED_LAYERS and change != "modified":
                 # These entities exist because of an extraction rule in this repository,
                 # so appearing or disappearing is a tracking change, not upstream history.
@@ -1651,11 +1666,22 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
             )
         }
         # Provenance enrichment alone is not SDK behavior/release evolution.
+        if isinstance(projection["public_surface"], dict):
+            projection["public_surface"] = {
+                key: value
+                for key, value in projection["public_surface"].items()
+                if key not in {"source_class", "scope"}
+            }
         projection["release_history"] = [
             {
                 key: value
                 for key, value in release.items()
-                if key not in {"source_commit", "documented_changes_provenance"}
+                if key
+                not in {
+                    "source_commit",
+                    "documented_changes_provenance",
+                    "documented_changes_source_class",
+                }
             }
             for release in item.get("release_history", [])
         ]

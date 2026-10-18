@@ -330,3 +330,74 @@ def test_transient_release_config_failure_still_fails_sync(tmp_path):
     with pytest.raises(RuntimeError, match="last-known-good"):
         synchronize(tmp_path, upstream, strict=True)
     assert not (tmp_path / "state").exists()
+
+
+@pytest.mark.parametrize("main_ahead", [False, True])
+def test_legacy_release_evidence_correction_is_tracking_baseline_once(
+    tmp_path, monkeypatch, main_ahead
+):
+    from test_transactions import snapshot
+
+    from jev_docs.sync import canonical_json, observed_state, synchronize
+
+    upstream = ReleaseSources()
+    if not main_ahead:
+        upstream.main_commit = upstream.release_commit
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / "state/sdk-python.json"
+    legacy = json.loads(sdk_path.read_text())
+    assert legacy.pop("release_evidence_policy") == "tag-verified-v1"
+    legacy.pop("fingerprint")
+    legacy["public_surface"].pop("source_class")
+    legacy["public_surface"].pop("scope")
+    if main_ahead:
+        legacy["runtime"] = {"python": ">=3.14"}
+        legacy["provenance"][1]["url"] = legacy["provenance"][1]["url"].replace(
+            upstream.release_commit, upstream.main_commit
+        )
+    sdk_path.write_text(canonical_json(observed_state(legacy, None)) + "\n")
+    historical_baseline = (tmp_path / "events/baseline.json").read_bytes()
+    requested = set(upstream.requested)
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    result = synchronize(tmp_path, upstream, strict=True)
+    assert set(upstream.requested) == requested
+    assert result["events"] == 1
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    assert len(events) == 1
+    event = events[0]
+    assert event["entity"] == "sdk-python" and event["change"] == "baseline"
+    assert "local correction" in event["summary"]
+    assert "not an upstream release change" in event["summary"]
+    corrected = json.loads(sdk_path.read_text())
+    assert corrected["release_evidence_policy"] == "tag-verified-v1"
+    assert corrected["runtime"] == {"python": ">=3.10"}
+    assert (tmp_path / "events/baseline.json").read_bytes() == historical_baseline
+
+    before = snapshot(tmp_path)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_release_provenance_labels_do_not_create_semantic_behavior_events(kind):
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    upstream = ReleaseSources(kind)
+    upstream.main_commit = upstream.release_commit
+    current, _ = release_snapshot(upstream)
+    legacy_labels = copy.deepcopy(current)
+    legacy_labels["public_surface"].pop("source_class")
+    legacy_labels["public_surface"].pop("scope")
+    for release in legacy_labels["release_history"]:
+        release.pop("documented_changes_source_class", None)
+    key = f"sdk-{kind}"
+    assert semantic_events({key: legacy_labels}, {key: current}, "today") == []
+    changed = copy.deepcopy(current)
+    changed["runtime"][kind] = ">=999"
+    events = semantic_events({key: current}, {key: changed}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
