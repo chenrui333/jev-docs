@@ -87,6 +87,27 @@ the hosted site does not expose a trustworthy immutable page history through the
 tracked surfaces. SDK and skill history can include earlier dates when Git tags,
 releases, or commit history provide them. Unknown history stays unknown.
 
+API field claims use explicit canonical reference declarations, not examples or
+link metadata. Endpoint declarations preserve the reference's explicit HTTP
+fence while excluding inactive containers. Unsupported attribute syntax or an
+unknown question-type declaration leaves the affected claim unknown with a warning
+rather than verifying a partial
+list. Conflicting requiredness does not erase independently known request field
+names. Response key correlation is an explicitly reviewed repository interpretation,
+not automatic prose extraction: it applies only to the complete reviewed Response
+body section SHA-256, including examples. An unreviewed context stays unknown even
+when familiar affirmative fragments remain. Properties record the reviewed and
+observed section hashes, method, interpretation label, and bounded verbatim evidence.
+Declarations exceeding the 240-character evidence bound leave affected claims
+unknown rather than clipping away their proof. A required model's example alias
+is not a default, and correcting local assumptions is not an upstream history event.
+If canonical source bytes also changed during that migration, the API baseline
+records the first verified snapshot without inferring historical API behavior;
+documentation source events independently record the changed bytes.
+Loss or recovery of API verification emits `verification_changed`, not a contract
+modification; retained earlier citations have an explicit `historical` role.
+Verified-to-verified fact changes still emit `modified`.
+
 Practice statuses are `recommended`, `discouraged`, `anti_pattern`,
 `deprecated`, or `unknown`. A practice disappearing from one page is not marked
 deprecated automatically: removal requires explicit evidence, so a failed or

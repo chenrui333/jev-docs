@@ -395,3 +395,50 @@ fields are not committed, so unchanged successful syncs are byte-idempotent.
 No separate persisted `last_observed` field is needed: artifact `observed_at` already
 means first observation of that content revision, and attempt diagnostics cover liveness.
 
+## HTTP contract verification
+
+`state/api.json` retains flat values for readers and adds claim-level `properties`.
+`verified` means an explicit canonical declaration was extracted, or the
+`response_shape` repository interpretation matches its complete reviewed section.
+`inferred` is reserved for example-derived interpretation (none is currently used);
+`unknown` means absent, unsupported, ambiguous, or unreviewed evidence. The
+`model_required` property records the explicit required/optional declaration.
+Recommended aliases never establish `model_default` without an explicit optional default.
+
+The extractor scopes parameter declarations to Request body, excluding nested map
+entries, HTML comments, and code examples (fenced, indented, inline, or raw code
+containers). CommonMark tokens classify list/quote/fence boundaries; the standard
+library HTML tokenizer separates actual component openings from attribute strings.
+The same source-position tokens establish nested map boundaries and active endpoint
+text, so generic component attributes cannot hide parameters or create endpoints.
+Only the narrow documented attribute syntax is interpreted; no MDX is executed or
+rendered. The Markdown tokenizer loads only during source extraction, not
+privileged publication validation. Unsupported
+deep nesting yields no facts rather than a partial contract. Question literals have
+their own section; inactive sections cannot verify an endpoint or response interpretation.
+Links/images and reference definitions are metadata, not declaration locations.
+Endpoint extraction uses the same inactive-content filtering, retaining only a
+closed top-level HTTP fence containing a POST declaration and optional request
+headers (or an active bare declaration). Fence metadata is not executed.
+Raw HTML/Markdown quotation and code scopes cannot override it.
+This shares the practice source-text convention, not a general MDX renderer. Free-form
+response correlation prose is not practical to parse conservatively with affirmative
+patterns or expanding negation denylists. Instead, `response_shape` uses
+`method: reviewed_reference_interpretation`, an explicit repository interpretation
+label, and the SHA-256 of the complete reviewed Response body section, including
+examples. Normalize line endings, trailing line whitespace, and outer whitespace
+only. Any other context requires review and yields unknown with a warning, even
+if its familiar affirmative sentence remains. Production policy contains only the
+actual reviewed official revision, not synthetic fixture hashes. The reviewed and
+observed section hashes plus source URL/hash reconstruct the review boundary.
+
+Every verified property carries URL, source identity, hash, and bounded verbatim
+evidence; overlong proof leaves the claim unknown rather than truncating away its
+attributes. Missing references remain in `missing_sources` and actionable warnings.
+An unavailable claim has no current flat value; its previous verified fact is
+retained as `last_known`. Legacy hand-curated values are `curated_unverified`, never
+retroactively verified. Verification loss/recovery emits `verification_changed`,
+with earlier sources explicitly historical; verified-to-verified fact changes
+remain `modified`. Fetch failures still abort before publication. Existing event
+files are not rewritten when extraction corrects an older repository assumption.
+

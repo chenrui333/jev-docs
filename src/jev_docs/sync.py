@@ -24,6 +24,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from jev_docs.api import extract_api, validate_api
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
 from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
@@ -1532,15 +1533,7 @@ def derive_state(
         {"schema_version": SCHEMA, "items": primitive_items}, previous_state.get("primitives")
     )
     api = observed_state(
-        {
-            "schema_version": SCHEMA,
-            "endpoint": "POST https://api.typesafe.ai/v1/systemone",
-            "request_fields": ["model", "state", "questions"],
-            "question_types": ["choice", "score", "noul"],
-            "model_default": "jev-latest",
-            "response_shape": "answers map keyed by question id",
-            "provenance": provenance(["docs:api", "docs:migrating-to-v1"]),
-        },
+        extract_api(contents, artifacts, previous_state.get("api")),
         previous_state.get("api"),
     )
     models_content = contents.get("docs:models")
@@ -1719,6 +1712,107 @@ def semantic_events(
                     )
                 )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
+            verification_sources = None
+            old_api = old_items.get(entity_key) or {}
+            if name == "api" and "properties" in old_api and "properties" in item:
+                old_properties = old_api["properties"]
+                new_properties = item["properties"]
+                fields = set(old_properties) | set(new_properties)
+                status_changed = any(
+                    old_properties.get(field, {}).get("status")
+                    != new_properties.get(field, {}).get("status")
+                    for field in fields
+                )
+                contract_changed = False
+                for field in fields:
+                    prior_fact = old_properties.get(field, {})
+                    if prior_fact.get("status") != "verified":
+                        prior_fact = prior_fact.get("last_known", {})
+                    current_fact = new_properties.get(field, {})
+                    if (
+                        prior_fact.get("status") == "verified"
+                        and current_fact.get("status") == "verified"
+                        and prior_fact["value"] != current_fact["value"]
+                    ):
+                        contract_changed = True
+                if status_changed and not contract_changed:
+                    change = "verification_changed"
+                    tracking_note = (
+                        "API reference verification status changed; loss or recovery of evidence "
+                        "does not establish an upstream contract change."
+                    )
+                if contract_changed:
+                    tracking_note = (
+                        "Verified HTTP reference facts differ from the last supported observation; "
+                        "the exact upstream change time is unknown."
+                    )
+                if status_changed or contract_changed:
+                    verification_sources = [
+                        {**source, "role": "current"} for source in item.get("provenance", [])
+                    ]
+                    historical = old_api.get("provenance", []) + old_api.get("missing_sources", [])
+                    for prop in old_properties.values():
+                        historical += prop.get("evidence", []) + prop.get("last_known", {}).get(
+                            "evidence", []
+                        )
+                    for source in historical:
+                        retained = {
+                            key: source[key]
+                            for key in ("source_id", "url", "sha256")
+                            if key in source
+                        }
+                        retained["role"] = "historical"
+                        if retained not in verification_sources:
+                            verification_sources.append(retained)
+            if (
+                name == "api"
+                and "properties" in item
+                and "properties" not in (old_items.get(entity_key) or {})
+            ):
+                change = "baseline"
+                old_api = old_items.get(entity_key) or {}
+                old_hashes = {
+                    source.get("sha256")
+                    for source in old_api.get("provenance", [])
+                    if source.get("source_id") == "docs:api" and source.get("sha256")
+                }
+                new_hashes = {
+                    source.get("sha256")
+                    for source in item.get("provenance", [])
+                    if source.get("source_id") == "docs:api" and source.get("sha256")
+                }
+                has_verified_evidence = bool(item.get("provenance")) and any(
+                    prop.get("status") == "verified" for prop in item["properties"].values()
+                )
+                if not has_verified_evidence:
+                    change = "verification_changed"
+                    tracking_note = (
+                        "Classified previously curated HTTP assumptions as unknown; "
+                        "no current API property has verified reference evidence. "
+                        "No upstream behavior is inferred from missing evidence."
+                    )
+                    verification_sources = [
+                        {**source, "role": "current_observation"}
+                        for source in item.get("provenance", [])
+                    ] + [
+                        {**source, "role": "historical"} for source in old_api.get("provenance", [])
+                    ]
+                elif len(old_hashes) == len(new_hashes) == 1 and old_hashes == new_hashes:
+                    tracking_note = (
+                        "Established claim-level HTTP reference verification; corrected repository "
+                        "assumptions, not an upstream API introduction or contract change."
+                    )
+                else:
+                    source_note = (
+                        "upstream source changed; "
+                        if old_hashes and new_hashes and old_hashes != new_hashes
+                        else ""
+                    )
+                    tracking_note = (
+                        "Established first verified snapshot of the HTTP reference; "
+                        + source_note
+                        + "no historical API behavior inferred from earlier curated assumptions."
+                    )
             events.append(
                 {
                     "schema_version": SCHEMA,
@@ -1737,7 +1831,9 @@ def semantic_events(
                     ),
                     "before_sha256": before,
                     "after_sha256": after,
-                    "sources": item.get("sources")
+                    "sources": verification_sources
+                    if verification_sources is not None
+                    else item.get("sources")
                     or item.get("provenance")
                     or ([item["source"]] if item.get("source") else []),
                 }
@@ -1789,6 +1885,8 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
             for key in (
                 "endpoint",
                 "request_fields",
+                "required_fields",
+                "model_required",
                 "question_types",
                 "model_default",
                 "response_shape",
@@ -2190,6 +2288,7 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                 raise RuntimeError(
                     f"Candidate SDK provenance does not match retained evidence: {kind}"
                 )
+    validate_api(read_json(root / "state/api.json"), sources)
     if coverage.get("schema_version") == 2:
         for name in ("model-limitations", "cookbooks", "evaluation-tool"):
             if not (root / f"state/{name}.json").exists():
@@ -2675,6 +2774,7 @@ def _synchronize(
         "events": len(new_events),
         "day": day,
         "health_errors": health_errors,
+        "warnings": state["api"].get("warnings", []),
         **discovery_delta,
     }
 
