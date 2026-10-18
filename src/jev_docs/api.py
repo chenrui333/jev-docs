@@ -79,6 +79,7 @@ def attributes(tag):
 
 def field_tags(text, component):
     """Read actual elements, never declaration-shaped text in another tag's attributes."""
+    line_starts = [0] + [match.end() for match in re.finditer("\n", text)]
 
     class Fields(HTMLParser):
         def __init__(self):
@@ -95,6 +96,13 @@ def field_tags(text, component):
 
         def handle_starttag(self, name, _attrs):
             self.flush()
+            line, column = self.getpos()
+            position = line_starts[line - 1] + column
+            start = position
+            while start and text[start - 1] == "\\":
+                start -= 1
+            if (position - start) % 2:
+                return  # CommonMark backslash escapes produce literal text, not elements.
             raw = self.get_starttag_text()
             if re.match(rf"<{component}\b", raw):
                 self.tags.append(raw[len(component) + 1 : -1])

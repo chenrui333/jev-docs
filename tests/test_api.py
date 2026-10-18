@@ -619,3 +619,15 @@ def test_canonical_http_fence_metadata_and_headers_preserve_endpoint_evidence():
     claim = derive(page)
     assert claim["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"
     assert claim["properties"]["endpoint"]["status"] == "verified"
+
+
+@pytest.mark.parametrize("slashes", [1, 2, 3, 4])
+def test_component_backslash_escapes_follow_commonmark_parity(slashes):
+    tag = '<ParamField body="ghost" type="string" required />'
+    page = REFERENCE.replace("## Request body", "## Request body\n" + "\\" * slashes + tag + "\n")
+    fields = derive(page)["request_fields"]
+    assert fields == (
+        ["ghost", "model", "questions", "state"]
+        if slashes % 2 == 0
+        else ["model", "questions", "state"]
+    )
