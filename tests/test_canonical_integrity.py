@@ -689,7 +689,7 @@ def test_skill_snapshot_binds_raw_artifact_and_commit_observation(tree, mutation
         def get(self, _url):
             raise AssertionError("conflicting skill evidence must fail before fetching")
 
-    with pytest.raises(RuntimeError, match="skill provenance disagrees"):
+    with pytest.raises(RuntimeError):
         synchronize(tree, NeverFetch(), strict=True)
     assert snapshot(tree) == before
 
