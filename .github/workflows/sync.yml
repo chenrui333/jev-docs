@@ -25,7 +25,25 @@ jobs:
       - run: uv python install 3.12
       - run: uv sync --locked --dev --python 3.12
       - id: observe
+        continue-on-error: true
         run: PYTHONPATH=src uv run python -m jev_docs sync --strict --diagnostics "$RUNNER_TEMP/sync-attempt.json"
+      - name: Reject incomplete synchronization failures
+        id: eligibility
+        if: steps.observe.outcome == 'failure'
+        run: |
+          python - "$RUNNER_TEMP/sync-attempt.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          attempt = json.loads(Path(sys.argv[1]).read_text())
+          if not (
+              attempt.get("phase") == "sync-complete"
+              and attempt.get("publication_eligible") is True
+              and attempt.get("result") == "failure"
+              and attempt.get("health_errors")
+          ):
+              raise SystemExit("Incomplete or invalid evidence is not publication eligible")
+          PY
       - id: lint
         run: uv run ruff check .
       - id: format
@@ -50,6 +68,12 @@ jobs:
           git commit -s -m "chore(sync): update TypeSafe evidence"
           # A normal push rejects the update if main advanced after checkout.
           git push origin HEAD:main
+      - name: Preserve strict SDK health failure after publication
+        id: strict_health
+        if: steps.observe.outcome == 'failure'
+        run: |
+          echo 'Independent publication does not resolve expired SDK health.' >&2
+          exit 1
       - name: Describe failed attempt
         if: failure()
         env:

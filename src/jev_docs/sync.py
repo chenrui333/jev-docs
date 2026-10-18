@@ -37,7 +37,9 @@ DOCS_SITEMAP = f"{DOCS_ROOT}/sitemap.xml"
 GITHUB_API = "https://api.github.com"
 USER_AGENT = "jev-docs-sync/0.1 (+https://github.com/chenrui333/jev-docs)"
 SCHEMA = 1
-DOCS_SOURCE_TYPES = frozenset({"documentation", "documentation-discovery"})
+DOCS_SOURCE_TYPES = frozenset(
+    {"documentation", "documentation-discovery", "historical-documentation"}
+)
 
 
 def canonical_json(value: Any) -> str:
@@ -1873,6 +1875,15 @@ def validate_tree(root: Path, strict: bool = False) -> None:
     sources = {
         item["source_id"]: item for item in read_json(root / "state/sources.json")["artifacts"]
     }
+    for kind in ("python", "javascript"):
+        sdk = read_json(root / f"state/sdk-{kind}.json", {})
+        for release in sdk.get("release_history", []):
+            for evidence in release.get("documented_changes_provenance", []):
+                record = sources.get(evidence.get("source_id"), {})
+                if not record or record["sha256"] != evidence.get("sha256"):
+                    raise RuntimeError(
+                        f"SDK changelog provenance does not match retained evidence: {kind}"
+                    )
     freshness = read_json(root / "state/freshness.json", {})
     for kind in ("python", "javascript"):
         for evidence in freshness.get(kind, {}).get("candidate_provenance", []):
@@ -1975,6 +1986,41 @@ def sdk_evidence_stream(source_id: str) -> str | None:
         if source_id.startswith(f"github:{repo}:") or source_id == registry:
             return kind
     return None
+
+
+def retain_changelog_citations(snapshot, records, previous_records):
+    """Keep historical mutable-doc citations distinct from current navigation."""
+    retained = copy.deepcopy(snapshot)
+    changed = False
+    for release in retained.get("release_history", []):
+        for evidence in release.get("documented_changes_provenance", []):
+            sid = evidence["source_id"]
+            current = records.get(sid)
+            if current and current["sha256"] == evidence["sha256"]:
+                continue
+            previous = previous_records.get(sid)
+            if not previous or previous["sha256"] != evidence["sha256"]:
+                raise RuntimeError("retained SDK changelog citation has no matching source record")
+            identity = (
+                sid
+                if previous["source_type"] == "historical-documentation"
+                else f"retained:{sid}:{evidence['sha256']}"
+            )
+            records[identity] = {
+                **previous,
+                "source_id": identity,
+                "source_type": "historical-documentation",
+                "original_source_id": previous.get("original_source_id", sid),
+            }
+            if identity != sid:
+                evidence["source_id"] = identity
+                changed = True
+    if not changed:
+        return snapshot
+    payload = {
+        key: value for key, value in retained.items() if key not in {"observed_at", "fingerprint"}
+    }
+    return observed_state(payload, snapshot)
 
 
 def synchronize(
@@ -2166,6 +2212,9 @@ def synchronize(
         }
         records.update(
             {sid: record for sid, record in old_github.items() if sdk_evidence_stream(sid) == kind}
+        )
+        state[f"sdk-{kind}"] = retain_changelog_citations(
+            state[f"sdk-{kind}"], records, {**old_github, **old_docs}
         )
     records = dict(sorted(records.items()))
     docs_items = [

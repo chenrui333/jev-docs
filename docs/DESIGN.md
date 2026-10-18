@@ -82,6 +82,11 @@ freshness `candidate_provenance`, so current registry observations never overwri
 the hashes supporting the retained SDK. Freshness records both candidate and retained
 versions. Without a healthy prior snapshot, explicitly unresolved bootstrap state
 remains unknown rather than inventing a release.
+Mutable changelog citations are retained under hash-scoped `retained:` source IDs
+with `historical-documentation` records; current navigation keeps its newly fetched
+hash. Retained release-note pointers are rewritten only to those explicit historical
+identities, without changing their claims. Strict validation checks nested changelog
+citations as well as top-level SDK evidence.
 
 Each SDK keeps `discrepancy_first_observed` throughout a continuous discrepancy.
 After three days strict sync still exits nonzero and reports every expired SDK,

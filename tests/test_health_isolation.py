@@ -86,3 +86,47 @@ def test_all_expired_sdks_are_reported_and_candidate_hashes_are_checked(tmp_path
     (tmp_path / "state/freshness.json").write_text(json.dumps(freshness))
     with pytest.raises(RuntimeError, match="Candidate SDK provenance"):
         validate_tree(tmp_path, strict=True)
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_held_sdk_keeps_old_changelog_citations_while_navigation_updates(
+    tmp_path, monkeypatch, kind
+):
+    class OneDelayed(PublicSources):
+        delayed = False
+
+        def get(self, url):
+            if self.delayed and kind == "python" and "pypi.org" in url:
+                return Response(url, b'{"info":{"version":"0.2.0"},"releases":{"0.2.0":[]}}', {})
+            if self.delayed and kind == "javascript" and "registry.npmjs.org" in url:
+                return Response(url, b'{"dist-tags":{"latest":"0.2.0"}}', {})
+            return super().get(url)
+
+    upstream = OneDelayed()
+    page = f"sdk/{kind}/changelog"
+    upstream.pages[page] = "## v0.1.0 (2026-09-01)\n- Original release notes."
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / f"state/sdk-{kind}.json"
+    original = json.loads(sdk_path.read_text())
+    original_citation = original["release_history"][0]["documented_changes_provenance"][0]
+    upstream.delayed = True
+    upstream.pages[page] = "## v0.1.0 (2026-09-01)\n- Rewritten mutable release notes."
+    synchronize(tmp_path, upstream, strict=True)
+    retained = json.loads(sdk_path.read_text())
+    assert retained["release_history"][0]["documented_changes"] == ["Original release notes."]
+    citation = retained["release_history"][0]["documented_changes_provenance"][0]
+    sources = {
+        s["source_id"]: s
+        for s in json.loads((tmp_path / "state/sources.json").read_text())["artifacts"]
+    }
+    assert sources[citation["source_id"]]["sha256"] == original_citation["sha256"]
+    assert sources[f"docs:{page}"]["sha256"] != citation["sha256"]
+    validate_tree(tmp_path, strict=True)
+    before = snapshot(tmp_path)
+    synchronize(tmp_path, upstream, strict=True)
+    assert snapshot(tmp_path) == before
+    retained["release_history"][0]["documented_changes_provenance"][0]["sha256"] = "0" * 64
+    sdk_path.write_text(json.dumps(retained))
+    with pytest.raises(RuntimeError, match="SDK changelog provenance"):
+        validate_tree(tmp_path, strict=True)
