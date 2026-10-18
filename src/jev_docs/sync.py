@@ -604,6 +604,10 @@ def nonempty_string(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def is_github_commit_sha(value: Any) -> bool:
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-fA-F]{40}", value) is not None
+
+
 def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
     service = "PyPI" if package_kind == "python" else "npm"
     value = metadata_json(response, service)
@@ -617,6 +621,8 @@ def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
             isinstance(files, list) for files in releases.values()
         ):
             raise schema_error(response, service, "releases as a version-to-file-list map")
+        if info["version"] not in releases:
+            raise schema_error(response, service, "info.version to appear in the releases map")
     else:
         tags = value.get("dist-tags")
         if not isinstance(tags, dict) or not nonempty_string(tags.get("latest")):
@@ -632,8 +638,10 @@ def validate_github_metadata(value: Any, response: Response) -> None:
         if not isinstance(value, list) or any(not isinstance(item, dict) for item in value):
             raise schema_error(response, "GitHub", f"{surface} as a list of objects")
         if surface == "commits":
-            if not value or any(not nonempty_string(item.get("sha")) for item in value):
-                raise schema_error(response, "GitHub", "a nonempty commits list with sha strings")
+            if not value or any(not is_github_commit_sha(item.get("sha")) for item in value):
+                raise schema_error(
+                    response, "GitHub", "a nonempty commits list with 40-hex sha strings"
+                )
         elif surface == "tags":
             if any(
                 not nonempty_string(item.get("name"))
@@ -661,8 +669,8 @@ def validate_github_metadata(value: Any, response: Response) -> None:
     elif not isinstance(value, dict):
         raise schema_error(response, "GitHub", "a JSON object")
     elif "/commits/" in endpoint:
-        if not nonempty_string(value.get("sha")):
-            raise schema_error(response, "GitHub", "commit.sha as a nonempty string")
+        if not is_github_commit_sha(value.get("sha")):
+            raise schema_error(response, "GitHub", "commit.sha as a 40-hex string")
     elif "default_branch" in value and not nonempty_string(value["default_branch"]):
         raise schema_error(response, "GitHub", "default_branch as a nonempty string")
 
@@ -754,7 +762,11 @@ def stable_release_evidence(value: Any) -> Any:
         return {"malformed": type(value).__name__}
     return sorted(
         (
-            {key: item.get(key) for key in ("tag_name", "published_at", "name", "html_url")}
+            {
+                **{key: item.get(key) for key in ("tag_name", "published_at", "name", "html_url")},
+                "draft": item.get("draft", False),
+                "prerelease": item.get("prerelease", False),
+            }
             if isinstance(item, dict)
             else {"malformed": True}
             for item in value

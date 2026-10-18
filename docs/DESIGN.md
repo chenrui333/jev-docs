@@ -101,17 +101,22 @@ positive test/application-specific bound. Injected opener responses implement
 `read(limit)` so fixtures exercise the same bounded-read contract.
 
 PyPI metadata must be an object with a nonempty `info.version` string and a
-`releases` version-to-file-list map. npm metadata must be an object with a
-nonempty `dist-tags.latest` string. Invalid JSON and malformed registry, SDK
+`releases` version-to-file-list map containing that exact published version.
+npm metadata must be an object with a nonempty `dist-tags.latest` string.
+Invalid JSON and malformed registry, SDK
 configuration or consumed GitHub response shapes fail closed with
 `invalid_json`/`invalid_schema` errors identifying the source and expected field,
 without promoting state.
+GitHub head and skill commit responses must provide 40-hex commit SHAs; branch
+names, relative paths and malformed hashes cannot identify immutable evidence.
 
 GitHub SDK and evaluation-tool tag/release lists follow `Link` pagination only
 within the exact API origin, repository and endpoint path. At most 20 pages are
 read; a remaining next link or cycle fails the observation rather than silently
 truncating evidence. Projected entries are deduplicated and canonically ordered,
-preserving existing one-page evidence hashes while ignoring volatile counters.
+including the `draft` and `prerelease` decision flags (defaulting to false when
+absent). Changing either flag changes the evidence hash, and conflicting flag
+records survive pagination deduplication; volatile counters remain excluded.
 
 ## Deferred work
 

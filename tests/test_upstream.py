@@ -22,12 +22,15 @@ from jev_docs.sync import (
     parse_llms,
     parse_llms_exclusions,
     parse_sitemap,
+    registry_json,
     sdk_snapshot,
     sha256_json,
     stable_release_evidence,
     stable_tag_evidence,
     synchronize,
 )
+
+SECRET_MARKER = "-".join(("private", "token"))
 
 
 class Raw:
@@ -331,6 +334,33 @@ def test_pagination_two_pages_deduplicates_and_stabilizes_evidence(surface, entr
     assert sha256_json(projection(values)) == sha256_json(projection(single))
 
 
+@pytest.mark.parametrize("flag", ["draft", "prerelease"])
+def test_release_decision_flags_change_evidence_and_survive_pagination_deduplication(flag):
+    release = {"tag_name": "v0.1.0", "draft": False, "prerelease": False}
+    changed = {**release, flag: True}
+    before = stable_release_evidence([release])
+    after = stable_release_evidence([changed])
+    assert sha256_json(before) != sha256_json(after)
+    assert before == stable_release_evidence([{**release, "assets": [{"download_count": 2}]}])
+    path = "/repos/o/r/releases?per_page=100"
+    first = "https://api.github.com" + path
+    second = "https://api.github.com/repos/o/r/releases?page=2"
+    pages = {
+        first: ([release], {"link": f'<{second}>; rel="next"'}),
+        second: ([changed, {**release, "assets": []}], {}),
+    }
+    values, _ = github_json(Pages(pages), path)
+    assert len(values) == 2
+    assert {value[flag] for value in values} == {False, True}
+    reverse, _ = github_json(
+        Pages({first: ([changed], pages[first][1]), second: ([release], {})}), path
+    )
+    assert stable_release_evidence(values) == stable_release_evidence(reverse)
+    assert sha256_json(stable_release_evidence(values)) == sha256_json(
+        stable_release_evidence(reverse)
+    )
+
+
 @pytest.mark.parametrize(
     "target",
     [
@@ -399,18 +429,44 @@ def test_github_malformed_shapes_fail_actionably(path, value):
 @pytest.mark.parametrize("branch", ["tags", "releases", "commits"])
 def test_commit_object_is_not_mistaken_for_a_paginated_list(branch):
     path = f"/repos/o/r/commits/{branch}"
-    value, _ = github_json(Pages({"https://api.github.com" + path: ({"sha": "abc"}, {})}), path)
-    assert value == {"sha": "abc"}
+    value, _ = github_json(Pages({"https://api.github.com" + path: ({"sha": "a" * 40}, {})}), path)
+    assert value == {"sha": "a" * 40}
+
+
+@pytest.mark.parametrize(
+    "path,is_list",
+    [
+        ("/repos/o/r/commits/main", False),
+        ("/repos/typesafe-ai/skills/commits?path=skills/typesafe-ai/SKILL.md&per_page=1", True),
+    ],
+)
+@pytest.mark.parametrize(
+    "sha", ["main", "../main", "a" * 39, "g" * 40, "a" * 41, "a" * 40 + "/file", None, 3]
+)
+def test_head_and_skill_commits_require_immutable_40_hex_identity(path, is_list, sha):
+    value = [{"sha": sha}] if is_list else {"sha": sha}
+    with pytest.raises(FetchError, match="GitHub.*schema.*40") as caught:
+        github_json(Pages({"https://api.github.com" + path: (value, {})}), path)
+    assert caught.value.code == "invalid_schema"
+
+
+@pytest.mark.parametrize("sha", ["a" * 40, "ABCDEF0123" * 4])
+@pytest.mark.parametrize("path", ["/repos/o/r/commits/main", "/repos/o/r/commits?per_page=1"])
+def test_github_commit_identity_accepts_40_hex_sha(path, sha):
+    value = [{"sha": sha}] if "/commits?" in path else {"sha": sha}
+    received, _ = github_json(Pages({"https://api.github.com" + path: (value, {})}), path)
+    assert received == value
 
 
 def test_invalid_github_json_has_no_raw_body_traceback():
     path = "/repos/o/r"
+    body = f"{SECRET_MARKER} invalid json".encode()
     with pytest.raises(FetchError, match="GitHub.*JSON") as caught:
-        github_json(
-            Pages({"https://api.github.com" + path: (b"private-token invalid json", {})}), path
-        )
+        github_json(Pages({"https://api.github.com" + path: (body, {})}), path)
     assert caught.value.code == "invalid_json"
-    assert "private-token" not in "".join(traceback.format_exception(caught.value))
+    assert SECRET_MARKER not in "".join(traceback.format_exception(caught.value))
+    assert caught.value.__suppress_context__ is True
+    assert caught.value.__cause__ is None
 
 
 @pytest.mark.parametrize(
@@ -423,6 +479,8 @@ def test_invalid_github_json_has_no_raw_body_traceback():
         ("python", b'{"info": {"version": " "}, "releases": {}}'),
         ("python", b'{"info": {"version": "0.1.0"}, "releases": []}'),
         ("python", b'{"info": {"version": "0.1.0"}, "releases": {"0.1.0": null}}'),
+        ("python", b'{"info": {"version": "0.2.0"}, "releases": {"0.1.0": []}}'),
+        ("python", b'{"info": {"version": "0.1.0"}, "releases": {}}'),
         ("javascript", b"private-token invalid JSON"),
         ("javascript", b"[]"),
         ("javascript", b'{"dist-tags": []}'),
@@ -449,6 +507,17 @@ def test_registry_failures_are_structured_and_preserve_last_good_tree(tmp_path, 
     assert "AttributeError" not in rendered
     assert "last-known-good" in str(caught.value)
     assert snapshot(tmp_path) == baseline
+
+
+def test_pypi_published_identity_must_exist_in_releases_map():
+    response = Response(
+        "https://pypi.org/pypi/typesafe-sdk/json",
+        b'{"info": {"version": "0.2.0"}, "releases": {"0.1.0": []}}',
+        {},
+    )
+    with pytest.raises(FetchError, match="PyPI.*schema.*info.version.*releases") as caught:
+        registry_json(response, "python")
+    assert caught.value.code == "invalid_schema"
 
 
 @pytest.mark.parametrize(
