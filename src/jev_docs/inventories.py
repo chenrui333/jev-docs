@@ -80,9 +80,32 @@ _LIMITATION_INTERPRETATIONS = {
 }
 
 
-def _limitation_summary(model, section, section_hash):
+# Complete whitespace-normalized Markdown, including examples and callouts.
+# The absent historical structural-invariants section has no complete hash.
+_COMPLETE_LIMITATION_HASHES = {
+    "literal-reading": "34c20247a2d76c3fe321cafd64e31e025ef49a81fdc8bd479aaf87561698c9e0",
+    "math-and-numbers": "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
+    "counting": "25a01c5272ca4c04fb29a5f8bc4c7c2b27d0205f9adfb0a1c8f0d57dfa68af08",
+    "numeric-representations": "8423237188c11f5a0f798ad63c42d48906397f53adc33fbb28b57a9a3734ae5e",
+    "math-using-score": "73f8cf27d8f911922e4d65ef7017e1dc00ce3ef93eb9130747b02816576ef28b",
+    "date-and-time-comparison": "7d78de7d897c99207632269abfbc8f3c40e34b31a33bb9a1d2e5d2ff4ceba464",
+    "indirection": "c554fabdedd5a52e327ef2a151181bdf9f1683a6723d734255b74c89f5c2e698",
+    "large-state-full-of-irrelevant-detail": "c7663e838ae089d77db44b32e7a13f51ee59df8be4d7459cb6caf39efcef6e14",
+    "adversarial-content": "438b17d8cf4be2e8fbe8cb37783ae3ef66f36781d2b2a3528a72c6b51ff07aed",
+    "contradictory-instructions-and-criteria": "0dad9206f001fead3e7112d36b233bf71013d058189558298db66eaf3477ceba",
+    "choice-option-order": "776665b432a8c0a46235b7dc948552b5aaae29c9398fab73931837f0c153db61",
+    "generation": "d5c645ff98bc6f5a6d6cf6f5be94d5ac05320667611d07ee6a4f4075cdd98a1e",
+}
+
+
+def _limitation_summary(model, section, section_hash, complete_hash=None):
     reviewed = _LIMITATION_INTERPRETATIONS.get(section)
-    if model == "jev-1.13" and reviewed and reviewed[0] == section_hash:
+    matches = (
+        _COMPLETE_LIMITATION_HASHES.get(section) == complete_hash
+        if complete_hash is not None
+        else reviewed and reviewed[0] == section_hash
+    )
+    if model == "jev-1.13" and reviewed and matches:
         return reviewed[1], "repository-interpretation"
     return (
         "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
@@ -110,13 +133,14 @@ def model_limitations(contents, artifacts, previous):
             body = content[
                 heading.end() : headings[i + 1].start() if i + 1 < len(headings) else len(content)
             ]
+            complete_hash = hashlib.sha256(re.sub(r"\s+", " ", body).strip().encode()).hexdigest()
             body = re.split(r"```|<Info>|<Tip>", body)[0].strip()
             if not clean_text(body).strip():
                 raise RuntimeError(f"empty limitation section: {sid}#{section}")
             section_hash = hashlib.sha256(
                 re.sub(r"\s+", " ", clean_text(body)).strip().encode()
             ).hexdigest()
-            summary, summary_kind = _limitation_summary(model, section, section_hash)
+            summary, summary_kind = _limitation_summary(model, section, section_hash, complete_hash)
             ident = f"{model}:{section}"
             items[ident] = {
                 "id": ident,
@@ -128,6 +152,7 @@ def model_limitations(contents, artifacts, previous):
                 "summary": summary,
                 "summary_kind": summary_kind,
                 "section_text_sha256": section_hash,
+                "complete_section_sha256": complete_hash,
                 "mitigation": None,
                 "provenance": provenance(artifacts[sid], section),
             }
@@ -140,7 +165,10 @@ def model_limitations(contents, artifacts, previous):
             retained = copy.deepcopy(old)
             retained["status"] = "unknown"
             retained["summary"], retained["summary_kind"] = _limitation_summary(
-                old["model"], old["section"], old.get("section_text_sha256")
+                old["model"],
+                old["section"],
+                old.get("section_text_sha256"),
+                old.get("complete_section_sha256"),
             )
             retained["mitigation"] = None
             items[old["id"]] = retained
@@ -232,7 +260,10 @@ def render_limitations(state):
     ]
     for item in state["items"]:
         summary, summary_kind = _limitation_summary(
-            item["model"], item["section"], item.get("section_text_sha256")
+            item["model"],
+            item["section"],
+            item.get("section_text_sha256"),
+            item.get("complete_section_sha256"),
         )
         # Preserve the historical rendering format until synchronization upgrades
         # this item with the additive interpretation marker.

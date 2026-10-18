@@ -94,12 +94,17 @@ from the canonical layer.
 applicability and section anchor. Second- and third-level headings retain the
 upstream distinctions, including numeric/counting/score subtopics. New summaries
 are labeled repository interpretations, selected only for an exact reviewed
-model, section anchor, and normalized section hash. New or changed evidence has
+model, section anchor, and complete section hash. New or changed evidence has
 an explicitly unknown summary until reviewed; familiar headings alone are not
 evidence of unchanged meaning. No paid inference is used. Mitigation prose is
 not copied (the legacy field remains null); source URLs, artifact hashes and
-original normalized section hashes remain available for audit. Missing sections
-or pages retain last-known evidence with `unknown` status, not a claim of a fix.
+original normalized section hashes remain available for audit.
+The additive `complete_section_sha256` hashes the entire section's Markdown with
+whitespace normalized, including fenced examples, Info/Tip callouts and trailing
+prose. It controls interpretation matching and semantic changes. The original
+`section_text_sha256` retains its legacy trimmed/cleaned semantics for audit;
+absent historical sections keep their original hashes and unknown status.
+Missing sections or pages retain last-known evidence with `unknown` status, not a claim of a fix.
 A later model receives independent IDs and cannot inherit an interpretation.
 `MODEL_LIMITATIONS.md` deterministically renders new interpretations when the
 additive `summary_kind` marker is present. Legacy state without that marker keeps
@@ -140,8 +145,10 @@ unknown. Source hashes and review dates alone do not create limitation or cookbo
 semantic events; they remain provenance updates.
 The first migration of a legacy limitation item to `summary_kind` emits a
 per-item baseline explicitly attributed to the local interpretation/quotation
-policy only when its ID, model, section hash, and status are unchanged. Concurrent
-evidence or status changes remain modifications, explicitly noting both the
+policy only when its ID, model, legacy section hash, and status are unchanged.
+Adding a complete-section hash also requires identical source artifact hashes
+to qualify as a local baseline; an already-recorded complete hash must match.
+Concurrent evidence or status changes remain modifications, explicitly noting both the
 observed change and local quotation-policy migration. Later section-hash or
 status changes remain modifications; identical subsequent observations emit
 no event.

@@ -1243,14 +1243,32 @@ def semantic_events(
                 name == "model-limitations"
                 and entity_key in old_items
                 and entity_key in new_items
-                and "summary_kind" not in old_items[entity_key]
-                and "summary_kind" in new_items[entity_key]
+                and (
+                    "summary_kind" not in old_items[entity_key]
+                    and "summary_kind" in new_items[entity_key]
+                    or "complete_section_sha256" not in old_items[entity_key]
+                    and "complete_section_sha256" in new_items[entity_key]
+                )
             ):
                 evidence_fields = ("id", "model", "section_text_sha256", "status")
                 same_evidence = all(
                     old_items[entity_key].get(field) == new_items[entity_key].get(field)
                     for field in evidence_fields
                 )
+                old_complete = old_items[entity_key].get("complete_section_sha256")
+                new_complete = new_items[entity_key].get("complete_section_sha256")
+                if old_complete is not None:
+                    same_evidence = same_evidence and old_complete == new_complete
+                elif new_complete is not None:
+                    old_hashes = [
+                        source.get("sha256")
+                        for source in old_items[entity_key].get("provenance", [])
+                    ]
+                    new_hashes = [
+                        source.get("sha256")
+                        for source in new_items[entity_key].get("provenance", [])
+                    ]
+                    same_evidence = same_evidence and bool(old_hashes) and old_hashes == new_hashes
                 change = "baseline" if same_evidence else "modified"
                 tracking_note = (
                     f"Updated local interpretation and quotation policy for {entity_key}; "

@@ -1,10 +1,12 @@
 import copy
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import pytest
 
+from jev_docs import inventories
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.sync import Artifact, derive_practices, semantic_events
 from jev_docs.text import excerpt
@@ -146,6 +148,35 @@ def test_limitation_quotation_policy_migration_is_local_baseline():
         assert "local quotation-policy migration" in event["summary"]
         assert "not an upstream limitation change" not in event["summary"]
         assert semantic_events(concurrent, concurrent, "tomorrow") == []
+
+
+@pytest.mark.parametrize(
+    "suffix", ["```python\npass\n```", "<Info>Example</Info>", "<Tip>Example</Tip>"]
+)
+def test_complete_section_hash_includes_examples_and_callouts(monkeypatch, suffix):
+    sid = "docs:model-jaggedness/jev-1.13"
+    text = limitations() + suffix
+    body = text.split("## Counting", 1)[1]
+    complete_hash = hashlib.sha256(re.sub(r"\s+", " ", body).strip().encode()).hexdigest()
+    monkeypatch.setitem(inventories._COMPLETE_LIMITATION_HASHES, "counting", complete_hash)
+    old = model_limitations({sid: text}, evidence(sid, text), None)
+    assert old["items"][0]["complete_section_sha256"] == complete_hash
+    assert old["items"][0]["summary_kind"] == "repository-interpretation"
+    changed = text + "\nThis section now requires additional review."
+    new = model_limitations({sid: changed}, evidence(sid, changed), old)
+    assert new["items"][0]["section_text_sha256"] == old["items"][0]["section_text_sha256"]
+    assert new["items"][0]["complete_section_sha256"] != complete_hash
+    assert new["items"][0]["summary_kind"] == "unknown"
+    assert "Repository interpretation (unknown)" in render_limitations(new)
+    events = semantic_events({"model-limitations": old}, {"model-limitations": new}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
+    legacy = copy.deepcopy(old)
+    del legacy["items"][0]["complete_section_sha256"]
+    baseline = semantic_events({"model-limitations": legacy}, {"model-limitations": old}, "today")
+    assert baseline[0]["change"] == "baseline"
+    concurrent = semantic_events({"model-limitations": legacy}, {"model-limitations": new}, "today")
+    assert concurrent[0]["change"] == "modified"
+    assert "evidence or status also changed" in concurrent[0]["summary"]
 
 
 INDEX = "## Extraction\n\n| [Dates](/cookbooks/dates) | Extract date parts. | Beginner |\n"
