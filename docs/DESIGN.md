@@ -217,6 +217,19 @@ validation view instead of duplicating its old records, while predecessors from
 earlier days remain available. The complete merged graph is checked before
 promotion without copying historical files into the publication batch.
 
+Publication independently enforces append-safe history against its immutable Git
+baseline in a disposable trial index, before changing the real index or checkout.
+An existing `events/baseline.json` remains byte-identical. Existing dated files
+cannot disappear: their non-event metadata and every original ID's complete record
+must survive unchanged, including provenance, observation timestamps and predecessor
+links. Event ordering may canonicalize; appended records and new days (including
+recovered earlier days) are allowed without imposing a new timestamp policy.
+Existing reports cannot be removed, and report rewrites require appended events
+for that day. Ordinary current-state deletions remain path-allowed and subject to
+the final semantic tree validator. History blobs are size-checked against the
+16 MiB patch limit before reading; malformed history is rejected without printing
+its contents. This check reads Git history objects, not source bodies.
+
 This is recoverable multi-file promotion, not an instantaneous snapshot for
 readers that ignore the lock. Interrupted files can be temporarily inconsistent
 until recovery; validation/publication must wait for completion. Missing or

@@ -335,3 +335,119 @@ def test_trusted_tree_validation_rejects_consistent_manifest_with_invalid_conten
     assert invalid.returncode == 1
     assert "best-practices" in invalid.stderr
     assert git(target, "rev-parse", "HEAD").strip() == baseline
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        "paired-delete",
+        "baseline-delete",
+        "baseline-edit",
+        "record",
+        "sources",
+        "observed_at",
+        "previous_event_id",
+        "missing",
+        "metadata",
+        "malformed",
+        "report-edit",
+        "append",
+        "new-day",
+        "reorder",
+    ],
+)
+def test_publication_preserves_immutable_history(repository, tmp_path, change):
+    events = repository / "events"
+    reports = repository / "changes"
+    events.mkdir()
+    reports.mkdir()
+    baseline_path = events / "baseline.json"
+    baseline_path.write_text('{"schema_version": 1, "kind": "baseline"}\n')
+    day = events / "2026-10-02.json"
+    old = [
+        {
+            "id": "first",
+            "sources": ["public"],
+            "observed_at": "legacy-clock",
+            "previous_event_id": None,
+        },
+        {"id": "second", "sources": [], "previous_event_id": "first"},
+    ]
+    payload = {"schema_version": 1, "date": "2026-10-02", "events": old}
+    day.write_text(json.dumps(payload))
+    report = reports / "2026-10-02.md"
+    report.write_text("Historical report\n")
+    git(repository, "add", ".")
+    git(repository, "commit", "-m", "historical baseline")
+    baseline = git(repository, "rev-parse", "HEAD").strip()
+    original = day.read_bytes()
+    candidate = json.loads(day.read_text())
+    if change == "paired-delete":
+        day.unlink()
+        report.unlink()
+    elif change == "baseline-delete":
+        baseline_path.unlink()
+    elif change == "baseline-edit":
+        baseline_path.write_text("{}\n")
+    elif change == "missing":
+        candidate["events"].pop()
+    elif change == "metadata":
+        candidate["date"] = "2026-10-01"
+    elif change == "record":
+        candidate["events"][0]["id"] = "replacement"
+    elif change in {"sources", "observed_at", "previous_event_id"}:
+        candidate["events"][0][change] = ["changed"] if change == "sources" else "changed"
+    elif change == "append":
+        candidate["events"].append({"id": "third", "previous_event_id": "second"})
+        report.write_text("Updated report with appended event\n")
+    elif change == "new-day":
+        (events / "1999-01-01.json").write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "date": "1999-01-01",
+                    "events": [{"id": "recovered", "observed_at": "earlier-clock"}],
+                }
+            )
+        )
+        (reports / "1999-01-01.md").write_text("Recovered day\n")
+    elif change == "reorder":
+        candidate["events"].reverse()
+    elif change == "report-edit":
+        report.write_text("Unsupported rewrite\n")
+    if day.exists() and change != "new-day":
+        day.write_text(
+            "private malformed content" if change == "malformed" else json.dumps(candidate)
+        )
+    diagnostics = tmp_path / "attempt.json"
+    diagnostics.write_text(json.dumps({"phase": "sync-complete", "result": "success"}))
+    artifact = tmp_path / "artifact"
+    packed = invoke(repository, artifact, baseline, diagnostics=diagnostics)
+    assert packed.returncode == 0, packed.stderr
+    target = tmp_path / "trusted"
+    git(tmp_path, "clone", str(repository), str(target))
+    before = {
+        str(p.relative_to(target)): p.read_bytes()
+        for p in target.rglob("*")
+        if p.is_file() and ".git" not in p.parts
+    }
+    index = (target / ".git/index").read_bytes()
+    applied = invoke(target, artifact, baseline, command="apply")
+    assert git(target, "rev-parse", "HEAD").strip() == baseline
+    if change in {"append", "new-day", "reorder"}:
+        assert applied.returncode == 0, applied.stderr
+        retained = json.loads((target / "events/2026-10-02.json").read_text())
+        assert all(event in retained["events"] for event in old)
+        if change == "new-day":
+            assert (target / "events/2026-10-02.json").read_bytes() == original
+    else:
+        assert applied.returncode != 0
+        assert "Publication rejected:" in applied.stderr
+        assert "private malformed content" not in applied.stderr
+        assert (target / ".git/index").read_bytes() == index
+        assert not git(target, "status", "--porcelain")
+        assert before == {
+            str(p.relative_to(target)): p.read_bytes()
+            for p in target.rglob("*")
+            if p.is_file() and ".git" not in p.parts
+        }
