@@ -154,6 +154,76 @@ def read_artifact(args):
     return patch
 
 
+def history_blob(repo, revision):
+    # Check object size before reading: a small patch can reference a huge blob.
+    require(int(git(repo, "cat-file", "-s", revision)) <= MAX_PATCH, "oversized history")
+    return git(repo, "cat-file", "blob", revision)
+
+
+def history_payload(blob):
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, "malformed publication history")
+            result[key] = value
+        return result
+
+    try:
+        payload = json.loads(blob, object_pairs_hook=unique_object)
+        require(isinstance(payload, dict), "malformed publication history")
+        events = payload.get("events")
+        require(isinstance(events, list), "malformed publication history")
+        records = {}
+        for event in events:
+            require(isinstance(event, dict), "malformed publication history")
+            identity = event.get("id")
+            require(isinstance(identity, str) and bool(identity), "malformed publication history")
+            require(identity not in records, "malformed publication history")
+            records[identity] = json.dumps(event, sort_keys=True, allow_nan=False)
+        metadata = {key: value for key, value in payload.items() if key != "events"}
+        return json.dumps(metadata, sort_keys=True, allow_nan=False), records
+    except (ValueError, UnicodeError, RecursionError):
+        raise ValueError("malformed publication history") from None
+
+
+def validate_history(repo, baseline, entries):
+    appended = set()
+    reports = []
+    for metadata, raw_name in entries:
+        name = raw_name.decode("utf-8")
+        old_mode, new_mode, old_oid, new_oid, _ = metadata.lstrip(b":").split()
+        if name.startswith("changes/"):
+            reports.append((name, old_mode, new_mode))
+        if not name.startswith("events/"):
+            continue
+        existed = old_mode != b"000000"
+        require(new_mode != b"000000", "publication cannot delete history")
+        if name == "events/baseline.json":
+            require(
+                not existed or old_oid == new_oid, "publication cannot rewrite baseline history"
+            )
+            continue
+        new_metadata, new_records = history_payload(history_blob(repo, new_oid.decode()))
+        if existed:
+            old_metadata, old_records = history_payload(history_blob(repo, f"{baseline}:{name}"))
+            require(old_metadata == new_metadata, "publication cannot rewrite history metadata")
+            require(
+                all(new_records.get(key) == record for key, record in old_records.items()),
+                "publication cannot remove or rewrite historical events",
+            )
+        else:
+            old_records = {}
+        if new_records.keys() - old_records.keys():
+            appended.add(Path(name).stem)
+    for name, old_mode, new_mode in reports:
+        if old_mode != b"000000":
+            require(new_mode != b"000000", "publication cannot delete historical reports")
+            require(
+                Path(name).stem in appended,
+                "publication report changes require appended events",
+            )
+
+
 def apply(args):
     baseline_matches(args)
     require(
@@ -187,13 +257,15 @@ def apply(args):
             args.repo, "diff", "--cached", "--raw", "--no-renames", "-z", args.baseline, env=env
         ).split(b"\0")
         require(raw[-1] == b"" and len(raw) % 2 == 1, "invalid patch entries")
-        for metadata, name in zip(raw[0:-1:2], raw[1:-1:2], strict=True):
+        entries = list(zip(raw[0:-1:2], raw[1:-1:2], strict=True))
+        for metadata, name in entries:
             modes = metadata.split()[:2]
             require(
                 all(mode.lstrip(b":") in (b"000000", b"100644") for mode in modes),
                 "unsupported generated file mode",
             )
             generated_path(args.repo, name.decode("utf-8"))
+        validate_history(args.repo, args.baseline, entries)
     git(args.repo, "apply", "--index", "--check", "-", input=patch)
     git(args.repo, "apply", "--index", "-", input=patch)
     output(changed=True)
