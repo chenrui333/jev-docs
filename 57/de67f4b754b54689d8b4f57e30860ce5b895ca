@@ -1,0 +1,18 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 141-149
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 980,1279-1286,1290-1296,1400-1405,1410-1415
+tests/test_sdk_evolution.py
+  h_9df9c32c3f321d 333-403
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "57de67f4b754b54689d8b4f57e30860ce5b895ca",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
