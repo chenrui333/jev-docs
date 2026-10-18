@@ -312,7 +312,7 @@ def test_trusted_tree_validation_rejects_consistent_manifest_with_invalid_conten
             dirs_exist_ok=True,
             ignore=shutil.ignore_patterns("__pycache__"),
         )
-    for name in ("BEST_PRACTICES.md", "MODEL_LIMITATIONS.md"):
+    for name in (".gitignore", "BEST_PRACTICES.md", "MODEL_LIMITATIONS.md"):
         shutil.copyfile(source / name, repository / name)
     git(repository, "add", ".")
     git(repository, "commit", "-m", "complete trusted baseline")
