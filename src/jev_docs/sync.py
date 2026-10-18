@@ -1723,18 +1723,30 @@ def semantic_events(
                     != new_properties.get(field, {}).get("status")
                     for field in fields
                 )
-                contract_changed = any(
-                    old_properties.get(field, {}).get("status") == "verified"
-                    and new_properties.get(field, {}).get("status") == "verified"
-                    and old_properties[field]["value"] != new_properties[field]["value"]
-                    for field in fields
-                )
+                contract_changed = False
+                for field in fields:
+                    prior_fact = old_properties.get(field, {})
+                    if prior_fact.get("status") != "verified":
+                        prior_fact = prior_fact.get("last_known", {})
+                    current_fact = new_properties.get(field, {})
+                    if (
+                        prior_fact.get("status") == "verified"
+                        and current_fact.get("status") == "verified"
+                        and prior_fact["value"] != current_fact["value"]
+                    ):
+                        contract_changed = True
                 if status_changed and not contract_changed:
                     change = "verification_changed"
                     tracking_note = (
                         "API reference verification status changed; loss or recovery of evidence "
                         "does not establish an upstream contract change."
                     )
+                if contract_changed:
+                    tracking_note = (
+                        "Verified HTTP reference facts differ from the last supported observation; "
+                        "the exact upstream change time is unknown."
+                    )
+                if status_changed or contract_changed:
                     verification_sources = [
                         {**source, "role": "current"} for source in item.get("provenance", [])
                     ]

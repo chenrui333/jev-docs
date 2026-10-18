@@ -484,3 +484,27 @@ def test_unclosed_comment_cannot_verify_inactive_reference_sections():
 def test_complete_reference_quoted_as_code_is_not_current_api_evidence():
     api = derive("````markdown\n" + REFERENCE + "\n````")
     assert all(prop["status"] == "unknown" for prop in api["properties"].values())
+
+
+@pytest.mark.parametrize(
+    "recovered_text",
+    [
+        REFERENCE.replace("/v1/systemone", "/v2/systemone"),
+        REFERENCE.replace('body="model" type="string" required', 'body="model" type="string"'),
+    ],
+)
+def test_recovery_compares_with_last_verified_facts_across_unknown_gap(recovered_text):
+    original = derive()
+    unavailable = derive(None, original)
+    recovered = derive(recovered_text, unavailable)
+    events = semantic_events({"api": unavailable}, {"api": recovered}, "2026-10-18")
+    assert len(events) == 1
+    assert events[0]["change"] == "modified"
+    assert any(
+        s["role"] == "historical" and s["sha256"] == original["provenance"][0]["sha256"]
+        for s in events[0]["sources"]
+    )
+    assert (
+        semantic_events({"api": recovered}, {"api": derive(recovered_text, recovered)}, "later")
+        == []
+    )
