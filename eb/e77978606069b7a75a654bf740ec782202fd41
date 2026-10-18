@@ -1,0 +1,16 @@
+.github/workflows/sync.yml
+  h_9df9c32c3f321d 104
+tests/test_workflow_publication.py
+  h_9df9c32c3f321d 328
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ebe77978606069b7a75a654bf740ec782202fd41",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
