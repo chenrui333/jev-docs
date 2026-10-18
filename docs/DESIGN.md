@@ -375,8 +375,9 @@ null. These metadata fields do not participate in semantic event identity.
 
 Freshness `last_changed` replaces the misleading `last_successful_observation`, with
 the old value preserved on migration. Per-attempt diagnostics carry
-`last_successful_fetch` after complete collection and `last_successful_sync` after
-validation/promotion. Failed attempts never claim sync success. These heartbeat
+`last_successful_fetch` immediately after the most recent successful HTTP response
+(even if later parsing fails), and `last_successful_sync` after validation/promotion.
+The fetch timestamp does not assert complete source coverage. Failed attempts never claim sync success. These heartbeat
 fields are not committed, so unchanged successful syncs are byte-idempotent.
 No separate persisted `last_observed` field is needed: artifact `observed_at` already
 means first observation of that content revision, and attempt diagnostics cover liveness.

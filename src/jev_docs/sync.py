@@ -242,6 +242,19 @@ class HTTPClient:
         raise FetchError(f"failed to fetch {source_label(url)}: {last_error}", status) from None
 
 
+class _ObservedClient:
+    """Keep per-attempt HTTP success separate from later evidence interpretation."""
+
+    def __init__(self, client, attempt):
+        self.client = client
+        self.attempt = attempt
+
+    def get(self, url):
+        response = self.client.get(url)
+        self.attempt["last_successful_fetch"] = utc_now().isoformat().replace("+00:00", "Z")
+        return response
+
+
 @dataclass
 class Artifact:
     source_id: str
@@ -2331,7 +2344,7 @@ def _synchronize(
     strict: bool,
     attempt: dict[str, Any],
 ) -> dict[str, Any]:
-    client = client or HTTPClient()
+    client = _ObservedClient(client or HTTPClient(), attempt)
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -2479,7 +2492,6 @@ def _synchronize(
     for kind, candidate in sdk_candidates.items():
         state[f"sdk-{kind}"] = previous_state[f"sdk-{kind}"] if kind in held_streams else candidate
     observed = utc_now().isoformat().replace("+00:00", "Z")
-    attempt["last_successful_fetch"] = observed
     old_docs = {
         item["source_id"]: item
         for item in previous_docs_manifest.get("artifacts", [])

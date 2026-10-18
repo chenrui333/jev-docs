@@ -115,3 +115,23 @@ def test_legacy_dates_without_support_do_not_become_verified_history(monkeypatch
         rule.pop("first_seen_basis", None)
     migrated = derive_practices({}, {}, legacy)
     assert all(rule["last_verified"] is None for rule in migrated["items"])
+
+
+def test_successful_response_is_recorded_before_interpretation_failure(tmp_path, monkeypatch):
+    from jev_docs.sync import Response
+
+    class UnrecognizedPurpose(PublicSources):
+        def get(self, url):
+            if "system-one-adapter-python" in url and url.endswith("README.md"):
+                return Response(url, b"# Unrecognized purpose wording", {})
+            return super().get(url)
+
+    import pytest
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    attempt = {"last_successful_sync": "stale"}
+    with pytest.raises(RuntimeError, match="unrecognized"):
+        synchronize(tmp_path, UnrecognizedPurpose(), strict=True, attempt=attempt)
+    assert attempt["last_successful_fetch"] == "2026-10-05T00:00:00Z"
+    assert "last_successful_sync" not in attempt
+    assert attempt["phase"] == "derivation"
