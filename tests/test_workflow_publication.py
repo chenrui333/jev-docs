@@ -325,7 +325,7 @@ def test_trusted_tree_validation_rejects_consistent_manifest_with_invalid_conten
     assert packed.returncode == 0, packed.stderr
     target = tmp_path / "trusted"
     git(tmp_path, "clone", str(repository), str(target))
-    environment = dict(os.environ, PYTHONPATH=str(target / "src"))
+    environment = dict(os.environ, PYTHONPATH=str(target / "src"), PYTHONDONTWRITEBYTECODE="1")
     command = [sys.executable, "-m", "jev_docs", "validate", "--strict"]
     valid = subprocess.run(command, cwd=target, env=environment, capture_output=True, text=True)
     assert valid.returncode == 0, valid.stderr
