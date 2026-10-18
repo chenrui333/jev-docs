@@ -617,19 +617,62 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
     }
 
 
+def markdown_tables(content: str) -> list[list[list[str]]]:
+    """Return pipe tables as rows of stripped cells, without separator rows."""
+    tables: list[list[list[str]]] = []
+    current: list[list[str]] = []
+    for line in [*content.splitlines(), ""]:
+        if line.lstrip().startswith("|"):
+            cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+            if not all(re.fullmatch(r":?-+:?", cell) for cell in cells):
+                current.append(cells)
+        elif current:
+            tables.append(current)
+            current = []
+    return tables
+
+
+def code_cell(cell: str) -> str | None:
+    match = re.fullmatch(r"`([^`]+)`", cell)
+    return match.group(1) if match else None
+
+
 def extract_models(content: str) -> list[dict[str, str]]:
-    """Extract only the explicit model/alias tables from the models page."""
-    models: list[dict[str, str]] = []
-    for match in re.finditer(r"^\|\s*([^|`]+?)\s*\|\s*`([^`]+)`\s*\|", content, re.MULTILINE):
-        label, model_id = match.groups()
-        if label.strip().lower() in {"jev 1.13", "jev 1.13.0"} or label.strip().lower().startswith(
-            "jev "
-        ):
-            models.append({"kind": "versioned", "id": model_id, "label": label.strip()})
-    for match in re.finditer(r"^\|\s*`([^`]+)`\s*\|\s*`([^`]+)`\s*\|", content, re.MULTILINE):
-        alias, target = match.groups()
-        models.append({"kind": "alias", "id": alias, "target": target})
-    return sorted(models, key=lambda item: (item["kind"], item["id"]))
+    """Extract only the explicit model/alias tables from the models page.
+
+    Supports one model per row (``| Jev 1.13 | `jev-1.13.0` |``), one model per
+    column with a ``Model ID`` row, and ``| `alias` | `target` |`` alias rows.
+    """
+    models: dict[tuple[str, str], dict[str, str]] = {}
+    for table in markdown_tables(content):
+        header = table[0]
+        for row in table:
+            if len(row) < 2:
+                continue
+            if row[0].lower() == "model id":
+                for label, cell in zip(header[1:], row[1:], strict=False):
+                    model_id = code_cell(cell)
+                    if model_id and label:
+                        models[("versioned", model_id)] = {
+                            "kind": "versioned",
+                            "id": model_id,
+                            "label": label,
+                        }
+            elif row[0].lower().startswith("jev ") and code_cell(row[1]):
+                model_id = code_cell(row[1])
+                models[("versioned", model_id)] = {
+                    "kind": "versioned",
+                    "id": model_id,
+                    "label": row[0],
+                }
+            elif code_cell(row[0]) and code_cell(row[1]):
+                alias = code_cell(row[0])
+                models[("alias", alias)] = {
+                    "kind": "alias",
+                    "id": alias,
+                    "target": code_cell(row[1]),
+                }
+    return [models[key] for key in sorted(models)]
 
 
 # Explicit release-note rules, deliberately not an API compatibility analyzer.
@@ -1048,10 +1091,15 @@ def derive_state(
         },
         previous_state.get("api"),
     )
+    models_content = contents.get("docs:models")
+    model_items = extract_models(models_content or "")
+    if models_content is not None and not any(item["kind"] == "versioned" for item in model_items):
+        # An unrecognized layout must not silently drop model identities.
+        raise RuntimeError("unrecognized models table; model identities not promoted")
     models = observed_state(
         {
             "schema_version": SCHEMA,
-            "models": extract_models(contents.get("docs:models", "")),
+            "models": model_items,
             "provenance": provenance(["docs:models"]),
         },
         previous_state.get("models"),
@@ -1154,6 +1202,8 @@ def semantic_events(
                     or (
                         f"{item.get('package')} {old_items.get(entity_key, {}).get('version', 'unknown')} → {item.get('version')}; release guidance and capability evidence updated."
                         if name.startswith("sdk-")
+                        else models_summary(item)
+                        if name == "models"
                         else f"{name} {entity_key} changed"
                     ),
                     "before_sha256": before,
@@ -1164,6 +1214,23 @@ def semantic_events(
                 }
             )
     return events
+
+
+def models_summary(state: dict[str, Any]) -> str:
+    entries = state.get("models", [])
+    versioned = [entry["id"] for entry in entries if entry.get("kind") == "versioned"]
+    aliases = [
+        f"{entry['id']} → {entry.get('target')}"
+        for entry in entries
+        if entry.get("kind") == "alias"
+    ]
+    return (
+        "Documented model identities: "
+        + (", ".join(versioned) or "none")
+        + "; aliases: "
+        + (", ".join(aliases) or "none")
+        + "."
+    )
 
 
 def practice_projection(item: dict[str, Any] | None) -> dict[str, Any] | None:
