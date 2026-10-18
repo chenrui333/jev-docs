@@ -1,0 +1,22 @@
+.github/scripts/sync_publication.py
+  h_9df9c32c3f321d 11,269-280
+docs/DESIGN.md
+  h_9df9c32c3f321d 480-486
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 2939-2971,2999-3008
+tests/test_practices.py
+  h_9df9c32c3f321d 19,621,670-733
+tests/test_workflow_publication.py
+  h_9df9c32c3f321d 454-477
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "523438b4ee72a15f0fac7fb6390a054d051e7c44",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
