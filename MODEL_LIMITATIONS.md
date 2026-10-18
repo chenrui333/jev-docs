@@ -8,9 +8,7 @@ Generated from [structured state](state/model-limitations.json). These describe 
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-State is data, and jev-1.13 does not treat it as hostile by default.
-
-Upstream mitigation: be explicit in the criteria. Test your integration thoroughly before deploying it to many users.
+Repository interpretation (repository-interpretation): Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content)
 
@@ -18,9 +16,7 @@ Upstream mitigation: be explicit in the criteria. Test your integration thorough
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-In some cases, we observed that the order of a Choice's options can affect the answer, and jev-1.13 leans toward the option that comes first.
-
-Upstream mitigation: reorder the options to double check that the answer stays consistent.
+Repository interpretation (repository-interpretation): Choice results may depend on option position. Check decisions after permuting candidates.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order)
 
@@ -28,9 +24,7 @@ Upstream mitigation: reorder the options to double check that the answer stays c
 
 Status: `unknown`. Upstream last reviewed: 2026-09-17.
 
-jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model.
-
-Upstream mitigation: don't rely on expected structural invariance, and word questions to mean directly what you want. Don't carry a threshold tuned on a Noul over to a Choice, and don't hold the model to arithmetic identities between separate questions. A Choice over options and one Noul per option answer different questions: the Choice is relative, settling which option, while each Noul is absolute and can be low for all of them. The skill suggestion cookbook uses both on the same shortlist, the Choice to pick a skill and the Nouls to decide whether to suggest one at all.
+Repository interpretation (repository-interpretation): Similar wording does not guarantee algebraic relationships across questions. Calibrate Choice and Noul decisions separately.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#common-sense-structural-invariants)
 
@@ -38,9 +32,7 @@ Upstream mitigation: don't rely on expected structural invariance, and word ques
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-When the instructions and the criteria ask for different things, jev-1.13 might get confused.
-
-Upstream mitigation: treat the criteria as an extension of the instruction. Align the two using clear and precise language.
+Repository interpretation (repository-interpretation): Conflicting instructions and criteria can impair decisions; make their requirements agree.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria)
 
@@ -48,9 +40,7 @@ Upstream mitigation: treat the criteria as an extension of the instruction. Alig
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-jev-1.13 does not count reliably. This covers characters in a word, occurrences of a term in a passage, and items in a long list. The model recognizes the shape of an answer rather than tallying, and the error grows with the size of the thing being counted.
-
-Upstream mitigation: count in code. When you want to count items matching some criteria, iterate in code over the candidates and ask one question for each, then add up the answers yourself.
+Repository interpretation (repository-interpretation): Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting)
 
@@ -58,9 +48,7 @@ Upstream mitigation: count in code. When you want to count items matching some c
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-jev-1.13 reads dates as text, not as ordered quantities.
-
-Upstream mitigation: split the work. Extraction is a judgment, so give it to the model. Arithmetic is not, so keep it in code.
+Repository interpretation (repository-interpretation): Date text is not reliably ordered by the model. Separate semantic extraction from programmatic date calculations.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison)
 
@@ -68,9 +56,7 @@ Upstream mitigation: split the work. Extraction is a judgment, so give it to the
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-jev-1.13 is not trained to generate text. While you can force it to by chaining choices, this will not work well and will be very slow. For data extraction, it is better to extract possible options using regex or a generative model and let jev-1.13 pick the correct extraction.
-
-Upstream mitigation: when the answer space is bounded, turn extraction into a Choice over the options rather than asking for the value itself. If you really need to generate text... there are other models for that.
+Repository interpretation (repository-interpretation): Free-text production is outside this model's training. For bounded extraction, obtain candidates elsewhere and use Choice to select.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation)
 
@@ -78,9 +64,7 @@ Upstream mitigation: when the answer space is bounded, turn extraction into a Ch
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Instructions carrying double negatives or complex indirection are answered less reliably. A question about a property of a property or something that requires multiple hops of reasoning costs accuracy.
-
-Upstream mitigation: write your instructions as directly as possible. When possible, identify the relevant parts of state by name.
+Repository interpretation (repository-interpretation): Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection)
 
@@ -88,9 +72,7 @@ Upstream mitigation: write your instructions as directly as possible. When possi
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input produced a wrong answer.
-
-Upstream mitigation: retrieve and filter in code first, and send only the fields the question needs. When it's not possible to filter in state, you can use a Noul to filter for relevance. The classifying RAG passages cookbook has a worked example.
+Repository interpretation (repository-interpretation): Irrelevant input can reduce accuracy and obscure error causes. Select relevant fields before evaluation.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail)
 
@@ -98,9 +80,7 @@ Upstream mitigation: retrieve and filter in code first, and send only the fields
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-jev-1.13 answers the question you wrote, not the one you meant. Scoping words, negations, and implied conditions are read at face value. A question will be answered based on the words written in the instruction, whereas a person might have read the intent behind the instructions.
-
-Upstream mitigation: state the exact condition in the instructions. Be specific. Put boundary cases in the criteria. When you look at a wrong answer and find yourself explaining what you really meant, that explanation is the missing half of the instruction. Where interpretation is unavoidable, split it into two literal questions and combine them in code.
+Repository interpretation (repository-interpretation): Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading)
 
@@ -108,7 +88,7 @@ Upstream mitigation: state the exact condition in the instructions. Be specific.
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Jev is not a calculator. We strongly recommend implementing any mathematical logic in code. Jev will perform better on semantic questions than mathematical ones.
+Repository interpretation (repository-interpretation): Reserve the model for semantic judgments; implement numerical operations programmatically.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers)
 
@@ -116,7 +96,7 @@ Jev is not a calculator. We strongly recommend implementing any mathematical log
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Please do not use score outputs (e.g., expectations and probability) to compute the exact magnitude of a number between two levels of a criterion.
+Repository interpretation (repository-interpretation): A score is not an exact numerical measurement interpolated between criterion levels.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score)
 
@@ -124,8 +104,6 @@ Please do not use score outputs (e.g., expectations and probability) to compute 
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-jev-1.13 will perform better on semantic representations than numeric. For example, questions about colors using hex values will underperform compared to those using the English names. Given RGB triples or hex values it cannot reliably judge whether two values are near each other.
-
-Upstream mitigation: do the conversion in code and pass in either the computed number or a named bucket. Keep the model for the part that is genuinely a judgment, such as whether a color reads as a warning.
+Repository interpretation (repository-interpretation): Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations)

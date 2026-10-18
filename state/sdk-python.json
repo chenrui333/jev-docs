@@ -150,21 +150,21 @@
     }
   ],
   "discrepancies": [],
-  "fingerprint": "66cabefdf421b683ea53a64df1937381a766163362286d500a706d5c7760cdef",
+  "fingerprint": "8ac8d8384245ef176c28da63eb0f5609f2313820a5dd52977b930984bbdd9db1",
   "main_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-15T04:42:32.183878Z",
+  "observed_at": "2026-10-18T21:12:11.499896Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
-      "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
-      "source_id": "github:typesafe-ai/typesafe-sdk-python:pyproject.toml",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml"
-    },
-    {
-      "sha256": "ecaaf93f3c44ed2757d15916cf1f1aa44b7513288943ca31e13e458f34d4d470",
+      "sha256": "3a634cae252e6e3d6b26a77d92cca900c2abf0724fb3ba8b62397f0fff217c39",
       "source_id": "registry:pypi:typesafe-sdk",
       "url": "https://pypi.org/pypi/typesafe-sdk/json"
+    },
+    {
+      "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
+      "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.5:pyproject.toml",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml"
     }
   ],
   "public_surface": {
@@ -179,8 +179,11 @@
       "Choice",
       "Noul",
       "Score"
-    ]
+    ],
+    "scope": "Manually curated SDK overview; not verified for this release.",
+    "source_class": "curated"
   },
+  "release_evidence_policy": "tag-verified-v1",
   "release_history": [
     {
       "documented_changes": [],
@@ -191,6 +194,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.5.7 (2026-09-12)",
       "published_at": "2026-09-11T23:06:00Z",
       "source_commit": "f307bce731f6de17a3d9267311c20d699ae17694",
@@ -214,6 +218,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.6.0 (2026-09-15)",
       "published_at": "2026-09-15T10:23:29Z",
       "source_commit": "420ef4ffb612d5a539a1e0f0fe883ff6770340af",
@@ -234,6 +239,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.0 (2026-09-18)",
       "published_at": "2026-09-18T09:12:41Z",
       "source_commit": "2ce5c65f13646cab6e6f782328194c9d85f3300a",
@@ -253,6 +259,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.1 (2026-09-21)",
       "published_at": "2026-09-21T15:58:04Z",
       "source_commit": "0ffd094c72ed9445223060b24ffd7a56aa781fb4",
@@ -272,6 +279,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.2 (2026-09-26)",
       "published_at": "2026-09-26T21:20:32Z",
       "source_commit": "f078f1e208a0d885154dc758344ae4fce77ac168",
@@ -293,6 +301,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.3 (2026-10-09)",
       "published_at": "2026-10-09T09:44:08Z",
       "source_commit": "c743d814166a1bb5c47ea9929c020f467c923f0d",
@@ -311,6 +320,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.4 (2026-10-09)",
       "published_at": "2026-10-09T15:47:26Z",
       "source_commit": "e70bf99a89f27102247613bcd5d1aa8923a1cda9",
@@ -335,6 +345,7 @@
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.5 (2026-10-14)",
       "published_at": "2026-10-14T21:21:50Z",
       "source_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",

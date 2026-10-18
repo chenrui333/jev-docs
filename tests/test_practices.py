@@ -902,3 +902,29 @@ def test_approved_context_cannot_be_rebound_to_coordinated_unreviewed_source_met
     (candidate / "BEST_PRACTICES.md").write_text(render_best_practices(state))
     with pytest.raises(RuntimeError):
         validate_tree(candidate, strict=True, history_root=trusted)
+
+
+@pytest.mark.parametrize("policy", [None, "legacy-policy"])
+def test_legacy_policy_requires_sync_migration_not_standalone_approval(tmp_path, policy):
+    upstream = PracticeSources()
+    synchronize(tmp_path, upstream, strict=True)
+    path = tmp_path / "state/practices.json"
+    state = json.loads(path.read_text())
+    if policy is None:
+        state.pop("evidence_policy")
+    else:
+        state["evidence_policy"] = policy
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (tmp_path / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(tmp_path, strict=True)
+    synchronize(tmp_path, upstream, strict=True)
+    validate_tree(tmp_path, strict=True)
+    upgraded = json.loads(path.read_text())
+    assert all(item["status"] == "recommended" for item in upgraded["items"])
+    stable = snapshot(tmp_path)
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == stable

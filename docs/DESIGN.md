@@ -512,8 +512,10 @@ To review a changed source:
    and unknown evidence. Examples are not general benchmarks.
 3. Compute `practice_context(text)` and add an explicit reviewed-context entry with
    the raw URL/hash and verdicts. Do not auto-approve a new hash or missing pair.
-4. Check the complete literal passage bundles, run fixture regressions and strict
-   validation, and exercise actual-source replay before publishing.
+4. Check the complete literal passage bundles and run fixture regressions. Re-sync
+   evidence to regenerate the current policy digest before strict validation;
+   an older digest intentionally fails standalone validation. Verify byte-identical
+   actual-source replay before publishing.
 
 Source changes remain normal observation transitions. Approving an already observed
 context without changing its retained source hashes emits `verification_changed`

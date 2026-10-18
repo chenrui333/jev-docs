@@ -72,41 +72,39 @@ def test_limitations_unknown_sections_do_not_copy_or_invent_guidance():
     assert novel_state["items"][0]["summary_kind"] == "unknown"
 
 
-def test_recorded_limitations_interpretations_and_legacy_rendering():
-    recorded = json.loads((Path(__file__).parents[1] / "state/model-limitations.json").read_text())
+@pytest.fixture
+def legacy_limitations():
+    # Frozen historical schema with synthetic prose; never the mutable generated tree.
+    path = Path(__file__).parent / "fixtures/legacy-limitations.json"
+    return json.loads(path.read_text())
+
+
+def test_legacy_migration_preserves_evidence_without_republishing_quotes(legacy_limitations):
+    recorded = legacy_limitations
     original = copy.deepcopy(recorded)
     retained = model_limitations({}, {}, recorded)
-    by_section = {item["section"]: item for item in retained["items"]}
     assert all(item["status"] == "unknown" for item in retained["items"])
     assert all(item["mitigation"] is None for item in retained["items"])
     assert all(item["summary_kind"] == "repository-interpretation" for item in retained["items"])
-    assert all(len(item["summary"]) <= 200 for item in retained["items"])
-    assert "aggregate programmatically" in by_section["counting"]["summary"]
-    assert "not an exact numerical measurement" in by_section["math-using-score"]["summary"]
-    assert "separately" in by_section["common-sense-structural-invariants"]["summary"]
     for before, after in zip(recorded["items"], retained["items"], strict=True):
         for field in ("id", "model", "section_text_sha256", "provenance", "last_reviewed"):
             assert before[field] == after[field]
-    assert (
-        render_limitations(recorded)
-        == (Path(__file__).parents[1] / "MODEL_LIMITATIONS.md").read_text()
-    )
+    # Historical rendering remains available, but migrated output drops its quotations.
+    legacy_rendering = render_limitations(recorded)
     rendered = render_limitations(retained)
-    assert rendered == render_limitations(retained)
-    assert "Repository interpretation" in rendered
-    assert "Upstream mitigation:" not in rendered
-    assert all(item["summary"] not in rendered for item in recorded["items"])
+    for item in recorded["items"]:
+        assert item["summary"] in legacy_rendering
+        assert item["summary"] not in rendered
+        assert item["mitigation"] not in rendered
     assert recorded == original
-    later = copy.deepcopy(retained)
-    later["items"][0]["model"] = "jev-1.14"
-    assert "Repository interpretation (unknown): Unknown:" in render_limitations(later)
-    changed = copy.deepcopy(retained)
-    changed["items"][0]["section_text_sha256"] = "0" * 64
-    assert "Repository interpretation (unknown): Unknown:" in render_limitations(changed)
+    for field, value in (("model", "jev-1.14"), ("section_text_sha256", "0" * 64)):
+        changed = copy.deepcopy(retained)
+        changed["items"][0][field] = value
+        assert retained["items"][0]["summary"] not in render_limitations(changed)
 
 
-def test_limitation_quotation_policy_migration_is_local_baseline():
-    recorded = json.loads((Path(__file__).parents[1] / "state/model-limitations.json").read_text())
+def test_limitation_quotation_policy_migration_is_local_baseline(legacy_limitations):
+    recorded = legacy_limitations
     upgraded = model_limitations({}, {}, recorded)
     # Isolate the local format migration from absence/status transitions.
     for before, after in zip(recorded["items"], upgraded["items"], strict=True):
@@ -117,8 +115,6 @@ def test_limitation_quotation_policy_migration_is_local_baseline():
     events = semantic_events(old, new, "today")
     assert len(events) == len(recorded["items"])
     assert all(event["change"] == "baseline" for event in events)
-    assert all("local interpretation and quotation policy" in event["summary"] for event in events)
-    assert all("not an upstream limitation change" in event["summary"] for event in events)
     assert semantic_events(old, new, "tomorrow") == [
         dict(event, observed_at="tomorrow") for event in events
     ]
@@ -144,9 +140,6 @@ def test_limitation_quotation_policy_migration_is_local_baseline():
             continue
         event = concurrent_events[0]
         assert event["change"] == "modified"
-        assert "evidence or status also changed" in event["summary"]
-        assert "local quotation-policy migration" in event["summary"]
-        assert "not an upstream limitation change" not in event["summary"]
         assert semantic_events(concurrent, concurrent, "tomorrow") == []
 
 

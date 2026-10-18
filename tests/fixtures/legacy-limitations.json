@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "scope": "Synthetic legacy limitation migration fixture.",
+  "items": [
+    {
+      "id": "jev-1.13:counting",
+      "model": "jev-1.13",
+      "section": "counting",
+      "title": "Counting",
+      "last_reviewed": "2026-09-17",
+      "status": "documented",
+      "summary": "Synthetic legacy quotation sentinel, not official upstream wording.",
+      "mitigation": "Synthetic legacy mitigation sentinel.",
+      "section_text_sha256": "88eeb3d33ed56e2abd0b5535bc06f64ddbb5a964815b9d81db81dc495b68e32e",
+      "provenance": [
+        {
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting",
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950"
+        }
+      ]
+    }
+  ]
+}

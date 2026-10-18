@@ -2896,7 +2896,9 @@ def _validate_source_integrity(root, coverage, sources, state_files):
 
 def _validate_practice_reviews(practices, sources, *, allow_migration=False):
     if practices.get("evidence_policy") != PRACTICE_EVIDENCE_POLICY:
-        return
+        if allow_migration:
+            return
+        raise RuntimeError("practice evidence policy is outdated; run sync to reverify evidence")
     if practices.get("review_policy_sha256") != _practice_review_policy_sha256():
         if allow_migration:
             # Only trusted preflight permits older authored policy; candidates never do.
