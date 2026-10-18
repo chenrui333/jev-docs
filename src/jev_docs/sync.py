@@ -1985,6 +1985,8 @@ def synchronize(
 ) -> dict[str, Any]:
     client = client or HTTPClient()
     attempt = attempt if attempt is not None else {}
+    attempt["publication_eligible"] = False
+    attempt.pop("health_errors", None)
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -2300,7 +2302,7 @@ def synchronize(
         names = ", ".join(health_errors)
         raise RuntimeError(
             "strict sync health failed; SDK release discrepancy persisted beyond grace period: "
-            f"{names}; validated independent evidence published, SDK state retained"
+            f"{names}; validated independent evidence published, unresolved SDK evidence remains explicit"
         )
     return {
         "pages": len(discovered),
