@@ -14,7 +14,10 @@ class DelayedRelease(PublicSources):
             return Response(
                 url,
                 json.dumps(
-                    {"info": {"version": "0.2.0"}, "releases": {"0.1.0": [], "0.2.0": []}}
+                    {
+                        "info": {"name": "typesafe-sdk", "version": "0.2.0"},
+                        "releases": {"0.1.0": [], "0.2.0": []},
+                    }
                 ).encode(),
                 {},
             )
@@ -67,7 +70,9 @@ def test_all_expired_sdks_are_reported_and_candidate_hashes_are_checked(tmp_path
     class BothDelayed(DelayedRelease):
         def get(self, url):
             if self.delayed and "registry.npmjs.org" in url:
-                return Response(url, b'{"dist-tags":{"latest":"0.2.0"}}', {})
+                return Response(
+                    url, b'{"name":"@typesafe-ai/sdk","dist-tags":{"latest":"0.2.0"}}', {}
+                )
             return super().get(url)
 
     upstream = BothDelayed()
@@ -97,9 +102,15 @@ def test_held_sdk_keeps_old_changelog_citations_while_navigation_updates(
 
         def get(self, url):
             if self.delayed and kind == "python" and "pypi.org" in url:
-                return Response(url, b'{"info":{"version":"0.2.0"},"releases":{"0.2.0":[]}}', {})
+                return Response(
+                    url,
+                    b'{"info":{"name":"typesafe-sdk","version":"0.2.0"},"releases":{"0.2.0":[]}}',
+                    {},
+                )
             if self.delayed and kind == "javascript" and "registry.npmjs.org" in url:
-                return Response(url, b'{"dist-tags":{"latest":"0.2.0"}}', {})
+                return Response(
+                    url, b'{"name":"@typesafe-ai/sdk","dist-tags":{"latest":"0.2.0"}}', {}
+                )
             return super().get(url)
 
     upstream = OneDelayed()
@@ -130,3 +141,36 @@ def test_held_sdk_keeps_old_changelog_citations_while_navigation_updates(
     sdk_path.write_text(json.dumps(retained))
     with pytest.raises(RuntimeError, match="SDK changelog provenance"):
         validate_tree(tmp_path, strict=True)
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+@pytest.mark.parametrize("missing", [False, True])
+def test_wrong_config_package_identity_retains_trusted_sdk(tmp_path, monkeypatch, kind, missing):
+    upstream = PublicSources()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / f"state/sdk-{kind}.json"
+    trusted = sdk_path.read_bytes()
+
+    class WrongConfigIdentity(PublicSources):
+        def get(self, url):
+            if kind == "python" and "typesafe-sdk-python" in url and url.endswith("pyproject.toml"):
+                config = '[project]\nversion = "0.1.0"\nrequires-python = ">=3.10"\n'
+                if not missing:
+                    config += 'name = "unrelated-package"\n'
+                return Response(url, config.encode(), {})
+            if kind == "javascript" and url.endswith("package.json"):
+                config = {"version": "0.1.0", "engines": {"node": ">=18"}}
+                if not missing:
+                    config["name"] = "@typesafe-ai/other"
+                return Response(url, json.dumps(config).encode(), {})
+            return super().get(url)
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    synchronize(tmp_path, WrongConfigIdentity(), strict=True)
+    assert sdk_path.read_bytes() == trusted
+    freshness = json.loads((tmp_path / "state/freshness.json").read_text())[kind]
+    assert freshness["state_retained"] is True
+    assert freshness["tag"] is None
+    discrepancy = "release_config_name_missing" if missing else "release_config_name_mismatch"
+    assert freshness["discrepancies"] == [discrepancy]

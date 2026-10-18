@@ -28,6 +28,11 @@ from jev_docs.inventories import cookbooks, model_limitations, render_limitation
 from jev_docs.text import excerpt
 from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
 
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
+
 # datetime.UTC requires Python 3.11; the project supports Python 3.10.
 UTC = timezone.utc
 
@@ -611,7 +616,16 @@ def is_github_commit_sha(value: Any) -> bool:
     return isinstance(value, str) and re.fullmatch(r"[0-9a-fA-F]{40}", value) is not None
 
 
-def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
+def package_names_match(observed: Any, expected: Any, package_kind: str) -> bool:
+    if not nonempty_string(observed) or not nonempty_string(expected):
+        return False
+    if package_kind == "python":
+        # PEP 503 canonicalizes case and each run of '-', '_' and '.'.
+        return re.sub(r"[-_.]+", "-", observed).lower() == re.sub(r"[-_.]+", "-", expected).lower()
+    return observed == expected
+
+
+def registry_json(response: Response, package_kind: str, package: str) -> dict[str, Any]:
     service = "PyPI" if package_kind == "python" else "npm"
     value = metadata_json(response, service)
     if not isinstance(value, dict):
@@ -626,10 +640,14 @@ def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
             raise schema_error(response, service, "releases as a version-to-file-list map")
         if info["version"] not in releases:
             raise schema_error(response, service, "info.version to appear in the releases map")
+        if not package_names_match(info.get("name"), package, package_kind):
+            raise schema_error(response, service, "info.name matching the requested package")
     else:
         tags = value.get("dist-tags")
         if not isinstance(tags, dict) or not nonempty_string(tags.get("latest")):
             raise schema_error(response, service, "dist-tags.latest as a nonempty string")
+        if not package_names_match(value.get("name"), package, package_kind):
+            raise schema_error(response, service, "name matching the requested scoped package")
     return value
 
 
@@ -783,15 +801,39 @@ def stable_head_evidence(value: Any) -> dict[str, Any]:
 
 
 def parse_simple_toml_value(text: str, key: str) -> str | None:
-    match = re.search(rf"^{re.escape(key)}\s*=\s*[\"']([^\"']+)[\"']", text, re.MULTILINE)
-    return match.group(1) if match else None
+    """Read a static PEP 621 project string; never infer root/tool-table fields."""
+    try:
+        project = tomllib.loads(text).get("project")
+    except tomllib.TOMLDecodeError:
+        return None
+    if not isinstance(project, dict):
+        return None
+    dynamic = project.get("dynamic", [])
+    if (
+        not isinstance(dynamic, list)
+        or any(not isinstance(field, str) for field in dynamic)
+        or key in dynamic
+    ):
+        return None
+    value = project.get(key)
+    return value if nonempty_string(value) else None
+
+
+STABLE_VERSION_PATTERN = (
+    r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+)
 
 
 def parse_release_notes(text: str) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     text = re.sub(r"<h2\b[^>]*>\s*(.*?)\s*</h2>", r"## \1", text, flags=re.S)
     headings = list(
-        re.finditer(r"^\s*#+\s*v?(\d+\.\d+\.\d+)\s*\(([^)]+)\)", text, re.MULTILINE | re.IGNORECASE)
+        re.finditer(
+            rf"^\s*#+\s*v?(?P<version>{STABLE_VERSION_PATTERN})\s*\((?P<date>[^)]+)\)",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
     )
     for index, match in enumerate(headings):
         end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
@@ -801,14 +843,15 @@ def parse_release_notes(text: str) -> list[dict[str, Any]]:
             for line in block.splitlines()
             if line.strip().startswith(("-", "*"))
         ]
-        result.append({"version": match.group(1), "date": match.group(2), "notes": bullets[:12]})
+        result.append({"version": match["version"], "date": match["date"], "notes": bullets[:12]})
     return result
 
 
 def version_tuple(value: Any) -> tuple[int, ...] | None:
+    """Return stable SemVer precedence; build metadata does not affect ordering."""
     if not isinstance(value, str):
         return None
-    match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", value.strip())
+    match = re.fullmatch(rf"v?{STABLE_VERSION_PATTERN}", value.strip())
     return tuple(int(part) for part in match.groups()) if match else None
 
 
@@ -821,25 +864,58 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         malformed.append("tags_not_a_list")
         tags = []
     for index, entry in enumerate(tags):
-        if not isinstance(entry, dict) or not isinstance(entry.get("name"), str):
+        if not isinstance(entry, dict) or not nonempty_string(entry.get("name")):
             malformed.append(f"tag_entry_{index}_malformed")
             continue
         commit = entry.get("commit")
         sha = commit.get("sha") if isinstance(commit, dict) else None
-        if not isinstance(sha, str):
+        if not isinstance(sha, str) or not sha:
             malformed.append(f"tag_entry_{index}_missing_commit")
             continue
+        if not is_github_commit_sha(sha):
+            malformed.append(f"tag_entry_{index}_invalid_commit")
+            continue
+        if entry["name"] in tag_map and tag_map[entry["name"]] != sha:
+            malformed.append(f"tag_entry_{index}_conflicting_commit")
         tag_map[entry["name"]] = sha
     release_records: list[dict[str, Any]] = []
+    release_statuses: dict[str, tuple[bool, bool]] = {}
+    excluded_tags: set[str] = set()
     if not isinstance(releases, list):
         malformed.append("releases_not_a_list")
         releases = []
     for index, entry in enumerate(releases):
-        if not isinstance(entry, dict) or not isinstance(entry.get("tag_name"), str):
+        if (
+            not isinstance(entry, dict)
+            or not nonempty_string(entry.get("tag_name"))
+            or any(
+                entry.get(key) is not None and not isinstance(entry[key], str)
+                for key in ("published_at", "name", "html_url")
+            )
+            or any(
+                key in entry and not isinstance(entry[key], bool) for key in ("draft", "prerelease")
+            )
+        ):
             malformed.append(f"release_entry_{index}_malformed")
+            continue
+        tag = entry["tag_name"]
+        status = (entry.get("draft", False), entry.get("prerelease", False))
+        if tag in release_statuses and release_statuses[tag] != status:
+            malformed.append(f"release_entry_{index}_conflicting_status")
+        release_statuses[tag] = status
+        # Naming outside stable SemVer is unresolved, not a corrupt JSON record.
+        # This includes prereleases with optional build metadata and custom tags.
+        if (
+            version_tuple(tag) is None
+            or entry.get("draft") is True
+            or entry.get("prerelease") is True
+        ):
+            excluded_tags.add(tag)
             continue
         release_records.append(entry)
     expected_tag = f"v{version}" if version_tuple(version) else None
+    if expected_tag is None:
+        discrepancies.append("registry_version_unresolved")
     matching_release = next(
         (entry for entry in release_records if entry["tag_name"] == expected_tag), None
     )
@@ -852,21 +928,24 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         version_tuple(entry["tag_name"])
         for entry in release_records
         if version_tuple(entry["tag_name"])
-    ] + [version_tuple(name) for name in tag_map if version_tuple(name)]
+    ] + [
+        version_tuple(name) for name in tag_map if name not in excluded_tags and version_tuple(name)
+    ]
     if registry_version and source_versions and max(source_versions) > registry_version:
         discrepancies.append("git_source_ahead_of_registry")
     if registry_version and source_versions and registry_version > max(source_versions):
         discrepancies.append("registry_ahead_of_git_source")
     if malformed:
         discrepancies.append("malformed_release_metadata")
+    resolved = bool(expected_tag in tag_map and matching_release is not None and not malformed)
     return {
-        "source_tag": expected_tag if expected_tag in tag_map else None,
-        "source_commit": tag_map.get(expected_tag) if expected_tag else None,
+        "source_tag": expected_tag if resolved else None,
+        "source_commit": tag_map[expected_tag] if resolved else None,
         "release_history": [
             {
                 "tag": entry["tag_name"],
                 "version": entry["tag_name"].removeprefix("v"),
-                "source_commit": tag_map.get(entry["tag_name"]),
+                "source_commit": tag_map.get(entry["tag_name"]) if not malformed else None,
                 "published_at": entry.get("published_at"),
                 "name": entry.get("name"),
                 "source_url": entry.get("html_url"),
@@ -971,14 +1050,16 @@ PYTHON_CAPABILITY_RULES = (
 def python_capabilities(client, artifacts, repo, releases, registry, live_notes, previous=()):
     """Only attribute a capability to a registry version with matching immutable source."""
     items = []
+    published = registry.get("releases") if isinstance(registry, dict) else None
+    published = published if isinstance(published, dict) else {}
+    info = registry.get("info") if isinstance(registry, dict) else None
+    package_name = info.get("name") if isinstance(info, dict) else None
+    if not nonempty_string(package_name):
+        published = {}
     for release in releases:
         version = release["version"]
         live = next((n for n in live_notes if n["version"] == version), None)
-        if (
-            not live
-            or not release.get("source_commit")
-            or version not in registry.get("releases", {})
-        ):
+        if not live or not release.get("source_commit") or version not in published:
             continue
         rules = [
             rule
@@ -991,49 +1072,57 @@ def python_capabilities(client, artifacts, repo, releases, registry, live_notes,
         evidence = []
         for path in ("pyproject.toml", "docs/changelog.md"):
             url = f"https://raw.githubusercontent.com/{repo}/{commit}/{path}"
-            response = client.get(url)
             sid = f"github:{repo}:{release['tag']}:{path}"
-            artifact = Artifact(
-                sid,
-                "github-source",
-                url,
-                response.body,
-                upstream_commit=commit,
-                source_tag=release["tag"],
-            )
-            artifacts[sid] = artifact
+            artifact = artifacts.get(sid)
+            if artifact is None or artifact.url != url:
+                try:
+                    response = client.get(url)
+                except FetchError as exc:
+                    if exc.status != 404:
+                        raise
+                    break
+                artifact = Artifact(
+                    sid,
+                    "github-source",
+                    url,
+                    response.body,
+                    upstream_commit=commit,
+                    source_tag=release["tag"],
+                )
+                artifacts[sid] = artifact
+            try:
+                text = artifact.content.decode()
+            except UnicodeError:
+                break
             evidence.append({"source_id": sid, "url": url, "sha256": artifact.sha256})
             if path == "pyproject.toml":
-                if parse_simple_toml_value(response.body.decode(), "version") != version:
-                    raise RuntimeError(
-                        f"release config does not match registry version: {repo} {version}"
-                    )
+                if parse_simple_toml_value(text, "version") != version or not package_names_match(
+                    parse_simple_toml_value(text, "name"), package_name, "python"
+                ):
+                    break
             else:
                 notes = next(
-                    (
-                        n
-                        for n in parse_release_notes(response.body.decode())
-                        if n["version"] == version
-                    ),
+                    (n for n in parse_release_notes(text) if n["version"] == version),
                     None,
                 )
-        if not notes:
-            raise RuntimeError(f"immutable release changelog lacks {version}")
-        for ident, pattern, summary in rules:
-            matching = [note for note in notes["notes"] if re.search(pattern, note, re.I)]
-            if matching:
-                items.append(
-                    {
-                        "id": ident,
-                        "introduced": version,
-                        "status": "documented",
-                        "summary": summary,
-                        "source_tag": release["tag"],
-                        "source_commit": commit,
-                        "evidence": matching,
-                        "provenance": evidence,
-                    }
-                )
+        else:
+            if not notes:
+                continue
+            for ident, pattern, summary in rules:
+                matching = [note for note in notes["notes"] if re.search(pattern, note, re.I)]
+                if matching:
+                    items.append(
+                        {
+                            "id": ident,
+                            "introduced": version,
+                            "status": "documented",
+                            "summary": summary,
+                            "source_tag": release["tag"],
+                            "source_commit": commit,
+                            "evidence": matching,
+                            "provenance": evidence,
+                        }
+                    )
     # Later notes can mention the same feature again; preserve its earliest
     # verified introduction rather than creating duplicate identities.
     by_id = {}
@@ -1088,58 +1177,111 @@ def sdk_snapshot(
         f"{GITHUB_API}{head_path}",
         evidence_bytes(stable_head_evidence(head)),
     )
-    raw_url = f"https://raw.githubusercontent.com/{repo}/{head['sha']}/{config_path}"
-    config_response = client.get(raw_url)
-    config_artifact = Artifact(
-        f"github:{repo}:{config_path}",
-        "github-source",
-        raw_url,
-        config_response.body,
-        upstream_commit=head["sha"],
-    )
-    artifacts[config_artifact.source_id] = config_artifact
     if package_kind == "python":
         registry_url = f"https://pypi.org/pypi/{package}/json"
         registry_response = client.get(registry_url)
-        registry = registry_json(registry_response, package_kind)
-        runtime = (
-            parse_simple_toml_value(config_response.body.decode(), "requires-python") or "unknown"
-        )
+        registry = registry_json(registry_response, package_kind, package)
         public_surface = ["TypeSafeClient", "AsyncTypeSafeClient", "Choice", "Noul", "Score"]
         registry_id = f"registry:pypi:{package}"
     else:
         registry_url = f"https://registry.npmjs.org/{package.replace('/', '%2f')}"
         registry_response = client.get(registry_url)
-        registry = registry_json(registry_response, package_kind)
-        config = metadata_json(config_response, "SDK configuration")
-        if not isinstance(config, dict) or not isinstance(config.get("engines", {}), dict):
-            raise schema_error(
-                config_response, "SDK configuration", "an object with an engines map"
-            )
-        runtime = config.get("engines", {}).get("node", "unknown")
-        if not isinstance(runtime, str):
-            raise schema_error(config_response, "SDK configuration", "engines.node as a string")
+        registry = registry_json(registry_response, package_kind, package)
         public_surface = ["TypeSafeClient", "choice", "noul", "score"]
         registry_id = f"registry:npm:{package}"
     if package_kind == "python":
         version = registry["info"]["version"]
         registry_evidence = {
+            "name": registry["info"]["name"],
             "version": version,
             "published_versions": sorted(registry["releases"]),
         }
     else:
         version = registry["dist-tags"]["latest"]
-        registry_evidence = {"latest": version}
+        registry_evidence = {"name": registry["name"], "latest": version}
     artifacts[registry_id] = Artifact(
         registry_id, "package-registry", registry_url, evidence_bytes(registry_evidence)
     )
     release_info = release_provenance(version, tags, releases)
     release_history = release_info["release_history"]
+    runtime = "unknown"
+    provenance = [
+        {
+            "source_id": registry_id,
+            "url": registry_url,
+            "sha256": artifacts[registry_id].sha256,
+        }
+    ]
+    commit = release_info["source_commit"]
+    if commit:
+        raw_url = f"https://raw.githubusercontent.com/{repo}/{commit}/{config_path}"
+        try:
+            config_response = client.get(raw_url)
+        except FetchError as exc:
+            if exc.status != 404:
+                raise
+            release_info["discrepancies"].append("release_config_missing")
+        else:
+            config_artifact = Artifact(
+                f"github:{repo}:{release_info['source_tag']}:{config_path}",
+                "github-source",
+                raw_url,
+                config_response.body,
+                upstream_commit=commit,
+                source_tag=release_info["source_tag"],
+            )
+            artifacts[config_artifact.source_id] = config_artifact
+            try:
+                if package_kind == "python":
+                    text = config_response.body.decode()
+                    config_version = parse_simple_toml_value(text, "version")
+                    config_name = parse_simple_toml_value(text, "name")
+                    config_runtime = parse_simple_toml_value(text, "requires-python")
+                else:
+                    config = metadata_json(config_response, "SDK configuration")
+                    if not isinstance(config, dict) or not isinstance(
+                        config.get("engines", {}), dict
+                    ):
+                        raise schema_error(
+                            config_response, "SDK configuration", "an object with an engines map"
+                        )
+                    config_version = config.get("version")
+                    config_name = config.get("name")
+                    config_runtime = config.get("engines", {}).get("node", "unknown")
+                    if not isinstance(config_runtime, str):
+                        raise schema_error(
+                            config_response, "SDK configuration", "engines.node as a string"
+                        )
+            except (UnicodeError, json.JSONDecodeError):
+                config_version = None
+                config_name = None
+                config_runtime = None
+            if config_version is None:
+                release_info["discrepancies"].append("release_config_malformed")
+            elif config_version != version:
+                release_info["discrepancies"].append("release_config_version_mismatch")
+            elif not nonempty_string(config_name):
+                release_info["discrepancies"].append("release_config_name_missing")
+            elif not package_names_match(config_name, package, package_kind):
+                release_info["discrepancies"].append("release_config_name_mismatch")
+            else:
+                runtime = config_runtime if isinstance(config_runtime, str) else "unknown"
+                provenance.append(
+                    {
+                        "source_id": config_artifact.source_id,
+                        "url": config_artifact.url,
+                        "sha256": config_artifact.sha256,
+                    }
+                )
+        if any(item.startswith("release_config_") for item in release_info["discrepancies"]):
+            release_info["source_tag"] = None
+            release_info["source_commit"] = None
     notes = parse_release_notes(changelog_content or "")
     for item in release_history:
         note = next((note for note in notes if note["version"] == item["version"]), None)
-        if note and item.get("source_commit"):
+        if note:
             item["documented_changes"] = note["notes"]
+            item["documented_changes_source_class"] = "mutable_documentation"
             sid = f"docs:sdk/{package_kind}/changelog"
             if sid in artifacts:
                 item["documented_changes_provenance"] = [
@@ -1152,9 +1294,12 @@ def sdk_snapshot(
         "version": version,
         "source_tag": release_info["source_tag"],
         "source_commit": release_info["source_commit"],
-        "main_commit": head.get("sha"),
+        "main_commit": head.get("sha") if isinstance(head, dict) else None,
         "runtime": {package_kind: runtime},
+        "release_evidence_policy": "tag-verified-v1",
         "public_surface": {
+            "source_class": "curated",
+            "scope": "Manually curated SDK overview; not verified for this release.",
             "entry_points": public_surface,
             "primitives": ["Choice", "Noul", "Score"],
         },
@@ -1163,18 +1308,7 @@ def sdk_snapshot(
             key=lambda item: (item.get("published_at") or "", item.get("tag") or ""),
         ),
         "available_tags": release_info["available_tags"],
-        "provenance": [
-            {
-                "source_id": config_artifact.source_id,
-                "url": config_artifact.url,
-                "sha256": config_artifact.sha256,
-            },
-            {
-                "source_id": registry_id,
-                "url": registry_url,
-                "sha256": artifacts[registry_id].sha256,
-            },
-        ],
+        "provenance": provenance,
         "capabilities": python_capabilities(
             client,
             artifacts,
@@ -1186,7 +1320,7 @@ def sdk_snapshot(
         )
         if package_kind == "python"
         else [],
-        "discrepancies": release_info["discrepancies"],
+        "discrepancies": sorted(set(release_info["discrepancies"])),
         "malformed_release_metadata": release_info["malformed_metadata"],
     }
     return observed_state(state, previous)
@@ -1461,10 +1595,31 @@ def semantic_events(
             after_value = semantic_projection(name, new_items.get(entity_key))
             before = sha256_json(before_value) if entity_key in old_items else None
             after = sha256_json(after_value) if entity_key in new_items else None
-            if before == after:
+            sdk_policy_baseline = (
+                name.startswith("sdk-")
+                and entity_key in old_items
+                and not old_items[entity_key].get("release_evidence_policy")
+                and new_items.get(entity_key, {}).get("release_evidence_policy")
+                == "tag-verified-v1"
+                and all(
+                    old_items[entity_key].get(field) == new_items.get(entity_key, {}).get(field)
+                    for field in ("version", "source_tag", "source_commit")
+                )
+                and old_items[entity_key].get("discrepancies", [])
+                == new_items.get(entity_key, {}).get("discrepancies", [])
+                and before_value["release_history"] == after_value["release_history"]
+            )
+            if before == after and not sdk_policy_baseline:
                 continue
             change = "added" if before is None else "removed" if after is None else "modified"
             tracking_note = None
+            if sdk_policy_baseline:
+                change = "baseline"
+                tracking_note = (
+                    f"Established {name} tag-verified release evidence tracking; "
+                    "local correction of legacy SDK extraction/provenance, "
+                    "not an upstream release change."
+                )
             if name in CODE_DEFINED_LAYERS and change != "modified":
                 # These entities exist because of an extraction rule in this repository,
                 # so appearing or disappearing is a tracking change, not upstream history.
@@ -1608,11 +1763,22 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
             )
         }
         # Provenance enrichment alone is not SDK behavior/release evolution.
+        if isinstance(projection["public_surface"], dict):
+            projection["public_surface"] = {
+                key: value
+                for key, value in projection["public_surface"].items()
+                if key not in {"source_class", "scope"}
+            }
         projection["release_history"] = [
             {
                 key: value
                 for key, value in release.items()
-                if key not in {"source_commit", "documented_changes_provenance"}
+                if key
+                not in {
+                    "source_commit",
+                    "documented_changes_provenance",
+                    "documented_changes_source_class",
+                }
             }
             for release in item.get("release_history", [])
         ]

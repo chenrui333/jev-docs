@@ -64,7 +64,10 @@ not rewritten; their older excerpts remain part of the recorded history.
 - `state/sdk-python.json` and `state/sdk-javascript.json` keep the SDK release
   streams independent. A mutable `main` commit is never treated as a package
   release. Python capabilities are attributed only after matching a published
-  package version, tag commit, release configuration and immutable changelog.
+  package name and version, tag commit, release configuration and immutable changelog.
+  Tag commits must be full 40-character hexadecimal GitHub SHAs; malformed
+  identities are explicit release-metadata discrepancies, never source pins
+  for current or historical releases. Unresolved release runtime stays unknown.
   JavaScript capability parity is not inferred; an empty capability list means
   this extractor has no independently established entries.
 
@@ -132,8 +135,11 @@ only when their phase is `sync-complete` and result is `success`.
 
 ## Local usage
 
-Python 3.10+ is supported. The tested uv version is pinned in `pyproject.toml`
-and used by both local commands and setup-uv. With that `uv` version installed:
+Python 3.10+ is supported. Python 3.11+ uses the standard-library `tomllib`
+parser; Python 3.10 installs the conditional `tomli>=2,<3` backport for the
+same project-scoped release verification. The tested uv version is pinned in
+`pyproject.toml` and used by both local commands and setup-uv.
+With that `uv` version installed:
 
 ```bash
 just setup

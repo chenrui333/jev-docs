@@ -14,10 +14,36 @@ urllib redirect handler rejects foreign origins **before** sending a request, no
 merely after downloading their response.
 
 GitHub and package registries are separate immutable-or-mutable provenance
-streams. A released SDK is identified by package version, matching Git tag, and
-tag commit when all are available. `main` is captured as current source context
-but is never substituted for a release. Python and JavaScript state is never
+streams. Release runtime requirements come only from configuration fetched at
+the matching registry version's Git tag commit, with a matching package name,
+configuration version and resolved GitHub release metadata. Missing tags or
+releases, absent configuration identity and package-name/version mismatches
+remain explicit discrepancies with unknown runtime; `main` is never a fallback. Structurally
+invalid JSON metadata fails the observation before promotion.
+`main_commit` is independent development context: ordinary main-ahead work is
+not a release discrepancy. A newer published tag/release than the registry
+version is a publish-delay discrepancy, but does not replace the last published
+package's matching release evidence. Python and JavaScript state is never
 merged into one version stream.
+
+Python SDK, capability and evaluation-tool verification parses complete TOML
+and reads only static PEP 621 `[project]` string fields (`name`, `version` and
+`requires-python`). Root or tool-table fields and apparent assignments inside
+multiline strings cannot establish package identity or runtime requirements.
+Quoted TOML keys are supported; duplicate keys, invalid TOML, missing fields,
+non-string values and fields declared in `project.dynamic` remain unresolved.
+An unresolved version produces a discrepancy and cannot attribute release
+runtime or capabilities; an unresolved runtime remains unknown. Python 3.11+
+uses `tomllib`; Python 3.10 uses the conditional `tomli>=2,<3` backport rather
+than a partial regular-expression parser.
+SDK identity requires both registry and tagged configuration names to match the
+expected package: PyPI comparisons apply PEP 503 case and `[-_.]+` normalization;
+npm scoped names match exactly. Immutable Python capabilities also require the
+tagged project's name to match the validated registry identity, not merely its
+version. Evaluation-tool configuration is separate and is never bound to an SDK
+package name. A tagged SDK's missing/wrong name produces
+`release_config_name_missing`/`release_config_name_mismatch` and unknown runtime;
+existing healthy SDK state is retained by the independent-stream health gate.
 
 Hosted documentation is not bulk mirrored. There is no documentation license in
 the discovered legal or repository surfaces that would justify doing so. V1
@@ -125,9 +151,15 @@ redirected requests, including same-origin redirects. Responses are bounded to
 positive test/application-specific bound. Injected opener responses implement
 `read(limit)` so fixtures exercise the same bounded-read contract.
 
-PyPI metadata must be an object with a nonempty `info.version` string and a
-`releases` version-to-file-list map containing that exact published version.
-npm metadata must be an object with a nonempty `dist-tags.latest` string.
+PyPI metadata must be an object with a matching nonempty `info.name`, a nonempty
+`info.version` string and a `releases` version-to-file-list map containing that
+exact published version. npm metadata must have an exact matching `name` and a
+nonempty `dist-tags.latest` string. Missing or mismatching registry identity is a
+structured schema failure preserving the complete last-known-good tree, with no
+source fallback. Registry evidence projections and their hashes retain the
+original observed display name; normalization is only for comparison, while
+SDK state keeps the canonical expected package name. This is a one-time truthful
+projection enrichment; identical observations remain byte-stable.
 Invalid JSON and malformed registry, SDK
 configuration or consumed GitHub response shapes fail closed with
 `invalid_json`/`invalid_schema` errors identifying the source and expected field,
@@ -242,13 +274,59 @@ sentences use an explicit omission marker, or return unknown when the matching
 claim cannot fit. This is intentionally not a Markdown/HTML renderer.
 
 Python capability rules recognize a small set of explicit changelog statements.
-HTML and Markdown release headings are supported. Attribution requires registry
-membership, a release/tag commit, matching versioned package configuration and
-matching notes fetched at that commit. Lost capability evidence retains the
+HTML and Markdown release headings share the stable SemVer grammar used for
+release reconciliation, retaining the full build suffix (for example,
+`0.7.5+build.1`). Attribution requires exact registry membership, a release/tag
+commit, matching versioned package configuration (both project name and version)
+and matching notes fetched at that commit; notes for another build or a
+similarly versioned unrelated project cannot establish the capability.
+Lost capability evidence retains the
 previous record as unknown, never deprecated. Mutable usage pages remain documentation
 evidence and do not establish introduction versions. No AST analysis or cross-SDK
 parity is inferred. Skill content and SDK configuration are fetched at resolved
 commits to avoid mixing a moving branch's body with an earlier commit hash.
+
+SDK `public_surface` is explicitly a curated overview, not an extracted or
+verified release-specific capability inventory. Release-history
+`documented_changes` are labelled `mutable_documentation` and carry hosted-doc
+provenance when available; the adjacent tag commit does not make these notes
+immutable. Only capability claims checked against matching configuration and
+changelog bytes at the tag commit receive immutable introduction attribution.
+Absent or mismatching capability evidence remains unknown, not deprecated.
+
+SDK state records `release_evidence_policy: tag-verified-v1`. A migration-only
+correction of an existing legacy SDK snapshot establishes a `baseline` event
+with an explicit local-extraction/provenance correction summary, not an upstream
+release change. This includes migrations where main and release happen to
+match. A concurrent package-version change, any change in release tag/commit
+identity (including unresolved-to-resolved or the reverse), any discrepancy
+status change, or a semantic release-history difference retains its normal
+`modified` event rather than being hidden by the policy migration. This includes
+newly discovered older stable releases and changed release metadata even when
+the current registry version and tag/commit identity are unchanged. Release
+history comparison uses the existing semantic projection, excluding source-only
+enrichment labels and provenance. Resolving a legacy missing-tag or
+missing-release mismatch is therefore observable, not labelled a local-only
+correction. Repeated observations do not repeat either event.
+Curated surface `source_class`/`scope` and mutable-note source-class labels are
+provenance metadata, excluded from semantic behavior comparison; subsequent
+actual runtime or release behavior changes retain their normal events.
+
+Stable release reconciliation recognizes SemVer core versions with optional
+build metadata, such as `v0.8.0+build.1`. Build metadata does not change version
+precedence, but matching a registry release still requires its exact tag and
+configuration version. A genuinely newer stable source can report publish delay
+without replacing the current published package's verified source or capability
+pins, including when matching evidence is on a later GitHub response page.
+Prereleases (including `v0.8.0-rc.1+build.1`), unfamiliar nonstable names, and
+releases marked prerelease or draft do not participate in stable comparisons.
+Their naming alone does not corrupt metadata or invalidate a matching stable
+release. Structurally malformed records still fail closed, including malformed
+prerelease/draft records. Excluded tags remain visible in `available_tags`.
+Contradictory duplicate release status flags fail closed rather than hiding a
+known stable release. Normalized release evidence preserves draft/prerelease
+flags (defaulting absent flags to false), so status-only changes alter its
+provenance hash.
 
 New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
 historical additions. Subsequent additions, modifications and navigation removals

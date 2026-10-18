@@ -44,13 +44,14 @@ class PublicSources:
         elif url.endswith("README.md") and "system-one-adapter-python" in url:
             body = "A drop-in replacement backed by LLM APIs.\n\nUseful for comparing TypeSafe against an LLM.\n\nInstall system-one-adapter[openai]."
         elif url.endswith("pyproject.toml"):
-            body = 'version = "0.1.0"\nrequires-python = ">=3.10"\n'
+            name = "system-one-adapter" if "system-one-adapter-python" in url else "typesafe-sdk"
+            body = f'[project]\nname = "{name}"\nversion = "0.1.0"\nrequires-python = ">=3.10"\n'
         elif url.endswith("package.json"):
-            body = {"version": "0.1.0"}
+            body = {"name": "@typesafe-ai/sdk", "version": "0.1.0"}
         elif "pypi.org" in url:
-            body = {"info": {"version": "0.1.0"}, "releases": {"0.1.0": []}}
+            body = {"info": {"name": "typesafe-sdk", "version": "0.1.0"}, "releases": {"0.1.0": []}}
         elif "registry.npmjs.org" in url:
-            body = {"dist-tags": {"latest": "0.1.0"}}
+            body = {"name": "@typesafe-ai/sdk", "dist-tags": {"latest": "0.1.0"}}
         elif "api.github.com/repos/" in url:
             body = {"default_branch": "main", "license": {"key": "mit"}}
         else:
@@ -121,7 +122,10 @@ class UntaggedPythonRelease(PublicSources):
 
     def get(self, url):
         if "pypi.org" in url:
-            body = {"info": {"version": "0.2.0"}, "releases": {"0.1.0": [], "0.2.0": []}}
+            body = {
+                "info": {"name": "typesafe-sdk", "version": "0.2.0"},
+                "releases": {"0.1.0": [], "0.2.0": []},
+            }
             return Response(url, json.dumps(body).encode(), {})
         return super().get(url)
 
