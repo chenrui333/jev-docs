@@ -4,6 +4,7 @@ import copy
 import hashlib
 import html
 import re
+from html.parser import HTMLParser
 
 from jev_docs.text import without_code_examples, without_link_metadata
 
@@ -77,12 +78,54 @@ def attributes(tag):
 
 
 def field_tags(text, component):
-    # Quoted types and unsupported expressions can themselves contain '>'.
-    tags = re.findall(rf"""<{component}\b((?:"[^"]*"|'[^']*'|\{{[^{{}}]*\}}|[^"'{{>])*)>""", text)
-    # An unparsed opening must not silently shrink an otherwise verified list.
-    if len(tags) != len(re.findall(rf"<{component}\b", text)):
-        tags.append("")
-    return tags
+    """Read actual elements, never declaration-shaped text in another tag's attributes."""
+
+    class Fields(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=False)
+            self.tags = []
+            self.pending = []
+
+        def flush(self):
+            # Unsupported real openings invalidate completeness, not metadata
+            # embedded in successfully parsed outer elements.
+            if re.search(rf"<{component}\b", "".join(self.pending)):
+                self.tags.append("")
+            self.pending.clear()
+
+        def handle_starttag(self, name, _attrs):
+            self.flush()
+            raw = self.get_starttag_text()
+            if re.match(rf"<{component}\b", raw):
+                self.tags.append(raw[len(component) + 1 : -1])
+            elif name == component.lower():
+                self.tags.append("")
+
+        handle_startendtag = handle_starttag
+
+        def handle_endtag(self, _name):
+            self.flush()
+
+        def handle_comment(self, _text):
+            self.flush()
+
+        def handle_entityref(self, _name):
+            self.flush()
+
+        def handle_charref(self, _name):
+            self.flush()
+
+        def handle_data(self, data):
+            self.pending.append(data)
+
+    parser = Fields()
+    parser.feed(text)
+    incomplete = bool(parser.rawdata.strip())
+    parser.close()
+    parser.flush()
+    if incomplete or parser.rawdata.strip():
+        parser.tags.append("")  # Incomplete tokenization cannot prove a complete contract.
+    return parser.tags
 
 
 def extract_api(contents, artifacts, previous=None):

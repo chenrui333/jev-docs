@@ -133,7 +133,12 @@ def without_code_examples(content: str, *, keep_http: bool = False) -> str:
     containers: list[str] = []
     parts: list[str] = []
     position = 0
-    for tag in re.finditer(r"<\s*(/?)\s*(code|pre|script|style|blockquote)\b[^>]*>", content, re.I):
+    pattern = (
+        r"""<\s*(/?)\s*(code|pre|script|style|blockquote)\b(?:(?:"[^"]*"|'[^']*'|[^"'<>])*>|)"""
+    )
+    for tag in re.finditer(pattern, content, re.I):
+        if not tag[0].endswith(">"):
+            return ""  # An incomplete delimiter cannot prove a safe surrounding scope.
         if not containers:
             parts.append(content[position : tag.start()])
         if tag[1]:

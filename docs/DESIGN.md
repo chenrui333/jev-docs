@@ -407,9 +407,11 @@ Recommended aliases never establish `model_default` without an explicit optional
 
 The extractor scopes parameter declarations to Request body, excluding nested map
 entries, HTML comments, and code examples (fenced, indented, inline, or raw code
-containers). CommonMark tokens classify list/quote/fence boundaries; MDX declarations
-remain opaque raw text and are never executed or rendered. The tokenizer is loaded
-only during source extraction, not privileged publication validation. Unsupported
+containers). CommonMark tokens classify list/quote/fence boundaries; the standard
+library HTML tokenizer separates actual component openings from attribute strings.
+Only the narrow documented attribute syntax is interpreted; no MDX is executed or
+rendered. The Markdown tokenizer loads only during source extraction, not
+privileged publication validation. Unsupported
 deep nesting yields no facts rather than a partial contract. Question literals have
 their own section; inactive sections cannot verify an endpoint or response interpretation.
 Links/images and reference definitions are metadata, not declaration locations.
