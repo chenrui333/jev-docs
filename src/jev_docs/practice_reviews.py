@@ -18,6 +18,18 @@ def practice_context(content: str) -> tuple[str, str]:
     return context, hashlib.sha256(context.encode()).hexdigest()
 
 
+def _historical_practice_sources(previous, current_evidence):
+    """Retain only prior citations that are not asserted as current support."""
+    historical = []
+    for source in [
+        *(previous or {}).get("historical_sources", []),
+        *(previous or {}).get("sources", []),
+    ]:
+        if source not in current_evidence and source not in historical:
+            historical.append(source)
+    return historical
+
+
 # Manually reviewed complete source snapshots, including metadata, quotes and code.
 # "non_conflicting" is not recommendation evidence; it records a reviewed source
 # that does not oppose the recommendation. No rule/source pair is approved by default.

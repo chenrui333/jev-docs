@@ -829,3 +829,32 @@ def test_authored_withdrawal_reverifies_previously_supported_context(tmp_path, r
     assert items(after)[rid]["historical_sources"] == items(before)[rid]["sources"]
     assert after["source_observations"] == before["source_observations"]
     validate_tree(tmp_path, strict=True)
+
+
+@pytest.mark.parametrize("change", ["url", "quote", "hash", "drop"])
+def test_candidate_history_must_derive_from_trusted_prior_citations(tmp_path, change):
+    trusted, candidate = tmp_path / "trusted", tmp_path / "candidate"
+    upstream = PracticeSources()
+    synchronize(trusted, upstream, strict=True)
+    synchronize(candidate, upstream, strict=True)
+    upstream.pages.pop("primitives/noul")
+    synchronize(candidate, upstream, strict=True)
+    validate_tree(candidate, strict=True, history_root=trusted)
+    path = candidate / "state/practices.json"
+    state = json.loads(path.read_text())
+    historical = items(state)["noul-is-yes-probability"]["historical_sources"]
+    if change == "url":
+        historical[0]["url"] = "https://evil.example/historical"
+    elif change == "quote":
+        historical[0]["excerpt"] = "Manufactured historical recommendation."
+    elif change == "hash":
+        historical[0]["sha256"] = "a" * 64
+    else:
+        historical.pop(0)
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (candidate / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(candidate, strict=True, history_root=trusted)

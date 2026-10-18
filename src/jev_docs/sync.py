@@ -29,6 +29,7 @@ from jev_docs.inventories import cookbooks, model_limitations, render_limitation
 from jev_docs.practice_reviews import (
     PRACTICE_EVIDENCE_POLICY,
     REVIEWED_PRACTICE_CONTEXTS,
+    _historical_practice_sources,
     practice_context,
 )
 from jev_docs.text import clean_text, excerpt, markdown_tokens, without_code_examples
@@ -1672,13 +1673,7 @@ def derive_practices(
             if prior and practice_projection(prior) == practice_projection(item)
             else today
         )
-        historical: list[dict[str, Any]] = []
-        for source in [
-            *(prior or {}).get("historical_sources", []),
-            *(prior or {}).get("sources", []),
-        ]:
-            if source not in evidence and source not in historical:
-                historical.append(source)
+        historical = _historical_practice_sources(prior, evidence)
         if historical:
             item["historical_sources"] = historical
         items.append(item)
@@ -3037,6 +3032,14 @@ def validate_tree(
                     f"practice provenance does not match retained artifact: {item['id']}"
                 )
     _validate_practice_reviews(practices, sources, allow_migration=allow_practice_review_migration)
+    if history_root is not None:
+        prior_items = old_item_map(read_json(history_root / "state/practices.json"), "id")
+        for item in practices.get("items", []):
+            expected = _historical_practice_sources(
+                prior_items.get(item["id"]), item.get("sources", [])
+            )
+            if item.get("historical_sources", []) != expected:
+                raise RuntimeError("historical practice citations disagree with trusted baseline")
     # Only recorded observations assert a current fetch; absent optional sources
     # and unknown practices' historical evidence need not have retained artifacts.
     for source_id, digest in practices.get("source_observations", {}).items():

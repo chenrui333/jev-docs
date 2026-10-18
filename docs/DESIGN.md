@@ -493,6 +493,11 @@ preflight permits an older policy revision while retaining all checksum, source,
 and history checks; collection must then regenerate and validate against the current
 policy before promotion. This permits explicit approval or withdrawal of an already
 observed context without accepting a stale generated patch.
+Historical practice citations follow one shared retention rule: deduplicate prior
+historical/current citations and exclude citations currently asserted as support.
+Candidate validation checks this against the trusted previous tree; privileged
+publication independently checks it against the Git baseline before applying data.
+An isolated snapshot's checksums alone cannot authenticate historical quotations.
 
 To review a changed source:
 
