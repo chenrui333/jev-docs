@@ -806,9 +806,14 @@ def parse_release_notes(text: str) -> list[dict[str, Any]]:
 
 
 def version_tuple(value: Any) -> tuple[int, ...] | None:
+    """Return stable SemVer precedence; build metadata does not affect ordering."""
     if not isinstance(value, str):
         return None
-    match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", value.strip())
+    match = re.fullmatch(
+        r"v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+        r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
+        value.strip(),
+    )
     return tuple(int(part) for part in match.groups()) if match else None
 
 
@@ -821,7 +826,7 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         malformed.append("tags_not_a_list")
         tags = []
     for index, entry in enumerate(tags):
-        if not isinstance(entry, dict) or not isinstance(entry.get("name"), str):
+        if not isinstance(entry, dict) or not nonempty_string(entry.get("name")):
             malformed.append(f"tag_entry_{index}_malformed")
             continue
         commit = entry.get("commit")
@@ -829,7 +834,7 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         if not isinstance(sha, str) or not sha:
             malformed.append(f"tag_entry_{index}_missing_commit")
             continue
-        if re.fullmatch(r"[0-9a-fA-F]{40}", sha) is None:
+        if not is_github_commit_sha(sha):
             malformed.append(f"tag_entry_{index}_invalid_commit")
             continue
         if entry["name"] in tag_map and tag_map[entry["name"]] != sha:
@@ -842,19 +847,9 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         malformed.append("releases_not_a_list")
         releases = []
     for index, entry in enumerate(releases):
-        prerelease_tag = (
-            isinstance(entry, dict)
-            and isinstance(entry.get("tag_name"), str)
-            and re.fullmatch(
-                r"v?\d+\.\d+\.\d+-(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)"
-                r"(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*"
-                r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
-                entry["tag_name"],
-            )
-        )
         if (
             not isinstance(entry, dict)
-            or not (version_tuple(entry.get("tag_name")) or prerelease_tag)
+            or not nonempty_string(entry.get("tag_name"))
             or any(
                 entry.get(key) is not None and not isinstance(entry[key], str)
                 for key in ("published_at", "name", "html_url")
@@ -870,7 +865,13 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         if tag in release_statuses and release_statuses[tag] != status:
             malformed.append(f"release_entry_{index}_conflicting_status")
         release_statuses[tag] = status
-        if prerelease_tag or entry.get("draft") is True or entry.get("prerelease") is True:
+        # Naming outside stable SemVer is unresolved, not a corrupt JSON record.
+        # This includes prereleases with optional build metadata and custom tags.
+        if (
+            version_tuple(tag) is None
+            or entry.get("draft") is True
+            or entry.get("prerelease") is True
+        ):
             excluded_tags.add(tag)
             continue
         release_records.append(entry)
@@ -1191,10 +1192,19 @@ def sdk_snapshot(
                     config_version = parse_simple_toml_value(text, "version")
                     config_runtime = parse_simple_toml_value(text, "requires-python")
                 else:
-                    config = json.loads(config_response.body)
-                    config_version = config.get("version") if isinstance(config, dict) else None
-                    engines = config.get("engines") if isinstance(config, dict) else None
-                    config_runtime = engines.get("node") if isinstance(engines, dict) else None
+                    config = metadata_json(config_response, "SDK configuration")
+                    if not isinstance(config, dict) or not isinstance(
+                        config.get("engines", {}), dict
+                    ):
+                        raise schema_error(
+                            config_response, "SDK configuration", "an object with an engines map"
+                        )
+                    config_version = config.get("version")
+                    config_runtime = config.get("engines", {}).get("node", "unknown")
+                    if not isinstance(config_runtime, str):
+                        raise schema_error(
+                            config_response, "SDK configuration", "engines.node as a string"
+                        )
             except (UnicodeError, json.JSONDecodeError):
                 config_version = None
                 config_runtime = None
@@ -1539,12 +1549,12 @@ def semantic_events(
                 and not old_items[entity_key].get("release_evidence_policy")
                 and new_items.get(entity_key, {}).get("release_evidence_policy")
                 == "tag-verified-v1"
-                and not any(
-                    old_items[entity_key].get(field) is not None
-                    and new_items.get(entity_key, {}).get(field) is not None
-                    and old_items[entity_key][field] != new_items[entity_key][field]
+                and all(
+                    old_items[entity_key].get(field) == new_items.get(entity_key, {}).get(field)
                     for field in ("version", "source_tag", "source_commit")
                 )
+                and old_items[entity_key].get("discrepancies", [])
+                == new_items.get(entity_key, {}).get("discrepancies", [])
             )
             if before == after and not sdk_policy_baseline:
                 continue

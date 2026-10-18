@@ -239,7 +239,7 @@ def test_unresolved_release_runtime_stays_unknown_without_main_fallback(kind, pr
     elif problem == "missing":
         upstream.config_status = 404
     else:
-        upstream.config_body = "not package configuration"
+        upstream.config_body = "not package configuration" if kind == "python" else "{}"
     state, _ = release_snapshot(upstream)
     assert expected in state["discrepancies"]
     assert state["runtime"] == {kind: "unknown"}
@@ -273,13 +273,16 @@ def test_invalid_release_commit_never_attributes_source_evidence(kind, sha):
     [None, {}, [None], [{"tag_name": "v0.1.0", "published_at": {}}]],
 )
 def test_malformed_release_metadata_is_explicit_and_runtime_unknown(metadata):
+    from jev_docs.sync import FetchError, release_provenance
+
     upstream = ReleaseSources()
     upstream.releases = metadata
-    state, _ = release_snapshot(upstream)
-    assert "malformed_release_metadata" in state["discrepancies"]
-    assert state["runtime"] == {"python": "unknown"}
-    assert state["source_commit"] is None
-    assert state["capabilities"] == []
+    info = release_provenance(upstream.registry_version, upstream.tags, metadata)
+    assert "malformed_release_metadata" in info["discrepancies"]
+    assert info["source_commit"] is None
+    with pytest.raises(FetchError) as caught:
+        release_snapshot(upstream)
+    assert caught.value.code == "invalid_schema"
 
 
 def test_registry_publish_delay_keeps_last_published_release_evidence():
@@ -489,18 +492,22 @@ def test_policy_upgrade_does_not_hide_changed_release_identity(field, value):
     "record",
     [
         {"tag_name": "v0.8.0-rc.1", "published_at": {}},
-        {"tag_name": "v0.8.0-01"},
+        {"tag_name": "nightly", "prerelease": "true"},
         {"draft": True},
         {"prerelease": True},
     ],
 )
 def test_excluded_release_metadata_still_rejects_malformed_records(record):
+    from jev_docs.sync import FetchError, release_provenance
+
     upstream = ReleaseSources()
     upstream.releases.append(record)
-    state, _ = release_snapshot(upstream)
-    assert "malformed_release_metadata" in state["discrepancies"]
-    assert state["source_commit"] is None
-    assert state["runtime"] == {"python": "unknown"}
+    info = release_provenance(upstream.registry_version, upstream.tags, upstream.releases)
+    assert "malformed_release_metadata" in info["discrepancies"]
+    assert info["source_commit"] is None
+    with pytest.raises(FetchError) as caught:
+        release_snapshot(upstream)
+    assert caught.value.code == "invalid_schema"
 
 
 @pytest.mark.parametrize("flag", ["draft", "prerelease"])
@@ -524,3 +531,168 @@ def test_duplicate_release_status_classifications_fail_closed(flag):
     assert "release_entry_1_conflicting_status" in state["malformed_release_metadata"]
     assert state["source_commit"] is None
     assert state["runtime"] == {"python": "unknown"}
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+@pytest.mark.parametrize("missing", ["tag", "release"])
+def test_legacy_unresolved_release_resolution_is_modified_once(
+    tmp_path, monkeypatch, kind, missing
+):
+    from test_transactions import snapshot
+
+    from jev_docs.sync import canonical_json, observed_state, synchronize
+
+    upstream = ReleaseSources(kind)
+    tags, releases = upstream.tags, upstream.releases
+    if missing == "tag":
+        upstream.tags = []
+    else:
+        upstream.releases = []
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / f"state/sdk-{kind}.json"
+    legacy = json.loads(sdk_path.read_text())
+    assert legacy["source_tag"] is None and legacy["source_commit"] is None
+    assert legacy["discrepancies"]
+    legacy.pop("release_evidence_policy")
+    legacy.pop("fingerprint")
+    sdk_path.write_text(canonical_json(observed_state(legacy, None)) + "\n")
+    baseline = (tmp_path / "events/baseline.json").read_bytes()
+
+    upstream.tags, upstream.releases = tags, releases
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    result = synchronize(tmp_path, upstream, strict=True)
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    sdk_events = [event for event in events if event["entity"] == f"sdk-{kind}"]
+    assert len(sdk_events) == 1 and sdk_events[0]["change"] == "modified"
+    assert "not an upstream release change" not in sdk_events[0]["summary"]
+    resolved = json.loads(sdk_path.read_text())
+    assert resolved["source_commit"] == upstream.release_commit
+    assert resolved["discrepancies"] == []
+    assert (tmp_path / "events/baseline.json").read_bytes() == baseline
+    before = snapshot(tmp_path)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize("field", ["source_tag", "source_commit"])
+@pytest.mark.parametrize("resolving", [False, True])
+def test_policy_upgrade_preserves_one_sided_release_identity_changes(field, resolving):
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    current, _ = release_snapshot(ReleaseSources())
+    legacy = copy.deepcopy(current)
+    legacy.pop("release_evidence_policy")
+    (legacy if resolving else current)[field] = None
+    events = semantic_events({"sdk-python": legacy}, {"sdk-python": current}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
+
+
+@pytest.mark.parametrize("resolving", [False, True])
+def test_policy_upgrade_preserves_discrepancy_changes_without_identity_change(resolving):
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    current, _ = release_snapshot(ReleaseSources())
+    legacy = copy.deepcopy(current)
+    legacy.pop("release_evidence_policy")
+    (legacy if resolving else current)["discrepancies"] = ["git_source_ahead_of_registry"]
+    events = semantic_events({"sdk-python": legacy}, {"sdk-python": current}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+@pytest.mark.parametrize(
+    "tag,ahead",
+    [
+        ("v0.8.0+build.1", True),
+        ("v0.7.5+build.1", False),
+        ("v0.8.0-rc.1+build.1", False),
+        ("v0.8.0-01", False),
+        ("nightly-2026-10-01", False),
+    ],
+)
+def test_semver_and_unfamiliar_tags_preserve_matching_stable_release(kind, tag, ahead):
+    upstream = ReleaseSources(kind)
+    upstream.registry_version = upstream.config_version = "0.7.5"
+    upstream.tags = [{"name": "v0.7.5", "commit": {"sha": upstream.release_commit}}]
+    upstream.releases = [{"tag_name": "v0.7.5"}]
+    upstream.tags.append({"name": tag, "commit": {"sha": "c" * 40}})
+    upstream.releases.append({"tag_name": tag})
+    state, artifacts = release_snapshot(upstream)
+    assert state["discrepancies"] == (["git_source_ahead_of_registry"] if ahead else [])
+    assert state["source_tag"] == "v0.7.5"
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {kind: ">=3.10" if kind == "python" else ">=18"}
+    assert tag in state["available_tags"]
+    assert not any("c" * 40 in url for url in upstream.requested)
+    assert all(
+        artifact.upstream_commit == upstream.release_commit
+        for artifact in artifacts.values()
+        if artifact.source_type == "github-source"
+    )
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_current_stable_build_tag_uses_its_exact_verified_config(kind):
+    upstream = ReleaseSources(kind)
+    upstream.registry_version = upstream.config_version = "0.7.5+build.1"
+    upstream.tags = [{"name": "v0.7.5+build.1", "commit": {"sha": upstream.release_commit}}]
+    upstream.releases = [{"tag_name": "v0.7.5+build.1"}]
+    state, _ = release_snapshot(upstream)
+    assert state["discrepancies"] == []
+    assert state["source_tag"] == "v0.7.5+build.1"
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {kind: ">=3.10" if kind == "python" else ">=18"}
+
+
+def test_prerelease_build_registry_version_does_not_claim_stable_release():
+    upstream = ReleaseSources()
+    upstream.registry_version = upstream.config_version = "0.8.0-rc.1+build.1"
+    upstream.tags.append({"name": "v0.8.0-rc.1+build.1", "commit": {"sha": "c" * 40}})
+    upstream.releases.append({"tag_name": "v0.8.0-rc.1+build.1"})
+    state, _ = release_snapshot(upstream)
+    assert state["discrepancies"] == ["registry_version_unresolved"]
+    assert state["source_tag"] is None and state["source_commit"] is None
+    assert state["runtime"] == {"python": "unknown"}
+
+
+@pytest.mark.parametrize("tag,ahead", [("v0.8.0+build.1", True), ("v0.8.0-rc.1+build.1", False)])
+def test_build_release_pagination_keeps_capabilities_pinned_to_current_release(tag, ahead):
+    from jev_docs.sync import Response
+
+    class PaginatedReleaseSources(ReleaseSources):
+        def get(self, url):
+            if self.repo in url and ("/tags?" in url or "/releases?" in url):
+                self.requested.append(url)
+                tags = "/tags?" in url
+                if url.endswith("page=2"):
+                    body = self.tags if tags else self.releases
+                    headers = {}
+                else:
+                    body = (
+                        [{"name": tag, "commit": {"sha": "c" * 40}}]
+                        if tags
+                        else [{"tag_name": tag}]
+                    )
+                    endpoint = "tags" if tags else "releases"
+                    next_url = f"https://api.github.com/repos/{self.repo}/{endpoint}?page=2"
+                    headers = {"Link": f'<{next_url}>; rel="next"'}
+                return Response(url, json.dumps(body).encode(), headers)
+            return super().get(url)
+
+    upstream = PaginatedReleaseSources()
+    state, _ = release_snapshot(upstream)
+    assert len([url for url in upstream.requested if url.endswith("page=2")]) == 2
+    assert state["discrepancies"] == (["git_source_ahead_of_registry"] if ahead else [])
+    assert state["capabilities"]
+    for capability in state["capabilities"]:
+        assert capability["introduced"] == "0.1.0"
+        assert capability["source_tag"] == "v0.1.0"
+        assert capability["source_commit"] == upstream.release_commit
+        assert all(upstream.release_commit in p["url"] for p in capability["provenance"])
+    assert not any("c" * 40 in url for url in upstream.requested)

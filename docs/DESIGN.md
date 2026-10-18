@@ -16,9 +16,10 @@ merely after downloading their response.
 GitHub and package registries are separate immutable-or-mutable provenance
 streams. Release runtime requirements come only from configuration fetched at
 the matching registry version's Git tag commit, with a matching configuration
-version and resolved GitHub release metadata. Missing tags, missing or malformed
-release/configuration metadata, and configuration version mismatches remain
-explicit discrepancies with unknown runtime; `main` is never a fallback.
+version and resolved GitHub release metadata. Missing tags or releases, absent
+configuration versions, and configuration version mismatches remain explicit
+discrepancies with unknown runtime; `main` is never a fallback. Structurally
+invalid JSON metadata fails the observation before promotion.
 `main_commit` is independent development context: ordinary main-ahead work is
 not a release discrepancy. A newer published tag/release than the registry
 version is a publish-delay discrepancy, but does not replace the last published
@@ -268,22 +269,31 @@ SDK state records `release_evidence_policy: tag-verified-v1`. A migration-only
 correction of an existing legacy SDK snapshot establishes a `baseline` event
 with an explicit local-extraction/provenance correction summary, not an upstream
 release change. This includes migrations where main and release happen to
-match. A concurrent package-version change or change between known release
-tags/commits retains its normal `modified` event rather than being hidden by
-the policy migration. Repeated observations do not repeat either event.
+match. A concurrent package-version change, any change in release tag/commit
+identity (including unresolved-to-resolved or the reverse), or any discrepancy
+status change retains its normal `modified` event rather than being hidden by
+the policy migration. Resolving a legacy missing-tag or missing-release mismatch
+is therefore observable, not labelled a local-only correction. Repeated
+observations do not repeat either event.
 Curated surface `source_class`/`scope` and mutable-note source-class labels are
 provenance metadata, excluded from semantic behavior comparison; subsequent
 actual runtime or release behavior changes retain their normal events.
 
-Stable release reconciliation excludes valid SemVer prereleases and releases
-marked prerelease or draft. Their presence does not invalidate a matching stable
-release or imply that stable Git source is ahead of the registry. Malformed
-release records still fail closed, including malformed prerelease/draft records.
-Tags associated with excluded releases remain visible in `available_tags` but
-do not participate in stable ahead/behind comparisons. Contradictory duplicate
-release status flags fail closed rather than hiding a known stable release.
-Normalized release evidence preserves draft/prerelease flags (defaulting absent
-flags to false), so status-only changes alter its provenance hash.
+Stable release reconciliation recognizes SemVer core versions with optional
+build metadata, such as `v0.8.0+build.1`. Build metadata does not change version
+precedence, but matching a registry release still requires its exact tag and
+configuration version. A genuinely newer stable source can report publish delay
+without replacing the current published package's verified source or capability
+pins, including when matching evidence is on a later GitHub response page.
+Prereleases (including `v0.8.0-rc.1+build.1`), unfamiliar nonstable names, and
+releases marked prerelease or draft do not participate in stable comparisons.
+Their naming alone does not corrupt metadata or invalidate a matching stable
+release. Structurally malformed records still fail closed, including malformed
+prerelease/draft records. Excluded tags remain visible in `available_tags`.
+Contradictory duplicate release status flags fail closed rather than hiding a
+known stable release. Normalized release evidence preserves draft/prerelease
+flags (defaulting absent flags to false), so status-only changes alter its
+provenance hash.
 
 New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
 historical additions. Subsequent additions, modifications and navigation removals
