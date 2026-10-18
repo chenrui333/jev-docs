@@ -1,0 +1,30 @@
+README.md
+  h_9df9c32c3f321d 95-109
+docs/DESIGN.md
+  h_9df9c32c3f321d 435-470
+src/jev_docs/practice_reviews.py
+  h_9df9c32c3f321d 1-84
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 28-32,592-593,595-596,598-602,604-606,608-636,640-653,1579,1616-1617,1637,1758-1776,1925-1926,1928,1943,1946-1969,2003-2007,2246,2255,2287-2306,2503-2522
+tests/conftest.py
+  h_9df9c32c3f321d 1-25
+tests/test_inventories.py
+  h_9df9c32c3f321d 239,243-244,247-253
+tests/test_metadata.py
+  h_9df9c32c3f321d 3,6,13-34,41,57,88,99,109
+tests/test_practices.py
+  h_9df9c32c3f321d 1,29-34,43-65,354-356,358-360,435-617
+tests/test_sync.py
+  h_9df9c32c3f321d 274,278,282-290
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "73ebb130c0c449c54fdd50a0d7d93026d7dac32d",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
