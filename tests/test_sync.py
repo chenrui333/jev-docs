@@ -271,12 +271,22 @@ def test_fixture_serialization_has_no_wall_clock() -> None:
     assert fixture.read_text().startswith("# TypeSafe AI")
 
 
-def test_practice_extraction_is_conservative_and_provenance_preserving() -> None:
+def test_practice_extraction_is_conservative_and_provenance_preserving(review_contexts) -> None:
+    fixture = json.loads((Path(__file__).parent / "fixtures/practice-passages.json").read_text())
     artifact = Artifact(
-        "docs:concepts/how-to-build-with-system-one",
-        "documentation",
-        "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-        b"Keep deterministic work in code.",
+        "skill:typesafe-ai",
+        "github-source",
+        fixture["skill:typesafe-ai"]["url"],
+        fixture["skill:typesafe-ai"]["text"].encode(),
+    )
+    review_contexts(
+        {artifact.source_id: artifact.content.decode()},
+        {artifact.source_id: artifact},
+        {
+            artifact.source_id: {
+                rid: "supported" for rid in fixture[artifact.source_id]["recommended"]
+            }
+        },
     )
     state = derive_practices(
         {artifact.source_id: artifact.content.decode()}, {artifact.source_id: artifact}, None

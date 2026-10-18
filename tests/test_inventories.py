@@ -236,11 +236,21 @@ def test_new_layer_establishes_baseline_not_historical_additions():
     assert len(events) == 1 and events[0]["change"] == "baseline"
 
 
-def test_agent_practice_identity_survives_presentation_and_absence_is_unknown():
+def test_agent_practice_identity_survives_presentation_and_absence_is_unknown(review_contexts):
     sid = "docs:introduction/coding-agents"
-    text = 'Jev is **not** a drop-in replacement for a coding agent.\n\n* Replace a fragile prompt asking for "return JSON" with typed answers.'
+    fixture = json.loads((Path(__file__).parent / "fixtures/practice-passages.json").read_text())
+    text = fixture[sid]["text"]
+    verdicts = {sid: {rule_id: "supported" for rule_id in fixture[sid]["recommended"]}}
+    review_contexts({sid: text}, evidence(sid, text), verdicts)
     old = derive_practices({sid: text}, evidence(sid, text), None)
     wrapped = "<Note>\n" + text + "\n</Note>"
+    unreviewed = derive_practices({sid: wrapped}, evidence(sid, wrapped), old)
+    assert all(
+        item["status"] == "unknown"
+        for item in unreviewed["items"]
+        if item["category"] == "agent-integration"
+    )
+    review_contexts({sid: wrapped}, evidence(sid, wrapped), verdicts)
     new = derive_practices({sid: wrapped}, evidence(sid, wrapped), old)
     agent_items = [i for i in new["items"] if i["category"] == "agent-integration"]
     assert len(agent_items) == 2 and all(i["status"] == "recommended" for i in agent_items)

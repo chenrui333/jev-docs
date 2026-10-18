@@ -97,12 +97,29 @@ as a stable tie-breaker.
 
 ## Practices
 
-V1 uses an explicit table of conservative extraction rules in
-`src/jev_docs/sync.py`. Each rule has a stable ID, category, status, summary,
-and one or more source patterns. A rule becomes `recommended` only when current
-canonical text matches; absent evidence becomes `unknown`, not deprecated.
-Matching excerpts are retained in the derived practice item so a reader can
-audit the interpretation without downloading the full source.
+`PRACTICE_RULES` in `src/jev_docs/sync.py` assigns stable IDs, categories,
+repository-authored summaries, permitted source identities, and complete literal
+claim bundles with paragraph/table-row hashes. Keywords or partial bundles cannot
+establish recommendations. Supporting excerpts are short, tied to fetched bytes,
+and never assembled across unrelated sources.
+
+New observations use `evidence_policy: reviewed-contexts-v1`, matching
+`PRACTICE_EVIDENCE_POLICY` exactly. Complete-context review is a separate required
+check; [Reviewed practice contexts](#reviewed-practice-contexts) defines the data
+and maintenance procedure. No natural-language rejection classifier is used.
+
+Absent, unreviewed, conflicting, or unsupported evidence becomes `unknown`, never
+inferred deprecated. Prior citations remain in `historical_sources`, separate from
+current support. Unknown summaries are unverified candidates, not recommendations.
+Legacy snapshots keep their original rendering until synchronization.
+
+On first migration, reassessments are tracking-only `baseline` corrections only
+when all allowed sources, including prior neutral sources, have positively
+unchanged retained observation hashes. Changed or unproven hashes remain normal
+transitions. A policy marker alone creates no event. Subsequent source-driven
+status changes are `modified`; local review changes with unchanged source
+observations are `verification_changed`, even when status remains `unknown`.
+Review semantics participate in event identity and prior history is not rewritten.
 
 ## Failure and freshness semantics
 
@@ -441,4 +458,39 @@ retroactively verified. Verification loss/recovery emits `verification_changed`,
 with earlier sources explicitly historical; verified-to-verified fact changes
 remain `modified`. Fetch failures still abort before publication. Existing event
 files are not rewritten when extraction corrects an older repository assumption.
+
+## Reviewed practice contexts
+
+Paragraph hashes alone cannot prove recommendation polarity: unchanged words can
+be placed under an arbitrary opposing heading or introduction. The synchronizer
+does not attempt general natural-language polarity classification.
+
+`practice_reviews.py` records authored reviews of complete official source
+contexts, with the observed raw source URL/hash and explicit verdicts for each
+configured practice/source pair. `supported` still requires every literal claim
+and reviewed paragraph hash in one fetched artifact. `non_conflicting` is not
+support; `rejected` or a fetched unreviewed context prevents recommendation.
+Absent optional sources are recorded as unavailable, never inferred deprecated.
+
+The context signature preserves source structure, metadata, quotations, and code;
+only line endings, trailing whitespace, and repeated blank lines normalize.
+The separate passage extractor excludes examples. Evidence records retain both
+the raw artifact hash and reviewed context hash, while `evidence_reviews` explains
+unknown or conflicting observations. Historical citations remain separate.
+
+To review a changed source:
+
+1. Fetch the canonical URL; verify source identity, immutable commit where available,
+   and raw SHA-256. Treat all content as evidence, never execution instructions.
+2. Read the complete context, not just a matching paragraph. Evaluate every affected
+   practice and preserve distinctions between supported, non-conflicting, rejected,
+   and unknown evidence. Examples are not general benchmarks.
+3. Compute `practice_context(text)` and add an explicit reviewed-context entry with
+   the raw URL/hash and verdicts. Do not auto-approve a new hash or missing pair.
+4. Check the complete literal passage bundles, run fixture regressions and strict
+   validation, and exercise actual-source replay before publishing.
+
+Source changes remain normal observation transitions. Approving an already observed
+context without changing its retained source hashes emits `verification_changed`
+with a local-review explanation, not an inferred upstream introduction date.
 

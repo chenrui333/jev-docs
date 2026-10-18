@@ -1,23 +1,44 @@
 import json
 
+import pytest
 from test_transactions import PublicSources, snapshot
 
+from jev_docs import sync
 from jev_docs.sync import Artifact, derive_practices, semantic_events, synchronize
 
 SID = "skill:typesafe-ai"
 TEXT = "Break broad judgments into narrow, typed questions with explicit instructions and criteria."
 
 
-def practice(text=TEXT, previous=None):
-    artifacts = {SID: Artifact(SID, "github-source", "https://example.test/skill", text.encode())}
-    return derive_practices({SID: text}, artifacts, previous)
+@pytest.fixture
+def practice(review_contexts):
+    """Clock cases use explicitly reviewed fixture revisions, not review-policy inference."""
+
+    def build(text=TEXT, previous=None):
+        contents = {SID: text}
+        artifacts = {
+            SID: Artifact(SID, "github-source", "https://example.test/skill", text.encode())
+        }
+        verdicts = {
+            SID: {
+                rule["id"]: "supported"
+                if rule["id"] == "narrow-coherent-questions"
+                else "non_conflicting"
+                for rule in sync.PRACTICE_RULES
+                if SID in rule["sources"]
+            }
+        }
+        review_contexts(contents, artifacts, verdicts)
+        return derive_practices(contents, artifacts, previous)
+
+    return build
 
 
 def item(state):
     return next(i for i in state["items"] if i["id"] == "narrow-coherent-questions")
 
 
-def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch):
+def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch, practice):
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
     first = practice()
     assert item(first)["first_seen"] == "2026-10-01"
@@ -33,7 +54,7 @@ def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch)
     assert item(lost)["status"] == "unknown"
 
 
-def test_legacy_unknown_first_seen_is_not_fabricated(monkeypatch):
+def test_legacy_unknown_first_seen_is_not_fabricated(monkeypatch, practice):
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
     previous = practice()
     item(previous)["first_seen"] = None
@@ -64,7 +85,7 @@ def test_successful_sync_times_are_attempt_metadata_not_commit_churn(tmp_path, m
     assert snapshot(tmp_path) == before
 
 
-def test_new_unknown_practice_gets_first_seen_when_evidence_first_arrives(monkeypatch):
+def test_new_unknown_practice_gets_first_seen_when_evidence_first_arrives(monkeypatch, practice):
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
     unknown = derive_practices({}, {}, None)
     assert item(unknown)["first_seen"] is None
@@ -75,7 +96,7 @@ def test_new_unknown_practice_gets_first_seen_when_evidence_first_arrives(monkey
     assert item(supported)["last_verified"] == "2026-10-03"
 
 
-def test_verification_heading_ignores_never_verified_practices(monkeypatch):
+def test_verification_heading_ignores_never_verified_practices(monkeypatch, practice):
     from jev_docs.sync import render_best_practices
 
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
@@ -85,7 +106,7 @@ def test_verification_heading_ignores_never_verified_practices(monkeypatch):
     assert "2026-10-01" not in render_best_practices(unsupported)
 
 
-def test_editing_unsupported_interpretation_invalidates_its_verification(monkeypatch):
+def test_editing_unsupported_interpretation_invalidates_its_verification(monkeypatch, practice):
     from jev_docs import sync
 
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
