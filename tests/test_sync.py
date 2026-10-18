@@ -130,6 +130,16 @@ def test_github_evidence_ignores_volatile_metadata() -> None:
     ]
 
 
+@pytest.mark.parametrize("flag", ["draft", "prerelease"])
+def test_release_status_changes_evidence_hash(flag):
+    from jev_docs.sync import sha256_json
+
+    release = {"tag_name": "v1.0.0"}
+    original = sha256_json(stable_release_evidence([release]))
+    assert sha256_json(stable_release_evidence([{**release, flag: True}])) != original
+    assert sha256_json(stable_release_evidence([{**release, flag: False}])) == original
+
+
 def test_permanent_failure_is_visible() -> None:
     def opener(_request, timeout):
         raise OSError("offline")

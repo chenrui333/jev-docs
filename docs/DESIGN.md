@@ -279,6 +279,11 @@ Stable release reconciliation excludes valid SemVer prereleases and releases
 marked prerelease or draft. Their presence does not invalidate a matching stable
 release or imply that stable Git source is ahead of the registry. Malformed
 release records still fail closed, including malformed prerelease/draft records.
+Tags associated with excluded releases remain visible in `available_tags` but
+do not participate in stable ahead/behind comparisons. Contradictory duplicate
+release status flags fail closed rather than hiding a known stable release.
+Normalized release evidence preserves draft/prerelease flags (defaulting absent
+flags to false), so status-only changes alter its provenance hash.
 
 New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
 historical additions. Subsequent additions, modifications and navigation removals

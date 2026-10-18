@@ -836,6 +836,8 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
             malformed.append(f"tag_entry_{index}_conflicting_commit")
         tag_map[entry["name"]] = sha
     release_records: list[dict[str, Any]] = []
+    release_statuses: dict[str, tuple[bool, bool]] = {}
+    excluded_tags: set[str] = set()
     if not isinstance(releases, list):
         malformed.append("releases_not_a_list")
         releases = []
@@ -857,10 +859,19 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
                 entry.get(key) is not None and not isinstance(entry[key], str)
                 for key in ("published_at", "name", "html_url")
             )
+            or any(
+                key in entry and not isinstance(entry[key], bool) for key in ("draft", "prerelease")
+            )
         ):
             malformed.append(f"release_entry_{index}_malformed")
             continue
+        tag = entry["tag_name"]
+        status = (entry.get("draft", False), entry.get("prerelease", False))
+        if tag in release_statuses and release_statuses[tag] != status:
+            malformed.append(f"release_entry_{index}_conflicting_status")
+        release_statuses[tag] = status
         if prerelease_tag or entry.get("draft") is True or entry.get("prerelease") is True:
+            excluded_tags.add(tag)
             continue
         release_records.append(entry)
     expected_tag = f"v{version}" if version_tuple(version) else None
@@ -878,7 +889,9 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         version_tuple(entry["tag_name"])
         for entry in release_records
         if version_tuple(entry["tag_name"])
-    ] + [version_tuple(name) for name in tag_map if version_tuple(name)]
+    ] + [
+        version_tuple(name) for name in tag_map if name not in excluded_tags and version_tuple(name)
+    ]
     if registry_version and source_versions and max(source_versions) > registry_version:
         discrepancies.append("git_source_ahead_of_registry")
     if registry_version and source_versions and registry_version > max(source_versions):

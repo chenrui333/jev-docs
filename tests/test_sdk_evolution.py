@@ -501,3 +501,26 @@ def test_excluded_release_metadata_still_rejects_malformed_records(record):
     assert "malformed_release_metadata" in state["discrepancies"]
     assert state["source_commit"] is None
     assert state["runtime"] == {"python": "unknown"}
+
+
+@pytest.mark.parametrize("flag", ["draft", "prerelease"])
+def test_stable_looking_excluded_release_tag_does_not_create_publish_delay(flag):
+    upstream = ReleaseSources()
+    upstream.tags.append({"name": "v0.2.0", "commit": {"sha": "c" * 40}})
+    upstream.releases.append({"tag_name": "v0.2.0", flag: True})
+    state, _ = release_snapshot(upstream)
+    assert state["discrepancies"] == []
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {"python": ">=3.10"}
+    assert "v0.2.0" in state["available_tags"]
+
+
+@pytest.mark.parametrize("flag", ["draft", "prerelease"])
+def test_duplicate_release_status_classifications_fail_closed(flag):
+    upstream = ReleaseSources()
+    upstream.releases.append({"tag_name": "v0.1.0", flag: True})
+    state, _ = release_snapshot(upstream)
+    assert "malformed_release_metadata" in state["discrepancies"]
+    assert "release_entry_1_conflicting_status" in state["malformed_release_metadata"]
+    assert state["source_commit"] is None
+    assert state["runtime"] == {"python": "unknown"}
