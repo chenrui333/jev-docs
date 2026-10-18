@@ -418,3 +418,20 @@ def test_unbalanced_map_entry_markup_makes_request_contract_unknown():
     assert api["request_fields"] is None
     assert api["model_required"] is None
     assert api["endpoint"] == derive()["endpoint"]
+
+
+@pytest.mark.parametrize("text", [None, "# Unrecognized API reference layout\n"])
+def test_migration_without_verified_facts_is_unknown_evidence_not_verified_baseline(text):
+    original = derive()
+    legacy = {
+        "endpoint": original["endpoint"],
+        "model_default": "jev-latest",
+        "provenance": original["provenance"],
+    }
+    unknown = derive(text, legacy)
+    assert all(p["status"] == "unknown" for p in unknown["properties"].values())
+    events = semantic_events({"api": legacy}, {"api": unknown}, "2026-10-18")
+    assert len(events) == 1
+    assert events[0]["change"] == "verification_changed"
+    assert any(s["role"] == "historical" for s in events[0]["sources"])
+    assert semantic_events({"api": unknown}, {"api": derive(text, unknown)}, "later") == []

@@ -1769,7 +1769,23 @@ def semantic_events(
                     for source in item.get("provenance", [])
                     if source.get("source_id") == "docs:api" and source.get("sha256")
                 }
-                if len(old_hashes) == len(new_hashes) == 1 and old_hashes == new_hashes:
+                has_verified_evidence = bool(item.get("provenance")) and any(
+                    prop.get("status") == "verified" for prop in item["properties"].values()
+                )
+                if not has_verified_evidence:
+                    change = "verification_changed"
+                    tracking_note = (
+                        "Classified previously curated HTTP assumptions as unknown; "
+                        "no current API property has verified reference evidence. "
+                        "No upstream behavior is inferred from missing evidence."
+                    )
+                    verification_sources = [
+                        {**source, "role": "current_observation"}
+                        for source in item.get("provenance", [])
+                    ] + [
+                        {**source, "role": "historical"} for source in old_api.get("provenance", [])
+                    ]
+                elif len(old_hashes) == len(new_hashes) == 1 and old_hashes == new_hashes:
                     tracking_note = (
                         "Established claim-level HTTP reference verification; corrected repository "
                         "assumptions, not an upstream API introduction or contract change."
