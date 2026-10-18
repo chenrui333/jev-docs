@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from http.client import HTTPException
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -98,6 +99,10 @@ class Response:
 class FetchError(RuntimeError):
     """A public source could not be fetched after bounded retries."""
 
+    def __init__(self, message: str, status: int | None = None) -> None:
+        super().__init__(message)
+        self.status = status
+
 
 class HTTPClient:
     def __init__(
@@ -114,22 +119,40 @@ class HTTPClient:
 
     def get(self, url: str) -> Response:
         last_error: Exception | None = None
+        status: int | None = None
         for attempt in range(self.retries + 1):
             try:
                 request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
                 with self.opener(request, timeout=self.timeout) as raw:
                     body = raw.read()
                     headers = {key.lower(): value for key, value in raw.headers.items()}
-                    return Response(str(raw.url), body, headers, getattr(raw, "status", 200))
+                    final_url = str(raw.url)
+                    response_status = getattr(raw, "status", 200)
             except HTTPError as exc:
                 last_error = exc
+                status = exc.code
                 if exc.code < 500 and exc.code != 429:
                     break
-            except (OSError, URLError) as exc:
+            except (OSError, URLError, HTTPException) as exc:
+                # HTTPException covers truncated bodies (IncompleteRead) and malformed
+                # status lines, which are transient transport failures like resets.
                 last_error = exc
+                status = None
+            else:
+                requested, final = urlsplit(url), urlsplit(final_url)
+                if (final.scheme, final.netloc.lower()) != (
+                    requested.scheme,
+                    requested.netloc.lower(),
+                ):
+                    # Evidence is attributed to the requested official host; a redirect
+                    # elsewhere must not be recorded as that host's content.
+                    raise FetchError(
+                        f"refusing cross-origin redirect for {url}: {final.scheme}://{final.netloc}"
+                    )
+                return Response(final_url, body, headers, response_status)
             if attempt < self.retries:
                 self.sleep(0.25 * (2**attempt))
-        raise FetchError(f"failed to fetch {url}: {last_error}") from last_error
+        raise FetchError(f"failed to fetch {url}: {last_error}", status) from last_error
 
 
 @dataclass
@@ -1707,7 +1730,12 @@ def synchronize(
             sid = docs_source_id(url)
             try:
                 response = client.get(url if url.endswith(".md") else f"{url}.md")
-            except FetchError:
+            except FetchError as exc:
+                # Only a missing Markdown representation justifies the HTML form. A
+                # transient Markdown failure must not swap in different bytes and
+                # report the page as modified.
+                if exc.status != 404:
+                    raise
                 response = client.get(url)
             artifact = Artifact(
                 sid,

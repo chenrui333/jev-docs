@@ -167,6 +167,34 @@ def test_unrelated_changes_do_not_restart_sdk_discrepancy_grace_period(tmp_path,
     )
 
 
+class MarkdownFailure(PublicSources):
+    def __init__(self, status):
+        super().__init__()
+        self.status = status
+
+    def get(self, url):
+        if url == "https://docs.typesafe.ai/page.md":
+            raise FetchError("markdown unavailable", self.status)
+        if url == "https://docs.typesafe.ai/page":
+            return Response(url, b"<html>rendered page</html>", {})
+        return super().get(url)
+
+
+def test_transient_markdown_failure_does_not_substitute_html(tmp_path):
+    synchronize(tmp_path, PublicSources(), strict=True)
+    promoted = snapshot(tmp_path)
+    with pytest.raises(RuntimeError, match="last-known-good"):
+        synchronize(tmp_path, MarkdownFailure(503), strict=True)
+    assert snapshot(tmp_path) == promoted
+
+
+def test_missing_markdown_representation_uses_page_form(tmp_path):
+    synchronize(tmp_path, MarkdownFailure(404), strict=True)
+    manifest = json.loads((tmp_path / "sources/docs.typesafe.ai/manifest.json").read_text())
+    page = next(item for item in manifest["artifacts"] if item["source_id"] == "docs:page")
+    assert page["fetch_url"] == "https://docs.typesafe.ai/page"
+
+
 def test_cli_attempt_diagnostics_never_expose_exception_body(tmp_path, monkeypatch):
     from jev_docs import sync
 

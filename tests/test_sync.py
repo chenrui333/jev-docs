@@ -130,6 +130,67 @@ def test_permanent_failure_is_visible() -> None:
         client.get("https://example.test")
 
 
+class FakeRaw:
+    status = 200
+    headers: dict[str, str] = {}
+
+    def __init__(self, url: str, body: bytes = b"body") -> None:
+        self.url = url
+        self.body = body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_args):
+        return None
+
+    def read(self):
+        return self.body
+
+
+def test_cross_origin_redirect_is_not_attributed_to_requested_host() -> None:
+    client = HTTPClient(
+        opener=lambda _request, timeout: FakeRaw("https://elsewhere.example/page.md"),
+        sleep=lambda _delay: None,
+    )
+    with pytest.raises(FetchError, match="cross-origin redirect"):
+        client.get("https://docs.typesafe.ai/page.md")
+    same_host = HTTPClient(
+        opener=lambda _request, timeout: FakeRaw("https://docs.typesafe.ai/moved.md"),
+        sleep=lambda _delay: None,
+    )
+    assert same_host.get("https://docs.typesafe.ai/page.md").url.endswith("/moved.md")
+
+
+def test_truncated_body_is_retried_as_transient() -> None:
+    from http.client import IncompleteRead
+
+    attempts = 0
+
+    def opener(request, timeout):
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise IncompleteRead(b"partial")
+        return FakeRaw(request.full_url)
+
+    assert HTTPClient(opener=opener, sleep=lambda _delay: None).get("https://x.test").body == (
+        b"body"
+    )
+    assert attempts == 2
+
+
+def test_fetch_error_reports_final_http_status() -> None:
+    from urllib.error import HTTPError
+
+    def opener(request, timeout):
+        raise HTTPError(request.full_url, 404, "missing", {}, None)
+
+    with pytest.raises(FetchError) as caught:
+        HTTPClient(opener=opener, sleep=lambda _delay: None).get("https://x.test")
+    assert caught.value.status == 404
+
+
 def test_event_ids_are_stable_and_baseline_is_empty() -> None:
     assert event_id("practice:x", "modified", "a", "b") == event_id(
         "practice:x", "modified", "a", "b"
