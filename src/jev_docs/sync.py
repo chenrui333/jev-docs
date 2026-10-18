@@ -1416,13 +1416,23 @@ def derive_practices(
         same_evidence = (
             prior and prior.get("sources") == evidence and prior.get("summary") == rule["summary"]
         )
+        first_seen = prior.get("first_seen") if prior else today if evidence else None
+        if (
+            prior
+            and evidence
+            and prior.get("status") == "unknown"
+            and prior.get("first_seen") is None
+            and prior.get("last_verified") is None
+            and (previous or {}).get("verification_semantics") == "evidence_revision"
+        ):
+            first_seen = today
         item = {
             "id": rule["id"],
             "category": rule["category"],
             "status": "recommended" if evidence else "unknown",
             "summary": rule["summary"],
             # A legacy null is genuinely unknown; do not fabricate its first date.
-            "first_seen": prior.get("first_seen") if prior else today if evidence else None,
+            "first_seen": first_seen,
             "last_verified": (
                 prior.get("last_verified") if same_evidence or not evidence else today
             )
@@ -1944,7 +1954,8 @@ def load_history_events(events_dir: Path) -> list[dict[str, Any]]:
 
 def render_best_practices(practices: dict[str, Any]) -> str:
     latest = max(
-        (item.get("last_verified") or "unknown" for item in practices["items"]), default="unknown"
+        (item["last_verified"] for item in practices["items"] if item.get("last_verified")),
+        default="unknown",
     )
     lines = [
         "# Jev Engineering Best Practices",

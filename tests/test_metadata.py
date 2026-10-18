@@ -59,3 +59,24 @@ def test_successful_sync_times_are_attempt_metadata_not_commit_churn(tmp_path, m
     assert attempt["last_successful_sync"] == "2026-10-03T00:00:00Z"
     assert attempt["last_successful_fetch"] == "2026-10-03T00:00:00Z"
     assert snapshot(tmp_path) == before
+
+
+def test_new_unknown_practice_gets_first_seen_when_evidence_first_arrives(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    unknown = derive_practices({}, {}, None)
+    assert item(unknown)["first_seen"] is None
+    assert item(unknown)["last_verified"] is None
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    supported = practice(previous=unknown)
+    assert item(supported)["first_seen"] == "2026-10-03"
+    assert item(supported)["last_verified"] == "2026-10-03"
+
+
+def test_verification_heading_ignores_never_verified_practices(monkeypatch):
+    from jev_docs.sync import render_best_practices
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    partial = practice()
+    assert "2026-10-01" in render_best_practices(partial)
+    unsupported = derive_practices({}, {}, None)
+    assert "2026-10-01" not in render_best_practices(unsupported)
