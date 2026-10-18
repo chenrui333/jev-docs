@@ -16,12 +16,13 @@ import xml.etree.ElementTree as ET
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from http.client import HTTPException
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
@@ -98,11 +99,57 @@ class Response:
 
 
 class FetchError(RuntimeError):
-    """A public source could not be fetched after bounded retries."""
+    """A bounded public-source failure with a safe message and machine-readable code."""
 
-    def __init__(self, message: str, status: int | None = None) -> None:
+    def __init__(
+        self, message: str, status: int | None = None, *, code: str = "fetch_failed"
+    ) -> None:
         super().__init__(message)
         self.status = status
+        self.code = code
+
+
+def https_origin(url: str) -> tuple[str, str, int] | None:
+    try:
+        parts = urlsplit(url)
+        if parts.scheme != "https" or not parts.hostname or parts.username or parts.password:
+            return None
+        return parts.scheme, parts.hostname.lower(), parts.port or 443
+    except ValueError:
+        return None
+
+
+def source_label(url: str) -> str:
+    """Never include userinfo or query parameters in public-source errors."""
+    parts = urlsplit(url)
+    return f"{parts.scheme}://{parts.hostname}{parts.path}"
+
+
+class SameOriginRedirectHandler(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # urllib normally copies Authorization before sending a redirected request.
+        # Reject the target here, not merely after its response has been received.
+        if https_origin(newurl) is None or https_origin(newurl) != https_origin(req.full_url):
+            raise FetchError("refusing cross-origin redirect", code="unsafe_redirect")
+        redirected = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if redirected is not None:
+            redirected.remove_header("Authorization")
+        return redirected
+
+
+def retry_after_seconds(value: str | None) -> float | None:
+    if not value:
+        return None
+    value = value.strip()
+    if re.fullmatch(r"\d+", value):
+        return min(float(value), 60.0)
+    try:
+        date = parsedate_to_datetime(value)
+        if date.tzinfo is None:
+            return None
+        return min(max(date.timestamp() - time.time(), 0.0), 60.0)
+    except (ValueError, TypeError, OverflowError):
+        return None
 
 
 class HTTPClient:
@@ -112,48 +159,79 @@ class HTTPClient:
         sleep: Callable[[float], None] = time.sleep,
         retries: int = 2,
         timeout: float = 20.0,
+        max_response_bytes: int = 16 * 1024 * 1024,
     ) -> None:
-        self.opener = opener or urlopen
+        if max_response_bytes < 1:
+            raise ValueError("max_response_bytes must be positive")
+        self.opener = opener or build_opener(SameOriginRedirectHandler()).open
         self.sleep = sleep
         self.retries = retries
         self.timeout = timeout
+        self.max_response_bytes = max_response_bytes
 
     def get(self, url: str) -> Response:
-        last_error: Exception | None = None
+        origin = https_origin(url)
+        if origin is None:
+            raise FetchError(
+                "refusing non-HTTPS or credential-bearing source URL", code="unsafe_url"
+            )
+        last_error = "transport failure"
         status: int | None = None
         for attempt in range(self.retries + 1):
+            delay = 0.25 * (2**attempt)
             try:
                 request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
+                token = os.environ.get("GITHUB_TOKEN")
+                if origin == ("https", "api.github.com", 443) and token:
+                    request.add_unredirected_header("Authorization", f"Bearer {token}")
                 with self.opener(request, timeout=self.timeout) as raw:
-                    body = raw.read()
+                    body = raw.read(self.max_response_bytes + 1)
+                    if len(body) > self.max_response_bytes:
+                        raise FetchError(
+                            f"response exceeds {self.max_response_bytes} bytes for {source_label(url)}",
+                            code="response_too_large",
+                        )
                     headers = {key.lower(): value for key, value in raw.headers.items()}
                     final_url = str(raw.url)
                     response_status = getattr(raw, "status", 200)
             except HTTPError as exc:
-                last_error = exc
                 status = exc.code
-                if exc.code < 500 and exc.code != 429:
+                headers = {key.lower(): value for key, value in exc.headers.items()}
+                exc.close()
+                last_error = f"HTTP {status}"
+                retry_after = retry_after_seconds(headers.get("retry-after"))
+                primary_limit = (
+                    origin == ("https", "api.github.com", 443)
+                    and headers.get("x-ratelimit-remaining") == "0"
+                )
+                github_limit = origin == ("https", "api.github.com", 443) and (
+                    primary_limit or retry_after is not None
+                )
+                if status < 500 and status != 429 and not (status == 403 and github_limit):
                     break
-            except (OSError, URLError, HTTPException) as exc:
-                # HTTPException covers truncated bodies (IncompleteRead) and malformed
-                # status lines, which are transient transport failures like resets.
-                last_error = exc
+                if retry_after is not None:
+                    delay = retry_after
+                elif status in {403, 429} and primary_limit:
+                    reset = headers.get("x-ratelimit-reset", "")
+                    if re.fullmatch(r"\d+", reset):
+                        delay = min(max(float(reset) - time.time(), 0.0), 60.0)
+            except ValueError:
+                raise FetchError(
+                    "invalid source request configuration", code="invalid_request"
+                ) from None
+            except (OSError, URLError, HTTPException):
+                # Truncated bodies and malformed status lines are transport failures.
+                # Exception messages/chains may contain credentials or response data.
+                last_error = "transport failure"
                 status = None
             else:
-                requested, final = urlsplit(url), urlsplit(final_url)
-                if (final.scheme, final.netloc.lower()) != (
-                    requested.scheme,
-                    requested.netloc.lower(),
-                ):
-                    # Evidence is attributed to the requested official host; a redirect
-                    # elsewhere must not be recorded as that host's content.
-                    raise FetchError(
-                        f"refusing cross-origin redirect for {url}: {final.scheme}://{final.netloc}"
-                    )
+                if https_origin(final_url) != origin:
+                    # Also enforce attribution for injected fixture/custom openers.
+                    raise FetchError("refusing cross-origin redirect", code="unsafe_redirect")
                 return Response(final_url, body, headers, response_status)
             if attempt < self.retries:
-                self.sleep(0.25 * (2**attempt))
-        raise FetchError(f"failed to fetch {url}: {last_error}", status) from last_error
+                self.sleep(delay)
+        raise FetchError(f"failed to fetch {source_label(url)}: {last_error}", status) from None
 
 
 @dataclass
@@ -190,7 +268,7 @@ def parse_llms(text: str, base: str = DOCS_ROOT) -> list[tuple[str, str, str]]:
     for match in re.finditer(r"-\s*\[([^]]+)\]\(([^)]+)\)(?::\s*(.*))?", text):
         title, raw_url, description = match.groups()
         url = docs_canonical_url(normalize_url(raw_url, base))
-        if urlsplit(url).netloc != "docs.typesafe.ai" or url in seen:
+        if https_origin(url) != ("https", "docs.typesafe.ai", 443) or url in seen:
             continue
         seen.add(url)
         results.append((url, title.strip(), (description or "").strip()))
@@ -198,13 +276,14 @@ def parse_llms(text: str, base: str = DOCS_ROOT) -> list[tuple[str, str, str]]:
 
 
 def parse_llms_exclusions(text: str, base: str = DOCS_ROOT) -> list[dict[str, str]]:
-    """Record links intentionally excluded because they are outside the docs host."""
+    """Record links excluded because they are not HTTPS documentation sources."""
     exclusions: dict[str, dict[str, str]] = {}
     for match in re.finditer(r"-\s*\[([^]]+)\]\(([^)]+)\)", text):
         title, raw_url = match.groups()
         url = normalize_url(raw_url, base)
-        if urlsplit(url).netloc != "docs.typesafe.ai":
-            exclusions[url] = {"url": url, "title": title.strip(), "reason": "external-host"}
+        if https_origin(url) != ("https", "docs.typesafe.ai", 443):
+            reason = "non-https" if urlsplit(url).scheme != "https" else "external-host"
+            exclusions[url] = {"url": url, "title": title.strip(), "reason": reason}
     return [exclusions[url] for url in sorted(exclusions)]
 
 
@@ -220,7 +299,9 @@ def parse_sitemap(text: str) -> dict[str, str]:
         lastmod = next(
             (child.text for child in list(url_node) if child.tag.endswith("lastmod")), ""
         )
-        result[docs_canonical_url(loc.strip())] = (lastmod or "").strip()
+        url = docs_canonical_url(loc.strip())
+        if https_origin(url) == ("https", "docs.typesafe.ai", 443):
+            result[url] = (lastmod or "").strip()
     return result
 
 
@@ -500,9 +581,145 @@ def artifact_manifest(
     }
 
 
+def metadata_json(response: Response, service: str) -> Any:
+    try:
+        return json.loads(response.body)
+    except (json.JSONDecodeError, UnicodeError):
+        raise FetchError(
+            f"{service} metadata JSON invalid at {source_label(response.url)}; "
+            "check upstream availability and retry; no evidence promoted",
+            code="invalid_json",
+        ) from None
+
+
+def schema_error(response: Response, service: str, expected: str) -> FetchError:
+    return FetchError(
+        f"{service} metadata schema invalid at {source_label(response.url)}; "
+        f"expected {expected}; check upstream schema before retrying",
+        code="invalid_schema",
+    )
+
+
+def nonempty_string(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
+    service = "PyPI" if package_kind == "python" else "npm"
+    value = metadata_json(response, service)
+    if not isinstance(value, dict):
+        raise schema_error(response, service, "a JSON object")
+    if package_kind == "python":
+        info, releases = value.get("info"), value.get("releases")
+        if not isinstance(info, dict) or not nonempty_string(info.get("version")):
+            raise schema_error(response, service, "info.version as a nonempty string")
+        if not isinstance(releases, dict) or not all(
+            isinstance(files, list) for files in releases.values()
+        ):
+            raise schema_error(response, service, "releases as a version-to-file-list map")
+    else:
+        tags = value.get("dist-tags")
+        if not isinstance(tags, dict) or not nonempty_string(tags.get("latest")):
+            raise schema_error(response, service, "dist-tags.latest as a nonempty string")
+    return value
+
+
+def validate_github_metadata(value: Any, response: Response) -> None:
+    endpoint = urlsplit(response.url).path
+    match = re.fullmatch(r"/repos/[^/]+/[^/]+/(tags|releases|commits)", endpoint)
+    surface = match[1] if match else None
+    if surface in {"tags", "releases", "commits"}:
+        if not isinstance(value, list) or any(not isinstance(item, dict) for item in value):
+            raise schema_error(response, "GitHub", f"{surface} as a list of objects")
+        if surface == "commits":
+            if not value or any(not nonempty_string(item.get("sha")) for item in value):
+                raise schema_error(response, "GitHub", "a nonempty commits list with sha strings")
+        elif surface == "tags":
+            if any(
+                not nonempty_string(item.get("name"))
+                or not isinstance(item.get("commit"), dict)
+                or not nonempty_string(item["commit"].get("sha"))
+                for item in value
+            ):
+                raise schema_error(response, "GitHub", "tag name and commit.sha strings")
+        else:
+            if any(
+                not nonempty_string(item.get("tag_name"))
+                or any(
+                    item.get(key) is not None and not isinstance(item[key], str)
+                    for key in ("published_at", "name", "html_url")
+                )
+                or any(
+                    key in item and not isinstance(item[key], bool)
+                    for key in ("draft", "prerelease")
+                )
+                for item in value
+            ):
+                raise schema_error(
+                    response, "GitHub", "release tag strings and typed release fields"
+                )
+    elif not isinstance(value, dict):
+        raise schema_error(response, "GitHub", "a JSON object")
+    elif "/commits/" in endpoint:
+        if not nonempty_string(value.get("sha")):
+            raise schema_error(response, "GitHub", "commit.sha as a nonempty string")
+    elif "default_branch" in value and not nonempty_string(value["default_branch"]):
+        raise schema_error(response, "GitHub", "default_branch as a nonempty string")
+
+
+def github_next_page(response: Response, initial_url: str) -> str | None:
+    links = next((v for k, v in response.headers.items() if k.lower() == "link"), "")
+    next_url = None
+    for link in links.split(",") if links else []:
+        match = re.fullmatch(r"\s*<([^>]+)>\s*;(.*)", link)
+        relation = re.search(r'\brel\s*=\s*"?([^";]+)', match[2]) if match else None
+        if not match or not relation:
+            raise FetchError("invalid GitHub pagination Link header", code="invalid_pagination")
+        if "next" not in relation[1].strip().split():
+            continue
+        candidate = urljoin(response.url, match[1])
+        if (
+            next_url is not None
+            or https_origin(candidate) != ("https", "api.github.com", 443)
+            or urlsplit(candidate).path != urlsplit(initial_url).path
+            or urlsplit(candidate).fragment
+        ):
+            raise FetchError("unsafe GitHub pagination target", code="invalid_pagination")
+        next_url = candidate
+    return next_url
+
+
 def github_json(client: HTTPClient, path: str) -> tuple[Any, Response]:
-    response = client.get(f"{GITHUB_API}{path}")
-    return json.loads(response.body), response
+    initial_url = f"{GITHUB_API}{path}"
+    match = re.fullmatch(r"/repos/[^/]+/[^/]+/(tags|releases)", urlsplit(initial_url).path)
+    surface = match[1] if match else None
+    paginated = surface is not None
+    url, visited, items = initial_url, set(), {}
+    first_response = None
+    for page in range(20):
+        visited.add(url)
+        response = client.get(url)
+        if first_response is None:
+            first_response = response
+        value = metadata_json(response, "GitHub")
+        validate_github_metadata(value, response)
+        if not paginated:
+            return value, response
+        projection = stable_tag_evidence if surface == "tags" else stable_release_evidence
+        for item in value:
+            # Deduplicate projected evidence, not volatile counters/download URLs.
+            key = canonical_json(projection([item])[0])
+            items.setdefault(key, item)
+        next_url = github_next_page(response, initial_url)
+        if next_url is None:
+            return [items[key] for key in sorted(items)], first_response
+        if next_url in visited or page == 19:
+            raise FetchError(
+                "GitHub pagination incomplete: cycle or 20-page limit; no evidence promoted",
+                code="pagination_limit",
+            )
+        url = next_url
+    raise AssertionError("unreachable pagination state")
 
 
 def evidence_bytes(value: Any) -> bytes:
@@ -847,7 +1064,7 @@ def sdk_snapshot(
         f"{GITHUB_API}{releases_path}",
         evidence_bytes(stable_release_evidence(releases)),
     )
-    branch = repo_meta.get("default_branch", "main") if isinstance(repo_meta, dict) else "main"
+    branch = repo_meta.get("default_branch", "main")
     head_path = f"/repos/{repo}/commits/{branch}"
     head, head_response = github_json(client, head_path)
     artifacts[f"github:{repo}:head"] = Artifact(
@@ -869,7 +1086,7 @@ def sdk_snapshot(
     if package_kind == "python":
         registry_url = f"https://pypi.org/pypi/{package}/json"
         registry_response = client.get(registry_url)
-        registry = json.loads(registry_response.body)
+        registry = registry_json(registry_response, package_kind)
         runtime = (
             parse_simple_toml_value(config_response.body.decode(), "requires-python") or "unknown"
         )
@@ -878,20 +1095,25 @@ def sdk_snapshot(
     else:
         registry_url = f"https://registry.npmjs.org/{package.replace('/', '%2f')}"
         registry_response = client.get(registry_url)
-        registry = json.loads(registry_response.body)
-        config = json.loads(config_response.body)
+        registry = registry_json(registry_response, package_kind)
+        config = metadata_json(config_response, "SDK configuration")
+        if not isinstance(config, dict) or not isinstance(config.get("engines", {}), dict):
+            raise schema_error(
+                config_response, "SDK configuration", "an object with an engines map"
+            )
         runtime = config.get("engines", {}).get("node", "unknown")
+        if not isinstance(runtime, str):
+            raise schema_error(config_response, "SDK configuration", "engines.node as a string")
         public_surface = ["TypeSafeClient", "choice", "noul", "score"]
         registry_id = f"registry:npm:{package}"
     if package_kind == "python":
-        version = registry.get("info", {}).get("version") if isinstance(registry, dict) else None
+        version = registry["info"]["version"]
         registry_evidence = {
             "version": version,
-            "published_versions": sorted(registry.get("releases", {})),
+            "published_versions": sorted(registry["releases"]),
         }
     else:
-        dist_tags = registry.get("dist-tags", {}) if isinstance(registry, dict) else {}
-        version = dist_tags.get("latest") if isinstance(dist_tags, dict) else None
+        version = registry["dist-tags"]["latest"]
         registry_evidence = {"latest": version}
     artifacts[registry_id] = Artifact(
         registry_id, "package-registry", registry_url, evidence_bytes(registry_evidence)
@@ -1758,30 +1980,20 @@ def synchronize(
     try:
         sitemap_warning = None
         sitemap_lastmod: dict[str, str] = {}
-        try:
-            index_response = client.get(DOCS_INDEX)
-            index = Artifact(
-                "docs:llms.txt", "documentation-discovery", DOCS_INDEX, index_response.body
-            )
-            discovered = parse_llms(index_response.body.decode("utf-8"))
-            if not discovered:
-                raise FetchError("documentation index returned no same-host pages")
-            discovery_method = "llms.txt"
-            try:
-                sitemap_response = client.get(DOCS_SITEMAP)
-                sitemap_lastmod = parse_sitemap(sitemap_response.body.decode("utf-8"))
-            except FetchError as exc:
-                sitemap_warning = str(exc)
-        except FetchError:
-            # A different index cannot prove removals from the canonical llms index.
-            raise
-        if not discovered:
-            raise FetchError("documentation discovery returned no same-host pages")
-        intentionally_excluded = (
-            parse_llms_exclusions(index_response.body.decode("utf-8"))
-            if index.source_id == "docs:llms.txt"
-            else []
+        index_response = client.get(DOCS_INDEX)
+        index = Artifact(
+            "docs:llms.txt", "documentation-discovery", DOCS_INDEX, index_response.body
         )
+        discovered = parse_llms(index_response.body.decode("utf-8"))
+        if not discovered:
+            raise FetchError("documentation index returned no same-host pages")
+        discovery_method = "llms.txt"
+        try:
+            sitemap_response = client.get(DOCS_SITEMAP)
+            sitemap_lastmod = parse_sitemap(sitemap_response.body.decode("utf-8"))
+        except FetchError as exc:
+            sitemap_warning = str(exc)
+        intentionally_excluded = parse_llms_exclusions(index_response.body.decode("utf-8"))
         current_ids = {docs_source_id(url) for url, _, _ in discovered}
         old_ids = {page["source_id"] for page in previous_coverage.get("pages", [])}
         attempt.update(
@@ -1821,7 +2033,7 @@ def synchronize(
             descriptions[sid] = (title_from_markdown(contents[sid], title), description)
         skill_path = "/repos/typesafe-ai/skills/commits?path=skills/typesafe-ai/SKILL.md&per_page=1"
         skill_commits, skill_commit_response = github_json(client, skill_path)
-        skill_commit = skill_commits[0]["sha"] if skill_commits else None
+        skill_commit = skill_commits[0]["sha"]
         skill_url = f"https://raw.githubusercontent.com/typesafe-ai/skills/{skill_commit}/skills/typesafe-ai/SKILL.md"
         skill_response = client.get(skill_url)
         skill_artifact = Artifact(
