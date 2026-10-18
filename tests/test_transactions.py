@@ -260,6 +260,13 @@ def test_strict_validation_checks_history_and_renderings(tmp_path):
         validate_tree(tmp_path, strict=True)
     copy.unlink()
 
+    # The 2000-01-01 report now has no event file behind it.
+    validate_tree(tmp_path)
+    with pytest.raises(RuntimeError, match="without event files: 2000-01-01.md"):
+        validate_tree(tmp_path, strict=True)
+    (tmp_path / "changes/2000-01-01.md").unlink()
+    validate_tree(tmp_path, strict=True)
+
     guide = tmp_path / "BEST_PRACTICES.md"
     guide.write_text(guide.read_text() + "\nUnsupported claim.\n")
     validate_tree(tmp_path)

@@ -1663,6 +1663,13 @@ def validate_tree(root: Path, strict: bool = False) -> None:
             path.stem, data.get("events", [])
         ):
             raise RuntimeError(f"daily report disagrees with events: {report}")
+    if strict:
+        event_days = {path.stem for path in (root / "events").glob("*.json")} - {"baseline"}
+        orphaned = sorted(
+            path.name for path in (root / "changes").glob("*.md") if path.stem not in event_days
+        )
+        if orphaned:
+            raise RuntimeError(f"daily reports without event files: {', '.join(orphaned)}")
     if "state/practices.json" not in (root / "BEST_PRACTICES.md").read_text():
         raise RuntimeError("best-practices guide is not linked to generated state")
     if strict and (root / "BEST_PRACTICES.md").read_text() != render_best_practices(practices):
