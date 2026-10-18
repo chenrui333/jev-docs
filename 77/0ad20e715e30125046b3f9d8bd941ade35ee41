@@ -1,0 +1,26 @@
+.gitignore
+  h_9df9c32c3f321d 7-8
+README.md
+  h_9df9c32c3f321d 102-106,127-134
+docs/DESIGN.md
+  h_9df9c32c3f321d 59-70,146-178
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 29,1680-1729,1751-1752,1755-1756,1758,1898-1899,2074-2084,2290-2293,2445-2447
+src/jev_docs/transactions.py
+  h_9df9c32c3f321d 1-204
+tests/test_recurring_events.py
+  h_9df9c32c3f321d 1-387
+tests/test_sync.py
+  h_9df9c32c3f321d 316,421
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "770ad20e715e30125046b3f9d8bd941ade35ee41",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
