@@ -1,5 +1,5 @@
 {
-  "fingerprint": "041bac1571ae0f7a0334fc117effd1fad4ae33506402064c89395e024fc9438e",
+  "fingerprint": "b6b98b104ecf78be12453e097b8037876bfadfdc01a219bb21ebb00755ba5021",
   "models": [
     {
       "id": "jev-latest",
@@ -10,9 +10,19 @@
       "id": "jev-preview",
       "kind": "alias",
       "target": "jev-1.14.0"
+    },
+    {
+      "id": "jev-1.13.0",
+      "kind": "versioned",
+      "label": "Jev 1.13"
+    },
+    {
+      "id": "jev-1.14.0",
+      "kind": "versioned",
+      "label": "Jev 1.14"
     }
   ],
-  "observed_at": "2026-10-15T04:42:33.831317Z",
+  "observed_at": "2026-10-18T15:53:36.590372Z",
   "provenance": [
     {
       "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",

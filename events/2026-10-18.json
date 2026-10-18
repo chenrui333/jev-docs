@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18",
+  "events": [
+    {
+      "after_sha256": "63988b0a1401cd58a47bbd614b7999085da3634ea3f108888f9943dab14c307c",
+      "before_sha256": "a9a759ef7960d0b69fc50b4386493d7d463f0bc3586057d0a5218afa7065f9a9",
+      "category": "model",
+      "change": "modified",
+      "entity": "models",
+      "id": "58ba427391e2bfb5bd4a10e9",
+      "observed_at": "2026-10-18T15:53:37.255759Z",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models.md"
+        }
+      ],
+      "summary": "Documented model identities: jev-1.13.0, jev-1.14.0; aliases: jev-latest → jev-1.13.0, jev-preview → jev-1.14.0."
+    }
+  ],
+  "schema_version": 1
+}
