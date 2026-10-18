@@ -1239,6 +1239,18 @@ def semantic_events(
                     else f"Stopped tracking {category} {entity_key}; its extraction rule was "
                     "removed. This is not upstream removal or deprecation."
                 )
+            if (
+                name == "model-limitations"
+                and entity_key in old_items
+                and entity_key in new_items
+                and "summary_kind" not in old_items[entity_key]
+                and "summary_kind" in new_items[entity_key]
+            ):
+                change = "baseline"
+                tracking_note = (
+                    f"Updated local interpretation and quotation policy for {entity_key}; "
+                    "established a tracking baseline, not an upstream limitation change."
+                )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
             events.append(
                 {

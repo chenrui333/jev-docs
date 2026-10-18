@@ -32,6 +32,13 @@ are MIT-licensed, but no license for the hosted documentation was found. The
 MIT license in this repository applies only to repository-authored code and
 documentation. It does not relicense TypeSafe material.
 
+New limitations output uses labeled, independently authored interpretations,
+matched to the exact reviewed model and section hash, rather than copying
+mitigation paragraphs. Unreviewed or changed sections have unknown summaries
+and link to official evidence. This is not a licensing determination: hosted
+documentation permissions remain uncertain. Historical state and events are
+not rewritten; their older excerpts remain part of the recorded history.
+
 ## How to read the repository
 
 - [`BEST_PRACTICES.md`](BEST_PRACTICES.md) is the concise current guide for

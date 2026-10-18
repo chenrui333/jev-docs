@@ -92,12 +92,21 @@ from the canonical layer.
 
 `state/model-limitations.json` uses IDs scoped by the page's explicit model
 applicability and section anchor. Second- and third-level headings retain the
-upstream distinctions, including numeric/counting/score subtopics. Summaries and
-mitigations are bounded source excerpts, not global claims. Missing sections or
-pages retain last-known evidence with `unknown` status; a successful observation
-can change that status back to `documented`. No absence establishes a fix. A
-later model receives independent IDs and cannot overwrite the older model.
-`MODEL_LIMITATIONS.md` is a deterministic rendering of this state.
+upstream distinctions, including numeric/counting/score subtopics. New summaries
+are labeled repository interpretations, selected only for an exact reviewed
+model, section anchor, and normalized section hash. New or changed evidence has
+an explicitly unknown summary until reviewed; familiar headings alone are not
+evidence of unchanged meaning. No paid inference is used. Mitigation prose is
+not copied (the legacy field remains null); source URLs, artifact hashes and
+original normalized section hashes remain available for audit. Missing sections
+or pages retain last-known evidence with `unknown` status, not a claim of a fix.
+A later model receives independent IDs and cannot inherit an interpretation.
+`MODEL_LIMITATIONS.md` deterministically renders new interpretations when the
+additive `summary_kind` marker is present. Legacy state without that marker keeps
+its historical rendering until synchronization upgrades it, preserving validation
+of the recorded tree. Historical state and events are not rewritten. Hosted-
+document licensing remains uncertain; the repository's MIT license does not
+authorize reproduction of upstream documentation.
 
 `state/cookbooks.json` reads the index's category, link, description and level
 columns. Unknown table formats fail before promotion. It unions index entries
@@ -129,6 +138,12 @@ historical additions. Subsequent additions, modifications and navigation removal
 use the existing stable event IDs. Model limitation absence changes status to
 unknown. Source hashes and review dates alone do not create limitation or cookbook
 semantic events; they remain provenance updates.
+The first migration of a legacy limitation item to `summary_kind` also emits a
+per-item baseline explicitly attributed to the local interpretation/quotation
+policy, not an upstream change. This conservatively establishes new tracking
+even if source evidence changed during migration. Later section-hash or status
+changes remain ordinary modifications; identical subsequent observations emit
+no event.
 
 Practice and primitive items come from fixed rule tables in this repository.
 When a rule is added or removed, the item's event uses `baseline` or `untracked`

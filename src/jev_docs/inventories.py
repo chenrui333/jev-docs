@@ -5,7 +5,7 @@ import hashlib
 import re
 from urllib.parse import urlsplit
 
-from jev_docs.text import clean_text, excerpt
+from jev_docs.text import clean_text
 
 
 def slug(text):
@@ -20,6 +20,74 @@ def provenance(artifact, section=None):
             "sha256": artifact.sha256,
         }
     ]
+
+
+# Independently authored interpretations of reviewed, model-specific evidence.
+# Exact section hashes prevent a familiar heading from endorsing changed prose.
+_LIMITATION_INTERPRETATIONS = {
+    "adversarial-content": (
+        "55575a729128f6bbe95d0838d34ea232cc90955469a11aba1e77d3d1eb599559",
+        "Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration.",
+    ),
+    "choice-option-order": (
+        "34dc9e81163307bf55f1bebcbf9bcda15c751dbf990b06674644eba6ecac2967",
+        "Choice results may depend on option position. Check decisions after permuting candidates.",
+    ),
+    "common-sense-structural-invariants": (
+        "f5d18200f162450a87dba7a85f0d0a0b8c3fd94d665e008ff917cc8b3d62ea8f",
+        "Similar wording does not guarantee algebraic relationships across questions. Calibrate Choice and Noul decisions separately.",
+    ),
+    "contradictory-instructions-and-criteria": (
+        "7f5456c18c04af6e6c4f5bd2364cecf33670e07694c4f7331ea96f79bf84b9a1",
+        "Conflicting instructions and criteria can impair decisions; make their requirements agree.",
+    ),
+    "counting": (
+        "88eeb3d33ed56e2abd0b5535bc06f64ddbb5a964815b9d81db81dc495b68e32e",
+        "Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically.",
+    ),
+    "date-and-time-comparison": (
+        "6b530f8d3222d718ed74cbc5eec8cc1272166d17758743abdabc02d0d7e7b7f4",
+        "Date text is not reliably ordered by the model. Separate semantic extraction from programmatic date calculations.",
+    ),
+    "generation": (
+        "909fe1da53fa433f3dd367dcab2d5b5119e6b7865ce6095a0086a81cffa72c31",
+        "Free-text production is outside this model's training. For bounded extraction, obtain candidates elsewhere and use Choice to select.",
+    ),
+    "indirection": (
+        "c55e59fc8850bd46b652d644b75775216b182c700124475cd125c4640dbedaa4",
+        "Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields.",
+    ),
+    "large-state-full-of-irrelevant-detail": (
+        "2c143c92dc1d093ab96ead10fae277fa744e9e32674381cdfaea750b9b35125b",
+        "Irrelevant input can reduce accuracy and obscure error causes. Select relevant fields before evaluation.",
+    ),
+    "literal-reading": (
+        "77fc11629b076dfbd74ab69cbde6bb42a75c60ef250beb0888ec51bf50d8930d",
+        "Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed.",
+    ),
+    "math-and-numbers": (
+        "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
+        "Reserve the model for semantic judgments; implement numerical operations programmatically.",
+    ),
+    "math-using-score": (
+        "afc388f9a43dd79780da058f7389457d593ad6637370c04250dcba3c76e3d52f",
+        "A score is not an exact numerical measurement interpolated between criterion levels.",
+    ),
+    "numeric-representations": (
+        "722c47f75f08f4f40eec13a4fe5266cba6d8568beb657a13109a40c888024ead",
+        "Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment.",
+    ),
+}
+
+
+def _limitation_summary(model, section, section_hash):
+    reviewed = _LIMITATION_INTERPRETATIONS.get(section)
+    if model == "jev-1.13" and reviewed and reviewed[0] == section_hash:
+        return reviewed[1], "repository-interpretation"
+    return (
+        "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
+        "unknown",
+    )
 
 
 def model_limitations(contents, artifacts, previous):
@@ -43,14 +111,12 @@ def model_limitations(contents, artifacts, previous):
                 heading.end() : headings[i + 1].start() if i + 1 < len(headings) else len(content)
             ]
             body = re.split(r"```|<Info>|<Tip>", body)[0].strip()
-            summary = excerpt(body.split("**Instead:**")[0], r"\S", 300)
-            mitigation = (
-                excerpt(body.split("**Instead:**", 1)[1], r"\S", 650)
-                if "**Instead:**" in body
-                else None
-            )
-            if not summary:
+            if not clean_text(body).strip():
                 raise RuntimeError(f"empty limitation section: {sid}#{section}")
+            section_hash = hashlib.sha256(
+                re.sub(r"\s+", " ", clean_text(body)).strip().encode()
+            ).hexdigest()
+            summary, summary_kind = _limitation_summary(model, section, section_hash)
             ident = f"{model}:{section}"
             items[ident] = {
                 "id": ident,
@@ -60,10 +126,9 @@ def model_limitations(contents, artifacts, previous):
                 "last_reviewed": reviewed[1],
                 "status": "documented",
                 "summary": summary,
-                "section_text_sha256": hashlib.sha256(
-                    re.sub(r"\s+", " ", clean_text(body)).strip().encode()
-                ).hexdigest(),
-                "mitigation": mitigation,
+                "summary_kind": summary_kind,
+                "section_text_sha256": section_hash,
+                "mitigation": None,
                 "provenance": provenance(artifacts[sid], section),
             }
             count += 1
@@ -74,6 +139,10 @@ def model_limitations(contents, artifacts, previous):
         if old["id"] not in items:
             retained = copy.deepcopy(old)
             retained["status"] = "unknown"
+            retained["summary"], retained["summary_kind"] = _limitation_summary(
+                old["model"], old["section"], old.get("section_text_sha256")
+            )
+            retained["mitigation"] = None
             items[old["id"]] = retained
     return {
         "schema_version": 1,
@@ -162,15 +231,21 @@ def render_limitations(state):
         "",
     ]
     for item in state["items"]:
+        summary, summary_kind = _limitation_summary(
+            item["model"], item["section"], item.get("section_text_sha256")
+        )
+        # Preserve the historical rendering format until synchronization upgrades
+        # this item with the additive interpretation marker.
+        legacy = "summary_kind" not in item
         lines += [
             f"## {item['model']} / {item['title']}",
             "",
             f"Status: `{item['status']}`. Upstream last reviewed: {item['last_reviewed']}.",
             "",
-            item["summary"],
+            item["summary"] if legacy else f"Repository interpretation ({summary_kind}): {summary}",
             "",
         ]
-        if item["mitigation"]:
+        if legacy and item["mitigation"]:
             lines += ["Upstream mitigation: " + item["mitigation"], ""]
         lines += [f"[Official evidence]({item['provenance'][0]['url']})", ""]
     return "\n".join(lines)
