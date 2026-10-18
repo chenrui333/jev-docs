@@ -1416,16 +1416,27 @@ def derive_practices(
         same_evidence = (
             prior and prior.get("sources") == evidence and prior.get("summary") == rule["summary"]
         )
-        first_seen = prior.get("first_seen") if prior else today if evidence else None
-        if (
-            prior
-            and evidence
-            and prior.get("status") == "unknown"
-            and prior.get("first_seen") is None
-            and prior.get("last_verified") is None
-            and (previous or {}).get("verification_semantics") == "evidence_revision"
-        ):
+        first_seen = prior.get("first_seen") if prior else None
+        first_seen_basis = (
+            prior.get("first_seen_basis", "observed" if first_seen else "unknown_legacy")
+            if prior
+            else "not_yet_supported"
+        )
+        if evidence and first_seen_basis == "not_yet_supported":
             first_seen = today
+            first_seen_basis = "observed"
+        last_verified = (
+            prior.get("last_verified")
+            if prior and prior.get("summary") == rule["summary"]
+            else None
+        )
+        legacy_verification = (previous or {}).get("verification_semantics") != "evidence_revision"
+        if legacy_verification:
+            # Old unknown rules were assigned dates even without evidence. Reverify
+            # supported facts now; do not promote those dates to verified history.
+            last_verified = None
+        if evidence and (not same_evidence or legacy_verification):
+            last_verified = today
         item = {
             "id": rule["id"],
             "category": rule["category"],
@@ -1433,13 +1444,8 @@ def derive_practices(
             "summary": rule["summary"],
             # A legacy null is genuinely unknown; do not fabricate its first date.
             "first_seen": first_seen,
-            "last_verified": (
-                prior.get("last_verified") if same_evidence or not evidence else today
-            )
-            if prior
-            else today
-            if evidence
-            else None,
+            "first_seen_basis": first_seen_basis,
+            "last_verified": last_verified,
             "sources": evidence,
             "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
         }

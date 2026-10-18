@@ -364,10 +364,12 @@ Node 24 releases. Compilation is checked in both CI and scheduled synchronizatio
 
 Canonical timestamps describe evidence revisions, not a heartbeat. A new practice's
 `first_seen` is the first supported observation made by this tracker; legacy nulls
-remain unknown rather than inventing historical dates. `last_verified` is when the
-currently cited evidence revision and interpretation were verified; it advances when
-support changes, not on every identical fetch. Losing evidence preserves the last
-verification date but makes the practice unknown. `last_changed` tracks recommendation
+remain unknown rather than inventing historical dates. `first_seen_basis` distinguishes
+legacy unknown history from a new rule not yet supported; only the latter receives a
+known first date when evidence arrives. `last_verified` is when the currently cited
+evidence revision and interpretation were verified; it advances when support changes,
+not on every identical fetch. Losing evidence preserves verification of an unchanged
+interpretation; editing an unsupported summary clears that date. `last_changed` tracks recommendation
 status/summary changes, not evidence-only enrichment. Legacy unknown change dates stay
 null. These metadata fields do not participate in semantic event identity.
 

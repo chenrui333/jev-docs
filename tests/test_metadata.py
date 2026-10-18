@@ -38,10 +38,13 @@ def test_legacy_unknown_first_seen_is_not_fabricated(monkeypatch):
     previous = practice()
     item(previous)["first_seen"] = None
     item(previous).pop("last_changed", None)
+    item(previous).pop("first_seen_basis", None)
+    previous.pop("verification_semantics", None)
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
     migrated = practice(previous=previous)
     assert item(migrated)["first_seen"] is None
-    assert item(migrated)["last_verified"] == item(previous)["last_verified"]
+    assert item(migrated)["first_seen_basis"] == "unknown_legacy"
+    assert item(migrated)["last_verified"] == "2026-10-05"
     assert semantic_events({"practices": previous}, {"practices": migrated}, "now") == []
 
 
@@ -80,3 +83,35 @@ def test_verification_heading_ignores_never_verified_practices(monkeypatch):
     assert "2026-10-01" in render_best_practices(partial)
     unsupported = derive_practices({}, {}, None)
     assert "2026-10-01" not in render_best_practices(unsupported)
+
+
+def test_editing_unsupported_interpretation_invalidates_its_verification(monkeypatch):
+    from jev_docs import sync
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    supported = practice()
+    lost = derive_practices({}, {}, supported)
+    assert item(lost)["last_verified"] == "2026-10-01"
+    rules = tuple(
+        {**rule, "summary": "A different, unsupported interpretation."}
+        if rule["id"] == "deterministic-before-jev"
+        else rule
+        for rule in sync.PRACTICE_RULES
+    )
+    monkeypatch.setattr(sync, "PRACTICE_RULES", rules)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    revised = derive_practices({}, {}, lost)
+    assert item(revised)["status"] == "unknown"
+    assert item(revised)["last_verified"] is None
+    assert item(revised)["last_changed"] == "2026-10-03"
+
+
+def test_legacy_dates_without_support_do_not_become_verified_history(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    legacy = derive_practices({}, {}, None)
+    legacy.pop("verification_semantics")
+    for rule in legacy["items"]:
+        rule["last_verified"] = "2026-01-01"
+        rule.pop("first_seen_basis", None)
+    migrated = derive_practices({}, {}, legacy)
+    assert all(rule["last_verified"] is None for rule in migrated["items"])
