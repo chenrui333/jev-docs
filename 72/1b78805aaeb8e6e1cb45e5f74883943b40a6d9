@@ -1,0 +1,18 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 92-97
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 1420-1432,1434-1446,1455-1456
+tests/test_practices.py
+  h_9df9c32c3f321d 17,225-280
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "721b78805aaeb8e6e1cb45e5f74883943b40a6d9",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
