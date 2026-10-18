@@ -116,7 +116,7 @@ def without_code_examples(content: str) -> str:
     containers: list[str] = []
     parts: list[str] = []
     position = 0
-    for tag in re.finditer(r"<\s*(/?)\s*(code|pre|script|style)\b[^>]*>", content, re.I):
+    for tag in re.finditer(r"<\s*(/?)\s*(code|pre|script|style|blockquote)\b[^>]*>", content, re.I):
         if not containers:
             parts.append(content[position : tag.start()])
         if tag[1]:
