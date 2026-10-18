@@ -1642,13 +1642,38 @@ def validate_tree(root: Path, strict: bool = False) -> None:
         root / "MODEL_LIMITATIONS.md"
     ).read_text() != render_limitations(limitations):
         raise RuntimeError("model limitations rendering disagrees with state")
-    for path in (root / "events").glob("*.json"):
+    seen_event_ids: dict[str, str] = {}
+    for path in sorted((root / "events").glob("*.json")):
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
         if len(ids) != len(set(ids)):
             raise RuntimeError(f"duplicate event ID in {path}")
+        if not strict or path.name == "baseline.json":
+            continue
+        # Strict: history is append-safe across files and each day's report is the
+        # deterministic rendering of that day's events.
+        for ident in ids:
+            if ident in seen_event_ids:
+                raise RuntimeError(f"event {ident} recorded in {seen_event_ids[ident]} and {path}")
+            seen_event_ids[ident] = str(path)
+        if data.get("date") != path.stem:
+            raise RuntimeError(f"event file date disagrees with its name: {path}")
+        report = root / f"changes/{path.stem}.md"
+        if not report.exists() or report.read_text() != render_daily_report(
+            path.stem, data.get("events", [])
+        ):
+            raise RuntimeError(f"daily report disagrees with events: {report}")
+    if strict:
+        event_days = {path.stem for path in (root / "events").glob("*.json")} - {"baseline"}
+        orphaned = sorted(
+            path.name for path in (root / "changes").glob("*.md") if path.stem not in event_days
+        )
+        if orphaned:
+            raise RuntimeError(f"daily reports without event files: {', '.join(orphaned)}")
     if "state/practices.json" not in (root / "BEST_PRACTICES.md").read_text():
         raise RuntimeError("best-practices guide is not linked to generated state")
+    if strict and (root / "BEST_PRACTICES.md").read_text() != render_best_practices(practices):
+        raise RuntimeError("best-practices rendering disagrees with state")
 
 
 def promote(stage: Path, root: Path) -> None:
