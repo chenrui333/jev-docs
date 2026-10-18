@@ -481,8 +481,17 @@ def test_model_extraction_reads_one_model_per_column_layout() -> None:
     )
 
 
-def test_unrecognized_models_layout_fails_instead_of_dropping_identities() -> None:
-    page = "| Alias | Points to |\n| :- | :- |\n| `jev-latest` | `jev-9.0.0` |\n"
+@pytest.mark.parametrize(
+    "page",
+    [
+        "| Alias | Points to |\n| :- | :- |\n| `jev-latest` | `jev-9.0.0` |\n",
+        # A column the extractor cannot read must not look like a removed model.
+        "| | Jev 1.14 | Jev 1.13 |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` |\n",
+        "| | Jev 1.14 | Jev 1.13 |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` | jev-1.13.0 |\n",
+        "| | Jev 1.14 | |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` | `jev-1.13.0` |\n",
+    ],
+)
+def test_unrecognized_models_layout_fails_instead_of_dropping_identities(page) -> None:
     artifact = Artifact("docs:models", "documentation", "https://docs.typesafe.ai/models.md", b"m")
     with pytest.raises(RuntimeError, match="unrecognized models table"):
         derive_state({"docs:models": page}, {"docs:models": artifact}, {})

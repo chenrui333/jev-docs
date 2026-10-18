@@ -650,14 +650,18 @@ def extract_models(content: str) -> list[dict[str, str]]:
             if len(row) < 2:
                 continue
             if row[0].lower() == "model id":
-                for label, cell in zip(header[1:], row[1:], strict=False):
-                    model_id = code_cell(cell)
-                    if model_id and label:
-                        models[("versioned", model_id)] = {
-                            "kind": "versioned",
-                            "id": model_id,
-                            "label": label,
-                        }
+                # Every column must yield an identity; skipping one would promote a
+                # parsing gap as a model removal.
+                labels, cells = header[1:], row[1:]
+                ids = [code_cell(cell) for cell in cells]
+                if len(labels) != len(cells) or not all(labels) or not all(ids):
+                    raise RuntimeError("unrecognized models table; model identities not promoted")
+                for label, model_id in zip(labels, ids, strict=True):
+                    models[("versioned", model_id)] = {
+                        "kind": "versioned",
+                        "id": model_id,
+                        "label": label,
+                    }
             elif row[0].lower().startswith("jev ") and code_cell(row[1]):
                 model_id = code_cell(row[1])
                 models[("versioned", model_id)] = {
