@@ -1712,6 +1712,46 @@ def semantic_events(
                     )
                 )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
+            verification_sources = None
+            old_api = old_items.get(entity_key) or {}
+            if name == "api" and "properties" in old_api and "properties" in item:
+                old_properties = old_api["properties"]
+                new_properties = item["properties"]
+                fields = set(old_properties) | set(new_properties)
+                status_changed = any(
+                    old_properties.get(field, {}).get("status")
+                    != new_properties.get(field, {}).get("status")
+                    for field in fields
+                )
+                contract_changed = any(
+                    old_properties.get(field, {}).get("status") == "verified"
+                    and new_properties.get(field, {}).get("status") == "verified"
+                    and old_properties[field]["value"] != new_properties[field]["value"]
+                    for field in fields
+                )
+                if status_changed and not contract_changed:
+                    change = "verification_changed"
+                    tracking_note = (
+                        "API reference verification status changed; loss or recovery of evidence "
+                        "does not establish an upstream contract change."
+                    )
+                    verification_sources = [
+                        {**source, "role": "current"} for source in item.get("provenance", [])
+                    ]
+                    historical = old_api.get("provenance", []) + old_api.get("missing_sources", [])
+                    for prop in old_properties.values():
+                        historical += prop.get("evidence", []) + prop.get("last_known", {}).get(
+                            "evidence", []
+                        )
+                    for source in historical:
+                        retained = {
+                            key: source[key]
+                            for key in ("source_id", "url", "sha256")
+                            if key in source
+                        }
+                        retained["role"] = "historical"
+                        if retained not in verification_sources:
+                            verification_sources.append(retained)
             if (
                 name == "api"
                 and "properties" in item
@@ -1763,7 +1803,9 @@ def semantic_events(
                     ),
                     "before_sha256": before,
                     "after_sha256": after,
-                    "sources": item.get("sources")
+                    "sources": verification_sources
+                    if verification_sources is not None
+                    else item.get("sources")
                     or item.get("provenance")
                     or ([item["source"]] if item.get("source") else []),
                 }

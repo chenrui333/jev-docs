@@ -113,14 +113,17 @@ def extract_api(contents, artifacts, previous=None):
         )
 
     def fact(name, value, passages, reason=None):
-        verified = value is not None and bool(passages) and bool(provenance)
+        verified = (
+            value is not None
+            and bool(passages)
+            and bool(provenance)
+            and all(len(p) <= 240 and p in text for p in passages)
+        )
         item = {
             "status": "verified" if verified else "unknown",
             "value": value if verified else None,
             "method": "official_reference_extraction",
-            "evidence": [{**provenance[0], "excerpt": p[:240]} for p in passages]
-            if verified
-            else [],
+            "evidence": [{**provenance[0], "excerpt": p} for p in passages] if verified else [],
         }
         if not verified:
             item["reason"] = (
@@ -228,12 +231,22 @@ def extract_api(contents, artifacts, previous=None):
         prose = prose.replace("<ResponseField" + tag + ">", "\n")
     prose = prose.replace("</ResponseField>", "\n")
     correlation = [line.strip() for line in prose.splitlines() if line.strip() in sentences]
+    contradictory = any(
+        re.search(r"\b(?:ids?|keys?)\b", line, re.I)
+        and re.search(
+            r"\b(?:not|never|no|different|unrelated|uncorrelated|cannot|can't|don't|doesn't|won't)\b",
+            line,
+            re.I,
+        )
+        for line in prose.splitlines()
+    )
     shape = (
         "answers map keyed by question id"
         if len(answers) == 1
         and all(attrs is not None for _, attrs in response_tags)
         and answers[0][1].get("type", "") == "map<string, Answer>"
         and correlation
+        and not contradictory
         else None
     )
     fact(

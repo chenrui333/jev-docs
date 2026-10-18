@@ -232,6 +232,72 @@ def test_first_verified_snapshot_does_not_deny_unknown_upstream_contract_changes
         assert "upstream source changed" in summary
 
 
+@pytest.mark.parametrize(
+    "page",
+    [
+        None,
+        REFERENCE.replace(
+            'body="model" type="string" required',
+            'body="model" type="string" required={unsupported}',
+        ),
+    ],
+)
+def test_api_verification_loss_and_recovery_are_not_contract_changes(page):
+    verified = derive()
+    unknown = derive(page, verified)
+    events = semantic_events({"api": verified}, {"api": unknown}, "loss")
+    assert len(events) == 1
+    assert events[0]["change"] == "verification_changed"
+    assert "verification" in events[0]["summary"].lower()
+    historical = [s for s in events[0]["sources"] if s.get("role") == "historical"]
+    assert historical
+    assert historical[0]["sha256"] == verified["provenance"][0]["sha256"]
+    repeated = derive(page, unknown)
+    assert semantic_events({"api": unknown}, {"api": repeated}, "repeat") == []
+    recovery = semantic_events({"api": repeated}, {"api": derive(previous=repeated)}, "recovery")
+    assert len(recovery) == 1
+    assert recovery[0]["change"] == "verification_changed"
+    changed = derive(
+        REFERENCE.replace(
+            "https://api.typesafe.ai/v1/systemone", "https://api.typesafe.ai/v2/systemone"
+        )
+    )
+    assert semantic_events({"api": verified}, {"api": changed}, "change")[0]["change"] == "modified"
+
+
+@pytest.mark.parametrize(
+    "negative",
+    [
+        "Answers do not use the same ids you provided.",
+        "The same ids you provided are not guaranteed.",
+        "Answers use different keys from the questions.",
+    ],
+)
+def test_conflicting_response_correlation_is_unknown(negative):
+    page = REFERENCE.replace("## Response body", "## Response body\n" + negative + "\n")
+    assert derive(page)["response_shape"] is None
+
+
+def test_long_declarations_cannot_verify_with_clipped_evidence():
+    padding = 'description="' + "x" * 250 + '" '
+    page = REFERENCE.replace('<ParamField body="model"', "<ParamField " + padding + 'body="model"')
+    page = page.replace('<ParamField body="type"', "<ParamField " + padding + 'body="type"')
+    page = page.replace(
+        '<ResponseField name="answers"', "<ResponseField " + padding + 'name="answers"'
+    )
+    api = derive(page)
+    for name in (
+        "model_required",
+        "request_fields",
+        "required_fields",
+        "question_types",
+        "response_shape",
+    ):
+        assert api["properties"][name]["status"] == "unknown"
+        assert any(name + " is unknown" in w for w in api["warnings"])
+    assert all(e["excerpt"] in page for p in api["properties"].values() for e in p["evidence"])
+
+
 def test_api_transaction_is_idempotent_and_fetch_failure_preserves_tree(tmp_path):
     upstream = PublicSources()
     upstream.pages["api"] = REFERENCE

@@ -91,12 +91,17 @@ API claims use only explicit canonical reference declarations, not fenced
 examples. Unsupported attribute syntax or an unknown question-type declaration
 leaves the affected claim unknown with a warning rather than verifying a partial
 list. Conflicting requiredness does not erase independently known request field
-names. Response key correlation requires a recognized affirmative source sentence;
-evidence excerpts remain verbatim. A required model's example alias is not a
-default, and correcting local assumptions is not an upstream history event.
+names. Response key correlation requires a recognized affirmative source sentence
+and no contradictory response-key wording. Evidence excerpts remain verbatim;
+declarations exceeding the 240-character evidence bound leave affected claims
+unknown rather than clipping away their proof. A required model's example alias
+is not a default, and correcting local assumptions is not an upstream history event.
 If canonical source bytes also changed during that migration, the API baseline
 records the first verified snapshot without inferring historical API behavior;
 documentation source events independently record the changed bytes.
+Loss or recovery of API verification emits `verification_changed`, not a contract
+modification; retained earlier citations have an explicit `historical` role.
+Verified-to-verified fact changes still emit `modified`.
 
 Practice statuses are `recommended`, `discouraged`, `anti_pattern`,
 `deprecated`, or `unknown`. A practice disappearing from one page is not marked
