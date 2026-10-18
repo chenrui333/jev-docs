@@ -30,6 +30,7 @@ from jev_docs.practice_reviews import (
     PRACTICE_EVIDENCE_POLICY,
     REVIEWED_PRACTICE_CONTEXTS,
     _historical_practice_sources,
+    _practice_review_verdict,
     practice_context,
 )
 from jev_docs.text import clean_text, excerpt, markdown_tokens, without_code_examples
@@ -636,7 +637,14 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
 
 
 def _practice_review_policy_sha256():
-    return sha256_json({"rules": PRACTICE_RULES, "reviews": REVIEWED_PRACTICE_CONTEXTS})
+    return sha256_json(
+        {
+            "policy": PRACTICE_EVIDENCE_POLICY,
+            "require_raw_source": True,
+            "rules": PRACTICE_RULES,
+            "reviews": REVIEWED_PRACTICE_CONTEXTS,
+        }
+    )
 
 
 def rule_evidence(
@@ -659,7 +667,7 @@ def rule_evidence(
             continue
         context, context_hash = practice_context(content)
         review = REVIEWED_PRACTICE_CONTEXTS.get(source_id, {}).get(context_hash, {})
-        verdict = review.get("verdicts", {}).get(rule["id"], "unreviewed")
+        verdict = _practice_review_verdict(review, rule["id"], artifact.sha256)
         observation = {
             "source_id": source_id,
             "url": artifact.url,
@@ -2927,7 +2935,7 @@ def _validate_practice_reviews(practices, sources, *, allow_migration=False):
                 if approved["source_sha256"] == current["sha256"]
             }
             approved = registry.get(digest, {})
-            expected = approved.get("verdicts", {}).get(rid, "unreviewed")
+            expected = _practice_review_verdict(approved, rid, current["sha256"])
             origin = (
                 {"url": approved["source_url"], "sha256": approved["source_sha256"]}
                 if approved

@@ -462,22 +462,6 @@ def test_changed_complete_context_cannot_recommend_unchanged_passages(prefix):
         assert any(row["verdict"] == "unreviewed" for row in item["evidence_reviews"])
 
 
-@pytest.mark.parametrize("variant", ["line-endings", "trailing-whitespace"])
-def test_equivalent_context_whitespace_preserves_recommendations(variant):
-    sid = "skill:typesafe-ai"
-    text = PASSAGES[sid]["text"]
-    prior = derive_practices({sid: text}, artifacts({sid: text}), None)
-    if variant == "line-endings":
-        changed = text.replace("\n", "\r\n")
-    else:
-        changed = "\n".join(line + "  " for line in text.split("\n"))
-    current = derive_practices({sid: changed}, artifacts({sid: changed}), prior)
-    assert {i["id"] for i in current["items"] if i["status"] == "recommended"} == set(
-        PASSAGES[sid]["recommended"]
-    )
-    assert semantic_events({"practices": prior}, {"practices": current}, "2026-10-02") == []
-
-
 def test_explicit_review_of_changed_context_records_local_verification(
     review_contexts, monkeypatch
 ):
@@ -851,6 +835,66 @@ def test_candidate_history_must_derive_from_trusted_prior_citations(tmp_path, ch
         historical[0]["sha256"] = "a" * 64
     else:
         historical.pop(0)
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (candidate / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(candidate, strict=True, history_root=trusted)
+
+
+@pytest.mark.parametrize("presentation", ["blank-lines", "trailing-spaces", "crlf"])
+def test_normalized_context_cannot_authorize_an_unreviewed_raw_revision(
+    review_contexts, presentation
+):
+    sid, rid = "docs:primitives/noul", "noul-is-yes-probability"
+    text = PASSAGES[sid]["text"]
+    changed = (
+        text + "\n\n"
+        if presentation == "blank-lines"
+        else "\n".join(line + " " for line in text.split("\n"))
+        if presentation == "trailing-spaces"
+        else text.replace("\n", "\r\n")
+    )
+    before = derive_practices({sid: text}, artifacts({sid: text}), None)
+    current = derive_practices({sid: changed}, artifacts({sid: changed}), before)
+    assert items(before)[rid]["status"] == "recommended"
+    assert items(current)[rid]["status"] == "unknown"
+    assert items(current)[rid]["historical_sources"] == items(before)[rid]["sources"]
+    row = next(row for row in items(current)[rid]["evidence_reviews"] if row["source_id"] == sid)
+    assert row["context_sha256"] == items(before)[rid]["sources"][0]["context_sha256"]
+    assert row["sha256"] != row["review_source"]["sha256"]
+    review_contexts({sid: changed}, artifacts({sid: changed}), {sid: {rid: "supported"}})
+    approved = derive_practices({sid: changed}, artifacts({sid: changed}), current)
+    assert items(approved)[rid]["status"] == "recommended"
+    assert derive_practices({sid: changed}, artifacts({sid: changed}), approved) == approved
+
+
+def test_approved_context_cannot_be_rebound_to_coordinated_unreviewed_source_metadata(tmp_path):
+    trusted, candidate = tmp_path / "trusted", tmp_path / "candidate"
+    synchronize(trusted, PracticeSources(), strict=True)
+    synchronize(candidate, PracticeSources(), strict=True)
+    sid, forged = "docs:introduction/coding-agents", "0" * 64
+    for name in ("state/sources.json", "sources/docs.typesafe.ai/manifest.json"):
+        path = candidate / name
+        data = json.loads(path.read_text())
+        next(row for row in data["artifacts"] if row["source_id"] == sid)["sha256"] = forged
+        path.write_text(json.dumps(data))
+    path = candidate / "state/source-coverage.json"
+    coverage = json.loads(path.read_text())
+    next(row for row in coverage["pages"] if row["source_id"] == sid)["sha256"] = forged
+    path.write_text(json.dumps(coverage))
+    path = candidate / "state/practices.json"
+    state = json.loads(path.read_text())
+    state["source_observations"][sid] = forged
+    for item in state["items"]:
+        old_citations = [dict(ref) for ref in item["sources"] if ref["source_id"] == sid]
+        for row in [*item["sources"], *item["evidence_reviews"]]:
+            if row["source_id"] == sid:
+                row["sha256"] = forged
+        if old_citations:
+            item.setdefault("historical_sources", []).extend(old_citations)
     state["fingerprint"] = sha256_json(
         {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
     )

@@ -18,6 +18,13 @@ def practice_context(content: str) -> tuple[str, str]:
     return context, hashlib.sha256(context.encode()).hexdigest()
 
 
+def _practice_review_verdict(review, rule_id, raw_sha256):
+    """A context digest is review metadata, never a substitute for exact source bytes."""
+    if review.get("source_sha256") != raw_sha256:
+        return "unreviewed"
+    return review.get("verdicts", {}).get(rule_id, "unreviewed")
+
+
 def _historical_practice_sources(previous, current_evidence):
     """Retain only prior citations that are not asserted as current support."""
     historical = []
