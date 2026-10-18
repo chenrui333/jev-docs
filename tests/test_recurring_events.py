@@ -508,3 +508,23 @@ def test_staged_graph_requires_and_validates_retained_predecessors(tmp_path):
     path.write_text(json.dumps(data))
     with pytest.raises(RuntimeError, match="missing predecessor"):
         sync_module.validate_tree(stage, strict=True, history_root=previous)
+
+
+def test_reused_attempt_cannot_authorize_publication_after_preflight_failure(tmp_path):
+    upstream = PublicSources()
+    attempt = {}
+    sync_module.synchronize(tmp_path, upstream, strict=True, attempt=attempt)
+    assert attempt["publication_eligible"]
+    attempt["last_successful_sync"] = "previous-attempt"
+    guide = tmp_path / "BEST_PRACTICES.md"
+    guide.write_text(guide.read_text() + "\nCorrupt rendering.\n")
+
+    class NoFetch:
+        def get(self, url):
+            raise AssertionError("Preflight must fail before fetching")
+
+    with pytest.raises(RuntimeError):
+        sync_module.synchronize(tmp_path, NoFetch(), strict=True, attempt=attempt)
+    assert attempt["publication_eligible"] is False
+    assert "last_successful_sync" not in attempt
+    assert attempt["phase"] == "recovery"

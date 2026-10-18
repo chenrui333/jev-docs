@@ -2060,8 +2060,6 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
         raise RuntimeError("best-practices rendering disagrees with state")
 
 
-
-
 def sdk_evidence_stream(source_id: str) -> str | None:
     for kind, repo, registry in (
         ("python", "typesafe-ai/typesafe-sdk-python", "registry:pypi:typesafe-sdk"),
@@ -2106,12 +2104,17 @@ def retain_changelog_citations(snapshot, records, previous_records):
     }
     return observed_state(payload, snapshot)
 
+
 def synchronize(
     root: Path = ROOT,
     client: HTTPClient | None = None,
     strict: bool = False,
     attempt: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    attempt = attempt if attempt is not None else {}
+    attempt.update(phase="recovery", publication_eligible=False)
+    for key in ("health_errors", "last_successful_fetch", "last_successful_sync"):
+        attempt.pop(key, None)
     with synchronization_lock(root):
         recover_pending(root)
         if (root / "events/baseline.json").exists():
@@ -2123,12 +2126,9 @@ def _synchronize(
     root: Path,
     client: HTTPClient | None,
     strict: bool,
-    attempt: dict[str, Any] | None,
+    attempt: dict[str, Any],
 ) -> dict[str, Any]:
     client = client or HTTPClient()
-    attempt = attempt if attempt is not None else {}
-    attempt["publication_eligible"] = False
-    attempt.pop("health_errors", None)
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
