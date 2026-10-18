@@ -92,9 +92,30 @@ partial source fetch cannot erase a recommendation.
 ## Automation
 
 GitHub Actions runs pull-request validation and a strict synchronization every
-12 hours, with manual `workflow_dispatch`. Scheduled runs use concurrency
-protection, require no TypeSafe API key, and commit only actual generated
-changes. Per-attempt `newly_discovered` and `disappeared` IDs are returned by sync;
+12 hours, with manual `workflow_dispatch` restricted to `main`. Concurrency
+protection is unchanged. The ingestion/validation job has read-only repository
+permission, uses public sources without TypeSafe API keys, and never executes
+upstream code. All actions are pinned to immutable commits; the focused
+Renovate configuration maintains GitHub Actions digests. Checkouts never persist
+credentials.
+
+Only after sync completes promotion and the full checks and strict tree validation
+pass does ingestion upload a publication artifact: a generated-only Git patch
+(at most 16 MiB) and a small manifest binding its SHA-256 digest to the baseline
+commit, workflow run and run attempt. Artifact ID, baseline and eligibility cross
+the job boundary only as explicit outputs. The separate write-permission job
+checks out trusted scripts at that baseline, downloads that exact same-run
+artifact, verifies provenance and the current `origin/main` SHA, and uses
+`git apply --check` before applying. It rejects unexpected artifact entries,
+symlinks, executable modes, traversal and paths outside the generated JSON,
+dated reports and generated guides. After applying, it independently validates the
+complete generated tree with the unchanged trusted Python code before the
+token-bearing commit step. No downloaded scripts, dependency setup or ingested
+source are executed with the publication token. A signed-off commit uses
+a normal push, so a concurrent update to `main` is rejected rather than overwritten.
+An unchanged run creates no commit.
+
+Per-attempt `newly_discovered` and `disappeared` IDs are returned by sync;
 durable coverage contains the current complete inventory. This lets a successful
 addition land without requiring a cleanup commit on the next unchanged run.
 Failed scheduled/manual runs upload a small `sync-failed-attempt` artifact with
@@ -102,8 +123,12 @@ the baseline SHA, failure phase and available candidate counts/versions. It is
 attempt metadata, never canonical history. Failed discovery or source fetch fails
 loudly without promoting that observation. A restart first recovers any earlier
 validated promotion, retaining its original events before observing new sources.
-An SDK package/tag discrepancy is allowed a three-day observation grace period,
-then causes strict synchronization to fail until the upstream evidence converges.
+An SDK package/tag discrepancy has a three-day observation grace period. Once expired,
+strict sync remains visibly failed, but explicitly eligible, fully promoted
+independent changes can still publish; a final health job also fails after the
+publication job finishes. Other failures cannot authorize publication. Older
+successful sync diagnostics without an explicit eligibility flag remain supported
+only when their phase is `sync-complete` and result is `success`.
 
 ## Local usage
 
