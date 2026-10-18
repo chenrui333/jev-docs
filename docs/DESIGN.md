@@ -3,13 +3,15 @@
 ## Evidence boundary
 
 The canonical web discovery input is `https://docs.typesafe.ai/llms.txt`.
-The synchronizer follows same-host links from that index and records the public
+The synchronizer follows HTTPS same-host links from that index and records the public
 sitemap's `lastmod` values when available. If the canonical index is unavailable, the run fails and preserves old state.
-A working sitemap cannot establish removals from a failed canonical index. Mintlify's `.md` representation is used for Markdown
+A working sitemap cannot establish removals from a failed canonical index; it is
+not a discovery fallback. Mintlify's `.md` representation is used for Markdown
 fetches. The normal page form is used only when the Markdown URL returns 404; a
 transient Markdown failure fails the run instead of recording different bytes.
-Redirects must stay on the requested scheme and host, so content from another
-origin is never attributed to an official source.
+Redirect targets must retain the HTTPS origin and contain no credentials. The
+urllib redirect handler rejects foreign origins **before** sending a request, not
+merely after downloading their response.
 
 GitHub and package registries are separate immutable-or-mutable provenance
 streams. A released SDK is identified by package version, matching Git tag, and
@@ -80,6 +82,41 @@ discrepancy, so unrelated docs, skill or other-SDK changes cannot restart the
 three-day grace period. If the discrepancy persists beyond that period, strict
 synchronization fails before promotion; convergence clears the field. A transient
 fetch failure remains an immediate failed run and does not update freshness.
+
+Public HTTP requests use a 20-second timeout and two retries (three total
+attempts). Transport failures, HTTP 5xx and 429 retry with bounded backoff.
+GitHub 403 retries only when API headers explicitly show exhausted primary
+quota (`X-RateLimit-Remaining: 0`) or a valid `Retry-After` secondary-limit signal;
+ordinary forbidden responses fail immediately. Numeric and HTTP-date
+`Retry-After` values, and primary quota reset times, cap each wait at 60 seconds.
+Missing or invalid delay headers cannot expand the retry count. Errors expose
+safe source labels, HTTP status and `FetchError.code`, never response bodies,
+credentials, query parameters or transport exception chains.
+
+`GITHUB_TOKEN` is optional and sent only to the exact HTTPS `api.github.com`
+origin (default port 443). It is not sent to registries, raw source hosts or
+redirected requests, including same-origin redirects. Responses are bounded to
+16 MiB before JSON decoding; `HTTPClient(max_response_bytes=...)` permits a
+positive test/application-specific bound. Injected opener responses implement
+`read(limit)` so fixtures exercise the same bounded-read contract.
+
+PyPI metadata must be an object with a nonempty `info.version` string and a
+`releases` version-to-file-list map containing that exact published version.
+npm metadata must be an object with a nonempty `dist-tags.latest` string.
+Invalid JSON and malformed registry, SDK
+configuration or consumed GitHub response shapes fail closed with
+`invalid_json`/`invalid_schema` errors identifying the source and expected field,
+without promoting state.
+GitHub head and skill commit responses must provide 40-hex commit SHAs; branch
+names, relative paths and malformed hashes cannot identify immutable evidence.
+
+GitHub SDK and evaluation-tool tag/release lists follow `Link` pagination only
+within the exact API origin, repository and endpoint path. At most 20 pages are
+read; a remaining next link or cycle fails the observation rather than silently
+truncating evidence. Projected entries are deduplicated and canonically ordered,
+including the `draft` and `prerelease` decision flags (defaulting to false when
+absent). Changing either flag changes the evidence hash, and conflicting flag
+records survive pagination deduplication; volatile counters remain excluded.
 
 ## Deferred work
 

@@ -82,8 +82,8 @@ def test_bounded_retry_and_hash() -> None:
         def __exit__(self, *_args):
             return None
 
-        def read(self):
-            return b"hello"
+        def read(self, limit):
+            return b"hello"[:limit]
 
     def opener(_request, timeout):
         nonlocal attempts
@@ -118,7 +118,16 @@ def test_github_evidence_ignores_volatile_metadata() -> None:
     ) == [{"commit": {"sha": "abc"}, "name": "v1.0.0"}]
     assert stable_release_evidence(
         [{"tag_name": "v1.0.0", "published_at": "today", "assets": [{"download_count": 1}]}]
-    ) == [{"html_url": None, "name": None, "published_at": "today", "tag_name": "v1.0.0"}]
+    ) == [
+        {
+            "html_url": None,
+            "name": None,
+            "published_at": "today",
+            "tag_name": "v1.0.0",
+            "draft": False,
+            "prerelease": False,
+        }
+    ]
 
 
 def test_permanent_failure_is_visible() -> None:
@@ -144,8 +153,8 @@ class FakeRaw:
     def __exit__(self, *_args):
         return None
 
-    def read(self):
-        return self.body
+    def read(self, limit):
+        return self.body[:limit]
 
 
 def test_cross_origin_redirect_is_not_attributed_to_requested_host() -> None:
