@@ -79,21 +79,27 @@ def markdown_tokens(content: str):
         return None
 
 
+def _without_markdown_blocks(content: str, kinds: set[str]) -> str | None:
+    tokens = markdown_tokens(content)
+    if tokens is None:
+        return None
+    excluded = set()
+    for token in tokens:
+        if token.map and token.type in kinds:
+            excluded.update(range(*token.map))
+    return "".join(
+        "\n" if line_number in excluded else line
+        for line_number, line in enumerate(content.splitlines(keepends=True))
+    )
+
+
 def without_code_examples(content: str) -> str:
     """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
     # Markdown examples are data: an unmatched HTML tag/comment inside one
     # must not consume active prose after the closing fence.
-    tokens = markdown_tokens(content)
-    if tokens is None:
+    content = _without_markdown_blocks(content, {"fence", "code_block"})
+    if content is None:
         return ""
-    excluded = set()
-    for token in tokens:
-        if token.map and token.type in {"fence", "code_block", "blockquote_open"}:
-            excluded.update(range(*token.map))
-    content = "".join(
-        "\n" if line_number in excluded else line
-        for line_number, line in enumerate(content.splitlines(keepends=True))
-    )
     content = without_comments(content)
     content = re.sub(
         r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)",
@@ -122,4 +128,6 @@ def without_code_examples(content: str) -> str:
         position = tag.end()
     if not containers:
         parts.append(content[position:])
-    return "".join(parts)
+    # Keep quoted HTML delimiters through the scan: removing only the opener
+    # could expose otherwise quoted/container-scoped prose as active evidence.
+    return _without_markdown_blocks("".join(parts), {"blockquote_open"}) or ""
