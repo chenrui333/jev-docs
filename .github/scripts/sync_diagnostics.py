@@ -4,12 +4,12 @@ import json
 import os
 import re
 import sys
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 path = Path(sys.argv[1])
 attempt = json.loads(path.read_text()) if path.exists() else {}
-attempt.setdefault("attempt_timestamp", datetime.now(UTC).isoformat())
+attempt.setdefault("attempt_timestamp", datetime.now(timezone.utc).isoformat())
 steps = json.loads(os.environ.get("STEP_OUTCOMES", "{}"))
 attempt["failure_phase"] = next(
     (name for name, value in steps.items() if value.get("outcome") == "failure"), "setup"
