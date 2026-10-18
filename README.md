@@ -173,9 +173,44 @@ just check-strict
 ```
 
 `just sync` performs the public-source observation and generation. `just
-check` validates generated JSON and provenance. `just check-strict` additionally
-requires event IDs to be unique across all history, each `changes/` report to be
-the rendering of its `events/` file, and `BEST_PRACTICES.md` to match its state.
+check` validates generated JSON, provenance, stored canonical fingerprints, and
+agreement between coverage, family manifests, and `state/sources.json`. Coverage
+schema 2 requires the complete generated state, both guides, and both manifests;
+schema 1 remains readable for migration. Missing or unsupported coverage versions
+fail before source collection; neither can select legacy compatibility.
+Semantic state snapshots require their
+stored fingerprints; only the source inventory and coverage files are exempt.
+Present family manifests must match the complete source inventory even when their
+artifact lists are empty; empty discovery cannot claim complete coverage.
+Source envelopes also require the recognized inventory schema, official family
+URLs, and unchanged aggregate scope/licensing notice; exemption from fingerprints
+does not permit relabeling the evidence.
+Source locations must match official identities: TypeSafe HTTPS documentation,
+the named GitHub repository/API endpoint, commit-addressed raw files, or the
+specific PyPI/npm package. Candidate records retain these same requirements.
+Hosted pages, registry responses, and GitHub API observations cannot claim a Git
+commit/release tag; commit-only skill observations cannot acquire a release tag.
+Tagged raw files must agree with retained SDK/evaluation release tag/commit
+bindings. Held candidates record observed tag bindings without publishing SDK
+claims. Legacy held candidates remain explicitly unverified until recollection.
+The raw skill artifact and GitHub commit observation must match the retained skill
+snapshot's hash, immutable URL, and commit; deleting either observation fails validation.
+SDK head observation hashes bind to `main_commit`, never the published release's
+`source_commit`; held candidate hashes retain their existing protected freshness references.
+SDK/evaluation snapshot citations must match retained source IDs, hashes, and fetch
+URLs, including legacy untagged SDK configurations; URL shape alone is insufficient.
+Fingerprint validation excludes top-level observation timestamps and freshness-only
+observation/change footers. Legacy family-manifest observation timestamps may differ
+without rewriting old records; all semantic source metadata must agree. Corrupt
+persisted JSON is reported by
+relative filename without exposing its contents or local machine path.
+Persisted and upstream JSON allow at most 64 nested containers, independent of the
+Python runtime; brackets inside strings do not count toward this bound.
+Coverage retains requested navigation identities even when a page redirects to a
+different same-origin HTTPS path; manifests retain the resolved fetch location.
+`just check-strict` additionally requires event IDs to be unique across all
+history, each `changes/` report to be the rendering of its `events/` file, and
+`BEST_PRACTICES.md` to match its state.
 
 If interrupted promotion leaves `.jev-docs-pending/`, validation fails explicitly.
 Rerun `just sync` to recover the original batch; do not delete the pending journal.

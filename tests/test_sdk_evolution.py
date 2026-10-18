@@ -368,7 +368,7 @@ def test_legacy_release_evidence_correction_is_tracking_baseline_once(
 ):
     from test_transactions import snapshot
 
-    from jev_docs.sync import canonical_json, observed_state, synchronize
+    from jev_docs.sync import canonical_json, observed_state, sha256_bytes, synchronize
 
     upstream = ReleaseSources()
     if not main_ahead:
@@ -386,6 +386,28 @@ def test_legacy_release_evidence_correction_is_tracking_baseline_once(
         legacy["provenance"][1]["url"] = legacy["provenance"][1]["url"].replace(
             upstream.release_commit, upstream.main_commit
         )
+        # Reconstruct an internally consistent legacy observation: old extraction
+        # fetched main config under an untagged source identity, not the release tag.
+        citation = legacy["provenance"][1]
+        previous_id = citation["source_id"]
+        legacy_id = "github:typesafe-ai/typesafe-sdk-python:pyproject.toml"
+        body = upstream.get(citation["url"]).body
+        citation["source_id"] = legacy_id
+        citation["sha256"] = sha256_bytes(body)
+        for relative in ("state/sources.json", "sources/github.typesafe-ai/manifest.json"):
+            path = tmp_path / relative
+            inventory = json.loads(path.read_text())
+            record = next(r for r in inventory["artifacts"] if r["source_id"] == previous_id)
+            record.update(
+                source_id=legacy_id,
+                upstream_commit=upstream.main_commit,
+                source_tag=None,
+                fetch_url=citation["url"],
+                canonical_url=citation["url"],
+                sha256=citation["sha256"],
+                bytes=len(body),
+            )
+            path.write_text(canonical_json(inventory) + "\n")
     sdk_path.write_text(canonical_json(observed_state(legacy, None)) + "\n")
     historical_baseline = (tmp_path / "events/baseline.json").read_bytes()
     requested = set(upstream.requested)
