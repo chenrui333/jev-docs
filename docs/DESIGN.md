@@ -126,6 +126,12 @@ use the existing stable event IDs. Model limitation absence changes status to
 unknown. Source hashes and review dates alone do not create limitation or cookbook
 semantic events; they remain provenance updates.
 
+Practice and primitive items come from fixed rule tables in this repository.
+When a rule is added or removed, the item's event uses `baseline` or `untracked`
+rather than `added` or `removed`. That event records a change in what this
+repository tracks, not upstream history. Status and summary changes to an
+existing rule remain `modified`.
+
 ## Runtime and failed attempts
 
 `sync --diagnostics PATH` writes bounded per-attempt metadata outside canonical

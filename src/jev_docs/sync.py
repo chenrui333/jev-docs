@@ -1136,6 +1136,10 @@ def event_id(entity: str, change: str, before: str | None, after: str | None) ->
     ).hexdigest()[:24]
 
 
+# Every item in these layers comes from a fixed rule table in this module.
+CODE_DEFINED_LAYERS = frozenset({"practices", "primitives"})
+
+
 def semantic_events(
     old_state: dict[str, Any], new_state: dict[str, Any], observed_at: str
 ) -> list[dict[str, Any]]:
@@ -1193,6 +1197,18 @@ def semantic_events(
             if before == after:
                 continue
             change = "added" if before is None else "removed" if after is None else "modified"
+            tracking_note = None
+            if name in CODE_DEFINED_LAYERS and change != "modified":
+                # These entities exist because of an extraction rule in this repository,
+                # so appearing or disappearing is a tracking change, not upstream history.
+                change = "baseline" if change == "added" else "untracked"
+                tracking_note = (
+                    f"Started tracking {category} {entity_key} with a new extraction rule; "
+                    "not an upstream addition."
+                    if change == "baseline"
+                    else f"Stopped tracking {category} {entity_key}; its extraction rule was "
+                    "removed. This is not upstream removal or deprecation."
+                )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
             events.append(
                 {
@@ -1217,6 +1233,8 @@ def semantic_events(
                     or ([item["source"]] if item.get("source") else []),
                 }
             )
+            if tracking_note:
+                events[-1]["summary"] = tracking_note
     return events
 
 

@@ -138,14 +138,29 @@ def test_event_ids_are_stable_and_baseline_is_empty() -> None:
 
 
 def test_semantic_events_cover_added_modified_removed() -> None:
-    old = {"practices": {"items": [{"id": "same", "summary": "old"}, {"id": "gone"}]}}
-    new = {"practices": {"items": [{"id": "same", "summary": "new"}, {"id": "new"}]}}
+    old = {"cookbooks": {"items": [{"id": "same", "summary": "old"}, {"id": "gone"}]}}
+    new = {"cookbooks": {"items": [{"id": "same", "summary": "new"}, {"id": "new"}]}}
     events = semantic_events(old, new, "2026-09-21")
     assert {(event["entity"], event["change"]) for event in events} == {
         ("same", "modified"),
         ("gone", "removed"),
         ("new", "added"),
     }
+
+
+def test_extraction_rule_changes_are_tracking_events_not_upstream_history() -> None:
+    # A practice rule added to this repository must not read as upstream adding guidance.
+    old = {"practices": {"items": [{"id": "same", "summary": "old"}, {"id": "dropped-rule"}]}}
+    new = {"practices": {"items": [{"id": "same", "summary": "new"}, {"id": "new-rule"}]}}
+    events = {event["entity"]: event for event in semantic_events(old, new, "2026-09-21")}
+    assert {entity: event["change"] for entity, event in events.items()} == {
+        "same": "modified",
+        "dropped-rule": "untracked",
+        "new-rule": "baseline",
+    }
+    assert "not an upstream addition" in events["new-rule"]["summary"]
+    assert "not upstream removal" in events["dropped-rule"]["summary"]
+    assert events["same"]["summary"] == "new"
 
 
 def test_generated_best_practices_is_deterministic() -> None:
