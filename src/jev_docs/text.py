@@ -75,6 +75,11 @@ def without_code_examples(content: str) -> str:
     prose = []
     fence = None
     for line in "".join(parts).splitlines(keepends=True):
+        if re.match(r" {0,3}>", line):
+            # Quoted examples are not affirmative reference declarations, with or
+            # without an inner fence (including tilde and nested quote forms).
+            prose.append("\n")
+            continue
         marker = re.match(r" {0,3}(`{3,}|~{3,})(.*)", line)
         if fence:
             if (

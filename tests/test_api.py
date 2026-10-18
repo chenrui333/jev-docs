@@ -446,6 +446,10 @@ def test_migration_without_verified_facts_is_unknown_evidence_not_verified_basel
         lambda tag: f"\n\t{tag}\n",
         lambda tag: f"<code>{tag}</code>",
         lambda tag: f'<PRE class="example">{tag}</PRE>',
+        lambda tag: f"> {tag}",
+        lambda tag: f"> ~~~mdx\n> {tag}\n> ~~~",
+        lambda tag: f"  >> ~~~mdx\n  >> {tag}\n  >> ~~~",
+        lambda tag: f"> > ```mdx\n> > {tag}\n> > ```",
     ],
 )
 def test_inactive_parameter_examples_do_not_manufacture_request_contract(wrap):
