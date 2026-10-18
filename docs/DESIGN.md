@@ -14,9 +14,15 @@ urllib redirect handler rejects foreign origins **before** sending a request, no
 merely after downloading their response.
 
 GitHub and package registries are separate immutable-or-mutable provenance
-streams. A released SDK is identified by package version, matching Git tag, and
-tag commit when all are available. `main` is captured as current source context
-but is never substituted for a release. Python and JavaScript state is never
+streams. Release runtime requirements come only from configuration fetched at
+the matching registry version's Git tag commit, with a matching configuration
+version and resolved GitHub release metadata. Missing tags, missing or malformed
+release/configuration metadata, and configuration version mismatches remain
+explicit discrepancies with unknown runtime; `main` is never a fallback.
+`main_commit` is independent development context: ordinary main-ahead work is
+not a release discrepancy. A newer published tag/release than the registry
+version is a publish-delay discrepancy, but does not replace the last published
+package's matching release evidence. Python and JavaScript state is never
 merged into one version stream.
 
 Hosted documentation is not bulk mirrored. There is no documentation license in
@@ -249,6 +255,14 @@ previous record as unknown, never deprecated. Mutable usage pages remain documen
 evidence and do not establish introduction versions. No AST analysis or cross-SDK
 parity is inferred. Skill content and SDK configuration are fetched at resolved
 commits to avoid mixing a moving branch's body with an earlier commit hash.
+
+SDK `public_surface` is explicitly a curated overview, not an extracted or
+verified release-specific capability inventory. Release-history
+`documented_changes` are labelled `mutable_documentation` and carry hosted-doc
+provenance when available; the adjacent tag commit does not make these notes
+immutable. Only capability claims checked against matching configuration and
+changelog bytes at the tag commit receive immutable introduction attribution.
+Absent or mismatching capability evidence remains unknown, not deprecated.
 
 New limitation/cookbook/evaluation-tool layers establish tracking baselines rather than inventing
 historical additions. Subsequent additions, modifications and navigation removals

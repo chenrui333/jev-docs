@@ -826,20 +826,31 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
             continue
         commit = entry.get("commit")
         sha = commit.get("sha") if isinstance(commit, dict) else None
-        if not isinstance(sha, str):
+        if not isinstance(sha, str) or not sha:
             malformed.append(f"tag_entry_{index}_missing_commit")
             continue
+        if entry["name"] in tag_map and tag_map[entry["name"]] != sha:
+            malformed.append(f"tag_entry_{index}_conflicting_commit")
         tag_map[entry["name"]] = sha
     release_records: list[dict[str, Any]] = []
     if not isinstance(releases, list):
         malformed.append("releases_not_a_list")
         releases = []
     for index, entry in enumerate(releases):
-        if not isinstance(entry, dict) or not isinstance(entry.get("tag_name"), str):
+        if (
+            not isinstance(entry, dict)
+            or not version_tuple(entry.get("tag_name"))
+            or any(
+                entry.get(key) is not None and not isinstance(entry[key], str)
+                for key in ("published_at", "name", "html_url")
+            )
+        ):
             malformed.append(f"release_entry_{index}_malformed")
             continue
         release_records.append(entry)
     expected_tag = f"v{version}" if version_tuple(version) else None
+    if expected_tag is None:
+        discrepancies.append("registry_version_unresolved")
     matching_release = next(
         (entry for entry in release_records if entry["tag_name"] == expected_tag), None
     )
@@ -859,14 +870,15 @@ def release_provenance(version: Any, tags: Any, releases: Any) -> dict[str, Any]
         discrepancies.append("registry_ahead_of_git_source")
     if malformed:
         discrepancies.append("malformed_release_metadata")
+    resolved = bool(expected_tag in tag_map and matching_release is not None and not malformed)
     return {
-        "source_tag": expected_tag if expected_tag in tag_map else None,
-        "source_commit": tag_map.get(expected_tag) if expected_tag else None,
+        "source_tag": expected_tag if resolved else None,
+        "source_commit": tag_map[expected_tag] if resolved else None,
         "release_history": [
             {
                 "tag": entry["tag_name"],
                 "version": entry["tag_name"].removeprefix("v"),
-                "source_commit": tag_map.get(entry["tag_name"]),
+                "source_commit": tag_map.get(entry["tag_name"]) if not malformed else None,
                 "published_at": entry.get("published_at"),
                 "name": entry.get("name"),
                 "source_url": entry.get("html_url"),
@@ -971,14 +983,12 @@ PYTHON_CAPABILITY_RULES = (
 def python_capabilities(client, artifacts, repo, releases, registry, live_notes, previous=()):
     """Only attribute a capability to a registry version with matching immutable source."""
     items = []
+    published = registry.get("releases") if isinstance(registry, dict) else None
+    published = published if isinstance(published, dict) else {}
     for release in releases:
         version = release["version"]
         live = next((n for n in live_notes if n["version"] == version), None)
-        if (
-            not live
-            or not release.get("source_commit")
-            or version not in registry.get("releases", {})
-        ):
+        if not live or not release.get("source_commit") or version not in published:
             continue
         rules = [
             rule
@@ -991,49 +1001,55 @@ def python_capabilities(client, artifacts, repo, releases, registry, live_notes,
         evidence = []
         for path in ("pyproject.toml", "docs/changelog.md"):
             url = f"https://raw.githubusercontent.com/{repo}/{commit}/{path}"
-            response = client.get(url)
             sid = f"github:{repo}:{release['tag']}:{path}"
-            artifact = Artifact(
-                sid,
-                "github-source",
-                url,
-                response.body,
-                upstream_commit=commit,
-                source_tag=release["tag"],
-            )
-            artifacts[sid] = artifact
+            artifact = artifacts.get(sid)
+            if artifact is None or artifact.url != url:
+                try:
+                    response = client.get(url)
+                except FetchError as exc:
+                    if exc.status != 404:
+                        raise
+                    break
+                artifact = Artifact(
+                    sid,
+                    "github-source",
+                    url,
+                    response.body,
+                    upstream_commit=commit,
+                    source_tag=release["tag"],
+                )
+                artifacts[sid] = artifact
+            try:
+                text = artifact.content.decode()
+            except UnicodeError:
+                break
             evidence.append({"source_id": sid, "url": url, "sha256": artifact.sha256})
             if path == "pyproject.toml":
-                if parse_simple_toml_value(response.body.decode(), "version") != version:
-                    raise RuntimeError(
-                        f"release config does not match registry version: {repo} {version}"
-                    )
+                if parse_simple_toml_value(text, "version") != version:
+                    break
             else:
                 notes = next(
-                    (
-                        n
-                        for n in parse_release_notes(response.body.decode())
-                        if n["version"] == version
-                    ),
+                    (n for n in parse_release_notes(text) if n["version"] == version),
                     None,
                 )
-        if not notes:
-            raise RuntimeError(f"immutable release changelog lacks {version}")
-        for ident, pattern, summary in rules:
-            matching = [note for note in notes["notes"] if re.search(pattern, note, re.I)]
-            if matching:
-                items.append(
-                    {
-                        "id": ident,
-                        "introduced": version,
-                        "status": "documented",
-                        "summary": summary,
-                        "source_tag": release["tag"],
-                        "source_commit": commit,
-                        "evidence": matching,
-                        "provenance": evidence,
-                    }
-                )
+        else:
+            if not notes:
+                continue
+            for ident, pattern, summary in rules:
+                matching = [note for note in notes["notes"] if re.search(pattern, note, re.I)]
+                if matching:
+                    items.append(
+                        {
+                            "id": ident,
+                            "introduced": version,
+                            "status": "documented",
+                            "summary": summary,
+                            "source_tag": release["tag"],
+                            "source_commit": commit,
+                            "evidence": matching,
+                            "provenance": evidence,
+                        }
+                    )
     # Later notes can mention the same feature again; preserve its earliest
     # verified introduction rather than creating duplicate identities.
     by_id = {}
@@ -1088,37 +1104,16 @@ def sdk_snapshot(
         f"{GITHUB_API}{head_path}",
         evidence_bytes(stable_head_evidence(head)),
     )
-    raw_url = f"https://raw.githubusercontent.com/{repo}/{head['sha']}/{config_path}"
-    config_response = client.get(raw_url)
-    config_artifact = Artifact(
-        f"github:{repo}:{config_path}",
-        "github-source",
-        raw_url,
-        config_response.body,
-        upstream_commit=head["sha"],
-    )
-    artifacts[config_artifact.source_id] = config_artifact
     if package_kind == "python":
         registry_url = f"https://pypi.org/pypi/{package}/json"
         registry_response = client.get(registry_url)
         registry = registry_json(registry_response, package_kind)
-        runtime = (
-            parse_simple_toml_value(config_response.body.decode(), "requires-python") or "unknown"
-        )
         public_surface = ["TypeSafeClient", "AsyncTypeSafeClient", "Choice", "Noul", "Score"]
         registry_id = f"registry:pypi:{package}"
     else:
         registry_url = f"https://registry.npmjs.org/{package.replace('/', '%2f')}"
         registry_response = client.get(registry_url)
         registry = registry_json(registry_response, package_kind)
-        config = metadata_json(config_response, "SDK configuration")
-        if not isinstance(config, dict) or not isinstance(config.get("engines", {}), dict):
-            raise schema_error(
-                config_response, "SDK configuration", "an object with an engines map"
-            )
-        runtime = config.get("engines", {}).get("node", "unknown")
-        if not isinstance(runtime, str):
-            raise schema_error(config_response, "SDK configuration", "engines.node as a string")
         public_surface = ["TypeSafeClient", "choice", "noul", "score"]
         registry_id = f"registry:npm:{package}"
     if package_kind == "python":
@@ -1135,11 +1130,68 @@ def sdk_snapshot(
     )
     release_info = release_provenance(version, tags, releases)
     release_history = release_info["release_history"]
+    runtime = "unknown"
+    provenance = [
+        {
+            "source_id": registry_id,
+            "url": registry_url,
+            "sha256": artifacts[registry_id].sha256,
+        }
+    ]
+    commit = release_info["source_commit"]
+    if commit:
+        raw_url = f"https://raw.githubusercontent.com/{repo}/{commit}/{config_path}"
+        try:
+            config_response = client.get(raw_url)
+        except FetchError as exc:
+            if exc.status != 404:
+                raise
+            release_info["discrepancies"].append("release_config_missing")
+        else:
+            config_artifact = Artifact(
+                f"github:{repo}:{release_info['source_tag']}:{config_path}",
+                "github-source",
+                raw_url,
+                config_response.body,
+                upstream_commit=commit,
+                source_tag=release_info["source_tag"],
+            )
+            artifacts[config_artifact.source_id] = config_artifact
+            try:
+                if package_kind == "python":
+                    text = config_response.body.decode()
+                    config_version = parse_simple_toml_value(text, "version")
+                    config_runtime = parse_simple_toml_value(text, "requires-python")
+                else:
+                    config = json.loads(config_response.body)
+                    config_version = config.get("version") if isinstance(config, dict) else None
+                    engines = config.get("engines") if isinstance(config, dict) else None
+                    config_runtime = engines.get("node") if isinstance(engines, dict) else None
+            except (UnicodeError, json.JSONDecodeError):
+                config_version = None
+                config_runtime = None
+            if config_version is None:
+                release_info["discrepancies"].append("release_config_malformed")
+            elif config_version != version:
+                release_info["discrepancies"].append("release_config_version_mismatch")
+            else:
+                runtime = config_runtime if isinstance(config_runtime, str) else "unknown"
+                provenance.append(
+                    {
+                        "source_id": config_artifact.source_id,
+                        "url": config_artifact.url,
+                        "sha256": config_artifact.sha256,
+                    }
+                )
+        if any(item.startswith("release_config_") for item in release_info["discrepancies"]):
+            release_info["source_tag"] = None
+            release_info["source_commit"] = None
     notes = parse_release_notes(changelog_content or "")
     for item in release_history:
         note = next((note for note in notes if note["version"] == item["version"]), None)
-        if note and item.get("source_commit"):
+        if note:
             item["documented_changes"] = note["notes"]
+            item["documented_changes_source_class"] = "mutable_documentation"
             sid = f"docs:sdk/{package_kind}/changelog"
             if sid in artifacts:
                 item["documented_changes_provenance"] = [
@@ -1152,9 +1204,11 @@ def sdk_snapshot(
         "version": version,
         "source_tag": release_info["source_tag"],
         "source_commit": release_info["source_commit"],
-        "main_commit": head.get("sha"),
+        "main_commit": head.get("sha") if isinstance(head, dict) else None,
         "runtime": {package_kind: runtime},
         "public_surface": {
+            "source_class": "curated",
+            "scope": "Manually curated SDK overview; not verified for this release.",
             "entry_points": public_surface,
             "primitives": ["Choice", "Noul", "Score"],
         },
@@ -1163,18 +1217,7 @@ def sdk_snapshot(
             key=lambda item: (item.get("published_at") or "", item.get("tag") or ""),
         ),
         "available_tags": release_info["available_tags"],
-        "provenance": [
-            {
-                "source_id": config_artifact.source_id,
-                "url": config_artifact.url,
-                "sha256": config_artifact.sha256,
-            },
-            {
-                "source_id": registry_id,
-                "url": registry_url,
-                "sha256": artifacts[registry_id].sha256,
-            },
-        ],
+        "provenance": provenance,
         "capabilities": python_capabilities(
             client,
             artifacts,
@@ -1186,7 +1229,7 @@ def sdk_snapshot(
         )
         if package_kind == "python"
         else [],
-        "discrepancies": release_info["discrepancies"],
+        "discrepancies": sorted(set(release_info["discrepancies"])),
         "malformed_release_metadata": release_info["malformed_metadata"],
     }
     return observed_state(state, previous)
