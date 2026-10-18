@@ -1,0 +1,24 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 75-103
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 28,316-318,324-345,352-361,368-380,388-392,400-412,420-428,436-441,448-464,472-484,492-496,504-516,524-532,540-544,552-560,573-574,576-611,1420-1426,1430,1903,1909-1913,1931-1934,1943-1948
+tests/fixtures/practice-passages.json
+  h_9df9c32c3f321d 1-27
+tests/test_inventories.py
+  h_9df9c32c3f321d 3,5-6,241-242
+tests/test_practices.py
+  h_9df9c32c3f321d 1-295
+tests/test_sync.py
+  h_9df9c32c3f321d 265,267-270
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6d4c860b58e8528d19275993e713d2d094252233",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
