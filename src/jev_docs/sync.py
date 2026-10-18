@@ -24,6 +24,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from jev_docs.api import extract_api, validate_api
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
 from jev_docs.text import excerpt
 from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
@@ -1532,15 +1533,7 @@ def derive_state(
         {"schema_version": SCHEMA, "items": primitive_items}, previous_state.get("primitives")
     )
     api = observed_state(
-        {
-            "schema_version": SCHEMA,
-            "endpoint": "POST https://api.typesafe.ai/v1/systemone",
-            "request_fields": ["model", "state", "questions"],
-            "question_types": ["choice", "score", "noul"],
-            "model_default": "jev-latest",
-            "response_shape": "answers map keyed by question id",
-            "provenance": provenance(["docs:api", "docs:migrating-to-v1"]),
-        },
+        extract_api(contents, artifacts, previous_state.get("api")),
         previous_state.get("api"),
     )
     models_content = contents.get("docs:models")
@@ -1789,6 +1782,8 @@ def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any
             for key in (
                 "endpoint",
                 "request_fields",
+                "required_fields",
+                "model_required",
                 "question_types",
                 "model_default",
                 "response_shape",
@@ -2190,6 +2185,7 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                 raise RuntimeError(
                     f"Candidate SDK provenance does not match retained evidence: {kind}"
                 )
+    validate_api(read_json(root / "state/api.json"), sources)
     if coverage.get("schema_version") == 2:
         for name in ("model-limitations", "cookbooks", "evaluation-tool"):
             if not (root / f"state/{name}.json").exists():
@@ -2675,6 +2671,7 @@ def _synchronize(
         "events": len(new_events),
         "day": day,
         "health_errors": health_errors,
+        "warnings": state["api"].get("warnings", []),
         **discovery_delta,
     }
 
