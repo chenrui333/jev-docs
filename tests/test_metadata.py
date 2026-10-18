@@ -5,7 +5,7 @@ from test_transactions import PublicSources, snapshot
 from jev_docs.sync import Artifact, derive_practices, semantic_events, synchronize
 
 SID = "skill:typesafe-ai"
-TEXT = "Keep deterministic work in code."
+TEXT = "Break broad judgments into narrow, typed questions with explicit instructions and criteria."
 
 
 def practice(text=TEXT, previous=None):
@@ -14,7 +14,7 @@ def practice(text=TEXT, previous=None):
 
 
 def item(state):
-    return next(i for i in state["items"] if i["id"] == "deterministic-before-jev")
+    return next(i for i in state["items"] if i["id"] == "narrow-coherent-questions")
 
 
 def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch):
@@ -23,7 +23,7 @@ def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch)
     assert item(first)["first_seen"] == "2026-10-01"
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
     assert practice(previous=first) == first
-    revised = practice(TEXT + "\nNew unrelated paragraph.", first)
+    revised = practice(TEXT + "\n\nNew unrelated paragraph.", first)
     assert item(revised)["last_verified"] == "2026-10-02"
     assert item(revised)["last_changed"] == "2026-10-01"
     assert semantic_events({"practices": first}, {"practices": revised}, "2026-10-02") == []
@@ -94,7 +94,7 @@ def test_editing_unsupported_interpretation_invalidates_its_verification(monkeyp
     assert item(lost)["last_verified"] == "2026-10-01"
     rules = tuple(
         {**rule, "summary": "A different, unsupported interpretation."}
-        if rule["id"] == "deterministic-before-jev"
+        if rule["id"] == "narrow-coherent-questions"
         else rule
         for rule in sync.PRACTICE_RULES
     )
