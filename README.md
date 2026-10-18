@@ -87,9 +87,11 @@ the hosted site does not expose a trustworthy immutable page history through the
 tracked surfaces. SDK and skill history can include earlier dates when Git tags,
 releases, or commit history provide them. Unknown history stays unknown.
 
-API declaration claims use explicit canonical reference declarations, not fenced
-examples. Unsupported attribute syntax or an unknown question-type declaration
-leaves the affected claim unknown with a warning rather than verifying a partial
+API field claims use explicit canonical reference declarations, not examples or
+link metadata. Endpoint declarations preserve the reference's explicit HTTP
+fence while excluding inactive containers. Unsupported attribute syntax or an
+unknown question-type declaration leaves the affected claim unknown with a warning
+rather than verifying a partial
 list. Conflicting requiredness does not erase independently known request field
 names. Response key correlation is an explicitly reviewed repository interpretation,
 not automatic prose extraction: it applies only to the complete reviewed Response

@@ -5,7 +5,7 @@ import hashlib
 import html
 import re
 
-from jev_docs.text import without_code_examples, without_comments
+from jev_docs.text import without_code_examples, without_link_metadata
 
 FIELDS = (
     "endpoint",
@@ -163,11 +163,9 @@ def extract_api(contents, artifacts, previous=None):
                 )
         properties[name] = item
 
-    reference = without_code_examples(text)
-    endpoint = (
-        section(without_comments(text), "Evaluation endpoint")
-        if re.search(r"^## Evaluation endpoint\s*$", reference, re.M)
-        else ""
+    reference = without_link_metadata(without_code_examples(text))
+    endpoint = section(
+        without_link_metadata(without_code_examples(text, keep_http=True)), "Evaluation endpoint"
     )
     lines = re.findall(r"^(POST https://[^\s`]+)\s*$", endpoint, re.M)
     fact("endpoint", lines[0] if len(set(lines)) == 1 else None, lines)

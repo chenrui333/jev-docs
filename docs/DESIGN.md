@@ -412,6 +412,11 @@ remain opaque raw text and are never executed or rendered. The tokenizer is load
 only during source extraction, not privileged publication validation. Unsupported
 deep nesting yields no facts rather than a partial contract. Question literals have
 their own section; inactive sections cannot verify an endpoint or response interpretation.
+Links/images and reference definitions are metadata, not declaration locations.
+Endpoint extraction uses the same inactive-content filtering, retaining only a
+closed top-level HTTP fence containing a POST declaration and optional request
+headers (or an active bare declaration). Fence metadata is not executed.
+Raw HTML/Markdown quotation and code scopes cannot override it.
 This shares the practice source-text convention, not a general MDX renderer. Free-form
 response correlation prose is not practical to parse conservatively with affirmative
 patterns or expanding negation denylists. Instead, `response_shape` uses

@@ -79,25 +79,42 @@ def markdown_tokens(content: str):
         return None
 
 
-def _without_markdown_blocks(content: str, kinds: set[str]) -> str | None:
+def _without_markdown_blocks(
+    content: str, kinds: set[str], *, keep_http: bool = False
+) -> str | None:
     tokens = markdown_tokens(content)
     if tokens is None:
         return None
+    lines = content.splitlines(keepends=True)
     excluded = set()
     for token in tokens:
         if token.map and token.type in kinds:
-            excluded.update(range(*token.map))
+            if (
+                keep_http
+                and token.type == "fence"
+                and token.level == 0
+                and token.info.split(maxsplit=1)[:1] == ["http"]
+                and re.fullmatch(
+                    r"POST https://[^\s`]+(?:\n[A-Za-z0-9-]+:[^\r\n]*)*", token.content.strip()
+                )
+            ):
+                start, end = token.map
+                closing = re.escape(token.markup[0]) + "{" + str(len(token.markup)) + ",}"
+                if end <= start + 1 or not re.fullmatch(closing, lines[end - 1].strip()):
+                    return None
+                excluded.update((start, end - 1))
+            else:
+                excluded.update(range(*token.map))
     return "".join(
-        "\n" if line_number in excluded else line
-        for line_number, line in enumerate(content.splitlines(keepends=True))
+        "\n" if line_number in excluded else line for line_number, line in enumerate(lines)
     )
 
 
-def without_code_examples(content: str) -> str:
+def without_code_examples(content: str, *, keep_http: bool = False) -> str:
     """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
     # Markdown examples are data: an unmatched HTML tag/comment inside one
     # must not consume active prose after the closing fence.
-    content = _without_markdown_blocks(content, {"fence", "code_block"})
+    content = _without_markdown_blocks(content, {"fence", "code_block"}, keep_http=keep_http)
     if content is None:
         return ""
     content = without_comments(content)
@@ -131,3 +148,52 @@ def without_code_examples(content: str) -> str:
     # Keep quoted HTML delimiters through the scan: removing only the opener
     # could expose otherwise quoted/container-scoped prose as active evidence.
     return _without_markdown_blocks("".join(parts), {"blockquote_open"}) or ""
+
+
+def without_link_metadata(content: str) -> str:
+    """Exclude links/images/reference definitions from contract declaration scans."""
+    from markdown_it import MarkdownIt
+    from markdown_it.rules_block import reference
+    from markdown_it.rules_inline import autolink, image, link
+
+    parser = MarkdownIt("commonmark", {"html": False, "maxNesting": 64})
+    spans = []
+    offsets = [0]
+    for line in content.splitlines(keepends=True):
+        offsets.append(offsets[-1] + len(line))
+
+    def record_reference(state, start, end, silent):
+        matched = reference(state, start, end, silent)
+        if matched and not silent:
+            spans.append((offsets[start], offsets[state.line]))
+        return matched
+
+    alternatives = [
+        name
+        for name in ("paragraph", "reference", "blockquote", "list")
+        if reference in parser.block.ruler.getRules(name)
+    ]
+    parser.block.ruler.at("reference", record_reference, {"alt": alternatives})
+    env = {}
+    parser.parse(content, env)
+
+    for name, rule in (("link", link), ("image", image), ("autolink", autolink)):
+
+        def record_link(state, silent, original=rule):
+            start = state.pos
+            matched = original(state, silent)
+            if matched and not silent:
+                spans.append((start, state.pos))
+            return matched
+
+        parser.inline.ruler.at(name, record_link)
+    parser.parseInline(content, env)
+    position = 0
+    pieces = []
+    for start, end in sorted(spans):
+        if start >= position:
+            pieces.append(content[position:start])
+            pieces.append("\n")
+        position = max(position, end)
+    pieces.append(content[position:])
+    return "".join(pieces)

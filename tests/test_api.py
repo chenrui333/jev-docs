@@ -451,6 +451,10 @@ def test_migration_without_verified_facts_is_unknown_evidence_not_verified_basel
         lambda tag: f"<blockquote>{tag}</blockquote>",
         lambda tag: f'<BLOCKQUOTE class="example">{tag}</BLOCKQUOTE>',
         lambda tag: f"<blockquote><blockquote>{tag}</blockquote></blockquote>",
+        lambda tag: f"[legacy](https://example.test '{tag}')",
+        lambda tag: f"![legacy](https://example.test '{tag}')",
+        lambda tag: f"[legacy]: https://example.test '{tag}'\n\n[legacy]",
+        lambda tag: f"[legacy]: https://example.test\n[legacy]: https://example.test '{tag}'",
         lambda tag: f"> {tag}",
         lambda tag: f"> ~~~mdx\n> {tag}\n> ~~~",
         lambda tag: f"  >> ~~~mdx\n  >> {tag}\n  >> ~~~",
@@ -578,3 +582,36 @@ def test_unmatched_example_html_cannot_consume_later_active_contract(example):
     assert api["request_fields"] == ["model", "questions", "state"]
     assert api["model_required"] is True
     assert api["question_types"] == ["choice", "noul", "score"]
+
+
+@pytest.mark.parametrize("container", ["pre", "code", "script", "style", "blockquote"])
+def test_inactive_endpoint_cannot_override_current_http_declaration(container):
+    page = REFERENCE.replace(
+        "## Evaluation endpoint",
+        f"## Evaluation endpoint\n<{container}>\nPOST https://obsolete.example/v0\n</{container}>",
+    )
+    assert derive(page)["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"
+    inactive = REFERENCE.replace(
+        "```http\nPOST https://api.typesafe.ai/v1/systemone\n```",
+        f"<{container}>\nPOST https://obsolete.example/v0\n</{container}>",
+    )
+    assert derive(inactive)["properties"]["endpoint"]["status"] == "unknown"
+
+
+def test_unclosed_http_fence_does_not_verify_partial_endpoint_contract():
+    page = REFERENCE.replace(
+        "```http\nPOST https://api.typesafe.ai/v1/systemone\n```",
+        "```http\nPOST https://api.typesafe.ai/v1/systemone",
+    )
+    assert derive(page)["properties"]["endpoint"]["status"] == "unknown"
+
+
+def test_canonical_http_fence_metadata_and_headers_preserve_endpoint_evidence():
+    page = REFERENCE.replace(
+        "```http\nPOST https://api.typesafe.ai/v1/systemone\n```",
+        "```http theme={null}\nPOST https://api.typesafe.ai/v1/systemone\n"
+        "Authorization: Bearer <API_KEY>\nContent-Type: application/json\n```",
+    )
+    claim = derive(page)
+    assert claim["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"
+    assert claim["properties"]["endpoint"]["status"] == "verified"
