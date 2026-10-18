@@ -401,12 +401,15 @@ means first observation of that content revision, and attempt diagnostics cover 
 `verified` means an explicit canonical declaration was extracted, or the
 `response_shape` repository interpretation matches its complete reviewed section.
 `inferred` is reserved for example-derived interpretation (none is currently used);
-`unknown` means absent, unsupported, ambiguous, or unreviewed evidence. A recommended
-alias in an example is not a server default. The current HTTP reference requires
-`model`; `model_default` stays null without an explicit optional default declaration.
+`unknown` means absent, unsupported, ambiguous, or unreviewed evidence. The
+`model_required` property records the explicit required/optional declaration.
+Recommended aliases never establish `model_default` without an explicit optional default.
 
 The extractor scopes parameter declarations to Request body, excluding nested map
-entries and fenced examples; question literals have their own section. Free-form
+entries, HTML comments, and code examples (fenced, indented, inline, or code/pre
+containers). Question literals have their own section. Inactive sections cannot
+verify an endpoint or response interpretation. These filters share the practice
+source-text convention rather than implementing a general Markdown renderer. Free-form
 response correlation prose is not practical to parse conservatively with affirmative
 patterns or expanding negation denylists. Instead, `response_shape` uses
 `method: reviewed_reference_interpretation`, an explicit repository interpretation

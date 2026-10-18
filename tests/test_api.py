@@ -435,3 +435,52 @@ def test_migration_without_verified_facts_is_unknown_evidence_not_verified_basel
     assert events[0]["change"] == "verification_changed"
     assert any(s["role"] == "historical" for s in events[0]["sources"])
     assert semantic_events({"api": unknown}, {"api": derive(text, unknown)}, "later") == []
+
+
+@pytest.mark.parametrize(
+    "wrap",
+    [
+        lambda tag: f"<!-- {tag} -->",
+        lambda tag: f"`{tag}`",
+        lambda tag: f"\n    {tag}\n",
+        lambda tag: f"\n\t{tag}\n",
+        lambda tag: f"<code>{tag}</code>",
+        lambda tag: f'<PRE class="example">{tag}</PRE>',
+    ],
+)
+def test_inactive_parameter_examples_do_not_manufacture_request_contract(wrap):
+    ghost = '<ParamField body="ghost" type="string" required />'
+    page = REFERENCE.replace("## Request body", "## Request body\n" + wrap(ghost))
+    api = derive(page)
+    assert api["request_fields"] == ["model", "questions", "state"]
+    assert api["required_fields"] == ["model", "questions", "state"]
+
+
+def test_commented_discriminator_does_not_invalidate_current_question_types():
+    page = REFERENCE.replace(
+        "## Question types",
+        '## Question types\n<!-- <ParamField body="type" type="string" /> -->',
+    )
+    assert derive(page)["question_types"] == ["choice", "noul", "score"]
+
+
+def test_commented_endpoint_does_not_override_active_http_declaration():
+    page = REFERENCE.replace(
+        "## Evaluation endpoint",
+        "## Evaluation endpoint\n<!--\nPOST https://retired.example/api\n-->",
+    )
+    assert derive(page)["endpoint"] == derive()["endpoint"]
+
+
+def test_unclosed_comment_cannot_verify_inactive_reference_sections():
+    page = REFERENCE.replace("## Request body", "<!--\n## Request body")
+    api = derive(page)
+    assert api["request_fields"] is None
+    assert api["question_types"] is None
+    assert api["response_shape"] is None
+    assert api["endpoint"] == derive()["endpoint"]
+
+
+def test_complete_reference_quoted_as_code_is_not_current_api_evidence():
+    api = derive("````markdown\n" + REFERENCE + "\n````")
+    assert all(prop["status"] == "unknown" for prop in api["properties"].values())

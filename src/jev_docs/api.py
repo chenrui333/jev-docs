@@ -5,6 +5,8 @@ import hashlib
 import html
 import re
 
+from jev_docs.text import without_code_examples, without_comments
+
 FIELDS = (
     "endpoint",
     "request_fields",
@@ -81,26 +83,6 @@ def field_tags(text, component):
     if len(tags) != len(re.findall(rf"<{component}\b", text)):
         tags.append("")
     return tags
-
-
-def without_fences(text):
-    lines = []
-    fence = None
-    for line in text.splitlines(keepends=True):
-        marker = re.match(r"^\s*(`{3,}|~{3,})(.*)$", line)
-        if fence is None:
-            if marker:
-                fence = marker[1]
-            else:
-                lines.append(line)
-        elif (
-            marker
-            and marker[1][0] == fence[0]
-            and len(marker[1]) >= len(fence)
-            and not marker[2].strip()
-        ):
-            fence = None
-    return "".join(lines)
 
 
 def extract_api(contents, artifacts, previous=None):
@@ -181,10 +163,14 @@ def extract_api(contents, artifacts, previous=None):
                 )
         properties[name] = item
 
-    endpoint = section(text, "Evaluation endpoint")
+    reference = without_code_examples(text)
+    endpoint = (
+        section(without_comments(text), "Evaluation endpoint")
+        if re.search(r"^## Evaluation endpoint\s*$", reference, re.M)
+        else ""
+    )
     lines = re.findall(r"^(POST https://[^\s`]+)\s*$", endpoint, re.M)
     fact("endpoint", lines[0] if len(set(lines)) == 1 else None, lines)
-    reference = without_fences(text)
     body = section(reference, "Request body")
     declarations = {}
     # Top-level request entries are outside nested Expandable blocks.
@@ -254,12 +240,14 @@ def extract_api(contents, artifacts, previous=None):
     response = section(text, "Response body")
     normalized_response = "\n".join(line.rstrip() for line in response.splitlines()).strip()
     response_sha256 = hashlib.sha256(normalized_response.encode()).hexdigest()
-    reviewed = response_sha256 == REVIEWED_RESPONSE_SECTION_SHA256
+    reviewed = response_sha256 == REVIEWED_RESPONSE_SECTION_SHA256 and bool(
+        re.search(r"^## Response body\s*$", reference, re.M)
+    )
     fact(
         "response_shape",
         "answers map keyed by question id" if reviewed else None,
         REVIEWED_RESPONSE_EVIDENCE,
-        "The complete Response body context is not a reviewed revision; review it before relying on response correlation.",
+        "The Response body is not an active reviewed reference section; review it before relying on response correlation.",
     )
     properties["response_shape"].update(
         method="reviewed_reference_interpretation",
