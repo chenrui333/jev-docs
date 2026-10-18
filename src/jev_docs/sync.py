@@ -1246,10 +1246,20 @@ def semantic_events(
                 and "summary_kind" not in old_items[entity_key]
                 and "summary_kind" in new_items[entity_key]
             ):
-                change = "baseline"
+                evidence_fields = ("id", "model", "section_text_sha256", "status")
+                same_evidence = all(
+                    old_items[entity_key].get(field) == new_items[entity_key].get(field)
+                    for field in evidence_fields
+                )
+                change = "baseline" if same_evidence else "modified"
                 tracking_note = (
                     f"Updated local interpretation and quotation policy for {entity_key}; "
-                    "established a tracking baseline, not an upstream limitation change."
+                    + (
+                        "established a tracking baseline, not an upstream limitation change."
+                        if same_evidence
+                        else "observed limitation evidence or status also changed during "
+                        "the local quotation-policy migration."
+                    )
                 )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
             events.append(

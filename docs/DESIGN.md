@@ -138,11 +138,12 @@ historical additions. Subsequent additions, modifications and navigation removal
 use the existing stable event IDs. Model limitation absence changes status to
 unknown. Source hashes and review dates alone do not create limitation or cookbook
 semantic events; they remain provenance updates.
-The first migration of a legacy limitation item to `summary_kind` also emits a
+The first migration of a legacy limitation item to `summary_kind` emits a
 per-item baseline explicitly attributed to the local interpretation/quotation
-policy, not an upstream change. This conservatively establishes new tracking
-even if source evidence changed during migration. Later section-hash or status
-changes remain ordinary modifications; identical subsequent observations emit
+policy only when its ID, model, section hash, and status are unchanged. Concurrent
+evidence or status changes remain modifications, explicitly noting both the
+observed change and local quotation-policy migration. Later section-hash or
+status changes remain modifications; identical subsequent observations emit
 no event.
 
 Practice and primitive items come from fixed rule tables in this repository.

@@ -127,6 +127,25 @@ def test_limitation_quotation_policy_migration_is_local_baseline():
     changed = copy.deepcopy(new)
     changed["model-limitations"]["items"][0]["status"] = "unknown"
     assert semantic_events(new, changed, "tomorrow")[0]["change"] == "modified"
+    for field, value in (
+        ("section_text_sha256", "0" * 64),
+        ("status", "unknown"),
+        ("model", "jev-1.14"),
+        ("id", "jev-1.14:adversarial-content"),
+    ):
+        concurrent = copy.deepcopy(new)
+        concurrent["model-limitations"]["items"][0][field] = value
+        concurrent_events = semantic_events(old, concurrent, "today")
+        if field == "id":
+            # An identity change is separate removed/added tracking, not migration.
+            assert {event["change"] for event in concurrent_events} >= {"removed", "added"}
+            continue
+        event = concurrent_events[0]
+        assert event["change"] == "modified"
+        assert "evidence or status also changed" in event["summary"]
+        assert "local quotation-policy migration" in event["summary"]
+        assert "not an upstream limitation change" not in event["summary"]
+        assert semantic_events(concurrent, concurrent, "tomorrow") == []
 
 
 INDEX = "## Extraction\n\n| [Dates](/cookbooks/dates) | Extract date parts. | Beginner |\n"
