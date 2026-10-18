@@ -359,3 +359,23 @@ fields reflect the last completed phase; missing counts are unknown, never zero.
 The exact tested uv version is shared through `tool.uv.required-version`, and
 workflow installs use the lockfile. Actions retain immutable SHA pins on stable
 Node 24 releases. Compilation is checked in both CI and scheduled synchronization.
+
+## Verification clocks
+
+Canonical timestamps describe evidence revisions, not a heartbeat. A new practice's
+`first_seen` is the first supported observation made by this tracker; legacy nulls
+remain unknown rather than inventing historical dates. `last_verified` is when the
+currently cited evidence revision and interpretation were verified; it advances when
+support changes, not on every identical fetch. Losing evidence preserves the last
+verification date but makes the practice unknown. `last_changed` tracks recommendation
+status/summary changes, not evidence-only enrichment. Legacy unknown change dates stay
+null. These metadata fields do not participate in semantic event identity.
+
+Freshness `last_changed` replaces the misleading `last_successful_observation`, with
+the old value preserved on migration. Per-attempt diagnostics carry
+`last_successful_fetch` after complete collection and `last_successful_sync` after
+validation/promotion. Failed attempts never claim sync success. These heartbeat
+fields are not committed, so unchanged successful syncs are byte-idempotent.
+No separate persisted `last_observed` field is needed: artifact `observed_at` already
+means first observation of that content revision, and attempt diagnostics cover liveness.
+

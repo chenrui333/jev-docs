@@ -1411,19 +1411,37 @@ def derive_practices(
     old = old_item_map(previous, "id")
     for rule in PRACTICE_RULES:
         evidence = rule_evidence(rule, contents, artifacts)
+        prior = old.get(rule["id"])
+        today = iso_day(utc_now())
+        same_evidence = (
+            prior and prior.get("sources") == evidence and prior.get("summary") == rule["summary"]
+        )
         item = {
             "id": rule["id"],
             "category": rule["category"],
             "status": "recommended" if evidence else "unknown",
             "summary": rule["summary"],
-            "first_seen": old.get(rule["id"], {}).get("first_seen"),
-            "last_verified": old.get(rule["id"], {}).get("last_verified") or iso_day(utc_now()),
+            # A legacy null is genuinely unknown; do not fabricate its first date.
+            "first_seen": prior.get("first_seen") if prior else today if evidence else None,
+            "last_verified": (
+                prior.get("last_verified") if same_evidence or not evidence else today
+            )
+            if prior
+            else today
+            if evidence
+            else None,
             "sources": evidence,
             "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
         }
+        item["last_changed"] = (
+            prior.get("last_changed")
+            if prior and practice_projection(prior) == practice_projection(item)
+            else today
+        )
         items.append(item)
     state = {
         "schema_version": SCHEMA,
+        "verification_semantics": "evidence_revision",
         "status_vocabulary": [
             "recommended",
             "discouraged",
@@ -1720,7 +1738,7 @@ def models_summary(state: dict[str, Any]) -> str:
 def practice_projection(item: dict[str, Any] | None) -> dict[str, Any] | None:
     if item is None:
         return None
-    return {key: item.get(key) for key in ("id", "category", "status", "summary", "first_seen")}
+    return {key: item.get(key) for key in ("id", "category", "status", "summary")}
 
 
 def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any] | None:
@@ -1931,7 +1949,9 @@ def render_best_practices(practices: dict[str, Any]) -> str:
     lines = [
         "# Jev Engineering Best Practices",
         "",
-        f"Last verified: {latest}",
+        f"Evidence revisions last verified: {latest}"
+        if practices.get("verification_semantics") == "evidence_revision"
+        else f"Last verified: {latest}",
         "",
         "Generated from [`state/practices.json`](state/practices.json). `recommended` means current canonical evidence matched a transparent extraction rule; `unknown` means this snapshot does not provide enough evidence.",
         "",
@@ -2442,6 +2462,7 @@ def _synchronize(
     for kind, candidate in sdk_candidates.items():
         state[f"sdk-{kind}"] = previous_state[f"sdk-{kind}"] if kind in held_streams else candidate
     observed = utc_now().isoformat().replace("+00:00", "Z")
+    attempt["last_successful_fetch"] = observed
     old_docs = {
         item["source_id"]: item
         for item in previous_docs_manifest.get("artifacts", [])
@@ -2539,11 +2560,11 @@ def _synchronize(
         previous_freshness,
     )
     if freshness["fingerprint"] == previous_freshness.get("fingerprint"):
-        freshness["last_successful_observation"] = previous_freshness.get(
-            "last_successful_observation", observed
+        freshness["last_changed"] = previous_freshness.get(
+            "last_changed", previous_freshness.get("last_successful_observation", observed)
         )
     else:
-        freshness["last_successful_observation"] = observed
+        freshness["last_changed"] = observed
     health_errors = actionable_discrepancies(freshness, utc_now())
     attempt["health_errors"] = health_errors
     sources = {
@@ -2606,6 +2627,7 @@ def _synchronize(
         attempt["phase"] = "promotion"
         promote(stage, root)
         attempt["phase"] = "sync-complete"
+        attempt["last_successful_sync"] = utc_now().isoformat().replace("+00:00", "Z")
     finally:
         shutil.rmtree(stage, ignore_errors=True)
     # Publication is allowed only after the complete, internally consistent tree is
