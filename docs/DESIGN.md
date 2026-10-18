@@ -477,13 +477,22 @@ only line endings, trailing whitespace, and repeated blank lines normalize.
 The separate passage extractor excludes examples. Evidence records retain both
 the raw artifact hash and reviewed context hash, while `evidence_reviews` explains
 unknown or conflicting observations. Historical citations remain separate.
-Strict validation independently checks the complete configured source set and
-looks up every approving review in the authored registry, including its verdict
-and review-origin URL/hash. Recomputed generated fingerprints do not confer
-approval. A fetched source cannot be relabeled unavailable to bypass review.
+Strict validation independently checks every configured practice, including unknown
+candidates, against its authored identity, text, complete source set, review verdicts,
+and review-origin URL/hash. Status follows those reviews, not a supplied label.
+Recomputed generated fingerprints do not confer approval or authorize silently
+withdrawing supported guidance. A fetched source cannot be relabeled unavailable;
+known raw source hashes also bind their reviewed context identities. An approved
+context that no longer passes its literal bundles fails publication and requires
+review of the extraction policy rather than quietly withdrawing a recommendation.
 The publication boundary requires the current evidence policy whenever practice
 state changes; unchanged trusted legacy state remains readable.
-
+`review_policy_sha256` identifies the authored rules and complete review registry.
+Standalone validation and publication require the current policy. Trusted sync
+preflight permits an older policy revision while retaining all checksum, source,
+and history checks; collection must then regenerate and validate against the current
+policy before promotion. This permits explicit approval or withdrawal of an already
+observed context without accepting a stale generated patch.
 
 To review a changed source:
 

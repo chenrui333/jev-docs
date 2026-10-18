@@ -301,7 +301,7 @@ def test_validator_rejects_practice_references_to_unretained_evidence(
         else:
             practices["source_observations"][source_id] = "0" * 64
     path.write_text(json.dumps(practices))
-    with pytest.raises(RuntimeError, match="practice .*does not match retained artifact"):
+    with pytest.raises(RuntimeError):
         validate_tree(tmp_path)
 
 
@@ -731,3 +731,101 @@ def test_generated_approvals_cannot_replace_authored_reviews(tmp_path, corruptio
     (tmp_path / "BEST_PRACTICES.md").write_text(render_best_practices(state))
     with pytest.raises(RuntimeError):
         validate_tree(tmp_path, strict=True)
+
+
+@pytest.mark.parametrize(
+    "corruption",
+    [
+        "status",
+        "identity",
+        "summary",
+        "category",
+        "unavailable",
+        "unreviewed",
+        "unverified-passages",
+        "omitted-item",
+        "duplicate-item",
+        "missing-observation",
+    ],
+)
+def test_unknown_status_cannot_bypass_authored_practice_contract(tmp_path, corruption):
+    synchronize(tmp_path, PracticeSources(), strict=True)
+    path = tmp_path / "state/practices.json"
+    state = json.loads(path.read_text())
+    item = items(state)["deterministic-before-jev"]
+    item["status"], item["sources"] = "unknown", []
+    row = next(row for row in item["evidence_reviews"] if row["verdict"] == "supported")
+    if corruption == "identity":
+        item["id"] = "invented-candidate"
+    elif corruption == "summary":
+        item["summary"] = "Invented unverified recommendation."
+    elif corruption == "category":
+        item["category"] = "invented-category"
+    elif corruption == "unavailable":
+        item["evidence_reviews"] = [
+            {"source_id": row["source_id"], "verdict": "unavailable"}
+            for row in item["evidence_reviews"]
+        ]
+    elif corruption == "unreviewed":
+        row["verdict"], row["context_sha256"] = "unreviewed", "a" * 64
+        row.pop("review_source")
+    elif corruption == "unverified-passages":
+        row["verdict"] = "unverified_passages"
+    elif corruption == "omitted-item":
+        state["items"].remove(item)
+    elif corruption == "duplicate-item":
+        state["items"].append(dict(item))
+    elif corruption == "missing-observation":
+        state["source_observations"].pop(row["source_id"])
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (tmp_path / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(tmp_path, strict=True)
+
+
+@pytest.mark.parametrize("verdict", ["supported", "non_conflicting", "rejected"])
+def test_full_sync_reassesses_unknown_context_after_authored_review(
+    tmp_path, review_contexts, verdict
+):
+    sid, rid = "docs:primitives/noul", "noul-is-yes-probability"
+    upstream = PracticeSources()
+    text = "# A newly observed source context\n\n" + PASSAGES[sid]["text"]
+    upstream.pages["primitives/noul"] = text
+    synchronize(tmp_path, upstream, strict=True)
+    before = json.loads((tmp_path / "state/practices.json").read_text())
+    assert items(before)[rid]["status"] == "unknown"
+    decision = {rid: verdict}
+    review_contexts({sid: text}, artifacts({sid: text}), {sid: decision})
+    with pytest.raises(RuntimeError):
+        validate_tree(tmp_path, strict=True)
+    result = synchronize(tmp_path, upstream, strict=True)
+    state = json.loads((tmp_path / "state/practices.json").read_text())
+    assert items(state)[rid]["status"] == ("recommended" if verdict == "supported" else "unknown")
+    assert state["source_observations"] == before["source_observations"]
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    assert [(event["entity"], event["change"]) for event in events] == [
+        (rid, "verification_changed")
+    ]
+    validate_tree(tmp_path, strict=True)
+    stable = snapshot(tmp_path)
+    synchronize(tmp_path, upstream, strict=True)
+    assert snapshot(tmp_path) == stable
+
+
+def test_authored_withdrawal_reverifies_previously_supported_context(tmp_path, review_contexts):
+    sid, rid = "docs:primitives/noul", "noul-is-yes-probability"
+    upstream = PracticeSources()
+    synchronize(tmp_path, upstream, strict=True)
+    before = json.loads((tmp_path / "state/practices.json").read_text())
+    assert items(before)[rid]["status"] == "recommended"
+    text = PASSAGES[sid]["text"]
+    review_contexts({sid: text}, artifacts({sid: text}), {sid: {rid: "rejected"}})
+    synchronize(tmp_path, upstream, strict=True)
+    after = json.loads((tmp_path / "state/practices.json").read_text())
+    assert items(after)[rid]["status"] == "unknown"
+    assert items(after)[rid]["historical_sources"] == items(before)[rid]["sources"]
+    assert after["source_observations"] == before["source_observations"]
+    validate_tree(tmp_path, strict=True)

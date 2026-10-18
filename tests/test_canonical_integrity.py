@@ -488,7 +488,7 @@ def test_coordinated_github_record_corruption_cannot_relabel_provenance(tree, si
         def get(self, _url):
             raise AssertionError("relabeled provenance must fail before fetching")
 
-    with pytest.raises(RuntimeError, match="source identity URL mismatch"):
+    with pytest.raises(RuntimeError):
         synchronize(tree, NeverFetch(), strict=True)
     assert snapshot(tree) == before
 

@@ -634,6 +634,10 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
 )
 
 
+def _practice_review_policy_sha256():
+    return sha256_json({"rules": PRACTICE_RULES, "reviews": REVIEWED_PRACTICE_CONTEXTS})
+
+
 def rule_evidence(
     rule: dict[str, Any], contents: dict[str, str], artifact_by_id: dict[str, Artifact]
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -1682,6 +1686,7 @@ def derive_practices(
         "schema_version": SCHEMA,
         "verification_semantics": "evidence_revision",
         "evidence_policy": PRACTICE_EVIDENCE_POLICY,
+        "review_policy_sha256": _practice_review_policy_sha256(),
         "source_observations": {
             source_id: artifact.sha256
             for source_id in sorted({sid for rule in PRACTICE_RULES for sid in rule["sources"]})
@@ -2886,7 +2891,95 @@ def _validate_source_integrity(root, coverage, sources, state_files):
         raise RuntimeError("coverage pages disagree with current documentation sources")
 
 
-def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None = None) -> None:
+def _validate_practice_reviews(practices, sources, *, allow_migration=False):
+    if practices.get("evidence_policy") != PRACTICE_EVIDENCE_POLICY:
+        return
+    if practices.get("review_policy_sha256") != _practice_review_policy_sha256():
+        if allow_migration:
+            # Only trusted preflight permits older authored policy; candidates never do.
+            return
+        raise RuntimeError("practice review policy is outdated; run sync to reverify evidence")
+    rules = {rule["id"]: rule for rule in PRACTICE_RULES}
+    items = practices.get("items", [])
+    identities = [item.get("id") for item in items]
+    if len(identities) != len(set(identities)) or set(identities) != set(rules):
+        raise RuntimeError("practice inventory disagrees with authored rules")
+    for item in items:
+        rid = item["id"]
+        rule = rules[rid]
+        reviews = item.get("evidence_reviews", [])
+        identities = [review.get("source_id") for review in reviews]
+        if (
+            any(item.get(key) != rule[key] for key in ("category", "summary"))
+            or len(identities) != len(set(identities))
+            or set(identities) != set(rule["sources"])
+        ):
+            raise RuntimeError(f"practice lacks configured context reviews: {rid}")
+        for review in reviews:
+            sid = review["source_id"]
+            current = sources.get(sid)
+            if current is None:
+                if review != {"source_id": sid, "verdict": "unavailable"}:
+                    raise RuntimeError(f"absent practice source has current review: {rid}")
+                continue
+            digest = review.get("context_sha256")
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                raise RuntimeError(f"practice lacks context identity: {rid}")
+            registry = REVIEWED_PRACTICE_CONTEXTS.get(sid, {})
+            known_contexts = {
+                context
+                for context, approved in registry.items()
+                if approved["source_sha256"] == current["sha256"]
+            }
+            approved = registry.get(digest, {})
+            expected = approved.get("verdicts", {}).get(rid, "unreviewed")
+            origin = (
+                {"url": approved["source_url"], "sha256": approved["source_sha256"]}
+                if approved
+                else None
+            )
+            if (
+                known_contexts
+                and digest not in known_contexts
+                or review.get("verdict") != expected
+                or expected not in {"supported", "non_conflicting", "rejected", "unreviewed"}
+                or review.get("review_source") != origin
+                or review.get("sha256") != current["sha256"]
+                or review.get("url") != current["fetch_url"]
+                or practices.get("source_observations", {}).get(sid) != current["sha256"]
+            ):
+                raise RuntimeError(f"practice review disagrees with retained evidence: {rid}")
+        by_source = {review["source_id"]: review for review in reviews}
+        supporting = {sid for sid, row in by_source.items() if row["verdict"] == "supported"}
+        uncertain = any(row["verdict"] in {"unreviewed", "rejected"} for row in reviews)
+        expected_status = "recommended" if supporting and not uncertain else "unknown"
+        if item["status"] != expected_status:
+            raise RuntimeError(f"practice status disagrees with authored reviews: {rid}")
+        if expected_status == "unknown":
+            if item.get("sources"):
+                raise RuntimeError(f"unknown practice asserts current supporting evidence: {rid}")
+            continue
+        evidence = item.get("sources", [])
+        if {ref["source_id"] for ref in evidence} != supporting:
+            raise RuntimeError(f"practice support disagrees with authored reviews: {rid}")
+        expected_claims = {claim for _digest, claim in rule["claims"]}
+        for sid in supporting:
+            refs = [ref for ref in evidence if ref["source_id"] == sid]
+            row = by_source[sid]
+            if {ref["excerpt"] for ref in refs} != expected_claims or any(
+                any(ref.get(key) != row.get(key) for key in ("url", "sha256", "context_sha256"))
+                for ref in refs
+            ):
+                raise RuntimeError(f"practice lacks reviewed literal claim bundle: {rid}")
+
+
+def validate_tree(
+    root: Path,
+    strict: bool = False,
+    *,
+    history_root: Path | None = None,
+    allow_practice_review_migration: bool = False,
+) -> None:
     if (root / PENDING).exists() or (root / PENDING).is_symlink():
         raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
@@ -2936,39 +3029,6 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
     for item in practices.get("items", []):
         if item["status"] != "recommended":
             continue
-        if practices.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY:
-            rule = next((rule for rule in PRACTICE_RULES if rule["id"] == item["id"]), None)
-            reviews = item.get("evidence_reviews", [])
-            identities = [review.get("source_id") for review in reviews]
-            if (
-                rule is None
-                or not item.get("sources")
-                or any(item.get(key) != rule[key] for key in ("category", "summary"))
-                or len(identities) != len(set(identities))
-                or set(identities) != set(rule["sources"])
-            ):
-                raise RuntimeError(f"recommended practice lacks reviewed context: {item['id']}")
-            for review in reviews:
-                sid, verdict = review["source_id"], review.get("verdict")
-                current = sources.get(sid)
-                if verdict == "unavailable" and current is None:
-                    continue
-                context_hash = review.get("context_sha256")
-                approved = (
-                    REVIEWED_PRACTICE_CONTEXTS.get(sid, {}).get(context_hash, {})
-                    if isinstance(context_hash, str)
-                    else {}
-                )
-                if (
-                    verdict not in {"supported", "non_conflicting"}
-                    or approved.get("verdicts", {}).get(item["id"]) != verdict
-                    or review.get("review_source")
-                    != {"url": approved.get("source_url"), "sha256": approved.get("source_sha256")}
-                    or not current
-                    or review.get("sha256") != current["sha256"]
-                    or review.get("url") != current["fetch_url"]
-                ):
-                    raise RuntimeError(f"recommended practice lacks authored review: {item['id']}")
         # Historical sources describe prior observations, not current support.
         for evidence in item.get("sources", []):
             current = sources.get(evidence["source_id"])
@@ -2976,36 +3036,7 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                 raise RuntimeError(
                     f"practice provenance does not match retained artifact: {item['id']}"
                 )
-            if practices.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY:
-                reviews = item.get("evidence_reviews", [])
-                if (
-                    not reviews
-                    or any(
-                        review.get("verdict") not in {"supported", "non_conflicting", "unavailable"}
-                        for review in reviews
-                    )
-                    or not any(
-                        review.get("verdict") == "supported"
-                        and review.get("source_id") == evidence["source_id"]
-                        and review.get("sha256") == evidence["sha256"]
-                        and review.get("url") == evidence.get("url") == current.get("fetch_url")
-                        and review.get("context_sha256") == evidence.get("context_sha256")
-                        and isinstance(evidence.get("context_sha256"), str)
-                        and re.fullmatch(r"[0-9a-f]{64}", evidence["context_sha256"])
-                        for review in reviews
-                    )
-                ):
-                    raise RuntimeError(f"recommended practice lacks reviewed context: {item['id']}")
-                expected_claims = {claim for _digest, claim in rule["claims"]}
-                cited_claims = {
-                    ref.get("excerpt")
-                    for ref in item["sources"]
-                    if ref.get("source_id") == evidence["source_id"]
-                }
-                if cited_claims != expected_claims:
-                    raise RuntimeError(
-                        f"recommended practice lacks literal claim bundle: {item['id']}"
-                    )
+    _validate_practice_reviews(practices, sources, allow_migration=allow_practice_review_migration)
     # Only recorded observations assert a current fetch; absent optional sources
     # and unknown practices' historical evidence need not have retained artifacts.
     for source_id, digest in practices.get("source_observations", {}).items():
@@ -3187,7 +3218,7 @@ def synchronize(
     with synchronization_lock(root):
         recover_pending(root)
         if (root / "events/baseline.json").exists():
-            validate_tree(root, strict=True)
+            validate_tree(root, strict=True, allow_practice_review_migration=True)
         return _synchronize(root, client, strict, attempt)
 
 
