@@ -44,6 +44,12 @@ DOCS_SITEMAP = f"{DOCS_ROOT}/sitemap.xml"
 GITHUB_API = "https://api.github.com"
 USER_AGENT = "jev-docs-sync/0.1 (+https://github.com/chenrui333/jev-docs)"
 SCHEMA = 1
+GITHUB_SOURCE_ROOT = "https://github.com/typesafe-ai"
+SOURCE_SCOPE = "official TypeSafe public sources only"
+DOCUMENTATION_LICENSE_NOTE = (
+    "Hosted documentation is observed by metadata, hashes, and short excerpts; "
+    "it is not bulk mirrored or relicensed."
+)
 DOCS_SOURCE_TYPES = frozenset(
     {"documentation", "documentation-discovery", "historical-documentation"}
 )
@@ -272,10 +278,50 @@ class Artifact:
         return sha256_bytes(self.content)
 
 
+def _bounded_json_loads(value: str | bytes) -> Any:
+    """Bound container nesting before decoding, independent of Python's recursion limit."""
+    if isinstance(value, bytes):
+        value = value.decode(json.detect_encoding(value), "surrogatepass")
+    depth = 0
+    in_string = False
+    escaped = False
+    for character in value:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif character == "\\":
+                escaped = True
+            elif character == '"':
+                in_string = False
+        elif character == '"':
+            in_string = True
+        elif character in "[{":
+            depth += 1
+            if depth > 64:
+                raise ValueError("JSON container nesting exceeds 64")
+        elif character in "]}":
+            depth -= 1
+    return json.loads(value)
+
+
 def read_json(path: Path, default: Any = None) -> Any:
     if not path.exists():
         return default
-    return json.loads(path.read_text())
+    try:
+        return _bounded_json_loads(path.read_text(encoding="utf-8"))
+    except (ValueError, RecursionError):
+        # Persisted evidence may be corrupt; never echo its body or machine path.
+        parts = path.parts
+        start = next(
+            (
+                index
+                for index in range(len(parts) - 1, -1, -1)
+                if parts[index] in {"state", "sources", "events"}
+            ),
+            len(parts) - 1,
+        )
+        label = Path(*parts[start:]).as_posix()
+        raise RuntimeError(f"cannot read persisted JSON: {label}") from None
 
 
 def write_json(path: Path, value: Any) -> None:
@@ -605,8 +651,8 @@ def artifact_manifest(
 
 def metadata_json(response: Response, service: str) -> Any:
     try:
-        return json.loads(response.body)
-    except (json.JSONDecodeError, UnicodeError):
+        return _bounded_json_loads(response.body)
+    except (ValueError, RecursionError):
         raise FetchError(
             f"{service} metadata JSON invalid at {source_label(response.url)}; "
             "check upstream availability and retry; no evidence promoted",
@@ -2185,7 +2231,15 @@ def build_coverage(
 
 def validate_coverage(coverage: dict[str, Any]) -> None:
     """Validate completeness, not whether a successful observation found changes."""
+    if (
+        not isinstance(coverage, dict)
+        or type(coverage.get("schema_version")) is not int
+        or coverage["schema_version"] not in {1, 2}
+    ):
+        raise RuntimeError("unsupported source coverage schema: expected 1 or 2")
     pages = coverage["pages"]
+    if not pages:
+        raise RuntimeError("source coverage contains no documentation pages")
     ids = {page["source_id"] for page in pages}
     urls = {page["canonical_url"] for page in pages}
     if len(ids) != len(pages) or len(urls) != len(pages):
@@ -2239,6 +2293,285 @@ def _validate_event_graph(events: dict[str, dict[str, Any]]) -> None:
         completed.update(chain)
 
 
+def _source_records(value: Any, filename: str, source: str | None = None) -> dict[str, Any]:
+    expected = (
+        {"source": source}
+        if source is not None
+        else {"scope": SOURCE_SCOPE, "documentation_license_note": DOCUMENTATION_LICENSE_NOTE}
+    )
+    if (
+        not isinstance(value, dict)
+        or type(value.get("schema_version")) is not int
+        or value["schema_version"] != SCHEMA
+        or not isinstance(value.get("artifacts"), list)
+        or any(value.get(key) != required for key, required in expected.items())
+    ):
+        raise RuntimeError(f"invalid source manifest envelope: {filename}")
+    records: dict[str, Any] = {}
+    for item in value["artifacts"]:
+        if (
+            not isinstance(item, dict)
+            or not isinstance(item.get("source_id"), str)
+            or not item["source_id"]
+        ):
+            raise RuntimeError(f"invalid source record in {filename}")
+        sid = item["source_id"]
+        if sid in records:
+            raise RuntimeError(f"duplicate source ID in {filename}: {sid}")
+        records[sid] = item
+    return records
+
+
+def _trusted_source_location(record):
+    sid = record["source_id"].removeprefix("candidate:")
+    kind = record.get("source_type")
+    url = record.get("fetch_url")
+    commit = record.get("upstream_commit")
+    source_tag = record.get("source_tag")
+    if source_tag is not None and (not isinstance(source_tag, str) or not source_tag):
+        return False
+    if not isinstance(url, str):
+        return False
+    if kind in DOCS_SOURCE_TYPES:
+        return (
+            commit is None
+            and source_tag is None
+            and https_origin(url) == https_origin(DOCS_ROOT)
+            and record.get("canonical_url") == docs_canonical_url(url)
+        )
+    if record.get("canonical_url") != url:
+        return False
+    registries = {
+        "registry:pypi:typesafe-sdk": "https://pypi.org/pypi/typesafe-sdk/json",
+        "registry:npm:@typesafe-ai/sdk": "https://registry.npmjs.org/@typesafe-ai%2fsdk",
+    }
+    if sid in registries:
+        return (
+            kind == "package-registry"
+            and url == registries[sid]
+            and commit is None
+            and source_tag is None
+        )
+    if sid == "skill:typesafe-ai":
+        return (
+            kind == "github-source"
+            and source_tag is None
+            and isinstance(commit, str)
+            and re.fullmatch(r"[0-9a-f]{40}", commit)
+            and url
+            == f"https://raw.githubusercontent.com/typesafe-ai/skills/{commit}/skills/typesafe-ai/SKILL.md"
+        )
+    match = re.fullmatch(r"github:(typesafe-ai/[^:]+):(.+)", sid)
+    if not match:
+        return False
+    repo, identity = match.groups()
+    evaluation = repo == "typesafe-ai/system-one-adapter-python"
+    if repo not in {
+        "typesafe-ai/skills",
+        "typesafe-ai/typesafe-sdk-python",
+        "typesafe-ai/typesafe-sdk-js",
+        "typesafe-ai/system-one-adapter-python",
+    }:
+        return False
+    api_identity = identity in {"repository", "head", "tags", "releases", "commit"}
+    if api_identity and (commit is not None or source_tag is not None):
+        return False
+    if not api_identity:
+        expected_kind = "official_evaluation_tool" if evaluation else "github-source"
+        path = identity
+        if ":" in path:
+            tag, path = path.split(":", 1)
+            if tag != source_tag:
+                return False
+        return (
+            kind == expected_kind
+            and isinstance(commit, str)
+            and re.fullmatch(r"[0-9a-f]{40}", commit)
+            and url == f"https://raw.githubusercontent.com/{repo}/{commit}/{path}"
+        )
+    if kind != ("official_evaluation_tool" if evaluation else "github-api"):
+        return False
+    base = f"{GITHUB_API}/repos/{repo}"
+    if identity == "head":
+        prefix = base + "/commits/"
+        return url.startswith(prefix) and bool(url[len(prefix) :]) and not re.search(r"[?#]", url)
+    if identity == "commit" and repo == "typesafe-ai/skills":
+        return url == base + "/commits?path=skills/typesafe-ai/SKILL.md&per_page=1"
+    expected = {
+        "repository": base,
+        "tags": base + "/tags?per_page=100",
+        "releases": base + "/releases?per_page=100",
+    }
+    return identity in expected and url == expected[identity]
+
+
+def _retained_tag_bindings(state_files):
+    catalogs = {}
+    for kind, repo in (
+        ("python", "typesafe-ai/typesafe-sdk-python"),
+        ("javascript", "typesafe-ai/typesafe-sdk-js"),
+        ("evaluation-tool", "typesafe-ai/system-one-adapter-python"),
+    ):
+        snapshot = state_files.get(
+            "evaluation-tool.json" if kind == "evaluation-tool" else f"sdk-{kind}.json", {}
+        )
+        bindings = {}
+        for release in [
+            *snapshot.get("release_history", []),
+            {"tag": snapshot.get("source_tag"), "source_commit": snapshot.get("source_commit")},
+        ]:
+            tag, commit = release.get("tag"), release.get("source_commit")
+            if tag is None or commit is None:
+                continue
+            if (
+                not isinstance(tag, str)
+                or not isinstance(commit, str)
+                or not re.fullmatch(r"[0-9a-f]{40}", commit)
+            ):
+                raise RuntimeError(f"invalid retained release binding: {repo}")
+            if tag in bindings and bindings[tag] != commit:
+                raise RuntimeError(f"conflicting retained release binding: {repo}")
+            bindings[tag] = commit
+        catalogs[(repo, False)] = bindings
+        if kind != "evaluation-tool":
+            # Legacy held candidates were explicitly unresolved, not verified
+            # release claims. A new collection persists their observed bindings.
+            candidate = state_files.get("freshness.json", {}).get(kind, {})
+            candidate_bindings = candidate.get("candidate_tag_bindings")
+            if candidate_bindings is not None and (
+                not isinstance(candidate_bindings, dict)
+                or any(
+                    not isinstance(tag, str)
+                    or not tag
+                    or not isinstance(commit, str)
+                    or not re.fullmatch(r"[0-9a-f]{40}", commit)
+                    for tag, commit in candidate_bindings.items()
+                )
+            ):
+                raise RuntimeError(f"invalid candidate release binding: {repo}")
+            catalogs[(repo, True)] = candidate_bindings if candidate.get("state_retained") else {}
+    return catalogs
+
+
+def _validate_source_integrity(root, coverage, sources, state_files):
+    tag_catalogs = _retained_tag_bindings(state_files)
+    for sid, record in sources.items():
+        if not _trusted_source_location(record):
+            raise RuntimeError(f"source identity URL mismatch: {sid}")
+        if record.get("source_tag") is not None:
+            candidate = sid.startswith("candidate:")
+            identity = sid.removeprefix("candidate:")
+            repo = identity.split(":", 2)[1]
+            catalog = tag_catalogs.get((repo, candidate), {})
+            if catalog is None and candidate:
+                continue  # Legacy candidates remain unverified until recollected.
+            if (
+                not isinstance(catalog, dict)
+                or catalog.get(record["source_tag"]) != record["upstream_commit"]
+            ):
+                raise RuntimeError(f"tagged source disagrees with retained release binding: {sid}")
+    skill = state_files.get("skill.json", {})
+    citation = skill.get("source") if isinstance(skill, dict) else None
+    raw_skill = sources.get("skill:typesafe-ai", {})
+    skill_head = sources.get("github:typesafe-ai/skills:commit", {})
+    if (
+        not isinstance(citation, dict)
+        or citation.get("source_id") != "skill:typesafe-ai"
+        or citation.get("sha256") != raw_skill.get("sha256")
+        or citation.get("url") != raw_skill.get("fetch_url")
+        or skill.get("commit") != raw_skill.get("upstream_commit")
+        or skill_head.get("sha256") != sha256_bytes(evidence_bytes({"sha": skill.get("commit")}))
+    ):
+        raise RuntimeError(
+            "skill provenance disagrees with retained snapshot and commit observation"
+        )
+    for kind, repo in (
+        ("python", "typesafe-ai/typesafe-sdk-python"),
+        ("javascript", "typesafe-ai/typesafe-sdk-js"),
+    ):
+        sdk = state_files[f"sdk-{kind}.json"]
+        main = sdk.get("main_commit")
+        head = sources.get(f"github:{repo}:head", {})
+        if (
+            not isinstance(main, str)
+            or not re.fullmatch(r"[0-9a-f]{40}", main)
+            or head.get("sha256") != sha256_bytes(evidence_bytes({"sha": main}))
+        ):
+            raise RuntimeError(f"SDK main provenance disagrees with retained snapshot: {kind}")
+    for name in ("sdk-python", "sdk-javascript", "evaluation-tool"):
+        snapshot = state_files.get(f"{name}.json", {})
+        for citation in snapshot.get("provenance", []):
+            record = sources.get(citation.get("source_id"), {})
+            if (
+                not record
+                or citation.get("sha256") != record.get("sha256")
+                or citation.get("url") != record.get("fetch_url")
+            ):
+                raise RuntimeError(f"snapshot citation disagrees with retained source: {name}")
+    families = {}
+    manifests_present = False
+    for filename, source in (
+        ("sources/docs.typesafe.ai/manifest.json", DOCS_ROOT),
+        ("sources/github.typesafe-ai/manifest.json", GITHUB_SOURCE_ROOT),
+    ):
+        manifest = read_json(root / filename)
+        if manifest is None:  # Coverage 1 trees may predate the complete layout.
+            continue
+        manifests_present = True
+        records = _source_records(manifest, filename, source)
+        if any(
+            (record.get("source_type") in DOCS_SOURCE_TYPES) != (source == DOCS_ROOT)
+            for record in records.values()
+        ):
+            raise RuntimeError(f"source record belongs to wrong family: {filename}")
+        if families.keys() & records.keys():
+            raise RuntimeError("duplicate source ID across family manifests")
+        families.update(records)
+    if coverage.get("schema_version") == 2 or manifests_present:
+        # Phase 1 wrote family and aggregate observations separately. Their clocks
+        # may differ by microseconds; compare semantic metadata without rewriting it.
+        def semantic(record):
+            return {key: value for key, value in record.items() if key != "observed_at"}
+
+        if families.keys() != sources.keys() or any(
+            semantic(record) != semantic(sources[sid]) for sid, record in families.items()
+        ):
+            raise RuntimeError("family manifests disagree with state/sources.json")
+    discovery = coverage["discovery"]
+    record = sources.get(discovery["source_id"])
+    if (
+        not record
+        or record["source_type"] != "documentation-discovery"
+        or record["sha256"] != discovery["sha256"]
+        or record["fetch_url"] != discovery["url"]
+        or https_origin(discovery["url"]) != https_origin(DOCS_ROOT)
+        or record["canonical_url"] != docs_canonical_url(record["fetch_url"])
+        or docs_source_id(discovery["url"]) != discovery["source_id"]
+    ):
+        raise RuntimeError("coverage discovery disagrees with current source artifact")
+    for page in coverage["pages"]:
+        record = sources.get(page["source_id"])
+        if (
+            not record
+            or record["source_type"] != "documentation"
+            or record["sha256"] != page["sha256"]
+            # Coverage retains requested navigation; manifests record the resolved
+            # same-origin destination, which may legitimately have a different path.
+            or https_origin(record["fetch_url"]) != https_origin(DOCS_ROOT)
+            or record["canonical_url"] != docs_canonical_url(record["fetch_url"])
+            or https_origin(page["canonical_url"]) != https_origin(DOCS_ROOT)
+            or docs_source_id(page["canonical_url"]) != page["source_id"]
+        ):
+            raise RuntimeError("coverage page disagrees with current source artifact")
+    current_ids = {
+        sid
+        for sid, record in sources.items()
+        if record["source_type"] == "documentation" and sid.startswith("docs:")
+    }
+    if current_ids != {page["source_id"] for page in coverage["pages"]}:
+        raise RuntimeError("coverage pages disagree with current documentation sources")
+
+
 def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None = None) -> None:
     if (root / PENDING).exists() or (root / PENDING).is_symlink():
         raise RuntimeError("pending synchronization promotion; run sync to recover it")
@@ -2255,8 +2588,7 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
     missing = [path for path in required if not (root / path).exists()]
     if missing:
         raise RuntimeError(f"missing generated files: {', '.join(missing)}")
-    for path in (root / "state").glob("*.json"):
-        json.loads(path.read_text())
+    state_files = {path.name: read_json(path) for path in sorted((root / "state").glob("*.json"))}
     coverage = read_json(root / "state/source-coverage.json")
     validate_coverage(coverage)
     practices = read_json(root / "state/practices.json")
@@ -2268,9 +2600,7 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                 raise RuntimeError(f"incomplete practice provenance: {item['id']}")
             if len(evidence["excerpt"]) > 420:
                 raise RuntimeError(f"practice excerpt is too long: {item['id']}")
-    sources = {
-        item["source_id"]: item for item in read_json(root / "state/sources.json")["artifacts"]
-    }
+    sources = _source_records(read_json(root / "state/sources.json"), "state/sources.json")
     for kind in ("python", "javascript"):
         sdk = read_json(root / f"state/sdk-{kind}.json", {})
         for release in sdk.get("release_history", []):
@@ -2290,9 +2620,25 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                 )
     validate_api(read_json(root / "state/api.json"), sources)
     if coverage.get("schema_version") == 2:
-        for name in ("model-limitations", "cookbooks", "evaluation-tool"):
-            if not (root / f"state/{name}.json").exists():
-                raise RuntimeError(f"missing structured state: {name}")
+        required_v2 = [
+            *(
+                f"state/{name}.json"
+                for name in (
+                    "api",
+                    "models",
+                    "primitives",
+                    "model-limitations",
+                    "cookbooks",
+                    "evaluation-tool",
+                )
+            ),
+            "MODEL_LIMITATIONS.md",
+            "sources/docs.typesafe.ai/manifest.json",
+            "sources/github.typesafe-ai/manifest.json",
+        ]
+        missing = [path for path in required_v2 if not (root / path).exists()]
+        if missing:
+            raise RuntimeError(f"missing generated files: {', '.join(missing)}")
     for name in (
         "model-limitations",
         "cookbooks",
@@ -2373,6 +2719,19 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
         raise RuntimeError("best-practices guide is not linked to generated state")
     if strict and (root / "BEST_PRACTICES.md").read_text() != render_best_practices(practices):
         raise RuntimeError("best-practices rendering disagrees with state")
+    _validate_source_integrity(root, coverage, sources, state_files)
+    # Keep domain-specific provenance diagnostics ahead of this final checksum guard.
+    for filename, value in state_files.items():
+        if filename in {"sources.json", "source-coverage.json"}:
+            continue
+        if not isinstance(value, dict) or "fingerprint" not in value:
+            raise RuntimeError(f"missing stored fingerprint in state/{filename}")
+        excluded = {"observed_at", "fingerprint"}
+        if filename == "freshness.json":
+            excluded.update({"last_successful_observation", "last_changed"})
+        payload = {key: item for key, item in value.items() if key not in excluded}
+        if sha256_json(payload) != value["fingerprint"]:
+            raise RuntimeError(f"stored fingerprint disagrees with state/{filename}")
 
 
 def sdk_evidence_stream(source_id: str) -> str | None:
@@ -2614,6 +2973,11 @@ def _synchronize(
         held_metadata[kind] = {
             "state_retained": True,
             "retained_version": state[f"sdk-{kind}"]["version"],
+            "candidate_tag_bindings": {
+                release["tag"]: release["source_commit"]
+                for release in sdk_candidates[kind]["release_history"]
+                if release.get("tag") is not None and release.get("source_commit") is not None
+            },
             "candidate_provenance": [
                 {"source_id": sid, "url": record["fetch_url"], "sha256": record["sha256"]}
                 for sid, record in records.items()
@@ -2697,8 +3061,8 @@ def _synchronize(
     attempt["health_errors"] = health_errors
     sources = {
         "schema_version": SCHEMA,
-        "scope": "official TypeSafe public sources only",
-        "documentation_license_note": "Hosted documentation is observed by metadata, hashes, and short excerpts; it is not bulk mirrored or relicensed.",
+        "scope": SOURCE_SCOPE,
+        "documentation_license_note": DOCUMENTATION_LICENSE_NOTE,
         "artifacts": list(records.values()),
     }
     stage = Path(tempfile.mkdtemp(prefix="jev-docs-stage-", dir=root.parent))
@@ -2711,7 +3075,7 @@ def _synchronize(
             stage / "sources/github.typesafe-ai/manifest.json",
             {
                 "schema_version": SCHEMA,
-                "source": "https://github.com/typesafe-ai",
+                "source": GITHUB_SOURCE_ROOT,
                 "artifacts": github_items,
             },
         )
