@@ -6,7 +6,7 @@ import html
 import re
 
 from jev_docs.markup import _escaped, _markup
-from jev_docs.text import without_code_examples, without_link_metadata
+from jev_docs.text import markdown_tokens, without_code_examples, without_link_metadata
 
 FIELDS = (
     "endpoint",
@@ -32,9 +32,27 @@ REVIEWED_RESPONSE_EVIDENCE = (
 
 
 def section(text, title):
-    matches = list(re.finditer(rf"^## {re.escape(title)}\s*$([\s\S]*?)(?=^## |\Z)", text, re.M))
-    # Duplicate authoritative sections are conflicting context, not first-one-wins.
-    return matches[0][1] if len(matches) == 1 else ""
+    tokens = markdown_tokens(text)
+    if tokens is None:
+        return ""
+    markup, _incomplete = _markup(text)
+    data = [(token.start, token.end) for token in markup if token.kind == "data"]
+    offsets = [0] + [match.end() for match in re.finditer("\n", text)]
+    headings = []
+    for index, token in enumerate(tokens):
+        if token.type != "heading_open" or token.tag != "h2" or token.level != 0:
+            continue
+        start, end = token.map
+        first = offsets[start]
+        last = offsets[end] if end < len(offsets) else len(text)
+        if any(a <= first and last <= b for a, b in data):
+            headings.append((first, last, tokens[index + 1].content))
+    matches = [index for index, heading in enumerate(headings) if heading[2] == title]
+    if len(matches) != 1:
+        return ""
+    index = matches[0]
+    end = headings[index + 1][0] if index + 1 < len(headings) else len(text)
+    return text[headings[index][1] : end]
 
 
 def without_expandables(text):

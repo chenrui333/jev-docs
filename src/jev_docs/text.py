@@ -151,10 +151,10 @@ def without_code_examples(content: str, *, keep_http: bool = False) -> str:
     parts: list[str] = []
     position = 0
     tokens, _incomplete = _markup(content)
-    blocked = {"code", "pre", "script", "style", "blockquote"}
+    blocked = {"code", "pre", "script", "style", "blockquote", "template"}
     for token in tokens:
         if token.kind == "incomplete" and re.match(
-            r"</?(?:code|pre|script|style|blockquote)\b", token.raw, re.I
+            r"</?(?:code|pre|script|style|blockquote|template)\b", token.raw, re.I
         ):
             return ""
         if token.name not in blocked or token.escaped:

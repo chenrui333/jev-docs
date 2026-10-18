@@ -448,6 +448,7 @@ def test_migration_without_verified_facts_is_unknown_evidence_not_verified_basel
         lambda tag: f'<PRE class="example">{tag}</PRE>',
         lambda tag: f"<script>{tag}</script>",
         lambda tag: f"<style>{tag}</style>",
+        lambda tag: f"<template>{tag}</template>",
         lambda tag: f"<blockquote>{tag}</blockquote>",
         lambda tag: f'<BLOCKQUOTE class="example">{tag}</BLOCKQUOTE>',
         lambda tag: f"<blockquote><blockquote>{tag}</blockquote></blockquote>",
@@ -684,4 +685,21 @@ def test_inactive_container_literals_in_attributes_cannot_remove_real_parameters
     api = derive(REFERENCE.replace(declaration, wrapped))
     assert api["request_fields"] == ["model", "questions", "state"]
     assert api["required_fields"] == ["model", "questions", "state"]
+    assert api["model_required"] is True
+
+
+def test_request_heading_inside_generic_attributes_is_not_authoritative():
+    metadata = '<span title="\n## Request body\n">Metadata only</span>'
+    api = derive(REFERENCE.replace("## Request body", metadata))
+    assert api["request_fields"] is None
+    assert api["required_fields"] is None
+    assert api["model_required"] is None
+    assert api["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"
+    assert api["question_types"] == ["choice", "noul", "score"]
+
+
+def test_metadata_heading_does_not_conflict_with_real_request_section():
+    metadata = '<span title="\n## Request body\n">Metadata only</span>'
+    api = derive(REFERENCE.replace("## Request body", metadata + "\n\n## Request body"))
+    assert api["request_fields"] == ["model", "questions", "state"]
     assert api["model_required"] is True
