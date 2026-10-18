@@ -113,8 +113,10 @@ just check-strict
 ```
 
 `just sync` performs the public-source observation and generation. `just
-check-strict` validates generated JSON, provenance, and fixture-backed
-determinism checks. Run `actionlint` separately to validate workflow syntax; the
+check` validates generated JSON and provenance. `just check-strict` additionally
+requires event IDs to be unique across all history, each `changes/` report to be
+the rendering of its `events/` file, and `BEST_PRACTICES.md` to match its state.
+Run `actionlint` separately to validate workflow syntax; the
 live scheduled workflow additionally performs a strict sync. All commits in
 this repository must use `git commit -s`.
 

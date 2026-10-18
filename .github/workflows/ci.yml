@@ -27,4 +27,4 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest
       - run: uv run python -m compileall -q src tests
-      - run: PYTHONPATH=src uv run python -m jev_docs validate
+      - run: PYTHONPATH=src uv run python -m jev_docs validate --strict

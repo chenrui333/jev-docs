@@ -236,6 +236,37 @@ def test_sitemap_lastmod_alone_does_not_churn_and_manifests_agree(tmp_path, monk
     )
 
 
+def test_strict_validation_checks_history_and_renderings(tmp_path):
+    upstream = PublicSources()
+    synchronize(tmp_path, upstream, strict=True)
+    upstream.pages["future"] = "# Future"
+    day = synchronize(tmp_path, upstream, strict=True)["day"]
+    validate_tree(tmp_path, strict=True)
+
+    report = tmp_path / f"changes/{day}.md"
+    original_report = report.read_text()
+    report.write_text(original_report + "- hand-edited line\n")
+    validate_tree(tmp_path)
+    with pytest.raises(RuntimeError, match="daily report disagrees"):
+        validate_tree(tmp_path, strict=True)
+    report.write_text(original_report)
+
+    events = json.loads((tmp_path / f"events/{day}.json").read_text())
+    copy = tmp_path / "events/2000-01-01.json"
+    copy.write_text(json.dumps({**events, "date": "2000-01-01"}))
+    (tmp_path / "changes/2000-01-01.md").write_text(original_report.replace(day, "2000-01-01"))
+    validate_tree(tmp_path)
+    with pytest.raises(RuntimeError, match="recorded in"):
+        validate_tree(tmp_path, strict=True)
+    copy.unlink()
+
+    guide = tmp_path / "BEST_PRACTICES.md"
+    guide.write_text(guide.read_text() + "\nUnsupported claim.\n")
+    validate_tree(tmp_path)
+    with pytest.raises(RuntimeError, match="best-practices rendering"):
+        validate_tree(tmp_path, strict=True)
+
+
 def test_cli_attempt_diagnostics_never_expose_exception_body(tmp_path, monkeypatch):
     from jev_docs import sync
 
