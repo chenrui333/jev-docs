@@ -1,0 +1,26 @@
+.github/scripts/sync_diagnostics.py
+  h_9df9c32c3f321d 7,12
+.github/scripts/sync_publication.py
+  h_9df9c32c3f321d 1-223
+.github/workflows/ci.yml
+  h_9df9c32c3f321d 21-22
+.github/workflows/sync.yml
+  h_9df9c32c3f321d 13,17,19-23,27,29,36-40,51-55,57-76,90-147
+README.md
+  h_9df9c32c3f321d 95-118,124-130
+renovate.json
+  h_9df9c32c3f321d 1-5
+tests/test_workflow_publication.py
+  h_9df9c32c3f321d 1-337
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "060bab06f2c1943c622c4a3eaebf344d9e473810",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
