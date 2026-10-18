@@ -530,3 +530,30 @@ def test_ambiguous_lazy_quote_continuation_cannot_verify_active_parameters():
     api = derive(page)
     assert api["request_fields"] is None
     assert api["model_required"] is None
+
+
+@pytest.mark.parametrize("depth", [40, 80])
+def test_excessive_markdown_nesting_cannot_leak_unparsed_example_fields(depth):
+    lines = ["  " * level + "- nested" for level in range(depth)]
+    prefix = "  " * depth
+    lines += [
+        prefix + "~~~mdx",
+        prefix + '<ParamField body="ghost" type="string" required />',
+        prefix + "~~~",
+    ]
+    page = REFERENCE.replace("## Request body", "## Request body\n" + "\n".join(lines) + "\n\n")
+    api = derive(page)
+    assert all(prop["status"] == "unknown" for prop in api["properties"].values())
+
+
+def test_supported_nested_fence_preserves_only_active_contract_fields():
+    depth = 10
+    lines = ["  " * level + "- nested" for level in range(depth)]
+    prefix = "  " * depth
+    lines += [
+        prefix + "~~~mdx",
+        prefix + '<ParamField body="ghost" type="string" required />',
+        prefix + "~~~",
+    ]
+    page = REFERENCE.replace("## Request body", "## Request body\n" + "\n".join(lines) + "\n\n")
+    assert derive(page)["request_fields"] == ["model", "questions", "state"]

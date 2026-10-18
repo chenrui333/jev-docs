@@ -54,12 +54,33 @@ def without_comments(content: str) -> str:
     return re.sub(r"<!--[\s\S]*?(?:-->|\Z)", "\n", content)
 
 
-def without_code_examples(content: str) -> str:
-    """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
+class _MarkdownDepthError(ValueError):
+    """Source structure exceeds the supported nesting bound."""
+
+
+def markdown_tokens(content: str):
+    """Parse source structure, rejecting depth exhaustion before partial tokens escape."""
     # Only source collection needs the tokenizer. Read-only publication validation
     # remains standard-library-only on its Python 3.12 runner.
     from markdown_it import MarkdownIt
 
+    def reject_deep(state, _start_line, _end_line, _silent):
+        if state.level >= 64:
+            raise _MarkdownDepthError
+        return False
+
+    # The native limit silently truncates before emitting a token at that level.
+    # Keep it above our explicit guard so unsupported input cannot look complete.
+    parser = MarkdownIt("commonmark", {"html": False, "maxNesting": 256})
+    parser.block.ruler.before("code", "jev_docs_depth", reject_deep)
+    try:
+        return parser.parse(content)
+    except _MarkdownDepthError:
+        return None
+
+
+def without_code_examples(content: str) -> str:
+    """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
     content = without_comments(content)
     containers: list[str] = []
     parts: list[str] = []
@@ -77,11 +98,10 @@ def without_code_examples(content: str) -> str:
     if not containers:
         parts.append(content[position:])
     content = "".join(parts)
-    # MDX declarations are opaque text here, not CommonMark raw-HTML blocks
-    # that could swallow an adjacent fence without a separating blank line.
-    tokens = MarkdownIt("commonmark", {"html": False, "maxNesting": 64}).parse(content)
-    if any(token.level >= 64 for token in tokens):
-        return ""  # Unsupported deep structure must not yield partial verified facts.
+    # MDX declarations remain opaque text, not raw-HTML blocks swallowing fences.
+    tokens = markdown_tokens(content)
+    if tokens is None:
+        return ""
     excluded = set()
     for token in tokens:
         if token.map and token.type in {"fence", "code_block", "blockquote_open"}:
