@@ -1,0 +1,20 @@
+docs/DESIGN.md
+  h_9df9c32c3f321d 77-98
+src/jev_docs/sync.py
+  h_9df9c32c3f321d 1653-1660,1747-1756,1911-1920,1934-1953,1955,1998-2007,2019-2020,2083-2091,2098
+tests/test_health_isolation.py
+  h_9df9c32c3f321d 1-62
+tests/test_transactions.py
+  h_9df9c32c3f321d 145,148-154,156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7ff43621d53a32c171219ac39a222fe501c60bd8",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
