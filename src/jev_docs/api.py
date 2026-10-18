@@ -4,6 +4,7 @@ import copy
 import hashlib
 import html
 import re
+from dataclasses import dataclass
 from html.parser import HTMLParser
 
 from jev_docs.text import without_code_examples, without_link_metadata
@@ -37,21 +38,93 @@ def section(text, title):
     return matches[0][1] if len(matches) == 1 else ""
 
 
+@dataclass(frozen=True, slots=True)
+class _MarkupToken:
+    kind: str
+    name: str
+    raw: str
+    start: int
+    end: int
+    escaped: bool = False
+
+
+def _escaped(text, position):
+    start = position
+    while start and text[start - 1] == "\\":
+        start -= 1
+    return (position - start) % 2 != 0
+
+
+def _markup(text):
+    class Markup(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=False)
+            self.tokens = []
+            self.lines = [0] + [match.end() for match in re.finditer("\n", text)]
+
+        def position(self):
+            line, column = self.getpos()
+            return self.lines[line - 1] + column
+
+        def opening(self, kind, name):
+            start = self.position()
+            raw = self.get_starttag_text()
+            self.tokens.append(
+                _MarkupToken(kind, name, raw, start, start + len(raw), _escaped(text, start))
+            )
+
+        def handle_starttag(self, name, _attrs):
+            self.opening("start", name)
+
+        def handle_startendtag(self, name, _attrs):
+            self.opening("empty", name)
+
+        def handle_endtag(self, name):
+            start = self.position()
+            end = text.find(">", start) + 1
+            self.tokens.append(
+                _MarkupToken("end", name, text[start:end], start, end, _escaped(text, start))
+            )
+
+        def handle_data(self, data):
+            start = self.position()
+            self.tokens.append(_MarkupToken("data", "", data, start, start + len(data)))
+
+        def handle_comment(self, data):
+            start = self.position()
+            self.tokens.append(_MarkupToken("meta", "", data, start, start + len(data) + 7))
+
+    parser = Markup()
+    parser.feed(text)
+    incomplete = bool(parser.rawdata.strip())
+    parser.close()
+    return parser.tokens, incomplete or bool(parser.rawdata.strip())
+
+
 def without_expandables(text):
-    """Remove complete nested map-entry descriptions, rejecting unbalanced markup."""
+    """Remove real map-entry elements, never similarly named attribute strings."""
+    tokens, incomplete = _markup(text)
+    if incomplete:
+        return None
     chunks = []
     depth = 0
     end = 0
-    for match in re.finditer(r'<(/?)Expandable\b(?:"[^"]*"|[^">])*>', text, re.I):
-        if depth == 0:
-            chunks.append(text[end : match.start()])
-        if match[1]:
+    for token in tokens:
+        if token.name != "expandable" or token.escaped:
+            continue
+        if token.kind in {"start", "empty"}:
+            if depth == 0:
+                chunks.append(text[end : token.start])
+            if token.kind == "start":
+                depth += 1
+            elif depth == 0:
+                end = token.end
+        elif token.kind == "end":
             depth -= 1
             if depth < 0:
                 return None
-        elif not match[0].rstrip().endswith("/>"):
-            depth += 1
-        end = match.end()
+            if depth == 0:
+                end = token.end
     if depth:
         return None
     chunks.append(text[end:])
@@ -78,62 +151,45 @@ def attributes(tag):
 
 
 def field_tags(text, component):
-    """Read actual elements, never declaration-shaped text in another tag's attributes."""
-    line_starts = [0] + [match.end() for match in re.finditer("\n", text)]
+    """Read actual elements; reject incomplete or unsupported openings."""
+    tokens, incomplete = _markup(text)
+    markup = [token for token in tokens if token.kind != "data"]
+    tags = []
+    cursor = 0
+    for opening in re.finditer(rf"<{re.escape(component)}\b", text):
+        position = opening.start()
+        if _escaped(text, position):
+            continue
+        while cursor < len(markup) and markup[cursor].end <= position:
+            cursor += 1
+        token = markup[cursor] if cursor < len(markup) else None
+        if token is not None and token.start < position < token.end:
+            continue  # Another element's metadata or a comment, not a declaration.
+        if token is None or token.start != position or token.kind not in {"start", "empty"}:
+            tags.append("")
+        else:
+            tags.append(token.raw[len(component) + 1 : -1])
+    if incomplete or any(
+        token.name == component.lower()
+        and token.kind in {"start", "empty"}
+        and not token.escaped
+        and not token.raw.startswith("<" + component)
+        for token in markup
+    ):
+        tags.append("")
+    return tags
 
-    class Fields(HTMLParser):
-        def __init__(self):
-            super().__init__(convert_charrefs=False)
-            self.tags = []
-            self.pending = []
 
-        def flush(self):
-            # Unsupported real openings invalidate completeness, not metadata
-            # embedded in successfully parsed outer elements.
-            if re.search(rf"<{component}\b", "".join(self.pending)):
-                self.tags.append("")
-            self.pending.clear()
-
-        def handle_starttag(self, name, _attrs):
-            self.flush()
-            line, column = self.getpos()
-            position = line_starts[line - 1] + column
-            start = position
-            while start and text[start - 1] == "\\":
-                start -= 1
-            if (position - start) % 2:
-                return  # CommonMark backslash escapes produce literal text, not elements.
-            raw = self.get_starttag_text()
-            if re.match(rf"<{component}\b", raw):
-                self.tags.append(raw[len(component) + 1 : -1])
-            elif name == component.lower():
-                self.tags.append("")
-
-        handle_startendtag = handle_starttag
-
-        def handle_endtag(self, _name):
-            self.flush()
-
-        def handle_comment(self, _text):
-            self.flush()
-
-        def handle_entityref(self, _name):
-            self.flush()
-
-        def handle_charref(self, _name):
-            self.flush()
-
-        def handle_data(self, data):
-            self.pending.append(data)
-
-    parser = Fields()
-    parser.feed(text)
-    incomplete = bool(parser.rawdata.strip())
-    parser.close()
-    parser.flush()
-    if incomplete or parser.rawdata.strip():
-        parser.tags.append("")  # Incomplete tokenization cannot prove a complete contract.
-    return parser.tags
+def endpoint_lines(text):
+    tokens, incomplete = _markup(text)
+    if incomplete:
+        return []
+    ranges = [(token.start, token.end) for token in tokens if token.kind == "data"]
+    return [
+        match[1]
+        for match in re.finditer(r"""^(POST https://[^\s`<>"']+)\s*$""", text, re.M)
+        if any(start <= match.start(1) and match.end(1) <= end for start, end in ranges)
+    ]
 
 
 def extract_api(contents, artifacts, previous=None):
@@ -218,7 +274,7 @@ def extract_api(contents, artifacts, previous=None):
     endpoint = section(
         without_link_metadata(without_code_examples(text, keep_http=True)), "Evaluation endpoint"
     )
-    lines = re.findall(r"^(POST https://[^\s`]+)\s*$", endpoint, re.M)
+    lines = endpoint_lines(endpoint)
     fact("endpoint", lines[0] if len(set(lines)) == 1 else None, lines)
     body = section(reference, "Request body")
     declarations = {}

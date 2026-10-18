@@ -631,3 +631,31 @@ def test_component_backslash_escapes_follow_commonmark_parity(slashes):
         if slashes % 2 == 0
         else ["model", "questions", "state"]
     )
+
+
+@pytest.mark.parametrize("balanced", [False, True])
+def test_expandable_delimiters_in_other_element_attributes_do_not_hide_fields(balanced):
+    start = REFERENCE.index('<ParamField body="model"')
+    end = REFERENCE.index("</ParamField>", start) + len("</ParamField>")
+    declaration = REFERENCE[start:end]
+    metadata = '<span title="<Expandable>">Metadata only</span>\n'
+    if balanced:
+        metadata += declaration + '\n<span title="</Expandable>">Metadata only</span>'
+    else:
+        metadata += declaration
+    api = derive(REFERENCE.replace(declaration, metadata))
+    assert api["request_fields"] == ["model", "questions", "state"]
+    assert api["required_fields"] == ["model", "questions", "state"]
+    assert api["model_required"] is True
+
+
+def test_element_attributes_cannot_establish_or_conflict_with_active_endpoint():
+    metadata = '<span title="\nPOST https://obsolete.example/v0\n">Endpoint tooltip</span>'
+    canonical = "```http\nPOST https://api.typesafe.ai/v1/systemone\n```"
+    only_metadata = derive(REFERENCE.replace(canonical, metadata))
+    assert only_metadata["properties"]["endpoint"]["status"] == "unknown"
+    assert only_metadata["model_required"] is True
+    with_real = derive(
+        REFERENCE.replace("## Evaluation endpoint", "## Evaluation endpoint\n" + metadata)
+    )
+    assert with_real["endpoint"] == "POST https://api.typesafe.ai/v1/systemone"

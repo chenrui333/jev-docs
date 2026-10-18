@@ -409,6 +409,8 @@ The extractor scopes parameter declarations to Request body, excluding nested ma
 entries, HTML comments, and code examples (fenced, indented, inline, or raw code
 containers). CommonMark tokens classify list/quote/fence boundaries; the standard
 library HTML tokenizer separates actual component openings from attribute strings.
+The same source-position tokens establish nested map boundaries and active endpoint
+text, so generic component attributes cannot hide parameters or create endpoints.
 Only the narrow documented attribute syntax is interpreted; no MDX is executed or
 rendered. The Markdown tokenizer loads only during source extraction, not
 privileged publication validation. Unsupported
