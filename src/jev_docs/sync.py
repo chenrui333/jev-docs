@@ -242,6 +242,19 @@ class HTTPClient:
         raise FetchError(f"failed to fetch {source_label(url)}: {last_error}", status) from None
 
 
+class _ObservedClient:
+    """Keep per-attempt HTTP success separate from later evidence interpretation."""
+
+    def __init__(self, client, attempt):
+        self.client = client
+        self.attempt = attempt
+
+    def get(self, url):
+        response = self.client.get(url)
+        self.attempt["last_successful_fetch"] = utc_now().isoformat().replace("+00:00", "Z")
+        return response
+
+
 @dataclass
 class Artifact:
     source_id: str
@@ -1411,19 +1424,53 @@ def derive_practices(
     old = old_item_map(previous, "id")
     for rule in PRACTICE_RULES:
         evidence = rule_evidence(rule, contents, artifacts)
+        prior = old.get(rule["id"])
+        today = iso_day(utc_now())
+        same_evidence = (
+            prior and prior.get("sources") == evidence and prior.get("summary") == rule["summary"]
+        )
+        first_seen = prior.get("first_seen") if prior else None
+        first_seen_basis = (
+            prior.get("first_seen_basis", "observed" if first_seen else "unknown_legacy")
+            if prior
+            else "not_yet_supported"
+        )
+        if evidence and first_seen_basis == "not_yet_supported":
+            first_seen = today
+            first_seen_basis = "observed"
+        last_verified = (
+            prior.get("last_verified")
+            if prior and prior.get("summary") == rule["summary"]
+            else None
+        )
+        legacy_verification = (previous or {}).get("verification_semantics") != "evidence_revision"
+        if legacy_verification:
+            # Old unknown rules were assigned dates even without evidence. Reverify
+            # supported facts now; do not promote those dates to verified history.
+            last_verified = None
+        if evidence and (not same_evidence or legacy_verification):
+            last_verified = today
         item = {
             "id": rule["id"],
             "category": rule["category"],
             "status": "recommended" if evidence else "unknown",
             "summary": rule["summary"],
-            "first_seen": old.get(rule["id"], {}).get("first_seen"),
-            "last_verified": old.get(rule["id"], {}).get("last_verified") or iso_day(utc_now()),
+            # A legacy null is genuinely unknown; do not fabricate its first date.
+            "first_seen": first_seen,
+            "first_seen_basis": first_seen_basis,
+            "last_verified": last_verified,
             "sources": evidence,
             "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
         }
+        item["last_changed"] = (
+            prior.get("last_changed")
+            if prior and practice_projection(prior) == practice_projection(item)
+            else today
+        )
         items.append(item)
     state = {
         "schema_version": SCHEMA,
+        "verification_semantics": "evidence_revision",
         "status_vocabulary": [
             "recommended",
             "discouraged",
@@ -1720,7 +1767,7 @@ def models_summary(state: dict[str, Any]) -> str:
 def practice_projection(item: dict[str, Any] | None) -> dict[str, Any] | None:
     if item is None:
         return None
-    return {key: item.get(key) for key in ("id", "category", "status", "summary", "first_seen")}
+    return {key: item.get(key) for key in ("id", "category", "status", "summary")}
 
 
 def semantic_projection(name: str, item: dict[str, Any] | None) -> dict[str, Any] | None:
@@ -1926,12 +1973,15 @@ def load_history_events(events_dir: Path) -> list[dict[str, Any]]:
 
 def render_best_practices(practices: dict[str, Any]) -> str:
     latest = max(
-        (item.get("last_verified") or "unknown" for item in practices["items"]), default="unknown"
+        (item["last_verified"] for item in practices["items"] if item.get("last_verified")),
+        default="unknown",
     )
     lines = [
         "# Jev Engineering Best Practices",
         "",
-        f"Last verified: {latest}",
+        f"Evidence revisions last verified: {latest}"
+        if practices.get("verification_semantics") == "evidence_revision"
+        else f"Last verified: {latest}",
         "",
         "Generated from [`state/practices.json`](state/practices.json). `recommended` means current canonical evidence matched a transparent extraction rule; `unknown` means this snapshot does not provide enough evidence.",
         "",
@@ -2294,7 +2344,7 @@ def _synchronize(
     strict: bool,
     attempt: dict[str, Any],
 ) -> dict[str, Any]:
-    client = client or HTTPClient()
+    client = _ObservedClient(client or HTTPClient(), attempt)
     attempt["phase"] = "discovery"
     previous_docs_manifest = read_json(root / "sources/docs.typesafe.ai/manifest.json", {}) or {}
     previous_github_manifest = (
@@ -2539,11 +2589,11 @@ def _synchronize(
         previous_freshness,
     )
     if freshness["fingerprint"] == previous_freshness.get("fingerprint"):
-        freshness["last_successful_observation"] = previous_freshness.get(
-            "last_successful_observation", observed
+        freshness["last_changed"] = previous_freshness.get(
+            "last_changed", previous_freshness.get("last_successful_observation", observed)
         )
     else:
-        freshness["last_successful_observation"] = observed
+        freshness["last_changed"] = observed
     health_errors = actionable_discrepancies(freshness, utc_now())
     attempt["health_errors"] = health_errors
     sources = {
@@ -2617,6 +2667,7 @@ def _synchronize(
             "strict sync health failed; SDK release discrepancy persisted beyond grace period: "
             f"{names}; validated independent evidence published, unresolved SDK evidence remains explicit"
         )
+    attempt["last_successful_sync"] = utc_now().isoformat().replace("+00:00", "Z")
     return {
         "pages": len(discovered),
         "artifacts": len(artifacts),

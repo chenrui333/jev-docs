@@ -1,0 +1,155 @@
+import json
+
+from test_transactions import PublicSources, snapshot
+
+from jev_docs.sync import Artifact, derive_practices, semantic_events, synchronize
+
+SID = "skill:typesafe-ai"
+TEXT = "Break broad judgments into narrow, typed questions with explicit instructions and criteria."
+
+
+def practice(text=TEXT, previous=None):
+    artifacts = {SID: Artifact(SID, "github-source", "https://example.test/skill", text.encode())}
+    return derive_practices({SID: text}, artifacts, previous)
+
+
+def item(state):
+    return next(i for i in state["items"] if i["id"] == "narrow-coherent-questions")
+
+
+def test_verification_tracks_evidence_revision_not_every_clock_tick(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    first = practice()
+    assert item(first)["first_seen"] == "2026-10-01"
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    assert practice(previous=first) == first
+    revised = practice(TEXT + "\n\nNew unrelated paragraph.", first)
+    assert item(revised)["last_verified"] == "2026-10-02"
+    assert item(revised)["last_changed"] == "2026-10-01"
+    assert semantic_events({"practices": first}, {"practices": revised}, "2026-10-02") == []
+    lost = derive_practices({}, {}, revised)
+    assert item(lost)["last_verified"] == "2026-10-02"
+    assert item(lost)["last_changed"] == "2026-10-02"
+    assert item(lost)["status"] == "unknown"
+
+
+def test_legacy_unknown_first_seen_is_not_fabricated(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    previous = practice()
+    item(previous)["first_seen"] = None
+    item(previous).pop("last_changed", None)
+    item(previous).pop("first_seen_basis", None)
+    previous.pop("verification_semantics", None)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    migrated = practice(previous=previous)
+    assert item(migrated)["first_seen"] is None
+    assert item(migrated)["first_seen_basis"] == "unknown_legacy"
+    assert item(migrated)["last_verified"] == "2026-10-05"
+    assert semantic_events({"practices": previous}, {"practices": migrated}, "now") == []
+
+
+def test_successful_sync_times_are_attempt_metadata_not_commit_churn(tmp_path, monkeypatch):
+    upstream = PublicSources()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    before = snapshot(tmp_path)
+    first = json.loads((tmp_path / "state/freshness.json").read_text())
+    assert "last_successful_observation" not in first
+    assert first["last_changed"] == "2026-10-01T00:00:00Z"
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    attempt = {}
+    assert synchronize(tmp_path, upstream, strict=True, attempt=attempt)["events"] == 0
+    assert attempt["last_successful_sync"] == "2026-10-03T00:00:00Z"
+    assert attempt["last_successful_fetch"] == "2026-10-03T00:00:00Z"
+    assert snapshot(tmp_path) == before
+
+
+def test_new_unknown_practice_gets_first_seen_when_evidence_first_arrives(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    unknown = derive_practices({}, {}, None)
+    assert item(unknown)["first_seen"] is None
+    assert item(unknown)["last_verified"] is None
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    supported = practice(previous=unknown)
+    assert item(supported)["first_seen"] == "2026-10-03"
+    assert item(supported)["last_verified"] == "2026-10-03"
+
+
+def test_verification_heading_ignores_never_verified_practices(monkeypatch):
+    from jev_docs.sync import render_best_practices
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    partial = practice()
+    assert "2026-10-01" in render_best_practices(partial)
+    unsupported = derive_practices({}, {}, None)
+    assert "2026-10-01" not in render_best_practices(unsupported)
+
+
+def test_editing_unsupported_interpretation_invalidates_its_verification(monkeypatch):
+    from jev_docs import sync
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    supported = practice()
+    lost = derive_practices({}, {}, supported)
+    assert item(lost)["last_verified"] == "2026-10-01"
+    rules = tuple(
+        {**rule, "summary": "A different, unsupported interpretation."}
+        if rule["id"] == "narrow-coherent-questions"
+        else rule
+        for rule in sync.PRACTICE_RULES
+    )
+    monkeypatch.setattr(sync, "PRACTICE_RULES", rules)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    revised = derive_practices({}, {}, lost)
+    assert item(revised)["status"] == "unknown"
+    assert item(revised)["last_verified"] is None
+    assert item(revised)["last_changed"] == "2026-10-03"
+
+
+def test_legacy_dates_without_support_do_not_become_verified_history(monkeypatch):
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    legacy = derive_practices({}, {}, None)
+    legacy.pop("verification_semantics")
+    for rule in legacy["items"]:
+        rule["last_verified"] = "2026-01-01"
+        rule.pop("first_seen_basis", None)
+    migrated = derive_practices({}, {}, legacy)
+    assert all(rule["last_verified"] is None for rule in migrated["items"])
+
+
+def test_successful_response_is_recorded_before_interpretation_failure(tmp_path, monkeypatch):
+    from jev_docs.sync import Response
+
+    class UnrecognizedPurpose(PublicSources):
+        def get(self, url):
+            if "system-one-adapter-python" in url and url.endswith("README.md"):
+                return Response(url, b"# Unrecognized purpose wording", {})
+            return super().get(url)
+
+    import pytest
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    attempt = {"last_successful_sync": "stale"}
+    with pytest.raises(RuntimeError, match="unrecognized"):
+        synchronize(tmp_path, UnrecognizedPurpose(), strict=True, attempt=attempt)
+    assert attempt["last_successful_fetch"] == "2026-10-05T00:00:00Z"
+    assert "last_successful_sync" not in attempt
+    assert attempt["phase"] == "derivation"
+
+
+def test_health_failed_publication_is_not_a_successful_sync(tmp_path, monkeypatch):
+    import pytest
+    from test_health_isolation import DelayedRelease
+
+    client = DelayedRelease()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, client, strict=True)
+    client.delayed = True
+    synchronize(tmp_path, client, strict=True)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    attempt = {"last_successful_sync": "previous-attempt"}
+    with pytest.raises(RuntimeError, match="release discrepancy"):
+        synchronize(tmp_path, client, strict=True, attempt=attempt)
+    assert attempt["publication_eligible"]
+    assert attempt["last_successful_fetch"] == "2026-10-05T00:00:00Z"
+    assert "last_successful_sync" not in attempt
