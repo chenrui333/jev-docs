@@ -1,0 +1,20 @@
+README.md
+  h_9df9c32c3f321d 87,91-96
+docs/DESIGN.md
+  h_9df9c32c3f321d 288-289,291-293,296-310,312-314
+src/jev_docs/api.py
+  h_9df9c32c3f321d 4,18-29,32-55,191-192,252-257,260-268,275
+tests/test_api.py
+  h_9df9c32c3f321d 1-2,27-68,181,197-199,204,206-207,209,212-213,215-237,239-250,391-420
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a65c4a891629ba7e9481ef8f8b36b20c0e6fd0ac",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
