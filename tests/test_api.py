@@ -446,15 +446,23 @@ def test_migration_without_verified_facts_is_unknown_evidence_not_verified_basel
         lambda tag: f"\n\t{tag}\n",
         lambda tag: f"<code>{tag}</code>",
         lambda tag: f'<PRE class="example">{tag}</PRE>',
+        lambda tag: f"<script>{tag}</script>",
+        lambda tag: f"<style>{tag}</style>",
         lambda tag: f"> {tag}",
         lambda tag: f"> ~~~mdx\n> {tag}\n> ~~~",
         lambda tag: f"  >> ~~~mdx\n  >> {tag}\n  >> ~~~",
         lambda tag: f"> > ```mdx\n> > {tag}\n> > ```",
+        lambda tag: f"- ~~~mdx\n  {tag}\n  ~~~",
+        lambda tag: f"1. ~~~mdx\n   {tag}\n   ~~~",
+        lambda tag: f"123) ```mdx\n     {tag}\n     ```",
+        lambda tag: f"- outer\n  - ~~~mdx\n    {tag}\n    ~~~",
     ],
 )
 def test_inactive_parameter_examples_do_not_manufacture_request_contract(wrap):
     ghost = '<ParamField body="ghost" type="string" required />'
-    page = REFERENCE.replace("## Request body", "## Request body\n" + wrap(ghost))
+    # Terminate containers before the active declarations; otherwise an ordinary
+    # blockquote can legitimately include a lazy continuation paragraph.
+    page = REFERENCE.replace("## Request body", "## Request body\n" + wrap(ghost) + "\n")
     api = derive(page)
     assert api["request_fields"] == ["model", "questions", "state"]
     assert api["required_fields"] == ["model", "questions", "state"]
@@ -512,3 +520,13 @@ def test_recovery_compares_with_last_verified_facts_across_unknown_gap(recovered
         semantic_events({"api": recovered}, {"api": derive(recovered_text, recovered)}, "later")
         == []
     )
+
+
+def test_ambiguous_lazy_quote_continuation_cannot_verify_active_parameters():
+    page = REFERENCE.replace(
+        "## Request body",
+        '## Request body\n> <ParamField body="ghost" type="string" required />',
+    )
+    api = derive(page)
+    assert api["request_fields"] is None
+    assert api["model_required"] is None

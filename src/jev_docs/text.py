@@ -56,11 +56,15 @@ def without_comments(content: str) -> str:
 
 def without_code_examples(content: str) -> str:
     """Retain raw prose/scalar spans; discard common Markdown/HTML code forms."""
+    # Only source collection needs the tokenizer. Read-only publication validation
+    # remains standard-library-only on its Python 3.12 runner.
+    from markdown_it import MarkdownIt
+
     content = without_comments(content)
     containers: list[str] = []
     parts: list[str] = []
     position = 0
-    for tag in re.finditer(r"<\s*(/?)\s*(code|pre)\b[^>]*>", content, re.I):
+    for tag in re.finditer(r"<\s*(/?)\s*(code|pre|script|style)\b[^>]*>", content, re.I):
         if not containers:
             parts.append(content[position : tag.start()])
         if tag[1]:
@@ -72,31 +76,20 @@ def without_code_examples(content: str) -> str:
         position = tag.end()
     if not containers:
         parts.append(content[position:])
-    prose = []
-    fence = None
-    for line in "".join(parts).splitlines(keepends=True):
-        if re.match(r" {0,3}>", line):
-            # Quoted examples are not affirmative reference declarations, with or
-            # without an inner fence (including tilde and nested quote forms).
-            prose.append("\n")
-            continue
-        marker = re.match(r" {0,3}(`{3,}|~{3,})(.*)", line)
-        if fence:
-            if (
-                marker
-                and marker[1][0] == fence[0]
-                and len(marker[1]) >= fence[1]
-                and not marker[2].strip()
-            ):
-                fence = None
-            prose.append("\n")
-        elif marker:
-            fence = marker[1][0], len(marker[1])
-            prose.append("\n")
-        elif line.expandtabs(4).startswith("    "):
-            prose.append("\n")
-        else:
-            prose.append(line)
+    content = "".join(parts)
+    # MDX declarations are opaque text here, not CommonMark raw-HTML blocks
+    # that could swallow an adjacent fence without a separating blank line.
+    tokens = MarkdownIt("commonmark", {"html": False, "maxNesting": 64}).parse(content)
+    if any(token.level >= 64 for token in tokens):
+        return ""  # Unsupported deep structure must not yield partial verified facts.
+    excluded = set()
+    for token in tokens:
+        if token.map and token.type in {"fence", "code_block", "blockquote_open"}:
+            excluded.update(range(*token.map))
+    prose = [
+        "\n" if line_number in excluded else line
+        for line_number, line in enumerate(content.splitlines(keepends=True))
+    ]
     return re.sub(
         r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)",
         lambda match: (

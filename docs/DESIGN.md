@@ -406,10 +406,13 @@ means first observation of that content revision, and attempt diagnostics cover 
 Recommended aliases never establish `model_default` without an explicit optional default.
 
 The extractor scopes parameter declarations to Request body, excluding nested map
-entries, HTML comments, and code examples (fenced, indented, inline, or code/pre
-containers). Question literals have their own section. Inactive sections cannot
-verify an endpoint or response interpretation. These filters share the practice
-source-text convention rather than implementing a general Markdown renderer. Free-form
+entries, HTML comments, and code examples (fenced, indented, inline, or raw code
+containers). CommonMark tokens classify list/quote/fence boundaries; MDX declarations
+remain opaque raw text and are never executed or rendered. The tokenizer is loaded
+only during source extraction, not privileged publication validation. Unsupported
+deep nesting yields no facts rather than a partial contract. Question literals have
+their own section; inactive sections cannot verify an endpoint or response interpretation.
+This shares the practice source-text convention, not a general MDX renderer. Free-form
 response correlation prose is not practical to parse conservatively with affirmative
 patterns or expanding negation denylists. Instead, `response_shape` uses
 `method: reviewed_reference_interpretation`, an explicit repository interpretation
