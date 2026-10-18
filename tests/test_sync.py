@@ -15,6 +15,7 @@ from jev_docs.sync import (
     build_coverage,
     deduplicate_events,
     derive_practices,
+    derive_state,
     docs_canonical_url,
     docs_source_id,
     event_id,
@@ -444,6 +445,56 @@ def test_model_extraction_and_skill_commit_events() -> None:
         ("model", "modified"),
         ("sdk", "modified"),
     }
+
+
+def test_model_extraction_reads_one_model_per_column_layout() -> None:
+    # Layout used by docs.typesafe.ai/models since 2026-10-15 (cells abbreviated).
+    page = """
+| | Jev 1.14 | Jev 1.13 |
+| :- | :- | :- |
+| Model ID | `jev-1.14.0` | `jev-1.13.0` |
+| Input | Text | Text |
+
+| Alias | Points to | Meaning |
+| :- | :- | :- |
+| `jev-latest` | `jev-1.13.0` | Stable. |
+| `jev-preview` | `jev-1.14.0` | Preview. |
+"""
+    assert extract_models(page) == [
+        {"kind": "alias", "id": "jev-latest", "target": "jev-1.13.0"},
+        {"kind": "alias", "id": "jev-preview", "target": "jev-1.14.0"},
+        {"kind": "versioned", "id": "jev-1.13.0", "label": "Jev 1.13"},
+        {"kind": "versioned", "id": "jev-1.14.0", "label": "Jev 1.14"},
+    ]
+    event = next(
+        event
+        for event in semantic_events(
+            {"models": {"models": []}},
+            {"models": {"models": extract_models(page)}},
+            "2026-10-15",
+        )
+        if event["entity"] == "models"
+    )
+    assert event["summary"] == (
+        "Documented model identities: jev-1.13.0, jev-1.14.0; "
+        "aliases: jev-latest → jev-1.13.0, jev-preview → jev-1.14.0."
+    )
+
+
+@pytest.mark.parametrize(
+    "page",
+    [
+        "| Alias | Points to |\n| :- | :- |\n| `jev-latest` | `jev-9.0.0` |\n",
+        # A column the extractor cannot read must not look like a removed model.
+        "| | Jev 1.14 | Jev 1.13 |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` |\n",
+        "| | Jev 1.14 | Jev 1.13 |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` | jev-1.13.0 |\n",
+        "| | Jev 1.14 | |\n| :- | :- | :- |\n| Model ID | `jev-1.14.0` | `jev-1.13.0` |\n",
+    ],
+)
+def test_unrecognized_models_layout_fails_instead_of_dropping_identities(page) -> None:
+    artifact = Artifact("docs:models", "documentation", "https://docs.typesafe.ai/models.md", b"m")
+    with pytest.raises(RuntimeError, match="unrecognized models table"):
+        derive_state({"docs:models": page}, {"docs:models": artifact}, {})
 
 
 def test_release_provenance_preserves_disagreements() -> None:
