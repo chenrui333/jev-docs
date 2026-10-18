@@ -1,7 +1,7 @@
 import pytest
 from test_transactions import PublicSources, snapshot
 
-from jev_docs.sync import Artifact, derive_state, synchronize
+from jev_docs.sync import Artifact, derive_state, semantic_events, synchronize
 
 REFERENCE = """# API reference
 ## Evaluation endpoint
@@ -55,6 +55,9 @@ def test_required_model_is_not_a_default_inferred_from_an_example():
     for evidence in api["properties"]["question_types"]["evidence"]:
         assert evidence["excerpt"] in REFERENCE
         assert "&#x22;" in evidence["excerpt"]
+    response_evidence = api["properties"]["response_shape"]["evidence"]
+    assert all(e["excerpt"] in REFERENCE for e in response_evidence)
+    assert any("same ids" in e["excerpt"].lower() for e in response_evidence)
 
 
 def test_optional_default_requires_an_explicit_declaration():
@@ -106,6 +109,23 @@ def test_legacy_curated_default_is_not_promoted_to_verified_history():
     known = api["properties"]["model_default"]["last_known"]
     assert known["status"] == "curated_unverified"
     assert api["model_default"] is None
+
+
+def test_curated_to_verified_migration_is_tracking_not_upstream_history():
+    current = derive()
+    legacy = {
+        "endpoint": current["endpoint"],
+        "request_fields": ["model", "state", "questions"],
+        "question_types": current["question_types"],
+        "model_default": "jev-latest",
+        "response_shape": current["response_shape"],
+        "provenance": current["provenance"],
+    }
+    events = semantic_events({"api": legacy}, {"api": current}, "2026-10-18")
+    assert len(events) == 1
+    assert events[0]["change"] == "baseline"
+    assert "corrected repository assumptions" in events[0]["summary"]
+    assert semantic_events({"api": current}, {"api": derive(previous=current)}, "later") == []
 
 
 def test_api_transaction_is_idempotent_and_fetch_failure_preserves_tree(tmp_path):

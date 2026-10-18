@@ -159,14 +159,20 @@ def extract_api(contents, artifacts, previous=None):
         for tag in field_tags(response, "ResponseField")
         if attributes(tag).get("name") == "answers"
     ]
+    correlation = re.search(r"[^.\n<>]*same (?:ids|keys)[^.\n<>]*\.?", response, re.I)
     shape = (
         "answers map keyed by question id"
         if len(answers) == 1
         and attributes(answers[0]).get("type", "").startswith("map<")
-        and re.search(r"same (?:ids|keys)", response, re.I)
+        and correlation
         else None
     )
-    fact("response_shape", shape, ["<ResponseField" + tag + ">" for tag in answers])
+    fact(
+        "response_shape",
+        shape,
+        ["<ResponseField" + tag + ">" for tag in answers]
+        + ([correlation[0].strip()] if correlation else []),
+    )
     return {
         "schema_version": 1,
         **{key: properties[key]["value"] for key in FIELDS},

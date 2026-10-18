@@ -1712,6 +1712,16 @@ def semantic_events(
                     )
                 )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
+            if (
+                name == "api"
+                and "properties" in item
+                and "properties" not in (old_items.get(entity_key) or {})
+            ):
+                change = "baseline"
+                tracking_note = (
+                    "Established claim-level HTTP reference verification; corrected repository "
+                    "assumptions, not an upstream API introduction or contract change."
+                )
             events.append(
                 {
                     "schema_version": SCHEMA,
