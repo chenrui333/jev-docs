@@ -22,6 +22,10 @@ from jev_docs.sync import (
 from jev_docs.text import clean_text
 
 PASSAGES = json.loads((Path(__file__).parent / "fixtures/practice-passages.json").read_text())
+NEUTRAL_CONTEXTS = json.loads(
+    (Path(__file__).parent / "fixtures/practice-neutral-contexts.json").read_text()
+)
+ALL_CONTEXTS = PASSAGES | NEUTRAL_CONTEXTS
 
 
 def artifacts(contents):
@@ -29,7 +33,7 @@ def artifacts(contents):
         sid: Artifact(
             sid,
             "github-source" if sid.startswith("skill:") else "documentation",
-            PASSAGES[sid]["url"],
+            ALL_CONTEXTS[sid]["url"],
             text.encode(),
         )
         for sid, text in contents.items()
@@ -55,11 +59,11 @@ def decisions(sid, supported=(), rejected=()):
 @pytest.fixture(autouse=True)
 def reviewed_passage_fixtures(review_contexts, monkeypatch):
     monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
-    contents = {sid: fixture["text"] for sid, fixture in PASSAGES.items()}
+    contents = {sid: fixture["text"] for sid, fixture in ALL_CONTEXTS.items()}
     review_contexts(
         contents,
         artifacts(contents),
-        {sid: decisions(sid, fixture["recommended"]) for sid, fixture in PASSAGES.items()},
+        {sid: decisions(sid, fixture["recommended"]) for sid, fixture in ALL_CONTEXTS.items()},
     )
 
 
@@ -263,7 +267,7 @@ class PracticeSources(PublicSources):
         super().__init__()
         self.pages = {
             sid.removeprefix("docs:"): fixture["text"]
-            for sid, fixture in PASSAGES.items()
+            for sid, fixture in ALL_CONTEXTS.items()
             if sid.startswith("docs:")
         }
 
@@ -649,3 +653,16 @@ def test_status_preserving_manual_context_reviews_are_recorded(review_contexts, 
     assert event["before_sha256"] != event["after_sha256"]
     assert "local context review" in event["summary"]
     assert semantic_events({"practices": reviewed}, {"practices": reviewed}, "2026-10-03") == []
+
+
+def test_full_sync_reviews_every_fetched_allowed_context(tmp_path):
+    synchronize(tmp_path, PracticeSources(), strict=True)
+    allowed = {sid for rule in PRACTICE_RULES for sid in rule["sources"]}
+    state = json.loads((tmp_path / "state/practices.json").read_text())
+    assert set(state["source_observations"]) == allowed
+    assert {item["id"] for item in state["items"] if item["status"] == "recommended"} == {
+        rule["id"] for rule in PRACTICE_RULES
+    }
+    for item in state["items"]:
+        rule = next(rule for rule in PRACTICE_RULES if rule["id"] == item["id"])
+        assert {row["source_id"] for row in item["evidence_reviews"]} == set(rule["sources"])

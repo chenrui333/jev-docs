@@ -33,6 +33,23 @@ REVIEWED_PRACTICE_CONTEXTS = {
             },
         }
     },
+    "docs:concepts/state": {
+        "f576c027f197ed15c53dd7801deb40aa7b4092061ac3894d57c447ac4faa282e": {
+            "source_sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+            "source_url": "https://docs.typesafe.ai/concepts/state.md",
+            "verdicts": {
+                "batch-independent-questions": "non_conflicting",
+                "observed-state-distinct-from-inference": "non_conflicting",
+            },
+        }
+    },
+    "docs:concepts/system-one": {
+        "bf3b386a9b6046aa5afb3c21507673eafe400cf0f9754c72bb631e832648c51c": {
+            "source_sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
+            "source_url": "https://docs.typesafe.ai/concepts/system-one.md",
+            "verdicts": {"typed-output-is-not-truth": "non_conflicting"},
+        }
+    },
     "docs:confidence": {
         "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec": {
             "source_sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
@@ -52,6 +69,23 @@ REVIEWED_PRACTICE_CONTEXTS = {
                 "jev-complements-generative-agents": "supported",
                 "prefer-typed-decisions-over-prompt-parsing": "supported",
             },
+        }
+    },
+    "docs:patterns/fan-out": {
+        "afa6cfba3f9b1077356c70afb30b0beaf6b95621a58f65a6f96170063eea73f0": {
+            "source_sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+            "source_url": "https://docs.typesafe.ai/patterns/fan-out.md",
+            "verdicts": {
+                "batch-independent-questions": "non_conflicting",
+                "explicit-speculative-premises": "non_conflicting",
+            },
+        }
+    },
+    "docs:primitives/choice": {
+        "5c781384cbda147d890a7fe39c1e8dd6d26185de7bf132f5385e568b5321bfa0": {
+            "source_sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
+            "source_url": "https://docs.typesafe.ai/primitives/choice.md",
+            "verdicts": {"candidate-must-be-present": "non_conflicting"},
         }
     },
     "docs:primitives/noul": {
