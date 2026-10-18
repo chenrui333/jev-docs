@@ -2656,7 +2656,6 @@ def _synchronize(
         attempt["phase"] = "promotion"
         promote(stage, root)
         attempt["phase"] = "sync-complete"
-        attempt["last_successful_sync"] = utc_now().isoformat().replace("+00:00", "Z")
     finally:
         shutil.rmtree(stage, ignore_errors=True)
     # Publication is allowed only after the complete, internally consistent tree is
@@ -2668,6 +2667,7 @@ def _synchronize(
             "strict sync health failed; SDK release discrepancy persisted beyond grace period: "
             f"{names}; validated independent evidence published, unresolved SDK evidence remains explicit"
         )
+    attempt["last_successful_sync"] = utc_now().isoformat().replace("+00:00", "Z")
     return {
         "pages": len(discovered),
         "artifacts": len(artifacts),

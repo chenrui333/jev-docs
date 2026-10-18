@@ -135,3 +135,21 @@ def test_successful_response_is_recorded_before_interpretation_failure(tmp_path,
     assert attempt["last_successful_fetch"] == "2026-10-05T00:00:00Z"
     assert "last_successful_sync" not in attempt
     assert attempt["phase"] == "derivation"
+
+
+def test_health_failed_publication_is_not_a_successful_sync(tmp_path, monkeypatch):
+    import pytest
+    from test_health_isolation import DelayedRelease
+
+    client = DelayedRelease()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, client, strict=True)
+    client.delayed = True
+    synchronize(tmp_path, client, strict=True)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-05T00:00:00Z")
+    attempt = {"last_successful_sync": "previous-attempt"}
+    with pytest.raises(RuntimeError, match="release discrepancy"):
+        synchronize(tmp_path, client, strict=True, attempt=attempt)
+    assert attempt["publication_eligible"]
+    assert attempt["last_successful_fetch"] == "2026-10-05T00:00:00Z"
+    assert "last_successful_sync" not in attempt
