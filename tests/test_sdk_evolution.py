@@ -17,7 +17,7 @@ class SDKSource(PublicSources):
                 {},
             )
         if url.endswith("pyproject.toml"):
-            return Response(url, b'version = "0.7.2"\n', {})
+            return Response(url, b'[project]\nname = "typesafe-sdk"\nversion = "0.7.2"\n', {})
         return super().get(url)
 
 
@@ -32,7 +32,7 @@ def test_html_changelog_and_immutable_python_capability_provenance():
         artifacts,
         "typesafe-ai/typesafe-sdk-python",
         [release],
-        {"releases": {"0.7.2": []}},
+        {"info": {"name": "typesafe-sdk"}, "releases": {"0.7.2": []}},
         notes,
     )
     result = python_capabilities(*args)
@@ -95,7 +95,7 @@ def test_release_configuration_mismatch_does_not_attribute_capabilities():
             {},
             "typesafe-ai/typesafe-sdk-python",
             [release],
-            {"releases": {"0.7.1": []}},
+            {"info": {"name": "typesafe-sdk"}, "releases": {"0.7.1": []}},
             notes,
         )
         == []
@@ -152,15 +152,23 @@ class ReleaseSources(PublicSources):
                     body = self.config_body
                 elif self.main_commit in url and self.main_commit != self.release_commit:
                     body = (
-                        'version = "0.2.0"\nrequires-python = ">=3.14"\n'
+                        '[project]\nname = "typesafe-sdk"\nversion = "0.2.0"\nrequires-python = ">=3.14"\n'
                         if self.kind == "python"
-                        else {"version": "0.2.0", "engines": {"node": ">=24"}}
+                        else {
+                            "name": "@typesafe-ai/sdk",
+                            "version": "0.2.0",
+                            "engines": {"node": ">=24"},
+                        }
                     )
                 else:
                     body = (
-                        f'version = "{self.config_version}"\nrequires-python = ">=3.10"\n'
+                        f'[project]\nname = "typesafe-sdk"\nversion = "{self.config_version}"\nrequires-python = ">=3.10"\n'
                         if self.kind == "python"
-                        else {"version": self.config_version, "engines": {"node": ">=18"}}
+                        else {
+                            "name": "@typesafe-ai/sdk",
+                            "version": self.config_version,
+                            "engines": {"node": ">=18"},
+                        }
                     )
             elif url.endswith("docs/changelog.md"):
                 body = "## v0.1.0 (2026-09-01)\n\n- add http2 extra\n"
@@ -172,11 +180,11 @@ class ReleaseSources(PublicSources):
         ):
             body = (
                 {
-                    "info": {"version": self.registry_version},
+                    "info": {"name": "typesafe-sdk", "version": self.registry_version},
                     "releases": {self.registry_version: []},
                 }
                 if self.kind == "python"
-                else {"dist-tags": {"latest": self.registry_version}}
+                else {"name": "@typesafe-ai/sdk", "dist-tags": {"latest": self.registry_version}}
             )
             return Response(url, json.dumps(body).encode(), {})
         return super().get(url)
@@ -696,3 +704,345 @@ def test_build_release_pagination_keeps_capabilities_pinned_to_current_release(t
         assert capability["source_commit"] == upstream.release_commit
         assert all(upstream.release_commit in p["url"] for p in capability["provenance"])
     assert not any("c" * 40 in url for url in upstream.requested)
+
+
+@pytest.mark.parametrize(
+    "heading", ["## v{version} (2026-10-01)", "<h2>v{version} (2026-10-01)</h2>"]
+)
+def test_build_version_capabilities_require_exact_immutable_release_notes(heading):
+    from jev_docs.sync import Response, sdk_snapshot
+
+    version = "0.7.5+build.1"
+    notes = heading.format(version=version) + "\n\n- add http2 extra\n"
+
+    class BuildReleaseSources(ReleaseSources):
+        def get(self, url):
+            if self.repo in url and url.endswith("docs/changelog.md"):
+                self.requested.append(url)
+                return Response(url, notes.encode(), {})
+            return super().get(url)
+
+    upstream = BuildReleaseSources()
+    upstream.registry_version = upstream.config_version = version
+    upstream.tags = [{"name": f"v{version}", "commit": {"sha": upstream.release_commit}}]
+    upstream.releases = [{"tag_name": f"v{version}"}]
+    artifacts = {}
+    state = sdk_snapshot(
+        upstream, artifacts, upstream.repo, "typesafe-sdk", "python", "pyproject.toml", notes, None
+    )
+    assert state["discrepancies"] == []
+    assert state["release_history"][0]["documented_changes"] == ["add http2 extra"]
+    assert len(state["capabilities"]) == 1
+    capability = state["capabilities"][0]
+    assert capability["id"] == "python-http2-extra"
+    assert capability["introduced"] == version
+    assert capability["source_tag"] == f"v{version}"
+    assert capability["source_commit"] == upstream.release_commit
+    assert capability["status"] == "documented"
+    assert len(capability["provenance"]) == 2
+    for evidence in capability["provenance"]:
+        assert upstream.release_commit in evidence["url"]
+        assert evidence["sha256"] == artifacts[evidence["source_id"]].sha256
+    assert all(
+        upstream.main_commit not in url
+        for url in upstream.requested
+        if "raw.githubusercontent.com" in url
+    )
+
+    # A similarly named immutable release cannot supply this exact build's notes.
+    notes = heading.format(version="0.7.5+build.2") + "\n\n- add http2 extra\n"
+    result = python_capabilities(
+        upstream,
+        {},
+        upstream.repo,
+        state["release_history"],
+        {"info": {"name": "typesafe-sdk"}, "releases": {version: []}},
+        [{"version": version, "notes": ["add http2 extra"]}],
+        state["capabilities"],
+    )
+    assert result == [{**capability, "status": "unknown"}]
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_policy_upgrade_preserves_older_release_backfill_once(tmp_path, monkeypatch, kind):
+    from test_transactions import snapshot
+
+    from jev_docs.sync import canonical_json, observed_state, synchronize
+
+    upstream = ReleaseSources(kind)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / f"state/sdk-{kind}.json"
+    legacy = json.loads(sdk_path.read_text())
+    legacy.pop("release_evidence_policy")
+    legacy.pop("fingerprint")
+    sdk_path.write_text(canonical_json(observed_state(legacy, None)) + "\n")
+    baseline = (tmp_path / "events/baseline.json").read_bytes()
+    upstream.tags.append({"name": "v0.0.9", "commit": {"sha": "c" * 40}})
+    upstream.releases.append({"tag_name": "v0.0.9", "published_at": "2026-08-31"})
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    result = synchronize(tmp_path, upstream, strict=True)
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    sdk_events = [event for event in events if event["entity"] == f"sdk-{kind}"]
+    assert len(sdk_events) == 1 and sdk_events[0]["change"] == "modified"
+    assert "not an upstream release change" not in sdk_events[0]["summary"]
+    current = json.loads(sdk_path.read_text())
+    for field in ("version", "source_tag", "source_commit", "discrepancies"):
+        assert current[field] == legacy[field]
+    assert [release["version"] for release in current["release_history"]] == ["0.0.9", "0.1.0"]
+    assert (tmp_path / "events/baseline.json").read_bytes() == baseline
+    before = snapshot(tmp_path)
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-03T00:00:00Z")
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize(
+    "field,value", [("name", "Corrected title"), ("published_at", "2026-09-02")]
+)
+def test_policy_upgrade_preserves_changed_release_metadata(field, value):
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    current, _ = release_snapshot(ReleaseSources())
+    legacy = copy.deepcopy(current)
+    legacy.pop("release_evidence_policy")
+    current["release_history"][0][field] = value
+    events = semantic_events({"sdk-python": legacy}, {"sdk-python": current}, "today")
+    assert len(events) == 1 and events[0]["change"] == "modified"
+
+
+def test_policy_upgrade_release_history_source_enrichment_is_still_local_baseline():
+    import copy
+
+    from jev_docs.sync import semantic_events
+
+    current, _ = release_snapshot(ReleaseSources())
+    legacy = copy.deepcopy(current)
+    legacy.pop("release_evidence_policy")
+    for release in legacy["release_history"]:
+        release.pop("source_commit")
+        release.pop("documented_changes_source_class", None)
+    events = semantic_events({"sdk-python": legacy}, {"sdk-python": current}, "today")
+    assert len(events) == 1 and events[0]["change"] == "baseline"
+
+
+@pytest.mark.parametrize(
+    "config,version,runtime",
+    [
+        (
+            '[tool.example]\nversion = "0.1.0"\nrequires-python = ">=9"\n'
+            '[project]\nname = "typesafe-sdk"\nversion = "0.2.0"\nrequires-python = ">=3.10"\n',
+            "0.2.0",
+            ">=3.10",
+        ),
+        (
+            'description = """\nversion = "0.1.0"\nrequires-python = ">=9"\n"""\n'
+            '[project]\nname = "typesafe-sdk"\nversion = "0.2.0"\nrequires-python = ">=3.10"\n',
+            "0.2.0",
+            ">=3.10",
+        ),
+        (
+            '["project"]\n"name" = "typesafe-sdk"\n"version" = "0.1.0"\n\'requires-python\' = ">=3.10"\n',
+            "0.1.0",
+            ">=3.10",
+        ),
+        (
+            '[project]\nversion = "0.1.0"\nversion = "0.1.0"\nrequires-python = ">=3.10"\n',
+            None,
+            None,
+        ),
+        (
+            '[project]\nversion = "0.1.0"\ndynamic = ["version"]\nrequires-python = ">=3.10"\n',
+            None,
+            ">=3.10",
+        ),
+        (
+            '[project]\ndynamic = ["version"]\n[tool.example]\nversion = "0.1.0"\n',
+            None,
+            None,
+        ),
+        ('version = "0.1.0"\nrequires-python = ">=3.10"\n', None, None),
+        ('[tool.example]\nversion = "0.1.0"\nrequires-python = ">=3.10"\n', None, None),
+        ('[project]\nversion = 1\nrequires-python = ["3.10"]\n', None, None),
+        ('[project]\nversion = "0.1.0"\ndynamic = "version"\n', None, None),
+    ],
+    ids=[
+        "wrong-table",
+        "misleading-multiline-string",
+        "quoted-project-keys",
+        "duplicate-version",
+        "dynamic-static-version-conflict",
+        "dynamic-version-no-tool-fallback",
+        "no-root-fallback",
+        "no-tool-fallback",
+        "non-string-fields",
+        "malformed-dynamic",
+    ],
+)
+def test_python_release_configuration_uses_only_static_project_fields(config, version, runtime):
+    from jev_docs.sync import parse_simple_toml_value
+
+    assert parse_simple_toml_value(config, "version") == version
+    assert parse_simple_toml_value(config, "requires-python") == runtime
+    upstream = ReleaseSources()
+    upstream.config_body = config
+    state, _ = release_snapshot(upstream)
+    if version == upstream.registry_version:
+        assert state["discrepancies"] == []
+        assert state["source_commit"] == upstream.release_commit
+        assert state["runtime"] == {"python": runtime}
+        assert state["capabilities"]
+        assert all(
+            item["source_commit"] == upstream.release_commit for item in state["capabilities"]
+        )
+    else:
+        discrepancy = (
+            "release_config_malformed" if version is None else "release_config_version_mismatch"
+        )
+        assert state["discrepancies"] == [discrepancy]
+        assert state["source_commit"] is None and state["source_tag"] is None
+        assert state["runtime"] == {"python": "unknown"}
+        assert state["capabilities"] == []
+
+
+def test_python_dynamic_runtime_is_unknown_without_tool_table_fallback():
+    upstream = ReleaseSources()
+    upstream.config_body = (
+        '[project]\nname = "typesafe-sdk"\nversion = "0.1.0"\ndynamic = ["requires-python"]\n'
+        '[tool.example]\nrequires-python = ">=9"\n'
+    )
+    state, _ = release_snapshot(upstream)
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {"python": "unknown"}
+    assert state["discrepancies"] == []
+
+
+@pytest.mark.parametrize(
+    "config",
+    [
+        '[tool.example]\nversion = "0.1.0"\n[project]\nversion = "0.2.0"\n',
+        'description = """\nversion = "0.1.0"\n"""\n[project]\nversion = "0.2.0"\n',
+        '[project]\nversion = "0.1.0"\ndynamic = ["version"]\n',
+    ],
+)
+def test_evaluation_tool_cannot_verify_unrelated_or_dynamic_project_version(config):
+    from jev_docs.sync import Response, evaluation_tool_snapshot
+
+    class EvaluationConfigSources(PublicSources):
+        def get(self, url):
+            if "system-one-adapter-python" in url and url.endswith("pyproject.toml"):
+                return Response(url, config.encode(), {})
+            return super().get(url)
+
+    with pytest.raises(RuntimeError, match="evaluation tool release/config mismatch"):
+        evaluation_tool_snapshot(EvaluationConfigSources(), {}, None)
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+@pytest.mark.parametrize("name", [None, "unrelated-package"])
+def test_sdk_release_requires_matching_config_package_name(kind, name):
+    upstream = ReleaseSources(kind)
+    if kind == "python":
+        upstream.config_body = '[project]\nversion = "0.1.0"\nrequires-python = ">=3.10"\n'
+        if name is not None:
+            upstream.config_body += f'name = "{name}"\n'
+    else:
+        upstream.config_body = {"version": "0.1.0", "engines": {"node": ">=18"}}
+        if name is not None:
+            upstream.config_body["name"] = name
+    state, _ = release_snapshot(upstream)
+    discrepancy = "release_config_name_missing" if name is None else "release_config_name_mismatch"
+    assert state["discrepancies"] == [discrepancy]
+    assert state["source_tag"] is None and state["source_commit"] is None
+    assert state["runtime"] == {kind: "unknown"}
+    assert state["capabilities"] == []
+    assert len(state["provenance"]) == 1
+
+
+@pytest.mark.parametrize("observed_name", ["TypeSafe_SDK", "TYPEsafe...___SDK"])
+def test_python_package_name_normalization_preserves_observed_registry_evidence(observed_name):
+    from jev_docs.sync import Response
+
+    class NormalizedNames(ReleaseSources):
+        def get(self, url):
+            response = super().get(url)
+            if "pypi.org" in url:
+                body = json.loads(response.body)
+                body["info"]["name"] = observed_name
+                return Response(url, json.dumps(body).encode(), {})
+            return response
+
+    upstream = NormalizedNames()
+    upstream.config_body = (
+        '[project]\nname = "typesafe.sdk"\nversion = "0.1.0"\nrequires-python = ">=3.10"\n'
+    )
+    state, artifacts = release_snapshot(upstream)
+    assert state["package"] == "typesafe-sdk"
+    assert state["source_commit"] == upstream.release_commit
+    assert state["runtime"] == {"python": ">=3.10"}
+    assert state["discrepancies"] == []
+    assert state["capabilities"]
+    registry = artifacts["registry:pypi:typesafe-sdk"]
+    assert json.loads(registry.content)["name"] == observed_name
+    canonical, canonical_artifacts = release_snapshot(ReleaseSources())
+    assert registry.sha256 != canonical_artifacts["registry:pypi:typesafe-sdk"].sha256
+    assert canonical["package"] == state["package"]
+
+
+@pytest.mark.parametrize("name", [None, "@Typesafe-ai/sdk", "@typesafe-ai/other"])
+def test_npm_scoped_package_name_matching_is_exact(name):
+    upstream = ReleaseSources("javascript")
+    upstream.config_body = {"version": "0.1.0", "engines": {"node": ">=18"}}
+    if name is not None:
+        upstream.config_body["name"] = name
+    state, _ = release_snapshot(upstream)
+    assert state["source_commit"] is None
+    assert state["runtime"] == {"javascript": "unknown"}
+    expected = "release_config_name_missing" if name is None else "release_config_name_mismatch"
+    assert state["discrepancies"] == [expected]
+
+
+@pytest.mark.parametrize("name", [None, "unrelated-package"])
+def test_immutable_capabilities_require_the_registry_project_name(name):
+    from jev_docs.sync import Response
+
+    release = {"version": "0.7.2", "tag": "v0.7.2", "source_commit": "a" * 40}
+    registry = {"info": {"name": "typesafe-sdk"}, "releases": {"0.7.2": []}}
+    notes = [{"version": "0.7.2", "notes": ["add http2 extra"]}]
+    previous = python_capabilities(
+        SDKSource(), {}, "typesafe-ai/typesafe-sdk-python", [release], registry, notes
+    )
+    assert previous and previous[0]["status"] == "documented"
+
+    class OtherProject(SDKSource):
+        def get(self, url):
+            if url.endswith("pyproject.toml"):
+                config = '[project]\nversion = "0.7.2"\n'
+                if name is not None:
+                    config += f'name = "{name}"\n'
+                return Response(url, config.encode(), {})
+            return super().get(url)
+
+    assert python_capabilities(
+        OtherProject(), {}, "typesafe-ai/typesafe-sdk-python", [release], registry, notes, previous
+    ) == [{**item, "status": "unknown"} for item in previous]
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_registry_evidence_includes_the_observed_package_name(kind):
+    from jev_docs.sync import sha256_json
+
+    state, artifacts = release_snapshot(ReleaseSources(kind))
+    registry = next(a for a in artifacts.values() if a.source_type == "package-registry")
+    evidence = json.loads(registry.content)
+    expected = (
+        {"name": "typesafe-sdk", "version": "0.1.0", "published_versions": ["0.1.0"]}
+        if kind == "python"
+        else {"name": "@typesafe-ai/sdk", "latest": "0.1.0"}
+    )
+    assert evidence == expected
+    assert registry.sha256 == sha256_json(expected) == state["provenance"][0]["sha256"]
+    assert registry.sha256 != sha256_json({k: v for k, v in expected.items() if k != "name"})

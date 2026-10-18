@@ -28,6 +28,11 @@ from jev_docs.inventories import cookbooks, model_limitations, render_limitation
 from jev_docs.text import excerpt
 from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
 
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
+
 # datetime.UTC requires Python 3.11; the project supports Python 3.10.
 UTC = timezone.utc
 
@@ -611,7 +616,16 @@ def is_github_commit_sha(value: Any) -> bool:
     return isinstance(value, str) and re.fullmatch(r"[0-9a-fA-F]{40}", value) is not None
 
 
-def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
+def package_names_match(observed: Any, expected: Any, package_kind: str) -> bool:
+    if not nonempty_string(observed) or not nonempty_string(expected):
+        return False
+    if package_kind == "python":
+        # PEP 503 canonicalizes case and each run of '-', '_' and '.'.
+        return re.sub(r"[-_.]+", "-", observed).lower() == re.sub(r"[-_.]+", "-", expected).lower()
+    return observed == expected
+
+
+def registry_json(response: Response, package_kind: str, package: str) -> dict[str, Any]:
     service = "PyPI" if package_kind == "python" else "npm"
     value = metadata_json(response, service)
     if not isinstance(value, dict):
@@ -626,10 +640,14 @@ def registry_json(response: Response, package_kind: str) -> dict[str, Any]:
             raise schema_error(response, service, "releases as a version-to-file-list map")
         if info["version"] not in releases:
             raise schema_error(response, service, "info.version to appear in the releases map")
+        if not package_names_match(info.get("name"), package, package_kind):
+            raise schema_error(response, service, "info.name matching the requested package")
     else:
         tags = value.get("dist-tags")
         if not isinstance(tags, dict) or not nonempty_string(tags.get("latest")):
             raise schema_error(response, service, "dist-tags.latest as a nonempty string")
+        if not package_names_match(value.get("name"), package, package_kind):
+            raise schema_error(response, service, "name matching the requested scoped package")
     return value
 
 
@@ -783,15 +801,39 @@ def stable_head_evidence(value: Any) -> dict[str, Any]:
 
 
 def parse_simple_toml_value(text: str, key: str) -> str | None:
-    match = re.search(rf"^{re.escape(key)}\s*=\s*[\"']([^\"']+)[\"']", text, re.MULTILINE)
-    return match.group(1) if match else None
+    """Read a static PEP 621 project string; never infer root/tool-table fields."""
+    try:
+        project = tomllib.loads(text).get("project")
+    except tomllib.TOMLDecodeError:
+        return None
+    if not isinstance(project, dict):
+        return None
+    dynamic = project.get("dynamic", [])
+    if (
+        not isinstance(dynamic, list)
+        or any(not isinstance(field, str) for field in dynamic)
+        or key in dynamic
+    ):
+        return None
+    value = project.get(key)
+    return value if nonempty_string(value) else None
+
+
+STABLE_VERSION_PATTERN = (
+    r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+)
 
 
 def parse_release_notes(text: str) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     text = re.sub(r"<h2\b[^>]*>\s*(.*?)\s*</h2>", r"## \1", text, flags=re.S)
     headings = list(
-        re.finditer(r"^\s*#+\s*v?(\d+\.\d+\.\d+)\s*\(([^)]+)\)", text, re.MULTILINE | re.IGNORECASE)
+        re.finditer(
+            rf"^\s*#+\s*v?(?P<version>{STABLE_VERSION_PATTERN})\s*\((?P<date>[^)]+)\)",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
     )
     for index, match in enumerate(headings):
         end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
@@ -801,7 +843,7 @@ def parse_release_notes(text: str) -> list[dict[str, Any]]:
             for line in block.splitlines()
             if line.strip().startswith(("-", "*"))
         ]
-        result.append({"version": match.group(1), "date": match.group(2), "notes": bullets[:12]})
+        result.append({"version": match["version"], "date": match["date"], "notes": bullets[:12]})
     return result
 
 
@@ -809,11 +851,7 @@ def version_tuple(value: Any) -> tuple[int, ...] | None:
     """Return stable SemVer precedence; build metadata does not affect ordering."""
     if not isinstance(value, str):
         return None
-    match = re.fullmatch(
-        r"v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
-        r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
-        value.strip(),
-    )
+    match = re.fullmatch(rf"v?{STABLE_VERSION_PATTERN}", value.strip())
     return tuple(int(part) for part in match.groups()) if match else None
 
 
@@ -1014,6 +1052,10 @@ def python_capabilities(client, artifacts, repo, releases, registry, live_notes,
     items = []
     published = registry.get("releases") if isinstance(registry, dict) else None
     published = published if isinstance(published, dict) else {}
+    info = registry.get("info") if isinstance(registry, dict) else None
+    package_name = info.get("name") if isinstance(info, dict) else None
+    if not nonempty_string(package_name):
+        published = {}
     for release in releases:
         version = release["version"]
         live = next((n for n in live_notes if n["version"] == version), None)
@@ -1054,7 +1096,9 @@ def python_capabilities(client, artifacts, repo, releases, registry, live_notes,
                 break
             evidence.append({"source_id": sid, "url": url, "sha256": artifact.sha256})
             if path == "pyproject.toml":
-                if parse_simple_toml_value(text, "version") != version:
+                if parse_simple_toml_value(text, "version") != version or not package_names_match(
+                    parse_simple_toml_value(text, "name"), package_name, "python"
+                ):
                     break
             else:
                 notes = next(
@@ -1136,24 +1180,25 @@ def sdk_snapshot(
     if package_kind == "python":
         registry_url = f"https://pypi.org/pypi/{package}/json"
         registry_response = client.get(registry_url)
-        registry = registry_json(registry_response, package_kind)
+        registry = registry_json(registry_response, package_kind, package)
         public_surface = ["TypeSafeClient", "AsyncTypeSafeClient", "Choice", "Noul", "Score"]
         registry_id = f"registry:pypi:{package}"
     else:
         registry_url = f"https://registry.npmjs.org/{package.replace('/', '%2f')}"
         registry_response = client.get(registry_url)
-        registry = registry_json(registry_response, package_kind)
+        registry = registry_json(registry_response, package_kind, package)
         public_surface = ["TypeSafeClient", "choice", "noul", "score"]
         registry_id = f"registry:npm:{package}"
     if package_kind == "python":
         version = registry["info"]["version"]
         registry_evidence = {
+            "name": registry["info"]["name"],
             "version": version,
             "published_versions": sorted(registry["releases"]),
         }
     else:
         version = registry["dist-tags"]["latest"]
-        registry_evidence = {"latest": version}
+        registry_evidence = {"name": registry["name"], "latest": version}
     artifacts[registry_id] = Artifact(
         registry_id, "package-registry", registry_url, evidence_bytes(registry_evidence)
     )
@@ -1190,6 +1235,7 @@ def sdk_snapshot(
                 if package_kind == "python":
                     text = config_response.body.decode()
                     config_version = parse_simple_toml_value(text, "version")
+                    config_name = parse_simple_toml_value(text, "name")
                     config_runtime = parse_simple_toml_value(text, "requires-python")
                 else:
                     config = metadata_json(config_response, "SDK configuration")
@@ -1200,6 +1246,7 @@ def sdk_snapshot(
                             config_response, "SDK configuration", "an object with an engines map"
                         )
                     config_version = config.get("version")
+                    config_name = config.get("name")
                     config_runtime = config.get("engines", {}).get("node", "unknown")
                     if not isinstance(config_runtime, str):
                         raise schema_error(
@@ -1207,11 +1254,16 @@ def sdk_snapshot(
                         )
             except (UnicodeError, json.JSONDecodeError):
                 config_version = None
+                config_name = None
                 config_runtime = None
             if config_version is None:
                 release_info["discrepancies"].append("release_config_malformed")
             elif config_version != version:
                 release_info["discrepancies"].append("release_config_version_mismatch")
+            elif not nonempty_string(config_name):
+                release_info["discrepancies"].append("release_config_name_missing")
+            elif not package_names_match(config_name, package, package_kind):
+                release_info["discrepancies"].append("release_config_name_mismatch")
             else:
                 runtime = config_runtime if isinstance(config_runtime, str) else "unknown"
                 provenance.append(
@@ -1555,6 +1607,7 @@ def semantic_events(
                 )
                 and old_items[entity_key].get("discrepancies", [])
                 == new_items.get(entity_key, {}).get("discrepancies", [])
+                and before_value["release_history"] == after_value["release_history"]
             )
             if before == after and not sdk_policy_baseline:
                 continue

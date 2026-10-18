@@ -475,17 +475,23 @@ def test_invalid_github_json_has_no_raw_body_traceback():
         ("python", b"private-token invalid JSON"),
         ("python", b"[]"),
         ("python", b'{"info": [], "releases": {}}'),
-        ("python", b'{"info": {"version": null}, "releases": {}}'),
-        ("python", b'{"info": {"version": " "}, "releases": {}}'),
-        ("python", b'{"info": {"version": "0.1.0"}, "releases": []}'),
-        ("python", b'{"info": {"version": "0.1.0"}, "releases": {"0.1.0": null}}'),
-        ("python", b'{"info": {"version": "0.2.0"}, "releases": {"0.1.0": []}}'),
-        ("python", b'{"info": {"version": "0.1.0"}, "releases": {}}'),
+        ("python", b'{"info": {"name": "typesafe-sdk", "version": null}, "releases": {}}'),
+        ("python", b'{"info": {"name": "typesafe-sdk", "version": " "}, "releases": {}}'),
+        ("python", b'{"info": {"name": "typesafe-sdk", "version": "0.1.0"}, "releases": []}'),
+        (
+            "python",
+            b'{"info": {"name": "typesafe-sdk", "version": "0.1.0"}, "releases": {"0.1.0": null}}',
+        ),
+        (
+            "python",
+            b'{"info": {"name": "typesafe-sdk", "version": "0.2.0"}, "releases": {"0.1.0": []}}',
+        ),
+        ("python", b'{"info": {"name": "typesafe-sdk", "version": "0.1.0"}, "releases": {}}'),
         ("javascript", b"private-token invalid JSON"),
         ("javascript", b"[]"),
-        ("javascript", b'{"dist-tags": []}'),
-        ("javascript", b'{"dist-tags": {"latest": null}}'),
-        ("javascript", b'{"dist-tags": {"latest": ""}}'),
+        ("javascript", b'{"name": "@typesafe-ai/sdk", "dist-tags": []}'),
+        ("javascript", b'{"name": "@typesafe-ai/sdk", "dist-tags": {"latest": null}}'),
+        ("javascript", b'{"name": "@typesafe-ai/sdk", "dist-tags": {"latest": ""}}'),
     ],
 )
 def test_registry_failures_are_structured_and_preserve_last_good_tree(tmp_path, kind, body):
@@ -512,11 +518,11 @@ def test_registry_failures_are_structured_and_preserve_last_good_tree(tmp_path, 
 def test_pypi_published_identity_must_exist_in_releases_map():
     response = Response(
         "https://pypi.org/pypi/typesafe-sdk/json",
-        b'{"info": {"version": "0.2.0"}, "releases": {"0.1.0": []}}',
+        b'{"info": {"name": "typesafe-sdk", "version": "0.2.0"}, "releases": {"0.1.0": []}}',
         {},
     )
     with pytest.raises(FetchError, match="PyPI.*schema.*info.version.*releases") as caught:
-        registry_json(response, "python")
+        registry_json(response, "python", "typesafe-sdk")
     assert caught.value.code == "invalid_schema"
 
 
@@ -581,3 +587,61 @@ def test_sdk_and_evaluation_tool_both_consume_all_pages():
     assert sdk["available_tags"] == ["v0.0.1", "v0.1.0"]
     assert len(client.second_pages) == 4
     assert evaluation["source_tag"] == "v0.1.0"
+
+
+@pytest.mark.parametrize(
+    "kind,name",
+    [
+        ("python", None),
+        ("python", ""),
+        ("python", "unrelated-package"),
+        ("javascript", None),
+        ("javascript", ""),
+        ("javascript", "unrelated-package"),
+        ("javascript", "@Typesafe-ai/sdk"),
+    ],
+)
+def test_registry_package_identity_failure_preserves_complete_baseline(tmp_path, kind, name):
+    synchronize(tmp_path, PublicSources(), strict=True)
+    baseline = snapshot(tmp_path)
+
+    class WrongRegistryIdentity(PublicSources):
+        def __init__(self):
+            super().__init__()
+            self.requested = []
+
+        def get(self, url):
+            self.requested.append(url)
+            response = super().get(url)
+            if (kind == "python" and "pypi.org" in url) or (
+                kind == "javascript" and "registry.npmjs.org" in url
+            ):
+                body = json.loads(response.body)
+                identity = body["info"] if kind == "python" else body
+                if name is None:
+                    identity.pop("name")
+                else:
+                    identity["name"] = name
+                return Response(url, json.dumps(body).encode(), {})
+            return response
+
+    client = WrongRegistryIdentity()
+    package = "typesafe-sdk" if kind == "python" else "@typesafe-ai/sdk"
+    with pytest.raises(FetchError, match="(PyPI|npm).*schema.*name") as caught:
+        sdk_snapshot(
+            client,
+            {},
+            f"typesafe-ai/typesafe-sdk-{'python' if kind == 'python' else 'js'}",
+            package,
+            kind,
+            "pyproject.toml" if kind == "python" else "package.json",
+            None,
+            None,
+        )
+    assert caught.value.code == "invalid_schema"
+    assert not any("raw.githubusercontent.com" in url for url in client.requested)
+    attempt = {}
+    with pytest.raises(RuntimeError, match="last-known-good"):
+        synchronize(tmp_path, client, strict=True, attempt=attempt)
+    assert not attempt.get("publication_eligible")
+    assert snapshot(tmp_path) == baseline
