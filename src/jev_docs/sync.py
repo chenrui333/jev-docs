@@ -641,6 +641,7 @@ def _practice_review_policy_sha256():
         {
             "policy": PRACTICE_EVIDENCE_POLICY,
             "require_raw_source": True,
+            "require_source_url": True,
             "rules": PRACTICE_RULES,
             "reviews": REVIEWED_PRACTICE_CONTEXTS,
         }
@@ -667,7 +668,7 @@ def rule_evidence(
             continue
         context, context_hash = practice_context(content)
         review = REVIEWED_PRACTICE_CONTEXTS.get(source_id, {}).get(context_hash, {})
-        verdict = _practice_review_verdict(review, rule["id"], artifact.sha256)
+        verdict = _practice_review_verdict(review, rule["id"], artifact.sha256, artifact.url)
         observation = {
             "source_id": source_id,
             "url": artifact.url,
@@ -1899,6 +1900,14 @@ def semantic_events(
                 and old_items[entity_key].get("summary") == new_items[entity_key].get("summary")
                 and old_items[entity_key].get("evidence_reviews")
                 != new_items[entity_key].get("evidence_reviews")
+                and {
+                    row["source_id"]: row.get("url")
+                    for row in old_items[entity_key]["evidence_reviews"]
+                }
+                == {
+                    row["source_id"]: row.get("url")
+                    for row in new_items[entity_key].get("evidence_reviews", [])
+                }
                 and practice_rule_sources.get(entity_key)
                 and all(
                     old_state[name].get("source_observations", {}).get(sid)
@@ -2937,7 +2946,9 @@ def _validate_practice_reviews(practices, sources, *, allow_migration=False):
                 if approved["source_sha256"] == current["sha256"]
             }
             approved = registry.get(digest, {})
-            expected = _practice_review_verdict(approved, rid, current["sha256"])
+            expected = _practice_review_verdict(
+                approved, rid, current["sha256"], current["fetch_url"]
+            )
             origin = (
                 {"url": approved["source_url"], "sha256": approved["source_sha256"]}
                 if approved

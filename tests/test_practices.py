@@ -273,9 +273,27 @@ class PracticeSources(PublicSources):
         }
 
     def get(self, url):
+        if "/skills/commits?" in url:
+            commit = PASSAGES["skill:typesafe-ai"]["url"].split("/skills/", 1)[1].split("/", 1)[0]
+            return Response(url, json.dumps([{"sha": commit}]).encode(), {})
         if "/skills/" in url and url.endswith("SKILL.md"):
             return Response(url, PASSAGES["skill:typesafe-ai"]["text"].encode(), {})
         return super().get(url)
+
+
+class RelocatedPracticeSources(PracticeSources):
+    source_id = "docs:introduction/coding-agents"
+    destination = "https://docs.typesafe.ai/relocated/coding-agents.md"
+
+    def __init__(self):
+        super().__init__()
+        self.relocated = False
+
+    def get(self, url):
+        response = super().get(url)
+        if self.relocated and url == PASSAGES[self.source_id]["url"]:
+            return Response(self.destination, response.body, {})
+        return response
 
 
 @pytest.mark.parametrize("section", ["sources", "source_observations"])
@@ -928,3 +946,67 @@ def test_legacy_policy_requires_sync_migration_not_standalone_approval(tmp_path,
     stable = snapshot(tmp_path)
     assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
     assert snapshot(tmp_path) == stable
+
+
+def test_source_relocation_requires_origin_review_and_is_not_a_local_policy_change(
+    tmp_path, review_contexts
+):
+    upstream = RelocatedPracticeSources()
+    sid = upstream.source_id
+    synchronize(tmp_path, upstream, strict=True)
+    prior = json.loads((tmp_path / "state/practices.json").read_text())
+    affected = {rule["id"] for rule in PRACTICE_RULES if sid in rule["sources"]}
+    upstream.relocated = True
+    result = synchronize(tmp_path, upstream, strict=True)
+    moved = json.loads((tmp_path / "state/practices.json").read_text())
+    assert moved["source_observations"] == prior["source_observations"]
+    assert all(items(moved)[rid]["status"] == "unknown" for rid in affected)
+    events = json.loads((tmp_path / f"events/{result['day']}.json").read_text())["events"]
+    assert {event["entity"] for event in events if event["change"] == "modified"} >= affected
+    text = PASSAGES[sid]["text"]
+    artifact = Artifact(sid, "documentation", upstream.destination, text.encode())
+    review_contexts(
+        {sid: text}, {sid: artifact}, {sid: decisions(sid, PASSAGES[sid]["recommended"])}
+    )
+    synchronize(tmp_path, upstream, strict=True)
+    approved = json.loads((tmp_path / "state/practices.json").read_text())
+    assert all(items(approved)[rid]["status"] == "recommended" for rid in affected)
+    validate_tree(tmp_path, strict=True)
+    stable = snapshot(tmp_path)
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == stable
+
+
+def test_same_origin_source_relabel_cannot_preserve_approval_via_coordinated_metadata(tmp_path):
+    trusted, candidate = tmp_path / "trusted", tmp_path / "candidate"
+    upstream = RelocatedPracticeSources()
+    sid = upstream.source_id
+    synchronize(trusted, upstream, strict=True)
+    synchronize(candidate, upstream, strict=True)
+    original = items(json.loads((trusted / "state/practices.json").read_text()))
+    upstream.relocated = True
+    synchronize(candidate, upstream, strict=True)
+    path = candidate / "state/practices.json"
+    state = json.loads(path.read_text())
+    for item in state["items"]:
+        row = next((row for row in item["evidence_reviews"] if row["source_id"] == sid), None)
+        if row is None:
+            continue
+        previous = original[item["id"]]
+        prior_review = next(row for row in previous["evidence_reviews"] if row["source_id"] == sid)
+        row["verdict"] = prior_review["verdict"]
+        item["status"] = previous["status"]
+        item["sources"] = [
+            dict(ref, url=upstream.destination) if ref["source_id"] == sid else dict(ref)
+            for ref in previous["sources"]
+        ]
+        item["historical_sources"] = [
+            dict(ref) for ref in previous["sources"] if ref["source_id"] == sid
+        ]
+    state["fingerprint"] = sha256_json(
+        {key: value for key, value in state.items() if key not in {"fingerprint", "observed_at"}}
+    )
+    path.write_text(json.dumps(state))
+    (candidate / "BEST_PRACTICES.md").write_text(render_best_practices(state))
+    with pytest.raises(RuntimeError):
+        validate_tree(candidate, strict=True, history_root=trusted)

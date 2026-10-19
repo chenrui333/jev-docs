@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "0414567415596975a89de69e9c21659458ce5fc002bd623ce3e45e6aa1c448c0",
+  "fingerprint": "403417c546ccaa1a0c66cd3ebf0938850c2e44516483ca19c8ceeb5950dc0276",
   "items": [
     {
       "category": "agent-integration",
@@ -889,8 +889,8 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-18T23:46:40.065085Z",
-  "review_policy_sha256": "5f5134ba2f2ba2c35524a49c236e3e80485dd73e4f694afcfae55ab431aca0c9",
+  "observed_at": "2026-10-19T00:01:02.128810Z",
+  "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
     "docs:concepts/how-to-build-with-system-one": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",

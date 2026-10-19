@@ -18,9 +18,9 @@ def practice_context(content: str) -> tuple[str, str]:
     return context, hashlib.sha256(context.encode()).hexdigest()
 
 
-def _practice_review_verdict(review, rule_id, raw_sha256):
-    """A context digest is review metadata, never a substitute for exact source bytes."""
-    if review.get("source_sha256") != raw_sha256:
+def _practice_review_verdict(review, rule_id, raw_sha256, source_url):
+    """Authorize only the exact reviewed source identity and bytes."""
+    if review.get("source_sha256") != raw_sha256 or review.get("source_url") != source_url:
         return "unreviewed"
     return review.get("verdicts", {}).get(rule_id, "unreviewed")
 

@@ -477,8 +477,9 @@ only line endings, trailing whitespace, and repeated blank lines normalize.
 The separate passage extractor excludes examples. Evidence records retain both
 the raw artifact hash and reviewed context hash, while `evidence_reviews` explains
 unknown or conflicting observations. Historical citations remain separate.
-Approval also requires the exact reviewed raw source SHA. Normalized context hashes
-are review metadata, not authorization for different retained bytes: the privileged
+Approval also requires the exact reviewed raw source SHA and fetch URL. A redirected
+or substituted URL remains unreviewed even when its bytes are identical.
+Normalized context hashes are review metadata, not authorization for different bytes: the privileged
 publisher does not receive source bodies with which to recompute them. Even
 whitespace-only raw revisions remain unreviewed until explicitly approved.
 Strict validation independently checks every configured practice, including unknown
@@ -491,7 +492,8 @@ context that no longer passes its literal bundles fails publication and requires
 review of the extraction policy rather than quietly withdrawing a recommendation.
 The publication boundary requires the current evidence policy whenever practice
 state changes; unchanged trusted legacy state remains readable.
-`review_policy_sha256` identifies the authored rules, complete review registry and raw-hash binding.
+`review_policy_sha256` identifies the authored rules, complete review registry and
+raw-hash/origin binding requirements.
 Standalone validation and publication require the current policy. Trusted sync
 preflight permits an older policy revision while retaining all checksum, source,
 and history checks; collection must then regenerate and validate against the current
