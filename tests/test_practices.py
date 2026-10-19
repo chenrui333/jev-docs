@@ -1010,3 +1010,38 @@ def test_same_origin_source_relabel_cannot_preserve_approval_via_coordinated_met
     (candidate / "BEST_PRACTICES.md").write_text(render_best_practices(state))
     with pytest.raises(RuntimeError):
         validate_tree(candidate, strict=True, history_root=trusted)
+
+
+@pytest.mark.parametrize("old_context", [None, "0" * 64])
+def test_review_metadata_upgrade_does_not_turn_current_citations_into_history(old_context):
+    sid, rid = "docs:primitives/noul", "noul-is-yes-probability"
+    contents = {sid: PASSAGES[sid]["text"]}
+    evidence = artifacts(contents)
+    current = derive_practices(contents, evidence, None)
+    legacy = json.loads(json.dumps(current))
+    old_ref = items(legacy)[rid]["sources"][0]
+    if old_context is None:
+        old_ref.pop("context_sha256")
+    else:
+        old_ref["context_sha256"] = old_context
+    upgraded = derive_practices(contents, evidence, legacy)
+    item = items(upgraded)[rid]
+    assert item["sources"] == items(current)[rid]["sources"]
+    assert not item.get("historical_sources")
+    # The guide must not publish the same citation under contradictory support labels.
+    for ref in item["sources"]:
+        assert render_best_practices(upgraded).count(ref["excerpt"]) == 1
+
+
+def test_distinct_historical_excerpt_survives_review_metadata_deduplication():
+    sid, rid = "docs:primitives/noul", "noul-is-yes-probability"
+    contents = {sid: PASSAGES[sid]["text"]}
+    evidence = artifacts(contents)
+    current = derive_practices(contents, evidence, None)
+    previous = json.loads(json.dumps(current))
+    ref = items(previous)[rid]["sources"][0]
+    historical = dict(ref, excerpt="Synthetic distinct historical quotation.")
+    items(previous)[rid]["historical_sources"] = [historical]
+    retained = derive_practices(contents, evidence, previous)
+    assert items(retained)[rid]["sources"] == items(current)[rid]["sources"]
+    assert items(retained)[rid]["historical_sources"] == [historical]

@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "403417c546ccaa1a0c66cd3ebf0938850c2e44516483ca19c8ceeb5950dc0276",
+  "fingerprint": "af52d91cc5d3e4640a1d1fcd56474685bde4c30ccb072872e5a5a6d7c82d9f4c",
   "items": [
     {
       "category": "agent-integration",
@@ -88,14 +88,6 @@
       ],
       "first_seen": null,
       "first_seen_basis": "unknown_legacy",
-      "historical_sources": [
-        {
-          "excerpt": "Replace a fragile prompt that asks an LLM to \"return JSON\" with a call that returns typed values by construction.",
-          "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
-          "source_id": "docs:introduction/coding-agents",
-          "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
-        }
-      ],
       "id": "prefer-typed-decisions-over-prompt-parsing",
       "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
       "last_changed": null,
@@ -215,12 +207,6 @@
       "first_seen_basis": "unknown_legacy",
       "historical_sources": [
         {
-          "excerpt": "Break broad judgments into narrow, typed questions with explicit instructions and criteria.",
-          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
-          "source_id": "docs:concepts/how-to-build-with-system-one",
-          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
-        },
-        {
           "excerpt": "Ask one narrow, coherent judgment per question.",
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
@@ -288,12 +274,6 @@
           "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-        },
-        {
-          "excerpt": "Ask independent questions over the same state together, including useful speculative questions.",
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-          "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
       "id": "batch-independent-questions",
@@ -360,12 +340,6 @@
           "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-        },
-        {
-          "excerpt": "State each speculative premise explicitly; code consumes the applicable answers.",
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-          "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
       "id": "explicit-speculative-premises",
@@ -425,12 +399,6 @@
           "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
-        },
-        {
-          "excerpt": "Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.",
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-          "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
       "id": "choice-confidence-concentration",
@@ -674,12 +642,6 @@
           "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
-        },
-        {
-          "excerpt": "Use probabilities and confidence to guide behavior, with thresholds evaluated on the user's data and consequences.",
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-          "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
       "id": "domain-calibrated-thresholds",
@@ -740,14 +702,6 @@
       ],
       "first_seen": null,
       "first_seen_basis": "unknown_legacy",
-      "historical_sources": [
-        {
-          "excerpt": "Typed output guarantees the interface, not truth.",
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-          "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-        }
-      ],
       "id": "typed-output-is-not-truth",
       "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
       "last_changed": null,
@@ -889,7 +843,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-19T00:01:02.128810Z",
+  "observed_at": "2026-10-19T00:09:44.574228Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {

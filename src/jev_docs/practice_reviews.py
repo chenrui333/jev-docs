@@ -26,14 +26,21 @@ def _practice_review_verdict(review, rule_id, raw_sha256, source_url):
 
 
 def _historical_practice_sources(previous, current_evidence):
-    """Retain only prior citations that are not asserted as current support."""
-    historical = []
+    """Retain distinct prior citations, excluding current ones despite policy metadata."""
+
+    def identity(source):
+        return tuple(source.get(key) for key in ("source_id", "url", "sha256", "excerpt"))
+
+    current = {identity(source) for source in current_evidence}
+    historical, seen = [], set()
     for source in [
         *(previous or {}).get("historical_sources", []),
         *(previous or {}).get("sources", []),
     ]:
-        if source not in current_evidence and source not in historical:
+        key = identity(source)
+        if key not in current and key not in seen:
             historical.append(source)
+            seen.add(key)
     return historical
 
 

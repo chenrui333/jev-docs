@@ -478,7 +478,8 @@ def test_changed_practice_state_cannot_downgrade_approval_policy(repository, tmp
 
 
 @pytest.mark.parametrize(
-    "change", ["append", "rewrite", "drop", "new-item", "withdraw", "recurrence"]
+    "change",
+    ["append", "rewrite", "drop", "new-item", "withdraw", "recurrence", "metadata-upgrade"],
 )
 def test_publication_authenticates_historical_practice_citations(repository, tmp_path, change):
     path = repository / "state/practices.json"
@@ -517,6 +518,9 @@ def test_publication_authenticates_historical_practice_citations(repository, tmp
         item["id"] = "new-practice-with-invented-history"
     elif change == "recurrence":
         item["sources"], item["historical_sources"] = [historical], [current]
+    elif change == "metadata-upgrade":
+        item["sources"] = [dict(current, context_sha256="c" * 64)]
+        item["historical_sources"] = [historical]
     path.write_text(json.dumps(candidate))
     baseline, artifact, packed = prepare(repository, tmp_path)
     assert packed.returncode == 0, packed.stderr
@@ -524,7 +528,7 @@ def test_publication_authenticates_historical_practice_citations(repository, tmp
     path.write_text(original_bytes)
     git(repository, "add", "--", "state/practices.json")
     applied = invoke(repository, artifact, baseline, command="apply")
-    if change in {"withdraw", "recurrence"}:
+    if change in {"withdraw", "recurrence", "metadata-upgrade"}:
         assert applied.returncode == 0, applied.stderr
         assert json.loads(path.read_text()) == candidate
     else:

@@ -26,8 +26,6 @@ For decisions expressible as TypeSafe's typed questions, consider replacing frag
 Evidence:
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Replace a fragile prompt that asks an LLM to "return JSON" with a call that returns typed values by construction.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — If any of that matches what you're building, the fastest path in is the Quick start, then the primitives reference for the question types.
-Historical evidence (not current support):
-- [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Replace a fragile prompt that asks an LLM to "return JSON" with a call that returns typed values by construction.
 
 ## Batching and speculative fan-out
 
@@ -41,7 +39,6 @@ Evidence:
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — State each speculative premise explicitly; code consumes the applicable answers.
 Historical evidence (not current support):
 - [docs:patterns/fan-out](https://docs.typesafe.ai/patterns/fan-out.md) — Because TypeSafe supports sending many questions in a single API call, we recommend putting all of the questions your system needs in a single request, and then using code to decide what is relevant after the fact. All questions are evaluated in parallel, so adding more questions usually has little effect on response time.
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Ask independent questions over the same state together, including useful speculative questions.
 
 ### explicit-speculative-premises — `recommended`
 
@@ -52,7 +49,6 @@ Evidence:
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — State each speculative premise explicitly; code consumes the applicable answers.
 Historical evidence (not current support):
 - [docs:patterns/fan-out](https://docs.typesafe.ai/patterns/fan-out.md) — Send many questions in a single call, including speculative ones, and let your code decide what's relevant.
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — State each speculative premise explicitly; code consumes the applicable answers.
 
 ## Confidence
 
@@ -64,7 +60,6 @@ Evidence:
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.
 Historical evidence (not current support):
 - [docs:confidence](https://docs.typesafe.ai/confidence.md) — This gives 0 at $p = 0.5$ and 1 at $p = 0$ or $p = 1$. It is also the Choice formula below applied to a yes-or-no Choice, so it sits on the same scale as Choice confidence.
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.
 
 ### confidence-is-not-permission — `recommended`
 
@@ -122,7 +117,6 @@ Ask narrow, coherent, typed questions with explicit instructions and criteria ra
 Evidence:
 - [docs:concepts/how-to-build-with-system-one](https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md) — Break broad judgments into narrow, typed questions with explicit instructions and criteria.
 Historical evidence (not current support):
-- [docs:concepts/how-to-build-with-system-one](https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md) — Break broad judgments into narrow, typed questions with explicit instructions and criteria.
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Ask one narrow, coherent judgment per question.
 
 ## State construction
@@ -149,7 +143,6 @@ Evidence:
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Treat cookbook thresholds and demo results as examples to evaluate, not universal rules or permanent model limitations.
 Historical evidence (not current support):
 - [docs:confidence](https://docs.typesafe.ai/confidence.md) — The correct threshold values depend on your domain and the performance of the model for your use case. Start with conservative thresholds, test with your own data, and adjust as you observe results.
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Use probabilities and confidence to guide behavior, with thresholds evaluated on the user's data and consequences.
 
 ## Error handling and verification
 
@@ -170,5 +163,3 @@ Typed output guarantees interface shape, not truth; test representative cases an
 Evidence:
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Typed output guarantees the interface, not truth.
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Test representative cases and the resulting application behavior.
-Historical evidence (not current support):
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Typed output guarantees the interface, not truth.

@@ -501,6 +501,8 @@ policy before promotion. This permits explicit approval or withdrawal of an alre
 observed context without accepting a stale generated patch.
 Historical practice citations follow one shared retention rule: deduplicate prior
 historical/current citations and exclude citations currently asserted as support.
+Identity is source ID, URL, raw SHA and excerpt; added review-policy metadata must
+not turn the same currently cited passage into historical evidence.
 Candidate validation checks this against the trusted previous tree; privileged
 publication independently checks it against the Git baseline before applying data.
 An isolated snapshot's checksums alone cannot authenticate historical quotations.
