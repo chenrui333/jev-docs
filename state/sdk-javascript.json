@@ -6,21 +6,21 @@
   ],
   "capabilities": [],
   "discrepancies": [],
-  "fingerprint": "3ad51613e278dad6345c04a212d9231f4da88f10f9b370a18990d7c755699190",
+  "fingerprint": "0a49fdf9227e9dd0bb8c7b6b8fc7790056cd0dde3ebc68039ca564cdd30af1d7",
   "main_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-15T04:42:33.830696Z",
+  "observed_at": "2026-10-18T21:12:13.326953Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {
-      "sha256": "5b91ef13fa6bc4b943fb18f148420cfb42292855e339949482c08617521045b7",
-      "source_id": "github:typesafe-ai/typesafe-sdk-js:package.json",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json"
-    },
-    {
-      "sha256": "1e1e90bba892b6dc4ab01db81f195f28cdac7812ba978c72f022f47f97b32725",
+      "sha256": "165487aed0389a9f5d9f9e3069c5f75706a1b50043b483224d715109db4dc627",
       "source_id": "registry:npm:@typesafe-ai/sdk",
       "url": "https://registry.npmjs.org/@typesafe-ai%2fsdk"
+    },
+    {
+      "sha256": "5b91ef13fa6bc4b943fb18f148420cfb42292855e339949482c08617521045b7",
+      "source_id": "github:typesafe-ai/typesafe-sdk-js:v0.7.0:package.json",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json"
     }
   ],
   "public_surface": {
@@ -34,8 +34,11 @@
       "Choice",
       "Noul",
       "Score"
-    ]
+    ],
+    "scope": "Manually curated SDK overview; not verified for this release.",
+    "source_class": "curated"
   },
+  "release_evidence_policy": "tag-verified-v1",
   "release_history": [
     {
       "documented_changes": [],
@@ -46,6 +49,7 @@
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.5.7 (2026-09-11)",
       "published_at": "2026-09-12T04:13:23Z",
       "source_commit": "04b2ad750cc26281cf9085bd21832ea33fb35d0d",
@@ -64,6 +68,7 @@
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.6.0 (2026-09-15)",
       "published_at": "2026-09-15T18:17:21Z",
       "source_commit": "66880ccded6cb642dc1809620c2b108c33730214",
@@ -91,6 +96,7 @@
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
       ],
+      "documented_changes_source_class": "mutable_documentation",
       "name": "v0.7.0 (2026-10-14)",
       "published_at": "2026-10-14T21:21:31Z",
       "source_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",

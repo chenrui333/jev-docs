@@ -1,8 +1,166 @@
 {
   "endpoint": "POST https://api.typesafe.ai/v1/systemone",
-  "fingerprint": "4df78d2183e892d70ff15fb3bba60b253410e5e2c2bd345608f57e33d55e1c0e",
-  "model_default": "jev-latest",
-  "observed_at": "2026-10-15T04:42:33.830938Z",
+  "fingerprint": "d0bebecbe32e420b232bedc0747b19849a3ce61697ecbbf25bfa8253e9a3d534",
+  "interpretation": "Explicit reference declarations are extracted; response_shape is a repository interpretation gated by a reviewed complete section hash. Examples never establish defaults or requiredness.",
+  "missing_sources": [],
+  "model_default": null,
+  "model_required": true,
+  "observed_at": "2026-10-18T21:12:13.410356Z",
+  "properties": {
+    "endpoint": {
+      "evidence": [
+        {
+          "excerpt": "POST https://api.typesafe.ai/v1/systemone",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "method": "official_reference_extraction",
+      "status": "verified",
+      "value": "POST https://api.typesafe.ai/v1/systemone"
+    },
+    "model_default": {
+      "evidence": [],
+      "last_known": {
+        "evidence": [
+          {
+            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+            "source_id": "docs:api",
+            "url": "https://docs.typesafe.ai/api.md"
+          }
+        ],
+        "status": "curated_unverified",
+        "value": "jev-latest"
+      },
+      "method": "official_reference_extraction",
+      "reason": "No explicit optional model default is documented; recommended/example aliases are not defaults.",
+      "status": "unknown",
+      "value": null
+    },
+    "model_required": {
+      "evidence": [
+        {
+          "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "method": "official_reference_extraction",
+      "status": "verified",
+      "value": true
+    },
+    "question_types": {
+      "evidence": [
+        {
+          "excerpt": "<ParamField body=\"type\" type=\"&#x22;noul&#x22;\" required />",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"type\" type=\"&#x22;choice&#x22;\" required />",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"type\" type=\"&#x22;score&#x22;\" required />",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "method": "official_reference_extraction",
+      "status": "verified",
+      "value": [
+        "choice",
+        "noul",
+        "score"
+      ]
+    },
+    "request_fields": {
+      "evidence": [
+        {
+          "excerpt": "<ParamField body=\"state\" type=\"string | object | array\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"questions\" type=\"map<string, Question>\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "method": "official_reference_extraction",
+      "status": "verified",
+      "value": [
+        "model",
+        "questions",
+        "state"
+      ]
+    },
+    "required_fields": {
+      "evidence": [
+        {
+          "excerpt": "<ParamField body=\"state\" type=\"string | object | array\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "<ParamField body=\"questions\" type=\"map<string, Question>\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "method": "official_reference_extraction",
+      "status": "verified",
+      "value": [
+        "model",
+        "questions",
+        "state"
+      ]
+    },
+    "response_shape": {
+      "evidence": [
+        {
+          "excerpt": "<ResponseField name=\"answers\" type=\"map<string, Answer>\" required>",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        },
+        {
+          "excerpt": "One answer per question, returned under the same ids you provided.",
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "interpretation": "Explicit repository interpretation of a reviewed canonical Response body revision, not automatic prose extraction.",
+      "method": "reviewed_reference_interpretation",
+      "observed_section_sha256": "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924",
+      "reviewed_section_sha256": "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924",
+      "status": "verified",
+      "value": "answers map keyed by question id"
+    }
+  },
   "provenance": [
     {
       "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
@@ -12,14 +170,25 @@
   ],
   "question_types": [
     "choice",
-    "score",
-    "noul"
+    "noul",
+    "score"
   ],
   "request_fields": [
     "model",
-    "state",
-    "questions"
+    "questions",
+    "state"
+  ],
+  "required_fields": [
+    "model",
+    "questions",
+    "state"
   ],
   "response_shape": "answers map keyed by question id",
-  "schema_version": 1
+  "schema_version": 1,
+  "status_vocabulary": [
+    "verified",
+    "inferred",
+    "unknown"
+  ],
+  "warnings": []
 }

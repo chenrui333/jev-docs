@@ -1,0 +1,22 @@
+{
+  "docs:concepts/state": {
+    "url": "https://docs.typesafe.ai/concepts/state.md",
+    "text": "Fixture reference about structured application input; no complete accepted practice bundle.",
+    "recommended": []
+  },
+  "docs:concepts/system-one": {
+    "url": "https://docs.typesafe.ai/concepts/system-one.md",
+    "text": "Fixture reference distinguishing structured model outputs from application behavior.",
+    "recommended": []
+  },
+  "docs:patterns/fan-out": {
+    "url": "https://docs.typesafe.ai/patterns/fan-out.md",
+    "text": "Fixture example of speculative workflow routing; not a general performance benchmark.",
+    "recommended": []
+  },
+  "docs:primitives/choice": {
+    "url": "https://docs.typesafe.ai/primitives/choice.md",
+    "text": "Fixture reference describing option selection; no complete accepted practice bundle.",
+    "recommended": []
+  }
+}

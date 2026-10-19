@@ -2,6 +2,144 @@
   "date": "2026-10-18",
   "events": [
     {
+      "after_sha256": "649245f7c13b91723e92d763f8fd8d9769c1e8b3db52191096ae76ba33f1e25b",
+      "before_sha256": "04317fa7518f6d4213a1308c0075732e1ba4700797a5d0c6b5e98f608651b41b",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:math-and-numbers",
+      "id": "15f7bca58603b738dde29cb5",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:math-and-numbers; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "947e076d823360c7d8d7ddbf9d432b7d60b65600e452712246e7871c1116df2f",
+      "before_sha256": "947e076d823360c7d8d7ddbf9d432b7d60b65600e452712246e7871c1116df2f",
+      "category": "sdk",
+      "change": "baseline",
+      "entity": "sdk-javascript",
+      "id": "169741f057a31d94217200c5",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": "4a709c60e78d49bb6ffa0ffc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "165487aed0389a9f5d9f9e3069c5f75706a1b50043b483224d715109db4dc627",
+          "source_id": "registry:npm:@typesafe-ai/sdk",
+          "url": "https://registry.npmjs.org/@typesafe-ai%2fsdk"
+        },
+        {
+          "sha256": "5b91ef13fa6bc4b943fb18f148420cfb42292855e339949482c08617521045b7",
+          "source_id": "github:typesafe-ai/typesafe-sdk-js:v0.7.0:package.json",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-js/b844cd1aca12855a5d24a2df52a1401c86e7d37a/package.json"
+        }
+      ],
+      "summary": "Established sdk-javascript tag-verified release evidence tracking; local correction of legacy SDK extraction/provenance, not an upstream release change."
+    },
+    {
+      "after_sha256": "7c51116d52ad49f350aa9fa7b90910a002ec9d7407e1c276795aee5b39a4ddf9",
+      "before_sha256": "a0438f2a92f48f5bef2e75bf5e46b993c269edc32362d29668cd266d2e28345d",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:counting",
+      "id": "18fcf9f4d1675ef36df99dea",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:counting; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "1b1e07adee10d0092e091fe564a1ffb42aa63abcbd515363a26c4cd5ee06fb64",
+      "before_sha256": "ea53440006475548014af08e2d687f31d60dd145564997de5d057d85ec24b869",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:contradictory-instructions-and-criteria",
+      "id": "1b3582d72b68e7f30f7a02ef",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:contradictory-instructions-and-criteria; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "0d7ad75a805877ad9d62806964310f525282ee68f8e6363144d576ff16a10548",
+      "before_sha256": "11197caea7c7027e0d887eb8be5688edffabf92c377076dd50b2566658103448",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:large-state-full-of-irrelevant-detail",
+      "id": "24c2a863449c79a17c65e16b",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": "24cea7e3fc0a597e81ebcd2d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:large-state-full-of-irrelevant-detail; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "7d42e4ad38867c914c38a7a7da736abb0be67de01eb33ea6b48dc1a9eb42d6fa",
+      "before_sha256": "7ebe951448bcb2b49eca1cbb1af6af659ca1f16d02368582cf50d2a74a5c04eb",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:choice-option-order",
+      "id": "2d0e3ce884c0453643a2d187",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": "defe0e740c9191effaa6643f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:choice-option-order; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "90bc19222a8109da92176aff1684971d42072d44102ac25f448ba56905d479eb",
+      "before_sha256": "43d237162ae7e6fcfcb5001a93704dfc48e8a5feee13e2fd15586aa99d24a9a9",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:adversarial-content",
+      "id": "3fe7bed92bef2063f965e939",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:adversarial-content; established a tracking baseline, not an upstream limitation change."
+    },
+    {
       "after_sha256": "63988b0a1401cd58a47bbd614b7999085da3634ea3f108888f9943dab14c307c",
       "before_sha256": "a9a759ef7960d0b69fc50b4386493d7d463f0bc3586057d0a5218afa7065f9a9",
       "category": "model",
@@ -18,6 +156,182 @@
         }
       ],
       "summary": "Documented model identities: jev-1.13.0, jev-1.14.0; aliases: jev-latest → jev-1.13.0, jev-preview → jev-1.14.0."
+    },
+    {
+      "after_sha256": "1db192e7329242bf64e94c5aa5d988094af17e75db868743bf95274057457006",
+      "before_sha256": "0364c92f10097b6a1f84deb3941b697d3890e85291f76034ee73257b3eb75b6d",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:numeric-representations",
+      "id": "636a42d9c4fdba978f37852f",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:numeric-representations; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "649c07719fc713fa2a0c5eec49ec175d747b0548b72d0823def4e0a9d9713ea7",
+      "before_sha256": "4415dd8bfb0d05b2cf3cb4915dd68f8df65e338d65967c40ee2a7dc9d72a151a",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:indirection",
+      "id": "6906a464c72131f62e0c1589",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:indirection; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "ec8901bdba010230442aa9d2dbec8376ed43cf70137e8679560c0462858cb51c",
+      "before_sha256": "ec8901bdba010230442aa9d2dbec8376ed43cf70137e8679560c0462858cb51c",
+      "category": "sdk",
+      "change": "baseline",
+      "entity": "sdk-python",
+      "id": "694741a7c70a8b468b12691a",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": "4c391c3f3aaad5875f266055",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3a634cae252e6e3d6b26a77d92cca900c2abf0724fb3ba8b62397f0fff217c39",
+          "source_id": "registry:pypi:typesafe-sdk",
+          "url": "https://pypi.org/pypi/typesafe-sdk/json"
+        },
+        {
+          "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.5:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml"
+        }
+      ],
+      "summary": "Established sdk-python tag-verified release evidence tracking; local correction of legacy SDK extraction/provenance, not an upstream release change."
+    },
+    {
+      "after_sha256": "d0b02b7ff77159313c2a63bb24398fbd83052a77b2420edce12a65e9d31ec3ad",
+      "before_sha256": "da26a5bfc1da2a9c96f39813eac8b5144e6824a1254451109be3b7d21e0b558f",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:math-using-score",
+      "id": "79991ba4a28b2f6e4c5b4cd5",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:math-using-score; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "11c1cc185dbced3e6c3eaffe17b8b659177eb854acc0fb8af4e5cb16e2e6df08",
+      "before_sha256": "78abf1bdde4f3504f48d548cbd7f561a249ac85b63ef3c8f6b946852744af9c5",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:literal-reading",
+      "id": "9d15396e2b955803d698abbc",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:literal-reading; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "1b8f8eeb4b138c5c446a6ed8752da25c8836e142e1ac262991f0f0438af8924b",
+      "before_sha256": "949538f46602e1085ad404eebf6e48c49bca5139b8cc9ef3b0f4390ceeba54d0",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:generation",
+      "id": "b7f9187cbfabbccecb7d7f46",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:generation; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "ee67a00454768153aa703254845fe6338363a21f5a5b3a14cde4038e114f020b",
+      "before_sha256": "2c66f3c651f33f183d9da579c3e372d173945be096afc64cb9ad688bec2a30ad",
+      "category": "api",
+      "change": "baseline",
+      "entity": "api",
+      "id": "c3eba2502ff5f3f697021a35",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
+          "source_id": "docs:api",
+          "url": "https://docs.typesafe.ai/api.md"
+        }
+      ],
+      "summary": "Established claim-level HTTP reference verification; corrected repository assumptions, not an upstream API introduction or contract change."
+    },
+    {
+      "after_sha256": "f41606de32f75f6d442e1f3f7620de09c5e801767b7690db0069b68bb791563d",
+      "before_sha256": "80d5e33bfe8b43d5e227199b10bdfe187a8e47e2f6c91c4aec06f0ed1bcbfe38",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:common-sense-structural-invariants",
+      "id": "c5463a908468cc4c57450431",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": "76f14bd63611472e6c5255bb",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#common-sense-structural-invariants"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:common-sense-structural-invariants; established a tracking baseline, not an upstream limitation change."
+    },
+    {
+      "after_sha256": "d00b68f66f09816a334fe14d07c1f870b961c7d16301c476f495bbb7d21c666a",
+      "before_sha256": "eb5a75d289f5cf4dca918005b22b63008231c43c8e3ea155f75c646e07c3baf6",
+      "category": "model_limitation",
+      "change": "baseline",
+      "entity": "jev-1.13:date-and-time-comparison",
+      "id": "d02993d1754b615aaefce474",
+      "observed_at": "2026-10-18T21:12:14.953694Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
+        }
+      ],
+      "summary": "Updated local interpretation and quotation policy for jev-1.13:date-and-time-comparison; established a tracking baseline, not an upstream limitation change."
     }
   ],
   "schema_version": 1

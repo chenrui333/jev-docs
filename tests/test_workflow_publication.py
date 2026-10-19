@@ -451,3 +451,87 @@ def test_publication_preserves_immutable_history(repository, tmp_path, change):
             for p in target.rglob("*")
             if p.is_file() and ".git" not in p.parts
         }
+
+
+@pytest.mark.parametrize("policy", [None, "legacy-policy", "reviewed-contexts-v1"])
+def test_changed_practice_state_cannot_downgrade_approval_policy(repository, tmp_path, policy):
+    path = repository / "state/practices.json"
+    original = json.dumps({"items": [], "legacy": True})
+    path.write_text(original)
+    git(repository, "add", ".")
+    git(repository, "commit", "-m", "trusted legacy practice state")
+    candidate = {"items": [], "evidence_policy": policy}
+    path.write_text(json.dumps(candidate))
+    baseline, artifact, packed = prepare(repository, tmp_path)
+    assert packed.returncode == 0, packed.stderr
+    restore(repository)
+    path.write_text(original)
+    git(repository, "add", "--", "state/practices.json")
+    applied = invoke(repository, artifact, baseline, command="apply")
+    if policy == "reviewed-contexts-v1":
+        assert applied.returncode == 0, applied.stderr
+        assert json.loads(path.read_text()) == candidate
+    else:
+        assert applied.returncode != 0
+        assert path.read_text() == original
+        assert git(repository, "diff", "--cached") == ""
+
+
+@pytest.mark.parametrize(
+    "change",
+    ["append", "rewrite", "drop", "new-item", "withdraw", "recurrence", "metadata-upgrade"],
+)
+def test_publication_authenticates_historical_practice_citations(repository, tmp_path, change):
+    path = repository / "state/practices.json"
+    current = {
+        "source_id": "docs:confidence",
+        "url": "https://docs.typesafe.ai/confidence.md",
+        "sha256": "a" * 64,
+        "excerpt": "Synthetic previously current evidence.",
+    }
+    historical = dict(current, sha256="b" * 64, excerpt="Synthetic previously historical evidence.")
+    original = {
+        "items": [
+            {
+                "id": "confidence-is-not-permission",
+                "sources": [current],
+                "historical_sources": [historical],
+            }
+        ]
+    }
+    original_bytes = json.dumps(original)
+    path.write_text(original_bytes)
+    git(repository, "add", ".")
+    git(repository, "commit", "-m", "trusted practice citations")
+    candidate = json.loads(original_bytes)
+    candidate["evidence_policy"] = "reviewed-contexts-v1"
+    item = candidate["items"][0]
+    item["sources"] = []
+    item["historical_sources"] = [historical, current]
+    if change == "append":
+        item["historical_sources"].append(dict(current, url="https://evil.example/claim"))
+    elif change == "rewrite":
+        item["historical_sources"][0] = dict(historical, excerpt="Manufactured quotation.")
+    elif change == "drop":
+        item["historical_sources"].pop(0)
+    elif change == "new-item":
+        item["id"] = "new-practice-with-invented-history"
+    elif change == "recurrence":
+        item["sources"], item["historical_sources"] = [historical], [current]
+    elif change == "metadata-upgrade":
+        item["sources"] = [dict(current, context_sha256="c" * 64)]
+        item["historical_sources"] = [historical]
+    path.write_text(json.dumps(candidate))
+    baseline, artifact, packed = prepare(repository, tmp_path)
+    assert packed.returncode == 0, packed.stderr
+    restore(repository)
+    path.write_text(original_bytes)
+    git(repository, "add", "--", "state/practices.json")
+    applied = invoke(repository, artifact, baseline, command="apply")
+    if change in {"withdraw", "recurrence", "metadata-upgrade"}:
+        assert applied.returncode == 0, applied.stderr
+        assert json.loads(path.read_text()) == candidate
+    else:
+        assert applied.returncode != 0
+        assert path.read_text() == original_bytes
+        assert git(repository, "diff", "--cached") == ""

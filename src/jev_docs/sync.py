@@ -26,7 +26,14 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from jev_docs.api import extract_api, validate_api
 from jev_docs.inventories import cookbooks, model_limitations, render_limitations
-from jev_docs.text import excerpt
+from jev_docs.practice_reviews import (
+    PRACTICE_EVIDENCE_POLICY,
+    REVIEWED_PRACTICE_CONTEXTS,
+    _historical_practice_sources,
+    _practice_review_verdict,
+    practice_context,
+)
+from jev_docs.text import clean_text, excerpt, markdown_tokens, without_code_examples
 from jev_docs.transactions import PENDING, promote, recover_pending, synchronization_lock
 
 if sys.version_info >= (3, 11):
@@ -378,28 +385,71 @@ def title_from_markdown(content: str, fallback: str) -> str:
     return re.sub(r"[*`]", "", match.group(1)).strip() if match else fallback
 
 
+# Each claim pairs a reviewed normalized block hash with a short supporting
+# excerpt. Every claim must match in one allowed source. Hashes keep unreviewed
+# negations/context changes unknown without embedding entire upstream paragraphs.
 PRACTICE_RULES: tuple[dict[str, Any], ...] = (
     {
         "id": "jev-complements-generative-agents",
         "category": "agent-integration",
         "summary": "Use coding agents to write software that calls Jev for bounded structured decisions such as routing, classification, scoring and guardrails. Jev does not replace their generative base model or write code or converse.",
-        "patterns": [r"Jev is not a drop-in replacement"],
+        "claims": [
+            (
+                "685ee84913021250f4ca81c1f16e0cb87557aec1687a49e33181136a04c24613",
+                "Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.",
+            ),
+            (
+                "685ee84913021250f4ca81c1f16e0cb87557aec1687a49e33181136a04c24613",
+                "Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools.",
+            ),
+            (
+                "72551aa8c71e1084cf95db4849b3f07f697494c8233f32cc6550521b2c3386e0",
+                "It does not generate text, write code, or hold a conversation.",
+            ),
+            (
+                "72551aa8c71e1084cf95db4849b3f07f697494c8233f32cc6550521b2c3386e0",
+                "It takes a state and a set of typed questions and returns structured answers your code can use directly:",
+            ),
+            (
+                "dc2d14f3619aba5159cbaae9394212408d812aa05c328ddcb5da90b2b52d2067",
+                "Use Jev inside an app or agent you're building — for routing, classification, scoring, guardrails, or any structured decision",
+            ),
+        ],
         "sources": ["docs:introduction/coding-agents"],
     },
     {
         "id": "prefer-typed-decisions-over-prompt-parsing",
         "category": "agent-integration",
         "summary": "For decisions expressible as TypeSafe's typed questions, consider replacing fragile generative return-JSON prompts with typed decision calls. This guidance does not cover arbitrary text generation or every JSON task.",
-        "patterns": [r"Replace a fragile prompt.*return JSON"],
+        "claims": [
+            (
+                "c1505a798fa78f4503344c7dfd2d68e6c8d800599ebdfd7e3103d82dcf1654f9",
+                'Replace a fragile prompt that asks an LLM to "return JSON" with a call that returns typed values by construction.',
+            ),
+            (
+                "e5e4c9b75f7cba22097e1b679ab1bdf7bd88c1bc25a37418261214d3460506ae",
+                "If any of that matches what you're building, the fastest path in is the Quick start, then the primitives reference for the question types.",
+            ),
+        ],
         "sources": ["docs:introduction/coding-agents"],
     },
     {
         "id": "deterministic-before-jev",
         "category": "decision-boundary",
         "summary": "Keep deterministic rules, calculations, exact lookups, control flow, and side effects in code; use Jev where semantic judgment is needed.",
-        "patterns": [
-            r"Keep control flow, deterministic rules, and side effects in code",
-            r"Keep deterministic work in code",
+        "claims": [
+            (
+                "740b9bc462a4ad655387589dc0d09fd5754ebc0b545c36dfc62d42597941b4c8",
+                "Keep known rules, calculations, exact lookups, and execution in code.",
+            ),
+            (
+                "740b9bc462a4ad655387589dc0d09fd5754ebc0b545c36dfc62d42597941b4c8",
+                "Preserve the user's chosen stack and scope; add TypeSafe where semantic understanding helps.",
+            ),
+            (
+                "9bdf98323be29d02cffdc2272ea699f79101c692e30a72fe2bf7aec21d6e8cf5",
+                "Code owns the workflow; the model supplies programmable common sense where ordinary code needs semantic understanding.",
+            ),
         ],
         "sources": ["docs:concepts/how-to-build-with-system-one", "skill:typesafe-ai"],
     },
@@ -407,10 +457,11 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "narrow-coherent-questions",
         "category": "question-design",
         "summary": "Ask narrow, coherent, typed questions with explicit instructions and criteria rather than hiding several judgments in one broad question.",
-        "patterns": [
-            r"Break broad judgments into narrow, typed questions",
-            r"Ask one narrow, coherent judgment per question",
-            r"Ask the most explicit, narrow, specific",
+        "claims": [
+            (
+                "efe294ba28f0b1f156db8f4001169d0c59f6424881c182aa8ab38197e9915a50",
+                "Break broad judgments into narrow, typed questions with explicit instructions and criteria.",
+            ),
         ],
         "sources": ["docs:concepts/how-to-build-with-system-one", "skill:typesafe-ai"],
     },
@@ -418,10 +469,19 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "batch-independent-questions",
         "category": "batching",
         "summary": "Ask independent questions over the same state together so the model can evaluate them in parallel and code can compose the answers.",
-        "patterns": [
-            r"Ask independent questions together",
-            r"Ask independent questions over the same state together",
-            r"evaluated in parallel",
+        "claims": [
+            (
+                "a70670a056de5ce7c8787edf3e0fd4fd64aa450ab17ff3abacb9df1223471195",
+                "Ask independent questions over the same state together, including useful speculative questions.",
+            ),
+            (
+                "a70670a056de5ce7c8787edf3e0fd4fd64aa450ab17ff3abacb9df1223471195",
+                "They run in parallel and cannot see one another's answers.",
+            ),
+            (
+                "a70670a056de5ce7c8787edf3e0fd4fd64aa450ab17ff3abacb9df1223471195",
+                "State each speculative premise explicitly; code consumes the applicable answers.",
+            ),
         ],
         "sources": ["docs:concepts/state", "docs:patterns/fan-out", "skill:typesafe-ai"],
     },
@@ -429,10 +489,15 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "explicit-speculative-premises",
         "category": "batching",
         "summary": "Speculative questions are acceptable in a batch, but their premises must be stated explicitly and code must decide which answers are relevant.",
-        "patterns": [
-            r"State each speculative premise explicitly",
-            r"speculative questions.*premise",
-            r"let your code decide",
+        "claims": [
+            (
+                "a70670a056de5ce7c8787edf3e0fd4fd64aa450ab17ff3abacb9df1223471195",
+                "Ask independent questions over the same state together, including useful speculative questions.",
+            ),
+            (
+                "a70670a056de5ce7c8787edf3e0fd4fd64aa450ab17ff3abacb9df1223471195",
+                "State each speculative premise explicitly; code consumes the applicable answers.",
+            ),
         ],
         "sources": ["docs:patterns/fan-out", "skill:typesafe-ai"],
     },
@@ -440,17 +505,35 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "choice-confidence-concentration",
         "category": "confidence",
         "summary": "Choice confidence summarizes concentration of the competing option probabilities; it is not a guarantee that the selected answer is correct.",
-        "patterns": [r"confidence.*probability.*spread", r"Choice confidence", r"concentration"],
+        "claims": [
+            (
+                "929b3bc1c6930cc43bfee8d1eef11a63520068cc5c5c987b8a07ecea0f212a0e",
+                "Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.",
+            ),
+        ],
         "sources": ["docs:confidence", "skill:typesafe-ai"],
     },
     {
         "id": "confidence-is-not-permission",
         "category": "confidence",
         "summary": "Confidence is an uncertainty signal. Keep the permission to act, review, or escalate explicit in application code.",
-        "patterns": [
-            r"confidence.*not.*permission",
-            r"Use probabilities and confidence to act",
-            r"Your code encodes the risk tolerance",
+        "claims": [
+            (
+                "a0d4f9a3c2b7e7b3276c1dd2e561f136a3d648abe84fbaec00aed05f32189bf6",
+                "The 0.5 confidence floor catches anything the model reports as genuinely uncertain.",
+            ),
+            (
+                "a0d4f9a3c2b7e7b3276c1dd2e561f136a3d648abe84fbaec00aed05f32189bf6",
+                "Your code encodes the risk tolerance.",
+            ),
+            (
+                "6d65a27cca23d321bc57ce72cb3ccf753349d15c8a95acdba6abcd483e7e31a7",
+                "Depending on context, you might ask the user to confirm, flag for review, or gather more information before acting.",
+            ),
+            (
+                "0b7b3adcb105f380094b642b38ba9fab4cf2479d85d113103683b713169de6fa",
+                "Route to a human, request clarification, or fall back to a different system.",
+            ),
         ],
         "sources": ["docs:confidence", "skill:typesafe-ai"],
     },
@@ -458,10 +541,19 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "noul-is-yes-probability",
         "category": "primitives",
         "summary": "A Noul value is the probability that a yes/no proposition is true; a value near 0.5 means uncertainty between yes and no, not medium intensity.",
-        "patterns": [
-            r"not a scale of the thing",
-            r"probability that the answer is yes",
-            r"near 0\.5",
+        "claims": [
+            (
+                "fa3fcf6dca7b43340375a0b3f1186c99eaa5940e3e22049318859a816a91ebb3",
+                "It is the probability that the answer is yes.",
+            ),
+            (
+                "fa3fcf6dca7b43340375a0b3f1186c99eaa5940e3e22049318859a816a91ebb3",
+                "If the question is really about degree, the value does not measure the degree.",
+            ),
+            (
+                "bfcc615d1a13a12730b1748fc887372e2c24672cabc35ec52c22d7861a4af652",
+                "A value near 0.5 means the model gives yes and no similar probability.",
+            ),
         ],
         "sources": ["docs:primitives/noul", "skill:typesafe-ai"],
     },
@@ -469,10 +561,11 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "candidate-must-be-present",
         "category": "question-design",
         "summary": "Candidate selection questions can only select a value that is actually present in the candidate state or criteria.",
-        "patterns": [
-            r"model cannot choose an omitted value",
-            r"candidate coverage",
-            r"candidate.*actually",
+        "claims": [
+            (
+                "1c0e6728e3de699b8c8d93e94c62e527bc9c13ed97a60e3a4c94889f4c5eccea",
+                "For source-value selection, check candidate coverage: the model cannot choose an omitted value.",
+            ),
         ],
         "sources": ["skill:typesafe-ai", "docs:primitives/choice"],
     },
@@ -480,10 +573,19 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "domain-calibrated-thresholds",
         "category": "thresholds",
         "summary": "Choose thresholds from the application's data, model performance, and consequences; do not treat cookbook thresholds as universal defaults.",
-        "patterns": [
-            r"thresholds evaluated on the user's data",
-            r"threshold values depend on your domain",
-            r"consequences",
+        "claims": [
+            (
+                "929b3bc1c6930cc43bfee8d1eef11a63520068cc5c5c987b8a07ecea0f212a0e",
+                "Use probabilities and confidence to guide behavior, with thresholds evaluated on the user's data and consequences.",
+            ),
+            (
+                "74b58751ea78857d31d8762c2ced8771ee37e8db261f839ee9db714063fdbe09",
+                "System One models are trained for calibrated decisions; validate their performance in the target domain.",
+            ),
+            (
+                "4aabfceeaa73a471af8b53b87d88ba5c9e34f24487fc6ab8c2154fe290d36475",
+                "Treat cookbook thresholds and demo results as examples to evaluate, not universal rules or permanent model limitations.",
+            ),
         ],
         "sources": ["docs:confidence", "skill:typesafe-ai"],
     },
@@ -491,10 +593,15 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "typed-output-is-not-truth",
         "category": "verification",
         "summary": "Typed output guarantees interface shape, not truth; test representative cases and resulting application behavior.",
-        "patterns": [
-            r"Typed output guarantees the interface, not truth",
-            r"not a guarantee that the answer is correct",
-            r"Test representative cases",
+        "claims": [
+            (
+                "74b58751ea78857d31d8762c2ced8771ee37e8db261f839ee9db714063fdbe09",
+                "Typed output guarantees the interface, not truth.",
+            ),
+            (
+                "4aabfceeaa73a471af8b53b87d88ba5c9e34f24487fc6ab8c2154fe290d36475",
+                "Test representative cases and the resulting application behavior.",
+            ),
         ],
         "sources": ["docs:concepts/system-one", "skill:typesafe-ai"],
     },
@@ -502,10 +609,11 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "observed-state-distinct-from-inference",
         "category": "state",
         "summary": "Keep observed application state and inferred model judgments conceptually distinct, and check freshness before applying a result to changed state.",
-        "patterns": [
-            r"Keep inferred state distinct from observed facts",
-            r"state contains the content",
-            r"freshness before applying",
+        "claims": [
+            (
+                "6d1f782682e7f849ea99ec4df1f84a91e6161dfc958e68e4d2c3bf7b98fe3f99",
+                "Keep inferred state distinct from observed facts, and check freshness before applying a result to a changed situation.",
+            ),
         ],
         "sources": ["docs:concepts/state", "skill:typesafe-ai"],
     },
@@ -513,38 +621,97 @@ PRACTICE_RULES: tuple[dict[str, Any], ...] = (
         "id": "diagnose-failure-layers",
         "category": "verification",
         "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures.",
-        "patterns": [
-            r"Separate missing evidence, model errors, code errors, and service failures",
-            r"inspect the exact state",
-            r"failures",
+        "claims": [
+            (
+                "4aabfceeaa73a471af8b53b87d88ba5c9e34f24487fc6ab8c2154fe290d36475",
+                "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome.",
+            ),
+            (
+                "4aabfceeaa73a471af8b53b87d88ba5c9e34f24487fc6ab8c2154fe290d36475",
+                "Separate missing evidence, model errors, code errors, and service failures.",
+            ),
         ],
         "sources": ["skill:typesafe-ai", "docs:concepts/how-to-build-with-system-one"],
     },
 )
 
 
+def _practice_review_policy_sha256():
+    return sha256_json(
+        {
+            "policy": PRACTICE_EVIDENCE_POLICY,
+            "require_raw_source": True,
+            "require_source_url": True,
+            "rules": PRACTICE_RULES,
+            "reviews": REVIEWED_PRACTICE_CONTEXTS,
+        }
+    )
+
+
 def rule_evidence(
     rule: dict[str, Any], contents: dict[str, str], artifact_by_id: dict[str, Artifact]
-) -> list[dict[str, Any]]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Require reviewed complete context and all literal claims in one source."""
     evidence: list[dict[str, Any]] = []
+    reviews: list[dict[str, Any]] = []
+    uncertain = False
     for source_id in rule["sources"]:
-        content = contents.get(source_id)
-        if content is None:
+        content, artifact = contents.get(source_id), artifact_by_id.get(source_id)
+        if content is None or artifact is None:
+            verdict = "unavailable" if content is None and artifact is None else "unreviewed"
+            reviews.append({"source_id": source_id, "verdict": verdict})
+            uncertain = uncertain or verdict == "unreviewed"
             continue
-        for pattern in rule["patterns"]:
-            found = excerpt(content, pattern)
-            if found:
-                artifact = artifact_by_id.get(source_id)
-                evidence.append(
-                    {
-                        "source_id": source_id,
-                        "url": artifact.url if artifact else source_url(source_id),
-                        "sha256": artifact.sha256 if artifact else None,
-                        "excerpt": found,
-                    }
-                )
-                break
-    return evidence
+        if content != artifact.content.decode():
+            reviews.append({"source_id": source_id, "verdict": "unreviewed"})
+            uncertain = True
+            continue
+        context, context_hash = practice_context(content)
+        review = REVIEWED_PRACTICE_CONTEXTS.get(source_id, {}).get(context_hash, {})
+        verdict = _practice_review_verdict(review, rule["id"], artifact.sha256, artifact.url)
+        observation = {
+            "source_id": source_id,
+            "url": artifact.url,
+            "sha256": artifact.sha256,
+            "context_sha256": context_hash,
+            "verdict": verdict,
+        }
+        if review:
+            observation["review_source"] = {
+                "url": review["source_url"],
+                "sha256": review["source_sha256"],
+            }
+        reviews.append(observation)
+        if verdict == "non_conflicting":
+            continue
+        if verdict != "supported":
+            uncertain = True
+            continue
+        prose = re.sub(r"\n(?=\s*\|)", "\n\n", clean_text(without_code_examples(context)))
+        tokens = markdown_tokens(prose)
+        blocks = {}
+        for token in tokens or []:
+            if token.type == "inline":
+                block = re.sub(r"\s+", " ", clean_text(token.content)).strip()
+                blocks[sha256_bytes(block.encode())] = block
+        if tokens is None or not all(
+            claim in blocks.get(digest, "") and len(claim) <= 420
+            for digest, claim in rule["claims"]
+        ):
+            observation["verdict"] = "unverified_passages"
+            uncertain = True
+            continue
+        evidence.extend(
+            {
+                "source_id": source_id,
+                "url": artifact.url,
+                "sha256": artifact.sha256,
+                "context_sha256": context_hash,
+                "excerpt": claim,
+            }
+            for _digest, claim in rule["claims"]
+        )
+    return ([] if uncertain else evidence), reviews
 
 
 def old_item_map(value: Any, key: str) -> dict[str, Any]:
@@ -1470,7 +1637,7 @@ def derive_practices(
     items: list[dict[str, Any]] = []
     old = old_item_map(previous, "id")
     for rule in PRACTICE_RULES:
-        evidence = rule_evidence(rule, contents, artifacts)
+        evidence, evidence_reviews = rule_evidence(rule, contents, artifacts)
         prior = old.get(rule["id"])
         today = iso_day(utc_now())
         same_evidence = (
@@ -1507,17 +1674,29 @@ def derive_practices(
             "first_seen_basis": first_seen_basis,
             "last_verified": last_verified,
             "sources": evidence,
-            "interpretation": "Deterministic summary of matching canonical guidance; not an upstream quote.",
+            "evidence_reviews": evidence_reviews,
+            "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
         }
         item["last_changed"] = (
             prior.get("last_changed")
             if prior and practice_projection(prior) == practice_projection(item)
             else today
         )
+        historical = _historical_practice_sources(prior, evidence)
+        if historical:
+            item["historical_sources"] = historical
         items.append(item)
     state = {
         "schema_version": SCHEMA,
         "verification_semantics": "evidence_revision",
+        "evidence_policy": PRACTICE_EVIDENCE_POLICY,
+        "review_policy_sha256": _practice_review_policy_sha256(),
+        "source_observations": {
+            source_id: artifact.sha256
+            for source_id in sorted({sid for rule in PRACTICE_RULES for sid in rule["sources"]})
+            if (artifact := artifacts.get(source_id)) is not None
+            and contents.get(source_id) == artifact.content.decode()
+        },
         "status_vocabulary": [
             "recommended",
             "discouraged",
@@ -1527,10 +1706,7 @@ def derive_practices(
         ],
         "items": items,
     }
-    result = observed_state(state, previous)
-    if previous and result["fingerprint"] == previous.get("fingerprint"):
-        result["items"] = previous["items"]
-    return result
+    return observed_state(state, previous)
 
 
 def derive_state(
@@ -1627,6 +1803,25 @@ def event_id(entity: str, change: str, before: str | None, after: str | None) ->
 CODE_DEFINED_LAYERS = frozenset({"practices", "primitives"})
 
 
+def _practice_event_sources(before, after):
+    references = {}
+    for role, item in (("historical", before or {}), ("current", after or {})):
+        for source in [*item.get("evidence_reviews", []), *item.get("sources", [])]:
+            if not all(source.get(key) for key in ("source_id", "sha256", "url")):
+                continue
+            key = role, source["source_id"], source["sha256"], source["url"]
+            reference = references.setdefault(
+                key,
+                {name: source[name] for name in ("source_id", "sha256", "url")} | {"role": role},
+            )
+            for name in ("context_sha256", "excerpt"):
+                if source.get(name) is not None:
+                    reference[name] = source[name]
+            if source.get("verdict"):
+                reference["review_verdict"] = source["verdict"]
+    return [references[key] for key in sorted(references)]
+
+
 def semantic_events(
     old_state: dict[str, Any], new_state: dict[str, Any], observed_at: str
 ) -> list[dict[str, Any]]:
@@ -1643,6 +1838,22 @@ def semantic_events(
         "evaluation-tool": ("evaluation_tool", "singleton"),
     }
     events: list[dict[str, Any]] = []
+    old_practices = old_state.get("practices", {})
+    prior_source_hashes = {
+        source["source_id"]: source.get("sha256")
+        for item in old_practices.get("items", [])
+        for source in item.get("sources", [])
+        if source.get("source_id")
+    }
+    prior_source_hashes.update(old_practices.get("source_observations", {}))
+    prior_source_hashes.update(
+        {
+            source["source_id"]: source.get("sha256")
+            for source in old_state.get("sources", {}).get("artifacts", [])
+            if source.get("source_id")
+        }
+    )
+    practice_rule_sources = {rule["id"]: rule["sources"] for rule in PRACTICE_RULES}
     for name, (category, key_mode) in specs.items():
         if (
             name in {"model-limitations", "cookbooks", "evaluation-tool"}
@@ -1679,6 +1890,44 @@ def semantic_events(
         for entity_key in sorted(set(old_items) | set(new_items)):
             before_value = semantic_projection(name, old_items.get(entity_key))
             after_value = semantic_projection(name, new_items.get(entity_key))
+            practice_review_changed = (
+                name == "practices"
+                and entity_key in old_items
+                and entity_key in new_items
+                and old_state.get(name, {}).get("evidence_policy") == PRACTICE_EVIDENCE_POLICY
+                and new_state.get(name, {}).get("evidence_policy") == PRACTICE_EVIDENCE_POLICY
+                and old_items[entity_key].get("evidence_reviews")
+                and old_items[entity_key].get("summary") == new_items[entity_key].get("summary")
+                and old_items[entity_key].get("evidence_reviews")
+                != new_items[entity_key].get("evidence_reviews")
+                and {
+                    row["source_id"]: row.get("url")
+                    for row in old_items[entity_key]["evidence_reviews"]
+                }
+                == {
+                    row["source_id"]: row.get("url")
+                    for row in new_items[entity_key].get("evidence_reviews", [])
+                }
+                and practice_rule_sources.get(entity_key)
+                and all(
+                    old_state[name].get("source_observations", {}).get(sid)
+                    == new_state[name].get("source_observations", {}).get(sid)
+                    for sid in practice_rule_sources[entity_key]
+                )
+            )
+            if practice_review_changed:
+                before_value = {
+                    "practice": before_value,
+                    "context_reviews": sorted(
+                        old_items[entity_key]["evidence_reviews"], key=lambda row: row["source_id"]
+                    ),
+                }
+                after_value = {
+                    "practice": after_value,
+                    "context_reviews": sorted(
+                        new_items[entity_key]["evidence_reviews"], key=lambda row: row["source_id"]
+                    ),
+                }
             before = sha256_json(before_value) if entity_key in old_items else None
             after = sha256_json(after_value) if entity_key in new_items else None
             sdk_policy_baseline = (
@@ -1756,6 +2005,37 @@ def semantic_events(
                         else "observed limitation evidence or status also changed during "
                         "the local quotation-policy migration."
                     )
+                )
+            elif (
+                name == "practices"
+                and entity_key in old_items
+                and entity_key in new_items
+                and not old_state.get(name, {}).get("evidence_policy")
+                and new_state.get(name, {}).get("evidence_policy") == PRACTICE_EVIDENCE_POLICY
+                and old_items[entity_key].get("sources")
+                and practice_rule_sources.get(entity_key)
+                and all(
+                    prior_source_hashes.get(source_id)
+                    and new_state[name].get("source_observations", {}).get(source_id)
+                    == prior_source_hashes[source_id]
+                    for source_id in practice_rule_sources[entity_key]
+                )
+            ):
+                change = "baseline"
+                tracking_note = (
+                    f"Reassessed practice {entity_key} evidence status "
+                    f"{old_items[entity_key].get('status', 'unknown')} → "
+                    f"{new_items[entity_key].get('status', 'unknown')} under the local "
+                    f"{PRACTICE_EVIDENCE_POLICY} review policy. This is a tracking correction, "
+                    "not an upstream guidance change, removal or deprecation."
+                )
+            elif practice_review_changed:
+                change = "verification_changed"
+                tracking_note = (
+                    f"Recorded local context review for practice {entity_key}: "
+                    f"{old_items[entity_key].get('status')} → {new_items[entity_key].get('status')}. "
+                    "Retained source observations did not change; this does not date an "
+                    "upstream guidance introduction, removal or deprecation."
                 )
             item = new_items.get(entity_key, old_items.get(entity_key, {}))
             verification_sources = None
@@ -1859,6 +2139,19 @@ def semantic_events(
                         + source_note
                         + "no historical API behavior inferred from earlier curated assumptions."
                     )
+            status_note = None
+            if name == "practices" and change == "modified":
+                old_status = old_items[entity_key].get("status", "unknown")
+                new_status = new_items[entity_key].get("status", "unknown")
+                if old_status != new_status:
+                    status_note = (
+                        f"Practice {entity_key} evidence status changed: "
+                        f"{old_status} → {new_status}. "
+                    )
+                    if new_status == "unknown":
+                        status_note += "Current support is insufficient; absence is not removal or deprecation."
+                    elif new_status == "recommended":
+                        status_note += "Current canonical evidence supports the recommendation."
             events.append(
                 {
                     "schema_version": SCHEMA,
@@ -1867,7 +2160,8 @@ def semantic_events(
                     "category": category,
                     "entity": entity_key,
                     "change": change,
-                    "summary": item.get("summary")
+                    "summary": status_note
+                    or item.get("summary")
                     or (
                         f"{item.get('package')} {old_items.get(entity_key, {}).get('version', 'unknown')} → {item.get('version')}; release guidance and capability evidence updated."
                         if name.startswith("sdk-")
@@ -1879,6 +2173,10 @@ def semantic_events(
                     "after_sha256": after,
                     "sources": verification_sources
                     if verification_sources is not None
+                    else _practice_event_sources(
+                        old_items.get(entity_key), new_items.get(entity_key)
+                    )
+                    if name == "practices"
                     else item.get("sources")
                     or item.get("provenance")
                     or ([item["source"]] if item.get("source") else []),
@@ -2120,6 +2418,7 @@ def render_best_practices(practices: dict[str, Any]) -> str:
         (item["last_verified"] for item in practices["items"] if item.get("last_verified")),
         default="unknown",
     )
+    reviewed = practices.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY
     lines = [
         "# Jev Engineering Best Practices",
         "",
@@ -2127,7 +2426,11 @@ def render_best_practices(practices: dict[str, Any]) -> str:
         if practices.get("verification_semantics") == "evidence_revision"
         else f"Last verified: {latest}",
         "",
-        "Generated from [`state/practices.json`](state/practices.json). `recommended` means current canonical evidence matched a transparent extraction rule; `unknown` means this snapshot does not provide enough evidence.",
+        (
+            "Generated from [`state/practices.json`](state/practices.json). Recommendations are repository interpretations, not upstream quotes. `recommended` requires both complete literal passage bundles and explicit manual review of the complete source context. Changed or unreviewed contexts remain `unknown` until reviewed; absence never implies deprecation."
+            if reviewed
+            else "Generated from [`state/practices.json`](state/practices.json). `recommended` means current canonical evidence matched a transparent extraction rule; `unknown` means this snapshot does not provide enough evidence."
+        ),
         "",
     ]
     section_names = {
@@ -2145,7 +2448,10 @@ def render_best_practices(practices: dict[str, Any]) -> str:
         for item in sorted(
             (x for x in practices["items"] if x["category"] == category), key=lambda x: x["id"]
         ):
-            lines.extend([f"### {item['id']} — `{item['status']}`", "", item["summary"], ""])
+            summary = item["summary"]
+            if reviewed and item["status"] == "unknown":
+                summary = f"Unverified candidate: {summary}"
+            lines.extend([f"### {item['id']} — `{item['status']}`", "", summary, ""])
             if item["sources"]:
                 lines.append("Evidence:")
                 for evidence in item["sources"]:
@@ -2153,7 +2459,32 @@ def render_best_practices(practices: dict[str, Any]) -> str:
                         f"- [{evidence['source_id']}]({evidence['url']}) — {evidence['excerpt']}"
                     )
             else:
-                lines.append("Evidence: no matching canonical source in this observation.")
+                lines.append(
+                    "Evidence: no current verified recommendation in this observation."
+                    if reviewed
+                    else "Evidence: no matching canonical source in this observation."
+                )
+            if reviewed and item["status"] == "unknown":
+                pending = [
+                    review["source_id"]
+                    for review in item.get("evidence_reviews", [])
+                    if review["verdict"] in {"unreviewed", "unverified_passages"}
+                ]
+                rejected = [
+                    review["source_id"]
+                    for review in item.get("evidence_reviews", [])
+                    if review["verdict"] == "rejected"
+                ]
+                if pending:
+                    lines.append("Context review required: " + ", ".join(pending) + ".")
+                if rejected:
+                    lines.append("Reviewed conflicting context: " + ", ".join(rejected) + ".")
+            if item.get("historical_sources"):
+                lines.append("Historical evidence (not current support):")
+                for evidence in item["historical_sources"]:
+                    lines.append(
+                        f"- [{evidence['source_id']}]({evidence['url']}) — {evidence['excerpt']}"
+                    )
             lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
@@ -2572,7 +2903,99 @@ def _validate_source_integrity(root, coverage, sources, state_files):
         raise RuntimeError("coverage pages disagree with current documentation sources")
 
 
-def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None = None) -> None:
+def _validate_practice_reviews(practices, sources, *, allow_migration=False):
+    if practices.get("evidence_policy") != PRACTICE_EVIDENCE_POLICY:
+        if allow_migration:
+            return
+        raise RuntimeError("practice evidence policy is outdated; run sync to reverify evidence")
+    if practices.get("review_policy_sha256") != _practice_review_policy_sha256():
+        if allow_migration:
+            # Only trusted preflight permits older authored policy; candidates never do.
+            return
+        raise RuntimeError("practice review policy is outdated; run sync to reverify evidence")
+    rules = {rule["id"]: rule for rule in PRACTICE_RULES}
+    items = practices.get("items", [])
+    identities = [item.get("id") for item in items]
+    if len(identities) != len(set(identities)) or set(identities) != set(rules):
+        raise RuntimeError("practice inventory disagrees with authored rules")
+    for item in items:
+        rid = item["id"]
+        rule = rules[rid]
+        reviews = item.get("evidence_reviews", [])
+        identities = [review.get("source_id") for review in reviews]
+        if (
+            any(item.get(key) != rule[key] for key in ("category", "summary"))
+            or len(identities) != len(set(identities))
+            or set(identities) != set(rule["sources"])
+        ):
+            raise RuntimeError(f"practice lacks configured context reviews: {rid}")
+        for review in reviews:
+            sid = review["source_id"]
+            current = sources.get(sid)
+            if current is None:
+                if review != {"source_id": sid, "verdict": "unavailable"}:
+                    raise RuntimeError(f"absent practice source has current review: {rid}")
+                continue
+            digest = review.get("context_sha256")
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                raise RuntimeError(f"practice lacks context identity: {rid}")
+            registry = REVIEWED_PRACTICE_CONTEXTS.get(sid, {})
+            known_contexts = {
+                context
+                for context, approved in registry.items()
+                if approved["source_sha256"] == current["sha256"]
+            }
+            approved = registry.get(digest, {})
+            expected = _practice_review_verdict(
+                approved, rid, current["sha256"], current["fetch_url"]
+            )
+            origin = (
+                {"url": approved["source_url"], "sha256": approved["source_sha256"]}
+                if approved
+                else None
+            )
+            if (
+                known_contexts
+                and digest not in known_contexts
+                or review.get("verdict") != expected
+                or expected not in {"supported", "non_conflicting", "rejected", "unreviewed"}
+                or review.get("review_source") != origin
+                or review.get("sha256") != current["sha256"]
+                or review.get("url") != current["fetch_url"]
+                or practices.get("source_observations", {}).get(sid) != current["sha256"]
+            ):
+                raise RuntimeError(f"practice review disagrees with retained evidence: {rid}")
+        by_source = {review["source_id"]: review for review in reviews}
+        supporting = {sid for sid, row in by_source.items() if row["verdict"] == "supported"}
+        uncertain = any(row["verdict"] in {"unreviewed", "rejected"} for row in reviews)
+        expected_status = "recommended" if supporting and not uncertain else "unknown"
+        if item["status"] != expected_status:
+            raise RuntimeError(f"practice status disagrees with authored reviews: {rid}")
+        if expected_status == "unknown":
+            if item.get("sources"):
+                raise RuntimeError(f"unknown practice asserts current supporting evidence: {rid}")
+            continue
+        evidence = item.get("sources", [])
+        if {ref["source_id"] for ref in evidence} != supporting:
+            raise RuntimeError(f"practice support disagrees with authored reviews: {rid}")
+        expected_claims = {claim for _digest, claim in rule["claims"]}
+        for sid in supporting:
+            refs = [ref for ref in evidence if ref["source_id"] == sid]
+            row = by_source[sid]
+            if {ref["excerpt"] for ref in refs} != expected_claims or any(
+                any(ref.get(key) != row.get(key) for key in ("url", "sha256", "context_sha256"))
+                for ref in refs
+            ):
+                raise RuntimeError(f"practice lacks reviewed literal claim bundle: {rid}")
+
+
+def validate_tree(
+    root: Path,
+    strict: bool = False,
+    *,
+    history_root: Path | None = None,
+    allow_practice_review_migration: bool = False,
+) -> None:
     if (root / PENDING).exists() or (root / PENDING).is_symlink():
         raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
@@ -2619,6 +3042,33 @@ def validate_tree(root: Path, strict: bool = False, *, history_root: Path | None
                     f"Candidate SDK provenance does not match retained evidence: {kind}"
                 )
     validate_api(read_json(root / "state/api.json"), sources)
+    for item in practices.get("items", []):
+        if item["status"] != "recommended":
+            continue
+        # Historical sources describe prior observations, not current support.
+        for evidence in item.get("sources", []):
+            current = sources.get(evidence["source_id"])
+            if not current or evidence["sha256"] != current["sha256"]:
+                raise RuntimeError(
+                    f"practice provenance does not match retained artifact: {item['id']}"
+                )
+    _validate_practice_reviews(practices, sources, allow_migration=allow_practice_review_migration)
+    if history_root is not None:
+        prior_items = old_item_map(read_json(history_root / "state/practices.json"), "id")
+        for item in practices.get("items", []):
+            expected = _historical_practice_sources(
+                prior_items.get(item["id"]), item.get("sources", [])
+            )
+            if item.get("historical_sources", []) != expected:
+                raise RuntimeError("historical practice citations disagree with trusted baseline")
+    # Only recorded observations assert a current fetch; absent optional sources
+    # and unknown practices' historical evidence need not have retained artifacts.
+    for source_id, digest in practices.get("source_observations", {}).items():
+        current = sources.get(source_id)
+        if not current or digest != current["sha256"]:
+            raise RuntimeError(
+                f"practice observation does not match retained artifact: {source_id}"
+            )
     if coverage.get("schema_version") == 2:
         required_v2 = [
             *(
@@ -2792,7 +3242,7 @@ def synchronize(
     with synchronization_lock(root):
         recover_pending(root)
         if (root / "events/baseline.json").exists():
-            validate_tree(root, strict=True)
+            validate_tree(root, strict=True, allow_practice_review_migration=True)
         return _synchronize(root, client, strict, attempt)
 
 
@@ -2810,6 +3260,7 @@ def _synchronize(
     )
     previous_coverage = read_json(root / "state/source-coverage.json", {}) or {}
     previous_freshness = read_json(root / "state/freshness.json", {}) or {}
+    previous_sources = read_json(root / "state/sources.json", {}) or {}
     previous_state = {
         name: read_json(root / f"state/{name}.json")
         for name in (
@@ -3000,6 +3451,7 @@ def _synchronize(
     ]
     new_docs_manifest = {"schema_version": SCHEMA, "artifacts": docs_items}
     old_events_state = {name: previous_state.get(name) for name in state}
+    old_events_state["sources"] = previous_sources
     baseline_exists = (root / "events/baseline.json").exists()
     candidates = (
         source_events(previous_docs_manifest, new_docs_manifest, observed)

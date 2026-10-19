@@ -113,6 +113,29 @@ Practice statuses are `recommended`, `discouraged`, `anti_pattern`,
 deprecated automatically: removal requires explicit evidence, so a failed or
 partial source fetch cannot erase a recommendation.
 
+Practice recommendations require two independent checks: complete literal claim
+bundles from one permitted source, and a manual review of that source's complete
+context. [`practice_reviews.py`](src/jev_docs/practice_reviews.py) records only
+source URLs, hashes, and explicit per-practice `supported`, `non_conflicting`, or
+`rejected` review verdicts. No new context or rule/source pair is approved by default.
+Any fetched unreviewed or conflicting context leaves the practice `unknown`, even
+if another source still supports it. This deliberately favors false negatives over
+an expanding, incomplete natural-language rejection-keyword list.
+
+The review signature preserves the complete source, including markup, quotations,
+and examples; it normalizes line endings, trailing whitespace, and runs of blank
+lines only. Code examples are excluded separately when checking literal supporting
+passages. A changed context requires an evidence-backed review before a
+recommendation can resume. Review-only transitions are `verification_changed`, not
+upstream guidance introductions or deprecations.
+Current recommended evidence and recorded source observations must match the
+source IDs and SHA-256 hashes retained in `state/sources.json`. Historical
+evidence for unknown practices is exempt from this current-artifact check;
+missing optional sources need not appear in the observation map.
+The first stricter-policy observation is a tracking-only baseline only when
+every allowed source for that rule is provably unchanged, including previously
+neutral sources. Changed or unknown source revisions remain ordinary transitions.
+
 ## Automation
 
 GitHub Actions runs pull-request validation and a strict synchronization every

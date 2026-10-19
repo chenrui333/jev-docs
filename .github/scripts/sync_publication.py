@@ -8,6 +8,7 @@ import re
 import shutil
 import stat
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -265,6 +266,42 @@ def apply(args):
                 "unsupported generated file mode",
             )
             generated_path(args.repo, name.decode("utf-8"))
+            if name == b"state/practices.json":
+                # Import policy from this trusted checkout, never artifact-controlled data.
+                sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+                from jev_docs.practice_reviews import (
+                    PRACTICE_EVIDENCE_POLICY,
+                    _historical_practice_sources,
+                )
+
+                require(modes[1] != b"000000", "practice state cannot be deleted")
+                payload = json.loads(history_blob(args.repo, metadata.split()[3].decode("ascii")))
+                require(
+                    isinstance(payload, dict)
+                    and payload.get("evidence_policy") == PRACTICE_EVIDENCE_POLICY,
+                    "changed practice state must use the current evidence policy",
+                )
+                previous = (
+                    json.loads(history_blob(args.repo, metadata.split()[2].decode("ascii")))
+                    if modes[0].lstrip(b":") != b"000000"
+                    else {}
+                )
+                prior_items = {item["id"]: item for item in previous.get("items", [])}
+                require(isinstance(payload.get("items"), list), "invalid practice inventory")
+                for item in payload["items"]:
+                    require(
+                        isinstance(item, dict)
+                        and isinstance(item.get("id"), str)
+                        and isinstance(item.get("sources", []), list),
+                        "invalid practice item",
+                    )
+                    expected = _historical_practice_sources(
+                        prior_items.get(item["id"]), item.get("sources", [])
+                    )
+                    require(
+                        item.get("historical_sources", []) == expected,
+                        "historical practice citations disagree with trusted baseline",
+                    )
         validate_history(args.repo, args.baseline, entries)
     git(args.repo, "apply", "--index", "--check", "-", input=patch)
     git(args.repo, "apply", "--index", "-", input=patch)

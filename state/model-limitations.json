@@ -1,10 +1,11 @@
 {
-  "fingerprint": "ce99529a203a823f15e4a1c12541bc66772ba128e76363745779ab534b8c21a2",
+  "fingerprint": "840221d4eb0a34fda70ae3a25fa213c8a66cf179544a26a701ad2f4c0e0a02d1",
   "items": [
     {
+      "complete_section_sha256": "438b17d8cf4be2e8fbe8cb37783ae3ef66f36781d2b2a3528a72c6b51ff07aed",
       "id": "jev-1.13:adversarial-content",
       "last_reviewed": "2026-10-02",
-      "mitigation": "be explicit in the criteria. Test your integration thoroughly before deploying it to many users.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -16,13 +17,15 @@
       "section": "adversarial-content",
       "section_text_sha256": "55575a729128f6bbe95d0838d34ea232cc90955469a11aba1e77d3d1eb599559",
       "status": "documented",
-      "summary": "State is data, and jev-1.13 does not treat it as hostile by default.",
+      "summary": "Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration.",
+      "summary_kind": "repository-interpretation",
       "title": "Adversarial content"
     },
     {
+      "complete_section_sha256": "776665b432a8c0a46235b7dc948552b5aaae29c9398fab73931837f0c153db61",
       "id": "jev-1.13:choice-option-order",
       "last_reviewed": "2026-10-02",
-      "mitigation": "reorder the options to double check that the answer stays consistent.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -34,13 +37,14 @@
       "section": "choice-option-order",
       "section_text_sha256": "34dc9e81163307bf55f1bebcbf9bcda15c751dbf990b06674644eba6ecac2967",
       "status": "documented",
-      "summary": "In some cases, we observed that the order of a Choice's options can affect the answer, and jev-1.13 leans toward the option that comes first.",
+      "summary": "Choice results may depend on option position. Check decisions after permuting candidates.",
+      "summary_kind": "repository-interpretation",
       "title": "Choice option order"
     },
     {
       "id": "jev-1.13:common-sense-structural-invariants",
       "last_reviewed": "2026-09-17",
-      "mitigation": "don't rely on expected structural invariance, and word questions to mean directly what you want. Don't carry a threshold tuned on a Noul over to a Choice, and don't hold the model to arithmetic identities between separate questions. A Choice over options and one Noul per option answer different questions: the Choice is relative, settling which option, while each Noul is absolute and can be low for all of them. The skill suggestion cookbook uses both on the same shortlist, the Choice to pick a skill and the Nouls to decide whether to suggest one at all.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -52,13 +56,15 @@
       "section": "common-sense-structural-invariants",
       "section_text_sha256": "f5d18200f162450a87dba7a85f0d0a0b8c3fd94d665e008ff917cc8b3d62ea8f",
       "status": "unknown",
-      "summary": "jev-1.13 is extremely consistent, meaning you should expect quantitatively similar outputs for semantically similar inputs. However there are many structural invariants one might imagine to hold that simply aren't guaranteed by the model.",
+      "summary": "Similar wording does not guarantee algebraic relationships across questions. Calibrate Choice and Noul decisions separately.",
+      "summary_kind": "repository-interpretation",
       "title": "Common-sense structural invariants"
     },
     {
+      "complete_section_sha256": "0dad9206f001fead3e7112d36b233bf71013d058189558298db66eaf3477ceba",
       "id": "jev-1.13:contradictory-instructions-and-criteria",
       "last_reviewed": "2026-10-02",
-      "mitigation": "treat the criteria as an extension of the instruction. Align the two using clear and precise language.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -70,13 +76,15 @@
       "section": "contradictory-instructions-and-criteria",
       "section_text_sha256": "7f5456c18c04af6e6c4f5bd2364cecf33670e07694c4f7331ea96f79bf84b9a1",
       "status": "documented",
-      "summary": "When the instructions and the criteria ask for different things, jev-1.13 might get confused.",
+      "summary": "Conflicting instructions and criteria can impair decisions; make their requirements agree.",
+      "summary_kind": "repository-interpretation",
       "title": "Contradictory instructions and criteria"
     },
     {
+      "complete_section_sha256": "25a01c5272ca4c04fb29a5f8bc4c7c2b27d0205f9adfb0a1c8f0d57dfa68af08",
       "id": "jev-1.13:counting",
       "last_reviewed": "2026-10-02",
-      "mitigation": "count in code. When you want to count items matching some criteria, iterate in code over the candidates and ask one question for each, then add up the answers yourself.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -88,13 +96,15 @@
       "section": "counting",
       "section_text_sha256": "88eeb3d33ed56e2abd0b5535bc06f64ddbb5a964815b9d81db81dc495b68e32e",
       "status": "documented",
-      "summary": "jev-1.13 does not count reliably. This covers characters in a word, occurrences of a term in a passage, and items in a long list. The model recognizes the shape of an answer rather than tallying, and the error grows with the size of the thing being counted.",
+      "summary": "Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically.",
+      "summary_kind": "repository-interpretation",
       "title": "Counting"
     },
     {
+      "complete_section_sha256": "7d78de7d897c99207632269abfbc8f3c40e34b31a33bb9a1d2e5d2ff4ceba464",
       "id": "jev-1.13:date-and-time-comparison",
       "last_reviewed": "2026-10-02",
-      "mitigation": "split the work. Extraction is a judgment, so give it to the model. Arithmetic is not, so keep it in code.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -106,13 +116,15 @@
       "section": "date-and-time-comparison",
       "section_text_sha256": "6b530f8d3222d718ed74cbc5eec8cc1272166d17758743abdabc02d0d7e7b7f4",
       "status": "documented",
-      "summary": "jev-1.13 reads dates as text, not as ordered quantities.",
+      "summary": "Date text is not reliably ordered by the model. Separate semantic extraction from programmatic date calculations.",
+      "summary_kind": "repository-interpretation",
       "title": "Date and time comparison"
     },
     {
+      "complete_section_sha256": "d5c645ff98bc6f5a6d6cf6f5be94d5ac05320667611d07ee6a4f4075cdd98a1e",
       "id": "jev-1.13:generation",
       "last_reviewed": "2026-10-02",
-      "mitigation": "when the answer space is bounded, turn extraction into a Choice over the options rather than asking for the value itself. If you really need to generate text... there are other models for that.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -124,13 +136,15 @@
       "section": "generation",
       "section_text_sha256": "909fe1da53fa433f3dd367dcab2d5b5119e6b7865ce6095a0086a81cffa72c31",
       "status": "documented",
-      "summary": "jev-1.13 is not trained to generate text. While you can force it to by chaining choices, this will not work well and will be very slow. For data extraction, it is better to extract possible options using regex or a generative model and let jev-1.13 pick the correct extraction.",
+      "summary": "Free-text production is outside this model's training. For bounded extraction, obtain candidates elsewhere and use Choice to select.",
+      "summary_kind": "repository-interpretation",
       "title": "Generation"
     },
     {
+      "complete_section_sha256": "c554fabdedd5a52e327ef2a151181bdf9f1683a6723d734255b74c89f5c2e698",
       "id": "jev-1.13:indirection",
       "last_reviewed": "2026-10-02",
-      "mitigation": "write your instructions as directly as possible. When possible, identify the relevant parts of state by name.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -142,13 +156,15 @@
       "section": "indirection",
       "section_text_sha256": "c55e59fc8850bd46b652d644b75775216b182c700124475cd125c4640dbedaa4",
       "status": "documented",
-      "summary": "Instructions carrying double negatives or complex indirection are answered less reliably. A question about a property of a property or something that requires multiple hops of reasoning costs accuracy.",
+      "summary": "Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields.",
+      "summary_kind": "repository-interpretation",
       "title": "Indirection"
     },
     {
+      "complete_section_sha256": "c7663e838ae089d77db44b32e7a13f51ee59df8be4d7459cb6caf39efcef6e14",
       "id": "jev-1.13:large-state-full-of-irrelevant-detail",
       "last_reviewed": "2026-10-02",
-      "mitigation": "retrieve and filter in code first, and send only the fields the question needs. When it's not possible to filter in state, you can use a Noul to filter for relevance. The classifying RAG passages cookbook has a worked example.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -160,13 +176,15 @@
       "section": "large-state-full-of-irrelevant-detail",
       "section_text_sha256": "2c143c92dc1d093ab96ead10fae277fa744e9e32674381cdfaea750b9b35125b",
       "status": "documented",
-      "summary": "Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input produced a wrong answer.",
+      "summary": "Irrelevant input can reduce accuracy and obscure error causes. Select relevant fields before evaluation.",
+      "summary_kind": "repository-interpretation",
       "title": "Large state full of irrelevant detail"
     },
     {
+      "complete_section_sha256": "34c20247a2d76c3fe321cafd64e31e025ef49a81fdc8bd479aaf87561698c9e0",
       "id": "jev-1.13:literal-reading",
       "last_reviewed": "2026-10-02",
-      "mitigation": "state the exact condition in the instructions. Be specific. Put boundary cases in the criteria. When you look at a wrong answer and find yourself explaining what you really meant, that explanation is the missing half of the instruction. Where interpretation is unavoidable, split it into two literal questions and combine them in code.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -178,10 +196,12 @@
       "section": "literal-reading",
       "section_text_sha256": "77fc11629b076dfbd74ab69cbde6bb42a75c60ef250beb0888ec51bf50d8930d",
       "status": "documented",
-      "summary": "jev-1.13 answers the question you wrote, not the one you meant. Scoping words, negations, and implied conditions are read at face value. A question will be answered based on the words written in the instruction, whereas a person might have read the intent behind the instructions.",
+      "summary": "Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed.",
+      "summary_kind": "repository-interpretation",
       "title": "Literal reading"
     },
     {
+      "complete_section_sha256": "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
       "id": "jev-1.13:math-and-numbers",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
@@ -196,10 +216,12 @@
       "section": "math-and-numbers",
       "section_text_sha256": "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
       "status": "documented",
-      "summary": "Jev is not a calculator. We strongly recommend implementing any mathematical logic in code. Jev will perform better on semantic questions than mathematical ones.",
+      "summary": "Reserve the model for semantic judgments; implement numerical operations programmatically.",
+      "summary_kind": "repository-interpretation",
       "title": "Math and Numbers"
     },
     {
+      "complete_section_sha256": "73f8cf27d8f911922e4d65ef7017e1dc00ce3ef93eb9130747b02816576ef28b",
       "id": "jev-1.13:math-using-score",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
@@ -214,13 +236,15 @@
       "section": "math-using-score",
       "section_text_sha256": "afc388f9a43dd79780da058f7389457d593ad6637370c04250dcba3c76e3d52f",
       "status": "documented",
-      "summary": "Please do not use score outputs (e.g., expectations and probability) to compute the exact magnitude of a number between two levels of a criterion.",
+      "summary": "A score is not an exact numerical measurement interpolated between criterion levels.",
+      "summary_kind": "repository-interpretation",
       "title": "Math using score"
     },
     {
+      "complete_section_sha256": "8423237188c11f5a0f798ad63c42d48906397f53adc33fbb28b57a9a3734ae5e",
       "id": "jev-1.13:numeric-representations",
       "last_reviewed": "2026-10-02",
-      "mitigation": "do the conversion in code and pass in either the computed number or a named bucket. Keep the model for the part that is genuinely a judgment, such as whether a color reads as a warning.",
+      "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
@@ -232,11 +256,12 @@
       "section": "numeric-representations",
       "section_text_sha256": "722c47f75f08f4f40eec13a4fe5266cba6d8568beb657a13109a40c888024ead",
       "status": "documented",
-      "summary": "jev-1.13 will perform better on semantic representations than numeric. For example, questions about colors using hex values will underperform compared to those using the English names. Given RGB triples or hex values it cannot reliably judge whether two values are near each other.",
+      "summary": "Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment.",
+      "summary_kind": "repository-interpretation",
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-15T04:42:33.875231Z",
+  "observed_at": "2026-10-18T21:12:13.509935Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }
