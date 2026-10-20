@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "af52d91cc5d3e4640a1d1fcd56474685bde4c30ccb072872e5a5a6d7c82d9f4c",
+  "fingerprint": "c939b77859c765369bf369b83a01db6c3837b8ed639307c3f0c8c2d888d0b498",
   "items": [
     {
       "category": "agent-integration",
@@ -571,15 +571,11 @@
           "verdict": "supported"
         },
         {
-          "context_sha256": "5c781384cbda147d890a7fe39c1e8dd6d26185de7bf132f5385e568b5321bfa0",
-          "review_source": {
-            "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
-            "url": "https://docs.typesafe.ai/primitives/choice.md"
-          },
-          "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
+          "context_sha256": "1b8b7cec94ae48b433d5d37b8d709e7da3e7f6bf8192a332536546af3b12edae",
+          "sha256": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -590,13 +586,7 @@
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-        }
-      ],
-      "id": "candidate-must-be-present",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "For source-value selection, check candidate coverage: the model cannot choose an omitted value.",
@@ -605,7 +595,12 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "candidate-must-be-present",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-20",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Candidate selection questions can only select a value that is actually present in the candidate state or criteria."
     },
     {
@@ -843,7 +838,7 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-19T00:09:44.574228Z",
+  "observed_at": "2026-10-20T04:53:25.897550Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
@@ -853,7 +848,7 @@
     "docs:confidence": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
     "docs:introduction/coding-agents": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
     "docs:patterns/fan-out": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
-    "docs:primitives/choice": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
+    "docs:primitives/choice": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
     "docs:primitives/noul": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
     "skill:typesafe-ai": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52"
   },

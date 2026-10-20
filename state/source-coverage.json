@@ -1,16 +1,22 @@
 {
   "complete": true,
-  "discovered_count": 128,
+  "discovered_count": 130,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "99f746d2570aa97898ad0e62042b9b5b703e54c3f1142ce4cf4b7ff15b5782ae",
+    "sha256": "e817e47899099364d29633f157ac5de74f936c849bdf5a14382e31ba4a09c688",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 128,
-  "intentionally_excluded": [],
+  "fetched_count": 130,
+  "intentionally_excluded": [
+    {
+      "reason": "external-host",
+      "title": "openapi",
+      "url": "https://api.typesafe.ai/openapi.json"
+    }
+  ],
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
@@ -63,14 +69,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
-      "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
+      "sha256": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
       "source_id": "docs:primitives/choice",
       "status": "fetched",
       "title": "Choice"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
-      "sha256": "a0a39b9c01f5ac3616efae071bf23f879bbe3fb12b0af2169932dbb71dd83d32",
+      "sha256": "a6ed8f5021eb82bc82e0c77b893a0234c2a99e760917355c38037fd11176c5e0",
       "source_id": "docs:primitives/score",
       "status": "fetched",
       "title": "Score"
@@ -98,7 +104,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/images",
-      "sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
+      "sha256": "431c82177ee4713f46bf14da1b2f2f8835503a1deb98ea81d3ec9d7d06f183a7",
       "source_id": "docs:images",
       "status": "fetched",
       "title": "Images"
@@ -322,17 +328,10 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
-      "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",
+      "sha256": "b643bc957614bbefaaf49c7a08deed930264b8c1bb1eaba8310ba0b980271d61",
       "source_id": "docs:models",
       "status": "fetched",
       "title": "Models"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/api",
-      "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-      "source_id": "docs:api",
-      "status": "fetched",
-      "title": "API reference"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
@@ -354,6 +353,27 @@
       "source_id": "docs:model-jaggedness/jev-1.13",
       "status": "fetched",
       "title": "Jev 1.13 jaggedness"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/api/system-one",
+      "sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
+      "source_id": "docs:api/system-one",
+      "status": "fetched",
+      "title": "System One"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/api/list-models",
+      "sha256": "58ecfc2de394faaefda60d73252afb813bea3d780ff5eb0adc1a7bfc0ae46ae2",
+      "source_id": "docs:api/list-models",
+      "status": "fetched",
+      "title": "List models"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/api/errors",
+      "sha256": "0aee0bfc3052128c4d32c05895c5bec800c9bc0c146af54fdf276dc04414c0de",
+      "source_id": "docs:api/errors",
+      "status": "fetched",
+      "title": "Request rules and errors"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk",
@@ -910,6 +930,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 128,
+  "retained_count": 130,
   "schema_version": 2
 }

@@ -101,14 +101,15 @@ Historical evidence (not current support):
 
 ## Question construction
 
-### candidate-must-be-present — `recommended`
+### candidate-must-be-present — `unknown`
 
-Candidate selection questions can only select a value that is actually present in the candidate state or criteria.
+Unverified candidate: Candidate selection questions can only select a value that is actually present in the candidate state or criteria.
 
-Evidence:
-- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — For source-value selection, check candidate coverage: the model cannot choose an omitted value.
+Evidence: no current verified recommendation in this observation.
+Context review required: docs:primitives/choice.
 Historical evidence (not current support):
 - [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — Keep the needed answers available. Include a no-match outcome when nothing may fit; use a separate presence judgment when it is independently useful. For source-value selection, check candidate coverage: the model cannot choose an omitted value.
+- [skill:typesafe-ai](https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md) — For source-value selection, check candidate coverage: the model cannot choose an omitted value.
 
 ### narrow-coherent-questions — `recommended`
 

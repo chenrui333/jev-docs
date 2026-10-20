@@ -16,19 +16,49 @@
       "upstream_last_modified": "2026-10-14T21:07:12.427Z"
     },
     {
-      "bytes": 12905,
-      "canonical_url": "https://docs.typesafe.ai/api",
-      "description": "Full HTTP API reference for the TypeSafe evaluation endpoint.",
+      "bytes": 2695,
+      "canonical_url": "https://docs.typesafe.ai/api/errors",
+      "description": "Request limits, compression, and HTTP status codes",
       "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/api.md",
-      "observed_at": "2026-10-15T04:42:35.036692Z",
-      "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-      "source_id": "docs:api",
+      "fetch_url": "https://docs.typesafe.ai/api/errors.md",
+      "observed_at": "2026-10-20T04:53:26.906430Z",
+      "sha256": "0aee0bfc3052128c4d32c05895c5bec800c9bc0c146af54fdf276dc04414c0de",
+      "source_id": "docs:api/errors",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "API reference",
+      "title": "Request rules and errors",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:12.428Z"
+      "upstream_last_modified": "2026-10-20T00:26:24.766Z"
+    },
+    {
+      "bytes": 5123,
+      "canonical_url": "https://docs.typesafe.ai/api/list-models",
+      "description": "List the models and aliases available to the authenticated account.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/api/list-models.md",
+      "observed_at": "2026-10-20T04:53:26.906451Z",
+      "sha256": "58ecfc2de394faaefda60d73252afb813bea3d780ff5eb0adc1a7bfc0ae46ae2",
+      "source_id": "docs:api/list-models",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "List models",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-20T00:26:19.399Z"
+    },
+    {
+      "bytes": 28858,
+      "canonical_url": "https://docs.typesafe.ai/api/system-one",
+      "description": "Answer one or more questions about the content supplied in `state`.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/api/system-one.md",
+      "observed_at": "2026-10-20T04:53:26.906479Z",
+      "sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
+      "source_id": "docs:api/system-one",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "System One",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-20T00:26:19.386Z"
     },
     {
       "bytes": 41034,
@@ -451,19 +481,19 @@
       "upstream_last_modified": "2026-10-11T05:58:47.754Z"
     },
     {
-      "bytes": 22184,
+      "bytes": 22198,
       "canonical_url": "https://docs.typesafe.ai/images",
       "description": "Send images in a System One request: in the state, inside a question's instructions, and as the criteria a question is judged against.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/images.md",
-      "observed_at": "2026-10-16T04:34:40.188066Z",
-      "sha256": "dff7a319d7232f769da220aa171b9f66884d76c10a0a3232b6c5de35ccdbd7ee",
+      "observed_at": "2026-10-20T04:53:26.907537Z",
+      "sha256": "431c82177ee4713f46bf14da1b2f2f8835503a1deb98ea81d3ec9d7d06f183a7",
       "source_id": "docs:images",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Images",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-15T22:12:06.556Z"
+      "upstream_last_modified": "2026-10-20T00:26:24.058Z"
     },
     {
       "bytes": 4691,
@@ -541,13 +571,13 @@
       "upstream_last_modified": "2026-09-24T16:15:16.215Z"
     },
     {
-      "bytes": 18372,
+      "bytes": 18706,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-15T04:42:35.038310Z",
-      "sha256": "99f746d2570aa97898ad0e62042b9b5b703e54c3f1142ce4cf4b7ff15b5782ae",
+      "observed_at": "2026-10-20T04:53:26.907664Z",
+      "sha256": "e817e47899099364d29633f157ac5de74f936c849bdf5a14382e31ba4a09c688",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -571,19 +601,19 @@
       "upstream_last_modified": "2026-10-14T19:53:28.496Z"
     },
     {
-      "bytes": 7971,
+      "bytes": 7978,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-10-15T04:42:35.038367Z",
-      "sha256": "02b7682a7176d2d6649a2fa4588df45cbbaa3c3460f721828d632a7577e606df",
+      "observed_at": "2026-10-20T04:53:26.907704Z",
+      "sha256": "b643bc957614bbefaaf49c7a08deed930264b8c1bb1eaba8310ba0b980271d61",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:29:53.743Z"
+      "upstream_last_modified": "2026-10-20T00:26:24.067Z"
     },
     {
       "bytes": 1590,
@@ -706,19 +736,19 @@
       "upstream_last_modified": "2026-10-14T22:02:51.731Z"
     },
     {
-      "bytes": 26907,
+      "bytes": 27220,
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
       "description": "A Choice is a System One question type for selecting one option from a defined set. The answer includes the selected option, a probability for each option, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/choice.md",
-      "observed_at": "2026-10-01T18:26:36.585671Z",
-      "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb",
+      "observed_at": "2026-10-20T04:53:26.907931Z",
+      "sha256": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
       "source_id": "docs:primitives/choice",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Choice",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:36.019Z"
+      "upstream_last_modified": "2026-10-20T00:26:24.068Z"
     },
     {
       "bytes": 26498,
@@ -736,19 +766,19 @@
       "upstream_last_modified": "2026-09-20T02:53:36.010Z"
     },
     {
-      "bytes": 43770,
+      "bytes": 43749,
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
       "description": "A Score is a System One question type for rating content against ordered, descriptive levels. The answer includes a score, a probability for each level, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/score.md",
-      "observed_at": "2026-10-01T18:26:36.585832Z",
-      "sha256": "a0a39b9c01f5ac3616efae071bf23f879bbe3fb12b0af2169932dbb71dd83d32",
+      "observed_at": "2026-10-20T04:53:26.908021Z",
+      "sha256": "a6ed8f5021eb82bc82e0c77b893a0234c2a99e760917355c38037fd11176c5e0",
       "source_id": "docs:primitives/score",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Score",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-20T02:53:36.023Z"
+      "upstream_last_modified": "2026-10-20T00:26:24.065Z"
     },
     {
       "bytes": 936,
