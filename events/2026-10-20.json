@@ -183,6 +183,25 @@
       "summary": "Practice candidate-must-be-present evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
     },
     {
+      "after_sha256": "d2ed0deb2e523d2b48679917a54d91ad41e672528cd2ab93fbb7c1514b66a78c",
+      "before_sha256": "c3f8411c9fbdbe4dd6c0800f1aa14acf63bd297415f3e9a9fabd8c8429c9b24d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:agent-skill",
+      "id": "b1bf563dd1aa2ac750b93fcb",
+      "observed_at": "2026-10-20T17:09:37.510511Z",
+      "previous_event_id": "9666a732a2d55a4bf4269f8c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d2ed0deb2e523d2b48679917a54d91ad41e672528cd2ab93fbb7c1514b66a78c",
+          "source_id": "docs:agent-skill",
+          "url": "https://docs.typesafe.ai/agent-skill"
+        }
+      ],
+      "summary": "Documentation page docs:agent-skill modified in successful discovery."
+    },
+    {
       "after_sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
       "before_sha256": null,
       "category": "documentation",

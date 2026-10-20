@@ -1,19 +1,19 @@
 {
   "artifacts": [
     {
-      "bytes": 5905,
+      "bytes": 5936,
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
       "description": "Drop-in skill for Claude Code, Codex, and other agent environments.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/agent-skill.md",
-      "observed_at": "2026-10-15T04:42:35.036643Z",
-      "sha256": "c3f8411c9fbdbe4dd6c0800f1aa14acf63bd297415f3e9a9fabd8c8429c9b24d",
+      "observed_at": "2026-10-20T17:09:37.510698Z",
+      "sha256": "d2ed0deb2e523d2b48679917a54d91ad41e672528cd2ab93fbb7c1514b66a78c",
       "source_id": "docs:agent-skill",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Agent skill",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:12.427Z"
+      "upstream_last_modified": "2026-10-20T15:14:20.834Z"
     },
     {
       "bytes": 2695,

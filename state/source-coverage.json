@@ -335,7 +335,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
-      "sha256": "c3f8411c9fbdbe4dd6c0800f1aa14acf63bd297415f3e9a9fabd8c8429c9b24d",
+      "sha256": "d2ed0deb2e523d2b48679917a54d91ad41e672528cd2ab93fbb7c1514b66a78c",
       "source_id": "docs:agent-skill",
       "status": "fetched",
       "title": "Agent skill"
