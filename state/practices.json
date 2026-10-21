@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "c939b77859c765369bf369b83a01db6c3837b8ed639307c3f0c8c2d888d0b498",
+  "fingerprint": "f08776bed83898d63e2f2f33a2c11a589d775092b69128ca89062c58799e9a25",
   "items": [
     {
       "category": "agent-integration",
@@ -115,15 +115,11 @@
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
-          "review_source": {
-            "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
-            "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
-          },
-          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -145,13 +141,7 @@
           "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
-        }
-      ],
-      "id": "deterministic-before-jev",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Keep known rules, calculations, exact lookups, and execution in code.",
@@ -174,22 +164,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "deterministic-before-jev",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Keep deterministic rules, calculations, exact lookups, control flow, and side effects in code; use Jev where semantic judgment is needed."
     },
     {
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
-          "review_source": {
-            "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
-            "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
-          },
-          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-          "verdict": "supported"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -211,13 +202,7 @@
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-        }
-      ],
-      "id": "narrow-coherent-questions",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
           "excerpt": "Break broad judgments into narrow, typed questions with explicit instructions and criteria.",
@@ -226,33 +211,30 @@
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
         }
       ],
-      "status": "recommended",
+      "id": "narrow-coherent-questions",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Ask narrow, coherent, typed questions with explicit instructions and criteria rather than hiding several judgments in one broad question."
     },
     {
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "f576c027f197ed15c53dd7801deb40aa7b4092061ac3894d57c447ac4faa282e",
-          "review_source": {
-            "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
-            "url": "https://docs.typesafe.ai/concepts/state.md"
-          },
-          "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
+          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
-          "context_sha256": "afa6cfba3f9b1077356c70afb30b0beaf6b95621a58f65a6f96170063eea73f0",
-          "review_source": {
-            "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
-            "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-          },
-          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
+          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -274,13 +256,7 @@
           "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-        }
-      ],
-      "id": "batch-independent-questions",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Ask independent questions over the same state together, including useful speculative questions.",
@@ -303,22 +279,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "batch-independent-questions",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Ask independent questions over the same state together so the model can evaluate them in parallel and code can compose the answers."
     },
     {
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "afa6cfba3f9b1077356c70afb30b0beaf6b95621a58f65a6f96170063eea73f0",
-          "review_source": {
-            "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
-            "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-          },
-          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
+          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -340,13 +317,7 @@
           "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md"
-        }
-      ],
-      "id": "explicit-speculative-premises",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Ask independent questions over the same state together, including useful speculative questions.",
@@ -362,22 +333,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "explicit-speculative-premises",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Speculative questions are acceptable in a batch, but their premises must be stated explicitly and code must decide which answers are relevant."
     },
     {
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
-          "review_source": {
-            "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
-            "url": "https://docs.typesafe.ai/confidence.md"
-          },
-          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -399,13 +371,7 @@
           "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
-        }
-      ],
-      "id": "choice-confidence-concentration",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.",
@@ -414,22 +380,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "choice-confidence-concentration",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Choice confidence summarizes concentration of the competing option probabilities; it is not a guarantee that the selected answer is correct."
     },
     {
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
-          "review_source": {
-            "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
-            "url": "https://docs.typesafe.ai/confidence.md"
-          },
-          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
-          "verdict": "supported"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -451,13 +418,7 @@
           "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
-        }
-      ],
-      "id": "confidence-is-not-permission",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
           "excerpt": "The 0.5 confidence floor catches anything the model reports as genuinely uncertain.",
@@ -487,22 +448,23 @@
           "url": "https://docs.typesafe.ai/confidence.md"
         }
       ],
-      "status": "recommended",
+      "id": "confidence-is-not-permission",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Confidence is an uncertainty signal. Keep the permission to act, review, or escalate explicit in application code."
     },
     {
       "category": "primitives",
       "evidence_reviews": [
         {
-          "context_sha256": "c4de48b07e555ea3effbb6f466d6ea848fec78cc7c419212531fbe1f6a87442f",
-          "review_source": {
-            "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
-            "url": "https://docs.typesafe.ai/primitives/noul.md"
-          },
-          "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
+          "context_sha256": "84e111876cdb3095784a15063b7c5f49f2461eba5ce1ba1482c958aadbf0292c",
+          "sha256": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md",
-          "verdict": "supported"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -524,13 +486,7 @@
           "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md"
-        }
-      ],
-      "id": "noul-is-yes-probability",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "c4de48b07e555ea3effbb6f466d6ea848fec78cc7c419212531fbe1f6a87442f",
           "excerpt": "It is the probability that the answer is yes.",
@@ -553,7 +509,12 @@
           "url": "https://docs.typesafe.ai/primitives/noul.md"
         }
       ],
-      "status": "recommended",
+      "id": "noul-is-yes-probability",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "A Noul value is the probability that a yes/no proposition is true; a value near 0.5 means uncertainty between yes and no, not medium intensity."
     },
     {
@@ -571,8 +532,8 @@
           "verdict": "supported"
         },
         {
-          "context_sha256": "1b8b7cec94ae48b433d5d37b8d709e7da3e7f6bf8192a332536546af3b12edae",
-          "sha256": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
+          "context_sha256": "493c85f2b7165cc944e904bc3fcc5b7ee6aab6b9b6702f5315a9806341178add",
+          "sha256": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
           "verdict": "unreviewed"
@@ -607,15 +568,11 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
-          "review_source": {
-            "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
-            "url": "https://docs.typesafe.ai/confidence.md"
-          },
-          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -637,13 +594,7 @@
           "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md"
-        }
-      ],
-      "id": "domain-calibrated-thresholds",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Use probabilities and confidence to guide behavior, with thresholds evaluated on the user's data and consequences.",
@@ -666,22 +617,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "domain-calibrated-thresholds",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Choose thresholds from the application's data, model performance, and consequences; do not treat cookbook thresholds as universal defaults."
     },
     {
       "category": "verification",
       "evidence_reviews": [
         {
-          "context_sha256": "bf3b386a9b6046aa5afb3c21507673eafe400cf0f9754c72bb631e832648c51c",
-          "review_source": {
-            "sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
-            "url": "https://docs.typesafe.ai/concepts/system-one.md"
-          },
-          "sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
+          "context_sha256": "47201a821ebf18066dc3b8ae74da6beef97d36c6c1238ff26286a7d13c4c813a",
+          "sha256": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
           "source_id": "docs:concepts/system-one",
           "url": "https://docs.typesafe.ai/concepts/system-one.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -697,11 +649,7 @@
       ],
       "first_seen": null,
       "first_seen_basis": "unknown_legacy",
-      "id": "typed-output-is-not-truth",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+      "historical_sources": [
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Typed output guarantees the interface, not truth.",
@@ -717,22 +665,23 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "typed-output-is-not-truth",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Typed output guarantees interface shape, not truth; test representative cases and resulting application behavior."
     },
     {
       "category": "state",
       "evidence_reviews": [
         {
-          "context_sha256": "f576c027f197ed15c53dd7801deb40aa7b4092061ac3894d57c447ac4faa282e",
-          "review_source": {
-            "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
-            "url": "https://docs.typesafe.ai/concepts/state.md"
-          },
-          "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
+          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
@@ -760,13 +709,7 @@
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-        }
-      ],
-      "id": "observed-state-distinct-from-inference",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "Keep inferred state distinct from observed facts, and check freshness before applying a result to a changed situation.",
@@ -775,7 +718,12 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "observed-state-distinct-from-inference",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Keep observed application state and inferred model judgments conceptually distinct, and check freshness before applying a result to changed state."
     },
     {
@@ -793,15 +741,11 @@
           "verdict": "supported"
         },
         {
-          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
-          "review_source": {
-            "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
-            "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
-          },
-          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-          "verdict": "non_conflicting"
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -812,13 +756,7 @@
           "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
           "source_id": "skill:typesafe-ai",
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-        }
-      ],
-      "id": "diagnose-failure-layers",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
           "excerpt": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome.",
@@ -834,22 +772,27 @@
           "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
         }
       ],
-      "status": "recommended",
+      "id": "diagnose-failure-layers",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-21",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-20T04:53:25.897550Z",
+  "observed_at": "2026-10-21T04:51:20.033028Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
-    "docs:concepts/state": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
-    "docs:concepts/system-one": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
-    "docs:confidence": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+    "docs:concepts/how-to-build-with-system-one": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+    "docs:concepts/state": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+    "docs:concepts/system-one": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
+    "docs:confidence": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
     "docs:introduction/coding-agents": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
-    "docs:patterns/fan-out": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
-    "docs:primitives/choice": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
-    "docs:primitives/noul": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
+    "docs:patterns/fan-out": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+    "docs:primitives/choice": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
+    "docs:primitives/noul": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
     "skill:typesafe-ai": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52"
   },
   "status_vocabulary": [

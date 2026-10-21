@@ -1,5 +1,5 @@
 {
-  "fingerprint": "840221d4eb0a34fda70ae3a25fa213c8a66cf179544a26a701ad2f4c0e0a02d1",
+  "fingerprint": "75127c84b602d4b8af64fc7f464dee16aa8f40aab9adae20c55662d480503aab",
   "items": [
     {
       "complete_section_sha256": "438b17d8cf4be2e8fbe8cb37783ae3ef66f36781d2b2a3528a72c6b51ff07aed",
@@ -9,7 +9,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
         }
@@ -29,7 +29,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
         }
@@ -68,7 +68,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
         }
@@ -88,7 +88,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
         }
@@ -108,7 +108,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
         }
@@ -121,23 +121,23 @@
       "title": "Date and time comparison"
     },
     {
-      "complete_section_sha256": "d5c645ff98bc6f5a6d6cf6f5be94d5ac05320667611d07ee6a4f4075cdd98a1e",
+      "complete_section_sha256": "6d8fbeffacd30c4a7423ae3a7333eb8857283f1a5498565125e18fafd3c79e57",
       "id": "jev-1.13:generation",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
         }
       ],
       "section": "generation",
-      "section_text_sha256": "909fe1da53fa433f3dd367dcab2d5b5119e6b7865ce6095a0086a81cffa72c31",
+      "section_text_sha256": "eeb1f219169fb3d3e816f8867eca78432832603c913b97b7bb7b15d46c5f3ba1",
       "status": "documented",
-      "summary": "Free-text production is outside this model's training. For bounded extraction, obtain candidates elsewhere and use Choice to select.",
-      "summary_kind": "repository-interpretation",
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
+      "summary_kind": "unknown",
       "title": "Generation"
     },
     {
@@ -148,7 +148,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
         }
@@ -161,23 +161,23 @@
       "title": "Indirection"
     },
     {
-      "complete_section_sha256": "c7663e838ae089d77db44b32e7a13f51ee59df8be4d7459cb6caf39efcef6e14",
+      "complete_section_sha256": "d53aa049a92504a954df1c1f4fbd62e15f41d15f4418b37fdf728c4648381df8",
       "id": "jev-1.13:large-state-full-of-irrelevant-detail",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
         }
       ],
       "section": "large-state-full-of-irrelevant-detail",
-      "section_text_sha256": "2c143c92dc1d093ab96ead10fae277fa744e9e32674381cdfaea750b9b35125b",
+      "section_text_sha256": "74c9c6751ee77a9fa30d2efabd3610a67e2bd67d89ed13451a54dc3d0293c5cb",
       "status": "documented",
-      "summary": "Irrelevant input can reduce accuracy and obscure error causes. Select relevant fields before evaluation.",
-      "summary_kind": "repository-interpretation",
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
+      "summary_kind": "unknown",
       "title": "Large state full of irrelevant detail"
     },
     {
@@ -188,7 +188,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
         }
@@ -208,7 +208,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
         }
@@ -228,7 +228,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
         }
@@ -248,7 +248,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
         }
@@ -261,7 +261,7 @@
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-18T21:12:13.509935Z",
+  "observed_at": "2026-10-21T04:51:20.034514Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }

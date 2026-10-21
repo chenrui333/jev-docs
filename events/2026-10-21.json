@@ -1,0 +1,2420 @@
+{
+  "date": "2026-10-21",
+  "events": [
+    {
+      "after_sha256": "ad91d38e7efc1035242997c69ee92ffa7fc548b77cab22d65af2862bf5aafd3e",
+      "before_sha256": "76bdeead0640f4963815aba7c4cbafe7812cb619b678606998f1735a808fd3f6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/citation_check",
+      "id": "00394f5e485fa21609b202a1",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ec394a48c9cda721d768ba2f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ad91d38e7efc1035242997c69ee92ffa7fc548b77cab22d65af2862bf5aafd3e",
+          "source_id": "docs:cookbooks/citation_check",
+          "url": "https://docs.typesafe.ai/cookbooks/citation_check"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/citation_check modified in successful discovery."
+    },
+    {
+      "after_sha256": "65f373e3e8e831571b7d346fabcbfa0dab476d6e88a054bec57e33aaf642668e",
+      "before_sha256": "fea8e76c4ad6774d8a7fdb094b692bb1efbc76501bdcaaeab34a9d083361b028",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/TextWithAssets",
+      "id": "018052ac54a8b5afa37fec41",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9b1b61d0229a9a8883e20261",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "65f373e3e8e831571b7d346fabcbfa0dab476d6e88a054bec57e33aaf642668e",
+          "source_id": "docs:sdk/javascript/api/interfaces/TextWithAssets",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TextWithAssets"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/TextWithAssets modified in successful discovery."
+    },
+    {
+      "after_sha256": "ef773873c49b0945a737d2f007fc18acb2fab8f175cecb4308f344685d943dca",
+      "before_sha256": "d06a957fe92af44639a97319c0cf56082ef11e243a8dfd64f093480de400d87f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/ChoiceResponse",
+      "id": "0324922d2e0d48994ee6a3d4",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "4b8d5e0bb73112b17603f0d2",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ef773873c49b0945a737d2f007fc18acb2fab8f175cecb4308f344685d943dca",
+          "source_id": "docs:sdk/javascript/api/interfaces/ChoiceResponse",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceResponse"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/ChoiceResponse modified in successful discovery."
+    },
+    {
+      "after_sha256": "075e7189a27974ac3c56da21389892276f7ee2edb58daeb0bca7459711c0a3c8",
+      "before_sha256": "b8f50d3c85ed1719d970ba416315346efc09474d0b46f129d06753ef978adac9",
+      "category": "practice",
+      "change": "modified",
+      "entity": "noul-is-yes-probability",
+      "id": "04611470ec9b73104b2fc887",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "84e111876cdb3095784a15063b7c5f49f2461eba5ce1ba1482c958aadbf0292c",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "c4de48b07e555ea3effbb6f466d6ea848fec78cc7c419212531fbe1f6a87442f",
+          "excerpt": "A value near 0.5 means the model gives yes and no similar probability.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice noul-is-yes-probability evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "5fc16be4f5f01c171befb614e79a17509961deb10b78ed1ecffa1a2d01963e6f",
+      "before_sha256": "cb64ec58201609918d8808307c5163512a86407c02574519ae73ea411c25dd31",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/Image",
+      "id": "05a6d0069eb26ef2892c35bf",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "5fe09db2e6d3638be7764628",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5fc16be4f5f01c171befb614e79a17509961deb10b78ed1ecffa1a2d01963e6f",
+          "source_id": "docs:sdk/javascript/api/classes/Image",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/Image"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/Image modified in successful discovery."
+    },
+    {
+      "after_sha256": "88dbde2e1067fbcd35004a9858c0b7cc6e62eba340c7f72d96f05dd16692f9ef",
+      "before_sha256": "a566caf1c4386daaced3debea307fcb77f7d70e534b4427f1a5b73ec96fa0f4e",
+      "category": "practice",
+      "change": "modified",
+      "entity": "confidence-is-not-permission",
+      "id": "0691f77a7caf08c62b2f1a6c",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
+          "excerpt": "Route to a human, request clarification, or fall back to a different system.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice confidence-is-not-permission evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "98c8a50a13ab06be8e98a0dfc5a29ed941e7402fd8fbf6a761a0f1906730d481",
+      "before_sha256": "c5aa6dba0b497d9b95dcfaad4381501ab0c0a260a254481be50b80d5996d5145",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/entity_alignment",
+      "id": "09f3b7abde670108648218e4",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "bef00bfedd0f33ebfa6e25eb",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "98c8a50a13ab06be8e98a0dfc5a29ed941e7402fd8fbf6a761a0f1906730d481",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/entity_alignment modified in successful discovery."
+    },
+    {
+      "after_sha256": "c20ff12bd03360614dc92c3c9a9064c1e01d41d333d7d915afbddc698286f44c",
+      "before_sha256": "de54fe865040fdb8edb2440528af9a3ad02aa1b6838fd0058cde5036966a364f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/SystemOneResult",
+      "id": "0c53b5e089a9c6a40a03feeb",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "2c7a2854261d3046313a2713",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c20ff12bd03360614dc92c3c9a9064c1e01d41d333d7d915afbddc698286f44c",
+          "source_id": "docs:sdk/javascript/api/interfaces/SystemOneResult",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneResult"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/SystemOneResult modified in successful discovery."
+    },
+    {
+      "after_sha256": "a589efc998840cae4c78d60d2ca452dae64d1285dd63e100017b0ef9363aabba",
+      "before_sha256": "73d81e80043ed07af283b07b484ed2e7a309823d6e11e79f239956b8c5e741b9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/constants",
+      "id": "0e2b195c6b06c861076f8d2d",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "da5a96df3a10a284aebe8686",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a589efc998840cae4c78d60d2ca452dae64d1285dd63e100017b0ef9363aabba",
+          "source_id": "docs:sdk/python/api/constants",
+          "url": "https://docs.typesafe.ai/sdk/python/api/constants"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/constants modified in successful discovery."
+    },
+    {
+      "after_sha256": "a28b889c2c63ca69adbe1fe85da87178975fbed59ae37bd666af542c5a49bbf0",
+      "before_sha256": "a503a92e01a9c1ff431981fd98cf77e0c0b6b929679dbb6ff1afe41c0c82371c",
+      "category": "practice",
+      "change": "modified",
+      "entity": "typed-output-is-not-truth",
+      "id": "0e4589075fe7e6ada0b77383",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "47201a821ebf18066dc3b8ae74da6beef97d36c6c1238ff26286a7d13c4c813a",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
+          "source_id": "docs:concepts/system-one",
+          "url": "https://docs.typesafe.ai/concepts/system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "bf3b386a9b6046aa5afb3c21507673eafe400cf0f9754c72bb631e832648c51c",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
+          "source_id": "docs:concepts/system-one",
+          "url": "https://docs.typesafe.ai/concepts/system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Test representative cases and the resulting application behavior.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice typed-output-is-not-truth evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+      "before_sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:confidence",
+      "id": "0e663ebbbb2b10dd09014cf9",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "65dd7d4d425b9045f5e5e2fa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence"
+        }
+      ],
+      "summary": "Documentation page docs:confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "a7f5ccea9427410d0f59c632f638b3844fe1fe371ed67d7a3485d64fe37ad20e",
+      "before_sha256": "acffba767407ea5e21373ec6083c6f6a7536380b1bd508023b6d397e8ae6b8a5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "103454bea16676df998811df",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "13913611cc893591ed0ef335",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a7f5ccea9427410d0f59c632f638b3844fe1fe371ed67d7a3485d64fe37ad20e",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
+      "before_sha256": "bfa3abb0a3991a67b722b19a068ef82a4decdf092301008685f0eebfddefb717",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/choice",
+      "id": "11cf5bcb3627e524788371d0",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "d7339d05c55f10ce4a90a3c9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
+          "source_id": "docs:primitives/choice",
+          "url": "https://docs.typesafe.ai/primitives/choice"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/choice modified in successful discovery."
+    },
+    {
+      "after_sha256": "a02aeb3137be2529603cdb2e34b2b9ef6a5e9c011557ca54d6bf423da6868616",
+      "before_sha256": "a49c436b13099525d0eb6745a2a0301fee5a7631752545eed7fb7e039a6162f9",
+      "category": "practice",
+      "change": "modified",
+      "entity": "diagnose-failure-layers",
+      "id": "1354462010df7846c4693d05",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Separate missing evidence, model errors, code errors, and service failures.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice diagnose-failure-layers evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "558eeb22c883984bddd8ab1c2ef659e0e008afd584f857e72ff2108d2902968a",
+      "before_sha256": "e3b49455b725f3a766d0e8e3dc02243a314ccbec61f337a667238f14d6581b9d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/Logger",
+      "id": "138d645e4559695e769af6e0",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "779b9eeb552dcea32339314a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "558eeb22c883984bddd8ab1c2ef659e0e008afd584f857e72ff2108d2902968a",
+          "source_id": "docs:sdk/javascript/api/interfaces/Logger",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Logger"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/Logger modified in successful discovery."
+    },
+    {
+      "after_sha256": "933e4dff10b7877cc1a1723b9bef836dc6865a499903198dedd3e09d70bf6850",
+      "before_sha256": "a1267a404b72d1b08df7648e28542f0c1689df217c05070333d8562eddc8627e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classifying_rag_passages",
+      "id": "156e454785388ea48f5e2ce8",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ad866649667576f7491ac1d0",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "933e4dff10b7877cc1a1723b9bef836dc6865a499903198dedd3e09d70bf6850",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "9561c2f4ede32569cefcb54e1f903ef49dd6c7d3120e309bafdf16dec7970396",
+      "before_sha256": "7884d23386a8db58b7518d5baf3b9ee3be358d38660a4a868f88a448e13b38f1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/variables/withAssets",
+      "id": "1723168d4a99ea6234a16e4f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "bac5fedcf59888e7e87642ef",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9561c2f4ede32569cefcb54e1f903ef49dd6c7d3120e309bafdf16dec7970396",
+          "source_id": "docs:sdk/javascript/api/variables/withAssets",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/variables/withAssets"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/variables/withAssets modified in successful discovery."
+    },
+    {
+      "after_sha256": "378b310680ce6ba65792a58c20e8798846251cbe407bd9e719422365e0c38bef",
+      "before_sha256": "e4d9f9ae6588e03ae6f0d8fc29f10109e55c91b328396dcf29ff34cc6fc7ae05",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/TypeSafeClient",
+      "id": "173b60bb26f69db266313e57",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "cc348d9ebab95fa59e482f68",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "378b310680ce6ba65792a58c20e8798846251cbe407bd9e719422365e0c38bef",
+          "source_id": "docs:sdk/javascript/api/classes/TypeSafeClient",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeClient"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/TypeSafeClient modified in successful discovery."
+    },
+    {
+      "after_sha256": "d13e0fe8f31c9d6baf8e67fe4c6e929b374bb81a6a824304366e5d06c89fc59e",
+      "before_sha256": "dac5bfd48bd2be4077d1e2d6e3c26105b345b3ca250400eee832a3d5eadad747",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/APIUserAbortError",
+      "id": "17a5b68e8975b1fb70542d4a",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "5fdfeaa49a9554e98eccc809",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d13e0fe8f31c9d6baf8e67fe4c6e929b374bb81a6a824304366e5d06c89fc59e",
+          "source_id": "docs:sdk/javascript/api/classes/APIUserAbortError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIUserAbortError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/APIUserAbortError modified in successful discovery."
+    },
+    {
+      "after_sha256": "657b1a067dde370af36c7c001f0dd609ec9dbd8272a0ff44b7063142a8e5c184",
+      "before_sha256": "074c06c7c91a514d1a63125c9ea346a3153d56adf9d3ccbcde67c7f7a00be57d",
+      "category": "practice",
+      "change": "modified",
+      "entity": "domain-calibrated-thresholds",
+      "id": "187e096f81222a304d46aa5e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Treat cookbook thresholds and demo results as examples to evaluate, not universal rules or permanent model limitations.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice domain-calibrated-thresholds evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "d770a3dffc086ec62931034e51fab007691bf4e37e6e84e2864ac5902f2a5769",
+      "before_sha256": "a5a0937ad9229c34899ed24ee0edab39f23678b4e8d589504eea2615d93bd091",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/BoxResponse",
+      "id": "1bdffad14bbbafb233faa036",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "c271a937e84aa954db2a38d4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d770a3dffc086ec62931034e51fab007691bf4e37e6e84e2864ac5902f2a5769",
+          "source_id": "docs:sdk/javascript/api/interfaces/BoxResponse",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxResponse"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/BoxResponse modified in successful discovery."
+    },
+    {
+      "after_sha256": "c21de2b5010377d1ae9446c42000522a3330b77db7ea23480e14aedc7d22d1c6",
+      "before_sha256": "d553ed54513002c58c62027c2de76734fefb4270c5b591dad35bc5670403d407",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python",
+      "id": "1d19384dd35f9a1cc5af6207",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b1cb12d2de3bf5cec8695e93",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c21de2b5010377d1ae9446c42000522a3330b77db7ea23480e14aedc7d22d1c6",
+          "source_id": "docs:sdk/python",
+          "url": "https://docs.typesafe.ai/sdk/python"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python modified in successful discovery."
+    },
+    {
+      "after_sha256": "e4b19e93edcbfe15c7aa000311aed91e296b9b2367b961885c9a24eadb815fa5",
+      "before_sha256": "4dd749d672520170b99113c870ca8aff93e16212075b210c8797849d8ba24fbc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/use-case-map",
+      "id": "1d3d6b2100fd9f23a0f7d209",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "15c15c623fe1c22ad0206601",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e4b19e93edcbfe15c7aa000311aed91e296b9b2367b961885c9a24eadb815fa5",
+          "source_id": "docs:concepts/use-case-map",
+          "url": "https://docs.typesafe.ai/concepts/use-case-map"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/use-case-map modified in successful discovery."
+    },
+    {
+      "after_sha256": "a3b296e445f9ba629c391053ef40bcfb1da7d4c32d657d58a4d539b44a611073",
+      "before_sha256": "c03cd58ac34dca4e282bfda4b21df943f27c0d652d49ad6b8bac1afa47f8856c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/function_calling",
+      "id": "1f979d1779c059505c1b1a50",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "d13804d6a8f8b678263b3516",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a3b296e445f9ba629c391053ef40bcfb1da7d4c32d657d58a4d539b44a611073",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/function_calling modified in successful discovery."
+    },
+    {
+      "after_sha256": "fa7fae1657dfa0695b3cd642b4b78aec134b688916e477e2ff759bd347ed7844",
+      "before_sha256": "30d88a3443a7d1c88c611c0ccd94955b9735e44bb59366aa9793852945d6b860",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage/advanced",
+      "id": "1fd4845b7455bd975b9d7206",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "8c408ecbd8689a316bb6980b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "fa7fae1657dfa0695b3cd642b4b78aec134b688916e477e2ff759bd347ed7844",
+          "source_id": "docs:sdk/python/usage/advanced",
+          "url": "https://docs.typesafe.ai/sdk/python/usage/advanced"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage/advanced modified in successful discovery."
+    },
+    {
+      "after_sha256": "47af1b9213a6c8259b9bc76cecaa2e54afc03fdaa1d66c3584cba47259045124",
+      "before_sha256": "b4e4e7c566075b6550771f1dee259ec61bbfc4928d31a1515690fd1888c3923c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/assets",
+      "id": "22421d5b7a96917edfd529c1",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "4a01fe3fa5c97af61f921844",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "47af1b9213a6c8259b9bc76cecaa2e54afc03fdaa1d66c3584cba47259045124",
+          "source_id": "docs:sdk/python/api/types/assets",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/assets"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/assets modified in successful discovery."
+    },
+    {
+      "after_sha256": "4f90c370e1b931ea932debd434f91b2e742328031489ffd96288ae482f79cc62",
+      "before_sha256": "1eca883cec3368faeeede234a5ecb8a48cecfb80d8484d5fc940d94b022cc0f3",
+      "category": "practice",
+      "change": "modified",
+      "entity": "deterministic-before-jev",
+      "id": "22b9d16abd5a769d6167deca",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Code owns the workflow; the model supplies programmable common sense where ordinary code needs semantic understanding.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice deterministic-before-jev evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "00953822f13343f77e65faf1ccb162350cd405d64d882127787bd452344082ba",
+      "before_sha256": "d9097f88e36cba06ca46c0a13cd16e679efe90fef898156471989ffcaf18b7c8",
+      "category": "practice",
+      "change": "modified",
+      "entity": "explicit-speculative-premises",
+      "id": "253a16e23098d8761b5909e2",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "afa6cfba3f9b1077356c70afb30b0beaf6b95621a58f65a6f96170063eea73f0",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "State each speculative premise explicitly; code consumes the applicable answers.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice explicit-speculative-premises evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "2e858a28d7722732a8896d61ee31879fa4cf711087e42effa2160fecbb69bb2a",
+      "before_sha256": "dda08eedad85bd5516e862748dff570239b41774c53d297d29653763d17ecc07",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/InternalServerError",
+      "id": "2678c6355d07ae6de842d810",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "62f735bc9f06f38fc93545b4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "2e858a28d7722732a8896d61ee31879fa4cf711087e42effa2160fecbb69bb2a",
+          "source_id": "docs:sdk/javascript/api/classes/InternalServerError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/InternalServerError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/InternalServerError modified in successful discovery."
+    },
+    {
+      "after_sha256": "aeaeb7c0e3afebf852f5eb0dcad673da0db2526768e158fa5fca4b616be27bb5",
+      "before_sha256": "2a1c74759dfd10c8fed4e051802cfb59cc2f8720889f010440a59e97a1f6cae4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/APIPromise",
+      "id": "271424b2efddb9a51eb7c43b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "8bc8a9710f7aef7d96430657",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "aeaeb7c0e3afebf852f5eb0dcad673da0db2526768e158fa5fca4b616be27bb5",
+          "source_id": "docs:sdk/javascript/api/classes/APIPromise",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIPromise"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/APIPromise modified in successful discovery."
+    },
+    {
+      "after_sha256": "7d95fc36ebfe0790964468b41a983092d6131156b66f184a3abd49fbfdb93425",
+      "before_sha256": "7d8969ab0d851fb0296d5e86c53eac03f3ba3dc0b779aecd7903604f51a6ce11",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/rerank_typesafe",
+      "id": "2a72de49b0ab67992dde1a25",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "efbbed74b86daf4526213a07",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7d95fc36ebfe0790964468b41a983092d6131156b66f184a3abd49fbfdb93425",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/rerank_typesafe modified in successful discovery."
+    },
+    {
+      "after_sha256": "db5484c31340a940b7faeb3acdb0129fb82f5a297409131b0f6db1e34013e806",
+      "before_sha256": "92b23c001081fd4244a99e7162e87f8152306865c2906af8922fcc29587171d6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "2adf4568be136ebd738b500e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "819ddad85e881425065cb712",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "db5484c31340a940b7faeb3acdb0129fb82f5a297409131b0f6db1e34013e806",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    },
+    {
+      "after_sha256": "5caf66d3991711e1676934652d293f194d51c27d96493b3173099ade0e41e8ae",
+      "before_sha256": "d2f55653416cc888904c6c6f8ad41e59d0e4b0addbfd2ed5c0628c6c2ccdb76a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/ChoiceQuestion",
+      "id": "2c1018af53ad1f06a41e1730",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "8ef646ccc4c9d4c420409633",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5caf66d3991711e1676934652d293f194d51c27d96493b3173099ade0e41e8ae",
+          "source_id": "docs:sdk/javascript/api/interfaces/ChoiceQuestion",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ChoiceQuestion"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/ChoiceQuestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "9d6add2381f8d9c8e1188b190d6f8e1cf6856ebe7ed4c8d006e7ec10f053a714",
+      "before_sha256": "2463ee449a0728a535c464b7a916feec7f7cfa6c787f372682e406448783b743",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/BadRequestError",
+      "id": "2cbb74ef16d6313559c14b19",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ad20b7af628681a41a98e5f9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9d6add2381f8d9c8e1188b190d6f8e1cf6856ebe7ed4c8d006e7ec10f053a714",
+          "source_id": "docs:sdk/javascript/api/classes/BadRequestError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/BadRequestError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/BadRequestError modified in successful discovery."
+    },
+    {
+      "after_sha256": "698a0ce3b7a7143fe950437be33ee315b47fea80c8d30cc7277cea322217664d",
+      "before_sha256": "37675cf46f17d58f3a7d47e255c5b4f134dbcff192739535375f51c103eba42e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/BoxQuestion",
+      "id": "2d89fba8475ab548e1937e8e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "7209913dcb70aa9cfa5b0a9e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "698a0ce3b7a7143fe950437be33ee315b47fea80c8d30cc7277cea322217664d",
+          "source_id": "docs:sdk/javascript/api/interfaces/BoxQuestion",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxQuestion"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/BoxQuestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+      "before_sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/fan-out",
+      "id": "336d4b3f787f97c76e5a458d",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9de7a25cd300c2f97f2456e1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/fan-out modified in successful discovery."
+    },
+    {
+      "after_sha256": "4b0cabfd6ed4b3d60279d20b036636e3bf82986adf479a87cb8a12706697dc0a",
+      "before_sha256": "4c978ecf12bdd329c2468e81b1cdbe32f070c758e21f33e01c532c52e6c15b00",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/NoulResponse",
+      "id": "346e264eda9264c59a0a0faa",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9d230c45ab5286331f0582f2",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "4b0cabfd6ed4b3d60279d20b036636e3bf82986adf479a87cb8a12706697dc0a",
+          "source_id": "docs:sdk/javascript/api/interfaces/NoulResponse",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulResponse"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/NoulResponse modified in successful discovery."
+    },
+    {
+      "after_sha256": "8fbadeed05563cb6ea58c06aa9c10ef70419c070570381083bd23b8acf8e4b44",
+      "before_sha256": "0ca02d89bea4a591d624dc462a6d7bb198cbf9a758772b1e8e96b62016ab93c5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/TypeSafeError",
+      "id": "3719ded67e587fd0b7e90e0b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "95e6ec87e63329d225eafab8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8fbadeed05563cb6ea58c06aa9c10ef70419c070570381083bd23b8acf8e4b44",
+          "source_id": "docs:sdk/javascript/api/classes/TypeSafeError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/TypeSafeError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/TypeSafeError modified in successful discovery."
+    },
+    {
+      "after_sha256": "b6d071c20b292e863a9be1aa4b751eadcdcf09fb33ac746fca70d4fe26f362a4",
+      "before_sha256": "650a61153fe3d16619e57c8f81fc03b570d663c40dd2fe94df6e57db6c906f62",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/advanced",
+      "id": "3e0128395431be59eb30f339",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "0665f20061ac089939a0ccfa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b6d071c20b292e863a9be1aa4b751eadcdcf09fb33ac746fca70d4fe26f362a4",
+          "source_id": "docs:primitives/advanced",
+          "url": "https://docs.typesafe.ai/primitives/advanced"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/advanced modified in successful discovery."
+    },
+    {
+      "after_sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+      "before_sha256": "ae4e822c759ce6665553a676c7bfa9371374e02685b4dacb1851a330875e5950",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:model-jaggedness/jev-1.13",
+      "id": "3f3aa2033a76e789ec90e9cf",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "a89d34343c48265324dc8b90",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13"
+        }
+      ],
+      "summary": "Documentation page docs:model-jaggedness/jev-1.13 modified in successful discovery."
+    },
+    {
+      "after_sha256": "c69d71fae569ea92e55ce6e687eea895f5550b3b733c669b2839ab8d5df21407",
+      "before_sha256": "90ab0294cb0d83b0ece3343edf11c6d492ce0236f4e21b434bbdbcb7c5500b74",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/sde_cascade",
+      "id": "42f70b45da297110c1b10cd7",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "0e021a1636adf7a7eda3d48b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c69d71fae569ea92e55ce6e687eea895f5550b3b733c669b2839ab8d5df21407",
+          "source_id": "docs:cookbooks/sde_cascade",
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/sde_cascade modified in successful discovery."
+    },
+    {
+      "after_sha256": "e14f05a6f021469ef119dd18ff47b8e5e9fb578bd7085dadb52d69f9aa3de61f",
+      "before_sha256": "779ee50b1ff655cbbce5633bd0dce335c388a937da99a5c2cbc9907ca1f7137c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/sync",
+      "id": "430f1a9ba3a67d50bcf46b35",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "7907595be9c832effd44842d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e14f05a6f021469ef119dd18ff47b8e5e9fb578bd7085dadb52d69f9aa3de61f",
+          "source_id": "docs:sdk/python/api/clients/sync",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/sync"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/sync modified in successful discovery."
+    },
+    {
+      "after_sha256": "f4742dcb379c9549d55d0094b34fb6e61d4d45f9fd79d57aa9ec5f2cba17e855",
+      "before_sha256": "6b1137deabfac2926e08356504f02dc856892b2d061cfeedf762535c328c5ec1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/retries",
+      "id": "43e1ded62120c1d84936985a",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ef4ef90b4c517e577065800b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4742dcb379c9549d55d0094b34fb6e61d4d45f9fd79d57aa9ec5f2cba17e855",
+          "source_id": "docs:sdk/python/api/retries",
+          "url": "https://docs.typesafe.ai/sdk/python/api/retries"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/retries modified in successful discovery."
+    },
+    {
+      "after_sha256": "321e29f0a67e7060cab731f7deb9674cd15a35aba8880e617ab2e64d92010b46",
+      "before_sha256": "7d0a90fc22b71703d4dc38a901032afbe5a22bb911134d553654f143a9a6fd41",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_noul_cookbook",
+      "id": "48c1fa40dd23027d7d560765",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "68985d24afa8b2e785f7926f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "321e29f0a67e7060cab731f7deb9674cd15a35aba8880e617ab2e64d92010b46",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_noul_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "21ba9548c262eae1af069be3f7e1224ed60d0f7faa0fafb8060168b521a2e689",
+      "before_sha256": "dda33893109cbd5d053b26a01eb4255be91e0c4efedddf4519aa5bfe6987653b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/async",
+      "id": "4c57d2f369f6b1683c4216f6",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "a7128b8eba9ee15d6d770f11",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "21ba9548c262eae1af069be3f7e1224ed60d0f7faa0fafb8060168b521a2e689",
+          "source_id": "docs:sdk/python/api/clients/async",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/async"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/async modified in successful discovery."
+    },
+    {
+      "after_sha256": "28f226e22279f058a6583f221e6771c04979767c6dabb94e29650267abc9220b",
+      "before_sha256": "c59bf591db3d45e20b90a93a4526775e5188c479c6366b9a4267cb37ab51fc90",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/skill_suggestion",
+      "id": "4f228e1a80a49f46db18b32b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9ab4ff1336bac532b82f631e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "28f226e22279f058a6583f221e6771c04979767c6dabb94e29650267abc9220b",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/skill_suggestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "a6fb6b8072d6d5c0933f326f0fea1ac1b6e51a68ede5a8544405b281a7ed060a",
+      "before_sha256": "d0c4b4c0666dfe09828238e2e3908560d0853711b5b54d6eae3654893180071b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/PermissionDeniedError",
+      "id": "50fa87e4a2d5a4cef64ab167",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "64dd85701a9a4bd6c8ed649d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a6fb6b8072d6d5c0933f326f0fea1ac1b6e51a68ede5a8544405b281a7ed060a",
+          "source_id": "docs:sdk/javascript/api/classes/PermissionDeniedError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/PermissionDeniedError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/PermissionDeniedError modified in successful discovery."
+    },
+    {
+      "after_sha256": "2ac864f93cb1bb828ab3517225a95845a18ab2ce9bcfab5c9872b3b85f6d4b9a",
+      "before_sha256": "ce99cdcbf13f951cb1c0e3fefc33f8a2e9de7cd3f2e14b9eafe90ccb19f8d1fc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/changelog",
+      "id": "51eddf6b8cb59db4a538fa15",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "21ec60d5419b09564644261a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "2ac864f93cb1bb828ab3517225a95845a18ab2ce9bcfab5c9872b3b85f6d4b9a",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/changelog modified in successful discovery."
+    },
+    {
+      "after_sha256": "e6c3f1ac6e6fe46bef14e7282fc3fa73c41a6c2daba4008b4e2f6d0d5f2d1726",
+      "before_sha256": "6059e775cfd5efcfbaba12fcd19a48225bc97edb5723ebbada0e8b3c2c68c8b8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/AuthenticationError",
+      "id": "5256c49897b8563cf4f647f6",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "6c25db34dc4420090f3f15b5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e6c3f1ac6e6fe46bef14e7282fc3fa73c41a6c2daba4008b4e2f6d0d5f2d1726",
+          "source_id": "docs:sdk/javascript/api/classes/AuthenticationError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/AuthenticationError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/AuthenticationError modified in successful discovery."
+    },
+    {
+      "after_sha256": "1b3e7a6d7b95ae117fd27d37d223152e3ed92256d6e41c84d4d9d8366821a3ea",
+      "before_sha256": "5d7a12451f08d98e507f3b7ff2b32a835827c9fcdd9d8cb3f246500d99a0e4a4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/APIError",
+      "id": "56b1e381ce04e593b284ef4e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ace19c28602476e256e81eaa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1b3e7a6d7b95ae117fd27d37d223152e3ed92256d6e41c84d4d9d8366821a3ea",
+          "source_id": "docs:sdk/javascript/api/classes/APIError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/APIError modified in successful discovery."
+    },
+    {
+      "after_sha256": "dee24bd42eeeafd2212afcc41a630acc7b8e4ef7c80cede0d507b129ce1539c9",
+      "before_sha256": "5cb7a3d1d62eafccc48a0962f1fa9a2f3f4f6c6b5acac17b7ec51ff01d99d8fb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/twitch_chat_filter",
+      "id": "615516dd2b5559ce0bad129e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "8d5010861f0adf7481cf103a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "dee24bd42eeeafd2212afcc41a630acc7b8e4ef7c80cede0d507b129ce1539c9",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/twitch_chat_filter modified in successful discovery."
+    },
+    {
+      "after_sha256": "d78f8db1fa611344cb7bb84f0e1431f704689eaa2f888da7db1f42eb4e192b04",
+      "before_sha256": "b643bc957614bbefaaf49c7a08deed930264b8c1bb1eaba8310ba0b980271d61",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "65bc988a876bc91c8f3c21a5",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "8d622d667e12fcc5958d15c9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d78f8db1fa611344cb7bb84f0e1431f704689eaa2f888da7db1f42eb4e192b04",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    },
+    {
+      "after_sha256": "b7c95829c8b9747861b1249b5aeea7600e8fff728cd01b4a962750f67028586f",
+      "before_sha256": "49389d842fc6e9bd8ab346a4b0ec8351711bfd953a74dfc520bbaf06f23097c4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/TypeSafeClientConfig",
+      "id": "6782b6dfade14df8eb050dd9",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "73b2c0b814415121b8e4715c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b7c95829c8b9747861b1249b5aeea7600e8fff728cd01b4a962750f67028586f",
+          "source_id": "docs:sdk/javascript/api/interfaces/TypeSafeClientConfig",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/TypeSafeClientConfig"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/TypeSafeClientConfig modified in successful discovery."
+    },
+    {
+      "after_sha256": "998e445327f895b7a8d9017cd8fbc268034248ddaf7cfea85dde90e62422b3b1",
+      "before_sha256": "8a7bd6545efb68fda0371cf747a038ce261ebc5f44e2bae139cb2274bd3da997",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/ModelCard",
+      "id": "6b5d6a5196674a98166dfcb3",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "527094d99d14dc5f3c623eac",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "998e445327f895b7a8d9017cd8fbc268034248ddaf7cfea85dde90e62422b3b1",
+          "source_id": "docs:sdk/javascript/api/interfaces/ModelCard",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ModelCard"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/ModelCard modified in successful discovery."
+    },
+    {
+      "after_sha256": "3daa97d74154ecf8470b0cfa77bbad319ee2321ddab376e19b12d6c9ebee39a9",
+      "before_sha256": "9db7752262f2e1d76df123dfc26fa97f4483e0bade858456cbd1ed6cc9678dee",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/ScoreResponse",
+      "id": "7004b4f31e1fa49efeb3db42",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "d7821d839e541f13101c42b6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3daa97d74154ecf8470b0cfa77bbad319ee2321ddab376e19b12d6c9ebee39a9",
+          "source_id": "docs:sdk/javascript/api/interfaces/ScoreResponse",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ScoreResponse"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/ScoreResponse modified in successful discovery."
+    },
+    {
+      "after_sha256": "2f257c2d7381ea0fedbf08cdd178dcc06a8dbd6d69b67c82267a3309d396b1b6",
+      "before_sha256": "f8653e711996a781b02e1391748ad8c926d90c777e0d86b0b9e8d96c3bbd632e",
+      "category": "practice",
+      "change": "modified",
+      "entity": "observed-state-distinct-from-inference",
+      "id": "72dca2c672267647a98bbd67",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "f576c027f197ed15c53dd7801deb40aa7b4092061ac3894d57c447ac4faa282e",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Keep inferred state distinct from observed facts, and check freshness before applying a result to a changed situation.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice observed-state-distinct-from-inference evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
+      "before_sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/noul",
+      "id": "7329450b90551ae3be35bd25",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "96910af0ece0c5116e7e29b7",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/noul modified in successful discovery."
+    },
+    {
+      "after_sha256": "51a3d9b918bbf5559e2e08bebf46e45cd243086a4cfaf2e3b0afab8ec30b866a",
+      "before_sha256": "431c82177ee4713f46bf14da1b2f2f8835503a1deb98ea81d3ec9d7d06f183a7",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:images",
+      "id": "743dd8c539d64ed13b81062c",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "69cba9c4c714cd242d70fb4f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "51a3d9b918bbf5559e2e08bebf46e45cd243086a4cfaf2e3b0afab8ec30b866a",
+          "source_id": "docs:images",
+          "url": "https://docs.typesafe.ai/images"
+        }
+      ],
+      "summary": "Documentation page docs:images modified in successful discovery."
+    },
+    {
+      "after_sha256": "3ac05b7c37151ac8c968aa9cc8a0208ba1a44da695c55b0c4f23adb01e802350",
+      "before_sha256": "23960b9224205758da776d76dbcbf21975233947fed5048b09197da16913d58d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/ScoreQuestion",
+      "id": "74d2fe95af0bdecef69c79c2",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "c57465a74e09ca59d2293951",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3ac05b7c37151ac8c968aa9cc8a0208ba1a44da695c55b0c4f23adb01e802350",
+          "source_id": "docs:sdk/javascript/api/interfaces/ScoreQuestion",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/ScoreQuestion"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/ScoreQuestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+      "before_sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/how-to-build-with-system-one",
+      "id": "78cb69adf27a2f8703aa0335",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "d0767d714018879edfaafb4a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/how-to-build-with-system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "91efdb5191eaa019d4bc2f778df33863ebe195cdda5b08c66d560f38d1fcfcac",
+      "before_sha256": "3e8f16fa7e6137f432a6c5ee33329038d0b469234fe38bbd3431eb095929d125",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/variables/ENV",
+      "id": "7da49498bc11e25a5305b9d1",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ad82ea03fab7600a22544538",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "91efdb5191eaa019d4bc2f778df33863ebe195cdda5b08c66d560f38d1fcfcac",
+          "source_id": "docs:sdk/javascript/api/variables/ENV",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/variables/ENV"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/variables/ENV modified in successful discovery."
+    },
+    {
+      "after_sha256": "9aaabc0e481ecd41e43aff113c6ef9bf938a0e2534b51299f9cd0a6f8c25746a",
+      "before_sha256": "48b8d64541f9baf8b266c324df48a50ee622ec8f0cd1f7c4619cb35f29c07f88",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/RequestOptions",
+      "id": "810229fb5aca7e000d23c1d6",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "645b666ac5084bcd9cf22c4d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9aaabc0e481ecd41e43aff113c6ef9bf938a0e2534b51299f9cd0a6f8c25746a",
+          "source_id": "docs:sdk/javascript/api/interfaces/RequestOptions",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/RequestOptions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/RequestOptions modified in successful discovery."
+    },
+    {
+      "after_sha256": "5c30d8dc0e7ee3a954efd6425fb6e2a708c59be21d855b4153a5f048380ea854",
+      "before_sha256": "37e65bfe0ceed77f7301450a839865662d9606357f5ae1a9458491426ae5eace",
+      "category": "practice",
+      "change": "modified",
+      "entity": "choice-confidence-concentration",
+      "id": "81cebfee4c94638606fc4ef5",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "04d3afbc5bc6d3e581a38fd542a602b2385fa38f6de022c7e59c5e4f76e2ccec",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "Choice/Score confidence summarizes distribution concentration, not overall workflow correctness or permission to act.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice choice-confidence-concentration evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "08f0ea83dc867c4a945716970842971941176f21a73626b558a10ec1251b3fbd",
+      "before_sha256": "3049ac65f291a9bad27c783cb69d1648774ee968c7c84e3d1bbced73cce1ed50",
+      "category": "practice",
+      "change": "modified",
+      "entity": "narrow-coherent-questions",
+      "id": "8b1ca046210d7e87b813df4a",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "d7d46c748922c06da57817c4595385cba59b1db5d32829a019d7d35bebae688e",
+          "excerpt": "Break broad judgments into narrow, typed questions with explicit instructions and criteria.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice narrow-coherent-questions evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "29befb7452cabdadba6d2d1f90ad2bf309da9141c148f81cdedf1f51a4fc6adf",
+      "before_sha256": "c84a0b9417ea310f65754fcc6d1454bb816dfb6e66fc252a0ce3dcca36427ac1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/common",
+      "id": "921904ab9fe9bad160eb2ef0",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "bd957af70294c0cb27f0ac4f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "29befb7452cabdadba6d2d1f90ad2bf309da9141c148f81cdedf1f51a4fc6adf",
+          "source_id": "docs:sdk/python/api/types/common",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/common"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/common modified in successful discovery."
+    },
+    {
+      "after_sha256": "20eb1a8490593976e4dda99267d4cff8aedbec4c324c53333308a73afc7b766c",
+      "before_sha256": "d2ed0deb2e523d2b48679917a54d91ad41e672528cd2ab93fbb7c1514b66a78c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:agent-skill",
+      "id": "92ea1e50e82cdc84996feb39",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b1bf563dd1aa2ac750b93fcb",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "20eb1a8490593976e4dda99267d4cff8aedbec4c324c53333308a73afc7b766c",
+          "source_id": "docs:agent-skill",
+          "url": "https://docs.typesafe.ai/agent-skill"
+        }
+      ],
+      "summary": "Documentation page docs:agent-skill modified in successful discovery."
+    },
+    {
+      "after_sha256": "b29f880cdcaffab7acea5ff8fabe19fd2e54e67abcb52fed8038509fa89030b8",
+      "before_sha256": "59ab343483d4988a551ab89156a69432ac675dc844566d2c91e6ba3c740d3725",
+      "category": "practice",
+      "change": "modified",
+      "entity": "batch-independent-questions",
+      "id": "9413f498a4b5f9834b205f62",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state.md"
+        },
+        {
+          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
+          "review_verdict": "unreviewed",
+          "role": "current",
+          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "review_verdict": "supported",
+          "role": "current",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        },
+        {
+          "context_sha256": "f576c027f197ed15c53dd7801deb40aa7b4092061ac3894d57c447ac4faa282e",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state.md"
+        },
+        {
+          "context_sha256": "afa6cfba3f9b1077356c70afb30b0beaf6b95621a58f65a6f96170063eea73f0",
+          "review_verdict": "non_conflicting",
+          "role": "historical",
+          "sha256": "7a81fc0647792c2e2b13afef2c044e80756de16161cd0840473ee46276a06363",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out.md"
+        },
+        {
+          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
+          "excerpt": "State each speculative premise explicitly; code consumes the applicable answers.",
+          "review_verdict": "supported",
+          "role": "historical",
+          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "source_id": "skill:typesafe-ai",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+        }
+      ],
+      "summary": "Practice batch-independent-questions evidence status changed: recommended → unknown. Current support is insufficient; absence is not removal or deprecation."
+    },
+    {
+      "after_sha256": "010d0c5f7d4639019f3e135cebb8ec5af3ffb1b9495cc2f6d62c8f1ed4102090",
+      "before_sha256": "e49ea32fec37ca43ce7b83108f5de02d9e2cd3de8a0cfb4fb0ca4ad02de65a85",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "94764e67218125220475293f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "948c0bd087aff2eb0fdd85c6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "010d0c5f7d4639019f3e135cebb8ec5af3ffb1b9495cc2f6d62c8f1ed4102090",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "0b4f84c4681c659212c56ef4dfc68bdb0cd5c928dd9619d5a6a5415f2cec23aa",
+      "before_sha256": "f50ff6b9e6569be401b24cc16622eaf1baab903d6e21cc9e26819dc231f56997",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/BoxCoordinates",
+      "id": "99c20cfedf06f09d641fbf06",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "a46e6f5e46592b274a0469a6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0b4f84c4681c659212c56ef4dfc68bdb0cd5c928dd9619d5a6a5415f2cec23aa",
+          "source_id": "docs:sdk/javascript/api/interfaces/BoxCoordinates",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/BoxCoordinates"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/BoxCoordinates modified in successful discovery."
+    },
+    {
+      "after_sha256": "1227a3546b3e9b1c3c3ad28400f874550c6ecddea4b910a0df0e9f3f2ce6e9b9",
+      "before_sha256": "8d0ea798ce78a4e69cba889eaa9696766a09e82575b35fe79a34ce068808c7ba",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/exceptions",
+      "id": "9a2cb5efa4435b922430aefc",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "34769f953537efa87640e2a9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1227a3546b3e9b1c3c3ad28400f874550c6ecddea4b910a0df0e9f3f2ce6e9b9",
+          "source_id": "docs:sdk/python/api/exceptions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/exceptions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/exceptions modified in successful discovery."
+    },
+    {
+      "after_sha256": "d32237c0bc8db21427a3acb87560845fd9d77ca2aae34529c22deb64b72019e7",
+      "before_sha256": "11def3d900207697e5fe5163b2ccf90da0bcffacc35383a2bd69de249b43b648",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/RateLimitError",
+      "id": "9a464c782a50968a8de16351",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "d952c3939935e554db903166",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d32237c0bc8db21427a3acb87560845fd9d77ca2aae34529c22deb64b72019e7",
+          "source_id": "docs:sdk/javascript/api/classes/RateLimitError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/RateLimitError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/RateLimitError modified in successful discovery."
+    },
+    {
+      "after_sha256": "0af006e33253abb1c7648def55723725455ee4967247f59182fbe911b2960967",
+      "before_sha256": "4faa2fa2b75622e6eb908fa0356e3dec8ec3ffb5a254bae30d378339ce4d288c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos",
+      "id": "9a5a9e30f4cb84e2c406c9ba",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b823aa728d22682f933253b9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0af006e33253abb1c7648def55723725455ee4967247f59182fbe911b2960967",
+          "source_id": "docs:demos",
+          "url": "https://docs.typesafe.ai/demos"
+        }
+      ],
+      "summary": "Documentation page docs:demos modified in successful discovery."
+    },
+    {
+      "after_sha256": "0130e4d7f9fb1848b6d19fa0a42f3a4a8cb63ed5fe28f90035bd1eb19a113694",
+      "before_sha256": "9b5fde7a25687f53e3b824736c4c94fb958065298b80aafc7c2de63d693a4a48",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api",
+      "id": "9a7d42d4efbb6e6f6823577f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "131c1a58f5fb1deaf7af4804",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0130e4d7f9fb1848b6d19fa0a42f3a4a8cb63ed5fe28f90035bd1eb19a113694",
+          "source_id": "docs:sdk/python/api",
+          "url": "https://docs.typesafe.ai/sdk/python/api"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api modified in successful discovery."
+    },
+    {
+      "after_sha256": "83f3e91d95d77a6584d8fe01e582d45c9d8d080f44960137e2b7b1b95aa70957",
+      "before_sha256": "62f4354cfcdc00c5ec3e4865bc6b6a79900042c26c3afea0e67d88537e980121",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/machine-learning-primer",
+      "id": "a19e03e697a7b2d7cc570a7b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "adf2507e091e5f3ee3eaf7e8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "83f3e91d95d77a6584d8fe01e582d45c9d8d080f44960137e2b7b1b95aa70957",
+          "source_id": "docs:introduction/machine-learning-primer",
+          "url": "https://docs.typesafe.ai/introduction/machine-learning-primer"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/machine-learning-primer modified in successful discovery."
+    },
+    {
+      "after_sha256": "08b198a7d70e499d726a9f9f3b1ac8ef852e2321c54e4945fe65db13eac2d4cb",
+      "before_sha256": "6bc6f77216906580e51e3f2f8a27189a3df81e8792390fae23f3b3b96447abfe",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/responses",
+      "id": "a37919f384dd97857619f8a5",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "f9e35d01caca8d09db9b25c8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "08b198a7d70e499d726a9f9f3b1ac8ef852e2321c54e4945fe65db13eac2d4cb",
+          "source_id": "docs:sdk/python/api/types/responses",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/responses"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/responses modified in successful discovery."
+    },
+    {
+      "after_sha256": "3b0d2849f46bccdc703e177761033c001b341b3e8287610197744b4282429a5a",
+      "before_sha256": "24e0854e5a5846c269142d2a57abfb8aa90d63c37231b03036ed08f1e9989b72",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoresearch_feature_discovery",
+      "id": "a5ac191b506eba62f50e484f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b8f6643845e0bbd1167f1809",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3b0d2849f46bccdc703e177761033c001b341b3e8287610197744b4282429a5a",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoresearch_feature_discovery modified in successful discovery."
+    },
+    {
+      "after_sha256": "2687df2145932f2634cfdb19fe732ec92d44754fe38346190b725818ce16a415",
+      "before_sha256": "ff95eb411c61d56ed4dfc1f26146eeaf700d20baaaadffc37130b14ccd1120c7",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/UnprocessableEntityError",
+      "id": "a72b5c1acaa03a36c3c93084",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ae508cf828f0f61c164025e7",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "2687df2145932f2634cfdb19fe732ec92d44754fe38346190b725818ce16a415",
+          "source_id": "docs:sdk/javascript/api/classes/UnprocessableEntityError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/UnprocessableEntityError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/UnprocessableEntityError modified in successful discovery."
+    },
+    {
+      "after_sha256": "a20988baa7e9a289766a1071fa67441407bbedc47ad17fc30781c7eb09e79289",
+      "before_sha256": "8e894e5b93ac45ffbe5b18997e9f4e811c99baf9f4504a894fa816df276f41ef",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/basic_memory",
+      "id": "a768bd87b568dad0700b168e",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "dc36f584c5875d596b9582d8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a20988baa7e9a289766a1071fa67441407bbedc47ad17fc30781c7eb09e79289",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/basic_memory modified in successful discovery."
+    },
+    {
+      "after_sha256": "ed8800eb7f13403f1a57f8aa56d0c1ec65a69e556c4b0e619a848f25cdd72e0a",
+      "before_sha256": "a4dc58128c471806ca2bb98e804cee04c53d1f735768aba67e083e7f79c507ec",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/questions",
+      "id": "a966dc3a987df373819dd20f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "11ddfb4bb352ac2d6dcab6e3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ed8800eb7f13403f1a57f8aa56d0c1ec65a69e556c4b0e619a848f25cdd72e0a",
+          "source_id": "docs:sdk/python/api/types/questions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/questions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "75116c3852ec2e4ecfba817813b4e70a44cdaea78dd591e581b6fc0ca7de996e",
+      "before_sha256": "91f47022890eb3f3b8588cbd1a2ca8f686cefea5e1448e21f48d2cdce11565aa",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/Usage",
+      "id": "ad49a5022dd15942a9d1afd9",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "bd3c4a7bfdb5c17444c3a9a5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "75116c3852ec2e4ecfba817813b4e70a44cdaea78dd591e581b6fc0ca7de996e",
+          "source_id": "docs:sdk/javascript/api/interfaces/Usage",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Usage"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/Usage modified in successful discovery."
+    },
+    {
+      "after_sha256": "c46885c18a34c0b48e941da22b9fa5878ffdde30a6c0be50e7b16e242dfebbd7",
+      "before_sha256": "cc918f8e7f6c7927c1c235cece2b3d66b97138589d1d45cb8310308d1155b24d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/NoulQuestion",
+      "id": "ad6c3a3e3c6a888c971cb915",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "a9b17bb1b810785ab974e1a9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c46885c18a34c0b48e941da22b9fa5878ffdde30a6c0be50e7b16e242dfebbd7",
+          "source_id": "docs:sdk/javascript/api/interfaces/NoulQuestion",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/NoulQuestion"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/NoulQuestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "4c0a04dffbde2e4063a542b675922b25323b9431182eabe58c159fe30cb46494",
+      "before_sha256": "2e4e92e424f23e4e0af622f61551cf43d2d608591f2d14bb776b86fe9a92a523",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns",
+      "id": "afa0dbea26f278ad34ae0675",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "1fcc84ba4502a9f8baa2ff31",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "4c0a04dffbde2e4063a542b675922b25323b9431182eabe58c159fe30cb46494",
+          "source_id": "docs:patterns",
+          "url": "https://docs.typesafe.ai/patterns"
+        }
+      ],
+      "summary": "Documentation page docs:patterns modified in successful discovery."
+    },
+    {
+      "after_sha256": "29c783687984fc3311016f697ba3f1123dc17a4f1770964425352358baa3c3f6",
+      "before_sha256": "a1a8481c676fd4b6419a9f26feeacd1f223624cb17f438ac8b640597bbc03900",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_choice_cookbook",
+      "id": "b197635c14bce9b9c8aaf4d8",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "97666e6624edc5d6249261ff",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "29c783687984fc3311016f697ba3f1123dc17a4f1770964425352358baa3c3f6",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "1fc442976f7e8bb4ea45ec3a390eba9b14977a96eb435d734b582c5cce0438aa",
+      "before_sha256": "25a9e959ef68bb9c3302b99fb8456aa35782ff4ee41c7bb31bfe92e7c58221cb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage/basic",
+      "id": "b497967b8b9d4c61d7561f71",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "1d21df9e40c6041487d3abe6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1fc442976f7e8bb4ea45ec3a390eba9b14977a96eb435d734b582c5cce0438aa",
+          "source_id": "docs:sdk/python/usage/basic",
+          "url": "https://docs.typesafe.ai/sdk/python/usage/basic"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage/basic modified in successful discovery."
+    },
+    {
+      "after_sha256": "cd03bf29072712797d349ce4e477e3d9930330e9840b0308280640b3ac9c606c",
+      "before_sha256": "dfb22f9e8b0a5b40c156569ff18bae410fca0b6da8000717dc1cd96f0d7b574d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/APITimeoutError",
+      "id": "b4a93f0e7b42d284bb1fcfe2",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "1f5c2fc3708ef0460194cb28",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cd03bf29072712797d349ce4e477e3d9930330e9840b0308280640b3ac9c606c",
+          "source_id": "docs:sdk/javascript/api/classes/APITimeoutError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APITimeoutError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/APITimeoutError modified in successful discovery."
+    },
+    {
+      "after_sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+      "before_sha256": "0058f0fc9c583183912061fc57b583ec51a5fc354e0163d01b276d488e98a8d9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/state",
+      "id": "bbf06fd19ca77d45c830c661",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "aaf8cf813e5815234cbc1219",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/state modified in successful discovery."
+    },
+    {
+      "after_sha256": "89e7bf57cc5564216b0dabc0435febb09c45c4a10f1bccd2a11732696aa872c0",
+      "before_sha256": "0d7ad75a805877ad9d62806964310f525282ee68f8e6363144d576ff16a10548",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:large-state-full-of-irrelevant-detail",
+      "id": "bd08014055d84a972942e4d8",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "24c2a863449c79a17c65e16b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": "206152325b1622f4065e9c3c3487934dbb299190eb844fbf816fd9f10fd53e4a",
+      "before_sha256": "d68ed24aa95b6cfc185201da18a03b3df9b305a340a02ab157435867c83ee459",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/Models",
+      "id": "c569381d68f3b0f9f5cf67fb",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "a6b005af5776836082fb0337",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "206152325b1622f4065e9c3c3487934dbb299190eb844fbf816fd9f10fd53e4a",
+          "source_id": "docs:sdk/javascript/api/interfaces/Models",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/Models"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/Models modified in successful discovery."
+    },
+    {
+      "after_sha256": "415039e506c51117fc300e27f4f9084b63424224c6693095277c01d3b3062e25",
+      "before_sha256": "874e852726f1aa5567e69e2b748d7432b691d45a755b0cdbfb4fddcc5e838d35",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk",
+      "id": "c5e0c751ded0509f53bdc70f",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "1718e766aeb1abb648ea9132",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "415039e506c51117fc300e27f4f9084b63424224c6693095277c01d3b3062e25",
+          "source_id": "docs:sdk",
+          "url": "https://docs.typesafe.ai/sdk"
+        }
+      ],
+      "summary": "Documentation page docs:sdk modified in successful discovery."
+    },
+    {
+      "after_sha256": "34a938742fc94a08fa74ca3a12a026904463b4272344870cc076e4b79dc723e3",
+      "before_sha256": "3434c1a3f9198998224473bcfaf68d0e84e2831e72bf5f5ab893d0cfee67cfbf",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/NotFoundError",
+      "id": "cd149e2a717603451e71b641",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "fbf625b61bcc4df9a0c15a42",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "34a938742fc94a08fa74ca3a12a026904463b4272344870cc076e4b79dc723e3",
+          "source_id": "docs:sdk/javascript/api/classes/NotFoundError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/NotFoundError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/NotFoundError modified in successful discovery."
+    },
+    {
+      "after_sha256": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
+      "before_sha256": "f3ef88c39b3e6a52db708bef199a8d72be5d4f1ae3b58e256d1fae141f1836c2",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/system-one",
+      "id": "d2cfbf3b3aa1914090f84b2c",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9cc8514dd90c26e654cf8357",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
+          "source_id": "docs:concepts/system-one",
+          "url": "https://docs.typesafe.ai/concepts/system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "99430b2845ba1bece5c3d8c54c9c20598b24fe2ba4d10fa61a1c17fd9972114a",
+      "before_sha256": "1f4574474139321a1e05b31887a18ffe1dd3235169276aa4b600c6ebc110aee8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/parallel_questions",
+      "id": "d66884bdeb60b95af31fe096",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "3987502155bf23b02695a008",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "99430b2845ba1bece5c3d8c54c9c20598b24fe2ba4d10fa61a1c17fd9972114a",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/parallel_questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "86fc8eb63f8aafa5cbef31555421219e1ff583a4c229470bfed1824b3c1631f7",
+      "before_sha256": "c0c606422c5421971b5807f66bd67a12e3d292d157debedfcc23b9845a802b78",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/classes/APIConnectionError",
+      "id": "d8fb7ce1469777cb23997584",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "de3e4b3c7ecd97f0f8053eac",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "86fc8eb63f8aafa5cbef31555421219e1ff583a4c229470bfed1824b3c1631f7",
+          "source_id": "docs:sdk/javascript/api/classes/APIConnectionError",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/classes/APIConnectionError"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/classes/APIConnectionError modified in successful discovery."
+    },
+    {
+      "after_sha256": "5888d3dc1c9c875775e5640f59c67845bc38341d5bf6c03fa431be2d44dd89d3",
+      "before_sha256": "90ff30334b4b6f63e49cdc157f2c914817c9886043299f9d8f6c14f82b8ec306",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/WithResponse",
+      "id": "db985ce2941c72264380a832",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "38dc8ac8bd540915eac05590",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5888d3dc1c9c875775e5640f59c67845bc38341d5bf6c03fa431be2d44dd89d3",
+          "source_id": "docs:sdk/javascript/api/interfaces/WithResponse",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/WithResponse"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/WithResponse modified in successful discovery."
+    },
+    {
+      "after_sha256": "bdbf0755c6f5820cc2952270e1030c7c51f4f7e348c589cafdcea95fbc7efca7",
+      "before_sha256": "85f6633028b04475606bba7e784fbd6db3d08ca861c5fa6e33afa243dc2b4b8b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/RetryPolicy",
+      "id": "dbf2e05ef470b8cee75118cc",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "dfe220c5da7f86a193c2e350",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bdbf0755c6f5820cc2952270e1030c7c51f4f7e348c589cafdcea95fbc7efca7",
+          "source_id": "docs:sdk/javascript/api/interfaces/RetryPolicy",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/RetryPolicy"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/RetryPolicy modified in successful discovery."
+    },
+    {
+      "after_sha256": "4ccaed424d833af2d923184b509181bc808f43400b5bc474658cd4bc6a062b17",
+      "before_sha256": "c88074597b5d49a2a19b35626688467f8a8186a730ec0074041858499aff2455",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/hierarchical_classification",
+      "id": "dd896e4196cde86d22132f16",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "20e8de0be9f3f4f283a7cd12",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "4ccaed424d833af2d923184b509181bc808f43400b5bc474658cd4bc6a062b17",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/hierarchical_classification modified in successful discovery."
+    },
+    {
+      "after_sha256": "146447926f0cd5a16bdd3938f924bb58df58faf2a19bb07fb2d8c433d28dbcde",
+      "before_sha256": "d75c3d1d52e913819140d17d9ca3a2fee15b9bea849ef66a96dbf08eefb59a95",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/box",
+      "id": "e1692587c2ad43f82a54e26b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "52da4e9e7624a8318bc799fa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "146447926f0cd5a16bdd3938f924bb58df58faf2a19bb07fb2d8c433d28dbcde",
+          "source_id": "docs:primitives/box",
+          "url": "https://docs.typesafe.ai/primitives/box"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/box modified in successful discovery."
+    },
+    {
+      "after_sha256": "7be9d428531d3fab5c35c3c95de521f40184afbcbdb6354c88ecd092b44e7fce",
+      "before_sha256": "28565d596103548298c3a26f3dce11c1d2e9e21e59608e84044cfb7134914cca",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/date_extraction_cookbook",
+      "id": "e3c2bb6b87828f5a5d74c73b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "77d2a5874d557d6f898d81b6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7be9d428531d3fab5c35c3c95de521f40184afbcbdb6354c88ecd092b44e7fce",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/date_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "7482a1f9358cdb5df062aeba21bc9f31021217cfb91a8c32d66dab5482e641ff",
+      "before_sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/llm_guardrails",
+      "id": "e434eec5fb2a976ed368a826",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "3054fa644b60dfb9d884924f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7482a1f9358cdb5df062aeba21bc9f31021217cfb91a8c32d66dab5482e641ff",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/llm_guardrails modified in successful discovery."
+    },
+    {
+      "after_sha256": "71e547a710e414c7a3e30ca6386c1cc39f8e7980a1e98684e73e1d29ffcd25e8",
+      "before_sha256": "a5242dbf4df6dcae3bbf374047026714c1801cdc126b39bc4bca99212dd1a1c9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "e60aa203f96d15581f2971fc",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "e34a40ece0f5c2c15be87324",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "71e547a710e414c7a3e30ca6386c1cc39f8e7980a1e98684e73e1d29ffcd25e8",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/pre_parsed_value_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "780b0a5e4172c159499bb8c45bcd819c9e6f67cb230e1f78433a3aa7c88a347a",
+      "before_sha256": "ec928346966d7634de65e1877cec1b5741d1a0319fdfc3a6ea99641b408cbc5a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/smart-home",
+      "id": "ebd5688a7707cd0cf6755dac",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "3267f3ee34d72edb94bc9f89",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "780b0a5e4172c159499bb8c45bcd819c9e6f67cb230e1f78433a3aa7c88a347a",
+          "source_id": "docs:demos/smart-home",
+          "url": "https://docs.typesafe.ai/demos/smart-home"
+        }
+      ],
+      "summary": "Documentation page docs:demos/smart-home modified in successful discovery."
+    },
+    {
+      "after_sha256": "8ac4ec2e811298e0f254cc692353f3086b953511db7f546ea8aab12a06edd504",
+      "before_sha256": "043dc1d58d91a823f9da3ef47d018340b357ed78857a94a56b5220718d106147",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/composite-scoring",
+      "id": "ec3bffa2094e29211272e711",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "55029de860b804082d323b35",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8ac4ec2e811298e0f254cc692353f3086b953511db7f546ea8aab12a06edd504",
+          "source_id": "docs:patterns/composite-scoring",
+          "url": "https://docs.typesafe.ai/patterns/composite-scoring"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/composite-scoring modified in successful discovery."
+    },
+    {
+      "after_sha256": "0430f8b6d1f72b9f5957100de8509fb1d67328f469c5118bcc09d9499056e49b",
+      "before_sha256": "cb5db3e079d337d0b5923e1d122a9c65612e342061d42939ed1aea130f3a58ba",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoformat",
+      "id": "ecfff2933688a0b3dc0d0c76",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "dc06e10985f89c57545ab2aa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0430f8b6d1f72b9f5957100de8509fb1d67328f469c5118bcc09d9499056e49b",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoformat modified in successful discovery."
+    },
+    {
+      "after_sha256": "350ce08644c52eee816431c99e67f81de330b02871960c14a15f031689f27598",
+      "before_sha256": "a6ed8f5021eb82bc82e0c77b893a0234c2a99e760917355c38037fd11176c5e0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/score",
+      "id": "f06fda65cda746e9af346412",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "9e1d7895003aff3f4a839c76",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "350ce08644c52eee816431c99e67f81de330b02871960c14a15f031689f27598",
+          "source_id": "docs:primitives/score",
+          "url": "https://docs.typesafe.ai/primitives/score"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/score modified in successful discovery."
+    },
+    {
+      "after_sha256": "82c46b83463ab96ebd3e11065f19a402184d3e637dbba15462f697f08fb6ba94",
+      "before_sha256": "6b5bed0126a9df1dac941760a57f82b5a336d866b03a0634ff4a845c4c146f35",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classification_using_confidence",
+      "id": "f22f69582688c027819e3072",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "cb8aee2f9309ba46caeb9263",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "82c46b83463ab96ebd3e11065f19a402184d3e637dbba15462f697f08fb6ba94",
+          "source_id": "docs:cookbooks/classification_using_confidence",
+          "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classification_using_confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "c7a01049b23a8fbc28f1ce7efedc2bee7191751848f588069b4c368afc30e3e1",
+      "before_sha256": "ea75cde163d62593569c9284a7931800b5cf4f6d2c094c5c0a81b93db274effc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "f2cc7a51a7e3215ff47d17ec",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "2f4fe8113f591c2f21e9970c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c7a01049b23a8fbc28f1ce7efedc2bee7191751848f588069b4c368afc30e3e1",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    },
+    {
+      "after_sha256": "fda8dbf002d3d5f4f6832764bdd872d9a665c0d9ad7395eef543fbc36a4b8496",
+      "before_sha256": "1b8f8eeb4b138c5c446a6ed8752da25c8836e142e1ac262991f0f0438af8924b",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:generation",
+      "id": "f39e0339db066fab2013ceec",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b7f9187cbfabbccecb7d7f46",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": "418ef8dfe9b8aa9aed9b50f9bbfd9fd8b9326e0ac492be553fa3585a059c59ca",
+      "before_sha256": "61906b78d3cbf2285849a3920844fb8bf26035609c94699bd6cc6b28a88047c9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/confidence-routing",
+      "id": "f4229a439082287f0994980b",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "c5de02c2089acdaedaa14d42",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "418ef8dfe9b8aa9aed9b50f9bbfd9fd8b9326e0ac492be553fa3585a059c59ca",
+          "source_id": "docs:patterns/confidence-routing",
+          "url": "https://docs.typesafe.ai/patterns/confidence-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/confidence-routing modified in successful discovery."
+    },
+    {
+      "after_sha256": "ac288d4e4c61de5787dfb454d4670292f04aacaeea6588da586e2e1ad6271c67",
+      "before_sha256": "94aeca51a9c36b044876850ec8ac2b23dccff60506334ad1795796bb5fa760a6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/intent-routing",
+      "id": "f625fca25532fcf0beb0bb34",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "ef09fe9d344c82bc931f20dc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ac288d4e4c61de5787dfb454d4670292f04aacaeea6588da586e2e1ad6271c67",
+          "source_id": "docs:patterns/intent-routing",
+          "url": "https://docs.typesafe.ai/patterns/intent-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/intent-routing modified in successful discovery."
+    },
+    {
+      "after_sha256": "137a9771dd365c056b2f72fdce6e9ba5bac3f9038315a932c67490f0135b65fc",
+      "before_sha256": "4a8067a5e6be088b31a1e010e1fdc3938530e6927ba237efd3d32caaf33ac5ed",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript/api/interfaces/SystemOneRequest",
+      "id": "f82005a4094dd95edaad84a8",
+      "observed_at": "2026-10-21T04:51:21.542667Z",
+      "previous_event_id": "b5217c23ead6fd76d4613264",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "137a9771dd365c056b2f72fdce6e9ba5bac3f9038315a932c67490f0135b65fc",
+          "source_id": "docs:sdk/javascript/api/interfaces/SystemOneRequest",
+          "url": "https://docs.typesafe.ai/sdk/javascript/api/interfaces/SystemOneRequest"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript/api/interfaces/SystemOneRequest modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

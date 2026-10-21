@@ -56,7 +56,7 @@ Repository interpretation (repository-interpretation): Date text is not reliably
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Repository interpretation (repository-interpretation): Free-text production is outside this model's training. For bounded extraction, obtain candidates elsewhere and use Choice to select.
+Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation)
 
@@ -72,7 +72,7 @@ Repository interpretation (repository-interpretation): Nested reasoning and doub
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Repository interpretation (repository-interpretation): Irrelevant input can reduce accuracy and obscure error causes. Select relevant fields before evaluation.
+Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail)
 
