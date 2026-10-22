@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-22",
+  "events": [
+    {
+      "after_sha256": "397cecb926e263ce5b132c6903e401f65d9f8221ddb668b0ba8cb50906947fd7",
+      "before_sha256": "29befb7452cabdadba6d2d1f90ad2bf309da9141c148f81cdedf1f51a4fc6adf",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/common",
+      "id": "063c87b4f6201c229f285b61",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "921904ab9fe9bad160eb2ef0",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "397cecb926e263ce5b132c6903e401f65d9f8221ddb668b0ba8cb50906947fd7",
+          "source_id": "docs:sdk/python/api/types/common",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/common"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/common modified in successful discovery."
+    },
+    {
+      "after_sha256": "b003bb00a4a1d18dbc9f409b6d2c4edd8f603ae6dadd680a13dcae6ba345cf77",
+      "before_sha256": "ed8800eb7f13403f1a57f8aa56d0c1ec65a69e556c4b0e619a848f25cdd72e0a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/questions",
+      "id": "1085ea7366fe2205cfa7edb5",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "a966dc3a987df373819dd20f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b003bb00a4a1d18dbc9f409b6d2c4edd8f603ae6dadd680a13dcae6ba345cf77",
+          "source_id": "docs:sdk/python/api/types/questions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/questions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "1eb59b9bd937b069a530e84005cec92b5355cd92ae43f3b53d472b0d93c8f6b6",
+      "before_sha256": "e14f05a6f021469ef119dd18ff47b8e5e9fb578bd7085dadb52d69f9aa3de61f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/sync",
+      "id": "362909aa072880166ed71044",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "430f1a9ba3a67d50bcf46b35",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1eb59b9bd937b069a530e84005cec92b5355cd92ae43f3b53d472b0d93c8f6b6",
+          "source_id": "docs:sdk/python/api/clients/sync",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/sync"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/sync modified in successful discovery."
+    },
+    {
+      "after_sha256": "5f7fa99b80679b71791540d260bf6d803ae2cd72c88bcb91cccd50283a3df342",
+      "before_sha256": "1227a3546b3e9b1c3c3ad28400f874550c6ecddea4b910a0df0e9f3f2ce6e9b9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/exceptions",
+      "id": "3a19fa5ac66b241f35fcfced",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "9a2cb5efa4435b922430aefc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5f7fa99b80679b71791540d260bf6d803ae2cd72c88bcb91cccd50283a3df342",
+          "source_id": "docs:sdk/python/api/exceptions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/exceptions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/exceptions modified in successful discovery."
+    },
+    {
+      "after_sha256": "1b86174a3d6fced288b42e972bd42c06be40a0c9962284f378a1e7dd87c50ad3",
+      "before_sha256": "47af1b9213a6c8259b9bc76cecaa2e54afc03fdaa1d66c3584cba47259045124",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/assets",
+      "id": "4c4400f2e489902d7758f79c",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "22421d5b7a96917edfd529c1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1b86174a3d6fced288b42e972bd42c06be40a0c9962284f378a1e7dd87c50ad3",
+          "source_id": "docs:sdk/python/api/types/assets",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/assets"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/assets modified in successful discovery."
+    },
+    {
+      "after_sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
+      "before_sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:confidence",
+      "id": "8340583d683c39f7d273b0f9",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "0e663ebbbb2b10dd09014cf9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence"
+        }
+      ],
+      "summary": "Documentation page docs:confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "6ef903204ee1bfd976e443027d6c27278898574f51df4592c4e3fdc076204305",
+      "before_sha256": "f4742dcb379c9549d55d0094b34fb6e61d4d45f9fd79d57aa9ec5f2cba17e855",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/retries",
+      "id": "90107864d07ad8ab9bafb855",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "43e1ded62120c1d84936985a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "6ef903204ee1bfd976e443027d6c27278898574f51df4592c4e3fdc076204305",
+          "source_id": "docs:sdk/python/api/retries",
+          "url": "https://docs.typesafe.ai/sdk/python/api/retries"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/retries modified in successful discovery."
+    },
+    {
+      "after_sha256": "58ac60888473f9b45b57ad7085c900c5c350b9c319f15a3da7cca1a7e43b87aa",
+      "before_sha256": "21ba9548c262eae1af069be3f7e1224ed60d0f7faa0fafb8060168b521a2e689",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/async",
+      "id": "ce5fe9437bac32f844b20ce4",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "4c57d2f369f6b1683c4216f6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "58ac60888473f9b45b57ad7085c900c5c350b9c319f15a3da7cca1a7e43b87aa",
+          "source_id": "docs:sdk/python/api/clients/async",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/async"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/async modified in successful discovery."
+    },
+    {
+      "after_sha256": "b29e3969fe632a3d19417740d4225605c75e2dd4a7df5f673f4059873879f4e1",
+      "before_sha256": "350ce08644c52eee816431c99e67f81de330b02871960c14a15f031689f27598",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/score",
+      "id": "dc420809ba39e1de8a6b559a",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "f06fda65cda746e9af346412",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b29e3969fe632a3d19417740d4225605c75e2dd4a7df5f673f4059873879f4e1",
+          "source_id": "docs:primitives/score",
+          "url": "https://docs.typesafe.ai/primitives/score"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/score modified in successful discovery."
+    },
+    {
+      "after_sha256": "db555b83d24b9afe4eb760d308b4587362e7e3baecdf60528a7168ae54881370",
+      "before_sha256": "08b198a7d70e499d726a9f9f3b1ac8ef852e2321c54e4945fe65db13eac2d4cb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/responses",
+      "id": "df7f6103e1aa6a23e7418172",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "a37919f384dd97857619f8a5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "db555b83d24b9afe4eb760d308b4587362e7e3baecdf60528a7168ae54881370",
+          "source_id": "docs:sdk/python/api/types/responses",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/responses"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/responses modified in successful discovery."
+    },
+    {
+      "after_sha256": "7027a0aa1ee5b538177d05c48fd52eec13d084b3b2b9308a67175207b570d958",
+      "before_sha256": "20eb1a8490593976e4dda99267d4cff8aedbec4c324c53333308a73afc7b766c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:agent-skill",
+      "id": "ff320c4bb9189da1ff6a2bcf",
+      "observed_at": "2026-10-22T04:49:57.764906Z",
+      "previous_event_id": "92ea1e50e82cdc84996feb39",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7027a0aa1ee5b538177d05c48fd52eec13d084b3b2b9308a67175207b570d958",
+          "source_id": "docs:agent-skill",
+          "url": "https://docs.typesafe.ai/agent-skill"
+        }
+      ],
+      "summary": "Documentation page docs:agent-skill modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

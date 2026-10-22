@@ -1,5 +1,5 @@
 {
-  "fingerprint": "a1d5273a2797cef10d6707b6a8aa53b0970a3a676afde55d48159a2d6ce1662e",
+  "fingerprint": "09f58880a7cd4f7b69113584154adfbabde30e83bb1e01434c887e015007e387",
   "items": [
     {
       "id": "choice",
@@ -28,13 +28,13 @@
       "name": "Score",
       "observed_title": "Score",
       "source": {
-        "sha256": "350ce08644c52eee816431c99e67f81de330b02871960c14a15f031689f27598",
+        "sha256": "b29e3969fe632a3d19417740d4225605c75e2dd4a7df5f673f4059873879f4e1",
         "source_id": "docs:primitives/score",
         "url": "https://docs.typesafe.ai/primitives/score"
       },
       "summary": "Rate content against ordered, descriptive levels."
     }
   ],
-  "observed_at": "2026-10-21T04:51:19.874412Z",
+  "observed_at": "2026-10-22T04:49:56.944807Z",
   "schema_version": 1
 }

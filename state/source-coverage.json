@@ -76,7 +76,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
-      "sha256": "350ce08644c52eee816431c99e67f81de330b02871960c14a15f031689f27598",
+      "sha256": "b29e3969fe632a3d19417740d4225605c75e2dd4a7df5f673f4059873879f4e1",
       "source_id": "docs:primitives/score",
       "status": "fetched",
       "title": "Score"
@@ -111,7 +111,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+      "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"
@@ -335,7 +335,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
-      "sha256": "20eb1a8490593976e4dda99267d4cff8aedbec4c324c53333308a73afc7b766c",
+      "sha256": "7027a0aa1ee5b538177d05c48fd52eec13d084b3b2b9308a67175207b570d958",
       "source_id": "docs:agent-skill",
       "status": "fetched",
       "title": "Agent skill"
@@ -419,56 +419,56 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/async",
-      "sha256": "21ba9548c262eae1af069be3f7e1224ed60d0f7faa0fafb8060168b521a2e689",
+      "sha256": "58ac60888473f9b45b57ad7085c900c5c350b9c319f15a3da7cca1a7e43b87aa",
       "source_id": "docs:sdk/python/api/clients/async",
       "status": "fetched",
       "title": "Asynchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync",
-      "sha256": "e14f05a6f021469ef119dd18ff47b8e5e9fb578bd7085dadb52d69f9aa3de61f",
+      "sha256": "1eb59b9bd937b069a530e84005cec92b5355cd92ae43f3b53d472b0d93c8f6b6",
       "source_id": "docs:sdk/python/api/clients/sync",
       "status": "fetched",
       "title": "Synchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
-      "sha256": "ed8800eb7f13403f1a57f8aa56d0c1ec65a69e556c4b0e619a848f25cdd72e0a",
+      "sha256": "b003bb00a4a1d18dbc9f409b6d2c4edd8f603ae6dadd680a13dcae6ba345cf77",
       "source_id": "docs:sdk/python/api/types/questions",
       "status": "fetched",
       "title": "Questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/assets",
-      "sha256": "47af1b9213a6c8259b9bc76cecaa2e54afc03fdaa1d66c3584cba47259045124",
+      "sha256": "1b86174a3d6fced288b42e972bd42c06be40a0c9962284f378a1e7dd87c50ad3",
       "source_id": "docs:sdk/python/api/types/assets",
       "status": "fetched",
       "title": "Assets"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/responses",
-      "sha256": "08b198a7d70e499d726a9f9f3b1ac8ef852e2321c54e4945fe65db13eac2d4cb",
+      "sha256": "db555b83d24b9afe4eb760d308b4587362e7e3baecdf60528a7168ae54881370",
       "source_id": "docs:sdk/python/api/types/responses",
       "status": "fetched",
       "title": "Answers and responses"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/retries",
-      "sha256": "f4742dcb379c9549d55d0094b34fb6e61d4d45f9fd79d57aa9ec5f2cba17e855",
+      "sha256": "6ef903204ee1bfd976e443027d6c27278898574f51df4592c4e3fdc076204305",
       "source_id": "docs:sdk/python/api/retries",
       "status": "fetched",
       "title": "Retries"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/common",
-      "sha256": "29befb7452cabdadba6d2d1f90ad2bf309da9141c148f81cdedf1f51a4fc6adf",
+      "sha256": "397cecb926e263ce5b132c6903e401f65d9f8221ddb668b0ba8cb50906947fd7",
       "source_id": "docs:sdk/python/api/types/common",
       "status": "fetched",
       "title": "Common types"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/exceptions",
-      "sha256": "1227a3546b3e9b1c3c3ad28400f874550c6ecddea4b910a0df0e9f3f2ce6e9b9",
+      "sha256": "5f7fa99b80679b71791540d260bf6d803ae2cd72c88bcb91cccd50283a3df342",
       "source_id": "docs:sdk/python/api/exceptions",
       "status": "fetched",
       "title": "Exceptions"

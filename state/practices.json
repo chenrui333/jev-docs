@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "f08776bed83898d63e2f2f33a2c11a589d775092b69128ca89062c58799e9a25",
+  "fingerprint": "ddcf37fe573b2358c5a22bac9efbad3f0f439da6b26792a0725b9629668f75a7",
   "items": [
     {
       "category": "agent-integration",
@@ -345,8 +345,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
-          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
+          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -392,8 +392,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
-          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
+          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -568,8 +568,8 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "1846d45437c1484f296743f5f7ac0ade5f77f76f92656fc968e042d1fd760b47",
-          "sha256": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
+          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -781,14 +781,14 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-21T04:51:20.033028Z",
+  "observed_at": "2026-10-22T04:49:57.152801Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
     "docs:concepts/how-to-build-with-system-one": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
     "docs:concepts/state": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
     "docs:concepts/system-one": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
-    "docs:confidence": "ff8338dfc8572889d399536fae720069cca3d5455f58445edbf5debfcee5bef0",
+    "docs:confidence": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
     "docs:introduction/coding-agents": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
     "docs:patterns/fan-out": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
     "docs:primitives/choice": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
