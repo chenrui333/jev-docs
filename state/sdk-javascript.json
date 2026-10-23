@@ -6,10 +6,10 @@
   ],
   "capabilities": [],
   "discrepancies": [],
-  "fingerprint": "0a49fdf9227e9dd0bb8c7b6b8fc7790056cd0dde3ebc68039ca564cdd30af1d7",
+  "fingerprint": "df13c9b937e569b8eced1f89f273d3562dfa3bc4d3cb9d301eb4fc2d291733ef",
   "main_commit": "b844cd1aca12855a5d24a2df52a1401c86e7d37a",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-18T21:12:13.326953Z",
+  "observed_at": "2026-10-23T04:52:41.476262Z",
   "package": "@typesafe-ai/sdk",
   "provenance": [
     {
@@ -44,7 +44,7 @@
       "documented_changes": [],
       "documented_changes_provenance": [
         {
-          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
+          "sha256": "ad91a2445d50a5f449282d508abe64ea5194feb0ba2daedb9f4615383efe1835",
           "source_id": "docs:sdk/javascript/changelog",
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
@@ -63,7 +63,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
+          "sha256": "ad91a2445d50a5f449282d508abe64ea5194feb0ba2daedb9f4615383efe1835",
           "source_id": "docs:sdk/javascript/changelog",
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }
@@ -91,7 +91,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "41cd9bfdc044c71b0e94cf09d56ed2fab23b2e382e3be6d7c82eab880d07345f",
+          "sha256": "ad91a2445d50a5f449282d508abe64ea5194feb0ba2daedb9f4615383efe1835",
           "source_id": "docs:sdk/javascript/changelog",
           "url": "https://docs.typesafe.ai/sdk/javascript/changelog.md"
         }

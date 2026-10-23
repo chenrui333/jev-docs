@@ -6,24 +6,27 @@ Generated from [`state/practices.json`](state/practices.json). Recommendations a
 
 ## Agent Integration
 
-### jev-complements-generative-agents — `recommended`
+### jev-complements-generative-agents — `unknown`
 
-Use coding agents to write software that calls Jev for bounded structured decisions such as routing, classification, scoring and guardrails. Jev does not replace their generative base model or write code or converse.
+Unverified candidate: Use coding agents to write software that calls Jev for bounded structured decisions such as routing, classification, scoring and guardrails. Jev does not replace their generative base model or write code or converse.
 
-Evidence:
+Evidence: no current verified recommendation in this observation.
+Context review required: docs:introduction/coding-agents.
+Historical evidence (not current support):
+- [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — If you found TypeSafe while looking for a model to plug into your coding agent, start here. Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools. Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — It does not generate text, write code, or hold a conversation.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — It takes a state and a set of typed questions and returns structured answers your code can use directly:
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Use Jev inside an app or agent you're building — for routing, classification, scoring, guardrails, or any structured decision
+
+### prefer-typed-decisions-over-prompt-parsing — `unknown`
+
+Unverified candidate: For decisions expressible as TypeSafe's typed questions, consider replacing fragile generative return-JSON prompts with typed decision calls. This guidance does not cover arbitrary text generation or every JSON task.
+
+Evidence: no current verified recommendation in this observation.
+Context review required: docs:introduction/coding-agents.
 Historical evidence (not current support):
-- [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — If you found TypeSafe while looking for a model to plug into your coding agent, start here. Jev is not a drop-in replacement for the LLM behind Claude Code, Cursor, opencode, Copilot, Muse Spark, Grok Bot, or similar tools. Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.
-
-### prefer-typed-decisions-over-prompt-parsing — `recommended`
-
-For decisions expressible as TypeSafe's typed questions, consider replacing fragile generative return-JSON prompts with typed decision calls. This guidance does not cover arbitrary text generation or every JSON task.
-
-Evidence:
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — Replace a fragile prompt that asks an LLM to "return JSON" with a call that returns typed values by construction.
 - [docs:introduction/coding-agents](https://docs.typesafe.ai/introduction/coding-agents.md) — If any of that matches what you're building, the fastest path in is the Quick start, then the primitives reference for the question types.
 

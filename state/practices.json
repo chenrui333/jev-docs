@@ -1,20 +1,16 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "ddcf37fe573b2358c5a22bac9efbad3f0f439da6b26792a0725b9629668f75a7",
+  "fingerprint": "316dacaa59572cb70ec84b5c3c2bec8f5e1aae36e536b4919c52d5ebc94bcda1",
   "items": [
     {
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "84ae8185b6d5087f55ceab82f8dca26f9616b1341214f6c69f78ca24a6e42386",
-          "review_source": {
-            "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
-            "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
-          },
-          "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
+          "context_sha256": "8ed1192dd16a1f79e44cd7ff0b7cf915147a0ac6eda8f9dd2fddcdadb5146cfb",
+          "sha256": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
-          "verdict": "supported"
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -25,13 +21,7 @@
           "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
-        }
-      ],
-      "id": "jev-complements-generative-agents",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+        },
         {
           "context_sha256": "84ae8185b6d5087f55ceab82f8dca26f9616b1341214f6c69f78ca24a6e42386",
           "excerpt": "Instead, you can use your coding agent as usual to write code that uses Jev to make decisions.",
@@ -68,31 +58,28 @@
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
       ],
-      "status": "recommended",
+      "id": "jev-complements-generative-agents",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-23",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "Use coding agents to write software that calls Jev for bounded structured decisions such as routing, classification, scoring and guardrails. Jev does not replace their generative base model or write code or converse."
     },
     {
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "84ae8185b6d5087f55ceab82f8dca26f9616b1341214f6c69f78ca24a6e42386",
-          "review_source": {
-            "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
-            "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
-          },
-          "sha256": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
+          "context_sha256": "8ed1192dd16a1f79e44cd7ff0b7cf915147a0ac6eda8f9dd2fddcdadb5146cfb",
+          "sha256": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
-          "verdict": "supported"
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
       "first_seen_basis": "unknown_legacy",
-      "id": "prefer-typed-decisions-over-prompt-parsing",
-      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
-      "last_changed": null,
-      "last_verified": "2026-10-18",
-      "sources": [
+      "historical_sources": [
         {
           "context_sha256": "84ae8185b6d5087f55ceab82f8dca26f9616b1341214f6c69f78ca24a6e42386",
           "excerpt": "Replace a fragile prompt that asks an LLM to \"return JSON\" with a call that returns typed values by construction.",
@@ -108,15 +95,20 @@
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md"
         }
       ],
-      "status": "recommended",
+      "id": "prefer-typed-decisions-over-prompt-parsing",
+      "interpretation": "Repository interpretation supported by literal claims and manually reviewed complete source contexts; not an upstream quote.",
+      "last_changed": "2026-10-23",
+      "last_verified": "2026-10-18",
+      "sources": [],
+      "status": "unknown",
       "summary": "For decisions expressible as TypeSafe's typed questions, consider replacing fragile generative return-JSON prompts with typed decision calls. This guidance does not cover arbitrary text generation or every JSON task."
     },
     {
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
-          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
+          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -176,8 +168,8 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
-          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
+          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -223,8 +215,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
-          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+          "context_sha256": "085789015e3c752c1f2d25d880cc14f685789cc6d459873c880ec25bf116f142",
+          "sha256": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -345,8 +337,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
-          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
+          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
+          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -392,8 +384,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
-          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
+          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
+          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -460,8 +452,8 @@
       "category": "primitives",
       "evidence_reviews": [
         {
-          "context_sha256": "84e111876cdb3095784a15063b7c5f49f2461eba5ce1ba1482c958aadbf0292c",
-          "sha256": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
+          "context_sha256": "94d4a174c5d1f2aa0982be641c215b8409e8e60fdf22ce34a30b3f543aa70d77",
+          "sha256": "b2c42f857186bd2ce43c418c43fa60710ec3c2c1b0ce87f199ed78157d470d72",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md",
           "verdict": "unreviewed"
@@ -532,8 +524,8 @@
           "verdict": "supported"
         },
         {
-          "context_sha256": "493c85f2b7165cc944e904bc3fcc5b7ee6aab6b9b6702f5315a9806341178add",
-          "sha256": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
+          "context_sha256": "7447789473f260305d495c469be21c0ab7e52515f8bd09530a7e9976843715f0",
+          "sha256": "4fa536c30d214798b710f10ee0f8ffdcf923ccacc6fb95ada110f0f74dcb32e4",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
           "verdict": "unreviewed"
@@ -568,8 +560,8 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "7ba6ad9ac941527a4cec6c135132c00138b041d58480065a728c2d811f1abfda",
-          "sha256": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
+          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
+          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -629,8 +621,8 @@
       "category": "verification",
       "evidence_reviews": [
         {
-          "context_sha256": "47201a821ebf18066dc3b8ae74da6beef97d36c6c1238ff26286a7d13c4c813a",
-          "sha256": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
+          "context_sha256": "b455115a0762b5a6c6ec685dd745ae1badf4dc142a88b5d5492a6e8f1f782176",
+          "sha256": "863717e7be24a7e35868ce380bf20a996989592574a850a46dd36718054e9583",
           "source_id": "docs:concepts/system-one",
           "url": "https://docs.typesafe.ai/concepts/system-one.md",
           "verdict": "unreviewed"
@@ -677,8 +669,8 @@
       "category": "state",
       "evidence_reviews": [
         {
-          "context_sha256": "af1c35c62aeba80ef7e8859dc2f8fdb1147b1470e4e2743f8057a5fe9b607adc",
-          "sha256": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
+          "context_sha256": "085789015e3c752c1f2d25d880cc14f685789cc6d459873c880ec25bf116f142",
+          "sha256": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -741,8 +733,8 @@
           "verdict": "supported"
         },
         {
-          "context_sha256": "3ac6aac80f7f880fa79b1c946c300b94e729485d3b28fe87bee14c2f8c07d530",
-          "sha256": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
+          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
+          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -781,18 +773,18 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-22T04:49:57.152801Z",
+  "observed_at": "2026-10-23T04:52:41.676046Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "b1665949144ee4c8a275e6b11ee2a67a914770a16c07dea826bb706e984ad8ac",
-    "docs:concepts/state": "9c6e8bb5d1bbbacaa0792d3be6fd69f0a25a8305cd95a8ca33215ded29da587a",
-    "docs:concepts/system-one": "aa5f6b10f6d97b4538ea482d1a98e05e4933eafba324fffeba65d7e071a6a511",
-    "docs:confidence": "f06c0d1bf579fd51bf582d3309bf1e75b917e5a747890e104b18621f3d5fb414",
-    "docs:introduction/coding-agents": "72b81af8a34379d9c6d0f632aabc6b69b98dad6a85371ffd088687e844841a80",
+    "docs:concepts/how-to-build-with-system-one": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
+    "docs:concepts/state": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
+    "docs:concepts/system-one": "863717e7be24a7e35868ce380bf20a996989592574a850a46dd36718054e9583",
+    "docs:confidence": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
+    "docs:introduction/coding-agents": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
     "docs:patterns/fan-out": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
-    "docs:primitives/choice": "46e0e5eb59c2a050dd16f64390028ca40d11ef025c53efe6f4f1e697b5c5da49",
-    "docs:primitives/noul": "dc2c07c0284c9b426c4f099ae7b8532b8be8318bed1d39e0f8303f606de7c8b2",
+    "docs:primitives/choice": "4fa536c30d214798b710f10ee0f8ffdcf923ccacc6fb95ada110f0f74dcb32e4",
+    "docs:primitives/noul": "b2c42f857186bd2ce43c418c43fa60710ec3c2c1b0ce87f199ed78157d470d72",
     "skill:typesafe-ai": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52"
   },
   "status_vocabulary": [

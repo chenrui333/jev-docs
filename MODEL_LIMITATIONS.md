@@ -16,7 +16,7 @@ Repository interpretation (repository-interpretation): Untrusted state may influ
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Repository interpretation (repository-interpretation): Choice results may depend on option position. Check decisions after permuting candidates.
+Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order)
 
@@ -48,7 +48,7 @@ Repository interpretation (repository-interpretation): Do not delegate tallying 
 
 Status: `documented`. Upstream last reviewed: 2026-10-02.
 
-Repository interpretation (repository-interpretation): Date text is not reliably ordered by the model. Separate semantic extraction from programmatic date calculations.
+Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
 [Official evidence](https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison)
 

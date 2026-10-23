@@ -1,5 +1,5 @@
 {
-  "fingerprint": "75127c84b602d4b8af64fc7f464dee16aa8f40aab9adae20c55662d480503aab",
+  "fingerprint": "c03813482df3f6ccaf0fcec87ce48cfac4672615b3749222ea8ebfb477deaf15",
   "items": [
     {
       "complete_section_sha256": "438b17d8cf4be2e8fbe8cb37783ae3ef66f36781d2b2a3528a72c6b51ff07aed",
@@ -9,7 +9,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
         }
@@ -22,14 +22,14 @@
       "title": "Adversarial content"
     },
     {
-      "complete_section_sha256": "776665b432a8c0a46235b7dc948552b5aaae29c9398fab73931837f0c153db61",
+      "complete_section_sha256": "433e28283508b59af168885f679920087bb7b116ec1223b87f631d57f8948fd8",
       "id": "jev-1.13:choice-option-order",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
         }
@@ -37,8 +37,8 @@
       "section": "choice-option-order",
       "section_text_sha256": "34dc9e81163307bf55f1bebcbf9bcda15c751dbf990b06674644eba6ecac2967",
       "status": "documented",
-      "summary": "Choice results may depend on option position. Check decisions after permuting candidates.",
-      "summary_kind": "repository-interpretation",
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
+      "summary_kind": "unknown",
       "title": "Choice option order"
     },
     {
@@ -68,7 +68,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
         }
@@ -88,7 +88,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
         }
@@ -101,14 +101,14 @@
       "title": "Counting"
     },
     {
-      "complete_section_sha256": "7d78de7d897c99207632269abfbc8f3c40e34b31a33bb9a1d2e5d2ff4ceba464",
+      "complete_section_sha256": "cba83b7d6f05fe3e2465e3a3b21bd7c9986093da4984c77b99f6e7a337483e07",
       "id": "jev-1.13:date-and-time-comparison",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
         }
@@ -116,19 +116,19 @@
       "section": "date-and-time-comparison",
       "section_text_sha256": "6b530f8d3222d718ed74cbc5eec8cc1272166d17758743abdabc02d0d7e7b7f4",
       "status": "documented",
-      "summary": "Date text is not reliably ordered by the model. Separate semantic extraction from programmatic date calculations.",
-      "summary_kind": "repository-interpretation",
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
+      "summary_kind": "unknown",
       "title": "Date and time comparison"
     },
     {
-      "complete_section_sha256": "6d8fbeffacd30c4a7423ae3a7333eb8857283f1a5498565125e18fafd3c79e57",
+      "complete_section_sha256": "c3f042272888fb501aa90763bdbae9920c1b2a57f34a0918f24e83e0526fea9f",
       "id": "jev-1.13:generation",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
         }
@@ -148,7 +148,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
         }
@@ -161,14 +161,14 @@
       "title": "Indirection"
     },
     {
-      "complete_section_sha256": "d53aa049a92504a954df1c1f4fbd62e15f41d15f4418b37fdf728c4648381df8",
+      "complete_section_sha256": "15d242905360342e926a2eba8a31fbb9c71c43a004ceb8035f095a58250da649",
       "id": "jev-1.13:large-state-full-of-irrelevant-detail",
       "last_reviewed": "2026-10-02",
       "mitigation": null,
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
         }
@@ -188,7 +188,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
         }
@@ -208,7 +208,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
         }
@@ -228,7 +228,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
         }
@@ -248,7 +248,7 @@
       "model": "jev-1.13",
       "provenance": [
         {
-          "sha256": "407ccfd1dbb53d8d19491a7e0b8d24385a2c87e493d27a35a0f888c13ce41961",
+          "sha256": "432a59c984e2697b7179852f38d72e3f730900a5a1cfe9a5de104866f65b4254",
           "source_id": "docs:model-jaggedness/jev-1.13",
           "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
         }
@@ -261,7 +261,7 @@
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-21T04:51:20.034514Z",
+  "observed_at": "2026-10-23T04:52:41.677902Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }
