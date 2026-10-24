@@ -1,13 +1,13 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "316dacaa59572cb70ec84b5c3c2bec8f5e1aae36e536b4919c52d5ebc94bcda1",
+  "fingerprint": "c86ba3a446dc7a55e7c13f03f21cf2fc6af547854e94a574ef021dcfb9f3c691",
   "items": [
     {
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "8ed1192dd16a1f79e44cd7ff0b7cf915147a0ac6eda8f9dd2fddcdadb5146cfb",
-          "sha256": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
+          "context_sha256": "99fcce1ea9f53787db154b9c55e94588602dc552d81070c2718cee31b9c69d1c",
+          "sha256": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
           "verdict": "unreviewed"
@@ -70,8 +70,8 @@
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "8ed1192dd16a1f79e44cd7ff0b7cf915147a0ac6eda8f9dd2fddcdadb5146cfb",
-          "sha256": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
+          "context_sha256": "99fcce1ea9f53787db154b9c55e94588602dc552d81070c2718cee31b9c69d1c",
+          "sha256": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
           "verdict": "unreviewed"
@@ -107,22 +107,18 @@
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
-          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
+          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
+          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -168,22 +164,18 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
-          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
+          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
+          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "non_conflicting"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -215,8 +207,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "085789015e3c752c1f2d25d880cc14f685789cc6d459873c880ec25bf116f142",
-          "sha256": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
+          "context_sha256": "325a7e2be4dd6118e752e780ac2d8eee866e6567b15e3697d527b43c44d34860",
+          "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -229,15 +221,11 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -290,15 +278,11 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -337,22 +321,18 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
-          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
+          "context_sha256": "d800a5c2b488e27d4f58c6fab779aac83bb17be31568e0453f96ec44797928e5",
+          "sha256": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -384,22 +364,18 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
-          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
+          "context_sha256": "d800a5c2b488e27d4f58c6fab779aac83bb17be31568e0453f96ec44797928e5",
+          "sha256": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "non_conflicting"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -452,22 +428,18 @@
       "category": "primitives",
       "evidence_reviews": [
         {
-          "context_sha256": "94d4a174c5d1f2aa0982be641c215b8409e8e60fdf22ce34a30b3f543aa70d77",
-          "sha256": "b2c42f857186bd2ce43c418c43fa60710ec3c2c1b0ce87f199ed78157d470d72",
+          "context_sha256": "52ac5b815142ca30efbeb4da1665a2ba701ce2972eb3be86b6dbc5fa96adde68",
+          "sha256": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "non_conflicting"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -513,19 +485,15 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         },
         {
-          "context_sha256": "7447789473f260305d495c469be21c0ab7e52515f8bd09530a7e9976843715f0",
-          "sha256": "4fa536c30d214798b710f10ee0f8ffdcf923ccacc6fb95ada110f0f74dcb32e4",
+          "context_sha256": "19c852a2270e336255b37c142d0ee1ad01151a25ed4b9a6546a404a49a31513d",
+          "sha256": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
           "verdict": "unreviewed"
@@ -560,22 +528,18 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "a20b878c406597cad1854583acc05d077e22e4c1f83b9f3923acfdf27e3cc4b9",
-          "sha256": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
+          "context_sha256": "d800a5c2b488e27d4f58c6fab779aac83bb17be31568e0453f96ec44797928e5",
+          "sha256": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -621,22 +585,18 @@
       "category": "verification",
       "evidence_reviews": [
         {
-          "context_sha256": "b455115a0762b5a6c6ec685dd745ae1badf4dc142a88b5d5492a6e8f1f782176",
-          "sha256": "863717e7be24a7e35868ce380bf20a996989592574a850a46dd36718054e9583",
+          "context_sha256": "e11ef4f9665c7315ccd56d806206158d9b65fcffffa72d1ef2492e31a21c022b",
+          "sha256": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
           "source_id": "docs:concepts/system-one",
           "url": "https://docs.typesafe.ai/concepts/system-one.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -669,22 +629,18 @@
       "category": "state",
       "evidence_reviews": [
         {
-          "context_sha256": "085789015e3c752c1f2d25d880cc14f685789cc6d459873c880ec25bf116f142",
-          "sha256": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
+          "context_sha256": "325a7e2be4dd6118e752e780ac2d8eee866e6567b15e3697d527b43c44d34860",
+          "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         }
       ],
       "first_seen": null,
@@ -722,19 +678,15 @@
       "category": "verification",
       "evidence_reviews": [
         {
-          "context_sha256": "577c72513fdaaec11fb5bd5cdbabb19fcc5cefc4664a8cc25307a1ef5853b289",
-          "review_source": {
-            "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
-            "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
-          },
-          "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+          "context_sha256": "7e8c7d3655b053ee29801b62c5b65550d85fb1294fdcc683a44466b0e19943d3",
+          "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
           "source_id": "skill:typesafe-ai",
-          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md",
-          "verdict": "supported"
+          "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md",
+          "verdict": "unreviewed"
         },
         {
-          "context_sha256": "1e3ca08f8f0fd209f1978f6003e785ea65c5ffcc1928bed9dd67adabe3820a10",
-          "sha256": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
+          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
+          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -773,19 +725,19 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-23T04:52:41.676046Z",
+  "observed_at": "2026-10-24T04:39:12.666515Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "c989afb3016c5255c6b5e06cf9ba8bdcca1de677c1be9efcd343f99fb4784b23",
-    "docs:concepts/state": "9c28bbde4b72d6fcc1a0b024b1ce7625a27f22f34cdd4d8e880963f2f8f12d19",
-    "docs:concepts/system-one": "863717e7be24a7e35868ce380bf20a996989592574a850a46dd36718054e9583",
-    "docs:confidence": "7f6a26b9d361f5d48c31003563f2684f58a13212f5c1bcccf6e469c9acd55382",
-    "docs:introduction/coding-agents": "5792981eb6fde476558d8e4fd76d67f22981b6fa1d08256a6410a1239025f594",
+    "docs:concepts/how-to-build-with-system-one": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+    "docs:concepts/state": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+    "docs:concepts/system-one": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+    "docs:confidence": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
+    "docs:introduction/coding-agents": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
     "docs:patterns/fan-out": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
-    "docs:primitives/choice": "4fa536c30d214798b710f10ee0f8ffdcf923ccacc6fb95ada110f0f74dcb32e4",
-    "docs:primitives/noul": "b2c42f857186bd2ce43c418c43fa60710ec3c2c1b0ce87f199ed78157d470d72",
-    "skill:typesafe-ai": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52"
+    "docs:primitives/choice": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
+    "docs:primitives/noul": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
+    "skill:typesafe-ai": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724"
   },
   "status_vocabulary": [
     "recommended",

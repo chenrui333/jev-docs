@@ -1,11 +1,11 @@
 {
-  "commit": "65a39f393687675ce170e6094757de20370365b9",
-  "fingerprint": "18398afbb8d03f93c4b65eb6b0e1e6c8e2f134f071bede6142d21d5ba3a5bdf2",
-  "observed_at": "2026-09-26T23:12:26.002528Z",
+  "commit": "302eea662c54bca6730873fe245bec1d69ebc23d",
+  "fingerprint": "98dae309e1ecb7ae70986a3624ef6eaee7b14121a9fe28cff8b17fd287afd860",
+  "observed_at": "2026-10-24T04:39:12.662023Z",
   "schema_version": 1,
   "source": {
-    "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+    "sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
     "source_id": "skill:typesafe-ai",
-    "url": "https://raw.githubusercontent.com/typesafe-ai/skills/65a39f393687675ce170e6094757de20370365b9/skills/typesafe-ai/SKILL.md"
+    "url": "https://raw.githubusercontent.com/typesafe-ai/skills/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/SKILL.md"
   }
 }
