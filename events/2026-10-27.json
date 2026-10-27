@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-27",
+  "events": [
+    {
+      "after_sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+      "before_sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:api/system-one",
+      "id": "22de294f76e868df73664b4d",
+      "observed_at": "2026-10-27T05:08:20.547904Z",
+      "previous_event_id": "c0bf79dbe7c956a57e546dfa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one"
+        }
+      ],
+      "summary": "Documentation page docs:api/system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/intelliprompter",
+      "id": "53693a9e936fbdf258ec62d9",
+      "observed_at": "2026-10-27T05:08:20.547904Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/intelliprompter added in successful discovery."
+    },
+    {
+      "after_sha256": "652d1d39ee6c1485292e5b37fcd45667ffdfa1fa34cf2d7ed4e0e6ac33f60ec7",
+      "before_sha256": "58ecfc2de394faaefda60d73252afb813bea3d780ff5eb0adc1a7bfc0ae46ae2",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:api/list-models",
+      "id": "6e01dd4713dc9774c7a440d3",
+      "observed_at": "2026-10-27T05:08:20.547904Z",
+      "previous_event_id": "69ae2e8bfea742cfef6da1f4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "652d1d39ee6c1485292e5b37fcd45667ffdfa1fa34cf2d7ed4e0e6ac33f60ec7",
+          "source_id": "docs:api/list-models",
+          "url": "https://docs.typesafe.ai/api/list-models"
+        }
+      ],
+      "summary": "Documentation page docs:api/list-models modified in successful discovery."
+    },
+    {
+      "after_sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
+      "before_sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "b3a8f5976857faf4c2065da2",
+      "observed_at": "2026-10-27T05:08:20.547904Z",
+      "previous_event_id": "6633ebf3f0b5894fd75d83c9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "9453549a18d2774182c978d12f40cf7cb4af87a4b35445f04eda3225f4e733a8",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/intelliprompter",
+      "id": "ba13cee965742f91a0c687a8",
+      "observed_at": "2026-10-27T05:08:20.547904Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
+        }
+      ],
+      "summary": "Tick off a presenter's notes as they speak: TypeSafe scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold."
+    }
+  ],
+  "schema_version": 1
+}

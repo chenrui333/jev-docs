@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 130,
+  "discovered_count": 131,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "e817e47899099364d29633f157ac5de74f936c849bdf5a14382e31ba4a09c688",
+    "sha256": "fc5bfe047a82a43940ab2b068056351267ad2eb287314754c84f2d591a01391d",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 130,
+  "fetched_count": 131,
   "intentionally_excluded": [
     {
       "reason": "external-host",
@@ -167,7 +167,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+      "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
@@ -285,6 +285,13 @@
       "title": "Knowledge graph entity alignment"
     },
     {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
+      "sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+      "source_id": "docs:cookbooks/intelliprompter",
+      "status": "fetched",
+      "title": "Intelliprompter"
+    },
+    {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
       "sha256": "29c783687984fc3311016f697ba3f1123dc17a4f1770964425352358baa3c3f6",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
@@ -356,14 +363,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/api/system-one",
-      "sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
+      "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
       "source_id": "docs:api/system-one",
       "status": "fetched",
       "title": "System One"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/api/list-models",
-      "sha256": "58ecfc2de394faaefda60d73252afb813bea3d780ff5eb0adc1a7bfc0ae46ae2",
+      "sha256": "652d1d39ee6c1485292e5b37fcd45667ffdfa1fa34cf2d7ed4e0e6ac33f60ec7",
       "source_id": "docs:api/list-models",
       "status": "fetched",
       "title": "List models"
@@ -930,6 +937,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 130,
+  "retained_count": 131,
   "schema_version": 2
 }

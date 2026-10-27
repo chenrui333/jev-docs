@@ -1,5 +1,5 @@
 {
-  "fingerprint": "ca04c13935dd632553520f610f0ace3484565cd2217743a0ff650e9b8824fd51",
+  "fingerprint": "a4c41e84c06802632d6f85762b861fb1052b2db613d85a73205a3f108a72ae63",
   "items": [
     {
       "category": "extraction",
@@ -9,7 +9,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -31,7 +31,7 @@
       "level": "Advanced",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -53,7 +53,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -75,7 +75,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -97,7 +97,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -119,7 +119,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -141,7 +141,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -163,7 +163,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -185,7 +185,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -207,7 +207,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -229,7 +229,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -251,7 +251,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -266,6 +266,28 @@
       "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
     },
     {
+      "category": "search-and-matching",
+      "discovered": true,
+      "id": "cookbooks/intelliprompter",
+      "indexed": true,
+      "level": "Beginner",
+      "provenance": [
+        {
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
+        }
+      ],
+      "summary": "Tick off a presenter's notes as they speak: TypeSafe scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold.",
+      "title": "Intelliprompter",
+      "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
+    },
+    {
       "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/llm_guardrails",
@@ -273,7 +295,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -295,7 +317,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -317,7 +339,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -339,7 +361,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -361,7 +383,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -383,7 +405,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -405,7 +427,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -427,7 +449,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+          "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -442,7 +464,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
     }
   ],
-  "observed_at": "2026-10-24T04:39:12.669477Z",
+  "observed_at": "2026-10-27T05:08:19.791525Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

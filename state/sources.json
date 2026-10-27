@@ -31,34 +31,34 @@
       "upstream_last_modified": "2026-10-20T00:26:24.766Z"
     },
     {
-      "bytes": 5123,
+      "bytes": 6026,
       "canonical_url": "https://docs.typesafe.ai/api/list-models",
       "description": "List the models and aliases available to the authenticated account.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/api/list-models.md",
-      "observed_at": "2026-10-20T04:53:26.906451Z",
-      "sha256": "58ecfc2de394faaefda60d73252afb813bea3d780ff5eb0adc1a7bfc0ae46ae2",
+      "observed_at": "2026-10-27T05:08:20.548129Z",
+      "sha256": "652d1d39ee6c1485292e5b37fcd45667ffdfa1fa34cf2d7ed4e0e6ac33f60ec7",
       "source_id": "docs:api/list-models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "List models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-20T00:26:19.399Z"
+      "upstream_last_modified": "2026-10-27T00:12:07.629Z"
     },
     {
-      "bytes": 28858,
+      "bytes": 29761,
       "canonical_url": "https://docs.typesafe.ai/api/system-one",
       "description": "Answer one or more questions about the content supplied in `state`.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/api/system-one.md",
-      "observed_at": "2026-10-20T04:53:26.906479Z",
-      "sha256": "5e6261f6f6212c6cf75fd55cc2856184b355a6400673b18314e85505e6219820",
+      "observed_at": "2026-10-27T05:08:20.548194Z",
+      "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
       "source_id": "docs:api/system-one",
       "source_tag": null,
       "source_type": "documentation",
       "title": "System One",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-20T00:26:19.386Z"
+      "upstream_last_modified": "2026-10-27T00:12:07.620Z"
     },
     {
       "bytes": 19727,
@@ -136,19 +136,19 @@
       "upstream_last_modified": "2026-10-22T18:59:22.103Z"
     },
     {
-      "bytes": 7344,
+      "bytes": 7610,
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
       "description": "End-to-end recipes that show TypeSafe in real problems, from a few questions to full pipelines.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks.md",
-      "observed_at": "2026-10-24T04:39:13.636834Z",
-      "sha256": "a683e3db391db417340277ace84375b1c8fc1e6d1526a6395fb0ffcca07c9600",
+      "observed_at": "2026-10-27T05:08:20.548432Z",
+      "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
       "source_id": "docs:cookbooks",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Cookbooks",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T18:33:52.148Z"
+      "upstream_last_modified": "2026-10-27T00:12:12.463Z"
     },
     {
       "bytes": 40953,
@@ -329,6 +329,21 @@
       "title": "Hierarchical classification",
       "upstream_commit": null,
       "upstream_last_modified": "2026-09-17T07:22:16.664Z"
+    },
+    {
+      "bytes": 14694,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
+      "description": "Tick off a presenter's notes as they speak: TypeSafe scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md",
+      "observed_at": "2026-10-27T05:08:20.549207Z",
+      "sha256": "07f7ea9f86e3d5a4ac4522be7388ac191bf111d0daa4b7701c737663bdc75f21",
+      "source_id": "docs:cookbooks/intelliprompter",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Intelliprompter",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-27T00:12:12.471Z"
     },
     {
       "bytes": 22764,
@@ -571,13 +586,13 @@
       "upstream_last_modified": "2026-09-24T16:15:16.215Z"
     },
     {
-      "bytes": 18706,
+      "bytes": 18958,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-20T04:53:26.907664Z",
-      "sha256": "e817e47899099364d29633f157ac5de74f936c849bdf5a14382e31ba4a09c688",
+      "observed_at": "2026-10-27T05:08:20.549928Z",
+      "sha256": "fc5bfe047a82a43940ab2b068056351267ad2eb287314754c84f2d591a01391d",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
