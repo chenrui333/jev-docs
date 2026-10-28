@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "c86ba3a446dc7a55e7c13f03f21cf2fc6af547854e94a574ef021dcfb9f3c691",
+  "fingerprint": "8c0546fde7405587569d0895e676a72db63eb3f8aae9353d9e93bfb612f9a8fb",
   "items": [
     {
       "category": "agent-integration",
@@ -107,8 +107,8 @@
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
-          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
+          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -164,8 +164,8 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
-          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
+          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -214,8 +214,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
-          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+          "context_sha256": "9bc46c868fc6fc57083e3cfada8be8cbc69ef5de0675048d994549dc90cf8e19",
+          "sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
           "verdict": "unreviewed"
@@ -271,8 +271,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "ca3ab8edabc6ffdbbcd33ba8cd9398830c5cbb87a4ecf701d4c16a07a8e3f326",
-          "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+          "context_sha256": "9bc46c868fc6fc57083e3cfada8be8cbc69ef5de0675048d994549dc90cf8e19",
+          "sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
           "verdict": "unreviewed"
@@ -428,8 +428,8 @@
       "category": "primitives",
       "evidence_reviews": [
         {
-          "context_sha256": "52ac5b815142ca30efbeb4da1665a2ba701ce2972eb3be86b6dbc5fa96adde68",
-          "sha256": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
+          "context_sha256": "cb9128239597a8a1835857d32f4632fbdbc5a52e8c8e6a0cfdbf759443969810",
+          "sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md",
           "verdict": "unreviewed"
@@ -492,8 +492,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "19c852a2270e336255b37c142d0ee1ad01151a25ed4b9a6546a404a49a31513d",
-          "sha256": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
+          "context_sha256": "f72fb0ff5d16e8d230f08f83d7d873da2962424238da1cfb177a1772cab7e704",
+          "sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
           "verdict": "unreviewed"
@@ -685,8 +685,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "8fe7ebbb455043c94614a79a1b19bf817131c6fc9ecbfe779d1229824724130a",
-          "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
+          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -725,18 +725,18 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-24T04:39:12.666515Z",
+  "observed_at": "2026-10-28T05:45:18.739814Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+    "docs:concepts/how-to-build-with-system-one": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
     "docs:concepts/state": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
     "docs:concepts/system-one": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
     "docs:confidence": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
     "docs:introduction/coding-agents": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
-    "docs:patterns/fan-out": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
-    "docs:primitives/choice": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
-    "docs:primitives/noul": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
+    "docs:patterns/fan-out": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
+    "docs:primitives/choice": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
+    "docs:primitives/noul": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
     "skill:typesafe-ai": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724"
   },
   "status_vocabulary": [

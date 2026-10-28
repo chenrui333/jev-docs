@@ -1,19 +1,19 @@
 {
   "artifacts": [
     {
-      "bytes": 5875,
+      "bytes": 5870,
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
       "description": "Drop-in skill for Claude Code, Codex, and other agent environments.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/agent-skill.md",
-      "observed_at": "2026-10-24T04:39:13.636573Z",
-      "sha256": "ef6bc1f9cb27334c5eb42a78744b434ca7edf5a63229c114e17707c5cd1defec",
+      "observed_at": "2026-10-28T05:45:19.688807Z",
+      "sha256": "61840dc76f79e4c946eb34ac52d75a9d8eb7ec014a450afcbd5d761d5c33ba69",
       "source_id": "docs:agent-skill",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Agent skill",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-21T18:17:10.866Z"
+      "upstream_last_modified": "2026-10-27T22:33:29.790Z"
     },
     {
       "bytes": 2722,
@@ -61,19 +61,19 @@
       "upstream_last_modified": "2026-10-27T00:12:07.620Z"
     },
     {
-      "bytes": 19727,
+      "bytes": 19743,
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
       "description": "Design AI-powered software by keeping code in control and giving System One narrow, structured decisions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-      "observed_at": "2026-10-24T04:39:13.636713Z",
-      "sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+      "observed_at": "2026-10-28T05:45:19.688978Z",
+      "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "source_tag": null,
       "source_type": "documentation",
       "title": "How to build with TypeSafe",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-22T18:59:22.107Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.921Z"
     },
     {
       "bytes": 3821,
@@ -106,19 +106,19 @@
       "upstream_last_modified": "2026-10-14T21:07:12.427Z"
     },
     {
-      "bytes": 9869,
+      "bytes": 9865,
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
       "description": "Explore TypeSafe use cases by industry and turn promising ideas into software workflows.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/use-case-map.md",
-      "observed_at": "2026-10-21T04:51:21.543037Z",
-      "sha256": "e4b19e93edcbfe15c7aa000311aed91e296b9b2367b961885c9a24eadb815fa5",
+      "observed_at": "2026-10-28T05:45:19.689063Z",
+      "sha256": "811e4bb3e587bb03e239a23b577362f7853d55b0f5c516bebe42cf70b71bbc62",
       "source_id": "docs:concepts/use-case-map",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Example use cases",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-16T18:42:06.986Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.919Z"
     },
     {
       "bytes": 11448,
@@ -511,19 +511,19 @@
       "upstream_last_modified": "2026-10-20T00:26:24.058Z"
     },
     {
-      "bytes": 4958,
+      "bytes": 4957,
       "canonical_url": "https://docs.typesafe.ai/introduction",
       "description": "Jev is TypeSafe's flagship model and the first System One model. Send state and typed questions; get structured answers your code can use directly.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction.md",
-      "observed_at": "2026-10-24T04:39:13.637850Z",
-      "sha256": "bef47e726abf71b166c19016ab08a1e3f237640d8236c2254c0643cb04c3443d",
+      "observed_at": "2026-10-28T05:45:19.690478Z",
+      "sha256": "990033bd2f27c3658610bedba818633b161f5afad851cfdda66b1237fc231c50",
       "source_id": "docs:introduction",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Introduction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:11.416Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.920Z"
     },
     {
       "bytes": 4411,
@@ -556,43 +556,43 @@
       "upstream_last_modified": "2026-09-05T03:03:56.868Z"
     },
     {
-      "bytes": 14458,
+      "bytes": 14480,
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
       "description": "Get up and running with Jev in 5 minutes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction/quickstart.md",
-      "observed_at": "2026-10-24T04:39:13.637921Z",
-      "sha256": "64774d7c7b11b36e7b549f253a32b6418983495e7c09f9dc8c197ca6057dd695",
+      "observed_at": "2026-10-28T05:45:19.690571Z",
+      "sha256": "3b09e6289f15cb658fb2f085840779b717a63393260b1bebd496b506fde76065",
       "source_id": "docs:introduction/quickstart",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Quick start",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:23:09.278Z"
+      "upstream_last_modified": "2026-10-27T22:33:29.724Z"
     },
     {
-      "bytes": 1168,
+      "bytes": 1202,
       "canonical_url": "https://docs.typesafe.ai/legal",
       "description": "Legal documents and policies for TypeSafe.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/legal.md",
-      "observed_at": "2026-10-01T18:26:36.585244Z",
-      "sha256": "cc96ee6f2d53a89a76b21dc0df6102e5982d2583aa9ad95971d8bebc9de55897",
+      "observed_at": "2026-10-28T05:45:19.690595Z",
+      "sha256": "63060fe526d6d0151262d59fe653b1d5972d295466c44c382495ac12f7af1cd8",
       "source_id": "docs:legal",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Legal",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-24T16:15:16.215Z"
+      "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 18958,
+      "bytes": 18961,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-27T05:08:20.549928Z",
-      "sha256": "fc5bfe047a82a43940ab2b068056351267ad2eb287314754c84f2d591a01391d",
+      "observed_at": "2026-10-28T05:45:19.690640Z",
+      "sha256": "1d941a91eef55da3b1cd10b5a9f9e0972ad3ab4db7c0d1cfde30896f04205d11",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -616,34 +616,34 @@
       "upstream_last_modified": "2026-10-14T19:53:28.496Z"
     },
     {
-      "bytes": 8275,
+      "bytes": 8353,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-10-24T04:39:13.638018Z",
-      "sha256": "bed299c24098aaf2223f2244127041fcc5d0c3a77a2cbaa4daf7eb14bd755343",
+      "observed_at": "2026-10-28T05:45:19.690706Z",
+      "sha256": "1c56aeadeec0225beccef214dd2f0b4b47d6a0e0d53c356aac46290f9053146c",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-23T22:20:51.725Z"
+      "upstream_last_modified": "2026-10-27T22:33:29.723Z"
     },
     {
-      "bytes": 1747,
+      "bytes": 1750,
       "canonical_url": "https://docs.typesafe.ai/patterns",
       "description": "Architectural patterns for building systems with TypeSafe.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns.md",
-      "observed_at": "2026-10-24T04:39:13.638035Z",
-      "sha256": "cd7ca04398b82520cd56b13bb07aabffa49c101f8a09fda19b74ae4f7f7ad5f8",
+      "observed_at": "2026-10-28T05:45:19.690732Z",
+      "sha256": "d159c5f486470da02eb0083d54e8a66ebf10e961201d850a9fa0ad773c6d4446",
       "source_id": "docs:patterns",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Patterns",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-08-31T20:22:39.515Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.920Z"
     },
     {
       "bytes": 3066,
@@ -676,19 +676,19 @@
       "upstream_last_modified": "2026-10-13T00:38:47.534Z"
     },
     {
-      "bytes": 4109,
+      "bytes": 4112,
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
-      "description": "Send many questions in a single call, including speculative ones, and let your code decide what's relevant.",
+      "description": "Send many questions in a single request, including speculative ones, and let your code decide what's relevant.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns/fan-out.md",
-      "observed_at": "2026-10-21T04:51:21.544470Z",
-      "sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+      "observed_at": "2026-10-28T05:45:19.690806Z",
+      "sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
       "source_id": "docs:patterns/fan-out",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Speculative fan-out",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-13T00:38:47.532Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.925Z"
     },
     {
       "bytes": 4316,
@@ -706,34 +706,34 @@
       "upstream_last_modified": "2026-10-13T00:38:47.537Z"
     },
     {
-      "bytes": 15597,
+      "bytes": 15603,
       "canonical_url": "https://docs.typesafe.ai/primitives",
       "description": "The TypeSafe question types, the typed answers they return, how to choose between them, and how to ask several at once.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives.md",
-      "observed_at": "2026-10-24T04:39:13.638138Z",
-      "sha256": "c6e7de429b679d80419a3f08901f96f01010b4ffe0ab7095541c2ad318c126c1",
+      "observed_at": "2026-10-28T05:45:19.690869Z",
+      "sha256": "aa57ef910c3927218527778bb35c4860fa0b09bd81e9201a1e74c12cfc040a03",
       "source_id": "docs:primitives",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Primitives (Questions)",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:11.418Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.922Z"
     },
     {
-      "bytes": 4496,
+      "bytes": 4517,
       "canonical_url": "https://docs.typesafe.ai/primitives/advanced",
       "description": "Instructions, Choice options, Score levels, and Noul criteria all accept JSON structure.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/advanced.md",
-      "observed_at": "2026-10-24T04:39:13.638158Z",
-      "sha256": "be24dd3907bbd725ff26e46b322d503c6a02f922e73d0772c0c7edbfa3baccb1",
+      "observed_at": "2026-10-28T05:45:19.690896Z",
+      "sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
       "source_id": "docs:primitives/advanced",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Advanced: structure",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-15T00:21:18.995Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.924Z"
     },
     {
       "bytes": 8148,
@@ -751,49 +751,49 @@
       "upstream_last_modified": "2026-10-23T23:47:09.485Z"
     },
     {
-      "bytes": 15639,
+      "bytes": 15642,
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
       "description": "A Choice is a System One question type for selecting one option from a defined set. The answer includes the selected option, a probability for each option, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/choice.md",
-      "observed_at": "2026-10-24T04:39:13.638210Z",
-      "sha256": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
+      "observed_at": "2026-10-28T05:45:19.690963Z",
+      "sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
       "source_id": "docs:primitives/choice",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Choice",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-20T00:26:24.068Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.921Z"
     },
     {
-      "bytes": 16677,
+      "bytes": 16686,
       "canonical_url": "https://docs.typesafe.ai/primitives/noul",
       "description": "A Noul question asks the TypeSafe model to evaluate a yes/no question and return the probability that the answer is yes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/noul.md",
-      "observed_at": "2026-10-24T04:39:13.638241Z",
-      "sha256": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
+      "observed_at": "2026-10-28T05:45:19.691004Z",
+      "sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
       "source_id": "docs:primitives/noul",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Noul",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-22T18:59:22.109Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.922Z"
     },
     {
-      "bytes": 20656,
+      "bytes": 20653,
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
       "description": "A Score is a System One question type for rating content against ordered, descriptive levels. The answer includes a score, a probability for each level, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/score.md",
-      "observed_at": "2026-10-24T04:39:13.638277Z",
-      "sha256": "2c225d901599c2f00472a73ef1fe121f8dc6c5086cd5120007dd4148e2e6abda",
+      "observed_at": "2026-10-28T05:45:19.691051Z",
+      "sha256": "8b587ce8e9d990812a3b18bad42314ffd39f0b1ed9456fa5a8db0abfab34e6a1",
       "source_id": "docs:primitives/score",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Score",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-20T00:26:24.065Z"
+      "upstream_last_modified": "2026-10-27T21:34:31.923Z"
     },
     {
       "bytes": 976,

@@ -1,0 +1,272 @@
+{
+  "date": "2026-10-28",
+  "events": [
+    {
+      "after_sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
+      "before_sha256": "7374e45cd14771f092607922edc30fbeaba696cfe93aa09c152f9c6cf149dc16",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/fan-out",
+      "id": "1096ff2412930a01527477c3",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "336d4b3f787f97c76e5a458d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/fan-out modified in successful discovery."
+    },
+    {
+      "after_sha256": "1c56aeadeec0225beccef214dd2f0b4b47d6a0e0d53c356aac46290f9053146c",
+      "before_sha256": "bed299c24098aaf2223f2244127041fcc5d0c3a77a2cbaa4daf7eb14bd755343",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "31ab0aa4610a6e11cda58422",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "9dc264fac8e665ac07145836",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1c56aeadeec0225beccef214dd2f0b4b47d6a0e0d53c356aac46290f9053146c",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    },
+    {
+      "after_sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
+      "before_sha256": "5f2b8356c4b88644c0a3b16410e7faff655004cb566c63b2762868db2c79b1e0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/noul",
+      "id": "5026c3f4578204946efcd7da",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "b1e25d79be8de97977b60a7d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/noul modified in successful discovery."
+    },
+    {
+      "after_sha256": "811e4bb3e587bb03e239a23b577362f7853d55b0f5c516bebe42cf70b71bbc62",
+      "before_sha256": "e4b19e93edcbfe15c7aa000311aed91e296b9b2367b961885c9a24eadb815fa5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/use-case-map",
+      "id": "5579b1b9825e41a6fa7fb8f0",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "1d3d6b2100fd9f23a0f7d209",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "811e4bb3e587bb03e239a23b577362f7853d55b0f5c516bebe42cf70b71bbc62",
+          "source_id": "docs:concepts/use-case-map",
+          "url": "https://docs.typesafe.ai/concepts/use-case-map"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/use-case-map modified in successful discovery."
+    },
+    {
+      "after_sha256": "8b587ce8e9d990812a3b18bad42314ffd39f0b1ed9456fa5a8db0abfab34e6a1",
+      "before_sha256": "2c225d901599c2f00472a73ef1fe121f8dc6c5086cd5120007dd4148e2e6abda",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/score",
+      "id": "615fbb11731b14051730da8b",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "cb87400014d9803a712e7ee1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8b587ce8e9d990812a3b18bad42314ffd39f0b1ed9456fa5a8db0abfab34e6a1",
+          "source_id": "docs:primitives/score",
+          "url": "https://docs.typesafe.ai/primitives/score"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/score modified in successful discovery."
+    },
+    {
+      "after_sha256": "d159c5f486470da02eb0083d54e8a66ebf10e961201d850a9fa0ad773c6d4446",
+      "before_sha256": "cd7ca04398b82520cd56b13bb07aabffa49c101f8a09fda19b74ae4f7f7ad5f8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns",
+      "id": "65c83fe74135cb4ccabc2c82",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "2429ed5264e7bdac80d6e579",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d159c5f486470da02eb0083d54e8a66ebf10e961201d850a9fa0ad773c6d4446",
+          "source_id": "docs:patterns",
+          "url": "https://docs.typesafe.ai/patterns"
+        }
+      ],
+      "summary": "Documentation page docs:patterns modified in successful discovery."
+    },
+    {
+      "after_sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+      "before_sha256": "5f415266e969dcbe24ea58d662b07bca994d5263c3028f90fc6a458ffa4507d1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/how-to-build-with-system-one",
+      "id": "6756f7a31a0e8fae606b8229",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "7b0fff5362faede4ebbb4701",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/how-to-build-with-system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
+      "before_sha256": "be24dd3907bbd725ff26e46b322d503c6a02f922e73d0772c0c7edbfa3baccb1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/advanced",
+      "id": "7888bbb4a0949eb17cda8b70",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "94ecac0fec34f24d3d7dc367",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
+          "source_id": "docs:primitives/advanced",
+          "url": "https://docs.typesafe.ai/primitives/advanced"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/advanced modified in successful discovery."
+    },
+    {
+      "after_sha256": "990033bd2f27c3658610bedba818633b161f5afad851cfdda66b1237fc231c50",
+      "before_sha256": "bef47e726abf71b166c19016ab08a1e3f237640d8236c2254c0643cb04c3443d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction",
+      "id": "a3a120df1ef9ad52c9a8ca98",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "9565a38d933056f4f565d226",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "990033bd2f27c3658610bedba818633b161f5afad851cfdda66b1237fc231c50",
+          "source_id": "docs:introduction",
+          "url": "https://docs.typesafe.ai/introduction"
+        }
+      ],
+      "summary": "Documentation page docs:introduction modified in successful discovery."
+    },
+    {
+      "after_sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
+      "before_sha256": "0ff127cbdb24e6ab20669cc559d738951d9285537b06d1c96c8581923b609ed4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/choice",
+      "id": "be97c2f2087d7f4d09c0d87a",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "2f6d1775be9f79fb34f3e5cd",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
+          "source_id": "docs:primitives/choice",
+          "url": "https://docs.typesafe.ai/primitives/choice"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/choice modified in successful discovery."
+    },
+    {
+      "after_sha256": "aa57ef910c3927218527778bb35c4860fa0b09bd81e9201a1e74c12cfc040a03",
+      "before_sha256": "c6e7de429b679d80419a3f08901f96f01010b4ffe0ab7095541c2ad318c126c1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "cb0c3c31b994021c91a43e94",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "fb4a3fd604c3f347fc1dfc7e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "aa57ef910c3927218527778bb35c4860fa0b09bd81e9201a1e74c12cfc040a03",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "61840dc76f79e4c946eb34ac52d75a9d8eb7ec014a450afcbd5d761d5c33ba69",
+      "before_sha256": "ef6bc1f9cb27334c5eb42a78744b434ca7edf5a63229c114e17707c5cd1defec",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:agent-skill",
+      "id": "d0c4244817d01a86995b8ef3",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "48b8ede020b76c63c90a5f5e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "61840dc76f79e4c946eb34ac52d75a9d8eb7ec014a450afcbd5d761d5c33ba69",
+          "source_id": "docs:agent-skill",
+          "url": "https://docs.typesafe.ai/agent-skill"
+        }
+      ],
+      "summary": "Documentation page docs:agent-skill modified in successful discovery."
+    },
+    {
+      "after_sha256": "63060fe526d6d0151262d59fe653b1d5972d295466c44c382495ac12f7af1cd8",
+      "before_sha256": "cc96ee6f2d53a89a76b21dc0df6102e5982d2583aa9ad95971d8bebc9de55897",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:legal",
+      "id": "da6a2bf141628ac17c27938e",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "e5602f0af195c770aaebed50",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "63060fe526d6d0151262d59fe653b1d5972d295466c44c382495ac12f7af1cd8",
+          "source_id": "docs:legal",
+          "url": "https://docs.typesafe.ai/legal"
+        }
+      ],
+      "summary": "Documentation page docs:legal modified in successful discovery."
+    },
+    {
+      "after_sha256": "3b09e6289f15cb658fb2f085840779b717a63393260b1bebd496b506fde76065",
+      "before_sha256": "64774d7c7b11b36e7b549f253a32b6418983495e7c09f9dc8c197ca6057dd695",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "fb1832698f2e5e6cb685caaa",
+      "observed_at": "2026-10-28T05:45:19.688648Z",
+      "previous_event_id": "e25e69721b7f66d9dcb70292",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3b09e6289f15cb658fb2f085840779b717a63393260b1bebd496b506fde76065",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
