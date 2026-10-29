@@ -136,49 +136,49 @@
       "upstream_last_modified": "2026-10-22T18:59:22.103Z"
     },
     {
-      "bytes": 7610,
+      "bytes": 8655,
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
       "description": "End-to-end recipes that show TypeSafe in real problems, from a few questions to full pipelines.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks.md",
-      "observed_at": "2026-10-27T05:08:20.548432Z",
-      "sha256": "818c4d690f0744320872e67d00f628d2f5b336f0e82d3ffeac9dea10c3b05a52",
+      "observed_at": "2026-10-29T05:50:43.035726Z",
+      "sha256": "34d43d7d3b66783bba36645b7ff546c08acb3702d16a73e616bd86a1fc6e9983",
       "source_id": "docs:cookbooks",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Cookbooks",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-27T00:12:12.463Z"
+      "upstream_last_modified": "2026-10-28T22:59:55.928Z"
     },
     {
-      "bytes": 40953,
+      "bytes": 39219,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
       "description": "Reconstructs Markdown from plain text that lost its formatting in two requests: one stitches hard-wrapped lines back together, one classifies every block (heading, list, code, callout).",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/autoformat.md",
-      "observed_at": "2026-10-24T04:39:13.636890Z",
-      "sha256": "ecb5e8734128e640be5633de4aa5c1a59f15f31467517e5959627c665195a332",
+      "observed_at": "2026-10-29T05:50:43.035788Z",
+      "sha256": "7e922ee5158dfee9ea20060a5c00877a1d7524f5cc5abd9eaa3a06450cb0895a",
       "source_id": "docs:cookbooks/autoformat",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Structure recovery",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.388Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.152Z"
     },
     {
-      "bytes": 71123,
+      "bytes": 71016,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
       "description": "Runs an autoresearch loop that proposes TypeSafe questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md",
-      "observed_at": "2026-10-21T04:51:21.543261Z",
-      "sha256": "3b0d2849f46bccdc703e177761033c001b341b3e8287610197744b4282429a5a",
+      "observed_at": "2026-10-29T05:50:43.035884Z",
+      "sha256": "ae4c5a8a97f0e822a71b06454ac76a7c3a833b5c35bec4b55359cd4a21433fd8",
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Autoresearch feature discovery",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.391Z"
+      "upstream_last_modified": "2026-10-28T22:59:55.930Z"
     },
     {
       "bytes": 28911,
@@ -211,19 +211,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.386Z"
     },
     {
-      "bytes": 30610,
+      "bytes": 30256,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
       "description": "Classify SEC annual reports into 75 industry groups with one Choice each, then read the answer's own confidence to decide whether to report that group or the broader division above it.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence.md",
-      "observed_at": "2026-10-21T04:51:21.543392Z",
-      "sha256": "82c46b83463ab96ebd3e11065f19a402184d3e637dbba15462f697f08fb6ba94",
+      "observed_at": "2026-10-29T05:50:43.036013Z",
+      "sha256": "c734d99aed779dff11d990b479184dfa926d4fcff46a0631b6b865c670f52983",
       "source_id": "docs:cookbooks/classification_using_confidence",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Classification using confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.385Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.153Z"
     },
     {
       "bytes": 32509,
@@ -271,19 +271,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.384Z"
     },
     {
-      "bytes": 19790,
+      "bytes": 19389,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
       "description": "Extracts absolute and relative dates by asking TypeSafe for the parts named in a document, then resolving and validating them in code with confidence-based review.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md",
-      "observed_at": "2026-10-21T04:51:21.543602Z",
-      "sha256": "7be9d428531d3fab5c35c3c95de521f40184afbcbdb6354c88ecd092b44e7fce",
+      "observed_at": "2026-10-29T05:50:43.036219Z",
+      "sha256": "80855ed9ce9871e7632464dff4fa3ab42299ab785ce88c98a53687b88b83cd8f",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Date extraction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.387Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.150Z"
     },
     {
       "bytes": 16650,
@@ -301,19 +301,34 @@
       "upstream_last_modified": "2026-10-23T00:20:06.397Z"
     },
     {
-      "bytes": 18577,
+      "bytes": 35170,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/feeder_watch",
+      "description": "Send frames from bird feeder camera footage to Jev with five questions, one of them a Box that finds the bird, then use plain code to turn the answers into a visit log per species.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/feeder_watch.md",
+      "observed_at": "2026-10-29T05:50:43.036289Z",
+      "sha256": "23aeeaf857508e910e39a418898e3874e2adc08e982f44408aafc2f8a24e0704",
+      "source_id": "docs:cookbooks/feeder_watch",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Feeder-cam visit log",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-28T22:59:55.929Z"
+    },
+    {
+      "bytes": 18919,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
       "description": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware TypeSafe questions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/function_calling.md",
-      "observed_at": "2026-10-21T04:51:21.543671Z",
-      "sha256": "a3b296e445f9ba629c391053ef40bcfb1da7d4c32d657d58a4d539b44a611073",
+      "observed_at": "2026-10-29T05:50:43.036327Z",
+      "sha256": "d5f7e326c37b72346875b744a67bd291b9f492702dc128a6ad0c96ba9e7cd46b",
       "source_id": "docs:cookbooks/function_calling",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Function calling",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.382Z"
+      "upstream_last_modified": "2026-10-29T03:49:26.796Z"
     },
     {
       "bytes": 35252,
@@ -361,19 +376,34 @@
       "upstream_last_modified": "2026-10-23T00:20:06.398Z"
     },
     {
-      "bytes": 48528,
+      "bytes": 21054,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes",
+      "description": "Check the values an OCR extractor read from invoice photos: Jev boxes each value, scores it against the page and against a crop of its box, and flags low scores for review.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes.md",
+      "observed_at": "2026-10-29T05:50:43.036486Z",
+      "sha256": "59ba64769bee1570852075c40dfd02a96dc76bd79260c2fd950bc5de94ae9cc9",
+      "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "OCR confidence and bounding boxes",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-28T22:59:55.928Z"
+    },
+    {
+      "bytes": 48093,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
       "description": "Runs a 13-question regulatory briefing over the GDPR Wikipedia article, showing that batching every question into one TypeSafe call is 12.2x cheaper and 10.0x faster with no change in answers.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md",
-      "observed_at": "2026-10-21T04:51:21.543836Z",
-      "sha256": "99430b2845ba1bece5c3d8c54c9c20598b24fe2ba4d10fa61a1c17fd9972114a",
+      "observed_at": "2026-10-29T05:50:43.036556Z",
+      "sha256": "812cb3caf807993d0cdb88c03f95841a2a981046802b61b9e5797b5c4bcd4fe7",
       "source_id": "docs:cookbooks/parallel_questions",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Parallel questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.388Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.156Z"
     },
     {
       "bytes": 12476,
@@ -391,19 +421,34 @@
       "upstream_last_modified": "2026-09-22T08:57:49.384Z"
     },
     {
-      "bytes": 25894,
+      "bytes": 25843,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents",
+      "description": "Find each vaccine on a scanned travel record with a Noul and a Box, read the year of each dose with a Choice that can answer unreadable, and check each dose still covers the trip in a text-only request.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents.md",
+      "observed_at": "2026-10-29T05:50:43.036613Z",
+      "sha256": "a6bbe295571914fe199a7039d6b64428d037dfab78ce83464f46a97a37e5802b",
+      "source_id": "docs:cookbooks/reading_scanned_documents",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Reading a scanned vaccination record",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-10-28T22:59:55.917Z"
+    },
+    {
+      "bytes": 22504,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
       "description": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one TypeSafe question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md",
-      "observed_at": "2026-10-24T04:39:13.637568Z",
-      "sha256": "663abfeab390bb116369d89b765b0de0ee83d31b177654a6f090fd04a71110b9",
+      "observed_at": "2026-10-29T05:50:43.036654Z",
+      "sha256": "4617c051ed13cb03b7706e7ffb42804020b9f3ab004d64ca1c5c752949982c42",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Re-ranking",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.382Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.150Z"
     },
     {
       "bytes": 32527,
@@ -421,19 +466,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.387Z"
     },
     {
-      "bytes": 37756,
+      "bytes": 37067,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
       "description": "Build semantic search for GitHub's Terms of Service. In one request, score 218 line ids against a plain-language query with a Choice question, and use a Noul question to check whether the document contains an answer.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/semantic_find.md",
-      "observed_at": "2026-10-21T04:51:21.544019Z",
-      "sha256": "db5484c31340a940b7faeb3acdb0129fb82f5a297409131b0f6db1e34013e806",
+      "observed_at": "2026-10-29T05:50:43.036765Z",
+      "sha256": "960031d229924d8d22139233e761b915b77870ae7f2af29fae025637e5be4c62",
       "source_id": "docs:cookbooks/semantic_find",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Line-by-line search",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.386Z"
+      "upstream_last_modified": "2026-10-29T03:43:15.149Z"
     },
     {
       "bytes": 39342,
@@ -451,19 +496,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.383Z"
     },
     {
-      "bytes": 23845,
+      "bytes": 23872,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
       "description": "Hide insults, spam, and unasked-for gameplay tips in Twitch chat, blur spoilers, and highlight questions. Each message gets one TypeSafe request containing multiple questions. Up to eight messages are processed concurrently, and the rules are defined in code.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md",
-      "observed_at": "2026-10-21T04:51:21.544119Z",
-      "sha256": "dee24bd42eeeafd2212afcc41a630acc7b8e4ef7c80cede0d507b129ce1539c9",
+      "observed_at": "2026-10-29T05:50:43.036865Z",
+      "sha256": "ea9691f2c0e851ed2f02e5023c4f841efc61752eafcddf89285680a6412cd59a",
       "source_id": "docs:cookbooks/twitch_chat_filter",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Twitch chat filter",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-12T18:40:59.348Z"
+      "upstream_last_modified": "2026-10-28T22:59:55.940Z"
     },
     {
       "bytes": 726,
@@ -586,13 +631,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 18961,
+      "bytes": 19811,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-28T05:45:19.690640Z",
-      "sha256": "1d941a91eef55da3b1cd10b5a9f9e0972ad3ab4db7c0d1cfde30896f04205d11",
+      "observed_at": "2026-10-29T05:50:43.037071Z",
+      "sha256": "e1c29b2c68b64e14dcbb9d0a1efd162b54aa319ff70ca2e6ed703f8ce65bd6cd",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -736,19 +781,19 @@
       "upstream_last_modified": "2026-10-27T21:34:31.924Z"
     },
     {
-      "bytes": 8148,
+      "bytes": 7440,
       "canonical_url": "https://docs.typesafe.ai/primitives/box",
       "description": "A Box is a System One question type for finding where something is in an image. The answer is the four edges of a box around it, as fractions of the image's width and height.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/box.md",
-      "observed_at": "2026-10-24T04:39:13.638181Z",
-      "sha256": "dbefafbf95d8db763ce5726de0a58ae9c1fe774c29506fba1a9cc4f26d72e131",
+      "observed_at": "2026-10-29T05:50:43.037280Z",
+      "sha256": "609b5ed5121ca55040c6022687327b54169b570d65c6d0ade624a22f120da8e8",
       "source_id": "docs:primitives/box",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Box",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-23T23:47:09.485Z"
+      "upstream_last_modified": "2026-10-28T21:40:48.886Z"
     },
     {
       "bytes": 15642,
