@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-30",
+  "events": [
+    {
+      "after_sha256": "0ae7621f4d3a7f730b2e9e91812ff160872051bdfd69b34d48788ba1b5fa39e3",
+      "before_sha256": "ea9691f2c0e851ed2f02e5023c4f841efc61752eafcddf89285680a6412cd59a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/twitch_chat_filter",
+      "id": "69271fd882ba3390cf69fb3e",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "bd3d08640c6265479bdb838b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0ae7621f4d3a7f730b2e9e91812ff160872051bdfd69b34d48788ba1b5fa39e3",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/twitch_chat_filter modified in successful discovery."
+    },
+    {
+      "after_sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+      "before_sha256": "34d43d7d3b66783bba36645b7ff546c08acb3702d16a73e616bd86a1fc6e9983",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "759c320ce10597b72ff2bc98",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "fcf1ca14d581b3d38eb43ac4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "8db01b5539acafd4ac90aae08d9067191cf7e18c4b8f38894f5e56e3ea6b2ed3",
+      "before_sha256": "39ba57d1b6ac472954d67900cb6ce976f663f255c3985098ccad687ab0c5905c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/basic_memory",
+      "id": "853b258a6953412d4aadbde1",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "5856a65aff95ace74feb5c06",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8db01b5539acafd4ac90aae08d9067191cf7e18c4b8f38894f5e56e3ea6b2ed3",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/basic_memory modified in successful discovery."
+    },
+    {
+      "after_sha256": "4c9aebdfc8da33c8c5905dea4e03a69aadb00eb16271aca8c67cdb142072ca2f",
+      "before_sha256": "4c3b3703f983bc714c22c880168afaf04d254f50308f5aab1b45b6c45ab77f27",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "9f556fe6ba1e1ca52193a5c6",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "bab2948436a513deb64d6a6b4de35e29c3255eaed98ba94b571d18e5884985ec",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md"
+        }
+      ],
+      "summary": "Finds candidate emails, phone numbers, and amounts with a regex, has TypeSafe pick the one you ask for, and normalizes that exact span in code."
+    },
+    {
+      "after_sha256": "2e7f2922cc036e93bfe3007c0dc06cd8fb7c80ee7d8ff887a5527f0a036daac0",
+      "before_sha256": "629575183f4f1a81998c209d5a9c3650f245ef7fb5b1bf5bfaaa94c64e26ba3b",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/twitch_chat_filter",
+      "id": "df1cfb62805c3d58ad13958c",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "19ee934ee1418bd7b296e9a4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "0ae7621f4d3a7f730b2e9e91812ff160872051bdfd69b34d48788ba1b5fa39e3",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md"
+        }
+      ],
+      "summary": "Hides insults, spam, and unasked-for gameplay tips in Twitch chat, blurs spoilers, and highlights questions. Each message gets one TypeSafe request with three questions, requests run concurrently, and plain rules in code turn the answers into what the viewer sees."
+    },
+    {
+      "after_sha256": "bab2948436a513deb64d6a6b4de35e29c3255eaed98ba94b571d18e5884985ec",
+      "before_sha256": "71e547a710e414c7a3e30ca6386c1cc39f8e7980a1e98684e73e1d29ffcd25e8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "df3b555bd1fe2b5c2bd6b04c",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "e60aa203f96d15581f2971fc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bab2948436a513deb64d6a6b4de35e29c3255eaed98ba94b571d18e5884985ec",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/pre_parsed_value_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
+      "before_sha256": "960031d229924d8d22139233e761b915b77870ae7f2af29fae025637e5be4c62",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "ec65b4a6168e4674c18d2b8a",
+      "observed_at": "2026-10-30T05:51:37.133954Z",
+      "previous_event_id": "d5804299634c5e6f907166f9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

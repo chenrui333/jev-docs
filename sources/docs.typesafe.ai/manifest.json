@@ -136,19 +136,19 @@
       "upstream_last_modified": "2026-10-22T18:59:22.103Z"
     },
     {
-      "bytes": 8655,
+      "bytes": 8653,
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
       "description": "End-to-end recipes that show TypeSafe in real problems, from a few questions to full pipelines.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks.md",
-      "observed_at": "2026-10-29T05:50:43.035726Z",
-      "sha256": "34d43d7d3b66783bba36645b7ff546c08acb3702d16a73e616bd86a1fc6e9983",
+      "observed_at": "2026-10-30T05:51:37.134428Z",
+      "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
       "source_id": "docs:cookbooks",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Cookbooks",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-28T22:59:55.928Z"
+      "upstream_last_modified": "2026-10-30T00:32:45.373Z"
     },
     {
       "bytes": 39219,
@@ -181,19 +181,19 @@
       "upstream_last_modified": "2026-10-28T22:59:55.930Z"
     },
     {
-      "bytes": 28911,
+      "bytes": 27292,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
       "description": "Let Jev decide which requests and answers are worth remembering, then wrap the Jev call in a small function that adds memories to later calls.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/basic_memory.md",
-      "observed_at": "2026-10-24T04:39:13.637021Z",
-      "sha256": "39ba57d1b6ac472954d67900cb6ce976f663f255c3985098ccad687ab0c5905c",
+      "observed_at": "2026-10-30T05:51:37.134665Z",
+      "sha256": "8db01b5539acafd4ac90aae08d9067191cf7e18c4b8f38894f5e56e3ea6b2ed3",
       "source_id": "docs:cookbooks/basic_memory",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Simple memory system",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-11T05:15:34.553Z"
+      "upstream_last_modified": "2026-10-29T19:38:02.145Z"
     },
     {
       "bytes": 15298,
@@ -406,19 +406,19 @@
       "upstream_last_modified": "2026-10-29T03:43:15.156Z"
     },
     {
-      "bytes": 12476,
+      "bytes": 13066,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
-      "description": "Uses regexes to find candidate emails, phone numbers, and amounts, then has TypeSafe select the requested span so code can normalize a verbatim value.",
+      "description": "Finds candidate emails, phone numbers, and amounts with a regex, has TypeSafe pick the one you ask for, and normalizes that exact span in code.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md",
-      "observed_at": "2026-10-21T04:51:21.543867Z",
-      "sha256": "71e547a710e414c7a3e30ca6386c1cc39f8e7980a1e98684e73e1d29ffcd25e8",
+      "observed_at": "2026-10-30T05:51:37.135489Z",
+      "sha256": "bab2948436a513deb64d6a6b4de35e29c3255eaed98ba94b571d18e5884985ec",
       "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Pre-parsed value extraction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-09-22T08:57:49.384Z"
+      "upstream_last_modified": "2026-10-29T19:48:33.956Z"
     },
     {
       "bytes": 25843,
@@ -466,19 +466,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.387Z"
     },
     {
-      "bytes": 37067,
+      "bytes": 37653,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
       "description": "Build semantic search for GitHub's Terms of Service. In one request, score 218 line ids against a plain-language query with a Choice question, and use a Noul question to check whether the document contains an answer.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/semantic_find.md",
-      "observed_at": "2026-10-29T05:50:43.036765Z",
-      "sha256": "960031d229924d8d22139233e761b915b77870ae7f2af29fae025637e5be4c62",
+      "observed_at": "2026-10-30T05:51:37.135726Z",
+      "sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
       "source_id": "docs:cookbooks/semantic_find",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Line-by-line search",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-29T03:43:15.149Z"
+      "upstream_last_modified": "2026-10-30T00:55:10.927Z"
     },
     {
       "bytes": 39342,
@@ -496,19 +496,19 @@
       "upstream_last_modified": "2026-09-22T08:57:49.383Z"
     },
     {
-      "bytes": 23872,
+      "bytes": 23439,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
-      "description": "Hide insults, spam, and unasked-for gameplay tips in Twitch chat, blur spoilers, and highlight questions. Each message gets one TypeSafe request containing multiple questions. Up to eight messages are processed concurrently, and the rules are defined in code.",
+      "description": "Hides insults, spam, and unasked-for gameplay tips in Twitch chat, blurs spoilers, and highlights questions. Each message gets one TypeSafe request with three questions, requests run concurrently, and plain rules in code turn the answers into what the viewer sees.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md",
-      "observed_at": "2026-10-29T05:50:43.036865Z",
-      "sha256": "ea9691f2c0e851ed2f02e5023c4f841efc61752eafcddf89285680a6412cd59a",
+      "observed_at": "2026-10-30T05:51:37.135846Z",
+      "sha256": "0ae7621f4d3a7f730b2e9e91812ff160872051bdfd69b34d48788ba1b5fa39e3",
       "source_id": "docs:cookbooks/twitch_chat_filter",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Twitch chat filter",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-28T22:59:55.940Z"
+      "upstream_last_modified": "2026-10-30T00:32:45.367Z"
     },
     {
       "bytes": 726,
@@ -631,13 +631,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 19811,
+      "bytes": 19809,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-10-29T05:50:43.037071Z",
-      "sha256": "e1c29b2c68b64e14dcbb9d0a1efd162b54aa319ff70ca2e6ed703f8ce65bd6cd",
+      "observed_at": "2026-10-30T05:51:37.136123Z",
+      "sha256": "9e4b70ab9a13d27199fe4188eb785bbe1e60126e8941b416a9f9fdfcb5517226",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",

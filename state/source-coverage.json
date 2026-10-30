@@ -3,7 +3,7 @@
   "discovered_count": 134,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "e1c29b2c68b64e14dcbb9d0a1efd162b54aa319ff70ca2e6ed703f8ce65bd6cd",
+    "sha256": "9e4b70ab9a13d27199fe4188eb785bbe1e60126e8941b416a9f9fdfcb5517226",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
@@ -167,7 +167,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "34d43d7d3b66783bba36645b7ff546c08acb3702d16a73e616bd86a1fc6e9983",
+      "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
@@ -209,7 +209,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
-      "sha256": "39ba57d1b6ac472954d67900cb6ce976f663f255c3985098ccad687ab0c5905c",
+      "sha256": "8db01b5539acafd4ac90aae08d9067191cf7e18c4b8f38894f5e56e3ea6b2ed3",
       "source_id": "docs:cookbooks/basic_memory",
       "status": "fetched",
       "title": "Simple memory system"
@@ -230,7 +230,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
-      "sha256": "ea9691f2c0e851ed2f02e5023c4f841efc61752eafcddf89285680a6412cd59a",
+      "sha256": "0ae7621f4d3a7f730b2e9e91812ff160872051bdfd69b34d48788ba1b5fa39e3",
       "source_id": "docs:cookbooks/twitch_chat_filter",
       "status": "fetched",
       "title": "Twitch chat filter"
@@ -251,7 +251,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
-      "sha256": "71e547a710e414c7a3e30ca6386c1cc39f8e7980a1e98684e73e1d29ffcd25e8",
+      "sha256": "bab2948436a513deb64d6a6b4de35e29c3255eaed98ba94b571d18e5884985ec",
       "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
       "status": "fetched",
       "title": "Pre-parsed value extraction"
@@ -293,7 +293,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "960031d229924d8d22139233e761b915b77870ae7f2af29fae025637e5be4c62",
+      "sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
       "source_id": "docs:cookbooks/semantic_find",
       "status": "fetched",
       "title": "Line-by-line search"
