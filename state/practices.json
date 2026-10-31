@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "8c0546fde7405587569d0895e676a72db63eb3f8aae9353d9e93bfb612f9a8fb",
+  "fingerprint": "ac005e62f69634a2868b51bb4a50feb5d3e57d450603e2a2d7fa042d888cdfa9",
   "items": [
     {
       "category": "agent-integration",
@@ -107,8 +107,8 @@
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
-          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+          "context_sha256": "acad94650c8f6a2caee11fae50f14e4472c788c2b1b0229c29061c60828fef11",
+          "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -164,8 +164,8 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
-          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+          "context_sha256": "acad94650c8f6a2caee11fae50f14e4472c788c2b1b0229c29061c60828fef11",
+          "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -685,8 +685,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "4276ad8e3253d945edfb74eaebd8237892829aeafe0d1ec34ebc6645b57ff0ed",
-          "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+          "context_sha256": "acad94650c8f6a2caee11fae50f14e4472c788c2b1b0229c29061c60828fef11",
+          "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -725,11 +725,11 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-10-28T05:45:18.739814Z",
+  "observed_at": "2026-10-31T05:46:19.078425Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+    "docs:concepts/how-to-build-with-system-one": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
     "docs:concepts/state": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
     "docs:concepts/system-one": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
     "docs:confidence": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",

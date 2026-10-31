@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 134,
+  "discovered_count": 135,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "9e4b70ab9a13d27199fe4188eb785bbe1e60126e8941b416a9f9fdfcb5517226",
+    "sha256": "f3da84717d0eb16e4d1f718561811f6b1aedb7c054f17b1aa3b28230141ba889",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 134,
+  "fetched_count": 135,
   "intentionally_excluded": [
     {
       "reason": "external-host",
@@ -27,7 +27,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
-      "sha256": "3b09e6289f15cb658fb2f085840779b717a63393260b1bebd496b506fde76065",
+      "sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
       "source_id": "docs:introduction/quickstart",
       "status": "fetched",
       "title": "Quick start"
@@ -41,7 +41,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
-      "sha256": "811e4bb3e587bb03e239a23b577362f7853d55b0f5c516bebe42cf70b71bbc62",
+      "sha256": "b38160b5a659429c74adcdb49383bf25d1fa1243fc85139fd3de71b3160a31b0",
       "source_id": "docs:concepts/use-case-map",
       "status": "fetched",
       "title": "Example use cases"
@@ -62,7 +62,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "aa57ef910c3927218527778bb35c4860fa0b09bd81e9201a1e74c12cfc040a03",
+      "sha256": "8315980ad0e4251c28c4cea35fad7c67a69f72d4015fd513360969e7eac6a5cf",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
@@ -104,7 +104,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/images",
-      "sha256": "b6836110409e88ff406b7044992d38828bbc95106a30b7831a6e29b998e1edeb",
+      "sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
       "source_id": "docs:images",
       "status": "fetched",
       "title": "Images"
@@ -118,14 +118,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
-      "sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+      "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "status": "fetched",
       "title": "How to build with TypeSafe"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/machine-learning-primer",
-      "sha256": "76befed8d1f841e926f4f64963edc744afc630437762073421eedfd8682e9700",
+      "sha256": "0e2e773ae3c8315d7bcf22d29637fc9824654251815f1f19c302046ad9015ccc",
       "source_id": "docs:introduction/machine-learning-primer",
       "status": "fetched",
       "title": "AI primer"
@@ -167,7 +167,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+      "sha256": "3c758acd7d40fdb60a0c37d032d63ab1db3debe96897af3305b9ff58be6ca62f",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
@@ -181,7 +181,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
-      "sha256": "20cfa3dd1fa874176625ca832485c5398f52b0ed94f3ed8e9654313e0520a77b",
+      "sha256": "0f6c4356c13029a9be816ae4332d38768b4b1f016c0473570622b897ea5b7d44",
       "source_id": "docs:cookbooks/skill_suggestion",
       "status": "fetched",
       "title": "Skill suggestion"
@@ -264,6 +264,13 @@
       "title": "Structure recovery"
     },
     {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives",
+      "sha256": "ddb13892d32b7f352385e51dcf67c7fb2467826a113cbc88ae0423c85cd84cdc",
+      "source_id": "docs:cookbooks/cart_from_primitives",
+      "status": "fetched",
+      "title": "Shopping cart"
+    },
+    {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents",
       "sha256": "a6bbe295571914fe199a7039d6b64428d037dfab78ce83464f46a97a37e5802b",
       "source_id": "docs:cookbooks/reading_scanned_documents",
@@ -279,7 +286,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/feeder_watch",
-      "sha256": "23aeeaf857508e910e39a418898e3874e2adc08e982f44408aafc2f8a24e0704",
+      "sha256": "dd631b47457f37e9156a841ad840d0e4d6e8dc3e5e301aa349691413d94481cc",
       "source_id": "docs:cookbooks/feeder_watch",
       "status": "fetched",
       "title": "Feeder-cam visit log"
@@ -363,7 +370,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
-      "sha256": "61840dc76f79e4c946eb34ac52d75a9d8eb7ec014a450afcbd5d761d5c33ba69",
+      "sha256": "fc33df2cc502305a775cdb4dca050bb5043074aa96fb01710f4c37252262def5",
       "source_id": "docs:agent-skill",
       "status": "fetched",
       "title": "Agent skill"
@@ -405,28 +412,28 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk",
-      "sha256": "b97cd2416fd728f215b53739095c464d3de2f5c6de9fc27bac3244c5b7a689d3",
+      "sha256": "de04dc0886a6cc939720efc0266b15fc574c286909d2883a08eab065e0486055",
       "source_id": "docs:sdk",
       "status": "fetched",
       "title": "Client SDKs"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python",
-      "sha256": "d387f05ff9379401b60838488f32affbd8f45e80be5673acf1675d2c77edc038",
+      "sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
       "source_id": "docs:sdk/python",
       "status": "fetched",
       "title": "TypeSafe Python SDK"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage/basic",
-      "sha256": "1cefaa5afc267fcfe55f33770a2f89ea7f4a2a0bc7fca68c040d68362133c54e",
+      "sha256": "940ad66c7f7048d07070a0b891883b2ab8be7ddcb8192658e133206d074f8f0d",
       "source_id": "docs:sdk/python/usage/basic",
       "status": "fetched",
       "title": "Basic usage"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/usage/advanced",
-      "sha256": "2034ee6fe01781b463acf33b50e967f00ee469859043663f5c01e38c4a206f1b",
+      "sha256": "cc596a1526b7a779172264449418b245f16b155823c1af4cd9299c641b218b33",
       "source_id": "docs:sdk/python/usage/advanced",
       "status": "fetched",
       "title": "Advanced usage"
@@ -447,21 +454,21 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/async",
-      "sha256": "7a43cb72b67f493e67c8f5716068f6dec0d477c251761e117a043f5814a693e0",
+      "sha256": "f64dfe403cafaf47e6366a071fc36f5f2a8a57d95d20f1d772fa16aeee639bbb",
       "source_id": "docs:sdk/python/api/clients/async",
       "status": "fetched",
       "title": "Asynchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/clients/sync",
-      "sha256": "4e6de649d923fc72d936bc0ba4faa7efc21e01336b2ed17b69d91e56c8676da5",
+      "sha256": "54dcc4ac9e561414df0d7fa5c037e0dc73073133d85054940701a7dddecc9ebb",
       "source_id": "docs:sdk/python/api/clients/sync",
       "status": "fetched",
       "title": "Synchronous client"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
-      "sha256": "b3bf70c2fbb7132f4907ff8925fd4c57a80535aad3bda37de81650570aae272c",
+      "sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
       "source_id": "docs:sdk/python/api/types/questions",
       "status": "fetched",
       "title": "Questions"
@@ -475,7 +482,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/responses",
-      "sha256": "24a8588aafd39f090214acaf0aede20f3ff609c5cabbac1efda12b5d8a154ee5",
+      "sha256": "95cc38e26e4b85531537fbc6b71b8f6a903d92bcf9a41c7e0825f0bedd39ab81",
       "source_id": "docs:sdk/python/api/types/responses",
       "status": "fetched",
       "title": "Answers and responses"
@@ -958,6 +965,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 134,
+  "retained_count": 135,
   "schema_version": 2
 }

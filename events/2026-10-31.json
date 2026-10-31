@@ -1,0 +1,415 @@
+{
+  "date": "2026-10-31",
+  "events": [
+    {
+      "after_sha256": "8315980ad0e4251c28c4cea35fad7c67a69f72d4015fd513360969e7eac6a5cf",
+      "before_sha256": "aa57ef910c3927218527778bb35c4860fa0b09bd81e9201a1e74c12cfc040a03",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "12c3c5b7a93bb79e80be904a",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "cb0c3c31b994021c91a43e94",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8315980ad0e4251c28c4cea35fad7c67a69f72d4015fd513360969e7eac6a5cf",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "f64dfe403cafaf47e6366a071fc36f5f2a8a57d95d20f1d772fa16aeee639bbb",
+      "before_sha256": "7a43cb72b67f493e67c8f5716068f6dec0d477c251761e117a043f5814a693e0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/async",
+      "id": "2976da06a2aff38ec5dc8f37",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "6b139ed9172d3ed3bcba5866",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f64dfe403cafaf47e6366a071fc36f5f2a8a57d95d20f1d772fa16aeee639bbb",
+          "source_id": "docs:sdk/python/api/clients/async",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/async"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/async modified in successful discovery."
+    },
+    {
+      "after_sha256": "340f6b7e4ac8204eb1057162d66c12e978303ef3065245be31d5ba771bf75ad6",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/cart_from_primitives",
+      "id": "34314f4404bb4a0c81618157",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3c758acd7d40fdb60a0c37d032d63ab1db3debe96897af3305b9ff58be6ca62f",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "ddb13892d32b7f352385e51dcf67c7fb2467826a113cbc88ae0423c85cd84cdc",
+          "source_id": "docs:cookbooks/cart_from_primitives",
+          "url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives.md"
+        }
+      ],
+      "summary": "Turns a natural-language cafe order into a structured cart: a shrinking-options loop of Choice questions finds every item, then one batched request per item fills its known fields."
+    },
+    {
+      "after_sha256": "95cc38e26e4b85531537fbc6b71b8f6a903d92bcf9a41c7e0825f0bedd39ab81",
+      "before_sha256": "24a8588aafd39f090214acaf0aede20f3ff609c5cabbac1efda12b5d8a154ee5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/responses",
+      "id": "41ba8ee615089106f7e130c7",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "2e441e802e10f764e65d714a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "95cc38e26e4b85531537fbc6b71b8f6a903d92bcf9a41c7e0825f0bedd39ab81",
+          "source_id": "docs:sdk/python/api/types/responses",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/responses"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/responses modified in successful discovery."
+    },
+    {
+      "after_sha256": "54dcc4ac9e561414df0d7fa5c037e0dc73073133d85054940701a7dddecc9ebb",
+      "before_sha256": "4e6de649d923fc72d936bc0ba4faa7efc21e01336b2ed17b69d91e56c8676da5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/clients/sync",
+      "id": "53d493708b813df1c82973a7",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "cf71b943a705f5cdc6d210c4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "54dcc4ac9e561414df0d7fa5c037e0dc73073133d85054940701a7dddecc9ebb",
+          "source_id": "docs:sdk/python/api/clients/sync",
+          "url": "https://docs.typesafe.ai/sdk/python/api/clients/sync"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/clients/sync modified in successful discovery."
+    },
+    {
+      "after_sha256": "6f69f30edcaed85fb5cc8c5db064834f4ed5a8f7053546abe40cf999d84ab128",
+      "before_sha256": "5d6a42853d971a8f79c51b54e6e73834f506a8025fa491a02f3be25b2ac3a3d1",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/skill_suggestion",
+      "id": "5f4a400a2704391727df1817",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "002e2c0acbe06b1a9cb5ee5e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3c758acd7d40fdb60a0c37d032d63ab1db3debe96897af3305b9ff58be6ca62f",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "0f6c4356c13029a9be816ae4332d38768b4b1f016c0473570622b897ea5b7d44",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
+        }
+      ],
+      "summary": "Picks at most one skill for an agent turn out of the 194 in Nous Research's Hermes catalog, using two TypeSafe requests to rank and re-check the top candidates."
+    },
+    {
+      "after_sha256": "b38160b5a659429c74adcdb49383bf25d1fa1243fc85139fd3de71b3160a31b0",
+      "before_sha256": "811e4bb3e587bb03e239a23b577362f7853d55b0f5c516bebe42cf70b71bbc62",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/use-case-map",
+      "id": "61043b6558f9e083d30b5c2d",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "5579b1b9825e41a6fa7fb8f0",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b38160b5a659429c74adcdb49383bf25d1fa1243fc85139fd3de71b3160a31b0",
+          "source_id": "docs:concepts/use-case-map",
+          "url": "https://docs.typesafe.ai/concepts/use-case-map"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/use-case-map modified in successful discovery."
+    },
+    {
+      "after_sha256": "3c758acd7d40fdb60a0c37d032d63ab1db3debe96897af3305b9ff58be6ca62f",
+      "before_sha256": "d06e1f72b2cafed2c473b208670b7657760247e99dfeaf110644bd5ff0719624",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "63d8cb00e96596a5f44eb8f5",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "759c320ce10597b72ff2bc98",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3c758acd7d40fdb60a0c37d032d63ab1db3debe96897af3305b9ff58be6ca62f",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "fc33df2cc502305a775cdb4dca050bb5043074aa96fb01710f4c37252262def5",
+      "before_sha256": "61840dc76f79e4c946eb34ac52d75a9d8eb7ec014a450afcbd5d761d5c33ba69",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:agent-skill",
+      "id": "6efd927d96176b83d1a1b6dc",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "d0c4244817d01a86995b8ef3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "fc33df2cc502305a775cdb4dca050bb5043074aa96fb01710f4c37252262def5",
+          "source_id": "docs:agent-skill",
+          "url": "https://docs.typesafe.ai/agent-skill"
+        }
+      ],
+      "summary": "Documentation page docs:agent-skill modified in successful discovery."
+    },
+    {
+      "after_sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
+      "before_sha256": "3b09e6289f15cb658fb2f085840779b717a63393260b1bebd496b506fde76065",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "7142a86f8870c936e117e538",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "fb1832698f2e5e6cb685caaa",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    },
+    {
+      "after_sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
+      "before_sha256": "b3bf70c2fbb7132f4907ff8925fd4c57a80535aad3bda37de81650570aae272c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/questions",
+      "id": "85e133bcb0fac5fcdbf3a6d0",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "397965361cbaa82aa1b0a99b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
+          "source_id": "docs:sdk/python/api/types/questions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/questions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "ddb13892d32b7f352385e51dcf67c7fb2467826a113cbc88ae0423c85cd84cdc",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/cart_from_primitives",
+      "id": "868780b3406ed8a3718e0076",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ddb13892d32b7f352385e51dcf67c7fb2467826a113cbc88ae0423c85cd84cdc",
+          "source_id": "docs:cookbooks/cart_from_primitives",
+          "url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/cart_from_primitives added in successful discovery."
+    },
+    {
+      "after_sha256": "940ad66c7f7048d07070a0b891883b2ab8be7ddcb8192658e133206d074f8f0d",
+      "before_sha256": "1cefaa5afc267fcfe55f33770a2f89ea7f4a2a0bc7fca68c040d68362133c54e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage/basic",
+      "id": "9d6a3247a6ca650f1e403667",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "73144fa180177f4a25db94a2",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "940ad66c7f7048d07070a0b891883b2ab8be7ddcb8192658e133206d074f8f0d",
+          "source_id": "docs:sdk/python/usage/basic",
+          "url": "https://docs.typesafe.ai/sdk/python/usage/basic"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage/basic modified in successful discovery."
+    },
+    {
+      "after_sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
+      "before_sha256": "b6836110409e88ff406b7044992d38828bbc95106a30b7831a6e29b998e1edeb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:images",
+      "id": "a2be35f649e0e4ccf46ae198",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "44f648d83f38243efad9a30e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
+          "source_id": "docs:images",
+          "url": "https://docs.typesafe.ai/images"
+        }
+      ],
+      "summary": "Documentation page docs:images modified in successful discovery."
+    },
+    {
+      "after_sha256": "de04dc0886a6cc939720efc0266b15fc574c286909d2883a08eab065e0486055",
+      "before_sha256": "b97cd2416fd728f215b53739095c464d3de2f5c6de9fc27bac3244c5b7a689d3",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk",
+      "id": "ab9c020ba527ab368924c9af",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "e91592bfdb941bd497315c78",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "de04dc0886a6cc939720efc0266b15fc574c286909d2883a08eab065e0486055",
+          "source_id": "docs:sdk",
+          "url": "https://docs.typesafe.ai/sdk"
+        }
+      ],
+      "summary": "Documentation page docs:sdk modified in successful discovery."
+    },
+    {
+      "after_sha256": "0f6c4356c13029a9be816ae4332d38768b4b1f016c0473570622b897ea5b7d44",
+      "before_sha256": "20cfa3dd1fa874176625ca832485c5398f52b0ed94f3ed8e9654313e0520a77b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/skill_suggestion",
+      "id": "b04605e1dd18df6bb9441898",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "51f092b2f2a6d3367f2e2bbe",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0f6c4356c13029a9be816ae4332d38768b4b1f016c0473570622b897ea5b7d44",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/skill_suggestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "cc596a1526b7a779172264449418b245f16b155823c1af4cd9299c641b218b33",
+      "before_sha256": "2034ee6fe01781b463acf33b50e967f00ee469859043663f5c01e38c4a206f1b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/usage/advanced",
+      "id": "c021500b0ba3a6c1b9d4e813",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "e4a851420c0804ea4a037756",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cc596a1526b7a779172264449418b245f16b155823c1af4cd9299c641b218b33",
+          "source_id": "docs:sdk/python/usage/advanced",
+          "url": "https://docs.typesafe.ai/sdk/python/usage/advanced"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/usage/advanced modified in successful discovery."
+    },
+    {
+      "after_sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
+      "before_sha256": "d387f05ff9379401b60838488f32affbd8f45e80be5673acf1675d2c77edc038",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python",
+      "id": "c5efc95477535d303548e806",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "39f95ad5bc7b3bd1f7b50d72",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
+          "source_id": "docs:sdk/python",
+          "url": "https://docs.typesafe.ai/sdk/python"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python modified in successful discovery."
+    },
+    {
+      "after_sha256": "dd631b47457f37e9156a841ad840d0e4d6e8dc3e5e301aa349691413d94481cc",
+      "before_sha256": "23aeeaf857508e910e39a418898e3874e2adc08e982f44408aafc2f8a24e0704",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/feeder_watch",
+      "id": "d450138f6f08f604703a312c",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "9f65d28e2e915dd67fe9a580",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "dd631b47457f37e9156a841ad840d0e4d6e8dc3e5e301aa349691413d94481cc",
+          "source_id": "docs:cookbooks/feeder_watch",
+          "url": "https://docs.typesafe.ai/cookbooks/feeder_watch"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/feeder_watch modified in successful discovery."
+    },
+    {
+      "after_sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
+      "before_sha256": "c359f1be0747db376e049a516cb1ac5398322f41809da9376e307c24e45c5015",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/how-to-build-with-system-one",
+      "id": "fb4aa6118d86bd7cd33e0cfe",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "6756f7a31a0e8fae606b8229",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/how-to-build-with-system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "0e2e773ae3c8315d7bcf22d29637fc9824654251815f1f19c302046ad9015ccc",
+      "before_sha256": "76befed8d1f841e926f4f64963edc744afc630437762073421eedfd8682e9700",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/machine-learning-primer",
+      "id": "fcdecb2a8492c6b730926216",
+      "observed_at": "2026-10-31T05:46:20.458174Z",
+      "previous_event_id": "2b16326601b39c42daba810c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0e2e773ae3c8315d7bcf22d29637fc9824654251815f1f19c302046ad9015ccc",
+          "source_id": "docs:introduction/machine-learning-primer",
+          "url": "https://docs.typesafe.ai/introduction/machine-learning-primer"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/machine-learning-primer modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
