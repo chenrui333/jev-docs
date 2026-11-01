@@ -1,0 +1,16 @@
+README.md
+  h_9df9c32c3f321d 49-52
+docs/RELEASE_SUBSTITUTION.md
+  h_9df9c32c3f321d 1-156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c6d5f6dbaa6582796a7e6c40d5af1f63fe4c5c4a",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
