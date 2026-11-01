@@ -46,6 +46,10 @@ not rewritten; their older excerpts remain part of the recorded history.
 - [`MODEL_LIMITATIONS.md`](MODEL_LIMITATIONS.md) describes upstream-documented
   weaknesses of specific model versions, separately from the stable programming
   model and model identity/alias state. Missing guidance becomes `unknown`, not fixed.
+- [`docs/RELEASE_SUBSTITUTION.md`](docs/RELEASE_SUBSTITUTION.md) is an authored,
+  dated capability-adoption matrix: verified model/SDK/skill identities, bounded
+  generative-step substitutions, evidence limits, and honest savings accounting.
+  It is not generated state or a local model-quality benchmark.
 - [`state/cookbooks.json`](state/cookbooks.json) lists official recipes by category
   and difficulty, with concise upstream descriptions. `indexed` and `discovered`
   record the cookbook index and `llms.txt` independently; neither overwrites the
