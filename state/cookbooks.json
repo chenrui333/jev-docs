@@ -1,5 +1,5 @@
 {
-  "fingerprint": "57a62267fa7a30f38bb65cce46dd2b0dd3aff92c98201e7238e95cf2200eee62",
+  "fingerprint": "9edbf74164087d683dc1f64b7d1bf87f9a7517a46cd3467e5578338079784765",
   "items": [
     {
       "category": "extraction",
@@ -14,7 +14,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "15dc71443bed190f4f4a9baf2b4adf08bd343ebfc60fad5479332e210dcd1bc4",
+          "sha256": "aa307073e0718ed7ed9d7e28110e4dc9711226428beb1ea17a6b2496dabb4696",
           "source_id": "docs:cookbooks/autoformat",
           "url": "https://docs.typesafe.ai/cookbooks/autoformat.md"
         }
@@ -58,7 +58,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "bbfe22506beeb92dc312e79c94b2995120df4c72f756cf68bfb6c0fe97029dc5",
+          "sha256": "fc3fd456bd7f59a61834858040d3a2e01664cd8d208d503b995807b826ec76c4",
           "source_id": "docs:cookbooks/basic_memory",
           "url": "https://docs.typesafe.ai/cookbooks/basic_memory.md"
         }
@@ -80,7 +80,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "a1f2fe7d1368b2d53de8226e8c9b4612cc77c0b95a274e31a41fbe1828dbf4c8",
+          "sha256": "9358dbd4a853e20ca5dbd7592cd8f1c544458ffd6fc0ead88e2ecbbd71a31ffb",
           "source_id": "docs:cookbooks/cart_from_primitives",
           "url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives.md"
         }
@@ -102,7 +102,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "c51ab05d5a45d37ac945fbc33578ba4c1eebde5d4a7cbb5a24c8c85024f991c9",
+          "sha256": "5f0ecb17b1c37fd15788bb40975a28d5a3496203ea7279d82673f042593ed6bb",
           "source_id": "docs:cookbooks/citation_check",
           "url": "https://docs.typesafe.ai/cookbooks/citation_check.md"
         }
@@ -124,7 +124,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "5db8a4f2c46ab8c840495e1b014c5dc7b502a3279ed68d6227506ae5fcc09a70",
+          "sha256": "3ed69e20e14c565f181c792fa60ced86a22f0c9e62a78679569175ada1457c81",
           "source_id": "docs:cookbooks/classification_using_confidence",
           "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence.md"
         }
@@ -146,7 +146,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "d268e5887d5dc0bcdab88b50782036e4eb3bea7df1938fd7cab98c3fc2580790",
+          "sha256": "e831417396c52ad74319ae4d8d788fc1f75996969ab178dccef23cd85a5b4825",
           "source_id": "docs:cookbooks/classifying_rag_passages",
           "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
         }
@@ -168,7 +168,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "47eb6fd57ab7a1bfd1b95e27e79c16f1d5447dc0e9f1ed81edd4759c6d7a5b4f",
+          "sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
           "source_id": "docs:cookbooks/consistency_choice_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
         }
@@ -190,7 +190,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "7e917d97cafa3a233fc29bb6262d9d7563347d3924516fa965128f78ac38c03e",
+          "sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
           "source_id": "docs:cookbooks/consistency_noul_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
         }
@@ -212,7 +212,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "58e91aeb180fca107bdf221108ee8d71100b821fc5dc62194cd7d5e0cce93cef",
+          "sha256": "603b6ad8df65d0a578e55b5e0a086feaee058e6adef54798513ccbe0128a4ba3",
           "source_id": "docs:cookbooks/date_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
         }
@@ -256,7 +256,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "dd631b47457f37e9156a841ad840d0e4d6e8dc3e5e301aa349691413d94481cc",
+          "sha256": "6d6f9ca2bcd46b7f054e7697cda4f067a754d0892ba9b98bc466399abdc16acf",
           "source_id": "docs:cookbooks/feeder_watch",
           "url": "https://docs.typesafe.ai/cookbooks/feeder_watch.md"
         }
@@ -278,7 +278,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "f3b51a00a8c5481dca3615c8244627e84ad378f2cd45ffa5fc318d98a6259695",
+          "sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
           "source_id": "docs:cookbooks/function_calling",
           "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
         }
@@ -322,7 +322,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "c4a8833740ea6235bd57c41f391e2ad3a21598f91b4d5d0078490d7b18fe3f3f",
+          "sha256": "1727d57791452b9048828648d648020b1ebb381ac0355b832cdf5fed66ede901",
           "source_id": "docs:cookbooks/intelliprompter",
           "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
         }
@@ -344,7 +344,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "c2f7e568ce44d0fb53c9a8cb9775493b81d7d7b0d97b33c8f3eca46047c280e9",
+          "sha256": "cfdba2fc2279eb80ad81d5b1b5e085bc6c95870f123fb36ec4277cf7b5684676",
           "source_id": "docs:cookbooks/llm_guardrails",
           "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md"
         }
@@ -366,7 +366,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "59ba64769bee1570852075c40dfd02a96dc76bd79260c2fd950bc5de94ae9cc9",
+          "sha256": "bc22e428a8295b45c6a2564309c0bc3f44abbb237f387d4aa9b0f63c9dd20a6b",
           "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
           "url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes.md"
         }
@@ -388,7 +388,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "8943cb34d86743bdb97abbcb0cadf15551c6da5e5039140aae11e1e5ca6ca350",
+          "sha256": "441a01b527af578146b6ad162c738145354c376b293ec4688f40d50f8caf078c",
           "source_id": "docs:cookbooks/parallel_questions",
           "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md"
         }
@@ -410,7 +410,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "fa63d09f635f16dc952d5761cd6e69a847ce29b4bc96b890a1c0b67fd7e8640d",
+          "sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
           "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md"
         }
@@ -432,7 +432,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "a6bbe295571914fe199a7039d6b64428d037dfab78ce83464f46a97a37e5802b",
+          "sha256": "554ece363f53489c785527ae0f81f5b120dff3ac11c11d8f27a01895cbb41570",
           "source_id": "docs:cookbooks/reading_scanned_documents",
           "url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents.md"
         }
@@ -454,7 +454,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "4617c051ed13cb03b7706e7ffb42804020b9f3ab004d64ca1c5c752949982c42",
+          "sha256": "cb6b11b90a1d29d353fc0220db645d6720484717b65f3a6603d711b5aed8b699",
           "source_id": "docs:cookbooks/rerank_typesafe",
           "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
         }
@@ -498,7 +498,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
+          "sha256": "88680bf9b8ef8ffb9faf773fd5116108f8a1273e9bd21325c105366ddd870df9",
           "source_id": "docs:cookbooks/semantic_find",
           "url": "https://docs.typesafe.ai/cookbooks/semantic_find.md"
         }
@@ -520,7 +520,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "e60e2397242fc38fac89400a18209e60c266544122819721758b86234ac67637",
+          "sha256": "db1be5fee78ab637724ef7d2a349b2d259654a920c61578635082ccc49d812f1",
           "source_id": "docs:cookbooks/skill_suggestion",
           "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
         }
@@ -542,7 +542,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "ba1764e9f96dbbc670477e0534fc774574ac0b44e02813c155c748170681b0a7",
+          "sha256": "6d5625edb91f2698fc7774477f252d501f13f3cc94ca00b7098e52e30de5b538",
           "source_id": "docs:cookbooks/twitch_chat_filter",
           "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md"
         }
@@ -552,7 +552,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
     }
   ],
-  "observed_at": "2026-11-01T06:08:25.739891Z",
+  "observed_at": "2026-11-02T21:43:37.930141Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

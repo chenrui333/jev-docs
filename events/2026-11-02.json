@@ -1,0 +1,405 @@
+{
+  "date": "2026-11-02",
+  "events": [
+    {
+      "after_sha256": "db1be5fee78ab637724ef7d2a349b2d259654a920c61578635082ccc49d812f1",
+      "before_sha256": "e60e2397242fc38fac89400a18209e60c266544122819721758b86234ac67637",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/skill_suggestion",
+      "id": "06bedef1d64662c404fe16b5",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "6ba59f9e308b06f261f5d2bc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "db1be5fee78ab637724ef7d2a349b2d259654a920c61578635082ccc49d812f1",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/skill_suggestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "6d6f9ca2bcd46b7f054e7697cda4f067a754d0892ba9b98bc466399abdc16acf",
+      "before_sha256": "dd631b47457f37e9156a841ad840d0e4d6e8dc3e5e301aa349691413d94481cc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/feeder_watch",
+      "id": "091d014851723c640c4bb01e",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "d450138f6f08f604703a312c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "6d6f9ca2bcd46b7f054e7697cda4f067a754d0892ba9b98bc466399abdc16acf",
+          "source_id": "docs:cookbooks/feeder_watch",
+          "url": "https://docs.typesafe.ai/cookbooks/feeder_watch"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/feeder_watch modified in successful discovery."
+    },
+    {
+      "after_sha256": "cfdba2fc2279eb80ad81d5b1b5e085bc6c95870f123fb36ec4277cf7b5684676",
+      "before_sha256": "c2f7e568ce44d0fb53c9a8cb9775493b81d7d7b0d97b33c8f3eca46047c280e9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/llm_guardrails",
+      "id": "0b762ddfb7338b0b2d92f5d5",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "7b7b343a85d49e9ddca75e6c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cfdba2fc2279eb80ad81d5b1b5e085bc6c95870f123fb36ec4277cf7b5684676",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/llm_guardrails modified in successful discovery."
+    },
+    {
+      "after_sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
+      "before_sha256": "47eb6fd57ab7a1bfd1b95e27e79c16f1d5447dc0e9f1ed81edd4759c6d7a5b4f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_choice_cookbook",
+      "id": "18b9f3db0702df8ae54056ac",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "7242c2e527a9310fdf3c6cb3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "1727d57791452b9048828648d648020b1ebb381ac0355b832cdf5fed66ede901",
+      "before_sha256": "c4a8833740ea6235bd57c41f391e2ad3a21598f91b4d5d0078490d7b18fe3f3f",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/intelliprompter",
+      "id": "1f8593d12df0c4720ba91bce",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "b885370d220d3fad7ae6f3ef",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1727d57791452b9048828648d648020b1ebb381ac0355b832cdf5fed66ede901",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/intelliprompter modified in successful discovery."
+    },
+    {
+      "after_sha256": "fc3fd456bd7f59a61834858040d3a2e01664cd8d208d503b995807b826ec76c4",
+      "before_sha256": "bbfe22506beeb92dc312e79c94b2995120df4c72f756cf68bfb6c0fe97029dc5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/basic_memory",
+      "id": "293f15a105f2e3aa50e5b9cf",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "8899d513b59b84c002c815c1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "fc3fd456bd7f59a61834858040d3a2e01664cd8d208d503b995807b826ec76c4",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/basic_memory modified in successful discovery."
+    },
+    {
+      "after_sha256": "441a01b527af578146b6ad162c738145354c376b293ec4688f40d50f8caf078c",
+      "before_sha256": "8943cb34d86743bdb97abbcb0cadf15551c6da5e5039140aae11e1e5ca6ca350",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/parallel_questions",
+      "id": "49a6dc2cacf22c51be2045d9",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "aec76d57e1eaefb2634ad1c9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "441a01b527af578146b6ad162c738145354c376b293ec4688f40d50f8caf078c",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/parallel_questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "3ed69e20e14c565f181c792fa60ced86a22f0c9e62a78679569175ada1457c81",
+      "before_sha256": "5db8a4f2c46ab8c840495e1b014c5dc7b502a3279ed68d6227506ae5fcc09a70",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classification_using_confidence",
+      "id": "4c7245c6c7f556b2ef4421eb",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "a4f19e0d7e926ec86ba363f3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3ed69e20e14c565f181c792fa60ced86a22f0c9e62a78679569175ada1457c81",
+          "source_id": "docs:cookbooks/classification_using_confidence",
+          "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classification_using_confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "aa307073e0718ed7ed9d7e28110e4dc9711226428beb1ea17a6b2496dabb4696",
+      "before_sha256": "15dc71443bed190f4f4a9baf2b4adf08bd343ebfc60fad5479332e210dcd1bc4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoformat",
+      "id": "4db81eeb405b320a01c9315a",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "0eca27aa1594ac33ed331965",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "aa307073e0718ed7ed9d7e28110e4dc9711226428beb1ea17a6b2496dabb4696",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoformat modified in successful discovery."
+    },
+    {
+      "after_sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
+      "before_sha256": "7e917d97cafa3a233fc29bb6262d9d7563347d3924516fa965128f78ac38c03e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_noul_cookbook",
+      "id": "506b07f3c4931125c88cf027",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "d484d87b4b36d806d2c6aca1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_noul_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
+      "before_sha256": "fa63d09f635f16dc952d5761cd6e69a847ce29b4bc96b890a1c0b67fd7e8640d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "5581c1d04a69e2176b24891c",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "9d9bd6bac8e358648aae5dab",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/pre_parsed_value_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
+      "before_sha256": "f3b51a00a8c5481dca3615c8244627e84ad378f2cd45ffa5fc318d98a6259695",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/function_calling",
+      "id": "5fa6c71d6489d6970d556730",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "cc7172e424b3fdbbbddc2804",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/function_calling modified in successful discovery."
+    },
+    {
+      "after_sha256": "9358dbd4a853e20ca5dbd7592cd8f1c544458ffd6fc0ead88e2ecbbd71a31ffb",
+      "before_sha256": "a1f2fe7d1368b2d53de8226e8c9b4612cc77c0b95a274e31a41fbe1828dbf4c8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/cart_from_primitives",
+      "id": "64affff2d8c1d71324837800",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "38cc80e829d6a9e19fea8748",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9358dbd4a853e20ca5dbd7592cd8f1c544458ffd6fc0ead88e2ecbbd71a31ffb",
+          "source_id": "docs:cookbooks/cart_from_primitives",
+          "url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/cart_from_primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "554ece363f53489c785527ae0f81f5b120dff3ac11c11d8f27a01895cbb41570",
+      "before_sha256": "a6bbe295571914fe199a7039d6b64428d037dfab78ce83464f46a97a37e5802b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/reading_scanned_documents",
+      "id": "720388adc9954db4c3dc3f68",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "fab08df6ea5256f62265ed1b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "554ece363f53489c785527ae0f81f5b120dff3ac11c11d8f27a01895cbb41570",
+          "source_id": "docs:cookbooks/reading_scanned_documents",
+          "url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/reading_scanned_documents modified in successful discovery."
+    },
+    {
+      "after_sha256": "e831417396c52ad74319ae4d8d788fc1f75996969ab178dccef23cd85a5b4825",
+      "before_sha256": "d268e5887d5dc0bcdab88b50782036e4eb3bea7df1938fd7cab98c3fc2580790",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classifying_rag_passages",
+      "id": "754628efed0fdf5748a147a6",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "df05307662d0994414ae60c3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e831417396c52ad74319ae4d8d788fc1f75996969ab178dccef23cd85a5b4825",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "6d5625edb91f2698fc7774477f252d501f13f3cc94ca00b7098e52e30de5b538",
+      "before_sha256": "ba1764e9f96dbbc670477e0534fc774574ac0b44e02813c155c748170681b0a7",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/twitch_chat_filter",
+      "id": "9ef4c0095b31917fbf378a16",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "756a5967f02e64536b929e90",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "6d5625edb91f2698fc7774477f252d501f13f3cc94ca00b7098e52e30de5b538",
+          "source_id": "docs:cookbooks/twitch_chat_filter",
+          "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/twitch_chat_filter modified in successful discovery."
+    },
+    {
+      "after_sha256": "603b6ad8df65d0a578e55b5e0a086feaee058e6adef54798513ccbe0128a4ba3",
+      "before_sha256": "58e91aeb180fca107bdf221108ee8d71100b821fc5dc62194cd7d5e0cce93cef",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/date_extraction_cookbook",
+      "id": "bd2898b6a924f0b68466e567",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "a6344da5686e671023543db0",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "603b6ad8df65d0a578e55b5e0a086feaee058e6adef54798513ccbe0128a4ba3",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/date_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "88680bf9b8ef8ffb9faf773fd5116108f8a1273e9bd21325c105366ddd870df9",
+      "before_sha256": "a3432b7d6c156d42cc8f6684d967c2241c648dcdb2d30616b35231fb6974f6ef",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "c9ce1bafb2b17b34bfce2745",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "ec65b4a6168e4674c18d2b8a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "88680bf9b8ef8ffb9faf773fd5116108f8a1273e9bd21325c105366ddd870df9",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    },
+    {
+      "after_sha256": "5f0ecb17b1c37fd15788bb40975a28d5a3496203ea7279d82673f042593ed6bb",
+      "before_sha256": "c51ab05d5a45d37ac945fbc33578ba4c1eebde5d4a7cbb5a24c8c85024f991c9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/citation_check",
+      "id": "dd7cea6dfdf4fa2f6f4744e6",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "0ab7cbd8febf2cee96bdb9b6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5f0ecb17b1c37fd15788bb40975a28d5a3496203ea7279d82673f042593ed6bb",
+          "source_id": "docs:cookbooks/citation_check",
+          "url": "https://docs.typesafe.ai/cookbooks/citation_check"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/citation_check modified in successful discovery."
+    },
+    {
+      "after_sha256": "bc22e428a8295b45c6a2564309c0bc3f44abbb237f387d4aa9b0f63c9dd20a6b",
+      "before_sha256": "59ba64769bee1570852075c40dfd02a96dc76bd79260c2fd950bc5de94ae9cc9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/ocr_confidence_bounding_boxes",
+      "id": "f675b4d97f0089d01664e37b",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "90e779fa5fba62487c05e6a3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bc22e428a8295b45c6a2564309c0bc3f44abbb237f387d4aa9b0f63c9dd20a6b",
+          "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
+          "url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/ocr_confidence_bounding_boxes modified in successful discovery."
+    },
+    {
+      "after_sha256": "cb6b11b90a1d29d353fc0220db645d6720484717b65f3a6603d711b5aed8b699",
+      "before_sha256": "4617c051ed13cb03b7706e7ffb42804020b9f3ab004d64ca1c5c752949982c42",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/rerank_typesafe",
+      "id": "fa061edbc8582b4f6e7b7558",
+      "observed_at": "2026-11-02T21:43:39.262968Z",
+      "previous_event_id": "fe1001da39bd4f6af77cb0a4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cb6b11b90a1d29d353fc0220db645d6720484717b65f3a6603d711b5aed8b699",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/rerank_typesafe modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
