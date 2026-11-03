@@ -1,5 +1,5 @@
 {
-  "fingerprint": "5ddf42aec81093e9038551794249bc9dfbae2555f718e421109b9ce6a61d1541",
+  "fingerprint": "acf82072c4cb59b46d172d07a073a5078bf0fc1dfe5ace184f08db9b3a25bff0",
   "items": [
     {
       "complete_section_sha256": "438b17d8cf4be2e8fbe8cb37783ae3ef66f36781d2b2a3528a72c6b51ff07aed",
@@ -16,7 +16,7 @@
       ],
       "section": "adversarial-content",
       "section_text_sha256": "55575a729128f6bbe95d0838d34ea232cc90955469a11aba1e77d3d1eb599559",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration.",
       "summary_kind": "repository-interpretation",
       "title": "Adversarial content"
@@ -36,7 +36,7 @@
       ],
       "section": "choice-option-order",
       "section_text_sha256": "34dc9e81163307bf55f1bebcbf9bcda15c751dbf990b06674644eba6ecac2967",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
       "summary_kind": "unknown",
       "title": "Choice option order"
@@ -75,7 +75,7 @@
       ],
       "section": "contradictory-instructions-and-criteria",
       "section_text_sha256": "7f5456c18c04af6e6c4f5bd2364cecf33670e07694c4f7331ea96f79bf84b9a1",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Conflicting instructions and criteria can impair decisions; make their requirements agree.",
       "summary_kind": "repository-interpretation",
       "title": "Contradictory instructions and criteria"
@@ -95,7 +95,7 @@
       ],
       "section": "counting",
       "section_text_sha256": "88eeb3d33ed56e2abd0b5535bc06f64ddbb5a964815b9d81db81dc495b68e32e",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically.",
       "summary_kind": "repository-interpretation",
       "title": "Counting"
@@ -115,7 +115,7 @@
       ],
       "section": "date-and-time-comparison",
       "section_text_sha256": "6b530f8d3222d718ed74cbc5eec8cc1272166d17758743abdabc02d0d7e7b7f4",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
       "summary_kind": "unknown",
       "title": "Date and time comparison"
@@ -135,7 +135,7 @@
       ],
       "section": "generation",
       "section_text_sha256": "eeb1f219169fb3d3e816f8867eca78432832603c913b97b7bb7b15d46c5f3ba1",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
       "summary_kind": "unknown",
       "title": "Generation"
@@ -155,7 +155,7 @@
       ],
       "section": "indirection",
       "section_text_sha256": "c55e59fc8850bd46b652d644b75775216b182c700124475cd125c4640dbedaa4",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields.",
       "summary_kind": "repository-interpretation",
       "title": "Indirection"
@@ -175,7 +175,7 @@
       ],
       "section": "large-state-full-of-irrelevant-detail",
       "section_text_sha256": "74c9c6751ee77a9fa30d2efabd3610a67e2bd67d89ed13451a54dc3d0293c5cb",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence.",
       "summary_kind": "unknown",
       "title": "Large state full of irrelevant detail"
@@ -195,7 +195,7 @@
       ],
       "section": "literal-reading",
       "section_text_sha256": "77fc11629b076dfbd74ab69cbde6bb42a75c60ef250beb0888ec51bf50d8930d",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed.",
       "summary_kind": "repository-interpretation",
       "title": "Literal reading"
@@ -215,7 +215,7 @@
       ],
       "section": "math-and-numbers",
       "section_text_sha256": "8ece3ff21025bd592c76709de12f7015f5ab7acdd343131167c5a7adfc0d96d8",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Reserve the model for semantic judgments; implement numerical operations programmatically.",
       "summary_kind": "repository-interpretation",
       "title": "Math and Numbers"
@@ -235,7 +235,7 @@
       ],
       "section": "math-using-score",
       "section_text_sha256": "afc388f9a43dd79780da058f7389457d593ad6637370c04250dcba3c76e3d52f",
-      "status": "documented",
+      "status": "unknown",
       "summary": "A score is not an exact numerical measurement interpolated between criterion levels.",
       "summary_kind": "repository-interpretation",
       "title": "Math using score"
@@ -255,13 +255,13 @@
       ],
       "section": "numeric-representations",
       "section_text_sha256": "722c47f75f08f4f40eec13a4fe5266cba6d8568beb657a13109a40c888024ead",
-      "status": "documented",
+      "status": "unknown",
       "summary": "Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment.",
       "summary_kind": "repository-interpretation",
       "title": "Numeric representations"
     }
   ],
-  "observed_at": "2026-10-24T04:39:12.668018Z",
+  "observed_at": "2026-11-03T06:50:01.514975Z",
   "schema_version": 1,
   "scope": "Upstream-documented limitations for specific model versions; absence does not establish a fix."
 }

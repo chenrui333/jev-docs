@@ -6,7 +6,7 @@ Generated from [structured state](state/model-limitations.json). These describe 
 
 ## jev-1.13 / Adversarial content
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration.
 
@@ -14,7 +14,7 @@ Repository interpretation (repository-interpretation): Untrusted state may influ
 
 ## jev-1.13 / Choice option order
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
@@ -30,7 +30,7 @@ Repository interpretation (repository-interpretation): Similar wording does not 
 
 ## jev-1.13 / Contradictory instructions and criteria
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Conflicting instructions and criteria can impair decisions; make their requirements agree.
 
@@ -38,7 +38,7 @@ Repository interpretation (repository-interpretation): Conflicting instructions 
 
 ## jev-1.13 / Counting
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically.
 
@@ -46,7 +46,7 @@ Repository interpretation (repository-interpretation): Do not delegate tallying 
 
 ## jev-1.13 / Date and time comparison
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
@@ -54,7 +54,7 @@ Repository interpretation (unknown): Unknown: this section has no reviewed repos
 
 ## jev-1.13 / Generation
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
@@ -62,7 +62,7 @@ Repository interpretation (unknown): Unknown: this section has no reviewed repos
 
 ## jev-1.13 / Indirection
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields.
 
@@ -70,7 +70,7 @@ Repository interpretation (repository-interpretation): Nested reasoning and doub
 
 ## jev-1.13 / Large state full of irrelevant detail
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (unknown): Unknown: this section has no reviewed repository interpretation. Consult the official evidence.
 
@@ -78,7 +78,7 @@ Repository interpretation (unknown): Unknown: this section has no reviewed repos
 
 ## jev-1.13 / Literal reading
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed.
 
@@ -86,7 +86,7 @@ Repository interpretation (repository-interpretation): Implicit intent may not b
 
 ## jev-1.13 / Math and Numbers
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Reserve the model for semantic judgments; implement numerical operations programmatically.
 
@@ -94,7 +94,7 @@ Repository interpretation (repository-interpretation): Reserve the model for sem
 
 ## jev-1.13 / Math using score
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): A score is not an exact numerical measurement interpolated between criterion levels.
 
@@ -102,7 +102,7 @@ Repository interpretation (repository-interpretation): A score is not an exact n
 
 ## jev-1.13 / Numeric representations
 
-Status: `documented`. Upstream last reviewed: 2026-10-02.
+Status: `unknown`. Upstream last reviewed: 2026-10-02.
 
 Repository interpretation (repository-interpretation): Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment.
 

@@ -1,0 +1,714 @@
+{
+  "date": "2026-11-03",
+  "events": [
+    {
+      "after_sha256": "83f2ce123f4d19b278cce9101749182a398011841c76f6cd7705ad13e8acb011",
+      "before_sha256": "aa307073e0718ed7ed9d7e28110e4dc9711226428beb1ea17a6b2496dabb4696",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoformat",
+      "id": "060d90d1809905b50f1a595e",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "4db81eeb405b320a01c9315a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "83f2ce123f4d19b278cce9101749182a398011841c76f6cd7705ad13e8acb011",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoformat modified in successful discovery."
+    },
+    {
+      "after_sha256": "4483eb4f151abb112fa0801f98a7eb922f80e0aa6d6b995b7c237e0024d78e07",
+      "before_sha256": "11c1cc185dbced3e6c3eaffe17b8b659177eb854acc0fb8af4e5cb16e2e6df08",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:literal-reading",
+      "id": "0cc3ce3688fad99d4e51a670",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "9d15396e2b955803d698abbc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#literal-reading"
+        }
+      ],
+      "summary": "Implicit intent may not be followed. Specify exact conditions and boundary cases, splitting ambiguous decisions when needed."
+    },
+    {
+      "after_sha256": "18b49c18068f39e2e30298464a6b6c366df8a300644cef257a711acf74fc8569",
+      "before_sha256": "611c0eb4b90ae294d08f4fec3e1ea1da6d2cb8e69a401744616a3b3aa66aa365",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:generation",
+      "id": "0d21c4b90956eaa42d980358",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "a7673ca0d7198f4cad80b9bf",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#generation"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": "9a90f81f4b29e0e03bedeff8ba5f14211f0b375ee3327247610fca9682faddd2",
+      "before_sha256": "7c51116d52ad49f350aa9fa7b90910a002ec9d7407e1c276795aee5b39a4ddf9",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:counting",
+      "id": "13d55d76b193d5752a2099ae",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "18fcf9f4d1675ef36df99dea",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#counting"
+        }
+      ],
+      "summary": "Do not delegate tallying to this model. Classify individual candidates if needed, then aggregate programmatically."
+    },
+    {
+      "after_sha256": "7f5d742afa0cf28733969418dcbc658e070d45986eb64cbfdd16a8ec8da938d5",
+      "before_sha256": "3ed69e20e14c565f181c792fa60ced86a22f0c9e62a78679569175ada1457c81",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classification_using_confidence",
+      "id": "1f708cc59af89b326bad195e",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "4c7245c6c7f556b2ef4421eb",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7f5d742afa0cf28733969418dcbc658e070d45986eb64cbfdd16a8ec8da938d5",
+          "source_id": "docs:cookbooks/classification_using_confidence",
+          "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classification_using_confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "40bcc56932f8193a861d99f5da1f235ea1b322910643dc95ff661e2d09eb85fb",
+      "before_sha256": "fc3fd456bd7f59a61834858040d3a2e01664cd8d208d503b995807b826ec76c4",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/basic_memory",
+      "id": "243db1a142088f94dd11bd88",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "293f15a105f2e3aa50e5b9cf",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "40bcc56932f8193a861d99f5da1f235ea1b322910643dc95ff661e2d09eb85fb",
+          "source_id": "docs:cookbooks/basic_memory",
+          "url": "https://docs.typesafe.ai/cookbooks/basic_memory"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/basic_memory modified in successful discovery."
+    },
+    {
+      "after_sha256": "40b1d0333f772bcf5a931cd0b22db696012921fda4355311ab3184a53ba1b87b",
+      "before_sha256": "603b6ad8df65d0a578e55b5e0a086feaee058e6adef54798513ccbe0128a4ba3",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/date_extraction_cookbook",
+      "id": "2d62a44be0b1780199b53cae",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "bd2898b6a924f0b68466e567",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "40b1d0333f772bcf5a931cd0b22db696012921fda4355311ab3184a53ba1b87b",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/date_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "015c3fcf8ce5fe046f7d82f844f60754911d5efce32260adbbcd41aecf9f8430",
+      "before_sha256": "88680bf9b8ef8ffb9faf773fd5116108f8a1273e9bd21325c105366ddd870df9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "375d026ead5f0b3907631cc8",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "c9ce1bafb2b17b34bfce2745",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "015c3fcf8ce5fe046f7d82f844f60754911d5efce32260adbbcd41aecf9f8430",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    },
+    {
+      "after_sha256": "2187b90ec8b045260d9f60c62a31e9de8342b41171a84ec744240092cbc45d67",
+      "before_sha256": "11858d58b313fe52e8d68743b86c72a4d2565574987ee69ea9ffc5ab53e17a8c",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:choice-option-order",
+      "id": "3caacf85611e5797cc8570e4",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "d576fc1910a891de7418f70d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#choice-option-order"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": "8380f9d2afe4b204ed4b71da5ea91527a5a05dab1758ad8e56d9c50652b89493",
+      "before_sha256": "db1be5fee78ab637724ef7d2a349b2d259654a920c61578635082ccc49d812f1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/skill_suggestion",
+      "id": "3dd17a13f80790197a217726",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "06bedef1d64662c404fe16b5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8380f9d2afe4b204ed4b71da5ea91527a5a05dab1758ad8e56d9c50652b89493",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/skill_suggestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "b04d0f7c27e567f24f53b036584ee68dc92067fa97318839a9da6d5415dc7503",
+      "before_sha256": "1ce459bebf2b714fcecbc77a9ae8319090bf3cd1e1048815cf5e064b0c2fdf8c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/entity_alignment",
+      "id": "5379a6d21bc89c56a488aa22",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "9e332c9927765535b4fd33ae",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b04d0f7c27e567f24f53b036584ee68dc92067fa97318839a9da6d5415dc7503",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/entity_alignment modified in successful discovery."
+    },
+    {
+      "after_sha256": "6336d0fe21ea290116b14ee89bcd4b810caf3c02e1e771cc0ee64a55d241c1c3",
+      "before_sha256": "649c07719fc713fa2a0c5eec49ec175d747b0548b72d0823def4e0a9d9713ea7",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:indirection",
+      "id": "69fd3236dd0dc78d08eb7f38",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "6906a464c72131f62e0c1589",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#indirection"
+        }
+      ],
+      "summary": "Nested reasoning and double negation reduce reliability. Ask directly about explicitly named state fields."
+    },
+    {
+      "after_sha256": "833624833c56e11d8a10518ee8aadf59dc8629c228198e58e50fad26d0a367dc",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:model-jaggedness",
+      "id": "7bae8a73273e5af24f7e0081",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "833624833c56e11d8a10518ee8aadf59dc8629c228198e58e50fad26d0a367dc",
+          "source_id": "docs:model-jaggedness",
+          "url": "https://docs.typesafe.ai/model-jaggedness"
+        }
+      ],
+      "summary": "Documentation page docs:model-jaggedness added in successful discovery."
+    },
+    {
+      "after_sha256": "f4f3a574d6c063d7f99a1c662f5ef49cd3f5c5d6ab7b9bc4d1fbc3add59a16d3",
+      "before_sha256": "cfdba2fc2279eb80ad81d5b1b5e085bc6c95870f123fb36ec4277cf7b5684676",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/llm_guardrails",
+      "id": "7d4bc0f5945e576393169e7a",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "0b762ddfb7338b0b2d92f5d5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4f3a574d6c063d7f99a1c662f5ef49cd3f5c5d6ab7b9bc4d1fbc3add59a16d3",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/llm_guardrails modified in successful discovery."
+    },
+    {
+      "after_sha256": "f1abecf21f5f2bdd9c27e0d483dfdce05c28ace8494a1a13d30eab6f2ecfcb5c",
+      "before_sha256": "1db192e7329242bf64e94c5aa5d988094af17e75db868743bf95274057457006",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:numeric-representations",
+      "id": "85286e2c92ce035af47af0a9",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "636a42d9c4fdba978f37852f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#numeric-representations"
+        }
+      ],
+      "summary": "Encoded numeric values are weaker inputs than semantic labels. Perform conversions outside the model before asking for judgment."
+    },
+    {
+      "after_sha256": "015aebdd0ef18d7dec8ed47d41452491f941801ac60b290f21912c564809a25b",
+      "before_sha256": "e831417396c52ad74319ae4d8d788fc1f75996969ab178dccef23cd85a5b4825",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classifying_rag_passages",
+      "id": "87859280b93877cba934f7a5",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "754628efed0fdf5748a147a6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "015aebdd0ef18d7dec8ed47d41452491f941801ac60b290f21912c564809a25b",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "338d1c54c0f97de6b31754664565d196d124caf0ec86061f18151501fee49e3e",
+      "before_sha256": "1727d57791452b9048828648d648020b1ebb381ac0355b832cdf5fed66ede901",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/intelliprompter",
+      "id": "9080ea6b3fb1deb947530184",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "1f8593d12df0c4720ba91bce",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "338d1c54c0f97de6b31754664565d196d124caf0ec86061f18151501fee49e3e",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/intelliprompter modified in successful discovery."
+    },
+    {
+      "after_sha256": "74558db32506cc8064ec99e7ce12de2fb02a250f08766722dbebb74ab3165cd3",
+      "before_sha256": "4ccaed424d833af2d923184b509181bc808f43400b5bc474658cd4bc6a062b17",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/hierarchical_classification",
+      "id": "91700361266ae7cd84dee315",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "dd896e4196cde86d22132f16",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "74558db32506cc8064ec99e7ce12de2fb02a250f08766722dbebb74ab3165cd3",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/hierarchical_classification modified in successful discovery."
+    },
+    {
+      "after_sha256": "d0d4f512a418ce10e31e0237250663851da0daf973fff36a5e650362dfb89154",
+      "before_sha256": "5f0ecb17b1c37fd15788bb40975a28d5a3496203ea7279d82673f042593ed6bb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/citation_check",
+      "id": "94fb33434bc92824b978338c",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "dd7cea6dfdf4fa2f6f4744e6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d0d4f512a418ce10e31e0237250663851da0daf973fff36a5e650362dfb89154",
+          "source_id": "docs:cookbooks/citation_check",
+          "url": "https://docs.typesafe.ai/cookbooks/citation_check"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/citation_check modified in successful discovery."
+    },
+    {
+      "after_sha256": "1a24392548772e726dcad6ea3409269edca85685a7aa29403b578f88d28a1790",
+      "before_sha256": "b46d86423e3ddfb23dafc5d9c0fd6a49412e1cb415cefe62dd534e77c7590642",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/sde_cascade",
+      "id": "a24c2f59775595d13633e229",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "df320b912f9037f0a8cb24dc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1a24392548772e726dcad6ea3409269edca85685a7aa29403b578f88d28a1790",
+          "source_id": "docs:cookbooks/sde_cascade",
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/sde_cascade modified in successful discovery."
+    },
+    {
+      "after_sha256": "e291843ac0ef47f9c761ca83d958c78a34237ea29cea698baf8461103bfbc93b",
+      "before_sha256": "1b1e07adee10d0092e091fe564a1ffb42aa63abcbd515363a26c4cd5ee06fb64",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:contradictory-instructions-and-criteria",
+      "id": "ab2101113841a0edf418e606",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "1b3582d72b68e7f30f7a02ef",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#contradictory-instructions-and-criteria"
+        }
+      ],
+      "summary": "Conflicting instructions and criteria can impair decisions; make their requirements agree."
+    },
+    {
+      "after_sha256": "1b4257aa8c91fec6bead2cbcfd678a6f199ffbe3d0511a6959c519ceb60cc981",
+      "before_sha256": "d74ca78173c9fa930e7f29764fc431f7f9e8e4c80721965b5427a2207c224735",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/entity_alignment",
+      "id": "ac439646c9df9718bfef5053",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "58ecd4cf58f66222698abf70",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "b04d0f7c27e567f24f53b036584ee68dc92067fa97318839a9da6d5415dc7503",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md"
+        }
+      ],
+      "summary": "Route candidate record pairs from two sources to a merge recommendation, manual review, or no link, using one Score question. Three Noul questions check individual fields. The worked example uses 450 album pairs from Wikidata and MusicBrainz."
+    },
+    {
+      "after_sha256": "bb5dc23dbaf96094ebf33cebd2e400399fec58599de93260d331c605aa94d07b",
+      "before_sha256": "441a01b527af578146b6ad162c738145354c376b293ec4688f40d50f8caf078c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/parallel_questions",
+      "id": "b0e768c927d3016299c5bafe",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "49a6dc2cacf22c51be2045d9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bb5dc23dbaf96094ebf33cebd2e400399fec58599de93260d331c605aa94d07b",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/parallel_questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "ab24f463b8f58e4cccc90afaeae02be1ce7f448e387f6a0125c2ab31263e07b1",
+      "before_sha256": "c2880def959614fc2f950b51e6cbadbf1c5d702b452e332a1b9a8630366fe8e6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoresearch_feature_discovery",
+      "id": "b2ffc25c243663e5a9aa5005",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "c4936171b55934cfcf099a24",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ab24f463b8f58e4cccc90afaeae02be1ce7f448e387f6a0125c2ab31263e07b1",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoresearch_feature_discovery modified in successful discovery."
+    },
+    {
+      "after_sha256": "01b76bd50a64b6c8573b2e2c7e7c246e65c2e891d1d73c0f1d016d11717bc64d",
+      "before_sha256": "bc22e428a8295b45c6a2564309c0bc3f44abbb237f387d4aa9b0f63c9dd20a6b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/ocr_confidence_bounding_boxes",
+      "id": "ba882d54a58d5ddd1547f1f6",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "f675b4d97f0089d01664e37b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "01b76bd50a64b6c8573b2e2c7e7c246e65c2e891d1d73c0f1d016d11717bc64d",
+          "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
+          "url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/ocr_confidence_bounding_boxes modified in successful discovery."
+    },
+    {
+      "after_sha256": "86cc49d7c0a6d74ece6ea1d36fafb65e7f7d848cd703f409500d1409a7e673c3",
+      "before_sha256": "52253a8d7d2d0ef9bc311f1033ed1ff4da593cbd97342c3094258f843c3dd241",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:large-state-full-of-irrelevant-detail",
+      "id": "c2de4e3e8368c943ae7dcd47",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "f5d1634a24b1b69b3fb36796",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#large-state-full-of-irrelevant-detail"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": "703f371f140a502bd7bebb574c573580a0da94f89ce65b3ad78229535af69421",
+      "before_sha256": "cb6b11b90a1d29d353fc0220db645d6720484717b65f3a6603d711b5aed8b699",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/rerank_typesafe",
+      "id": "cceed80994a6002be17b01a1",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "fa061edbc8582b4f6e7b7558",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "703f371f140a502bd7bebb574c573580a0da94f89ce65b3ad78229535af69421",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/rerank_typesafe modified in successful discovery."
+    },
+    {
+      "after_sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+      "before_sha256": "202b3c51956d99de3e10a0d975e3b8ec7c92795dd6ab1fc303b26c773ac2f8bd",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "d2cad71bc5b5b44d34bad831",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "33f0c795ebed31d70d433cc1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "faf14e7d96a330d6826421f37ff806ff52af3d1611085ad1f4d9e2364ea21ef1",
+      "before_sha256": "649245f7c13b91723e92d763f8fd8d9769c1e8b3db52191096ae76ba33f1e25b",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:math-and-numbers",
+      "id": "d8abce2a932c6c896dfdb121",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "15f7bca58603b738dde29cb5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-and-numbers"
+        }
+      ],
+      "summary": "Reserve the model for semantic judgments; implement numerical operations programmatically."
+    },
+    {
+      "after_sha256": "7762b4275456d8d91b1f18fe63a177bd013f9b53cae1c7239807742a0f54ccce",
+      "before_sha256": "6d6f9ca2bcd46b7f054e7697cda4f067a754d0892ba9b98bc466399abdc16acf",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/feeder_watch",
+      "id": "e3cfdad142caf5b1190c586d",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "091d014851723c640c4bb01e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7762b4275456d8d91b1f18fe63a177bd013f9b53cae1c7239807742a0f54ccce",
+          "source_id": "docs:cookbooks/feeder_watch",
+          "url": "https://docs.typesafe.ai/cookbooks/feeder_watch"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/feeder_watch modified in successful discovery."
+    },
+    {
+      "after_sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+      "before_sha256": "1c56aeadeec0225beccef214dd2f0b4b47d6a0e0d53c356aac46290f9053146c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "e470457a8a31bf68f319fdae",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "31ab0aa4610a6e11cda58422",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    },
+    {
+      "after_sha256": "4d34d20732b496c54011e5a58cd2ae768190ac30e13a6fe877a2c7105dcdaf50",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:changelog",
+      "id": "e58f93444341fbe045a4b100",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "4d34d20732b496c54011e5a58cd2ae768190ac30e13a6fe877a2c7105dcdaf50",
+          "source_id": "docs:changelog",
+          "url": "https://docs.typesafe.ai/changelog"
+        }
+      ],
+      "summary": "Documentation page docs:changelog added in successful discovery."
+    },
+    {
+      "after_sha256": "51214a87710b78bcb3edfaba80593041fd758e62f200f63daea2719256c9cc37",
+      "before_sha256": "554ece363f53489c785527ae0f81f5b120dff3ac11c11d8f27a01895cbb41570",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/reading_scanned_documents",
+      "id": "e5d7e997dd648d41187c07e6",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "720388adc9954db4c3dc3f68",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "51214a87710b78bcb3edfaba80593041fd758e62f200f63daea2719256c9cc37",
+          "source_id": "docs:cookbooks/reading_scanned_documents",
+          "url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/reading_scanned_documents modified in successful discovery."
+    },
+    {
+      "after_sha256": "5b906487116035cbb6f41d468d1421a96229faa8ab82ca8fa8248228f87883d7",
+      "before_sha256": "0b64997f9e320e3a9663c570764094d9eeb1040e167ac0e4a9f573b64061423c",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:date-and-time-comparison",
+      "id": "f2c53567251d5eec98e6bc0b",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "73a62256d25b730e6563c68c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#date-and-time-comparison"
+        }
+      ],
+      "summary": "Unknown: this section has no reviewed repository interpretation. Consult the official evidence."
+    },
+    {
+      "after_sha256": null,
+      "before_sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+      "category": "documentation",
+      "change": "removed",
+      "entity": "docs:model-jaggedness/jev-1.13",
+      "id": "f3e8df359ccd9116955f9e11",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "36d1f2aec79442bdae6effba",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13"
+        }
+      ],
+      "summary": "Documentation page docs:model-jaggedness/jev-1.13 removed in successful discovery."
+    },
+    {
+      "after_sha256": "073e85ba7a9b010c11d745ba6dc90c6d011ae29be070b2b411ae52c5e5fd0729",
+      "before_sha256": "90bc19222a8109da92176aff1684971d42072d44102ac25f448ba56905d479eb",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:adversarial-content",
+      "id": "f7779a9e43037e1609d9344a",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "3fe7bed92bef2063f965e939",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#adversarial-content"
+        }
+      ],
+      "summary": "Untrusted state may influence decisions; specify adversarial cases in criteria and test the integration."
+    },
+    {
+      "after_sha256": "5d5b7f6a9dd9baccfa126870cce624c62a12fe84353c15096d0a2741abb3cbeb",
+      "before_sha256": "d0b02b7ff77159313c2a63bb24398fbd83052a77b2420edce12a65e9d31ec3ad",
+      "category": "model_limitation",
+      "change": "modified",
+      "entity": "jev-1.13:math-using-score",
+      "id": "ff7d56f2cb0d16a7abaaf5a6",
+      "observed_at": "2026-11-03T06:50:02.432820Z",
+      "previous_event_id": "79991ba4a28b2f6e4c5b4cd5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f4bef6bdad41b84d4e8f7a14e9ce38aa9f8a55714b294ecf30b191482439affe",
+          "source_id": "docs:model-jaggedness/jev-1.13",
+          "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md#math-using-score"
+        }
+      ],
+      "summary": "A score is not an exact numerical measurement interpolated between criterion levels."
+    }
+  ],
+  "schema_version": 1
+}
