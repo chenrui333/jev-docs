@@ -1,5 +1,5 @@
 {
-  "fingerprint": "8f8c4ec6b6b1652cb7f4f469868e22c18a3c4b5b8f04f527fad39088666c5c75",
+  "fingerprint": "7f88ec48d71be83e1f51dabaf6155672b4e5eb6401c133dfa5b065884ec0134e",
   "items": [
     {
       "category": "extraction",
@@ -9,7 +9,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -31,17 +31,17 @@
       "level": "Advanced",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "ab24f463b8f58e4cccc90afaeae02be1ce7f448e387f6a0125c2ab31263e07b1",
+          "sha256": "342df74dff771a97a83495046c2105319946def63d8f1324ec02cd0ccd4375da",
           "source_id": "docs:cookbooks/autoresearch_feature_discovery",
           "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md"
         }
       ],
-      "summary": "Runs an autoresearch loop that proposes TypeSafe questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor.",
+      "summary": "Runs an autoresearch loop that proposes System One questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor.",
       "title": "Autoresearch feature discovery",
       "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
     },
@@ -53,7 +53,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -75,7 +75,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -97,7 +97,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -119,7 +119,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -141,12 +141,12 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "015aebdd0ef18d7dec8ed47d41452491f941801ac60b290f21912c564809a25b",
+          "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
           "source_id": "docs:cookbooks/classifying_rag_passages",
           "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
         }
@@ -163,17 +163,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
+          "sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
           "source_id": "docs:cookbooks/consistency_choice_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
         }
       ],
-      "summary": "Add an uncertain outcome to moderation decisions and compare label agreement with the share of automatic actions.",
+      "summary": "Ask a model the same moderation question twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline posts.",
       "title": "Self-consistency: choices",
       "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
     },
@@ -185,17 +185,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
+          "sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
           "source_id": "docs:cookbooks/consistency_noul_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
         }
       ],
-      "summary": "Route uncertain probabilities to human review while keeping the underlying noul values visible.",
+      "summary": "Ask a model about the same insurance claim twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline claims.",
       "title": "Self-consistency: nouls",
       "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
     },
@@ -207,17 +207,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "40b1d0333f772bcf5a931cd0b22db696012921fda4355311ab3184a53ba1b87b",
+          "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
           "source_id": "docs:cookbooks/date_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
         }
       ],
-      "summary": "Extracts absolute and relative dates by asking TypeSafe for the parts named in a document, then resolving and validating them in code with confidence-based review.",
+      "summary": "Extracts absolute and relative dates by asking Jev for the parts named in a document, then resolving and validating them in code with confidence-based review.",
       "title": "Date extraction",
       "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
     },
@@ -229,7 +229,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -251,7 +251,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -273,17 +273,17 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
+          "sha256": "181ab970c1dd70332952148705205fdc65d710588fd892fe9a597a1649579786",
           "source_id": "docs:cookbooks/function_calling",
           "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
         }
       ],
-      "summary": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware TypeSafe questions.",
+      "summary": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware System One questions.",
       "title": "Function calling",
       "url": "https://docs.typesafe.ai/cookbooks/function_calling"
     },
@@ -295,17 +295,17 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "74558db32506cc8064ec99e7ce12de2fb02a250f08766722dbebb74ab3165cd3",
+          "sha256": "31f2672f3ca5ddaf373b762aecd30109a7b4fa5ba999147daaaeef36fa09d39c",
           "source_id": "docs:cookbooks/hierarchical_classification",
           "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification.md"
         }
       ],
-      "summary": "Classifies documents through deep patent, retail product, biomedical, and source-code hierarchies using parallel beam search over TypeSafe Choice probabilities.",
+      "summary": "Uses parallel beam search over Jev's Choice probabilities to classify documents in deep patent, retail product, and biomedical hierarchies.",
       "title": "Hierarchical classification",
       "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
     },
@@ -317,17 +317,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "338d1c54c0f97de6b31754664565d196d124caf0ec86061f18151501fee49e3e",
+          "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
           "source_id": "docs:cookbooks/intelliprompter",
           "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
         }
       ],
-      "summary": "Tick off a presenter's notes as they speak: TypeSafe scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold.",
+      "summary": "Tick off a presenter's notes as they speak: Jev scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold.",
       "title": "Intelliprompter",
       "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
     },
@@ -339,12 +339,12 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "f4f3a574d6c063d7f99a1c662f5ef49cd3f5c5d6ab7b9bc4d1fbc3add59a16d3",
+          "sha256": "21d8572f670c115c45fecffa901d38cf1b19eba13e12df8e3a30db7cc5197565",
           "source_id": "docs:cookbooks/llm_guardrails",
           "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md"
         }
@@ -361,7 +361,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -383,12 +383,12 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "bb5dc23dbaf96094ebf33cebd2e400399fec58599de93260d331c605aa94d07b",
+          "sha256": "17b0dc4e64a8351bc66b7656fe2fd5282304b442eb7ba0b5fa149e0371fb2340",
           "source_id": "docs:cookbooks/parallel_questions",
           "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md"
         }
@@ -405,17 +405,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
+          "sha256": "d6298b951b8bded44cb820e061878567a2fedb26a2ebd21d953a0277054664a4",
           "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md"
         }
       ],
-      "summary": "Finds candidate emails, phone numbers, and amounts with a regex, has TypeSafe pick the one you ask for, and normalizes that exact span in code.",
+      "summary": "Finds candidate emails, phone numbers, and amounts with a regex, has Jev pick the one you ask for, and normalizes that exact span in code.",
       "title": "Pre-parsed value extraction",
       "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
     },
@@ -427,7 +427,7 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -449,17 +449,17 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "703f371f140a502bd7bebb574c573580a0da94f89ce65b3ad78229535af69421",
+          "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
           "source_id": "docs:cookbooks/rerank_typesafe",
           "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
         }
       ],
-      "summary": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one TypeSafe question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%.",
+      "summary": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one System One question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%.",
       "title": "Re-ranking",
       "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
     },
@@ -471,17 +471,17 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "1a24392548772e726dcad6ea3409269edca85685a7aa29403b578f88d28a1790",
+          "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
           "source_id": "docs:cookbooks/sde_cascade",
           "url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md"
         }
       ],
-      "summary": "Extracts structured data with a cheap model, checks each field with TypeSafe, and escalates to a reasoning model only when a check fires.",
+      "summary": "Extracts structured data with a cheap model, checks each field with Jev, and escalates to a reasoning model only when a check fires.",
       "title": "SDE cascade",
       "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
     },
@@ -493,12 +493,12 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "015c3fcf8ce5fe046f7d82f844f60754911d5efce32260adbbcd41aecf9f8430",
+          "sha256": "aa7bde2d8c6a39c42c7e66d0f9c5cdf736a648d8996a78a4916f97dadc097037",
           "source_id": "docs:cookbooks/semantic_find",
           "url": "https://docs.typesafe.ai/cookbooks/semantic_find.md"
         }
@@ -515,12 +515,12 @@
       "level": "Intermediate",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "8380f9d2afe4b204ed4b71da5ea91527a5a05dab1758ad8e56d9c50652b89493",
+          "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
           "source_id": "docs:cookbooks/skill_suggestion",
           "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
         }
@@ -537,7 +537,7 @@
       "level": "Beginner",
       "provenance": [
         {
-          "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
           "source_id": "docs:cookbooks",
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
@@ -552,7 +552,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
     }
   ],
-  "observed_at": "2026-11-03T06:50:01.516912Z",
+  "observed_at": "2026-11-04T06:26:10.477267Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

@@ -3,7 +3,7 @@
   "discovered_count": 136,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "6f03634616b2bb499919b78205c413bcdb5f47aebb2d93d7a5c596f174b7054a",
+    "sha256": "61ba8eb043f532f3b49af8f551c4d07d77440b48dc063d84704ec8d902f7696d",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
@@ -20,7 +20,7 @@
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
-      "sha256": "990033bd2f27c3658610bedba818633b161f5afad851cfdda66b1237fc231c50",
+      "sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
       "source_id": "docs:introduction",
       "status": "fetched",
       "title": "Introduction"
@@ -34,14 +34,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/coding-agents",
-      "sha256": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
+      "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
       "source_id": "docs:introduction/coding-agents",
       "status": "fetched",
       "title": "Jev with coding agents"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
-      "sha256": "b38160b5a659429c74adcdb49383bf25d1fa1243fc85139fd3de71b3160a31b0",
+      "sha256": "b811c5f964802a6054c2b5dfd3fad4ad14e5563381af9311962e5fbf6c50b669",
       "source_id": "docs:concepts/use-case-map",
       "status": "fetched",
       "title": "Example use cases"
@@ -62,35 +62,35 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "8315980ad0e4251c28c4cea35fad7c67a69f72d4015fd513360969e7eac6a5cf",
+      "sha256": "c877b65900759fddd7967998a3407290f4b52687459ee40d2cb146b4aae2fd70",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
-      "sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
+      "sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
       "source_id": "docs:primitives/choice",
       "status": "fetched",
       "title": "Choice"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
-      "sha256": "8b587ce8e9d990812a3b18bad42314ffd39f0b1ed9456fa5a8db0abfab34e6a1",
+      "sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
       "source_id": "docs:primitives/score",
       "status": "fetched",
       "title": "Score"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/noul",
-      "sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
+      "sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
       "source_id": "docs:primitives/noul",
       "status": "fetched",
       "title": "Noul"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/box",
-      "sha256": "609b5ed5121ca55040c6022687327b54169b570d65c6d0ade624a22f120da8e8",
+      "sha256": "1e7205e4c0a5fdac0d6aee67cce5b849448c55a8a5a17bf4a4ad14c4a1653fe6",
       "source_id": "docs:primitives/box",
       "status": "fetched",
       "title": "Box"
@@ -111,21 +111,21 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
+      "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
-      "sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
+      "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "status": "fetched",
       "title": "How to build with TypeSafe"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/machine-learning-primer",
-      "sha256": "0e2e773ae3c8315d7bcf22d29637fc9824654251815f1f19c302046ad9015ccc",
+      "sha256": "be68e3dc6edc940aeae1f154c55eaa12d9f495814e6f7f33a5df790b41f29f4e",
       "source_id": "docs:introduction/machine-learning-primer",
       "status": "fetched",
       "title": "AI primer"
@@ -139,56 +139,56 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
-      "sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
+      "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
       "source_id": "docs:patterns/fan-out",
       "status": "fetched",
       "title": "Speculative fan-out"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/confidence-routing",
-      "sha256": "3da502d95c1ad88b2240a57a754bf95aff366e44436a04db595b88210a207936",
+      "sha256": "1f513f7e4bc862e1722ab449b776d2676757e8c1cbc86a05fb3df47ea5e0d42b",
       "source_id": "docs:patterns/confidence-routing",
       "status": "fetched",
       "title": "Confidence-gated routing"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/composite-scoring",
-      "sha256": "8ac4ec2e811298e0f254cc692353f3086b953511db7f546ea8aab12a06edd504",
+      "sha256": "5febf5f9a6fa5d67b943b55efd5fe64a394ba9e1a04c8a743fa7c655b5c46a99",
       "source_id": "docs:patterns/composite-scoring",
       "status": "fetched",
       "title": "Composite scoring"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/intent-routing",
-      "sha256": "50db5989ad019a11fbe490d23d9b48ecb52f29c7ebae40f00e38ff15dc54554d",
+      "sha256": "34e6d00091e3a0be4baed41e9df0d87a4e220835a67411ecb761f774b1b6915e",
       "source_id": "docs:patterns/intent-routing",
       "status": "fetched",
       "title": "Intent routing"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
-      "sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+      "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
       "source_id": "docs:cookbooks",
       "status": "fetched",
       "title": "Cookbooks"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
-      "sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
+      "sha256": "181ab970c1dd70332952148705205fdc65d710588fd892fe9a597a1649579786",
       "source_id": "docs:cookbooks/function_calling",
       "status": "fetched",
       "title": "Function calling"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
-      "sha256": "8380f9d2afe4b204ed4b71da5ea91527a5a05dab1758ad8e56d9c50652b89493",
+      "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
       "source_id": "docs:cookbooks/skill_suggestion",
       "status": "fetched",
       "title": "Skill suggestion"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
-      "sha256": "f4f3a574d6c063d7f99a1c662f5ef49cd3f5c5d6ab7b9bc4d1fbc3add59a16d3",
+      "sha256": "21d8572f670c115c45fecffa901d38cf1b19eba13e12df8e3a30db7cc5197565",
       "source_id": "docs:cookbooks/llm_guardrails",
       "status": "fetched",
       "title": "Guardrails for LLMs"
@@ -202,7 +202,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "015aebdd0ef18d7dec8ed47d41452491f941801ac60b290f21912c564809a25b",
+      "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
       "title": "Classifying RAG passages"
@@ -216,7 +216,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
-      "sha256": "74558db32506cc8064ec99e7ce12de2fb02a250f08766722dbebb74ab3165cd3",
+      "sha256": "31f2672f3ca5ddaf373b762aecd30109a7b4fa5ba999147daaaeef36fa09d39c",
       "source_id": "docs:cookbooks/hierarchical_classification",
       "status": "fetched",
       "title": "Hierarchical classification"
@@ -237,21 +237,21 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
-      "sha256": "1a24392548772e726dcad6ea3409269edca85685a7aa29403b578f88d28a1790",
+      "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
       "source_id": "docs:cookbooks/sde_cascade",
       "status": "fetched",
       "title": "SDE cascade"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
-      "sha256": "40b1d0333f772bcf5a931cd0b22db696012921fda4355311ab3184a53ba1b87b",
+      "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "status": "fetched",
       "title": "Date extraction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
-      "sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
+      "sha256": "d6298b951b8bded44cb820e061878567a2fedb26a2ebd21d953a0277054664a4",
       "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
       "status": "fetched",
       "title": "Pre-parsed value extraction"
@@ -293,14 +293,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
-      "sha256": "703f371f140a502bd7bebb574c573580a0da94f89ce65b3ad78229535af69421",
+      "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "status": "fetched",
       "title": "Re-ranking"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "015c3fcf8ce5fe046f7d82f844f60754911d5efce32260adbbcd41aecf9f8430",
+      "sha256": "aa7bde2d8c6a39c42c7e66d0f9c5cdf736a648d8996a78a4916f97dadc097037",
       "source_id": "docs:cookbooks/semantic_find",
       "status": "fetched",
       "title": "Line-by-line search"
@@ -314,35 +314,35 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
-      "sha256": "338d1c54c0f97de6b31754664565d196d124caf0ec86061f18151501fee49e3e",
+      "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
       "source_id": "docs:cookbooks/intelliprompter",
       "status": "fetched",
       "title": "Intelliprompter"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
-      "sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
+      "sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "status": "fetched",
       "title": "Self-consistency: choices"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
-      "sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
+      "sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "status": "fetched",
       "title": "Self-consistency: nouls"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
-      "sha256": "bb5dc23dbaf96094ebf33cebd2e400399fec58599de93260d331c605aa94d07b",
+      "sha256": "17b0dc4e64a8351bc66b7656fe2fd5282304b442eb7ba0b5fa149e0371fb2340",
       "source_id": "docs:cookbooks/parallel_questions",
       "status": "fetched",
       "title": "Parallel questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
-      "sha256": "ab24f463b8f58e4cccc90afaeae02be1ce7f448e387f6a0125c2ab31263e07b1",
+      "sha256": "342df74dff771a97a83495046c2105319946def63d8f1324ec02cd0ccd4375da",
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "status": "fetched",
       "title": "Autoresearch feature discovery"
@@ -356,7 +356,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
-      "sha256": "a5266590787dd7293cde109960dd27057322db250e11d564a193ef5865f18d05",
+      "sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"

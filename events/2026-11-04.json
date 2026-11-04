@@ -1,0 +1,854 @@
+{
+  "date": "2026-11-04",
+  "events": [
+    {
+      "after_sha256": "890f28e6ee0ad7fc6e2d5fa15ed46b3742b6781eeda8653f1b446daefd7bf44f",
+      "before_sha256": "2b5f7299b0b65e92a0e1404affa537f4bdacd6de412e6bb0caaabcc77ca4fa95",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/hierarchical_classification",
+      "id": "00338cad23639774c7c90c23",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "31f2672f3ca5ddaf373b762aecd30109a7b4fa5ba999147daaaeef36fa09d39c",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification.md"
+        }
+      ],
+      "summary": "Uses parallel beam search over Jev's Choice probabilities to classify documents in deep patent, retail product, and biomedical hierarchies."
+    },
+    {
+      "after_sha256": "c877b65900759fddd7967998a3407290f4b52687459ee40d2cb146b4aae2fd70",
+      "before_sha256": "8315980ad0e4251c28c4cea35fad7c67a69f72d4015fd513360969e7eac6a5cf",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "044a53284b7c5b23385a5b0b",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "12c3c5b7a93bb79e80be904a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c877b65900759fddd7967998a3407290f4b52687459ee40d2cb146b4aae2fd70",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "ad1920552d3cc50fb7e06f3193665ec98c1991fc4a82e31f6723132e82d966f3",
+      "before_sha256": "4209d0265c9c443dcb5840b5164327211189d0b157c73d91c2e86d4f37275111",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/sde_cascade",
+      "id": "101a1fd973da5300a6934366",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "402c2e8fa8070e7f1704e89a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+          "source_id": "docs:cookbooks/sde_cascade",
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md"
+        }
+      ],
+      "summary": "Extracts structured data with a cheap model, checks each field with Jev, and escalates to a reasoning model only when a check fires."
+    },
+    {
+      "after_sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+      "before_sha256": "7d8e326acf502485e9161c6b4f5606338925a6e8bd63eee39c69c247fa9fae82",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/how-to-build-with-system-one",
+      "id": "10b53d5c2c25b98db27735f5",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "fb4aa6118d86bd7cd33e0cfe",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+          "source_id": "docs:concepts/how-to-build-with-system-one",
+          "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/how-to-build-with-system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+      "before_sha256": "6a5028407d27559aba9451d214031fd595bc990323955ae5df28ffc186f160b5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/choice",
+      "id": "2d98453572567fabb0cec63e",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "be97c2f2087d7f4d09c0d87a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+          "source_id": "docs:primitives/choice",
+          "url": "https://docs.typesafe.ai/primitives/choice"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/choice modified in successful discovery."
+    },
+    {
+      "after_sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+      "before_sha256": "4c72bbd74c7e68bfb7d87d25bd62b099d4ef5563cfac3f5e9e1fe48b8cdac1ee",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:confidence",
+      "id": "2fbb696cbfe9a077402e52a1",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "99de63eb5ac0130631b63bc9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence"
+        }
+      ],
+      "summary": "Documentation page docs:confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "1e7205e4c0a5fdac0d6aee67cce5b849448c55a8a5a17bf4a4ad14c4a1653fe6",
+      "before_sha256": "609b5ed5121ca55040c6022687327b54169b570d65c6d0ade624a22f120da8e8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/box",
+      "id": "3dbc038b0bde1a32084790b1",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "690d9d709f35bcafc5c05a23",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1e7205e4c0a5fdac0d6aee67cce5b849448c55a8a5a17bf4a4ad14c4a1653fe6",
+          "source_id": "docs:primitives/box",
+          "url": "https://docs.typesafe.ai/primitives/box"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/box modified in successful discovery."
+    },
+    {
+      "after_sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
+      "before_sha256": "8380f9d2afe4b204ed4b71da5ea91527a5a05dab1758ad8e56d9c50652b89493",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/skill_suggestion",
+      "id": "4582a6be4f2bdd694aebe2e5",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "3dd17a13f80790197a217726",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
+          "source_id": "docs:cookbooks/skill_suggestion",
+          "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/skill_suggestion modified in successful discovery."
+    },
+    {
+      "after_sha256": "17b0dc4e64a8351bc66b7656fe2fd5282304b442eb7ba0b5fa149e0371fb2340",
+      "before_sha256": "bb5dc23dbaf96094ebf33cebd2e400399fec58599de93260d331c605aa94d07b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/parallel_questions",
+      "id": "481cb4d9bbc616c1b8f08f09",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "b0e768c927d3016299c5bafe",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "17b0dc4e64a8351bc66b7656fe2fd5282304b442eb7ba0b5fa149e0371fb2340",
+          "source_id": "docs:cookbooks/parallel_questions",
+          "url": "https://docs.typesafe.ai/cookbooks/parallel_questions"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/parallel_questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+      "before_sha256": "8fbfbfa38b44d274fe22d52a9f4104cacbbfdb13b49610981e3bb7fa5a1bfd71",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks",
+      "id": "4b335e1a1aed53624e41c88b",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "d2cad71bc5b5b44d34bad831",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks modified in successful discovery."
+    },
+    {
+      "after_sha256": "1f513f7e4bc862e1722ab449b776d2676757e8c1cbc86a05fb3df47ea5e0d42b",
+      "before_sha256": "3da502d95c1ad88b2240a57a754bf95aff366e44436a04db595b88210a207936",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/confidence-routing",
+      "id": "5159464c99c9f9d298d843ea",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "4042691770b35827bbb0d88d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1f513f7e4bc862e1722ab449b776d2676757e8c1cbc86a05fb3df47ea5e0d42b",
+          "source_id": "docs:patterns/confidence-routing",
+          "url": "https://docs.typesafe.ai/patterns/confidence-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/confidence-routing modified in successful discovery."
+    },
+    {
+      "after_sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
+      "before_sha256": "8b587ce8e9d990812a3b18bad42314ffd39f0b1ed9456fa5a8db0abfab34e6a1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/score",
+      "id": "53493fb1e84e31f81cdde8db",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "615fbb11731b14051730da8b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
+          "source_id": "docs:primitives/score",
+          "url": "https://docs.typesafe.ai/primitives/score"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/score modified in successful discovery."
+    },
+    {
+      "after_sha256": "2bac91ac214453d35f0e7ab0cac5d48417b088578864501e8f5cf0aab34fac33",
+      "before_sha256": "4c9aebdfc8da33c8c5905dea4e03a69aadb00eb16271aca8c67cdb142072ca2f",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "5916a5fe18d216aa98f0d840",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "9f556fe6ba1e1ca52193a5c6",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "d6298b951b8bded44cb820e061878567a2fedb26a2ebd21d953a0277054664a4",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md"
+        }
+      ],
+      "summary": "Finds candidate emails, phone numbers, and amounts with a regex, has Jev pick the one you ask for, and normalizes that exact span in code."
+    },
+    {
+      "after_sha256": "34e6d00091e3a0be4baed41e9df0d87a4e220835a67411ecb761f774b1b6915e",
+      "before_sha256": "50db5989ad019a11fbe490d23d9b48ecb52f29c7ebae40f00e38ff15dc54554d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/intent-routing",
+      "id": "6a97c322980ea49297a67194",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "61db94a9aad69eec6442df1f",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "34e6d00091e3a0be4baed41e9df0d87a4e220835a67411ecb761f774b1b6915e",
+          "source_id": "docs:patterns/intent-routing",
+          "url": "https://docs.typesafe.ai/patterns/intent-routing"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/intent-routing modified in successful discovery."
+    },
+    {
+      "after_sha256": "aa7bde2d8c6a39c42c7e66d0f9c5cdf736a648d8996a78a4916f97dadc097037",
+      "before_sha256": "015c3fcf8ce5fe046f7d82f844f60754911d5efce32260adbbcd41aecf9f8430",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "6b503535e32ed2cf6baa48fb",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "375d026ead5f0b3907631cc8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "aa7bde2d8c6a39c42c7e66d0f9c5cdf736a648d8996a78a4916f97dadc097037",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    },
+    {
+      "after_sha256": "5febf5f9a6fa5d67b943b55efd5fe64a394ba9e1a04c8a743fa7c655b5c46a99",
+      "before_sha256": "8ac4ec2e811298e0f254cc692353f3086b953511db7f546ea8aab12a06edd504",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/composite-scoring",
+      "id": "7ced758c63d7980f2623a7f1",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "ec3bffa2094e29211272e711",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "5febf5f9a6fa5d67b943b55efd5fe64a394ba9e1a04c8a743fa7c655b5c46a99",
+          "source_id": "docs:patterns/composite-scoring",
+          "url": "https://docs.typesafe.ai/patterns/composite-scoring"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/composite-scoring modified in successful discovery."
+    },
+    {
+      "after_sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+      "before_sha256": "d9e61d8eb02eabe327e49ca1079e8abbb5bd7635e0e443f4eb3e3a3e6af2f9bb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/noul",
+      "id": "7d6661d84c6848262c4caccf",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "5026c3f4578204946efcd7da",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/noul modified in successful discovery."
+    },
+    {
+      "after_sha256": "3e591c7bdce311d250a214c28257d2dd3c1004644472a69b8b2998918df49bae",
+      "before_sha256": "8bc4450bbda2be3a5d28e0eb4e1804e4afdb7b433ce1a64c26051c90f49d8429",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/date_extraction_cookbook",
+      "id": "7e6845c057f171f87d4dcf14",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
+        }
+      ],
+      "summary": "Extracts absolute and relative dates by asking Jev for the parts named in a document, then resolving and validating them in code with confidence-based review."
+    },
+    {
+      "after_sha256": "342df74dff771a97a83495046c2105319946def63d8f1324ec02cd0ccd4375da",
+      "before_sha256": "ab24f463b8f58e4cccc90afaeae02be1ce7f448e387f6a0125c2ab31263e07b1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoresearch_feature_discovery",
+      "id": "7f90bed307c83d9688893059",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "b2ffc25c243663e5a9aa5005",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "342df74dff771a97a83495046c2105319946def63d8f1324ec02cd0ccd4375da",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoresearch_feature_discovery modified in successful discovery."
+    },
+    {
+      "after_sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+      "before_sha256": "338d1c54c0f97de6b31754664565d196d124caf0ec86061f18151501fee49e3e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/intelliprompter",
+      "id": "830402ecb946ad2448d4d5cd",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "9080ea6b3fb1deb947530184",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/intelliprompter modified in successful discovery."
+    },
+    {
+      "after_sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+      "before_sha256": "fa152e077fafd4ba96e5df8763935c2f50f83402b0a88ed5f968bb61f242c57e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/coding-agents",
+      "id": "84435538d62aa4d25f1cbee2",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "12afb302b84a5826a812dc90",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+          "source_id": "docs:introduction/coding-agents",
+          "url": "https://docs.typesafe.ai/introduction/coding-agents"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/coding-agents modified in successful discovery."
+    },
+    {
+      "after_sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+      "before_sha256": "1a24392548772e726dcad6ea3409269edca85685a7aa29403b578f88d28a1790",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/sde_cascade",
+      "id": "9306229a82a5b154379ad479",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "a24c2f59775595d13633e229",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+          "source_id": "docs:cookbooks/sde_cascade",
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/sde_cascade modified in successful discovery."
+    },
+    {
+      "after_sha256": "1404293b0fe6490494c2aba5a37ed0bf74bf1aad6290f3d67bd9f47224dbaada",
+      "before_sha256": "8d76f61439c878868377616f140a09714ee3f09f4a60abc8cc343b07f428df95",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/function_calling",
+      "id": "9ceca91f0cff10272198282e",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "b647f6ed618f669622cf71a1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "181ab970c1dd70332952148705205fdc65d710588fd892fe9a597a1649579786",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
+        }
+      ],
+      "summary": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware System One questions."
+    },
+    {
+      "after_sha256": "b811c5f964802a6054c2b5dfd3fad4ad14e5563381af9311962e5fbf6c50b669",
+      "before_sha256": "b38160b5a659429c74adcdb49383bf25d1fa1243fc85139fd3de71b3160a31b0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/use-case-map",
+      "id": "a59fda82d6a551185a4bf6e8",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "61043b6558f9e083d30b5c2d",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b811c5f964802a6054c2b5dfd3fad4ad14e5563381af9311962e5fbf6c50b669",
+          "source_id": "docs:concepts/use-case-map",
+          "url": "https://docs.typesafe.ai/concepts/use-case-map"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/use-case-map modified in successful discovery."
+    },
+    {
+      "after_sha256": "4c0857366b1045bdc3d94d587f5b0e3cd9c9fafc1753332a97c103a38153dc08",
+      "before_sha256": "9453549a18d2774182c978d12f40cf7cb4af87a4b35445f04eda3225f4e733a8",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/intelliprompter",
+      "id": "aa79790c631063b1f60faf36",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "ba13cee965742f91a0c687a8",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+          "source_id": "docs:cookbooks/intelliprompter",
+          "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
+        }
+      ],
+      "summary": "Tick off a presenter's notes as they speak: Jev scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold."
+    },
+    {
+      "after_sha256": "97f55167b49b148af53dafe9cfd228fff428652420a4b30e6a0142184bbed7cd",
+      "before_sha256": "5b95b7064e2886d3cd1fad6cbda46c0f3496e8820c3078a583f377019359e4ea",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/rerank_typesafe",
+      "id": "ac99ee060e4f9aaf1be9eafe",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "fcd9c88b394c0e0a7d111664",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
+        }
+      ],
+      "summary": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one System One question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%."
+    },
+    {
+      "after_sha256": "878ca54aa0ca139d6716d061547a49f523d00fb29489bf5cbb696a207631026d",
+      "before_sha256": "fdc652ffea34d5ef73d9e7463dbfe9fdbdaa12195859ed31f525f6cd29bcb8ab",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/consistency_choice_cookbook",
+      "id": "b64e6b906477009a717dd9ab",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "8dffcd71677fd15993f31a49",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
+        }
+      ],
+      "summary": "Ask a model the same moderation question twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline posts."
+    },
+    {
+      "after_sha256": "d03d9c6a265e5256262a61d3bd90ee59b73891711ba75782a901c7ee4ca6c60c",
+      "before_sha256": "790d707d7ce1f153e304bbc1a83fccc63b6731f3bdbe6d14d0062f11abe3395d",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/consistency_noul_cookbook",
+      "id": "c2d2791e24c229fa1e9f5eda",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "384ca5231fb2054948934eff",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
+        }
+      ],
+      "summary": "Ask a model about the same insurance claim twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline claims."
+    },
+    {
+      "after_sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
+      "before_sha256": "990033bd2f27c3658610bedba818633b161f5afad851cfdda66b1237fc231c50",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction",
+      "id": "c45f3fccbb84dc19c5d8c409",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "a3a120df1ef9ad52c9a8ca98",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
+          "source_id": "docs:introduction",
+          "url": "https://docs.typesafe.ai/introduction"
+        }
+      ],
+      "summary": "Documentation page docs:introduction modified in successful discovery."
+    },
+    {
+      "after_sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+      "before_sha256": "703f371f140a502bd7bebb574c573580a0da94f89ce65b3ad78229535af69421",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/rerank_typesafe",
+      "id": "c75cd4d66c7d049e7931dd19",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "cceed80994a6002be17b01a1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+          "source_id": "docs:cookbooks/rerank_typesafe",
+          "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/rerank_typesafe modified in successful discovery."
+    },
+    {
+      "after_sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+      "before_sha256": "a33fc9ce0fd5e05bc6de95d77e7aad02d7944a73c4d9ae34a27d73523b931b89",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:patterns/fan-out",
+      "id": "cb0760b0fac7b8e855c746f1",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "1096ff2412930a01527477c3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+          "source_id": "docs:patterns/fan-out",
+          "url": "https://docs.typesafe.ai/patterns/fan-out"
+        }
+      ],
+      "summary": "Documentation page docs:patterns/fan-out modified in successful discovery."
+    },
+    {
+      "after_sha256": "d6298b951b8bded44cb820e061878567a2fedb26a2ebd21d953a0277054664a4",
+      "before_sha256": "01aaf367d60f0bb829bbbb92b5839f2e5c60892d838d0a7589c983cd42a9918d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+      "id": "d3e0a48c346e85ecbe333ffa",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "5581c1d04a69e2176b24891c",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d6298b951b8bded44cb820e061878567a2fedb26a2ebd21d953a0277054664a4",
+          "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/pre_parsed_value_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
+      "before_sha256": "015aebdd0ef18d7dec8ed47d41452491f941801ac60b290f21912c564809a25b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/classifying_rag_passages",
+      "id": "dad3468ee1e2c98514efbc67",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "87859280b93877cba934f7a5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
+          "source_id": "docs:cookbooks/classifying_rag_passages",
+          "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "be68e3dc6edc940aeae1f154c55eaa12d9f495814e6f7f33a5df790b41f29f4e",
+      "before_sha256": "0e2e773ae3c8315d7bcf22d29637fc9824654251815f1f19c302046ad9015ccc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/machine-learning-primer",
+      "id": "dc90796c331d15fee0c4a79e",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "fcdecb2a8492c6b730926216",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "be68e3dc6edc940aeae1f154c55eaa12d9f495814e6f7f33a5df790b41f29f4e",
+          "source_id": "docs:introduction/machine-learning-primer",
+          "url": "https://docs.typesafe.ai/introduction/machine-learning-primer"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/machine-learning-primer modified in successful discovery."
+    },
+    {
+      "after_sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+      "before_sha256": "40b1d0333f772bcf5a931cd0b22db696012921fda4355311ab3184a53ba1b87b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/date_extraction_cookbook",
+      "id": "dcce55550ff9e6439022cf80",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "2d62a44be0b1780199b53cae",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+          "source_id": "docs:cookbooks/date_extraction_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/date_extraction_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "ce3c6c9f650aa11798d279b224354baa379cd48bd3fe19aec7b736d206435476",
+      "before_sha256": "5cd8f32d11eaa0c7c2f0913ce557fe239ad811d22add18dffe02d57c9a0c69f0",
+      "category": "cookbook",
+      "change": "modified",
+      "entity": "cookbooks/autoresearch_feature_discovery",
+      "id": "e560c8bab96c5821d26bf2fa",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "ecbdbe6afaa0cd4448deb3a5",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bda2ca241e24f040de995bf252d67790752df1237937bac939748e6e37b47ea3",
+          "source_id": "docs:cookbooks",
+          "url": "https://docs.typesafe.ai/cookbooks.md"
+        },
+        {
+          "sha256": "342df74dff771a97a83495046c2105319946def63d8f1324ec02cd0ccd4375da",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md"
+        }
+      ],
+      "summary": "Runs an autoresearch loop that proposes System One questions, converts free text into numeric features, and uses model errors to improve a supervised CatBoost regressor."
+    },
+    {
+      "after_sha256": "21d8572f670c115c45fecffa901d38cf1b19eba13e12df8e3a30db7cc5197565",
+      "before_sha256": "f4f3a574d6c063d7f99a1c662f5ef49cd3f5c5d6ab7b9bc4d1fbc3add59a16d3",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/llm_guardrails",
+      "id": "e9ae6faa47a731a3a5accfbc",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "7d4bc0f5945e576393169e7a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "21d8572f670c115c45fecffa901d38cf1b19eba13e12df8e3a30db7cc5197565",
+          "source_id": "docs:cookbooks/llm_guardrails",
+          "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/llm_guardrails modified in successful discovery."
+    },
+    {
+      "after_sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
+      "before_sha256": "a5266590787dd7293cde109960dd27057322db250e11d564a193ef5865f18d05",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/smart-home",
+      "id": "e9f5f90630eef557aa4ce819",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "e3b6352e675c573bacb74be7",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
+          "source_id": "docs:demos/smart-home",
+          "url": "https://docs.typesafe.ai/demos/smart-home"
+        }
+      ],
+      "summary": "Documentation page docs:demos/smart-home modified in successful discovery."
+    },
+    {
+      "after_sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
+      "before_sha256": "ce470d6c8486b8145a0e2184857f00e790d1428efa3440ccf5228e6716acf438",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_choice_cookbook",
+      "id": "eaf3afd32d2786ec4063a6e0",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "18b9f3db0702df8ae54056ac",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "181ab970c1dd70332952148705205fdc65d710588fd892fe9a597a1649579786",
+      "before_sha256": "3368b82965fecb2cb79ab8c94d256e96c91ba18800e5c706a850f1c364005b80",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/function_calling",
+      "id": "f6534f27667c180d5a6b2212",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "5fa6c71d6489d6970d556730",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "181ab970c1dd70332952148705205fdc65d710588fd892fe9a597a1649579786",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/function_calling modified in successful discovery."
+    },
+    {
+      "after_sha256": "31f2672f3ca5ddaf373b762aecd30109a7b4fa5ba999147daaaeef36fa09d39c",
+      "before_sha256": "74558db32506cc8064ec99e7ce12de2fb02a250f08766722dbebb74ab3165cd3",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/hierarchical_classification",
+      "id": "f8397dc9bf03b7da74fb8a75",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "91700361266ae7cd84dee315",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "31f2672f3ca5ddaf373b762aecd30109a7b4fa5ba999147daaaeef36fa09d39c",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/hierarchical_classification modified in successful discovery."
+    },
+    {
+      "after_sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
+      "before_sha256": "8996ea4ab894d9d0216c48a6f37426d64c0538fd4b4002cc1932d4a853f7e723",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_noul_cookbook",
+      "id": "fa0da3c13d83ac51be4ab665",
+      "observed_at": "2026-11-04T06:26:11.876732Z",
+      "previous_event_id": "506b07f3c4931125c88cf027",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_noul_cookbook modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
