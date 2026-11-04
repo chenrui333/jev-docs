@@ -1,13 +1,13 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "7d5800f48b9a3e38fea95d270fb6dfe1738b9ac8c8e6298959977add8374dbb3",
+  "fingerprint": "6d8637166625d52d3712f2b33336a34d454700a9d8a7a1cd07b6c7dafd77920b",
   "items": [
     {
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "d79e95bc4de3dcd66638309cc13861a3dfabb70044f05299fe58fcf86c7893c4",
-          "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+          "context_sha256": "169f3634a4596e0379336c53000bf917a01363a6bbca7382dc2bb5d3e4c64206",
+          "sha256": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
           "verdict": "unreviewed"
@@ -70,8 +70,8 @@
       "category": "agent-integration",
       "evidence_reviews": [
         {
-          "context_sha256": "d79e95bc4de3dcd66638309cc13861a3dfabb70044f05299fe58fcf86c7893c4",
-          "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+          "context_sha256": "169f3634a4596e0379336c53000bf917a01363a6bbca7382dc2bb5d3e4c64206",
+          "sha256": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
           "source_id": "docs:introduction/coding-agents",
           "url": "https://docs.typesafe.ai/introduction/coding-agents.md",
           "verdict": "unreviewed"
@@ -107,8 +107,8 @@
       "category": "decision-boundary",
       "evidence_reviews": [
         {
-          "context_sha256": "89dc4d32fc025ad239f6e5c1d878a712d7dbb3734a07d7c1eb27988a855e8c2d",
-          "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+          "context_sha256": "a32b12f4f826676ba3eeeca4579f9e7b2e6348af61de2b075629137eee967f74",
+          "sha256": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -164,8 +164,8 @@
       "category": "question-design",
       "evidence_reviews": [
         {
-          "context_sha256": "89dc4d32fc025ad239f6e5c1d878a712d7dbb3734a07d7c1eb27988a855e8c2d",
-          "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+          "context_sha256": "a32b12f4f826676ba3eeeca4579f9e7b2e6348af61de2b075629137eee967f74",
+          "sha256": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -214,8 +214,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "c7e02832bc0122d395ece3176526182651f23ee109d260dcdb963c07583c40f4",
-          "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+          "context_sha256": "372c164115f8f9ef148c177b94204e64abda8f4ebfe395baf6eeb1e056ce8139",
+          "sha256": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
           "verdict": "unreviewed"
@@ -271,8 +271,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "c7e02832bc0122d395ece3176526182651f23ee109d260dcdb963c07583c40f4",
-          "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+          "context_sha256": "372c164115f8f9ef148c177b94204e64abda8f4ebfe395baf6eeb1e056ce8139",
+          "sha256": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
           "source_id": "docs:patterns/fan-out",
           "url": "https://docs.typesafe.ai/patterns/fan-out.md",
           "verdict": "unreviewed"
@@ -321,8 +321,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "b68f3c3e0b25820d27088064086d7dd99acc63fdbe9116583073bfddf5399180",
-          "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
+          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -364,8 +364,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "b68f3c3e0b25820d27088064086d7dd99acc63fdbe9116583073bfddf5399180",
-          "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
+          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -528,8 +528,8 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "b68f3c3e0b25820d27088064086d7dd99acc63fdbe9116583073bfddf5399180",
-          "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
+          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -685,8 +685,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "89dc4d32fc025ad239f6e5c1d878a712d7dbb3734a07d7c1eb27988a855e8c2d",
-          "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+          "context_sha256": "a32b12f4f826676ba3eeeca4579f9e7b2e6348af61de2b075629137eee967f74",
+          "sha256": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
           "source_id": "docs:concepts/how-to-build-with-system-one",
           "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
           "verdict": "unreviewed"
@@ -725,16 +725,16 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-11-04T06:26:10.474184Z",
+  "observed_at": "2026-11-04T19:46:40.983209Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
-    "docs:concepts/how-to-build-with-system-one": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+    "docs:concepts/how-to-build-with-system-one": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
     "docs:concepts/state": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
     "docs:concepts/system-one": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
-    "docs:confidence": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
-    "docs:introduction/coding-agents": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
-    "docs:patterns/fan-out": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+    "docs:confidence": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+    "docs:introduction/coding-agents": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
+    "docs:patterns/fan-out": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
     "docs:primitives/choice": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
     "docs:primitives/noul": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
     "skill:typesafe-ai": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724"

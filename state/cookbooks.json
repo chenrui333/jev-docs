@@ -1,5 +1,5 @@
 {
-  "fingerprint": "7f88ec48d71be83e1f51dabaf6155672b4e5eb6401c133dfa5b065884ec0134e",
+  "fingerprint": "6a34f947d4b720294d85f02c908c7fab2f19a55eeb058306bfa24b8bddde642e",
   "items": [
     {
       "category": "extraction",
@@ -58,7 +58,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "40bcc56932f8193a861d99f5da1f235ea1b322910643dc95ff661e2d09eb85fb",
+          "sha256": "85abc86921a904169252a07b9c29bc71ae125391fc92c8d51bf89394f4e06545",
           "source_id": "docs:cookbooks/basic_memory",
           "url": "https://docs.typesafe.ai/cookbooks/basic_memory.md"
         }
@@ -102,7 +102,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "d0d4f512a418ce10e31e0237250663851da0daf973fff36a5e650362dfb89154",
+          "sha256": "952615ff6a20fc063e02a793818de2f91579f1c6838a989f9f111b3729752838",
           "source_id": "docs:cookbooks/citation_check",
           "url": "https://docs.typesafe.ai/cookbooks/citation_check.md"
         }
@@ -146,7 +146,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
+          "sha256": "f51b975c2abc87f8338a01288498474af826d932954879afc0fa62dc7e011b22",
           "source_id": "docs:cookbooks/classifying_rag_passages",
           "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md"
         }
@@ -212,7 +212,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+          "sha256": "a0f31646adbb5199d4cd41c12f38148a9c9a6d951d06a1bcd0609ad01c5baeee",
           "source_id": "docs:cookbooks/date_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
         }
@@ -322,7 +322,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+          "sha256": "375784b525f357fc9625b0c00a1784b03f9cdf7909139f9bd64c906c86d0d97c",
           "source_id": "docs:cookbooks/intelliprompter",
           "url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md"
         }
@@ -366,7 +366,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "01b76bd50a64b6c8573b2e2c7e7c246e65c2e891d1d73c0f1d016d11717bc64d",
+          "sha256": "c6182a78e5df391aba617327f0667cc8d3a7907b041ae7bc9197caba044ff732",
           "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
           "url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes.md"
         }
@@ -454,7 +454,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+          "sha256": "70cf8376c731cc66627b35ed250a9abf79b0405cbf434fbd14aa6ea074b56f8f",
           "source_id": "docs:cookbooks/rerank_typesafe",
           "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
         }
@@ -476,7 +476,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+          "sha256": "df5d5d0d7dfc23ebc6baa2b71530bee53ef71521f3da1868f40c35a411a4895b",
           "source_id": "docs:cookbooks/sde_cascade",
           "url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md"
         }
@@ -520,7 +520,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
+          "sha256": "5d96d3c5a19d8c47ffa2f13bfdb6fdcec3f02e4efa9d93ad286e2a82ce88149b",
           "source_id": "docs:cookbooks/skill_suggestion",
           "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md"
         }
@@ -552,7 +552,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter"
     }
   ],
-  "observed_at": "2026-11-04T06:26:10.477267Z",
+  "observed_at": "2026-11-04T19:46:40.986351Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

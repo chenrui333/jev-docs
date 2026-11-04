@@ -1,19 +1,19 @@
 {
   "artifacts": [
     {
-      "bytes": 5914,
+      "bytes": 6195,
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
       "description": "Drop-in skill for Claude Code, Codex, and other agent environments.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/agent-skill.md",
-      "observed_at": "2026-10-31T05:46:20.458338Z",
-      "sha256": "fc33df2cc502305a775cdb4dca050bb5043074aa96fb01710f4c37252262def5",
+      "observed_at": "2026-11-04T19:46:41.798250Z",
+      "sha256": "5858202f260f8d441e7c0ab99a97533828f3488add5cecd09d6fa8efbdd7b47a",
       "source_id": "docs:agent-skill",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Agent skill",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-27T22:33:29.790Z"
+      "upstream_last_modified": "2026-11-04T08:55:32.458Z"
     },
     {
       "bytes": 2722,
@@ -76,19 +76,19 @@
       "upstream_last_modified": "2026-11-03T04:29:12.375Z"
     },
     {
-      "bytes": 19798,
+      "bytes": 19802,
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
       "description": "Design AI-powered software by keeping code in control and giving Jev narrow, structured decisions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
-      "observed_at": "2026-11-04T06:26:11.877118Z",
-      "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+      "observed_at": "2026-11-04T19:46:41.798440Z",
+      "sha256": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "source_tag": null,
       "source_type": "documentation",
       "title": "How to build with TypeSafe",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.169Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.299Z"
     },
     {
       "bytes": 3821,
@@ -136,19 +136,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.169Z"
     },
     {
-      "bytes": 11438,
+      "bytes": 14159,
       "canonical_url": "https://docs.typesafe.ai/confidence",
       "description": "How Jev reports certainty, how it differs from probability, and how to use it to control system behavior.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/confidence.md",
-      "observed_at": "2026-11-04T06:26:11.877245Z",
-      "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+      "observed_at": "2026-11-04T19:46:41.798559Z",
+      "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
       "source_id": "docs:confidence",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.167Z"
+      "upstream_last_modified": "2026-11-04T08:55:32.456Z"
     },
     {
       "bytes": 9073,
@@ -196,19 +196,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.166Z"
     },
     {
-      "bytes": 27052,
+      "bytes": 27203,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
       "description": "Let Jev decide which requests and answers are worth remembering, then wrap the Jev call in a small function that adds memories to later calls.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/basic_memory.md",
-      "observed_at": "2026-11-03T06:50:02.433415Z",
-      "sha256": "40bcc56932f8193a861d99f5da1f235ea1b322910643dc95ff661e2d09eb85fb",
+      "observed_at": "2026-11-04T19:46:41.798820Z",
+      "sha256": "85abc86921a904169252a07b9c29bc71ae125391fc92c8d51bf89394f4e06545",
       "source_id": "docs:cookbooks/basic_memory",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Simple memory system",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-02T23:24:51.474Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.300Z"
     },
     {
       "bytes": 15148,
@@ -226,19 +226,19 @@
       "upstream_last_modified": "2026-11-02T19:54:12.876Z"
     },
     {
-      "bytes": 15577,
+      "bytes": 15581,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/citation_check",
       "description": "Catch wrong or hallucinated citations by checking against the source document. One Choice question decides whether the quote's context supports the claim.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/citation_check.md",
-      "observed_at": "2026-11-03T06:50:02.433484Z",
-      "sha256": "d0d4f512a418ce10e31e0237250663851da0daf973fff36a5e650362dfb89154",
+      "observed_at": "2026-11-04T19:46:41.798899Z",
+      "sha256": "952615ff6a20fc063e02a793818de2f91579f1c6838a989f9f111b3729752838",
       "source_id": "docs:cookbooks/citation_check",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Double-checking citations",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-02T23:24:51.471Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.299Z"
     },
     {
       "bytes": 30285,
@@ -256,19 +256,19 @@
       "upstream_last_modified": "2026-11-02T23:24:51.477Z"
     },
     {
-      "bytes": 32926,
+      "bytes": 32942,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
       "description": "Score each retrieved passage with one TypeSafe request, then decide in code which ones reach the answering model.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md",
-      "observed_at": "2026-11-04T06:26:11.877735Z",
-      "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
+      "observed_at": "2026-11-04T19:46:41.799044Z",
+      "sha256": "f51b975c2abc87f8338a01288498474af826d932954879afc0fa62dc7e011b22",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Classifying RAG passages",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.173Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.301Z"
     },
     {
       "bytes": 45543,
@@ -301,19 +301,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.178Z"
     },
     {
-      "bytes": 19923,
+      "bytes": 19931,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
       "description": "Extracts absolute and relative dates by asking Jev for the parts named in a document, then resolving and validating them in code with confidence-based review.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md",
-      "observed_at": "2026-11-04T06:26:11.877931Z",
-      "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+      "observed_at": "2026-11-04T19:46:41.799236Z",
+      "sha256": "a0f31646adbb5199d4cd41c12f38148a9c9a6d951d06a1bcd0609ad01c5baeee",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Date extraction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.171Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.297Z"
     },
     {
       "bytes": 21691,
@@ -376,19 +376,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.172Z"
     },
     {
-      "bytes": 14435,
+      "bytes": 14438,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
       "description": "Tick off a presenter's notes as they speak: Jev scores the live transcript against each note not yet covered, and a note stays ticked once its score passes the threshold.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/intelliprompter.md",
-      "observed_at": "2026-11-04T06:26:11.878188Z",
-      "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+      "observed_at": "2026-11-04T19:46:41.799482Z",
+      "sha256": "375784b525f357fc9625b0c00a1784b03f9cdf7909139f9bd64c906c86d0d97c",
       "source_id": "docs:cookbooks/intelliprompter",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Intelliprompter",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.166Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.297Z"
     },
     {
       "bytes": 23723,
@@ -406,19 +406,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.168Z"
     },
     {
-      "bytes": 21909,
+      "bytes": 21913,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes",
       "description": "Check the values an OCR extractor read from invoice photos: Jev boxes each value, scores it against the page and against a crop of its box, and flags low scores for review.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes.md",
-      "observed_at": "2026-11-03T06:50:02.433995Z",
-      "sha256": "01b76bd50a64b6c8573b2e2c7e7c246e65c2e891d1d73c0f1d016d11717bc64d",
+      "observed_at": "2026-11-04T19:46:41.799578Z",
+      "sha256": "c6182a78e5df391aba617327f0667cc8d3a7907b041ae7bc9197caba044ff732",
       "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
       "source_tag": null,
       "source_type": "documentation",
       "title": "OCR confidence and bounding boxes",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-02T23:24:51.471Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.294Z"
     },
     {
       "bytes": 48137,
@@ -471,29 +471,29 @@
       "description": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one System One question per query-candidate pair to raise top-1 accuracy from 5% to 18% and top-10 accuracy from 38% to 62%.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md",
-      "observed_at": "2026-11-04T06:26:11.878524Z",
-      "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+      "observed_at": "2026-11-04T19:46:41.799788Z",
+      "sha256": "70cf8376c731cc66627b35ed250a9abf79b0405cbf434fbd14aa6ea074b56f8f",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Re-ranking",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.178Z"
+      "upstream_last_modified": "2026-11-04T08:55:32.451Z"
     },
     {
-      "bytes": 25789,
+      "bytes": 25813,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
       "description": "Extracts structured data with a cheap model, checks each field with Jev, and escalates to a reasoning model only when a check fires.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md",
-      "observed_at": "2026-11-04T06:26:11.878584Z",
-      "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+      "observed_at": "2026-11-04T19:46:41.799841Z",
+      "sha256": "df5d5d0d7dfc23ebc6baa2b71530bee53ef71521f3da1868f40c35a411a4895b",
       "source_id": "docs:cookbooks/sde_cascade",
       "source_tag": null,
       "source_type": "documentation",
       "title": "SDE cascade",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.165Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.296Z"
     },
     {
       "bytes": 37248,
@@ -511,19 +511,19 @@
       "upstream_last_modified": "2026-11-04T06:15:22.177Z"
     },
     {
-      "bytes": 41975,
+      "bytes": 42128,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
       "description": "Picks at most one skill for an agent turn out of the 194 in Nous Research's Hermes catalog, using two TypeSafe requests to rank and re-check the top candidates.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md",
-      "observed_at": "2026-11-04T06:26:11.878728Z",
-      "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
+      "observed_at": "2026-11-04T19:46:41.799978Z",
+      "sha256": "5d96d3c5a19d8c47ffa2f13bfdb6fdcec3f02e4efa9d93ad286e2a82ce88149b",
       "source_id": "docs:cookbooks/skill_suggestion",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Skill suggestion",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.179Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.298Z"
     },
     {
       "bytes": 22679,
@@ -601,19 +601,19 @@
       "upstream_last_modified": "2026-11-04T06:15:21.578Z"
     },
     {
-      "bytes": 4416,
+      "bytes": 4428,
       "canonical_url": "https://docs.typesafe.ai/introduction/coding-agents",
       "description": "What Jev is (and isn't) when you're using a coding agent.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction/coding-agents.md",
-      "observed_at": "2026-11-04T06:26:11.878920Z",
-      "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+      "observed_at": "2026-11-04T19:46:41.800185Z",
+      "sha256": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
       "source_id": "docs:introduction/coding-agents",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Jev with coding agents",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.579Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.748Z"
     },
     {
       "bytes": 4905,
@@ -661,13 +661,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 20260,
+      "bytes": 20688,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-11-04T06:26:11.879052Z",
-      "sha256": "61ba8eb043f532f3b49af8f551c4d07d77440b48dc063d84704ec8d902f7696d",
+      "observed_at": "2026-11-04T19:46:41.800327Z",
+      "sha256": "6b253a80c6e76f1ae05171f15d4a9ab10117f5eea1143607992712bf0c5c2207",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -676,19 +676,19 @@
       "upstream_last_modified": null
     },
     {
-      "bytes": 9513,
+      "bytes": 9536,
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness",
       "description": "Jev isn't perfect. Here are some jagged edges we are aware of. Many of these will be fixed in later versions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/model-jaggedness.md",
-      "observed_at": "2026-11-03T06:50:02.434548Z",
-      "sha256": "833624833c56e11d8a10518ee8aadf59dc8629c228198e58e50fad26d0a367dc",
+      "observed_at": "2026-11-04T19:46:41.800361Z",
+      "sha256": "346df70d89d593fa0a0bb65c35410d70cc8f163059e9f127267209fd95ad39ed",
       "source_id": "docs:model-jaggedness",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Model jaggedness",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-03T04:29:12.235Z"
+      "upstream_last_modified": "2026-11-04T09:29:41.298Z"
     },
     {
       "bytes": 8341,
@@ -706,94 +706,124 @@
       "upstream_last_modified": "2026-11-03T04:29:57.720Z"
     },
     {
-      "bytes": 1750,
+      "bytes": 3224,
       "canonical_url": "https://docs.typesafe.ai/patterns",
       "description": "Architectural patterns for building systems with TypeSafe.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns.md",
-      "observed_at": "2026-10-28T05:45:19.690732Z",
-      "sha256": "d159c5f486470da02eb0083d54e8a66ebf10e961201d850a9fa0ad773c6d4446",
+      "observed_at": "2026-11-04T19:46:41.800415Z",
+      "sha256": "53b248a5d01f99acbc189837757eb59ed9cc144f4c71c892a84bd5dcc02a48ee",
       "source_id": "docs:patterns",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Patterns",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-27T21:34:31.920Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.742Z"
     },
     {
-      "bytes": 3061,
+      "bytes": 7506,
+      "canonical_url": "https://docs.typesafe.ai/patterns/companion-noul",
+      "description": "Pair a Choice with a Noul that asks whether any option fits, so your code can tell when none does.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/patterns/companion-noul.md",
+      "observed_at": "2026-11-04T19:46:41.800441Z",
+      "sha256": "b8300f33fc499558950fbb3719095e6f88777b6fdd5318dac105c66efa58214b",
+      "source_id": "docs:patterns/companion-noul",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Companion Noul",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-04T08:55:31.741Z"
+    },
+    {
+      "bytes": 3379,
       "canonical_url": "https://docs.typesafe.ai/patterns/composite-scoring",
       "description": "Break a complex judgment into atomic scores, combine with weights you control in code.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns/composite-scoring.md",
-      "observed_at": "2026-11-04T06:26:11.879156Z",
-      "sha256": "5febf5f9a6fa5d67b943b55efd5fe64a394ba9e1a04c8a743fa7c655b5c46a99",
+      "observed_at": "2026-11-04T19:46:41.800466Z",
+      "sha256": "cb79c491a0390f307c4f0320aafbdf6397e3ad299617f93d8ec02de3dae188fc",
       "source_id": "docs:patterns/composite-scoring",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Composite scoring",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.588Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.740Z"
     },
     {
-      "bytes": 3453,
+      "bytes": 6041,
       "canonical_url": "https://docs.typesafe.ai/patterns/confidence-routing",
-      "description": "Use confidence as a second axis. The answer tells you what; confidence tells you whether to act.",
+      "description": "Use confidence as a second axis. The score tells you what; confidence tells you whether to act on it.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns/confidence-routing.md",
-      "observed_at": "2026-11-04T06:26:11.879181Z",
-      "sha256": "1f513f7e4bc862e1722ab449b776d2676757e8c1cbc86a05fb3df47ea5e0d42b",
+      "observed_at": "2026-11-04T19:46:41.800493Z",
+      "sha256": "306f9aa152ee7db6f729b033d7a4b1d301efcd12f0e53c51a0f876723fb4b430",
       "source_id": "docs:patterns/confidence-routing",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Confidence-gated routing",
+      "title": "Routing by confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.583Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.740Z"
     },
     {
-      "bytes": 4080,
+      "bytes": 4389,
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
       "description": "Send many questions in a single request, including speculative ones, and let your code decide what's relevant.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/patterns/fan-out.md",
-      "observed_at": "2026-11-04T06:26:11.879207Z",
-      "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+      "observed_at": "2026-11-04T19:46:41.800518Z",
+      "sha256": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
       "source_id": "docs:patterns/fan-out",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Speculative fan-out",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.586Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.739Z"
     },
     {
-      "bytes": 4301,
-      "canonical_url": "https://docs.typesafe.ai/patterns/intent-routing",
-      "description": "Classify incoming requests and route each to the optimal handler: deterministic logic, a specialist LLM, or a human.",
+      "bytes": 6709,
+      "canonical_url": "https://docs.typesafe.ai/patterns/noul-screen",
+      "description": "Ask one yes/no question first, and run the expensive step only when the answer is a clear yes.",
       "discovered_via": "docs:llms.txt",
-      "fetch_url": "https://docs.typesafe.ai/patterns/intent-routing.md",
-      "observed_at": "2026-11-04T06:26:11.879233Z",
-      "sha256": "34e6d00091e3a0be4baed41e9df0d87a4e220835a67411ecb761f774b1b6915e",
-      "source_id": "docs:patterns/intent-routing",
+      "fetch_url": "https://docs.typesafe.ai/patterns/noul-screen.md",
+      "observed_at": "2026-11-04T19:46:41.800541Z",
+      "sha256": "b2e3ea24d9aeca3e5e47653666129d087e11759323b84a61726db5e936834488",
+      "source_id": "docs:patterns/noul-screen",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Intent routing",
+      "title": "Screen with a Noul first",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.576Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.738Z"
     },
     {
-      "bytes": 15614,
+      "bytes": 5348,
+      "canonical_url": "https://docs.typesafe.ai/patterns/probability-routing",
+      "description": "Give riskier actions a higher probability threshold. The answer says what to do, and its probability says whether to do it.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/patterns/probability-routing.md",
+      "observed_at": "2026-11-04T19:46:41.800563Z",
+      "sha256": "51851a1d89444f60568348cf696c729047b972be3e853c272414c327c9d222e3",
+      "source_id": "docs:patterns/probability-routing",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Routing by probability",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-04T08:55:31.737Z"
+    },
+    {
+      "bytes": 16518,
       "canonical_url": "https://docs.typesafe.ai/primitives",
       "description": "The System One question types, the typed answers they return, how to choose between them, and how to ask several at once.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives.md",
-      "observed_at": "2026-11-04T06:26:11.879273Z",
-      "sha256": "c877b65900759fddd7967998a3407290f4b52687459ee40d2cb146b4aae2fd70",
+      "observed_at": "2026-11-04T19:46:41.800604Z",
+      "sha256": "6827aeac1807e6b60575b1ad42ce3e8ad511c1fb6b05585dd6ed32b2722f2187",
       "source_id": "docs:primitives",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Primitives (Questions)",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.580Z"
+      "upstream_last_modified": "2026-11-04T08:55:31.735Z"
     },
     {
       "bytes": 4517,

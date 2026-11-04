@@ -1,20 +1,25 @@
 {
   "complete": true,
-  "discovered_count": 136,
+  "discovered_count": 138,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "61ba8eb043f532f3b49af8f551c4d07d77440b48dc063d84704ec8d902f7696d",
+    "sha256": "6b253a80c6e76f1ae05171f15d4a9ab10117f5eea1143607992712bf0c5c2207",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 136,
+  "fetched_count": 138,
   "intentionally_excluded": [
     {
       "reason": "external-host",
       "title": "openapi",
       "url": "https://api.typesafe.ai/openapi.json"
+    },
+    {
+      "reason": "external-host",
+      "title": "Technical Blog",
+      "url": "https://typesafe.ai/blog"
     }
   ],
   "pages": [
@@ -34,7 +39,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/coding-agents",
-      "sha256": "eb8d0f7e1167fd42affd4f24454d70f310903abc0ea287471c9053a65c66b57f",
+      "sha256": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
       "source_id": "docs:introduction/coding-agents",
       "status": "fetched",
       "title": "Jev with coding agents"
@@ -62,7 +67,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "c877b65900759fddd7967998a3407290f4b52687459ee40d2cb146b4aae2fd70",
+      "sha256": "6827aeac1807e6b60575b1ad42ce3e8ad511c1fb6b05585dd6ed32b2722f2187",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
@@ -111,14 +116,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "76854e3ad220ab9087d82ac4b60dfc09f694a36d0dc715bd6a5eff1090f0b53e",
+      "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
-      "sha256": "e22f11f04a63513c3c388fdf0d52a45d08ab353bfb88c8ffeb1d866ca22f3168",
+      "sha256": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
       "source_id": "docs:concepts/how-to-build-with-system-one",
       "status": "fetched",
       "title": "How to build with TypeSafe"
@@ -132,38 +137,52 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns",
-      "sha256": "d159c5f486470da02eb0083d54e8a66ebf10e961201d850a9fa0ad773c6d4446",
+      "sha256": "53b248a5d01f99acbc189837757eb59ed9cc144f4c71c892a84bd5dcc02a48ee",
       "source_id": "docs:patterns",
       "status": "fetched",
       "title": "Patterns"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/fan-out",
-      "sha256": "26910592f8a2c49de61f8e8a12de005e3cd22205e245258b3189eb51af76960a",
+      "sha256": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
       "source_id": "docs:patterns/fan-out",
       "status": "fetched",
       "title": "Speculative fan-out"
     },
     {
+      "canonical_url": "https://docs.typesafe.ai/patterns/noul-screen",
+      "sha256": "b2e3ea24d9aeca3e5e47653666129d087e11759323b84a61726db5e936834488",
+      "source_id": "docs:patterns/noul-screen",
+      "status": "fetched",
+      "title": "Screen with a Noul first"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/patterns/companion-noul",
+      "sha256": "b8300f33fc499558950fbb3719095e6f88777b6fdd5318dac105c66efa58214b",
+      "source_id": "docs:patterns/companion-noul",
+      "status": "fetched",
+      "title": "Companion Noul"
+    },
+    {
       "canonical_url": "https://docs.typesafe.ai/patterns/confidence-routing",
-      "sha256": "1f513f7e4bc862e1722ab449b776d2676757e8c1cbc86a05fb3df47ea5e0d42b",
+      "sha256": "306f9aa152ee7db6f729b033d7a4b1d301efcd12f0e53c51a0f876723fb4b430",
       "source_id": "docs:patterns/confidence-routing",
       "status": "fetched",
-      "title": "Confidence-gated routing"
+      "title": "Routing by confidence"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/patterns/probability-routing",
+      "sha256": "51851a1d89444f60568348cf696c729047b972be3e853c272414c327c9d222e3",
+      "source_id": "docs:patterns/probability-routing",
+      "status": "fetched",
+      "title": "Routing by probability"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/patterns/composite-scoring",
-      "sha256": "5febf5f9a6fa5d67b943b55efd5fe64a394ba9e1a04c8a743fa7c655b5c46a99",
+      "sha256": "cb79c491a0390f307c4f0320aafbdf6397e3ad299617f93d8ec02de3dae188fc",
       "source_id": "docs:patterns/composite-scoring",
       "status": "fetched",
       "title": "Composite scoring"
-    },
-    {
-      "canonical_url": "https://docs.typesafe.ai/patterns/intent-routing",
-      "sha256": "34e6d00091e3a0be4baed41e9df0d87a4e220835a67411ecb761f774b1b6915e",
-      "source_id": "docs:patterns/intent-routing",
-      "status": "fetched",
-      "title": "Intent routing"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
@@ -181,7 +200,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
-      "sha256": "80ef304496fc8960715a3b37554160d5df623f24fcff45cd6986f28f2f041849",
+      "sha256": "5d96d3c5a19d8c47ffa2f13bfdb6fdcec3f02e4efa9d93ad286e2a82ce88149b",
       "source_id": "docs:cookbooks/skill_suggestion",
       "status": "fetched",
       "title": "Skill suggestion"
@@ -195,21 +214,21 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/citation_check",
-      "sha256": "d0d4f512a418ce10e31e0237250663851da0daf973fff36a5e650362dfb89154",
+      "sha256": "952615ff6a20fc063e02a793818de2f91579f1c6838a989f9f111b3729752838",
       "source_id": "docs:cookbooks/citation_check",
       "status": "fetched",
       "title": "Double-checking citations"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "21e3f328f09e121aa13373a2e859b64040bed6c9f9be188fa63f4af16c734bef",
+      "sha256": "f51b975c2abc87f8338a01288498474af826d932954879afc0fa62dc7e011b22",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
       "title": "Classifying RAG passages"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
-      "sha256": "40bcc56932f8193a861d99f5da1f235ea1b322910643dc95ff661e2d09eb85fb",
+      "sha256": "85abc86921a904169252a07b9c29bc71ae125391fc92c8d51bf89394f4e06545",
       "source_id": "docs:cookbooks/basic_memory",
       "status": "fetched",
       "title": "Simple memory system"
@@ -237,14 +256,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
-      "sha256": "b74cc784de0b5327cd254335391d3f0465d145adcc1096c45f357ecd8132b86c",
+      "sha256": "df5d5d0d7dfc23ebc6baa2b71530bee53ef71521f3da1868f40c35a411a4895b",
       "source_id": "docs:cookbooks/sde_cascade",
       "status": "fetched",
       "title": "SDE cascade"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
-      "sha256": "785accc534c0d55123367571c19cb8cabd9c201d61893ce7bae1de188a16fbfd",
+      "sha256": "a0f31646adbb5199d4cd41c12f38148a9c9a6d951d06a1bcd0609ad01c5baeee",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "status": "fetched",
       "title": "Date extraction"
@@ -279,7 +298,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes",
-      "sha256": "01b76bd50a64b6c8573b2e2c7e7c246e65c2e891d1d73c0f1d016d11717bc64d",
+      "sha256": "c6182a78e5df391aba617327f0667cc8d3a7907b041ae7bc9197caba044ff732",
       "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
       "status": "fetched",
       "title": "OCR confidence and bounding boxes"
@@ -293,7 +312,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
-      "sha256": "26ff6cec82f8a3cf68f0ad4b17febc5159f04e00b25db1c782f2c049bf672b03",
+      "sha256": "70cf8376c731cc66627b35ed250a9abf79b0405cbf434fbd14aa6ea074b56f8f",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "status": "fetched",
       "title": "Re-ranking"
@@ -314,7 +333,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
-      "sha256": "275698251ae6b1af693aa795df215b31cbe49f3333e25922a9ba1cde39e844a5",
+      "sha256": "375784b525f357fc9625b0c00a1784b03f9cdf7909139f9bd64c906c86d0d97c",
       "source_id": "docs:cookbooks/intelliprompter",
       "status": "fetched",
       "title": "Intelliprompter"
@@ -370,7 +389,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/agent-skill",
-      "sha256": "fc33df2cc502305a775cdb4dca050bb5043074aa96fb01710f4c37252262def5",
+      "sha256": "5858202f260f8d441e7c0ab99a97533828f3488add5cecd09d6fa8efbdd7b47a",
       "source_id": "docs:agent-skill",
       "status": "fetched",
       "title": "Agent skill"
@@ -384,7 +403,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/model-jaggedness",
-      "sha256": "833624833c56e11d8a10518ee8aadf59dc8629c228198e58e50fad26d0a367dc",
+      "sha256": "346df70d89d593fa0a0bb65c35410d70cc8f163059e9f127267209fd95ad39ed",
       "source_id": "docs:model-jaggedness",
       "status": "fetched",
       "title": "Model jaggedness"
@@ -972,6 +991,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 136,
+  "retained_count": 138,
   "schema_version": 2
 }
