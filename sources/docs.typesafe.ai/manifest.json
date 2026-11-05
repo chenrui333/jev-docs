@@ -91,34 +91,34 @@
       "upstream_last_modified": "2026-11-04T09:29:41.299Z"
     },
     {
-      "bytes": 3821,
+      "bytes": 3952,
       "canonical_url": "https://docs.typesafe.ai/concepts/state",
       "description": "What state is, how to structure it, and how to give a System One model the context it needs.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/state.md",
-      "observed_at": "2026-10-24T04:39:13.636735Z",
-      "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+      "observed_at": "2026-11-05T06:49:09.028065Z",
+      "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
       "source_id": "docs:concepts/state",
       "source_tag": null,
       "source_type": "documentation",
       "title": "State",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:12.429Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.299Z"
     },
     {
-      "bytes": 4269,
+      "bytes": 4399,
       "canonical_url": "https://docs.typesafe.ai/concepts/system-one",
       "description": "System One models make fast, structured decisions for software. Jev is TypeSafe's flagship model and the first System One model.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/system-one.md",
-      "observed_at": "2026-10-24T04:39:13.636757Z",
-      "sha256": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+      "observed_at": "2026-11-05T06:49:09.028104Z",
+      "sha256": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
       "source_id": "docs:concepts/system-one",
       "source_tag": null,
       "source_type": "documentation",
       "title": "System One",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:07:12.427Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.302Z"
     },
     {
       "bytes": 10027,
@@ -541,64 +541,79 @@
       "upstream_last_modified": "2026-11-02T19:54:12.860Z"
     },
     {
-      "bytes": 726,
+      "bytes": 1481,
       "canonical_url": "https://docs.typesafe.ai/demos",
-      "description": "Interactive examples showing what's possible with TypeSafe.",
+      "description": "Working projects built on Jev, and how each one works.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos.md",
-      "observed_at": "2026-10-24T04:39:13.637772Z",
-      "sha256": "695cb61a2464f6168ec91862e2b244b8c2336efc275e77d338a42001803b934a",
+      "observed_at": "2026-11-05T06:49:09.029391Z",
+      "sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
       "source_id": "docs:demos",
       "source_tag": null,
       "source_type": "documentation",
-      "title": "Demos",
+      "title": "Made with Jev",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-08-26T17:44:36.352Z"
+      "upstream_last_modified": "2026-11-04T20:18:38.033Z"
     },
     {
-      "bytes": 3770,
+      "bytes": 8966,
+      "canonical_url": "https://docs.typesafe.ai/demos/airbnb-listing-search",
+      "description": "Describe a stay in plain English and get the 10 best of 1,000 Cape Town Airbnb listings, scored out of 10, in about a second, from a formula in Google Sheets.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/demos/airbnb-listing-search.md",
+      "observed_at": "2026-11-05T06:49:09.029414Z",
+      "sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "source_id": "docs:demos/airbnb-listing-search",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Airbnb listing search in Google Sheets",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-04T20:18:38.038Z"
+    },
+    {
+      "bytes": 3388,
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
       "description": "Demo code: a smart home assistant that uses Jev to evaluate user requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos/smart-home.md",
-      "observed_at": "2026-11-04T06:26:11.878821Z",
-      "sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
+      "observed_at": "2026-11-05T06:49:09.029435Z",
+      "sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
       "source_id": "docs:demos/smart-home",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Smart home assistant demo",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.581Z"
+      "upstream_last_modified": "2026-11-04T20:36:46.320Z"
     },
     {
-      "bytes": 21136,
+      "bytes": 21186,
       "canonical_url": "https://docs.typesafe.ai/images",
       "description": "Send images in a System One request: in the state, inside a question's instructions, and as the criteria a question is judged against.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/images.md",
-      "observed_at": "2026-10-31T05:46:20.460285Z",
-      "sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
+      "observed_at": "2026-11-05T06:49:09.029475Z",
+      "sha256": "bfd4f8aa9f7af7548fffc1b8868b8ee54eb3ed23c9711e02595df624d663b6c1",
       "source_id": "docs:images",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Images",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-20T00:26:24.058Z"
+      "upstream_last_modified": "2026-11-04T22:03:51.904Z"
     },
     {
-      "bytes": 4952,
+      "bytes": 5101,
       "canonical_url": "https://docs.typesafe.ai/introduction",
       "description": "Jev is TypeSafe's flagship model and the first System One model. Send state and typed questions; get structured answers your code can use directly.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction.md",
-      "observed_at": "2026-11-04T06:26:11.878893Z",
-      "sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
+      "observed_at": "2026-11-05T06:49:09.029497Z",
+      "sha256": "0dd45fba7d7f4f4baa2ec61b7b4a63ca78ad185f0de6b0937174f64e3682f215",
       "source_id": "docs:introduction",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Introduction",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.578Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.297Z"
     },
     {
       "bytes": 4428,
@@ -631,19 +646,19 @@
       "upstream_last_modified": "2026-11-04T06:15:21.587Z"
     },
     {
-      "bytes": 14948,
+      "bytes": 15195,
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
       "description": "Get up and running with Jev in 5 minutes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction/quickstart.md",
-      "observed_at": "2026-10-31T05:46:20.460404Z",
-      "sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
+      "observed_at": "2026-11-05T06:49:09.029571Z",
+      "sha256": "7fad38ac7a456fc0d1dc8b43a783ce73e5077f163a5872e65c74eba363c8148a",
       "source_id": "docs:introduction/quickstart",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Quick start",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-27T22:33:29.724Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.300Z"
     },
     {
       "bytes": 1202,
@@ -661,13 +676,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 20688,
+      "bytes": 20951,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-11-04T19:46:41.800327Z",
-      "sha256": "6b253a80c6e76f1ae05171f15d4a9ab10117f5eea1143607992712bf0c5c2207",
+      "observed_at": "2026-11-05T06:49:09.029625Z",
+      "sha256": "51c062e7d90b647256eb52d414fe6b99ae626e7e083df340a0024ec3bfb370c4",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -691,19 +706,19 @@
       "upstream_last_modified": "2026-11-04T09:29:41.298Z"
     },
     {
-      "bytes": 8341,
+      "bytes": 8556,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-11-03T06:50:02.434570Z",
-      "sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+      "observed_at": "2026-11-05T06:49:09.029675Z",
+      "sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-03T04:29:57.720Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.302Z"
     },
     {
       "bytes": 3224,
@@ -811,34 +826,34 @@
       "upstream_last_modified": "2026-11-04T08:55:31.737Z"
     },
     {
-      "bytes": 16518,
+      "bytes": 16367,
       "canonical_url": "https://docs.typesafe.ai/primitives",
       "description": "The System One question types, the typed answers they return, how to choose between them, and how to ask several at once.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives.md",
-      "observed_at": "2026-11-04T19:46:41.800604Z",
-      "sha256": "6827aeac1807e6b60575b1ad42ce3e8ad511c1fb6b05585dd6ed32b2722f2187",
+      "observed_at": "2026-11-05T06:49:09.029842Z",
+      "sha256": "463a475b4e499b847352917b541bf4cd2e9c59eb88f96f2bd68532ad44a0f1c4",
       "source_id": "docs:primitives",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Primitives (Questions)",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T08:55:31.735Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.301Z"
     },
     {
-      "bytes": 4517,
+      "bytes": 4522,
       "canonical_url": "https://docs.typesafe.ai/primitives/advanced",
       "description": "Instructions, Choice options, Score levels, and Noul criteria all accept JSON structure.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/advanced.md",
-      "observed_at": "2026-10-28T05:45:19.690896Z",
-      "sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
+      "observed_at": "2026-11-05T06:49:09.029864Z",
+      "sha256": "cd7a2362af56a71501574cb0a1fbc56835923696ab19fe0fff581bfec4d3e9f8",
       "source_id": "docs:primitives/advanced",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Advanced: structure",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-27T21:34:31.924Z"
+      "upstream_last_modified": "2026-11-05T04:17:26.300Z"
     },
     {
       "bytes": 7442,

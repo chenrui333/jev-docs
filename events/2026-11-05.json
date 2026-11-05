@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-05",
+  "events": [
+    {
+      "after_sha256": "bfd4f8aa9f7af7548fffc1b8868b8ee54eb3ed23c9711e02595df624d663b6c1",
+      "before_sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:images",
+      "id": "04448d675788ebff462d689f",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "a2be35f649e0e4ccf46ae198",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bfd4f8aa9f7af7548fffc1b8868b8ee54eb3ed23c9711e02595df624d663b6c1",
+          "source_id": "docs:images",
+          "url": "https://docs.typesafe.ai/images"
+        }
+      ],
+      "summary": "Documentation page docs:images modified in successful discovery."
+    },
+    {
+      "after_sha256": "cd7a2362af56a71501574cb0a1fbc56835923696ab19fe0fff581bfec4d3e9f8",
+      "before_sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/advanced",
+      "id": "31b8b58988a57e05246b7860",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "7888bbb4a0949eb17cda8b70",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cd7a2362af56a71501574cb0a1fbc56835923696ab19fe0fff581bfec4d3e9f8",
+          "source_id": "docs:primitives/advanced",
+          "url": "https://docs.typesafe.ai/primitives/advanced"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/advanced modified in successful discovery."
+    },
+    {
+      "after_sha256": "0dd45fba7d7f4f4baa2ec61b7b4a63ca78ad185f0de6b0937174f64e3682f215",
+      "before_sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction",
+      "id": "3a61d18641067ab845f265e2",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "c45f3fccbb84dc19c5d8c409",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "0dd45fba7d7f4f4baa2ec61b7b4a63ca78ad185f0de6b0937174f64e3682f215",
+          "source_id": "docs:introduction",
+          "url": "https://docs.typesafe.ai/introduction"
+        }
+      ],
+      "summary": "Documentation page docs:introduction modified in successful discovery."
+    },
+    {
+      "after_sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+      "before_sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/state",
+      "id": "3c8650512b5aa537d674dce6",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "fbf67ce685cfd387898642e9",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+          "source_id": "docs:concepts/state",
+          "url": "https://docs.typesafe.ai/concepts/state"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/state modified in successful discovery."
+    },
+    {
+      "after_sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
+      "before_sha256": "695cb61a2464f6168ec91862e2b244b8c2336efc275e77d338a42001803b934a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos",
+      "id": "783cbc9a6396ce2aa4f33314",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "62fbefccc5014a4c7637d71b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
+          "source_id": "docs:demos",
+          "url": "https://docs.typesafe.ai/demos"
+        }
+      ],
+      "summary": "Documentation page docs:demos modified in successful discovery."
+    },
+    {
+      "after_sha256": "7fad38ac7a456fc0d1dc8b43a783ce73e5077f163a5872e65c74eba363c8148a",
+      "before_sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "7b28eb38bbad5b5f1ae155c5",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "7142a86f8870c936e117e538",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7fad38ac7a456fc0d1dc8b43a783ce73e5077f163a5872e65c74eba363c8148a",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    },
+    {
+      "after_sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:demos/airbnb-listing-search",
+      "id": "9a2392d7239a66fdcca74171",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+          "source_id": "docs:demos/airbnb-listing-search",
+          "url": "https://docs.typesafe.ai/demos/airbnb-listing-search"
+        }
+      ],
+      "summary": "Documentation page docs:demos/airbnb-listing-search added in successful discovery."
+    },
+    {
+      "after_sha256": "463a475b4e499b847352917b541bf4cd2e9c59eb88f96f2bd68532ad44a0f1c4",
+      "before_sha256": "6827aeac1807e6b60575b1ad42ce3e8ad511c1fb6b05585dd6ed32b2722f2187",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "b145b033d3c291b43a17d8e7",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "a22ad4543f024a04267c2100",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "463a475b4e499b847352917b541bf4cd2e9c59eb88f96f2bd68532ad44a0f1c4",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    },
+    {
+      "after_sha256": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
+      "before_sha256": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/system-one",
+      "id": "ee649ab46deb694def358158",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "6d71ce9b3a8c71abb375c233",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
+          "source_id": "docs:concepts/system-one",
+          "url": "https://docs.typesafe.ai/concepts/system-one"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/system-one modified in successful discovery."
+    },
+    {
+      "after_sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
+      "before_sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/smart-home",
+      "id": "f71cdb3401164b1f4f15956b",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "e9f5f90630eef557aa4ce819",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
+          "source_id": "docs:demos/smart-home",
+          "url": "https://docs.typesafe.ai/demos/smart-home"
+        }
+      ],
+      "summary": "Documentation page docs:demos/smart-home modified in successful discovery."
+    },
+    {
+      "after_sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
+      "before_sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:models",
+      "id": "fb1ba52a1897d37c18efc298",
+      "observed_at": "2026-11-05T06:49:09.027733Z",
+      "previous_event_id": "e470457a8a31bf68f319fdae",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
+          "source_id": "docs:models",
+          "url": "https://docs.typesafe.ai/models"
+        }
+      ],
+      "summary": "Documentation page docs:models modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

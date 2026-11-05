@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "6d8637166625d52d3712f2b33336a34d454700a9d8a7a1cd07b6c7dafd77920b",
+  "fingerprint": "d4e006b2beed3b9f3c322f88586b7c97a800f9015c1663225450c1560bc08c89",
   "items": [
     {
       "category": "agent-integration",
@@ -207,8 +207,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "325a7e2be4dd6118e752e780ac2d8eee866e6567b15e3697d527b43c44d34860",
-          "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+          "context_sha256": "daaf8245a55a384bfb8c8d6e42e80c4b4d460f6172bc187f366e83b60575687c",
+          "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -585,8 +585,8 @@
       "category": "verification",
       "evidence_reviews": [
         {
-          "context_sha256": "e11ef4f9665c7315ccd56d806206158d9b65fcffffa72d1ef2492e31a21c022b",
-          "sha256": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+          "context_sha256": "ebc8d887c556ef62f6ca4afe5fbf5614f6e2bd3f7f2f5f18a4028d69391509bc",
+          "sha256": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
           "source_id": "docs:concepts/system-one",
           "url": "https://docs.typesafe.ai/concepts/system-one.md",
           "verdict": "unreviewed"
@@ -629,8 +629,8 @@
       "category": "state",
       "evidence_reviews": [
         {
-          "context_sha256": "325a7e2be4dd6118e752e780ac2d8eee866e6567b15e3697d527b43c44d34860",
-          "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+          "context_sha256": "daaf8245a55a384bfb8c8d6e42e80c4b4d460f6172bc187f366e83b60575687c",
+          "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -725,13 +725,13 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-11-04T19:46:40.983209Z",
+  "observed_at": "2026-11-05T06:49:07.824207Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
     "docs:concepts/how-to-build-with-system-one": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
-    "docs:concepts/state": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
-    "docs:concepts/system-one": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+    "docs:concepts/state": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+    "docs:concepts/system-one": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
     "docs:confidence": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
     "docs:introduction/coding-agents": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
     "docs:patterns/fan-out": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",

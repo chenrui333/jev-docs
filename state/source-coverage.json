@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 138,
+  "discovered_count": 139,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "6b253a80c6e76f1ae05171f15d4a9ab10117f5eea1143607992712bf0c5c2207",
+    "sha256": "51c062e7d90b647256eb52d414fe6b99ae626e7e083df340a0024ec3bfb370c4",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 138,
+  "fetched_count": 139,
   "intentionally_excluded": [
     {
       "reason": "external-host",
@@ -25,14 +25,14 @@
   "pages": [
     {
       "canonical_url": "https://docs.typesafe.ai/introduction",
-      "sha256": "0afe5fdd93fe0514dc1cf4f1ef969d925285410e5742c49a8add31ac8a6b641b",
+      "sha256": "0dd45fba7d7f4f4baa2ec61b7b4a63ca78ad185f0de6b0937174f64e3682f215",
       "source_id": "docs:introduction",
       "status": "fetched",
       "title": "Introduction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
-      "sha256": "9a51bdc66a1b898e467a7ef006357d7537335ae7409311e5f4271c01a13e4bc1",
+      "sha256": "7fad38ac7a456fc0d1dc8b43a783ce73e5077f163a5872e65c74eba363c8148a",
       "source_id": "docs:introduction/quickstart",
       "status": "fetched",
       "title": "Quick start"
@@ -53,21 +53,21 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/system-one",
-      "sha256": "55dda6c80c2d04b0e6d897a9f9fb2752e1b6b0cb138bf724cd99eaf02146e133",
+      "sha256": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
       "source_id": "docs:concepts/system-one",
       "status": "fetched",
       "title": "System One"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/state",
-      "sha256": "1a4a8acf96bfff5dbba8c90fcc641e6102e769844982af85d04b6fd76d4a81b9",
+      "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
       "source_id": "docs:concepts/state",
       "status": "fetched",
       "title": "State"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "6827aeac1807e6b60575b1ad42ce3e8ad511c1fb6b05585dd6ed32b2722f2187",
+      "sha256": "463a475b4e499b847352917b541bf4cd2e9c59eb88f96f2bd68532ad44a0f1c4",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
@@ -102,14 +102,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/advanced",
-      "sha256": "44487b9e31d6a903c8f7664d2d458eb0b8b430bf4554768da70a15e4cc6e1e69",
+      "sha256": "cd7a2362af56a71501574cb0a1fbc56835923696ab19fe0fff581bfec4d3e9f8",
       "source_id": "docs:primitives/advanced",
       "status": "fetched",
       "title": "Advanced: structure"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/images",
-      "sha256": "cacc916cf2f5cc79a4be9094bf9ec339649a1a77123e101bfee1085d3da260bc",
+      "sha256": "bfd4f8aa9f7af7548fffc1b8868b8ee54eb3ed23c9711e02595df624d663b6c1",
       "source_id": "docs:images",
       "status": "fetched",
       "title": "Images"
@@ -368,21 +368,28 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos",
-      "sha256": "695cb61a2464f6168ec91862e2b244b8c2336efc275e77d338a42001803b934a",
+      "sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
       "source_id": "docs:demos",
       "status": "fetched",
-      "title": "Demos"
+      "title": "Made with Jev"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/demos/airbnb-listing-search",
+      "sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "source_id": "docs:demos/airbnb-listing-search",
+      "status": "fetched",
+      "title": "Airbnb listing search in Google Sheets"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
-      "sha256": "05e139e00b5b0c76d8a1bad843242852bfc54147ac12ec2c641c8ee5ebfdc9a0",
+      "sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
-      "sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+      "sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
       "source_id": "docs:models",
       "status": "fetched",
       "title": "Models"
@@ -991,6 +998,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 138,
+  "retained_count": 139,
   "schema_version": 2
 }

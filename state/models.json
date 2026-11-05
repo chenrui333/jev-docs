@@ -1,5 +1,5 @@
 {
-  "fingerprint": "a97d4b3709b5cb75b73f71be61592a47f7bc12564fe65b71f777f7653b3deacd",
+  "fingerprint": "8721104bb7d983b99eefd511c88baadc67f3c3c2c22ce292a0bfecac86b0d5eb",
   "models": [
     {
       "id": "jev-latest",
@@ -22,10 +22,10 @@
       "label": "Jev 1.14"
     }
   ],
-  "observed_at": "2026-11-03T06:50:01.510326Z",
+  "observed_at": "2026-11-05T06:49:07.818284Z",
   "provenance": [
     {
-      "sha256": "825b0e0d9652d0a347cc66211b44db6a4ceb4b37db4f5502a14c7cdca50efc37",
+      "sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
       "source_id": "docs:models",
       "url": "https://docs.typesafe.ai/models.md"
     }
