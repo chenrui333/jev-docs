@@ -15,7 +15,7 @@ permissions:
 jobs:
   sync:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     outputs:
       baseline: ${{ steps.bundle.outputs.baseline }}
       publication_eligible: ${{ steps.bundle.outputs.publication_eligible }}
@@ -91,7 +91,7 @@ jobs:
   publish:
     needs: sync
     if: always() && !cancelled() && needs.sync.outputs.publication_eligible == 'true' && needs.sync.outputs.artifact_id != ''
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     steps:
@@ -138,7 +138,7 @@ jobs:
   strict-health:
     needs: [sync, publish]
     if: always() && needs.sync.outputs.health_failure == 'true'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions: {}
     steps:
       - name: Report expired SDK health after publication
