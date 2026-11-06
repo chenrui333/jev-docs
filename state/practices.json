@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "d4e006b2beed3b9f3c322f88586b7c97a800f9015c1663225450c1560bc08c89",
+  "fingerprint": "99491dfd87a3b7fc9a092d6f4fede7f01da775a62914f2cecc57add9429101aa",
   "items": [
     {
       "category": "agent-integration",
@@ -207,8 +207,8 @@
       "category": "batching",
       "evidence_reviews": [
         {
-          "context_sha256": "daaf8245a55a384bfb8c8d6e42e80c4b4d460f6172bc187f366e83b60575687c",
-          "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+          "context_sha256": "786ec12c064651ac281697ab8e33ca72d6f6abaeed0f952708877417d1d8eb5c",
+          "sha256": "cd53b693dd68bc3c1f487e9ca3781e32b4e7c184e14bc83272401cddaed4c9cb",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -629,8 +629,8 @@
       "category": "state",
       "evidence_reviews": [
         {
-          "context_sha256": "daaf8245a55a384bfb8c8d6e42e80c4b4d460f6172bc187f366e83b60575687c",
-          "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+          "context_sha256": "786ec12c064651ac281697ab8e33ca72d6f6abaeed0f952708877417d1d8eb5c",
+          "sha256": "cd53b693dd68bc3c1f487e9ca3781e32b4e7c184e14bc83272401cddaed4c9cb",
           "source_id": "docs:concepts/state",
           "url": "https://docs.typesafe.ai/concepts/state.md",
           "verdict": "unreviewed"
@@ -725,12 +725,12 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-11-05T06:49:07.824207Z",
+  "observed_at": "2026-11-06T06:49:57.068186Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
     "docs:concepts/how-to-build-with-system-one": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
-    "docs:concepts/state": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+    "docs:concepts/state": "cd53b693dd68bc3c1f487e9ca3781e32b4e7c184e14bc83272401cddaed4c9cb",
     "docs:concepts/system-one": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
     "docs:confidence": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
     "docs:introduction/coding-agents": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",

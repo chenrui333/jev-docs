@@ -91,19 +91,19 @@
       "upstream_last_modified": "2026-11-04T09:29:41.299Z"
     },
     {
-      "bytes": 3952,
+      "bytes": 3750,
       "canonical_url": "https://docs.typesafe.ai/concepts/state",
       "description": "What state is, how to structure it, and how to give a System One model the context it needs.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/state.md",
-      "observed_at": "2026-11-05T06:49:09.028065Z",
-      "sha256": "fd7467d316709557c570aaa8c6e2201217e067ec6a3641f88127c672a9f79501",
+      "observed_at": "2026-11-06T06:49:57.820562Z",
+      "sha256": "cd53b693dd68bc3c1f487e9ca3781e32b4e7c184e14bc83272401cddaed4c9cb",
       "source_id": "docs:concepts/state",
       "source_tag": null,
       "source_type": "documentation",
       "title": "State",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-05T04:17:26.299Z"
+      "upstream_last_modified": "2026-11-05T20:15:35.058Z"
     },
     {
       "bytes": 4399,
@@ -526,19 +526,19 @@
       "upstream_last_modified": "2026-11-04T09:29:41.298Z"
     },
     {
-      "bytes": 22679,
+      "bytes": 22482,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
       "description": "Hides insults, spam, and unasked-for gameplay tips in Twitch chat, blurs spoilers, and highlights questions. Each message gets one TypeSafe request with three questions, requests run concurrently, and plain rules in code turn the answers into what the viewer sees.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter.md",
-      "observed_at": "2026-11-02T21:43:39.264598Z",
-      "sha256": "6d5625edb91f2698fc7774477f252d501f13f3cc94ca00b7098e52e30de5b538",
+      "observed_at": "2026-11-06T06:49:57.822123Z",
+      "sha256": "3c7f2a1fc399c0904c88925d9936c696430f5337d8c139078b232a1108ad6b3e",
       "source_id": "docs:cookbooks/twitch_chat_filter",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Twitch chat filter",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-02T19:54:12.860Z"
+      "upstream_last_modified": "2026-11-05T20:15:35.059Z"
     },
     {
       "bytes": 1481,
@@ -706,19 +706,19 @@
       "upstream_last_modified": "2026-11-04T09:29:41.298Z"
     },
     {
-      "bytes": 8556,
+      "bytes": 8177,
       "canonical_url": "https://docs.typesafe.ai/models",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/models.md",
-      "observed_at": "2026-11-05T06:49:09.029675Z",
-      "sha256": "f38388fdcbcf7b14e7cb1ae4d0d0f7c6b833bcf4287a47097ac1426bad210b4d",
+      "observed_at": "2026-11-06T06:49:57.822490Z",
+      "sha256": "09ff62cff4c56b2d4d1827541e2af06f1d15c21f0ef8879dd488e72a373b34ca",
       "source_id": "docs:models",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Models",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-05T04:17:26.302Z"
+      "upstream_last_modified": "2026-11-05T20:15:35.057Z"
     },
     {
       "bytes": 3224,
