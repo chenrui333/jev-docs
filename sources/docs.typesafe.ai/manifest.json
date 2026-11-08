@@ -151,19 +151,19 @@
       "upstream_last_modified": "2026-11-04T08:55:32.456Z"
     },
     {
-      "bytes": 9139,
+      "bytes": 9415,
       "canonical_url": "https://docs.typesafe.ai/cookbooks",
       "description": "End-to-end recipes that show TypeSafe in real problems, from a few questions to full pipelines.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks.md",
-      "observed_at": "2026-11-07T05:59:47.661947Z",
-      "sha256": "fc4354fbf1aec82e26f241edbbcc1ee659b9ac7ef9313d59f936a24aa9495539",
+      "observed_at": "2026-11-08T06:05:57.918305Z",
+      "sha256": "ce9b744ed9c3e7d38f0e6233bc2aff1e022b45c6f568ab7108e24a7caf3d4fc2",
       "source_id": "docs:cookbooks",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Cookbooks",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:38.493Z"
+      "upstream_last_modified": "2026-11-08T01:28:11.934Z"
     },
     {
       "bytes": 40138,
@@ -181,19 +181,19 @@
       "upstream_last_modified": "2026-11-07T00:23:38.490Z"
     },
     {
-      "bytes": 76088,
+      "bytes": 76966,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
       "description": "Let an LLM propose questions about labelled text, have Jev answer them for every row, and train CatBoost on the answers, feeding its misses back to the next step. The worked example predicts how polite Wikipedia editors' requests read.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md",
-      "observed_at": "2026-11-07T05:59:47.662177Z",
-      "sha256": "55820296402268635fb8695bab75e46bca62c3138fa6baac516387a87f7d68be",
+      "observed_at": "2026-11-08T06:05:57.918498Z",
+      "sha256": "1f58fc7dcc3d5a1fd6ad4597d13446b2415825bc101e1b03562f83b97fcd9f7d",
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Autoresearch feature discovery",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-06T22:45:40.520Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.385Z"
     },
     {
       "bytes": 27203,
@@ -241,64 +241,64 @@
       "upstream_last_modified": "2026-11-07T00:23:38.488Z"
     },
     {
-      "bytes": 30287,
+      "bytes": 31260,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
       "description": "Classify SEC annual reports into 75 industry groups with one Choice each, then read the answer's own confidence to decide whether to report that group or the broader division above it.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence.md",
-      "observed_at": "2026-11-07T05:59:47.662389Z",
-      "sha256": "4e670e1a403508fca9949afd38c977e889be1e32a9212b56749302ac4edc5fdd",
+      "observed_at": "2026-11-08T06:05:57.918760Z",
+      "sha256": "aefb1ca92b36453e2d7805ff86772caaba2fffa22e2ba9f23e6e553fd2abea20",
       "source_id": "docs:cookbooks/classification_using_confidence",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Classification using confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:38.492Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.389Z"
     },
     {
-      "bytes": 32624,
+      "bytes": 33541,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
       "description": "Score each retrieved passage with one TypeSafe request, then decide in code which ones reach the answering model.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages.md",
-      "observed_at": "2026-11-07T05:59:47.662459Z",
-      "sha256": "8e690b013a92cb28c0e204d0d4b5ad775a1a0c4f835b2c57949d21aeed80f358",
+      "observed_at": "2026-11-08T06:05:57.918838Z",
+      "sha256": "6305f12ae813300de8d85dec63871c5e801420f67e72d63df4226c703ed5564b",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Classifying RAG passages",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:38.489Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.383Z"
     },
     {
-      "bytes": 45543,
+      "bytes": 46488,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
       "description": "Ask a model the same moderation question twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline posts.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md",
-      "observed_at": "2026-11-04T06:26:11.877815Z",
-      "sha256": "a54b09202e99b64f0e0461401f38cf698f5d6f48945f5b2790c42b88e72d0cbc",
+      "observed_at": "2026-11-08T06:05:57.918927Z",
+      "sha256": "eca459ccda51d2ca365a47e48804bf1362592484982694185d1b80a73cde6f91",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Self-consistency: choices",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.167Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.382Z"
     },
     {
-      "bytes": 38034,
+      "bytes": 38975,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
       "description": "Ask a model about the same insurance claim twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline claims.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md",
-      "observed_at": "2026-11-04T06:26:11.877884Z",
-      "sha256": "9b616bed7543afe60a413f720ff4007ebb75214377c43533895cf5d036510ca7",
+      "observed_at": "2026-11-08T06:05:57.919000Z",
+      "sha256": "aa7a518f74cb1a5fbfc10d4f27ab7a166b35c1ebd1e96e78460c5eb7c86d7f59",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Self-consistency: nouls",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:22.178Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.386Z"
     },
     {
       "bytes": 19966,
@@ -316,19 +316,19 @@
       "upstream_last_modified": "2026-11-07T00:23:38.494Z"
     },
     {
-      "bytes": 21691,
+      "bytes": 22464,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
       "description": "Route candidate record pairs from two sources to a merge recommendation, manual review, or no link, using one Score question. Three Noul questions check individual fields. The worked example uses 450 album pairs from Wikidata and MusicBrainz.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md",
-      "observed_at": "2026-11-03T06:50:02.433758Z",
-      "sha256": "b04d0f7c27e567f24f53b036584ee68dc92067fa97318839a9da6d5415dc7503",
+      "observed_at": "2026-11-08T06:05:57.919096Z",
+      "sha256": "771a97c01ca416e7ed819803f237055415359eec43a6efc91444245e8eced204",
       "source_id": "docs:cookbooks/entity_alignment",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Knowledge graph entity alignment",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-03T00:09:02.779Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.375Z"
     },
     {
       "bytes": 35106,
@@ -346,19 +346,19 @@
       "upstream_last_modified": "2026-11-02T23:24:51.473Z"
     },
     {
-      "bytes": 19195,
+      "bytes": 19623,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
       "description": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware System One questions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/function_calling.md",
-      "observed_at": "2026-11-07T05:59:47.662859Z",
-      "sha256": "9b69a54781e0c2ea69d37c425d2a7372391bb3461f02461dc2f125f3fcfc5c52",
+      "observed_at": "2026-11-08T06:05:57.919205Z",
+      "sha256": "07168a2f015aec7b7544981eea9155870bc68e45d0c0e26fcc3b828e1cb3a2eb",
       "source_id": "docs:cookbooks/function_calling",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Function calling",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:38.493Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.374Z"
     },
     {
       "bytes": 33020,
@@ -466,34 +466,34 @@
       "upstream_last_modified": "2026-11-02T23:24:51.477Z"
     },
     {
-      "bytes": 22174,
+      "bytes": 22910,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
       "description": "Builds 30-passage BM25 shortlists for 40 CLERC legal queries, then uses one System One question per query-candidate pair to raise top-1 accuracy from 5% to 30% and top-10 accuracy from 38% to 65%.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md",
-      "observed_at": "2026-11-07T05:59:47.663319Z",
-      "sha256": "fc2084d66cc9ad5c29c32594dcb1f21b0089f8093cc042c02d3a7be2db62a579",
+      "observed_at": "2026-11-08T06:05:57.919607Z",
+      "sha256": "8ccb33c7bdff97a7f114f42110ffae4e67fde1b97cf45310e7a83005b1222535",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Re-ranking",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:38.495Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.391Z"
     },
     {
-      "bytes": 20554,
+      "bytes": 21360,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
       "description": "Extracts structured data with a cheap model, checks each field with Jev, and escalates to a reasoning model only when a check fires.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md",
-      "observed_at": "2026-11-07T05:59:47.663372Z",
-      "sha256": "a75f202cece397f493066222e65ca69abadddaee5a12a8b24952d3a81612a566",
+      "observed_at": "2026-11-08T06:05:57.919675Z",
+      "sha256": "bf0df0eae4734120f6e41142255b5223d9d7dc44e94d22ab580937c87930c5d7",
       "source_id": "docs:cookbooks/sde_cascade",
       "source_tag": null,
       "source_type": "documentation",
       "title": "SDE cascade",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-06T22:32:41.403Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.387Z"
     },
     {
       "bytes": 37384,
@@ -511,19 +511,19 @@
       "upstream_last_modified": "2026-11-07T00:23:38.502Z"
     },
     {
-      "bytes": 42128,
+      "bytes": 42974,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
       "description": "Picks at most one skill for an agent turn out of the 194 in Nous Research's Hermes catalog, using two TypeSafe requests to rank and re-check the top candidates.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion.md",
-      "observed_at": "2026-11-04T19:46:41.799978Z",
-      "sha256": "5d96d3c5a19d8c47ffa2f13bfdb6fdcec3f02e4efa9d93ad286e2a82ce88149b",
+      "observed_at": "2026-11-08T06:05:57.919817Z",
+      "sha256": "1a0e998b20d85d4fd9ff9d6070ca0ff4cc6228b5a2ebe7a0d53decadfc9c30c8",
       "source_id": "docs:cookbooks/skill_suggestion",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Skill suggestion",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T09:29:41.298Z"
+      "upstream_last_modified": "2026-11-07T21:13:39.387Z"
     },
     {
       "bytes": 22482,
@@ -539,6 +539,21 @@
       "title": "Twitch chat filter",
       "upstream_commit": null,
       "upstream_last_modified": "2026-11-05T20:15:35.059Z"
+    },
+    {
+      "bytes": 31389,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs",
+      "description": "Check whether an LLM's answer follows from the paragraphs it was given, using three Noul questions in one request, and send the doubtful answers to review.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs.md",
+      "observed_at": "2026-11-08T06:05:57.919903Z",
+      "sha256": "9f4b460ba729c142b7d726b5aa11451eee251994143354c753d43e21b19c703f",
+      "source_id": "docs:cookbooks/verify_llm_outputs",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Verifying LLM answers against their source",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-08T01:28:11.932Z"
     },
     {
       "bytes": 1481,
@@ -676,13 +691,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 21017,
+      "bytes": 21279,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-11-07T05:59:47.663915Z",
-      "sha256": "ef36aa3d37781e818f8e85dbe1ffc4fe859d01eb9bff8a0da07f33396460c725",
+      "observed_at": "2026-11-08T06:05:57.920189Z",
+      "sha256": "836e6b3b60da10df42ab572951eee59f2f9508bfa16280938f990cf4fb1a20ab",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
