@@ -1,5 +1,5 @@
 {
-  "fingerprint": "6d4a3f78be602ffdfcdb4bc022436268f582e1a4e0cb5af32b9dadf76777332a",
+  "fingerprint": "5ab021a1dfba1a3f83a9296c75753510460e651ec8dabce144b878e4dc545c04",
   "items": [
     {
       "category": "extraction",
@@ -14,7 +14,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "ca8e57d2d8a1761cc8c3cdaa4b2f52661c6b536fba1fe822a65c8f05f785d5b4",
+          "sha256": "fd11f29faa6a8bfe3cc6faccafd6c3888b9446c9ed29b6271e0f951f4393a108",
           "source_id": "docs:cookbooks/autoformat",
           "url": "https://docs.typesafe.ai/cookbooks/autoformat.md"
         }
@@ -168,7 +168,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "10f1873e1fd6042d07e7f8aec9c88a4ac4fe55d64d6fdae81ed1b6155d9c60bf",
+          "sha256": "1ce13d80d84971582caeb2bac2ae2dd4f36bf710296f215455493b86896cecf8",
           "source_id": "docs:cookbooks/consistency_choice_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md"
         }
@@ -190,7 +190,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "f840a387c35fc58c4d46e37324de3db06a25ce886ca658f6ad84314397ee5bc6",
+          "sha256": "5456605e07c1ced849ff40a4a30d1c6fff4716f43ff5d5eba7693ea434cd669c",
           "source_id": "docs:cookbooks/consistency_noul_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md"
         }
@@ -212,7 +212,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "17748989a8ac5b25d3e5c8714e258aebe07137a5f8bce6b3bc9ae43bfc554ebc",
+          "sha256": "a1e4e6ca758a37191dd41944be9d7824668dfcdcacdade1fb58b78813e0c7c0c",
           "source_id": "docs:cookbooks/date_extraction_cookbook",
           "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook.md"
         }
@@ -278,7 +278,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "48f74ee6da4098ca01b9a702601af421649756e8eaad12230a5fb49f91eca04e",
+          "sha256": "a984c79b24d3c75e007a9bcebc6faf30d7397d5f7e3dd9b6f434c6ae7e2a8b1a",
           "source_id": "docs:cookbooks/function_calling",
           "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
         }
@@ -300,7 +300,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "05524a4cce37522f5dd156c2c81c07318d4ef12570d2728e243873bf193d50e8",
+          "sha256": "edfe9d0f59ae6396aeca254cae1220f84e45db8aa8c13084b7c62d15651193cd",
           "source_id": "docs:cookbooks/hierarchical_classification",
           "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification.md"
         }
@@ -410,7 +410,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "16f519150031307399f6c1a3f7969a66d8d47cf22d758747154fdc8aee82ad72",
+          "sha256": "dfbd550c3fd29d066f30faf748c23d0dd6e68604bd0e342e18f1d5d67dacb727",
           "source_id": "docs:cookbooks/parallel_questions",
           "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md"
         }
@@ -476,7 +476,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "e1e470d434842b6210e71c9f509e449bc27b69ff808c2c87299292cca50729c5",
+          "sha256": "5cc36ddb6c7a53086a49142f68ca921ca23b6d09ef8efd7a66c39893720f1222",
           "source_id": "docs:cookbooks/rerank_typesafe",
           "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe.md"
         }
@@ -498,7 +498,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "f75ded5d931774cb095063f62203ff8850cdce59d09cd3ed7fa19c3070d0ccec",
+          "sha256": "8beab8b259bce17a86ed14bcd334c1df4ce671fbd2ce186db2a50d385cec3cf2",
           "source_id": "docs:cookbooks/sde_cascade",
           "url": "https://docs.typesafe.ai/cookbooks/sde_cascade.md"
         }
@@ -596,7 +596,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs"
     }
   ],
-  "observed_at": "2026-11-11T06:25:05.980090Z",
+  "observed_at": "2026-11-12T07:13:02.842758Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }
