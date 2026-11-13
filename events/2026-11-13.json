@@ -116,6 +116,25 @@
       "summary": "Documentation page docs:cookbooks/consistency_noul_cookbook modified in successful discovery."
     },
     {
+      "after_sha256": "c62b1f421906fdf11028f49f424ae14bd567dcaabe1a35cb37f0e32e15d4383c",
+      "before_sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/airbnb-listing-search",
+      "id": "97498e54bf58b90b5b790bac",
+      "observed_at": "2026-11-13T19:44:09.421222Z",
+      "previous_event_id": "9a2392d7239a66fdcca74171",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c62b1f421906fdf11028f49f424ae14bd567dcaabe1a35cb37f0e32e15d4383c",
+          "source_id": "docs:demos/airbnb-listing-search",
+          "url": "https://docs.typesafe.ai/demos/airbnb-listing-search"
+        }
+      ],
+      "summary": "Documentation page docs:demos/airbnb-listing-search modified in successful discovery."
+    },
+    {
       "after_sha256": "ee8115aa11d41ae06dfd427c9e1dc0fb454edd9a4fabe75f5dbd2f7b97daf5fd",
       "before_sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
       "category": "documentation",
@@ -152,6 +171,25 @@
         }
       ],
       "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "35ac22f310f3b2d917eaa330afce38818d6858557705efce530e95ebc24169c6",
+      "before_sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos/smart-home",
+      "id": "c646acdaf96834dd4dda68a9",
+      "observed_at": "2026-11-13T19:44:09.421222Z",
+      "previous_event_id": "f71cdb3401164b1f4f15956b",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "35ac22f310f3b2d917eaa330afce38818d6858557705efce530e95ebc24169c6",
+          "source_id": "docs:demos/smart-home",
+          "url": "https://docs.typesafe.ai/demos/smart-home"
+        }
+      ],
+      "summary": "Documentation page docs:demos/smart-home modified in successful discovery."
     }
   ],
   "schema_version": 1

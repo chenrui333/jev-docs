@@ -389,14 +389,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/airbnb-listing-search",
-      "sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "sha256": "c62b1f421906fdf11028f49f424ae14bd567dcaabe1a35cb37f0e32e15d4383c",
       "source_id": "docs:demos/airbnb-listing-search",
       "status": "fetched",
       "title": "Airbnb listing search in Google Sheets"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
-      "sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
+      "sha256": "35ac22f310f3b2d917eaa330afce38818d6858557705efce530e95ebc24169c6",
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"

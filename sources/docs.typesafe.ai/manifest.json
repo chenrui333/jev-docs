@@ -586,19 +586,19 @@
       "upstream_last_modified": "2026-11-12T22:44:42.039Z"
     },
     {
-      "bytes": 8966,
+      "bytes": 9049,
       "canonical_url": "https://docs.typesafe.ai/demos/airbnb-listing-search",
       "description": "Describe a stay in plain English and get the 10 best of 1,000 Cape Town Airbnb listings, scored out of 10, in about a second, from a formula in Google Sheets.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos/airbnb-listing-search.md",
-      "observed_at": "2026-11-05T06:49:09.029414Z",
-      "sha256": "e6ab5b3fe1b3af5e0f1ff0736e589b2d656cf3c4ed7bc2674d6c7896e782efc5",
+      "observed_at": "2026-11-13T19:44:09.422805Z",
+      "sha256": "c62b1f421906fdf11028f49f424ae14bd567dcaabe1a35cb37f0e32e15d4383c",
       "source_id": "docs:demos/airbnb-listing-search",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Airbnb listing search in Google Sheets",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T20:18:38.038Z"
+      "upstream_last_modified": "2026-11-13T08:43:03.748Z"
     },
     {
       "bytes": 10919,
@@ -616,19 +616,19 @@
       "upstream_last_modified": "2026-11-12T22:44:42.039Z"
     },
     {
-      "bytes": 3388,
+      "bytes": 3240,
       "canonical_url": "https://docs.typesafe.ai/demos/smart-home",
       "description": "Demo code: a smart home assistant that uses Jev to evaluate user requests.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos/smart-home.md",
-      "observed_at": "2026-11-05T06:49:09.029435Z",
-      "sha256": "7a9765549150eb7c82634585790f66974149df606691de8ed66a909860cb5b2b",
+      "observed_at": "2026-11-13T19:44:09.422843Z",
+      "sha256": "35ac22f310f3b2d917eaa330afce38818d6858557705efce530e95ebc24169c6",
       "source_id": "docs:demos/smart-home",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Smart home assistant demo",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T20:36:46.320Z"
+      "upstream_last_modified": "2026-11-13T08:43:03.748Z"
     },
     {
       "bytes": 21186,
