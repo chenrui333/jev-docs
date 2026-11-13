@@ -1,9 +1,9 @@
 {
   "docs": {
-    "discovered_pages": 141,
+    "discovered_pages": 142,
     "status": "up_to_date"
   },
-  "fingerprint": "a962db466705104355a77612fc499314cab07b6d75e3ded58daf2d8e71e095cc",
+  "fingerprint": "a5043c7f8b99fa39e8992966f750c354585ea12917562d9a9c014071dff472eb",
   "grace_period_days": 3,
   "javascript": {
     "discrepancies": [],
@@ -11,8 +11,8 @@
     "tag": "v0.7.0",
     "version": "0.7.0"
   },
-  "last_changed": "2026-11-11T06:25:06.964079Z",
-  "observed_at": "2026-11-11T06:25:07.004282Z",
+  "last_changed": "2026-11-13T06:47:55.248153Z",
+  "observed_at": "2026-11-13T06:47:55.269744Z",
   "python": {
     "discrepancies": [],
     "status": "up_to_date",

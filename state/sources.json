@@ -271,34 +271,34 @@
       "upstream_last_modified": "2026-11-11T02:13:02.917Z"
     },
     {
-      "bytes": 53953,
+      "bytes": 50368,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
       "description": "Ask a model the same moderation question twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline posts.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook.md",
-      "observed_at": "2026-11-12T07:13:03.679536Z",
-      "sha256": "1ce13d80d84971582caeb2bac2ae2dd4f36bf710296f215455493b86896cecf8",
+      "observed_at": "2026-11-13T06:47:55.248890Z",
+      "sha256": "7ca6a19b5428c2247d2859fa16adeda6dab283bc823f40688a8cf4f71b72adab",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Self-consistency: choices",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-12T01:30:26.214Z"
+      "upstream_last_modified": "2026-11-12T21:55:51.262Z"
     },
     {
-      "bytes": 45832,
+      "bytes": 42761,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
       "description": "Ask a model about the same insurance claim twice: how often does the decision change? A test of reliability that needs no answer key, comparing LLMs and Jev on borderline claims.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook.md",
-      "observed_at": "2026-11-12T07:13:03.679651Z",
-      "sha256": "5456605e07c1ced849ff40a4a30d1c6fff4716f43ff5d5eba7693ea434cd669c",
+      "observed_at": "2026-11-13T06:47:55.248942Z",
+      "sha256": "6ce83cacfed3fc59f468df17bd2f64fc3412fabd321e0946baacc27bde241261",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Self-consistency: nouls",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-12T01:30:26.214Z"
+      "upstream_last_modified": "2026-11-12T21:55:51.262Z"
     },
     {
       "bytes": 20094,
@@ -571,19 +571,19 @@
       "upstream_last_modified": "2026-11-11T02:13:02.915Z"
     },
     {
-      "bytes": 1481,
+      "bytes": 1760,
       "canonical_url": "https://docs.typesafe.ai/demos",
       "description": "Working projects built on Jev, and how each one works.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/demos.md",
-      "observed_at": "2026-11-05T06:49:09.029391Z",
-      "sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
+      "observed_at": "2026-11-13T06:47:55.249626Z",
+      "sha256": "ee8115aa11d41ae06dfd427c9e1dc0fb454edd9a4fabe75f5dbd2f7b97daf5fd",
       "source_id": "docs:demos",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Made with Jev",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T20:18:38.033Z"
+      "upstream_last_modified": "2026-11-12T22:44:42.039Z"
     },
     {
       "bytes": 8966,
@@ -599,6 +599,21 @@
       "title": "Airbnb listing search in Google Sheets",
       "upstream_commit": null,
       "upstream_last_modified": "2026-11-04T20:18:38.038Z"
+    },
+    {
+      "bytes": 10919,
+      "canonical_url": "https://docs.typesafe.ai/demos/content-audit",
+      "description": "Audit all of the Django documentation in under 5 seconds for $0.10. Get an overview of what kind of content you have, what needs fixing, and where to spend effort.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/demos/content-audit.md",
+      "observed_at": "2026-11-13T06:47:55.249661Z",
+      "sha256": "38d262c55224e348d35f0be722720a04d83db9adc668d30b1a4b83490f2c2154",
+      "source_id": "docs:demos/content-audit",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Content audits with Jev",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-12T22:44:42.039Z"
     },
     {
       "bytes": 3388,
@@ -706,13 +721,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 21655,
+      "bytes": 21897,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-11-12T07:13:03.681483Z",
-      "sha256": "153c171f945e28fff222ac45167deedbfee03736e54cc608520efef511e69eaa",
+      "observed_at": "2026-11-13T06:47:55.249814Z",
+      "sha256": "72eb4022ce081493b7a4a077328a2a8ce7bbaacbfd71b5a84cf52b962ce2fe0d",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",
@@ -961,19 +976,19 @@
       "upstream_last_modified": "2026-09-12T04:19:16.535Z"
     },
     {
-      "bytes": 6874,
+      "bytes": 6872,
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript",
       "description": "",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/javascript.md",
-      "observed_at": "2026-10-15T04:42:35.038825Z",
-      "sha256": "e97bef8031ae1db7d1172c642e3d7f642323a130bde0acfcfde533bd66afff1a",
+      "observed_at": "2026-11-13T06:47:55.250113Z",
+      "sha256": "9d4220755e9130756fc3fde84d0464703a74418a628ab7fcf4524f7583ab469d",
       "source_id": "docs:sdk/javascript",
       "source_tag": null,
       "source_type": "documentation",
       "title": "JavaScript SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:29:53.765Z"
+      "upstream_last_modified": "2026-11-12T22:01:49.948Z"
     },
     {
       "bytes": 5685,
@@ -1921,19 +1936,19 @@
       "upstream_last_modified": "2026-10-21T18:17:10.664Z"
     },
     {
-      "bytes": 4185,
+      "bytes": 4181,
       "canonical_url": "https://docs.typesafe.ai/sdk/python",
       "description": "Install the TypeSafe Python SDK and get started with asynchronous or synchronous API calls.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python.md",
-      "observed_at": "2026-10-31T05:46:20.462349Z",
-      "sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
+      "observed_at": "2026-11-13T06:47:55.250788Z",
+      "sha256": "062643b66b1145bce944f30ba8737013950562db174b944c6ac1f51e0a762d49",
       "source_id": "docs:sdk/python",
       "source_tag": null,
       "source_type": "documentation",
       "title": "TypeSafe Python SDK",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:23:09.104Z"
+      "upstream_last_modified": "2026-11-12T22:01:49.948Z"
     },
     {
       "bytes": 926,
@@ -2026,19 +2041,19 @@
       "upstream_last_modified": "2026-09-15T18:15:54.317Z"
     },
     {
-      "bytes": 5595,
+      "bytes": 5541,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/assets",
       "description": "Attach assets to System One requests and reference them from request content.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/assets.md",
-      "observed_at": "2026-10-24T04:39:13.639381Z",
-      "sha256": "0c8e02645d374c54c39033f2654c38f035ed35d7833d02b0600f710e1c87b129",
+      "observed_at": "2026-11-13T06:47:55.250903Z",
+      "sha256": "7096594f14e77d4d839851c2505e0365813a5f2eaa0a5cf91fa89a81c7ee1df5",
       "source_id": "docs:sdk/python/api/types/assets",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Assets",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:23:09.116Z"
+      "upstream_last_modified": "2026-11-12T22:01:49.948Z"
     },
     {
       "bytes": 2475,
@@ -2056,19 +2071,19 @@
       "upstream_last_modified": "2026-10-14T21:23:09.092Z"
     },
     {
-      "bytes": 26284,
+      "bytes": 26149,
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
       "description": "Provide state and ask yes/no, choice, and score questions using objects or dictionaries.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/sdk/python/api/types/questions.md",
-      "observed_at": "2026-10-31T05:46:20.462627Z",
-      "sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
+      "observed_at": "2026-11-13T06:47:55.250948Z",
+      "sha256": "84b3760a3b8e88e8a250e4245546dd76db7218f50738a872cb0e9e0aecd4d145",
       "source_id": "docs:sdk/python/api/types/questions",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Questions",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-10-14T21:23:09.097Z"
+      "upstream_last_modified": "2026-11-12T22:01:49.948Z"
     },
     {
       "bytes": 34894,

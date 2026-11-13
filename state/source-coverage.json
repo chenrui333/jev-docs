@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 141,
+  "discovered_count": 142,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "153c171f945e28fff222ac45167deedbfee03736e54cc608520efef511e69eaa",
+    "sha256": "72eb4022ce081493b7a4a077328a2a8ce7bbaacbfd71b5a84cf52b962ce2fe0d",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 141,
+  "fetched_count": 142,
   "intentionally_excluded": [
     {
       "reason": "external-host",
@@ -354,14 +354,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
-      "sha256": "1ce13d80d84971582caeb2bac2ae2dd4f36bf710296f215455493b86896cecf8",
+      "sha256": "7ca6a19b5428c2247d2859fa16adeda6dab283bc823f40688a8cf4f71b72adab",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "status": "fetched",
       "title": "Self-consistency: choices"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
-      "sha256": "5456605e07c1ced849ff40a4a30d1c6fff4716f43ff5d5eba7693ea434cd669c",
+      "sha256": "6ce83cacfed3fc59f468df17bd2f64fc3412fabd321e0946baacc27bde241261",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "status": "fetched",
       "title": "Self-consistency: nouls"
@@ -382,7 +382,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos",
-      "sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
+      "sha256": "ee8115aa11d41ae06dfd427c9e1dc0fb454edd9a4fabe75f5dbd2f7b97daf5fd",
       "source_id": "docs:demos",
       "status": "fetched",
       "title": "Made with Jev"
@@ -400,6 +400,13 @@
       "source_id": "docs:demos/smart-home",
       "status": "fetched",
       "title": "Smart home assistant demo"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/demos/content-audit",
+      "sha256": "38d262c55224e348d35f0be722720a04d83db9adc668d30b1a4b83490f2c2154",
+      "source_id": "docs:demos/content-audit",
+      "status": "fetched",
+      "title": "Content audits with Jev"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/models",
@@ -466,7 +473,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python",
-      "sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
+      "sha256": "062643b66b1145bce944f30ba8737013950562db174b944c6ac1f51e0a762d49",
       "source_id": "docs:sdk/python",
       "status": "fetched",
       "title": "TypeSafe Python SDK"
@@ -515,14 +522,14 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/questions",
-      "sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
+      "sha256": "84b3760a3b8e88e8a250e4245546dd76db7218f50738a872cb0e9e0aecd4d145",
       "source_id": "docs:sdk/python/api/types/questions",
       "status": "fetched",
       "title": "Questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/python/api/types/assets",
-      "sha256": "0c8e02645d374c54c39033f2654c38f035ed35d7833d02b0600f710e1c87b129",
+      "sha256": "7096594f14e77d4d839851c2505e0365813a5f2eaa0a5cf91fa89a81c7ee1df5",
       "source_id": "docs:sdk/python/api/types/assets",
       "status": "fetched",
       "title": "Assets"
@@ -564,7 +571,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/sdk/javascript",
-      "sha256": "e97bef8031ae1db7d1172c642e3d7f642323a130bde0acfcfde533bd66afff1a",
+      "sha256": "9d4220755e9130756fc3fde84d0464703a74418a628ab7fcf4524f7583ab469d",
       "source_id": "docs:sdk/javascript",
       "status": "fetched",
       "title": "JavaScript SDK"
@@ -1012,6 +1019,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 141,
+  "retained_count": 142,
   "schema_version": 2
 }

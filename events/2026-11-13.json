@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-13",
+  "events": [
+    {
+      "after_sha256": "9d4220755e9130756fc3fde84d0464703a74418a628ab7fcf4524f7583ab469d",
+      "before_sha256": "e97bef8031ae1db7d1172c642e3d7f642323a130bde0acfcfde533bd66afff1a",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/javascript",
+      "id": "069559b06fe4c2ca71cd7b80",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "4e8b5c0754383dc1229a8bdb",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "9d4220755e9130756fc3fde84d0464703a74418a628ab7fcf4524f7583ab469d",
+          "source_id": "docs:sdk/javascript",
+          "url": "https://docs.typesafe.ai/sdk/javascript"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/javascript modified in successful discovery."
+    },
+    {
+      "after_sha256": "062643b66b1145bce944f30ba8737013950562db174b944c6ac1f51e0a762d49",
+      "before_sha256": "1fb138baff1df637cb37b4f44f42704f631f29b11d87bfc6ada398d36b1ea7c0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python",
+      "id": "196656538530f9563d779699",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "c5efc95477535d303548e806",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "062643b66b1145bce944f30ba8737013950562db174b944c6ac1f51e0a762d49",
+          "source_id": "docs:sdk/python",
+          "url": "https://docs.typesafe.ai/sdk/python"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python modified in successful discovery."
+    },
+    {
+      "after_sha256": "7096594f14e77d4d839851c2505e0365813a5f2eaa0a5cf91fa89a81c7ee1df5",
+      "before_sha256": "0c8e02645d374c54c39033f2654c38f035ed35d7833d02b0600f710e1c87b129",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/assets",
+      "id": "6f4f0475a9375f84a561f744",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "858646844c0d0da7cd31dcf4",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7096594f14e77d4d839851c2505e0365813a5f2eaa0a5cf91fa89a81c7ee1df5",
+          "source_id": "docs:sdk/python/api/types/assets",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/assets"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/assets modified in successful discovery."
+    },
+    {
+      "after_sha256": "38d262c55224e348d35f0be722720a04d83db9adc668d30b1a4b83490f2c2154",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:demos/content-audit",
+      "id": "76e40872170d53bc30cda4b5",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "38d262c55224e348d35f0be722720a04d83db9adc668d30b1a4b83490f2c2154",
+          "source_id": "docs:demos/content-audit",
+          "url": "https://docs.typesafe.ai/demos/content-audit"
+        }
+      ],
+      "summary": "Documentation page docs:demos/content-audit added in successful discovery."
+    },
+    {
+      "after_sha256": "84b3760a3b8e88e8a250e4245546dd76db7218f50738a872cb0e9e0aecd4d145",
+      "before_sha256": "bfda82fabca4f1f151fc498615d37a48c14059d7da067458fc55ee03d1684320",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/api/types/questions",
+      "id": "7d71f9e8ef46985d127e2292",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "85e133bcb0fac5fcdbf3a6d0",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "84b3760a3b8e88e8a250e4245546dd76db7218f50738a872cb0e9e0aecd4d145",
+          "source_id": "docs:sdk/python/api/types/questions",
+          "url": "https://docs.typesafe.ai/sdk/python/api/types/questions"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/api/types/questions modified in successful discovery."
+    },
+    {
+      "after_sha256": "6ce83cacfed3fc59f468df17bd2f64fc3412fabd321e0946baacc27bde241261",
+      "before_sha256": "5456605e07c1ced849ff40a4a30d1c6fff4716f43ff5d5eba7693ea434cd669c",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_noul_cookbook",
+      "id": "926d5a0ab44953eb9f26e929",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "345ddc331e285d28af6e85ee",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "6ce83cacfed3fc59f468df17bd2f64fc3412fabd321e0946baacc27bde241261",
+          "source_id": "docs:cookbooks/consistency_noul_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_noul_cookbook modified in successful discovery."
+    },
+    {
+      "after_sha256": "ee8115aa11d41ae06dfd427c9e1dc0fb454edd9a4fabe75f5dbd2f7b97daf5fd",
+      "before_sha256": "c89b79bad49e9fc0fee76a708e3efb078e816900632294e7f7384f0d4e7e88fc",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:demos",
+      "id": "9d4671c636788e8e0e75991f",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "783cbc9a6396ce2aa4f33314",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ee8115aa11d41ae06dfd427c9e1dc0fb454edd9a4fabe75f5dbd2f7b97daf5fd",
+          "source_id": "docs:demos",
+          "url": "https://docs.typesafe.ai/demos"
+        }
+      ],
+      "summary": "Documentation page docs:demos modified in successful discovery."
+    },
+    {
+      "after_sha256": "7ca6a19b5428c2247d2859fa16adeda6dab283bc823f40688a8cf4f71b72adab",
+      "before_sha256": "1ce13d80d84971582caeb2bac2ae2dd4f36bf710296f215455493b86896cecf8",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/consistency_choice_cookbook",
+      "id": "b0b0f3bdbb3c887c705a1eb9",
+      "observed_at": "2026-11-13T06:47:55.248153Z",
+      "previous_event_id": "6c22c1b188289d854fa61b23",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "7ca6a19b5428c2247d2859fa16adeda6dab283bc823f40688a8cf4f71b72adab",
+          "source_id": "docs:cookbooks/consistency_choice_cookbook",
+          "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
