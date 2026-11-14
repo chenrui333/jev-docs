@@ -46,7 +46,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
-      "sha256": "2ae16aed7cc301c4ac23b2432b1135cd5b9a4c9f6cd92ca3b46a4f941adcbdbd",
+      "sha256": "db7b52a032d5da6dd9a2066b0a86762202d700d8fe5d7f6b344e374d2d5b2cb0",
       "source_id": "docs:concepts/use-case-map",
       "status": "fetched",
       "title": "Use cases"

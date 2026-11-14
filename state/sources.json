@@ -121,19 +121,19 @@
       "upstream_last_modified": "2026-11-05T04:17:26.302Z"
     },
     {
-      "bytes": 28319,
+      "bytes": 28047,
       "canonical_url": "https://docs.typesafe.ai/concepts/use-case-map",
       "description": "Build business workflows where Jev makes the judgments and your code acts on them.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/concepts/use-case-map.md",
-      "observed_at": "2026-11-12T07:13:03.678654Z",
-      "sha256": "2ae16aed7cc301c4ac23b2432b1135cd5b9a4c9f6cd92ca3b46a4f941adcbdbd",
+      "observed_at": "2026-11-14T06:25:52.838510Z",
+      "sha256": "db7b52a032d5da6dd9a2066b0a86762202d700d8fe5d7f6b344e374d2d5b2cb0",
       "source_id": "docs:concepts/use-case-map",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Use cases",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-12T02:35:34.649Z"
+      "upstream_last_modified": "2026-11-13T21:18:36.089Z"
     },
     {
       "bytes": 14159,

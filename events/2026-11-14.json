@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-14",
+  "events": [
+    {
+      "after_sha256": "db7b52a032d5da6dd9a2066b0a86762202d700d8fe5d7f6b344e374d2d5b2cb0",
+      "before_sha256": "2ae16aed7cc301c4ac23b2432b1135cd5b9a4c9f6cd92ca3b46a4f941adcbdbd",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:concepts/use-case-map",
+      "id": "88f64f9ffa576b315d029349",
+      "observed_at": "2026-11-14T06:25:52.838041Z",
+      "previous_event_id": "d82ea911a1cc0d5218701c20",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "db7b52a032d5da6dd9a2066b0a86762202d700d8fe5d7f6b344e374d2d5b2cb0",
+          "source_id": "docs:concepts/use-case-map",
+          "url": "https://docs.typesafe.ai/concepts/use-case-map"
+        }
+      ],
+      "summary": "Documentation page docs:concepts/use-case-map modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
