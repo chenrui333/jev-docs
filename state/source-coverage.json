@@ -193,189 +193,189 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
-      "sha256": "a984c79b24d3c75e007a9bcebc6faf30d7397d5f7e3dd9b6f434c6ae7e2a8b1a",
+      "sha256": "1a8754583eed24a25b9482b61b99b5d9e76325ada541026620979ca7d188baef",
       "source_id": "docs:cookbooks/function_calling",
       "status": "fetched",
       "title": "Function calling"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
-      "sha256": "bc900b82ad6fd15cd290e082d76e44234ced01d318a7e53f3f5019662853acbf",
+      "sha256": "ab46484dc57eb7f85bd02736df5bbd6bd954dc394eda6b0bbc5298b4b0443b5d",
       "source_id": "docs:cookbooks/skill_suggestion",
       "status": "fetched",
       "title": "Skill suggestion"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
-      "sha256": "d2bdd5c8be5125684a48c8f88ddc1168b0538f6ffad35933ee2817ca9a107024",
+      "sha256": "a6e5a94b8bfab1fd6c45806c81d5fa212a83a2efb43ffed632c2d6cea9a62126",
       "source_id": "docs:cookbooks/llm_guardrails",
       "status": "fetched",
       "title": "Guardrails for LLMs"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/citation_check",
-      "sha256": "c3783eb2cd0cabc197f335f5f3a8fb91f474f75f803af1f7b16fa3e4302e1b24",
+      "sha256": "15738a3465506517b5b06eddda27d646cea2332b7c32b49d70d131d73851a918",
       "source_id": "docs:cookbooks/citation_check",
       "status": "fetched",
       "title": "Double-checking citations"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs",
-      "sha256": "4a1a68d8ecd8dcb1bd1641913378cb192dfb43a3c9b7b377aa51038583041f42",
+      "sha256": "69221791aa6dc4eb47e05f9a6c6efe3f485d8b93e536ebefe39c2f30f1437455",
       "source_id": "docs:cookbooks/verify_llm_outputs",
       "status": "fetched",
       "title": "Verifying LLM answers against their source"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
-      "sha256": "915ba1f9d797b1cab7a3cf9152db5279d505011612f983c2909e42a3384b74d1",
+      "sha256": "fa7155a4b88cd9ee1d7b5256644a09b6739b732cea9b29eff3970ff73de0cedb",
       "source_id": "docs:cookbooks/classifying_rag_passages",
       "status": "fetched",
       "title": "Classifying RAG passages"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/basic_memory",
-      "sha256": "960865baef2ddcf2f9757991dcbcf7b24e9e3521144d944388c7091de63489a7",
+      "sha256": "59117d686a986d2abe3d5ab655b604b909dcf045322faeecb2d6ebb464e8b333",
       "source_id": "docs:cookbooks/basic_memory",
       "status": "fetched",
       "title": "Simple memory system"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
-      "sha256": "edfe9d0f59ae6396aeca254cae1220f84e45db8aa8c13084b7c62d15651193cd",
+      "sha256": "6d969848695974b5ec670a010da3a053babaadaab551f330d58b3fc04d75203a",
       "source_id": "docs:cookbooks/hierarchical_classification",
       "status": "fetched",
       "title": "Hierarchical classification"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
-      "sha256": "4e8f5bbb9b96443cca02763361cce2890db23a9995a71bc19d436f70c467d565",
+      "sha256": "14a94bae5b97741ae4fd466ed647f19d923bb06bfd85fa4fd4ffa1de75b25b40",
       "source_id": "docs:cookbooks/classification_using_confidence",
       "status": "fetched",
       "title": "Classification using confidence"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/twitch_chat_filter",
-      "sha256": "35e8b119997f3246dc4f2439a12e08d4db8276862809296863daa84c1d911940",
+      "sha256": "069675fdcb5dee683aabd4561b0a5063acbbb7ef27c03d5686714cca4ccd2501",
       "source_id": "docs:cookbooks/twitch_chat_filter",
       "status": "fetched",
       "title": "Twitch chat filter"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
-      "sha256": "8beab8b259bce17a86ed14bcd334c1df4ce671fbd2ce186db2a50d385cec3cf2",
+      "sha256": "c80d5125684ba3c8703e97a9b14888e3eae6a0b88552431822261d718f1d208e",
       "source_id": "docs:cookbooks/sde_cascade",
       "status": "fetched",
       "title": "SDE cascade"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
-      "sha256": "a1e4e6ca758a37191dd41944be9d7824668dfcdcacdade1fb58b78813e0c7c0c",
+      "sha256": "84a5404cc57854132022a1dfa0599a93c3f7e4128b8e880682751a1163c143e0",
       "source_id": "docs:cookbooks/date_extraction_cookbook",
       "status": "fetched",
       "title": "Date extraction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
-      "sha256": "54ecbea30877b9279692dd3dbfaeb9ba6b8d6346935258c3112594c906724cac",
+      "sha256": "d10f1ba6fef256bb948c606166d906f19c134779241c7d63b44eb2375568a47d",
       "source_id": "docs:cookbooks/pre_parsed_value_extraction_cookbook",
       "status": "fetched",
       "title": "Pre-parsed value extraction"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
-      "sha256": "fd11f29faa6a8bfe3cc6faccafd6c3888b9446c9ed29b6271e0f951f4393a108",
+      "sha256": "611bfef9a6fee30ce4df923509bd6970d88569be7963612f02d6c0e7abf7c598",
       "source_id": "docs:cookbooks/autoformat",
       "status": "fetched",
       "title": "Structure recovery"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/cart_from_primitives",
-      "sha256": "ff1a2440fc24c6a0956ac40a2f04e3daed3c82127b56c175ff199952f23e0d50",
+      "sha256": "a871af7546be5f005c055b1638d176dda6b87501a40ea33ec164c4607706c668",
       "source_id": "docs:cookbooks/cart_from_primitives",
       "status": "fetched",
       "title": "Shopping cart"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/reading_scanned_documents",
-      "sha256": "75769d6a81009fda48d35d08306d3ebbd73b66116c772469a989d8a0a66b91c7",
+      "sha256": "b84c04d5780a5c857cf63cf59d521e9bdcd15de90940e6da14359e369abcd06c",
       "source_id": "docs:cookbooks/reading_scanned_documents",
       "status": "fetched",
       "title": "Reading a scanned vaccination record"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/ocr_confidence_bounding_boxes",
-      "sha256": "e13bfaec2ae04b362a6e7cb337598bbdbaf67afa26a92a8995dc393af58b4a13",
+      "sha256": "43f4c88b3cbf079608e3010deb490442d4270aca5d22a18dbbafcc69ccec519e",
       "source_id": "docs:cookbooks/ocr_confidence_bounding_boxes",
       "status": "fetched",
       "title": "OCR confidence and bounding boxes"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/feeder_watch",
-      "sha256": "ccbffc010fc354991cf88d674b83dd74aa266df06d7df2452d90a0fec065aaf4",
+      "sha256": "9d7be2301cde3238bed7193567dd7df8551841b22153c5af44472a7458516d67",
       "source_id": "docs:cookbooks/feeder_watch",
       "status": "fetched",
       "title": "Feeder-cam visit log"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
-      "sha256": "5cc36ddb6c7a53086a49142f68ca921ca23b6d09ef8efd7a66c39893720f1222",
+      "sha256": "4a393d576920c906965eed7792ca4c9261b8873c96a2a0d55b09658e7e57b927",
       "source_id": "docs:cookbooks/rerank_typesafe",
       "status": "fetched",
       "title": "Re-ranking"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/infinite_cardinality_choice",
-      "sha256": "e9c3b8defdcf33f2faa6511f3331a6a979ac8cc416941523d3f1503302bf4630",
+      "sha256": "c391c0a4c2a2d22f22c5ce9b5c41de242184b746d6a012fad52790fe804d3e78",
       "source_id": "docs:cookbooks/infinite_cardinality_choice",
       "status": "fetched",
       "title": "Infinite cardinality choice"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "5d84ce155af2e84ef735a49deb0a0d63d51209fb0f33fea8e626d75c4184529f",
+      "sha256": "758c3a19143136dc950e7852b2913a8970a1c8a790c2050145debbee0197d8fa",
       "source_id": "docs:cookbooks/semantic_find",
       "status": "fetched",
       "title": "Line-by-line search"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
-      "sha256": "8d679b42c81aa824deb4859bfb67d190176791640cbf493acd12d95284ae19ce",
+      "sha256": "9745f9699b5a5c1df401e46cdcee0fffc38a6dfc80b20ad4b10e91bf026a4d7e",
       "source_id": "docs:cookbooks/entity_alignment",
       "status": "fetched",
       "title": "Knowledge graph entity alignment"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/intelliprompter",
-      "sha256": "e641f7bcc18fff9d5973c03500335fc55e6bc910eb15ee275d24fb0ffbde6410",
+      "sha256": "dbd26e92a7783757fe9c253ee05b265e138be854299e94ae03e71f2dec035b8a",
       "source_id": "docs:cookbooks/intelliprompter",
       "status": "fetched",
       "title": "Intelliprompter"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
-      "sha256": "7ca6a19b5428c2247d2859fa16adeda6dab283bc823f40688a8cf4f71b72adab",
+      "sha256": "6423e0e134d6a1e4edd0ca5cbcb9b07ff6cfbc40f595512338199fa481794e2a",
       "source_id": "docs:cookbooks/consistency_choice_cookbook",
       "status": "fetched",
       "title": "Self-consistency: choices"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
-      "sha256": "6ce83cacfed3fc59f468df17bd2f64fc3412fabd321e0946baacc27bde241261",
+      "sha256": "676611801306bcd585a4d4a5b32d51620596857389d96e9eea32a64c1dfd5c3f",
       "source_id": "docs:cookbooks/consistency_noul_cookbook",
       "status": "fetched",
       "title": "Self-consistency: nouls"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
-      "sha256": "dfbd550c3fd29d066f30faf748c23d0dd6e68604bd0e342e18f1d5d67dacb727",
+      "sha256": "5de8587b1de9ab10095f81abb696ca5cbc2f489c5734ff890454a3dde757dedd",
       "source_id": "docs:cookbooks/parallel_questions",
       "status": "fetched",
       "title": "Parallel questions"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
-      "sha256": "7e8e8f2d7bc54cf5e738a39a65a24a02a3b7c9a94511b469bfbb254d86cf7f28",
+      "sha256": "a9fbdf4a54e0e6505ef77bbf25c815514367f9a4fddb3151593b1f7e2ca0994d",
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "status": "fetched",
       "title": "Autoresearch feature discovery"
