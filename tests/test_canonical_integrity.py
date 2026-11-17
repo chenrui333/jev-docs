@@ -116,6 +116,181 @@ def test_honest_repeat_is_byte_identical(tree):
     assert snapshot(tree) == before
 
 
+def _duplicate_first_page(value):
+    value["pages"].append(dict(value["pages"][0]))
+
+
+def _first_unknown_api_value(value):
+    name = next(key for key, fact in value["properties"].items() if fact["status"] == "unknown")
+    value["properties"][name]["value"] = value[name] = "tampered"
+
+
+def _unretained_api_evidence(value):
+    evidence = {"source_id": "docs:page", "excerpt": "POST", "sha256": "0" * 64}
+    value["properties"]["endpoint"] = {
+        "status": "verified",
+        "value": "POST",
+        "evidence": [evidence],
+    }
+    value["endpoint"] = "POST"
+
+
+def _recommend_practice(**reference):
+    def mutate(value):
+        source = {"source_id": "docs:page", "url": "https://docs.typesafe.ai/page"}
+        value["items"][0].update(status="recommended", sources=[source | reference])
+
+    return mutate
+
+
+def _unattributed_capability(value):
+    # Retained registry evidence is current, but it is not the claimed release commit.
+    value["capabilities"] = [
+        {"id": "capability", "introduced": "0.1.0", "source_commit": "f" * 40}
+        | {"status": "documented", "provenance": [dict(value["provenance"][0])]}
+    ]
+
+
+def _unscoped_limitation(value):
+    # Unknown status skips current-artifact matching, isolating the identity guard.
+    citation = {"source_id": "docs:page", "url": "https://docs.typesafe.ai/page", "sha256": "0"}
+    value["items"].append(
+        {"id": "unscoped", "model": "jev-1.13", "status": "unknown", "provenance": [citation]}
+    )
+
+
+# Every guard is a domain-specific diagnostic that runs before the generic
+# fingerprint check; each mutation must be rejected by its own guard.
+STATE_GUARDS = {
+    "coverage-duplicate": ("source-coverage", _duplicate_first_page, "duplicate documentation"),
+    "coverage-incomplete": (
+        "source-coverage",
+        lambda value: value.update(complete=False),
+        "incomplete or not removal-safe",
+    ),
+    "coverage-unfetched": (
+        "source-coverage",
+        lambda value: value["pages"][0].update(sha256=None),
+        "unfetched pages",
+    ),
+    "coverage-counts": (
+        "source-coverage",
+        lambda value: value.update(failed_count=1),
+        "counts disagree",
+    ),
+    "coverage-delta": (
+        "source-coverage",
+        lambda value: value.update(disappeared=[value["pages"][0]["source_id"]]),
+        "delta disagrees",
+    ),
+    "practice-excerpt-missing": (
+        "practices",
+        _recommend_practice(sha256="0" * 64),
+        "incomplete practice provenance",
+    ),
+    "practice-excerpt-long": (
+        "practices",
+        _recommend_practice(sha256="0" * 64, excerpt="x" * 421),
+        "excerpt is too long",
+    ),
+    "practice-observation": (
+        "practices",
+        lambda value: value["source_observations"].update({"docs:page": "0" * 64}),
+        "practice observation does not match",
+    ),
+    "api-value": (
+        "api",
+        lambda value: value.update(endpoint="POST https://example.invalid"),
+        "API value disagrees",
+    ),
+    "api-unknown-value": ("api", _first_unknown_api_value, "Unknown API property"),
+    "api-unverified": (
+        "api",
+        lambda value: value["properties"]["endpoint"].update(status="inferred"),
+        "lacks explicit verification",
+    ),
+    "api-provenance": ("api", _unretained_api_evidence, "API provenance does not match"),
+    "structured-duplicate": (
+        "evaluation-tool",
+        lambda value: value.update(id="same", capabilities=[{"id": "same"}]),
+        "duplicate structured identity",
+    ),
+    "structured-missing": (
+        "evaluation-tool",
+        lambda value: value.update(provenance=[]),
+        "missing structured provenance",
+    ),
+    "structured-incomplete": (
+        "evaluation-tool",
+        lambda value: value["provenance"][0].pop("sha256"),
+        "incomplete structured provenance",
+    ),
+    "structured-mismatch": (
+        "evaluation-tool",
+        lambda value: value["provenance"][0].update(sha256="0" * 64),
+        "structured provenance does not match",
+    ),
+    "capability-mutable": (
+        "sdk-python",
+        _unattributed_capability,
+        "capability lacks immutable release provenance",
+    ),
+    "limitation-unscoped": ("model-limitations", _unscoped_limitation, "not model-specific"),
+}
+
+
+@pytest.mark.parametrize("case", sorted(STATE_GUARDS))
+def test_state_guards_reject_tampering_with_their_own_diagnostic(tree, case):
+    name, mutate, message = STATE_GUARDS[case]
+    path = tree / f"state/{name}.json"
+    value = read_json(path)
+    mutate(value)
+    write_json(path, value)
+    with pytest.raises(RuntimeError, match=message):
+        validate_tree(tree)
+
+
+@pytest.mark.parametrize(
+    ("relative", "message"),
+    [
+        ("state/skill.json", "missing generated files: state/skill.json"),
+        ("BEST_PRACTICES.md", "missing generated files: BEST_PRACTICES.md"),
+        ("MODEL_LIMITATIONS.md", "model limitations rendering disagrees"),
+    ],
+)
+def test_generated_renderings_must_exist_and_match_state(tree, relative, message):
+    path = tree / relative
+    if relative == "MODEL_LIMITATIONS.md":
+        path.write_text(path.read_text() + "\nUnreviewed claim.\n")
+    else:
+        path.unlink()
+    with pytest.raises(RuntimeError, match=message):
+        validate_tree(tree)
+
+
+@pytest.mark.parametrize("strict", [False, True])
+@pytest.mark.parametrize("mutation", ["duplicate-id", "misfiled-date"])
+def test_event_files_reject_duplicate_ids_and_misfiled_days(tree, monkeypatch, strict, mutation):
+    upstream = PublicSources()
+    upstream.pages["page"] = "# A public page\n\nRevised evidence.\n"
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    assert synchronize(tree, upstream, strict=True)["events"]
+    path = tree / "events/2026-10-02.json"
+    value = read_json(path)
+    if mutation == "duplicate-id":
+        value["events"].append(dict(value["events"][0]))
+        message = "duplicate event ID"
+    else:
+        value["date"] = "2026-10-03"
+        message = "event file date disagrees"
+    write_json(path, value)
+    if mutation == "misfiled-date" and not strict:
+        validate_tree(tree)  # Day/name agreement is a strict history guarantee.
+        return
+    with pytest.raises(RuntimeError, match=message):
+        validate_tree(tree, strict=strict)
+
+
 @pytest.mark.parametrize(
     "body",
     [
