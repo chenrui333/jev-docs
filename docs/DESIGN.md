@@ -460,6 +460,26 @@ if its familiar affirmative sentence remains. Production policy contains only th
 actual reviewed official revision, not synthetic fixture hashes. The reviewed and
 observed section hashes plus source URL/hash reconstruct the review boundary.
 
+The prose reference at `docs:api` moved (it now redirects) to `docs:api/system-one`,
+whose content is a Mintlify-embedded OpenAPI 3.1 document. When canonical discovery
+lists `docs:api` that page still wins; otherwise the embedded document is used. Its
+fence must name exactly one operation (`post /v1/systemone`), and the document must
+describe only that path and method; anything else establishes no claim. YAML is
+parsed with `SafeLoader` only during extraction, and documents with anchors,
+aliases, or duplicate mapping keys are rejected as ambiguous. Claims come only from
+schema declarations reached through local `#/components/schemas/` references:
+the single HTTPS server plus path (endpoint), the request schema's `properties` and
+`required`, an explicit `default` on an optional `model`, and the `Question`
+discriminator mapping, accepted only when its `oneOf` variants agree and each mapped
+schema declares the same `type` constant. Examples, summaries, and descriptions never
+establish fields, defaults, or requiredness. `response_shape` remains a reviewed
+repository interpretation, gated by the canonical-JSON SHA-256 of the reviewed
+`SystemOneResponse.properties.answers` schema (whose description states answers are
+keyed by question name) and by `answers` being required. Evidence excerpts are the
+verbatim YAML lines that declare each claim. Restoring verification after the move
+is recorded as `modified` (`assets` and the `box` question type are new), with
+`docs:api` retained as historical evidence; no introduction date is inferred.
+
 Every verified property carries URL, source identity, hash, and bounded verbatim
 evidence; overlong proof leaves the claim unknown rather than truncating away its
 attributes. Missing references remain in `missing_sources` and actionable warnings.

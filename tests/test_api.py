@@ -716,3 +716,220 @@ def test_raw_text_and_fallback_containers_cannot_define_contract_fields(containe
     )
     expected = None if container == "plaintext" else ["model", "questions", "state"]
     assert derive(page)["request_fields"] == expected
+
+
+# A trimmed OpenAPI reference page in the Mintlify layout of docs.typesafe.ai/api/system-one.
+# The SystemOneResponse.answers schema is the exact reviewed official declaration.
+OPENAPI_PAGE = """# System One
+
+> Answer one or more questions about the content supplied in `state`.
+
+## OpenAPI
+
+````yaml https://api.typesafe.ai/openapi.json post /v1/systemone
+openapi: 3.1.0
+info:
+  title: TypeSafe
+  version: 0.2.0
+servers:
+  - url: https://api.typesafe.ai
+security: []
+paths:
+  /v1/systemone:
+    post:
+      summary: System One
+      operationId: systemone_v1_systemone_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemOneRequest'
+            examples:
+              noul:
+                value:
+                  model: jev-latest
+                  temperature: 0
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemOneResponse'
+components:
+  schemas:
+    SystemOneRequest:
+      properties:
+        model:
+          type: string
+          title: Model
+          examples:
+            - jev-latest
+        state:
+          title: State
+        questions:
+          additionalProperties:
+            $ref: '#/components/schemas/Question'
+          type: object
+        assets:
+          type: object
+      type: object
+      required:
+        - model
+        - state
+        - questions
+      title: SystemOneRequest
+    SystemOneResponse:
+      properties:
+        model:
+          type: string
+        answers:
+          additionalProperties:
+            $ref: '#/components/schemas/Answer'
+          type: object
+          minProperties: 1
+          title: Answers
+          description: >-
+            Answers keyed by the question names supplied in the request. Each
+            answer's type matches its question's type.
+          examples:
+            - billing:
+                noul: 0.98
+                type: noul
+      type: object
+      required:
+        - model
+        - answers
+        - usage
+      title: SystemOneResponse
+    Question:
+      oneOf:
+        - $ref: '#/components/schemas/NoulQuestion'
+        - $ref: '#/components/schemas/ChoiceQuestion'
+      discriminator:
+        propertyName: type
+        mapping:
+          noul: '#/components/schemas/NoulQuestion'
+          choice: '#/components/schemas/ChoiceQuestion'
+    NoulQuestion:
+      properties:
+        type:
+          type: string
+          const: noul
+      type: object
+      required:
+        - type
+    ChoiceQuestion:
+      properties:
+        type:
+          type: string
+          const: choice
+      type: object
+      required:
+        - type
+````
+"""
+OPENAPI_SID = "docs:api/system-one"
+
+
+def openapi_api(page=OPENAPI_PAGE, previous=None):
+    from jev_docs.api import extract_api
+
+    artifact = Artifact(
+        OPENAPI_SID, "documentation", "https://docs.typesafe.ai/api/system-one.md", page.encode()
+    )
+    return extract_api({OPENAPI_SID: page}, {OPENAPI_SID: artifact}, previous)
+
+
+def test_moved_openapi_reference_restores_evidence_backed_claims():
+    api = openapi_api()
+    assert {name: api[name] for name in api["properties"]} == {
+        "endpoint": "POST https://api.typesafe.ai/v1/systemone",
+        "request_fields": ["assets", "model", "questions", "state"],
+        "required_fields": ["model", "questions", "state"],
+        "model_required": True,
+        # Examples ("jev-latest") never establish a default for a required field.
+        "model_default": None,
+        "question_types": ["choice", "noul"],
+        "response_shape": "answers map keyed by question id",
+    }
+    assert api["properties"]["model_default"]["status"] == "unknown"
+    assert api["provenance"] == [
+        {
+            "source_id": OPENAPI_SID,
+            "url": "https://docs.typesafe.ai/api/system-one.md",
+            "sha256": hashlib.sha256(OPENAPI_PAGE.encode()).hexdigest(),
+        }
+    ]
+    for name, fact in api["properties"].items():
+        if name == "model_default":
+            continue
+        assert fact["status"] == "verified" and fact["evidence"], name
+        assert all(
+            e["excerpt"] in OPENAPI_PAGE and e["source_id"] == OPENAPI_SID for e in fact["evidence"]
+        )
+    # Example-only fields ("temperature") are not request fields.
+    assert "temperature" not in api["request_fields"]
+    assert not any("is missing" in warning for warning in api["warnings"])
+    assert openapi_api() == api
+
+
+def _replace(old, new):
+    assert old in OPENAPI_PAGE
+    return OPENAPI_PAGE.replace(old, new, 1)
+
+
+@pytest.mark.parametrize(
+    "page,unknown",
+    [
+        # Ambiguous or unsafe documents establish nothing.
+        (_replace("servers:\n", "servers: &shared\n"), "all"),
+        (_replace("      title: SystemOneRequest\n", "      title: X\n      type: array\n"), "all"),
+        (OPENAPI_PAGE + OPENAPI_PAGE.split("## OpenAPI")[1], "all"),
+        (_replace("post /v1/systemone", "get /v1/models"), "all"),
+        (_replace("- url: https://api.typesafe.ai", "- url: http://api.typesafe.ai"), "endpoint"),
+        # A discriminator that disagrees with its schemas is not a question type list.
+        (_replace("const: choice", "const: score"), "question_types"),
+        # The answers-correlation interpretation is gated by its reviewed declaration.
+        (_replace("Answers keyed by the question names", "Answers listed by position"), "response"),
+        (_replace("        - answers\n", ""), "response"),
+    ],
+    ids=[
+        "yaml-anchor",
+        "duplicate-key",
+        "two-specs",
+        "other-operation",
+        "insecure-server",
+        "discriminator-mismatch",
+        "unreviewed-answers",
+        "answers-optional",
+    ],
+)
+def test_ambiguous_openapi_reference_stays_unknown(page, unknown):
+    api = openapi_api(page)
+    statuses = {name: fact["status"] for name, fact in api["properties"].items()}
+    if unknown == "all":
+        assert set(statuses.values()) == {"unknown"}
+    else:
+        name = "response_shape" if unknown == "response" else unknown
+        assert statuses.pop(name) == "unknown" and api[name] is None
+        statuses.pop("model_default")
+        assert set(statuses.values()) == {"verified"}
+
+
+def test_openapi_restoration_is_a_dated_contract_change_not_history(tmp_path):
+    from jev_docs.api import extract_api
+
+    legacy = {"docs:api": REFERENCE + "## Response body\n" + RESPONSE}
+    old = extract_api(legacy, {}, None)  # Unavailable legacy reference, then the move.
+    old["properties"]["request_fields"]["last_known"] = {
+        "status": "verified",
+        "value": ["model", "questions", "state"],
+        "evidence": [],
+    }
+    new = openapi_api(previous=old)
+    [event] = semantic_events({"api": old}, {"api": new}, "2026-11-17T00:00:00Z")
+    assert event["change"] == "modified"
+    assert "exact upstream change time is unknown" in event["summary"]
+    assert {source["source_id"] for source in event["sources"]} >= {OPENAPI_SID}
