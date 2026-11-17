@@ -6,6 +6,7 @@ import html
 import re
 
 from jev_docs.markup import _escaped, _markup
+from jev_docs.openapi_reference import REVIEWED_ANSWERS_SCHEMA_SHA256, openapi_claims
 from jev_docs.text import markdown_tokens, without_code_examples, without_link_metadata
 
 FIELDS = (
@@ -29,6 +30,39 @@ REVIEWED_RESPONSE_EVIDENCE = (
     '<ResponseField name="answers" type="map<string, Answer>" required>',
     "One answer per question, returned under the same ids you provided.",
 )
+LEGACY_SOURCE = "docs:api"
+OPENAPI_SOURCE = "docs:api/system-one"
+
+
+def _openapi_facts(text, fact, properties):
+    """Record each OpenAPI claim through the same verification rule as prose claims."""
+    claims = (openapi_claims(text) if text else None) or {}
+    for name in FIELDS:
+        value, passages = claims.get(name, (None, []))
+        if name == "model_default":
+            fact(
+                name,
+                value,
+                passages,
+                "No explicit default is declared for an optional model; examples are not defaults.",
+            )
+        elif name == "response_shape":
+            fact(
+                name,
+                value,
+                passages,
+                "The answers schema is not the reviewed declaration; review it before relying on response correlation.",
+            )
+        else:
+            fact(
+                name, value, passages, "No unambiguous declaration in the embedded OpenAPI schema."
+            )
+    properties["response_shape"].update(
+        method="reviewed_reference_interpretation",
+        interpretation="Explicit repository interpretation of a reviewed OpenAPI answers schema, not automatic description extraction.",
+        reviewed_schema_sha256=REVIEWED_ANSWERS_SCHEMA_SHA256,
+        observed_schema_sha256=claims.get("observed_answers_schema_sha256"),
+    )
 
 
 def section(text, title):
@@ -153,7 +187,9 @@ def extract_api(contents, artifacts, previous=None):
     pages do not override it. Missing/ambiguous claims are unknown, not defaults.
     """
     previous = previous or {}
-    sid = "docs:api"
+    # The prose reference moved to an embedded OpenAPI document; the legacy page
+    # still wins whenever canonical discovery lists it.
+    sid = LEGACY_SOURCE if contents.get(LEGACY_SOURCE) else OPENAPI_SOURCE
     artifact = artifacts.get(sid)
     text = contents.get(sid, "") if artifact else ""
     provenance = []
@@ -163,7 +199,7 @@ def extract_api(contents, artifacts, previous=None):
         provenance = [{"source_id": sid, "url": artifact.url, "sha256": artifact.sha256}]
     else:
         warnings.append(
-            "API reference docs:api is missing; restore canonical discovery before relying on current API claims."
+            f"API reference {LEGACY_SOURCE} and {OPENAPI_SOURCE} are missing; restore canonical discovery before relying on current API claims."
         )
     missing = sorted(
         {
@@ -224,6 +260,15 @@ def extract_api(contents, artifacts, previous=None):
                 )
         properties[name] = item
 
+    if sid == OPENAPI_SOURCE:
+        _openapi_facts(text, fact, properties)
+        return _api_state(
+            properties,
+            provenance,
+            [old_sources[s] for s in missing],
+            warnings,
+            "Explicit OpenAPI schema declarations are extracted; response_shape is a repository interpretation gated by a reviewed schema hash. Examples never establish fields, defaults, or requiredness.",
+        )
     reference = without_link_metadata(without_code_examples(text))
     endpoint = section(
         without_link_metadata(without_code_examples(text, keep_http=True)), "Evaluation endpoint"
@@ -314,14 +359,24 @@ def extract_api(contents, artifacts, previous=None):
         reviewed_section_sha256=REVIEWED_RESPONSE_SECTION_SHA256,
         observed_section_sha256=response_sha256,
     )
+    return _api_state(
+        properties,
+        provenance,
+        [old_sources[s] for s in missing],
+        warnings,
+        "Explicit reference declarations are extracted; response_shape is a repository interpretation gated by a reviewed complete section hash. Examples never establish defaults or requiredness.",
+    )
+
+
+def _api_state(properties, provenance, missing_sources, warnings, interpretation):
     return {
         "schema_version": 1,
         **{key: properties[key]["value"] for key in FIELDS},
         "properties": properties,
         "status_vocabulary": ["verified", "inferred", "unknown"],
-        "interpretation": "Explicit reference declarations are extracted; response_shape is a repository interpretation gated by a reviewed complete section hash. Examples never establish defaults or requiredness.",
+        "interpretation": interpretation,
         "provenance": provenance,
-        "missing_sources": [old_sources[s] for s in missing],
+        "missing_sources": missing_sources,
         "warnings": warnings,
     }
 
