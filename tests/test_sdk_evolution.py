@@ -6,6 +6,22 @@ from test_transactions import PublicSources
 from jev_docs.sync import parse_release_notes, python_capabilities
 
 
+def test_release_notes_stay_within_their_own_version_section():
+    text = (
+        "# Changelog\n\n"
+        "## v0.8.0 (2026-11-01)\n\n### Features\n\n* final feature\n\n"
+        "## v0.8.0-rc.1 (2026-10-20)\n\n* rc-only experiment\n\n"
+        "## v0.7.6\n\n* undated entry\n\n"
+        "## v0.7.5 (2026-10-14)\n\n### Bug fixes\n\n* stable fix\n\n"
+        "## Upgrading\n\n* migration advice\n"
+    )
+    # Unparsed sibling headings must not lend their bullets to a newer release.
+    assert parse_release_notes(text) == [
+        {"version": "0.8.0", "date": "2026-11-01", "notes": ["final feature"]},
+        {"version": "0.7.5", "date": "2026-10-14", "notes": ["stable fix"]},
+    ]
+
+
 class SDKSource(PublicSources):
     def get(self, url):
         from jev_docs.sync import Response
