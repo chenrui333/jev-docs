@@ -1,7 +1,7 @@
 {
-  "endpoint": null,
-  "fingerprint": "2614faec9dcfae20e51c83dcb004a0e369c855199c13b0726e4f2930f0c924ab",
-  "interpretation": "Explicit reference declarations are extracted; response_shape is a repository interpretation gated by a reviewed complete section hash. Examples never establish defaults or requiredness.",
+  "endpoint": "POST https://api.typesafe.ai/v1/systemone",
+  "fingerprint": "8ecebdf3cb2a2830195ff4340fa2465140788b8f365fc0f0d7cd563463f5a6f2",
+  "interpretation": "Explicit OpenAPI schema declarations are extracted; response_shape is a repository interpretation gated by a reviewed schema hash. Examples never establish fields, defaults, or requiredness.",
   "missing_sources": [
     {
       "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
@@ -10,28 +10,27 @@
     }
   ],
   "model_default": null,
-  "model_required": null,
-  "observed_at": "2026-10-20T04:53:25.770493Z",
+  "model_required": true,
+  "observed_at": "2026-11-17T07:56:43.410507Z",
   "properties": {
     "endpoint": {
-      "evidence": [],
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "POST https://api.typesafe.ai/v1/systemone",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "method": "official_reference_extraction",
-        "status": "verified",
-        "value": "POST https://api.typesafe.ai/v1/systemone"
-      },
+      "evidence": [
+        {
+          "excerpt": "- url: https://api.typesafe.ai",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "/v1/systemone:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
       "method": "official_reference_extraction",
-      "reason": "No unambiguous explicit declaration in the canonical reference.",
-      "status": "unknown",
-      "value": null
+      "status": "verified",
+      "value": "POST https://api.typesafe.ai/v1/systemone"
     },
     "model_default": {
       "evidence": [],
@@ -47,176 +46,196 @@
         "value": "jev-latest"
       },
       "method": "official_reference_extraction",
-      "reason": "No explicit optional model default is documented; recommended/example aliases are not defaults.",
+      "reason": "No explicit default is declared for an optional model; examples are not defaults.",
       "status": "unknown",
       "value": null
     },
     "model_required": {
-      "evidence": [],
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "method": "official_reference_extraction",
-        "status": "verified",
-        "value": true
-      },
+      "evidence": [
+        {
+          "excerpt": "model:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "- model",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
       "method": "official_reference_extraction",
-      "reason": "No unambiguous explicit declaration in the canonical reference.",
-      "status": "unknown",
-      "value": null
+      "status": "verified",
+      "value": true
     },
     "question_types": {
-      "evidence": [],
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "<ParamField body=\"type\" type=\"&#x22;noul&#x22;\" required />",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"type\" type=\"&#x22;choice&#x22;\" required />",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"type\" type=\"&#x22;score&#x22;\" required />",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "method": "official_reference_extraction",
-        "status": "verified",
-        "value": [
-          "choice",
-          "noul",
-          "score"
-        ]
-      },
+      "evidence": [
+        {
+          "excerpt": "noul: '#/components/schemas/NoulQuestion'",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "choice: '#/components/schemas/ChoiceQuestion'",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "score: '#/components/schemas/ScoreQuestion'",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "box: '#/components/schemas/BoxQuestion'",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
       "method": "official_reference_extraction",
-      "reason": "No unambiguous explicit declaration in the canonical reference.",
-      "status": "unknown",
-      "value": null
+      "status": "verified",
+      "value": [
+        "box",
+        "choice",
+        "noul",
+        "score"
+      ]
     },
     "request_fields": {
-      "evidence": [],
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "<ParamField body=\"state\" type=\"string | object | array\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"questions\" type=\"map<string, Question>\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "method": "official_reference_extraction",
-        "status": "verified",
-        "value": [
-          "model",
-          "questions",
-          "state"
-        ]
-      },
+      "evidence": [
+        {
+          "excerpt": "SystemOneRequest:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "model:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "state:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "questions:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "assets:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
       "method": "official_reference_extraction",
-      "reason": "No unambiguous explicit declaration in the canonical reference.",
-      "status": "unknown",
-      "value": null
+      "status": "verified",
+      "value": [
+        "assets",
+        "model",
+        "questions",
+        "state"
+      ]
     },
     "required_fields": {
-      "evidence": [],
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "<ParamField body=\"state\" type=\"string | object | array\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"model\" type=\"string\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "<ParamField body=\"questions\" type=\"map<string, Question>\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "method": "official_reference_extraction",
-        "status": "verified",
-        "value": [
-          "model",
-          "questions",
-          "state"
-        ]
-      },
+      "evidence": [
+        {
+          "excerpt": "SystemOneRequest:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "- model",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "- state",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "- questions",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
       "method": "official_reference_extraction",
-      "reason": "No unambiguous explicit declaration in the canonical reference.",
-      "status": "unknown",
-      "value": null
+      "status": "verified",
+      "value": [
+        "model",
+        "questions",
+        "state"
+      ]
     },
     "response_shape": {
-      "evidence": [],
-      "interpretation": "Explicit repository interpretation of a reviewed canonical Response body revision, not automatic prose extraction.",
-      "last_known": {
-        "evidence": [
-          {
-            "excerpt": "<ResponseField name=\"answers\" type=\"map<string, Answer>\" required>",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          },
-          {
-            "excerpt": "One answer per question, returned under the same ids you provided.",
-            "sha256": "37f0f3a41917e17592876f67848bd63329ba576081a89704f28210f0efc3c0f6",
-            "source_id": "docs:api",
-            "url": "https://docs.typesafe.ai/api.md"
-          }
-        ],
-        "interpretation": "Explicit repository interpretation of a reviewed canonical Response body revision, not automatic prose extraction.",
-        "method": "reviewed_reference_interpretation",
-        "observed_section_sha256": "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924",
-        "reviewed_section_sha256": "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924",
-        "status": "verified",
-        "value": "answers map keyed by question id"
-      },
+      "evidence": [
+        {
+          "excerpt": "SystemOneResponse:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "answers:",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        },
+        {
+          "excerpt": "Answers keyed by the question names supplied in the request. Each",
+          "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+          "source_id": "docs:api/system-one",
+          "url": "https://docs.typesafe.ai/api/system-one.md"
+        }
+      ],
+      "interpretation": "Explicit repository interpretation of a reviewed OpenAPI answers schema, not automatic description extraction.",
       "method": "reviewed_reference_interpretation",
-      "observed_section_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "reason": "The Response body is not an active reviewed reference section; review it before relying on response correlation.",
-      "reviewed_section_sha256": "b677797741c142fc0d509bf216bee079dea75dc556b8730a2898a600ac9e8924",
-      "status": "unknown",
-      "value": null
+      "observed_schema_sha256": "df25b58c4e5e3736026f0b28156fc7f10414b98824b9feb9d83d3bb954ba51df",
+      "reviewed_schema_sha256": "df25b58c4e5e3736026f0b28156fc7f10414b98824b9feb9d83d3bb954ba51df",
+      "status": "verified",
+      "value": "answers map keyed by question id"
     }
   },
-  "provenance": [],
-  "question_types": null,
-  "request_fields": null,
-  "required_fields": null,
-  "response_shape": null,
+  "provenance": [
+    {
+      "sha256": "a5c68bb00afd2c75504b5a9a07a497253f2b03380953b56934ddd80767f63c3d",
+      "source_id": "docs:api/system-one",
+      "url": "https://docs.typesafe.ai/api/system-one.md"
+    }
+  ],
+  "question_types": [
+    "box",
+    "choice",
+    "noul",
+    "score"
+  ],
+  "request_fields": [
+    "assets",
+    "model",
+    "questions",
+    "state"
+  ],
+  "required_fields": [
+    "model",
+    "questions",
+    "state"
+  ],
+  "response_shape": "answers map keyed by question id",
   "schema_version": 1,
   "status_vocabulary": [
     "verified",
@@ -224,7 +243,6 @@
     "unknown"
   ],
   "warnings": [
-    "API reference docs:api is missing; restore canonical discovery before relying on current API claims.",
     "Previously cited API source docs:api disappeared; retained as historical evidence, not current verification."
   ]
 }
