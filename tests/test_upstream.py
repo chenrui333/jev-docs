@@ -589,6 +589,85 @@ def test_sdk_and_evaluation_tool_both_consume_all_pages():
     assert evaluation["source_tag"] == "v0.1.0"
 
 
+def test_sdk_and_evaluation_tool_follow_github_repository_id_page_links():
+    # GitHub links later pages by numeric repository ID, with prev/first/last relations.
+    ids = {
+        "typesafe-sdk-python": 1357590729,
+        "typesafe-sdk-js": 1357635350,
+        "system-one-adapter-python": 1328238153,
+    }
+
+    class GitHubPagination(PublicSources):
+        def __init__(self):
+            super().__init__()
+            self.second_pages = []
+
+        def get(self, url):
+            name = url.split("/repos/typesafe-ai/")[-1].split("/")[0].split("?")[0]
+            if "/repositories/" in url:
+                self.second_pages.append(url)
+                first = url.replace("page=2", "page=1")
+                body = (
+                    [{"name": "v0.0.1", "commit": {"sha": "c" * 40}}]
+                    if "/tags?" in url
+                    else [{"tag_name": "v0.0.1"}]
+                )
+                links = f'<{first}>; rel="prev", <{first}>; rel="first"'
+                return Response(url, json.dumps(body).encode(), {"link": links})
+            response = super().get(url)
+            if url.endswith(f"/repos/typesafe-ai/{name}"):
+                body = {**json.loads(response.body), "id": ids[name]}
+                return Response(url, json.dumps(body).encode(), {})
+            if "/tags?" in url or "/releases?" in url:
+                surface = "tags" if "/tags?" in url else "releases"
+                second = (
+                    f"https://api.github.com/repositories/{ids[name]}/{surface}?per_page=100&page=2"
+                )
+                links = f'<{second}>; rel="next", <{second}>; rel="last"'
+                return Response(url, response.body, {"link": links})
+            return response
+
+    client = GitHubPagination()
+    sdk = sdk_snapshot(
+        client,
+        {},
+        "typesafe-ai/typesafe-sdk-python",
+        "typesafe-sdk",
+        "python",
+        "pyproject.toml",
+        None,
+        None,
+    )
+    evaluation = evaluation_tool_snapshot(client, {}, None)
+    assert sdk["available_tags"] == ["v0.0.1", "v0.1.0"]
+    assert [entry["tag"] for entry in sdk["release_history"]] == ["v0.0.1", "v0.1.0"]
+    assert sorted(client.second_pages) == sorted(
+        f"https://api.github.com/repositories/{ids[name]}/{surface}?per_page=100&page=2"
+        for name in ("typesafe-sdk-python", "system-one-adapter-python")
+        for surface in ("tags", "releases")
+    )
+    assert evaluation["source_tag"] == "v0.1.0"
+
+
+@pytest.mark.parametrize(
+    "repository_id,target",
+    [
+        (None, "https://api.github.com/repositories/7/tags?page=2"),
+        (True, "https://api.github.com/repositories/1/tags?page=2"),
+        (7, "https://api.github.com/repositories/8/tags?page=2"),
+        (7, "https://api.github.com/repositories/7/releases?page=2"),
+        (7, "https://api.github.com/repositories/7/tags/extra?page=2"),
+    ],
+    ids=["unobserved-id", "bool-id", "other-repository", "other-surface", "other-path"],
+)
+def test_repository_id_pages_must_match_the_observed_repository(repository_id, target):
+    first = "https://api.github.com/repos/o/r/tags?per_page=100"
+    client = Pages({first: ([], {"Link": f'<{target}>; rel="next"'})})
+    with pytest.raises(FetchError, match="unsafe GitHub pagination target"):
+        github_json(client, "/repos/o/r/tags?per_page=100", repository_id)
+    assert client.calls == [first]
+
+
 @pytest.mark.parametrize(
     "kind,name",
     [

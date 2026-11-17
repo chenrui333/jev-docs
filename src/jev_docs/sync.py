@@ -878,9 +878,13 @@ def registry_json(response: Response, package_kind: str, package: str) -> dict[s
     return value
 
 
+# GitHub serves later pages under the numeric repository-ID form of the same endpoint.
+GITHUB_LIST_ENDPOINT = r"/(?:repos/[^/]+/[^/]+|repositories/[1-9][0-9]*)/(tags|releases|commits)"
+
+
 def validate_github_metadata(value: Any, response: Response) -> None:
     endpoint = urlsplit(response.url).path
-    match = re.fullmatch(r"/repos/[^/]+/[^/]+/(tags|releases|commits)", endpoint)
+    match = re.fullmatch(GITHUB_LIST_ENDPOINT, endpoint)
     surface = match[1] if match else None
     if surface in {"tags", "releases", "commits"}:
         if not isinstance(value, list) or any(not isinstance(item, dict) for item in value):
@@ -923,8 +927,13 @@ def validate_github_metadata(value: Any, response: Response) -> None:
         raise schema_error(response, "GitHub", "default_branch as a nonempty string")
 
 
-def github_next_page(response: Response, initial_url: str) -> str | None:
+def github_next_page(response: Response, initial_url: str, repository_id: Any = None) -> str | None:
+    """Follow only this repository's same-surface page, by name or by observed ID."""
     links = next((v for k, v in response.headers.items() if k.lower() == "link"), "")
+    initial_path = urlsplit(initial_url).path
+    allowed_paths = {initial_path}
+    if type(repository_id) is int and repository_id > 0:
+        allowed_paths.add(f"/repositories/{repository_id}/{initial_path.rsplit('/', 1)[1]}")
     next_url = None
     for link in links.split(",") if links else []:
         match = re.fullmatch(r"\s*<([^>]+)>\s*;(.*)", link)
@@ -937,7 +946,7 @@ def github_next_page(response: Response, initial_url: str) -> str | None:
         if (
             next_url is not None
             or https_origin(candidate) != ("https", "api.github.com", 443)
-            or urlsplit(candidate).path != urlsplit(initial_url).path
+            or urlsplit(candidate).path not in allowed_paths
             or urlsplit(candidate).fragment
         ):
             raise FetchError("unsafe GitHub pagination target", code="invalid_pagination")
@@ -945,7 +954,8 @@ def github_next_page(response: Response, initial_url: str) -> str | None:
     return next_url
 
 
-def github_json(client: HTTPClient, path: str) -> tuple[Any, Response]:
+def github_json(client: HTTPClient, path: str, repository_id: Any = None) -> tuple[Any, Response]:
+    """Fetch GitHub metadata; list pages may use the repository's observed numeric ID."""
     initial_url = f"{GITHUB_API}{path}"
     match = re.fullmatch(r"/repos/[^/]+/[^/]+/(tags|releases)", urlsplit(initial_url).path)
     surface = match[1] if match else None
@@ -966,7 +976,7 @@ def github_json(client: HTTPClient, path: str) -> tuple[Any, Response]:
             # Deduplicate projected evidence, not volatile counters/download URLs.
             key = canonical_json(projection([item])[0])
             items.setdefault(key, item)
-        next_url = github_next_page(response, initial_url)
+        next_url = github_next_page(response, initial_url, repository_id)
         if next_url is None:
             return [items[key] for key in sorted(items)], first_response
         if next_url in visited or page == 19:
@@ -1388,7 +1398,7 @@ def sdk_snapshot(
         evidence_bytes(stable_repository_evidence(repo_meta)),
     )
     tags_path = f"/repos/{repo}/tags?per_page=100"
-    tags, tags_response = github_json(client, tags_path)
+    tags, tags_response = github_json(client, tags_path, repo_meta.get("id"))
     artifacts[f"github:{repo}:tags"] = Artifact(
         f"github:{repo}:tags",
         "github-api",
@@ -1396,7 +1406,7 @@ def sdk_snapshot(
         evidence_bytes(stable_tag_evidence(tags)),
     )
     releases_path = f"/repos/{repo}/releases?per_page=100"
-    releases, releases_response = github_json(client, releases_path)
+    releases, releases_response = github_json(client, releases_path, repo_meta.get("id"))
     artifacts[f"github:{repo}:releases"] = Artifact(
         f"github:{repo}:releases",
         "github-api",
@@ -1569,7 +1579,8 @@ def evaluation_tool_snapshot(client, artifacts, previous):
         ("tags", "/tags?per_page=100", stable_tag_evidence),
         ("releases", "/releases?per_page=100", stable_release_evidence),
     ):
-        value, response = github_json(client, f"/repos/{repo}{suffix}")
+        repository_id = metadata["repository"].get("id") if metadata else None
+        value, response = github_json(client, f"/repos/{repo}{suffix}", repository_id)
         metadata[surface] = value
         sid = f"github:{repo}:{surface}"
         artifacts[sid] = Artifact(
