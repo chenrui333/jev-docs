@@ -3292,6 +3292,12 @@ def _synchronize(
             sitemap_lastmod = parse_sitemap(sitemap_response.body.decode("utf-8"))
         except FetchError as exc:
             sitemap_warning = str(exc)
+        except (ET.ParseError, UnicodeError):
+            # Lastmod is optional metadata, like an unavailable sitemap. Never echo
+            # parser messages or bodies; retained lastmod keeps unchanged pages stable.
+            sitemap_warning = (
+                f"sitemap unreadable at {source_label(DOCS_SITEMAP)}; lastmod metadata omitted"
+            )
         intentionally_excluded = parse_llms_exclusions(index_response.body.decode("utf-8"))
         current_ids = {docs_source_id(url) for url, _, _ in discovered}
         old_ids = {page["source_id"] for page in previous_coverage.get("pages", [])}
