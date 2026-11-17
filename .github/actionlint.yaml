@@ -1,0 +1,5 @@
+self-hosted-runner:
+  # GitHub-hosted ubuntu-26.04 (adopted in #23) postdates the runner label
+  # table in actionlint v1.7.12. Remove once actionlint recognizes it.
+  labels:
+    - ubuntu-26.04
