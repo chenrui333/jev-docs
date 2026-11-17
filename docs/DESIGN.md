@@ -5,6 +5,9 @@
 The canonical web discovery input is `https://docs.typesafe.ai/llms.txt`.
 The synchronizer follows HTTPS same-host links from that index and records the public
 sitemap's `lastmod` values when available. If the canonical index is unavailable, the run fails and preserves old state.
+An index entry linking to the index itself is recorded in `intentionally_excluded`
+with reason `discovery-index`; it is never fetched as a page or allowed to replace
+the discovery record. Distinct pages that collapse to one source identity still fail.
 A working sitemap cannot establish removals from a failed canonical index; it is
 not a discovery fallback. Mintlify's `.md` representation is used for Markdown
 fetches. The normal page form is used only when the Markdown URL returns 404; a

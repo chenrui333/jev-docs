@@ -341,3 +341,58 @@ def test_cli_attempt_diagnostics_never_expose_exception_body(tmp_path, monkeypat
     monkeypatch.setattr(sync, "synchronize", lambda *args, **kwargs: {"events": 0})
     assert sync.main(["sync", "--diagnostics", str(diagnostic)]) == 0
     assert json.loads(diagnostic.read_text())["result"] == "success"
+
+
+class IndexedSources(PublicSources):
+    """Serve a canonical index whose extra entries are given verbatim."""
+
+    def __init__(self, extra):
+        super().__init__()
+        self.extra = extra
+
+    def get(self, url):
+        if url.endswith("/llms.txt"):
+            body = "- [page](https://docs.typesafe.ai/page)\n" + self.extra
+            return Response(url, body.encode(), {})
+        if url == "https://docs.typesafe.ai/.md":
+            raise FetchError("no root markdown", 404)
+        if url in {"https://docs.typesafe.ai/", "https://docs.typesafe.ai/index.md"}:
+            return Response(url, b"# Home\n", {})
+        return super().get(url)
+
+
+@pytest.mark.parametrize(
+    "link",
+    ["https://docs.typesafe.ai/llms.txt", "/llms.txt", "https://docs.typesafe.ai/llms.txt.md"],
+)
+def test_index_listing_itself_is_excluded_not_promoted_as_a_page(tmp_path, link):
+    upstream = IndexedSources(f"- [Documentation index]({link}): this file\n")
+    synchronize(tmp_path, upstream, strict=True)
+    coverage = json.loads((tmp_path / "state/source-coverage.json").read_text())
+    assert [page["source_id"] for page in coverage["pages"]] == ["docs:page"]
+    assert coverage["intentionally_excluded"] == [
+        {
+            "url": "https://docs.typesafe.ai/llms.txt",
+            "title": "Documentation index",
+            "reason": "discovery-index",
+        }
+    ]
+    sources = json.loads((tmp_path / "state/sources.json").read_text())["artifacts"]
+    index = next(record for record in sources if record["source_id"] == "docs:llms.txt")
+    assert index["source_type"] == "documentation-discovery"
+    validate_tree(tmp_path, strict=True)
+    promoted = snapshot(tmp_path)
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    assert snapshot(tmp_path) == promoted
+
+
+def test_distinct_pages_colliding_on_one_identity_still_fail_closed(tmp_path):
+    synchronize(tmp_path, PublicSources(), strict=True)
+    promoted = snapshot(tmp_path)
+    # "/" and "/index" are different canonical pages that share docs:index.
+    upstream = IndexedSources(
+        "- [Home](https://docs.typesafe.ai/)\n- [Index](https://docs.typesafe.ai/index)\n"
+    )
+    with pytest.raises(RuntimeError, match="duplicate documentation page"):
+        synchronize(tmp_path, upstream, strict=True)
+    assert snapshot(tmp_path) == promoted

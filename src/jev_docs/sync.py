@@ -345,13 +345,17 @@ def parse_llms(text: str, base: str = DOCS_ROOT) -> list[tuple[str, str, str]]:
         url = docs_canonical_url(normalize_url(raw_url, base))
         if https_origin(url) != ("https", "docs.typesafe.ai", 443) or url in seen:
             continue
+        # The index is discovery evidence, never a page of itself; listing it would
+        # otherwise replace the discovery record under the same source identity.
+        if url == DOCS_INDEX:
+            continue
         seen.add(url)
         results.append((url, title.strip(), (description or "").strip()))
     return results
 
 
 def parse_llms_exclusions(text: str, base: str = DOCS_ROOT) -> list[dict[str, str]]:
-    """Record links excluded because they are not HTTPS documentation sources."""
+    """Record links excluded because they are not HTTPS documentation pages."""
     exclusions: dict[str, dict[str, str]] = {}
     for match in re.finditer(r"-\s*\[([^]]+)\]\(([^)]+)\)", text):
         title, raw_url = match.groups()
@@ -359,6 +363,12 @@ def parse_llms_exclusions(text: str, base: str = DOCS_ROOT) -> list[dict[str, st
         if https_origin(url) != ("https", "docs.typesafe.ai", 443):
             reason = "non-https" if urlsplit(url).scheme != "https" else "external-host"
             exclusions[url] = {"url": url, "title": title.strip(), "reason": reason}
+        elif docs_canonical_url(url) == DOCS_INDEX:
+            exclusions[DOCS_INDEX] = {
+                "url": DOCS_INDEX,
+                "title": title.strip(),
+                "reason": "discovery-index",
+            }
     return [exclusions[url] for url in sorted(exclusions)]
 
 
