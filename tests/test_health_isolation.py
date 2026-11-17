@@ -3,7 +3,7 @@ import json
 import pytest
 from test_transactions import PublicSources, snapshot
 
-from jev_docs.sync import Response, synchronize, validate_tree
+from jev_docs.sync import Response, sha256_bytes, synchronize, validate_tree
 
 
 class DelayedRelease(PublicSources):
@@ -174,3 +174,36 @@ def test_wrong_config_package_identity_retains_trusted_sdk(tmp_path, monkeypatch
     assert freshness["tag"] is None
     discrepancy = "release_config_name_missing" if missing else "release_config_name_mismatch"
     assert freshness["discrepancies"] == [discrepancy]
+
+
+@pytest.mark.parametrize("kind", ["python", "javascript"])
+def test_malformed_tagged_config_keeps_trusted_sdk_and_publishes_independent_evidence(
+    tmp_path, monkeypatch, kind
+):
+    upstream = PublicSources()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    sdk_path = tmp_path / f"state/sdk-{kind}.json"
+    trusted = sdk_path.read_bytes()
+    config = "pyproject.toml" if kind == "python" else "package.json"
+
+    class MalformedConfig(PublicSources):
+        def get(self, url):
+            if f"typesafe-sdk-{'python' if kind == 'python' else 'js'}/" in url and url.endswith(
+                config
+            ):
+                return Response(url, b"\xff not configuration", {})
+            return super().get(url)
+
+    changed = MalformedConfig()
+    changed.pages["page"] = "# A public page\n\nRevised evidence.\n"
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    assert synchronize(tmp_path, changed, strict=True)["events"]
+    assert sdk_path.read_bytes() == trusted
+    freshness = json.loads((tmp_path / "state/freshness.json").read_text())[kind]
+    assert freshness["state_retained"] is True
+    assert freshness["discrepancies"] == ["release_config_malformed"]
+    docs = json.loads((tmp_path / "sources/docs.typesafe.ai/manifest.json").read_text())
+    page = next(item for item in docs["artifacts"] if item["source_id"] == "docs:page")
+    assert page["sha256"] == sha256_bytes(changed.pages["page"].encode())
+    validate_tree(tmp_path, strict=True)

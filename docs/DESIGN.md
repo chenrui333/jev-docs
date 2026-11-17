@@ -183,10 +183,15 @@ source fallback. Registry evidence projections and their hashes retain the
 original observed display name; normalization is only for comparison, while
 SDK state keeps the canonical expected package name. This is a one-time truthful
 projection enrichment; identical observations remain byte-stable.
-Invalid JSON and malformed registry, SDK
-configuration or consumed GitHub response shapes fail closed with
-`invalid_json`/`invalid_schema` errors identifying the source and expected field,
-without promoting state.
+Invalid JSON and malformed registry or consumed GitHub response shapes fail closed
+with `invalid_json`/`invalid_schema` errors identifying the source and expected
+field, without promoting state: these are mutable observations a later attempt
+can retry. Tagged SDK configuration (`pyproject.toml`, `package.json`) is
+immutable release evidence instead, so for both SDKs undecodable, unparsable, or
+wrongly shaped configuration (including a non-object `engines` or non-string
+`engines.node`) records `release_config_malformed`, like a missing configuration.
+The configuration is retained only by hash, runtime stays unknown, and the
+independent-stream health gate keeps a healthy SDK snapshot.
 GitHub head and skill commit responses must provide 40-hex commit SHAs; branch
 names, relative paths and malformed hashes cannot identify immutable evidence.
 

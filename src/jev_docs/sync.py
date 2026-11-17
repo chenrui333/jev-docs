@@ -1486,6 +1486,9 @@ def sdk_snapshot(
                 source_tag=release_info["source_tag"],
             )
             artifacts[config_artifact.source_id] = config_artifact
+            # Tagged configuration is immutable release evidence. A malformed file is
+            # a release defect retrying cannot repair, so both SDKs record it as an
+            # explicit discrepancy for the health gate rather than aborting the sync.
             try:
                 if package_kind == "python":
                     text = config_response.body.decode()
@@ -1493,21 +1496,15 @@ def sdk_snapshot(
                     config_name = parse_simple_toml_value(text, "name")
                     config_runtime = parse_simple_toml_value(text, "requires-python")
                 else:
-                    config = metadata_json(config_response, "SDK configuration")
-                    if not isinstance(config, dict) or not isinstance(
-                        config.get("engines", {}), dict
-                    ):
-                        raise schema_error(
-                            config_response, "SDK configuration", "an object with an engines map"
-                        )
+                    config = _bounded_json_loads(config_response.body)
+                    engines = config.get("engines", {}) if isinstance(config, dict) else None
+                    node = engines.get("node", "unknown") if isinstance(engines, dict) else None
+                    if not isinstance(node, str):
+                        raise ValueError("unsupported package configuration shape")
                     config_version = config.get("version")
                     config_name = config.get("name")
-                    config_runtime = config.get("engines", {}).get("node", "unknown")
-                    if not isinstance(config_runtime, str):
-                        raise schema_error(
-                            config_response, "SDK configuration", "engines.node as a string"
-                        )
-            except (UnicodeError, json.JSONDecodeError):
+                    config_runtime = node
+            except (ValueError, RecursionError):  # Includes decode and JSON errors.
                 config_version = None
                 config_name = None
                 config_runtime = None

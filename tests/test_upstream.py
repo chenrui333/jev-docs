@@ -526,30 +526,6 @@ def test_pypi_published_identity_must_exist_in_releases_map():
     assert caught.value.code == "invalid_schema"
 
 
-@pytest.mark.parametrize(
-    "body", [b"[]", b'{"engines": null}', b'{"engines": {"node": []}}', b"private-token"]
-)
-def test_malformed_javascript_config_fails_without_body_disclosure(body):
-    class BrokenConfig(PublicSources):
-        def get(self, url):
-            if url.endswith("package.json"):
-                return Response(url, body, {})
-            return super().get(url)
-
-    with pytest.raises(FetchError, match="SDK configuration") as caught:
-        sdk_snapshot(
-            BrokenConfig(),
-            {},
-            "typesafe-ai/typesafe-sdk-js",
-            "@typesafe-ai/sdk",
-            "javascript",
-            "package.json",
-            None,
-            None,
-        )
-    assert "private-token" not in "".join(traceback.format_exception(caught.value))
-
-
 def test_sdk_and_evaluation_tool_both_consume_all_pages():
     class PaginatedSources(PublicSources):
         def __init__(self):

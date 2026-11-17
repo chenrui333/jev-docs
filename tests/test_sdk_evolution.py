@@ -190,6 +190,8 @@ class ReleaseSources(PublicSources):
                 body = "## v0.1.0 (2026-09-01)\n\n- add http2 extra\n"
             else:
                 return super().get(url)
+            if isinstance(body, bytes):
+                return Response(url, body, {})
             return Response(url, (body if isinstance(body, str) else json.dumps(body)).encode(), {})
         if (self.kind == "python" and "pypi.org" in url) or (
             self.kind == "javascript" and "registry.npmjs.org" in url
@@ -271,6 +273,37 @@ def test_unresolved_release_runtime_stays_unknown_without_main_fallback(kind, pr
     assert state["capabilities"] == []
     assert all(upstream.main_commit not in url for url in upstream.requested)
     assert all("raw.githubusercontent.com" not in p["url"] for p in state["provenance"])
+
+
+MALFORMED_CONFIGS = {
+    "python": [b"\xff private-token", "[project\nprivate-token", '[project]\ndynamic = "x"\n'],
+    "javascript": [
+        b"\xff private-token",
+        "private-token",
+        "[]",
+        '{"version": "0.1.0", "engines": null}',
+        '{"version": "0.1.0", "engines": {"node": []}}',
+    ],
+}
+
+
+@pytest.mark.parametrize(
+    "kind,body",
+    [(kind, body) for kind, bodies in MALFORMED_CONFIGS.items() for body in bodies],
+)
+def test_malformed_tagged_config_is_a_release_discrepancy_for_both_sdks(kind, body):
+    # Tagged configuration is immutable release evidence: retrying cannot repair it,
+    # so it is recorded per SDK instead of blocking every independent source.
+    upstream = ReleaseSources(kind)
+    upstream.config_body = body
+    state, artifacts = release_snapshot(upstream)
+    assert "release_config_malformed" in state["discrepancies"]
+    assert state["runtime"] == {kind: "unknown"}
+    assert state["source_commit"] is None and state["source_tag"] is None
+    assert all("raw.githubusercontent.com" not in p["url"] for p in state["provenance"])
+    # The bytes are retained only by hash, never echoed into state.
+    assert "private-token" not in json.dumps(state)
+    assert any(a.source_type == "github-source" for a in artifacts.values())
 
 
 @pytest.mark.parametrize("kind", ["python", "javascript"])
