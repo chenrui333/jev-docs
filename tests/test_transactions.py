@@ -291,7 +291,11 @@ def test_strict_validation_checks_history_and_renderings(tmp_path):
     original_report = report.read_text()
     report.write_text(original_report + "- hand-edited line\n")
     validate_tree(tmp_path)
-    with pytest.raises(RuntimeError, match="daily report disagrees"):
+    with pytest.raises(RuntimeError, match=rf"daily report disagrees .*: changes/{day}\.md$") as e:
+        validate_tree(tmp_path, strict=True)
+    assert str(tmp_path) not in str(e.value)
+    report.unlink()
+    with pytest.raises(RuntimeError, match=rf"daily report disagrees .*: changes/{day}\.md$"):
         validate_tree(tmp_path, strict=True)
     report.write_text(original_report)
 
@@ -300,8 +304,10 @@ def test_strict_validation_checks_history_and_renderings(tmp_path):
     copy.write_text(json.dumps({**events, "date": "2000-01-01"}))
     (tmp_path / "changes/2000-01-01.md").write_text(original_report.replace(day, "2000-01-01"))
     validate_tree(tmp_path)
-    with pytest.raises(RuntimeError, match="recorded in"):
+    with pytest.raises(RuntimeError, match="recorded in") as e:
         validate_tree(tmp_path, strict=True)
+    # Diagnostics name generated files like read_json does, never the checkout.
+    assert str(e.value).endswith(f"recorded in events/2000-01-01.json and events/{day}.json")
     copy.unlink()
 
     # The 2000-01-01 report now has no event file behind it.
