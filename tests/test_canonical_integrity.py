@@ -159,6 +159,11 @@ def _unscoped_limitation(value):
     )
 
 
+def _rebound_release_tag(value):
+    # One tag cannot name two commits in retained release history.
+    value["release_history"].append({**value["release_history"][0], "source_commit": "c" * 40})
+
+
 # Every guard is a domain-specific diagnostic that runs before the generic
 # fingerprint check; each mutation must be rejected by its own guard.
 STATE_GUARDS = {
@@ -236,6 +241,21 @@ STATE_GUARDS = {
         "capability lacks immutable release provenance",
     ),
     "limitation-unscoped": ("model-limitations", _unscoped_limitation, "not model-specific"),
+    "release-binding-conflict": (
+        "sdk-python",
+        _rebound_release_tag,
+        "conflicting retained release binding",
+    ),
+    "release-binding-invalid": (
+        "sdk-python",
+        lambda value: value["release_history"][0].update(source_commit="B" * 40),
+        "invalid retained release binding",
+    ),
+    "candidate-binding-invalid": (
+        "freshness",
+        lambda value: value["python"].update(candidate_tag_bindings={"v0.1.0": "b" * 39}),
+        "invalid candidate release binding",
+    ),
 }
 
 
