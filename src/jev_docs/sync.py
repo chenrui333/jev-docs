@@ -153,10 +153,16 @@ class SameOriginRedirectHandler(HTTPRedirectHandler):
         # Reject the target here, not merely after its response has been received.
         if https_origin(newurl) is None or https_origin(newurl) != https_origin(req.full_url):
             raise FetchError("refusing cross-origin redirect", code="unsafe_redirect")
-        redirected = super().redirect_request(req, fp, code, msg, headers, newurl)
+        # Python 3.10 urllib predates 308 support (added in 3.11). The synchronizer
+        # only sends GET requests, for which 308 and 307 redirects are identical.
+        redirected = super().redirect_request(
+            req, fp, 307 if code == 308 else code, msg, headers, newurl
+        )
         if redirected is not None:
             redirected.remove_header("Authorization")
         return redirected
+
+    http_error_308 = HTTPRedirectHandler.http_error_302
 
 
 def retry_after_seconds(value: str | None) -> float | None:
