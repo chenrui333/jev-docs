@@ -1053,18 +1053,26 @@ STABLE_VERSION_PATTERN = (
 
 
 def parse_release_notes(text: str) -> list[dict[str, Any]]:
+    """Attribute bullets only to their own stable-version Markdown section."""
     result: list[dict[str, Any]] = []
     text = re.sub(r"<h2\b[^>]*>\s*(.*?)\s*</h2>", r"## \1", text, flags=re.S)
-    headings = list(
-        re.finditer(
-            rf"^\s*#+\s*v?(?P<version>{STABLE_VERSION_PATTERN})\s*\((?P<date>[^)]+)\)",
-            text,
-            re.MULTILINE | re.IGNORECASE,
+    headings = list(re.finditer(r"^[ \t]*(?P<level>#+)[ \t]*(?P<title>.*)$", text, re.MULTILINE))
+    for index, heading in enumerate(headings):
+        match = re.match(
+            rf"v?(?P<version>{STABLE_VERSION_PATTERN})\s*\((?P<date>[^)]+)\)",
+            heading["title"],
+            re.IGNORECASE,
         )
-    )
-    for index, match in enumerate(headings):
-        end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
-        block = text[match.end() : end]
+        if not match:
+            continue
+        # Subsections stay in the release; a sibling heading (a prerelease, an
+        # undated version or unrelated prose) ends it rather than joining it.
+        level = len(heading["level"])
+        end = next(
+            (later.start() for later in headings[index + 1 :] if len(later["level"]) <= level),
+            len(text),
+        )
+        block = text[heading.end() : end]
         bullets = [
             re.sub(r"\s+", " ", line.strip()[2:].strip())
             for line in block.splitlines()
