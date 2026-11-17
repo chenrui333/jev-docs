@@ -353,6 +353,82 @@ def test_journal_paths_are_all_validated_before_any_replacement(tmp_path, unauth
     assert not (tmp_path / "state").exists()
 
 
+def _ready_journal(root, files, candidates):
+    pending = root / ".jev-docs-pending"
+    pending.mkdir(parents=True, exist_ok=True)
+    for relative, body in candidates.items():
+        candidate = pending / "files" / relative
+        candidate.parent.mkdir(parents=True, exist_ok=True)
+        candidate.write_bytes(body)
+    (pending / "manifest.json").write_text(
+        files if isinstance(files, str) else json.dumps({"version": 1, "files": files})
+    )
+    (pending / "READY").touch()
+    return pending
+
+
+GOOD = {"path": "state/api.json", "sha256": sha256_bytes(b"candidate")}
+
+
+@pytest.mark.parametrize(
+    ("files", "message"),
+    [
+        ("{not json", "invalid pending synchronization manifest"),
+        (json.dumps({"version": 2, "files": [GOOD]}), "invalid pending synchronization manifest"),
+        ([], "invalid pending synchronization file list"),
+        ([GOOD, "state/api.json"], "invalid pending synchronization file record"),
+        ([GOOD, GOOD], "duplicate pending synchronization paths"),
+        ([GOOD | {"sha256": sha256_bytes(b"other")}], "checksum mismatch"),
+        ([GOOD, {"path": "state/models.json", "sha256": GOOD["sha256"]}], "checksum mismatch"),
+    ],
+    ids=["json", "version", "empty", "record", "duplicate", "checksum", "missing-candidate"],
+)
+def test_corrupt_ready_journal_fails_closed_and_is_retained(tmp_path, files, message):
+    from jev_docs.transactions import recover_pending
+
+    (tmp_path / "state").mkdir()
+    (tmp_path / "state/api.json").write_bytes(b"last-known-good")
+    _ready_journal(tmp_path, files, {"state/api.json": b"candidate"})
+    before = snapshot(tmp_path)
+    with pytest.raises(RuntimeError, match=message):
+        recover_pending(tmp_path)
+    # Neither a target nor the evidence of the interrupted batch may be discarded.
+    assert snapshot(tmp_path) == before
+    with pytest.raises(RuntimeError, match="pending synchronization"):
+        sync_module.validate_tree(tmp_path)
+
+
+@pytest.mark.parametrize("link", [".jev-docs-pending/files/state", "state"])
+def test_journal_replay_never_follows_symlinked_candidates_or_targets(tmp_path, link):
+    from jev_docs.transactions import recover_pending
+
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "api.json").write_bytes(b"candidate")
+    pending = _ready_journal(tmp_path, [GOOD], {})
+    (tmp_path / link).parent.mkdir(parents=True, exist_ok=True)
+    (tmp_path / link).symlink_to(outside, target_is_directory=True)
+    before = snapshot(tmp_path)
+    with pytest.raises(RuntimeError, match="symlink in pending synchronization path"):
+        recover_pending(tmp_path)
+    assert snapshot(tmp_path) == before
+    assert (pending / "READY").exists()
+
+
+def test_new_promotion_never_overwrites_an_unrecovered_journal(tmp_path):
+    from jev_docs.transactions import promote
+
+    stage = tmp_path / "stage"
+    (stage / "state").mkdir(parents=True)
+    (stage / "state/api.json").write_bytes(b"newer candidate")
+    root = tmp_path / "root"
+    _ready_journal(root, [GOOD], {"state/api.json": b"candidate"})
+    before = snapshot(root)
+    with pytest.raises(RuntimeError, match="must be recovered before promotion"):
+        promote(stage, root)
+    assert snapshot(root) == before
+
+
 def test_unready_journal_is_discarded_before_fresh_observation(tmp_path):
     pending = tmp_path / ".jev-docs-pending"
     pending.mkdir()
