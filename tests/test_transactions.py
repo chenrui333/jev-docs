@@ -246,6 +246,40 @@ def test_sitemap_lastmod_alone_does_not_churn_and_manifests_agree(tmp_path, monk
     )
 
 
+class MalformedSitemap(RedeployedSitemap):
+    def __init__(self):
+        super().__init__()
+        self.body = None
+
+    def get(self, url):
+        if url.endswith("/sitemap.xml") and self.body is not None:
+            return Response(url, self.body, {})
+        return super().get(url)
+
+
+@pytest.mark.parametrize(
+    "body", [b"<html><body>Bad gateway<br></body></html>", b"<urlset>\xff</urlset>"]
+)
+def test_malformed_optional_sitemap_is_a_warning_not_an_abort(tmp_path, monkeypatch, body):
+    upstream = MalformedSitemap()
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-01T00:00:00Z")
+    synchronize(tmp_path, upstream, strict=True)
+    manifest = tmp_path / "sources/docs.typesafe.ai/manifest.json"
+    promoted = manifest.read_bytes()
+
+    monkeypatch.setenv("JEVDOCS_OBSERVED_AT", "2026-10-02T00:00:00Z")
+    upstream.body = body
+    assert synchronize(tmp_path, upstream, strict=True)["events"] == 0
+    coverage = json.loads((tmp_path / "state/source-coverage.json").read_text())
+    warning = coverage["discovery"]["sitemap_warning"]
+    assert warning == (
+        "sitemap unreadable at https://docs.typesafe.ai/sitemap.xml; lastmod metadata omitted"
+    )
+    # Unchanged pages keep the lastmod recorded with their content.
+    assert manifest.read_bytes() == promoted
+    validate_tree(tmp_path, strict=True)
+
+
 def test_strict_validation_checks_history_and_renderings(tmp_path):
     upstream = PublicSources()
     synchronize(tmp_path, upstream, strict=True)
