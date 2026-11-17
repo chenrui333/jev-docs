@@ -3145,28 +3145,30 @@ def validate_tree(
     seen_event_ids: dict[str, str] = {}
     events_by_id: dict[str, dict[str, Any]] = {}
     for _, path in sorted(event_paths.items()):
+        # Like read_json, name generated files without the checkout or stage path.
+        label = f"events/{path.name}"
         data = read_json(path)
         ids = [event.get("id") for event in data.get("events", [])]
         if len(ids) != len(set(ids)):
-            raise RuntimeError(f"duplicate event ID in {path}")
+            raise RuntimeError(f"duplicate event ID in {label}")
         if not strict or path.name == "baseline.json":
             continue
         # Strict: history is append-safe across files and each day's report is the
         # deterministic rendering of that day's events.
         for ident in ids:
             if ident in seen_event_ids:
-                raise RuntimeError(f"event {ident} recorded in {seen_event_ids[ident]} and {path}")
-            seen_event_ids[ident] = str(path)
+                raise RuntimeError(f"event {ident} recorded in {seen_event_ids[ident]} and {label}")
+            seen_event_ids[ident] = label
         events_by_id.update({event["id"]: event for event in data.get("events", [])})
         if data.get("date") != path.stem:
-            raise RuntimeError(f"event file date disagrees with its name: {path}")
+            raise RuntimeError(f"event file date disagrees with its name: {label}")
         report = report_paths.get(path.stem)
         if (
             report is None
             or not report.exists()
             or report.read_text() != render_daily_report(path.stem, data.get("events", []))
         ):
-            raise RuntimeError(f"daily report disagrees with events: {report}")
+            raise RuntimeError(f"daily report disagrees with events: changes/{path.stem}.md")
     if strict:
         _validate_event_graph(events_by_id)
         event_days = set(event_paths) - {"baseline"}
