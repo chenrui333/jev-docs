@@ -1,0 +1,16 @@
+tests/test_canonical_integrity.py
+  h_9df9c32c3f321d 162-166,244-258
+tests/test_sync.py
+  h_9df9c32c3f321d 630-646
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d87a422f014d12fb41b54e2e1cbabddce5f8429f",
+  "prompts": {},
+  "humans": {
+    "h_9df9c32c3f321d": {
+      "author": "Rui Chen <rui@chenrui.dev>"
+    }
+  }
+}
