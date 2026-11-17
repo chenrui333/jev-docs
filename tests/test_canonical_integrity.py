@@ -332,6 +332,47 @@ def test_corrupt_persisted_json_is_sanitized(tree, body):
     assert caught.value.__suppress_context__
 
 
+MALFORMED_STRUCTURES = {
+    "practices-list": ("state/practices.json", lambda value: ["private"]),
+    "coverage-page-scalar": (
+        "state/source-coverage.json",
+        lambda value: value | {"pages": ["private"]},
+    ),
+    "coverage-missing-pages": (
+        "state/source-coverage.json",
+        lambda value: {k: v for k, v in value.items() if k != "pages"},
+    ),
+    "api-properties-list": ("state/api.json", lambda value: value | {"properties": ["private"]}),
+    "sdk-history-scalar": (
+        "state/sdk-python.json",
+        lambda value: value | {"release_history": ["private"]},
+    ),
+    "freshness-entry-scalar": ("state/freshness.json", lambda value: value | {"python": "private"}),
+}
+
+
+@pytest.mark.parametrize("case", sorted(MALFORMED_STRUCTURES))
+def test_parseable_but_malformed_state_fails_closed_without_raw_errors(
+    tree, monkeypatch, capsys, case
+):
+    from jev_docs import sync
+
+    relative, mutate = MALFORMED_STRUCTURES[case]
+    write_json(tree / relative, mutate(read_json(tree / relative)))
+    before = snapshot(tree)
+    with pytest.raises(RuntimeError, match="invalid structure") as caught:
+        validate_tree(tree, strict=True)
+    assert caught.value.__suppress_context__
+    assert "private" not in str(caught.value) and str(tree) not in str(caught.value)
+    # The CLI reports one sanitized line; sync refuses before observing upstream.
+    monkeypatch.setattr(sync, "ROOT", tree)
+    assert sync.main(["validate", "--strict"]) == 1
+    assert capsys.readouterr().err.startswith("jev-docs: generated state has an invalid")
+    with pytest.raises(RuntimeError, match="invalid structure"):
+        synchronize(tree, PublicSources(), strict=True)
+    assert snapshot(tree) == before
+
+
 def test_excessively_nested_upstream_json_is_structured_invalid_json():
     depth = 10000
     response = Response(

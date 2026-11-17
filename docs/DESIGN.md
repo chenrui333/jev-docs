@@ -126,6 +126,9 @@ Review semantics participate in event identity and prior history is not rewritte
 Discovery and required source fetches complete before publication. A transport,
 parse or tree-integrity failure exits nonzero without publishing new evidence.
 Successful discovery can establish navigation removals; failed discovery cannot.
+Generated state that parses as JSON but has the wrong shape fails validation (and
+therefore sync preflight) with one sanitized `invalid structure` error naming only
+the exception class, never persisted values or machine paths.
 SDK release-reconciliation health is separate: an inconsistent candidate cannot
 overwrite an existing healthy SDK snapshot, even during its grace period.
 

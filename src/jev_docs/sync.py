@@ -3015,6 +3015,29 @@ def validate_tree(
     history_root: Path | None = None,
     allow_practice_review_migration: bool = False,
 ) -> None:
+    """Fail closed on any invalid tree, including parseable JSON of the wrong shape."""
+    try:
+        _validate_tree(
+            root,
+            strict,
+            history_root=history_root,
+            allow_practice_review_migration=allow_practice_review_migration,
+        )
+    except (AttributeError, IndexError, KeyError, TypeError) as exc:
+        # Like read_json, never echo persisted values or machine paths.
+        raise RuntimeError(
+            f"generated state has an invalid structure ({type(exc).__name__}); "
+            "restore the last-known-good generated files from Git history"
+        ) from None
+
+
+def _validate_tree(
+    root: Path,
+    strict: bool,
+    *,
+    history_root: Path | None,
+    allow_practice_review_migration: bool,
+) -> None:
     if (root / PENDING).exists() or (root / PENDING).is_symlink():
         raise RuntimeError("pending synchronization promotion; run sync to recover it")
     required = [
