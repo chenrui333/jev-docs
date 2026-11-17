@@ -229,10 +229,13 @@ def test_redirect_guard_runs_before_follow_and_never_forwards_authorization(monk
     assert moved.get_header("Authorization") is None
 
 
+@pytest.mark.parametrize("code", [301, 302, 307, 308])
 @pytest.mark.parametrize(
     "target", ["https://elsewhere.test/private", "https://api.github.com/moved"]
 )
-def test_urllib_redirect_transport_never_contacts_foreign_origin(monkeypatch, target):
+def test_urllib_redirect_transport_never_contacts_foreign_origin(monkeypatch, target, code):
+    # Mintlify serves 308 for docs path normalization; Python 3.10 urllib does not
+    # follow 308 by itself, so the guarded handler must, on every supported runtime.
     monkeypatch.setenv("GITHUB_TOKEN", "private-token")
     client = HTTPClient()
     guard = next(h for h in client.opener.__self__.handlers if isinstance(h, HTTPRedirectHandler))
@@ -245,9 +248,9 @@ def test_urllib_redirect_transport_never_contacts_foreign_origin(monkeypatch, ta
             status = 200
             if len(calls) == 1:
                 headers["Location"] = target
-                status = 302
+                status = code
             response = addinfourl(BytesIO(b"ok"), headers, request.full_url, status)
-            response.msg = "Found" if status == 302 else "OK"
+            response.msg = "Redirect" if status == code else "OK"
             return response
 
     client.opener = build_opener(guard, Transport()).open
