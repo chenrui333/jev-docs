@@ -627,6 +627,23 @@ def test_release_provenance_preserves_disagreements() -> None:
     assert "malformed_release_metadata" in malformed["discrepancies"]
 
 
+def test_tag_moved_between_pages_never_resolves_a_release_commit() -> None:
+    # github_json deduplicates by (name, sha), so a tag force-moved between page
+    # fetches reaches reconciliation twice; neither commit may be chosen silently.
+    moved = release_provenance(
+        "0.7.0",
+        [
+            {"name": "v0.7.0", "commit": {"sha": "7" * 40}},
+            {"name": "v0.7.0", "commit": {"sha": "8" * 40}},
+        ],
+        [{"tag_name": "v0.7.0", "published_at": "2026-09-18"}],
+    )
+    assert moved["source_tag"] is None and moved["source_commit"] is None
+    assert moved["malformed_metadata"] == ["tag_entry_1_conflicting_commit"]
+    assert "malformed_release_metadata" in moved["discrepancies"]
+    assert [release["source_commit"] for release in moved["release_history"]] == [None]
+
+
 def test_release_discrepancy_grace_period_is_actionable_only_when_stale() -> None:
     freshness = {
         "observed_at": "2026-09-17T00:00:00Z",
