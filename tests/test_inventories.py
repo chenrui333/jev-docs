@@ -222,6 +222,35 @@ def test_malformed_cookbook_index_fails_conservatively(text):
         cookbooks({"docs:cookbooks": text}, evidence("docs:cookbooks", text), [], None)
 
 
+@pytest.mark.parametrize(
+    "link",
+    [
+        "https://example.com/cookbooks/dates",
+        "http://docs.typesafe.ai.example/cookbooks/dates",
+        "/patterns/dates",
+    ],
+)
+def test_cookbook_index_links_must_stay_canonical_cookbooks(link):
+    text = INDEX.replace("/cookbooks/dates", link)
+    with pytest.raises(RuntimeError, match="noncanonical cookbook index link"):
+        cookbooks({"docs:cookbooks": text}, evidence("docs:cookbooks", text), [], None)
+
+
+def test_disappeared_cookbook_index_keeps_last_known_good_inventory():
+    previous = cookbooks({"docs:cookbooks": INDEX}, evidence("docs:cookbooks", INDEX), [], None)
+    # Losing the index is missing evidence, not proof that every cookbook was removed.
+    with pytest.raises(RuntimeError, match="cookbook index disappeared"):
+        cookbooks({}, {}, [], previous)
+    assert cookbooks({}, {}, [], None)["items"] == []
+
+
+def test_limitation_section_without_prose_is_not_promoted():
+    sid = "docs:model-jaggedness/jev-1.13"
+    text = limitations() + "\n## Counting dates\n\n```python\nlen(dates)\n```\n"
+    with pytest.raises(RuntimeError, match="empty limitation section: .*#counting-dates"):
+        model_limitations({sid: text}, evidence(sid, text), None)
+
+
 def test_new_layer_establishes_baseline_not_historical_additions():
     events = semantic_events(
         {}, {"model-limitations": {"items": [{"id": "jev-1.13:counting"}]}}, "today"
