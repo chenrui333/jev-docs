@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-18",
+  "events": [
+    {
+      "after_sha256": "412eee250669f7bc0ff133841f1ba322b938f8d82b5c660f7193a08e37f19913",
+      "before_sha256": "1a8754583eed24a25b9482b61b99b5d9e76325ada541026620979ca7d188baef",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/function_calling",
+      "id": "91d8bd96b24ede01bb8b5bd3",
+      "observed_at": "2026-11-18T07:31:04.985718Z",
+      "previous_event_id": "6bd32594627ffb40c184a2ce",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "412eee250669f7bc0ff133841f1ba322b938f8d82b5c660f7193a08e37f19913",
+          "source_id": "docs:cookbooks/function_calling",
+          "url": "https://docs.typesafe.ai/cookbooks/function_calling"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/function_calling modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

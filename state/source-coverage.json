@@ -193,7 +193,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
-      "sha256": "1a8754583eed24a25b9482b61b99b5d9e76325ada541026620979ca7d188baef",
+      "sha256": "412eee250669f7bc0ff133841f1ba322b938f8d82b5c660f7193a08e37f19913",
       "source_id": "docs:cookbooks/function_calling",
       "status": "fetched",
       "title": "Function calling"

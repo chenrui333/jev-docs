@@ -1,5 +1,5 @@
 {
-  "fingerprint": "ad1e2c5a6f636f97a23562cc33d9e65e7eb39d7b46df090260edd31722876b01",
+  "fingerprint": "1d3a321abda0e2202485a22e91d1d20b60a83efd01e1e510abec8eb29b44eb69",
   "items": [
     {
       "category": "extraction",
@@ -278,7 +278,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "1a8754583eed24a25b9482b61b99b5d9e76325ada541026620979ca7d188baef",
+          "sha256": "412eee250669f7bc0ff133841f1ba322b938f8d82b5c660f7193a08e37f19913",
           "source_id": "docs:cookbooks/function_calling",
           "url": "https://docs.typesafe.ai/cookbooks/function_calling.md"
         }
@@ -596,7 +596,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs"
     }
   ],
-  "observed_at": "2026-11-16T22:06:17.770937Z",
+  "observed_at": "2026-11-18T07:31:04.004436Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

@@ -346,19 +346,19 @@
       "upstream_last_modified": "2026-11-16T21:54:27.469Z"
     },
     {
-      "bytes": 24522,
+      "bytes": 32176,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/function_calling",
       "description": "Turns natural-language trading requests into calls to ordinary typed functions by mapping function names and closed-set arguments to confidence-aware System One questions.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/cookbooks/function_calling.md",
-      "observed_at": "2026-11-16T22:06:18.892314Z",
-      "sha256": "1a8754583eed24a25b9482b61b99b5d9e76325ada541026620979ca7d188baef",
+      "observed_at": "2026-11-18T07:31:04.987120Z",
+      "sha256": "412eee250669f7bc0ff133841f1ba322b938f8d82b5c660f7193a08e37f19913",
       "source_id": "docs:cookbooks/function_calling",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Function calling",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-16T21:54:27.469Z"
+      "upstream_last_modified": "2026-11-17T19:20:44.200Z"
     },
     {
       "bytes": 34533,
