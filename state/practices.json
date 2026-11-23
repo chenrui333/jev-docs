@@ -1,6 +1,6 @@
 {
   "evidence_policy": "reviewed-contexts-v1",
-  "fingerprint": "99491dfd87a3b7fc9a092d6f4fede7f01da775a62914f2cecc57add9429101aa",
+  "fingerprint": "00df25cadacb289d16dad2f9254d6476292abfdd0d518a7fb578ecdcf43c618b",
   "items": [
     {
       "category": "agent-integration",
@@ -321,8 +321,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
-          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+          "context_sha256": "134c9cb0b7fda3b43487784a85bef9ed0a1c887cede19050ae9ff0f1c2ef66a5",
+          "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -364,8 +364,8 @@
       "category": "confidence",
       "evidence_reviews": [
         {
-          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
-          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+          "context_sha256": "134c9cb0b7fda3b43487784a85bef9ed0a1c887cede19050ae9ff0f1c2ef66a5",
+          "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -428,8 +428,8 @@
       "category": "primitives",
       "evidence_reviews": [
         {
-          "context_sha256": "4a7ffb115274c528314ed4dcbb6accb0f4c3aa0503e107d4183dc800cfbd21bf",
-          "sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+          "context_sha256": "983a207f8d58f0aeccf55a4463f37fd00df48de7e7d7d0e9753b07e5b1aaa78c",
+          "sha256": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
           "source_id": "docs:primitives/noul",
           "url": "https://docs.typesafe.ai/primitives/noul.md",
           "verdict": "unreviewed"
@@ -492,8 +492,8 @@
           "verdict": "unreviewed"
         },
         {
-          "context_sha256": "a6c3cd4f0e6fb61aeacf80d000334ebca07fd2e015867da2b043864f4724bd72",
-          "sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+          "context_sha256": "80624304a97bdac2632ad892cf1db58c0ab47aaaaf0928cb55f271444bdb5367",
+          "sha256": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
           "source_id": "docs:primitives/choice",
           "url": "https://docs.typesafe.ai/primitives/choice.md",
           "verdict": "unreviewed"
@@ -528,8 +528,8 @@
       "category": "thresholds",
       "evidence_reviews": [
         {
-          "context_sha256": "77f51fa2e8014c9c570fea7c4b8b70058a0d039b281bdba33b32ab462bc810b7",
-          "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+          "context_sha256": "134c9cb0b7fda3b43487784a85bef9ed0a1c887cede19050ae9ff0f1c2ef66a5",
+          "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
           "source_id": "docs:confidence",
           "url": "https://docs.typesafe.ai/confidence.md",
           "verdict": "unreviewed"
@@ -725,18 +725,18 @@
       "summary": "For failures, inspect the exact state, questions, candidates, answers, composition, and observed outcome; separate evidence, model, code, and service failures."
     }
   ],
-  "observed_at": "2026-11-06T06:49:57.068186Z",
+  "observed_at": "2026-11-23T23:55:08.487400Z",
   "review_policy_sha256": "08b70b0e4c0032e8511d3efbc2f4ab8c88b590c13e6bc2cf60ed2c24161f84d7",
   "schema_version": 1,
   "source_observations": {
     "docs:concepts/how-to-build-with-system-one": "959269398d5306e69fd98271a5370a090b255b38127f597e9405a341997a6342",
     "docs:concepts/state": "cd53b693dd68bc3c1f487e9ca3781e32b4e7c184e14bc83272401cddaed4c9cb",
     "docs:concepts/system-one": "cae38c81a084ac697c07e07f420585de312b3c8b6408cdcac9648ffa56f50681",
-    "docs:confidence": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+    "docs:confidence": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
     "docs:introduction/coding-agents": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5",
     "docs:patterns/fan-out": "9113aae0c8a1322cc40f279c8ebf5e4f8b11f589b8ab7dcfb8a73ed5341385da",
-    "docs:primitives/choice": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
-    "docs:primitives/noul": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+    "docs:primitives/choice": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
+    "docs:primitives/noul": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
     "skill:typesafe-ai": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724"
   },
   "status_vocabulary": [

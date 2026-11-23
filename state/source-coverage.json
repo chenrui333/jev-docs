@@ -32,7 +32,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
-      "sha256": "63931dedc21803b17418d7ab3dc6d4d38c67f6ecdb15d7d5490f183b99c58afb",
+      "sha256": "b0fa760454435c2b7476f28ed147e6f53bb7af23e8894e8477b74f4c5e01ef40",
       "source_id": "docs:introduction/quickstart",
       "status": "fetched",
       "title": "Quick start"
@@ -67,28 +67,28 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives",
-      "sha256": "cc7a8b0a455b8146bb8db3e12c309bf185fa2abc31f82d88b61ec1e63bc86be0",
+      "sha256": "2e0d0a93270c33a31c32eb6df2988709c98e8ba1da9222c972c17b4e36d16a30",
       "source_id": "docs:primitives",
       "status": "fetched",
       "title": "Primitives (Questions)"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
-      "sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+      "sha256": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
       "source_id": "docs:primitives/choice",
       "status": "fetched",
       "title": "Choice"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
-      "sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
+      "sha256": "1ebc5e4763bd9a65da60467cac0b8d62ee00f0cbd8e858f8f541230e002a2e97",
       "source_id": "docs:primitives/score",
       "status": "fetched",
       "title": "Score"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/primitives/noul",
-      "sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+      "sha256": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
       "source_id": "docs:primitives/noul",
       "status": "fetched",
       "title": "Noul"
@@ -116,7 +116,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/confidence",
-      "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+      "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
       "source_id": "docs:confidence",
       "status": "fetched",
       "title": "Confidence"

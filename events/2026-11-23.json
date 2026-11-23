@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-23",
+  "events": [
+    {
+      "after_sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
+      "before_sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:confidence",
+      "id": "716dfd71ddaa787a0420ddac",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "d0a1d2d888b4bfbd32142483",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
+          "source_id": "docs:confidence",
+          "url": "https://docs.typesafe.ai/confidence"
+        }
+      ],
+      "summary": "Documentation page docs:confidence modified in successful discovery."
+    },
+    {
+      "after_sha256": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
+      "before_sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/noul",
+      "id": "7741443c2115ddec5612e405",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "7d6661d84c6848262c4caccf",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
+          "source_id": "docs:primitives/noul",
+          "url": "https://docs.typesafe.ai/primitives/noul"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/noul modified in successful discovery."
+    },
+    {
+      "after_sha256": "1ebc5e4763bd9a65da60467cac0b8d62ee00f0cbd8e858f8f541230e002a2e97",
+      "before_sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/score",
+      "id": "8f79106c76a6baaece0e141a",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "53493fb1e84e31f81cdde8db",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "1ebc5e4763bd9a65da60467cac0b8d62ee00f0cbd8e858f8f541230e002a2e97",
+          "source_id": "docs:primitives/score",
+          "url": "https://docs.typesafe.ai/primitives/score"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/score modified in successful discovery."
+    },
+    {
+      "after_sha256": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
+      "before_sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives/choice",
+      "id": "9cb2eda9c04d4bf5fdae7fbb",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "2d98453572567fabb0cec63e",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
+          "source_id": "docs:primitives/choice",
+          "url": "https://docs.typesafe.ai/primitives/choice"
+        }
+      ],
+      "summary": "Documentation page docs:primitives/choice modified in successful discovery."
+    },
+    {
+      "after_sha256": "b0fa760454435c2b7476f28ed147e6f53bb7af23e8894e8477b74f4c5e01ef40",
+      "before_sha256": "63931dedc21803b17418d7ab3dc6d4d38c67f6ecdb15d7d5490f183b99c58afb",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:introduction/quickstart",
+      "id": "b934a5bbfb3b1d38247ebbfe",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "c2c72eba8a03f5c62ce4e6b3",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b0fa760454435c2b7476f28ed147e6f53bb7af23e8894e8477b74f4c5e01ef40",
+          "source_id": "docs:introduction/quickstart",
+          "url": "https://docs.typesafe.ai/introduction/quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:introduction/quickstart modified in successful discovery."
+    },
+    {
+      "after_sha256": "2e0d0a93270c33a31c32eb6df2988709c98e8ba1da9222c972c17b4e36d16a30",
+      "before_sha256": "cc7a8b0a455b8146bb8db3e12c309bf185fa2abc31f82d88b61ec1e63bc86be0",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:primitives",
+      "id": "e0a11c4aa56d897476a82bcc",
+      "observed_at": "2026-11-23T23:55:09.357275Z",
+      "previous_event_id": "f5449e690e88c381e4093878",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "2e0d0a93270c33a31c32eb6df2988709c98e8ba1da9222c972c17b4e36d16a30",
+          "source_id": "docs:primitives",
+          "url": "https://docs.typesafe.ai/primitives"
+        }
+      ],
+      "summary": "Documentation page docs:primitives modified in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}

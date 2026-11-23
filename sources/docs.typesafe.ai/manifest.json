@@ -136,19 +136,19 @@
       "upstream_last_modified": "2026-11-13T21:18:36.089Z"
     },
     {
-      "bytes": 14159,
+      "bytes": 15336,
       "canonical_url": "https://docs.typesafe.ai/confidence",
       "description": "How Jev reports certainty, how it differs from probability, and how to use it to control system behavior.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/confidence.md",
-      "observed_at": "2026-11-04T19:46:41.798559Z",
-      "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3",
+      "observed_at": "2026-11-23T23:55:09.357760Z",
+      "sha256": "ec579d5a7d573be9c292155204388f3ac3553d80f8dccd0b8a0ab5aef58a9065",
       "source_id": "docs:confidence",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Confidence",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T08:55:32.456Z"
+      "upstream_last_modified": "2026-11-23T19:02:07.921Z"
     },
     {
       "bytes": 9823,
@@ -691,19 +691,19 @@
       "upstream_last_modified": "2026-11-04T06:15:21.587Z"
     },
     {
-      "bytes": 15156,
+      "bytes": 15157,
       "canonical_url": "https://docs.typesafe.ai/introduction/quickstart",
       "description": "Get up and running with Jev in 5 minutes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/introduction/quickstart.md",
-      "observed_at": "2026-11-07T05:59:47.663843Z",
-      "sha256": "63931dedc21803b17418d7ab3dc6d4d38c67f6ecdb15d7d5490f183b99c58afb",
+      "observed_at": "2026-11-23T23:55:09.359742Z",
+      "sha256": "b0fa760454435c2b7476f28ed147e6f53bb7af23e8894e8477b74f4c5e01ef40",
       "source_id": "docs:introduction/quickstart",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Quick start",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-06T22:45:40.405Z"
+      "upstream_last_modified": "2026-11-23T19:00:29.586Z"
     },
     {
       "bytes": 1202,
@@ -871,19 +871,19 @@
       "upstream_last_modified": "2026-11-04T08:55:31.737Z"
     },
     {
-      "bytes": 16368,
+      "bytes": 16460,
       "canonical_url": "https://docs.typesafe.ai/primitives",
       "description": "The System One question types, the typed answers they return, how to choose between them, and how to ask several at once.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives.md",
-      "observed_at": "2026-11-07T05:59:47.664193Z",
-      "sha256": "cc7a8b0a455b8146bb8db3e12c309bf185fa2abc31f82d88b61ec1e63bc86be0",
+      "observed_at": "2026-11-23T23:55:09.360072Z",
+      "sha256": "2e0d0a93270c33a31c32eb6df2988709c98e8ba1da9222c972c17b4e36d16a30",
       "source_id": "docs:primitives",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Primitives (Questions)",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-07T00:23:37.857Z"
+      "upstream_last_modified": "2026-11-23T19:02:07.921Z"
     },
     {
       "bytes": 4522,
@@ -916,49 +916,49 @@
       "upstream_last_modified": "2026-11-04T06:15:21.585Z"
     },
     {
-      "bytes": 15647,
+      "bytes": 15871,
       "canonical_url": "https://docs.typesafe.ai/primitives/choice",
       "description": "A Choice is a System One question type for selecting one option from a defined set. The answer includes the selected option, a probability for each option, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/choice.md",
-      "observed_at": "2026-11-04T06:26:11.879367Z",
-      "sha256": "a3f3ded62c00901a6cbbc3d012a339dde4a7f3fdb68ede338b385f9099b04186",
+      "observed_at": "2026-11-23T23:55:09.360164Z",
+      "sha256": "bf6a70e89c2ff8e335fa51fa2a26b1fd9ba901da6a126b7933bfaeee19616ab7",
       "source_id": "docs:primitives/choice",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Choice",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.578Z"
+      "upstream_last_modified": "2026-11-23T19:00:29.586Z"
     },
     {
-      "bytes": 16697,
+      "bytes": 16754,
       "canonical_url": "https://docs.typesafe.ai/primitives/noul",
       "description": "A Noul question asks Jev to evaluate a yes/no question and return the probability that the answer is yes.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/noul.md",
-      "observed_at": "2026-11-04T06:26:11.879410Z",
-      "sha256": "c53213dda01777eb2ff183fd00862bb4f4825be9bc328149a2df865737704fd0",
+      "observed_at": "2026-11-23T23:55:09.360227Z",
+      "sha256": "c413f26e14bf1a01452e58b793c3665a4853c64f0734581eb8973f487cd1960f",
       "source_id": "docs:primitives/noul",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Noul",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.586Z"
+      "upstream_last_modified": "2026-11-23T19:02:07.921Z"
     },
     {
-      "bytes": 20657,
+      "bytes": 20693,
       "canonical_url": "https://docs.typesafe.ai/primitives/score",
       "description": "A Score is a System One question type for rating content against ordered, descriptive levels. The answer includes a score, a probability for each level, and confidence.",
       "discovered_via": "docs:llms.txt",
       "fetch_url": "https://docs.typesafe.ai/primitives/score.md",
-      "observed_at": "2026-11-04T06:26:11.879456Z",
-      "sha256": "93c593881a2cd134acba3514cf325cc156bad7dc1a4e0b0ed2580301127c2c3e",
+      "observed_at": "2026-11-23T23:55:09.360279Z",
+      "sha256": "1ebc5e4763bd9a65da60467cac0b8d62ee00f0cbd8e858f8f541230e002a2e97",
       "source_id": "docs:primitives/score",
       "source_tag": null,
       "source_type": "documentation",
       "title": "Score",
       "upstream_commit": null,
-      "upstream_last_modified": "2026-11-04T06:15:21.600Z"
+      "upstream_last_modified": "2026-11-23T19:00:29.586Z"
     },
     {
       "bytes": 982,
