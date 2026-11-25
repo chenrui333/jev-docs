@@ -3,7 +3,7 @@
     "discovered_pages": 145,
     "status": "up_to_date"
   },
-  "fingerprint": "e80d8b0eea281b1e67639b2645de92c359c7b78e66794f4c21809657905b2340",
+  "fingerprint": "190d952fff26242f9519c4868eff2fce9012269afbd3ba9d2eb5484271dec9ff",
   "grace_period_days": 3,
   "javascript": {
     "discrepancies": [],
@@ -11,13 +11,13 @@
     "tag": "v0.7.0",
     "version": "0.7.0"
   },
-  "last_changed": "2026-11-25T08:37:20.410473Z",
-  "observed_at": "2026-11-25T08:37:20.448420Z",
+  "last_changed": "2026-11-25T21:43:22.758198Z",
+  "observed_at": "2026-11-25T21:43:22.802221Z",
   "python": {
     "discrepancies": [],
     "status": "up_to_date",
-    "tag": "v0.7.5",
-    "version": "0.7.5"
+    "tag": "v0.7.6",
+    "version": "0.7.6"
   },
   "schema_version": 1,
   "skill": {

@@ -1,5 +1,5 @@
 {
-  "fingerprint": "4fb3945045e55890229a048b8a411592a018b557d2523c5f7c07e0345ab0b9e3",
+  "fingerprint": "bec0b5ca7e6336dc3532ced4a5c0be8f03e9cbf84aaf7956433522b90ca00183",
   "items": [
     {
       "category": "extraction",
@@ -36,7 +36,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "a9fbdf4a54e0e6505ef77bbf25c815514367f9a4fddb3151593b1f7e2ca0994d",
+          "sha256": "d3d25897681d0dffcec05cf210bc84aebda86a0176533b8321e44abc9d874830",
           "source_id": "docs:cookbooks/autoresearch_feature_discovery",
           "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery.md"
         }
@@ -234,7 +234,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "9745f9699b5a5c1df401e46cdcee0fffc38a6dfc80b20ad4b10e91bf026a4d7e",
+          "sha256": "b4aec062e0a5cccdc1b266c380c84cfe69ebcf786720d1aa481855e7434e6676",
           "source_id": "docs:cookbooks/entity_alignment",
           "url": "https://docs.typesafe.ai/cookbooks/entity_alignment.md"
         }
@@ -256,7 +256,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "9d7be2301cde3238bed7193567dd7df8551841b22153c5af44472a7458516d67",
+          "sha256": "760bf46225890fcec6fd24b9b84c8aaf7ad5d195113d9bd3c0bc701c7ce4a43f",
           "source_id": "docs:cookbooks/feeder_watch",
           "url": "https://docs.typesafe.ai/cookbooks/feeder_watch.md"
         }
@@ -630,7 +630,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs"
     }
   ],
-  "observed_at": "2026-11-25T08:37:19.330512Z",
+  "observed_at": "2026-11-25T21:43:22.141644Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

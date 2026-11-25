@@ -2,6 +2,44 @@
   "date": "2026-11-25",
   "events": [
     {
+      "after_sha256": "b4aec062e0a5cccdc1b266c380c84cfe69ebcf786720d1aa481855e7434e6676",
+      "before_sha256": "9745f9699b5a5c1df401e46cdcee0fffc38a6dfc80b20ad4b10e91bf026a4d7e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/entity_alignment",
+      "id": "18f37d44064c93fea200f69c",
+      "observed_at": "2026-11-25T21:43:22.758198Z",
+      "previous_event_id": "c79ad685938c25af9949ed21",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "b4aec062e0a5cccdc1b266c380c84cfe69ebcf786720d1aa481855e7434e6676",
+          "source_id": "docs:cookbooks/entity_alignment",
+          "url": "https://docs.typesafe.ai/cookbooks/entity_alignment"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/entity_alignment modified in successful discovery."
+    },
+    {
+      "after_sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
+      "before_sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:sdk/python/changelog",
+      "id": "3169622e60286c5af82e5e7d",
+      "observed_at": "2026-11-25T21:43:22.758198Z",
+      "previous_event_id": "9f9ea14f7c9c9accd5761d36",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog"
+        }
+      ],
+      "summary": "Documentation page docs:sdk/python/changelog modified in successful discovery."
+    },
+    {
       "after_sha256": "a89e759ef662f3ae2978e18a7ba5a82bbb722fb431989daae43768a34762e227",
       "before_sha256": null,
       "category": "documentation",
@@ -38,6 +76,68 @@
         }
       ],
       "summary": "Documentation page docs:cookbooks/langchain_quickstart added in successful discovery."
+    },
+    {
+      "after_sha256": "29049f2e9a137515d6aa5d3433b52acbc19a20ca7ea0adadd1201f57b8103061",
+      "before_sha256": "ec8901bdba010230442aa9d2dbec8376ed43cf70137e8679560c0462858cb51c",
+      "category": "sdk",
+      "change": "modified",
+      "entity": "sdk-python",
+      "id": "5ec5950eb3b76abc4d77d06e",
+      "observed_at": "2026-11-25T21:43:22.758198Z",
+      "previous_event_id": "694741a7c70a8b468b12691a",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "4c0e0df24521c08570e18f232499d7c3eff66270dbf916b7cfab3458a608a01e",
+          "source_id": "registry:pypi:typesafe-sdk",
+          "url": "https://pypi.org/pypi/typesafe-sdk/json"
+        },
+        {
+          "sha256": "2854197dc06020bcf82417da3862adb5881eb805aa326786eca4583307c93dc1",
+          "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.6:pyproject.toml",
+          "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/023fdc925d740a6ab4a7a31488b75c90e6bd289e/pyproject.toml"
+        }
+      ],
+      "summary": "typesafe-sdk 0.7.5 → 0.7.6; release guidance and capability evidence updated."
+    },
+    {
+      "after_sha256": "d3d25897681d0dffcec05cf210bc84aebda86a0176533b8321e44abc9d874830",
+      "before_sha256": "a9fbdf4a54e0e6505ef77bbf25c815514367f9a4fddb3151593b1f7e2ca0994d",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoresearch_feature_discovery",
+      "id": "77efc6742b4f16843a4764b1",
+      "observed_at": "2026-11-25T21:43:22.758198Z",
+      "previous_event_id": "0e6194deb1155841d31bbcdc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "d3d25897681d0dffcec05cf210bc84aebda86a0176533b8321e44abc9d874830",
+          "source_id": "docs:cookbooks/autoresearch_feature_discovery",
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoresearch_feature_discovery modified in successful discovery."
+    },
+    {
+      "after_sha256": "760bf46225890fcec6fd24b9b84c8aaf7ad5d195113d9bd3c0bc701c7ce4a43f",
+      "before_sha256": "9d7be2301cde3238bed7193567dd7df8551841b22153c5af44472a7458516d67",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/feeder_watch",
+      "id": "83ffece17adf7439bce09893",
+      "observed_at": "2026-11-25T21:43:22.758198Z",
+      "previous_event_id": "a57d41f72cb6d9a1f39ca256",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "760bf46225890fcec6fd24b9b84c8aaf7ad5d195113d9bd3c0bc701c7ce4a43f",
+          "source_id": "docs:cookbooks/feeder_watch",
+          "url": "https://docs.typesafe.ai/cookbooks/feeder_watch"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/feeder_watch modified in successful discovery."
     },
     {
       "after_sha256": "ec1caf2fee24b154177c2d7a023c7a6782d86e380abed9b4bb354db5f40cbe8d",

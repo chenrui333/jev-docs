@@ -7,7 +7,8 @@
     "v0.7.2",
     "v0.7.3",
     "v0.7.4",
-    "v0.7.5"
+    "v0.7.5",
+    "v0.7.6"
   ],
   "capabilities": [
     {
@@ -150,21 +151,21 @@
     }
   ],
   "discrepancies": [],
-  "fingerprint": "9138912fa2206f154035decbaea6caabc077cd3d8d5191f841e0f79930ad0fa9",
-  "main_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
+  "fingerprint": "6b2e2a8b2bbe63a93508addde84bce68f4c3b7a4f77459b4850a91ed52fbe1bb",
+  "main_commit": "023fdc925d740a6ab4a7a31488b75c90e6bd289e",
   "malformed_release_metadata": [],
-  "observed_at": "2026-10-23T04:52:40.454341Z",
+  "observed_at": "2026-11-25T21:43:21.150799Z",
   "package": "typesafe-sdk",
   "provenance": [
     {
-      "sha256": "3a634cae252e6e3d6b26a77d92cca900c2abf0724fb3ba8b62397f0fff217c39",
+      "sha256": "4c0e0df24521c08570e18f232499d7c3eff66270dbf916b7cfab3458a608a01e",
       "source_id": "registry:pypi:typesafe-sdk",
       "url": "https://pypi.org/pypi/typesafe-sdk/json"
     },
     {
-      "sha256": "666f8c6b09564757395e9adbe70e5d56e5305bf789fca94ebe918414f431c081",
-      "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.5:pyproject.toml",
-      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/f36e68549ceca3191e5791e5f99ea1baa1a258b5/pyproject.toml"
+      "sha256": "2854197dc06020bcf82417da3862adb5881eb805aa326786eca4583307c93dc1",
+      "source_id": "github:typesafe-ai/typesafe-sdk-python:v0.7.6:pyproject.toml",
+      "url": "https://raw.githubusercontent.com/typesafe-ai/typesafe-sdk-python/023fdc925d740a6ab4a7a31488b75c90e6bd289e/pyproject.toml"
     }
   ],
   "public_surface": {
@@ -189,7 +190,7 @@
       "documented_changes": [],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -213,7 +214,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -234,7 +235,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -254,7 +255,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -274,7 +275,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -296,7 +297,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -315,7 +316,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -340,7 +341,7 @@
       ],
       "documented_changes_provenance": [
         {
-          "sha256": "854a9ff2823c7675fa7708b3ff516c0f84943f3569f0d1487ee3c91315cc5cd2",
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
           "source_id": "docs:sdk/python/changelog",
           "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
         }
@@ -352,14 +353,33 @@
       "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.5",
       "tag": "v0.7.5",
       "version": "0.7.5"
+    },
+    {
+      "documented_changes": [
+        "serialize non-finite numbers in question models as strings"
+      ],
+      "documented_changes_provenance": [
+        {
+          "sha256": "818e944094658293ddf4741015e4be7854b266a013ea2ff0f687f1ee46a22753",
+          "source_id": "docs:sdk/python/changelog",
+          "url": "https://docs.typesafe.ai/sdk/python/changelog.md"
+        }
+      ],
+      "documented_changes_source_class": "mutable_documentation",
+      "name": "v0.7.6 (2026-11-25)",
+      "published_at": "2026-11-25T10:50:36Z",
+      "source_commit": "023fdc925d740a6ab4a7a31488b75c90e6bd289e",
+      "source_url": "https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.6",
+      "tag": "v0.7.6",
+      "version": "0.7.6"
     }
   ],
   "repository": "https://github.com/typesafe-ai/typesafe-sdk-python",
   "runtime": {
-    "python": ">=3.10"
+    "python": ">=3.11"
   },
   "schema_version": 1,
-  "source_commit": "f36e68549ceca3191e5791e5f99ea1baa1a258b5",
-  "source_tag": "v0.7.5",
-  "version": "0.7.5"
+  "source_commit": "023fdc925d740a6ab4a7a31488b75c90e6bd289e",
+  "source_tag": "v0.7.6",
+  "version": "0.7.6"
 }
