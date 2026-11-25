@@ -406,6 +406,36 @@
       "upstream_last_modified": "2026-11-16T21:54:27.469Z"
     },
     {
+      "bytes": 18436,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart",
+      "description": "Ask Jev a question from LangChain with TypeSafeClassifier, read the answer's probabilities and confidence, and act on it in code.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart.md",
+      "observed_at": "2026-11-25T08:37:20.412215Z",
+      "sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+      "source_id": "docs:cookbooks/langchain_quickstart",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "LangChain quickstart",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-25T01:59:44.802Z"
+    },
+    {
+      "bytes": 56412,
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate",
+      "description": "Before a LangChain agent for customer support runs a tool, it asks Jev whether to run it, get a person's approval first, or refuse. We grade this gate on 24 labeled tool calls.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate.md",
+      "observed_at": "2026-11-25T08:37:20.412286Z",
+      "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+      "source_id": "docs:cookbooks/langchain_safety_gate",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Tool-call safety gate",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-25T02:26:55.071Z"
+    },
+    {
       "bytes": 27291,
       "canonical_url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
       "description": "Screens every message into and out of an LLM app with one TypeSafe request, then passes, reviews, blocks, or sends it to support by thresholds you set.",
@@ -646,6 +676,21 @@
       "upstream_last_modified": "2026-11-04T22:03:51.904Z"
     },
     {
+      "bytes": 1062,
+      "canonical_url": "https://docs.typesafe.ai/integrations",
+      "description": "Use Jev from the agent frameworks you already build with.",
+      "discovered_via": "docs:llms.txt",
+      "fetch_url": "https://docs.typesafe.ai/integrations.md",
+      "observed_at": "2026-11-25T08:37:20.413135Z",
+      "sha256": "a89e759ef662f3ae2978e18a7ba5a82bbb722fb431989daae43768a34762e227",
+      "source_id": "docs:integrations",
+      "source_tag": null,
+      "source_type": "documentation",
+      "title": "Integrations",
+      "upstream_commit": null,
+      "upstream_last_modified": "2026-11-25T01:59:44.802Z"
+    },
+    {
       "bytes": 5101,
       "canonical_url": "https://docs.typesafe.ai/introduction",
       "description": "Jev is TypeSafe's flagship model and the first System One model. Send state and typed questions; get structured answers your code can use directly.",
@@ -721,13 +766,13 @@
       "upstream_last_modified": "2026-10-27T20:53:09.643Z"
     },
     {
-      "bytes": 21897,
+      "bytes": 22496,
       "canonical_url": "https://docs.typesafe.ai/llms.txt",
       "description": "Canonical documentation discovery",
       "discovered_via": null,
       "fetch_url": "https://docs.typesafe.ai/llms.txt",
-      "observed_at": "2026-11-13T06:47:55.249814Z",
-      "sha256": "72eb4022ce081493b7a4a077328a2a8ce7bbaacbfd71b5a84cf52b962ce2fe0d",
+      "observed_at": "2026-11-25T08:37:20.413320Z",
+      "sha256": "eec0841a2dbb165838c4ca3c4f4dc1182d9ce3ae88c8c30a9d145e28c8969e9c",
       "source_id": "docs:llms.txt",
       "source_tag": null,
       "source_type": "documentation-discovery",

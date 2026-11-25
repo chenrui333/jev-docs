@@ -1,15 +1,15 @@
 {
   "complete": true,
-  "discovered_count": 142,
+  "discovered_count": 145,
   "discovery": {
     "method": "llms.txt",
-    "sha256": "72eb4022ce081493b7a4a077328a2a8ce7bbaacbfd71b5a84cf52b962ce2fe0d",
+    "sha256": "eec0841a2dbb165838c4ca3c4f4dc1182d9ce3ae88c8c30a9d145e28c8969e9c",
     "sitemap_warning": null,
     "source_id": "docs:llms.txt",
     "url": "https://docs.typesafe.ai/llms.txt"
   },
   "failed_count": 0,
-  "fetched_count": 142,
+  "fetched_count": 145,
   "intentionally_excluded": [
     {
       "reason": "external-host",
@@ -379,6 +379,27 @@
       "source_id": "docs:cookbooks/autoresearch_feature_discovery",
       "status": "fetched",
       "title": "Autoresearch feature discovery"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/integrations",
+      "sha256": "a89e759ef662f3ae2978e18a7ba5a82bbb722fb431989daae43768a34762e227",
+      "source_id": "docs:integrations",
+      "status": "fetched",
+      "title": "Integrations"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart",
+      "sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+      "source_id": "docs:cookbooks/langchain_quickstart",
+      "status": "fetched",
+      "title": "LangChain quickstart"
+    },
+    {
+      "canonical_url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate",
+      "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+      "source_id": "docs:cookbooks/langchain_safety_gate",
+      "status": "fetched",
+      "title": "Tool-call safety gate"
     },
     {
       "canonical_url": "https://docs.typesafe.ai/demos",
@@ -1019,6 +1040,6 @@
     }
   ],
   "removal_safe": true,
-  "retained_count": 142,
+  "retained_count": 145,
   "schema_version": 2
 }

@@ -1,5 +1,5 @@
 {
-  "fingerprint": "1d3a321abda0e2202485a22e91d1d20b60a83efd01e1e510abec8eb29b44eb69",
+  "fingerprint": "4fb3945045e55890229a048b8a411592a018b557d2523c5f7c07e0345ab0b9e3",
   "items": [
     {
       "category": "extraction",
@@ -354,6 +354,40 @@
       "url": "https://docs.typesafe.ai/cookbooks/intelliprompter"
     },
     {
+      "category": null,
+      "discovered": true,
+      "id": "cookbooks/langchain_quickstart",
+      "indexed": false,
+      "level": null,
+      "provenance": [
+        {
+          "sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+          "source_id": "docs:cookbooks/langchain_quickstart",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart.md"
+        }
+      ],
+      "summary": "Ask Jev a question from LangChain with TypeSafeClassifier, read the answer's probabilities and confidence, and act on it in code.",
+      "title": "LangChain quickstart",
+      "url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart"
+    },
+    {
+      "category": null,
+      "discovered": true,
+      "id": "cookbooks/langchain_safety_gate",
+      "indexed": false,
+      "level": null,
+      "provenance": [
+        {
+          "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+          "source_id": "docs:cookbooks/langchain_safety_gate",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate.md"
+        }
+      ],
+      "summary": "Before a LangChain agent for customer support runs a tool, it asks Jev whether to run it, get a person's approval first, or refuse. We grade this gate on 24 labeled tool calls.",
+      "title": "Tool-call safety gate",
+      "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate"
+    },
+    {
       "category": "llms-and-agents",
       "discovered": true,
       "id": "cookbooks/llm_guardrails",
@@ -596,7 +630,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs"
     }
   ],
-  "observed_at": "2026-11-18T07:31:04.004436Z",
+  "observed_at": "2026-11-25T08:37:19.330512Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }

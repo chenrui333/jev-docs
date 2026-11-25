@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-25",
+  "events": [
+    {
+      "after_sha256": "a89e759ef662f3ae2978e18a7ba5a82bbb722fb431989daae43768a34762e227",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:integrations",
+      "id": "446b0bd67f6b730d80ac55c0",
+      "observed_at": "2026-11-25T08:37:20.410473Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "a89e759ef662f3ae2978e18a7ba5a82bbb722fb431989daae43768a34762e227",
+          "source_id": "docs:integrations",
+          "url": "https://docs.typesafe.ai/integrations"
+        }
+      ],
+      "summary": "Documentation page docs:integrations added in successful discovery."
+    },
+    {
+      "after_sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/langchain_quickstart",
+      "id": "4b79606d10fbd007a5889c94",
+      "observed_at": "2026-11-25T08:37:20.410473Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+          "source_id": "docs:cookbooks/langchain_quickstart",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/langchain_quickstart added in successful discovery."
+    },
+    {
+      "after_sha256": "ec1caf2fee24b154177c2d7a023c7a6782d86e380abed9b4bb354db5f40cbe8d",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/langchain_safety_gate",
+      "id": "be4d4ef518dc0b2ff704f12d",
+      "observed_at": "2026-11-25T08:37:20.410473Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+          "source_id": "docs:cookbooks/langchain_safety_gate",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate.md"
+        }
+      ],
+      "summary": "Before a LangChain agent for customer support runs a tool, it asks Jev whether to run it, get a person's approval first, or refuse. We grade this gate on 24 labeled tool calls."
+    },
+    {
+      "after_sha256": "c2ca45cf3688b3c3b6c92c0bd8b66780c549aa8675e68acce912b2168f342c45",
+      "before_sha256": null,
+      "category": "cookbook",
+      "change": "added",
+      "entity": "cookbooks/langchain_quickstart",
+      "id": "c55e3a1c06a9e7b007732fc2",
+      "observed_at": "2026-11-25T08:37:20.410473Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "52df41c32deaddaf0494de126e23d9afe6fe72f55760998d1b4575f6c4cc84d2",
+          "source_id": "docs:cookbooks/langchain_quickstart",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_quickstart.md"
+        }
+      ],
+      "summary": "Ask Jev a question from LangChain with TypeSafeClassifier, read the answer's probabilities and confidence, and act on it in code."
+    },
+    {
+      "after_sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+      "before_sha256": null,
+      "category": "documentation",
+      "change": "added",
+      "entity": "docs:cookbooks/langchain_safety_gate",
+      "id": "eaae74f3c60337266ee862cc",
+      "observed_at": "2026-11-25T08:37:20.410473Z",
+      "previous_event_id": null,
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+          "source_id": "docs:cookbooks/langchain_safety_gate",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/langchain_safety_gate added in successful discovery."
+    }
+  ],
+  "schema_version": 1
+}
