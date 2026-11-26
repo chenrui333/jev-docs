@@ -242,7 +242,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
-      "sha256": "8629c8dfc78244ba14ae16ec3d5d2a91d6e6352e8978a5ddb1c2b67af67fe7c9",
+      "sha256": "3da75f3dacdfb817ef5f194d3468682303be70bfb5d45b3a44d128ee370a39e0",
       "source_id": "docs:cookbooks/hierarchical_classification",
       "status": "fetched",
       "title": "Hierarchical classification"
@@ -284,7 +284,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/autoformat",
-      "sha256": "204501b2922975efbef817d908bd314f78bb66e06337aefc6158671e7143f48e",
+      "sha256": "556b32deda6f2bacf337bcca56673190bd087927cf50a4ce9edf82458da08834",
       "source_id": "docs:cookbooks/autoformat",
       "status": "fetched",
       "title": "Structure recovery"
@@ -333,7 +333,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
-      "sha256": "16736767e0c3580237b8963935952819a662c8148b4a12ec3aad6bda2fb3002e",
+      "sha256": "079ad29748c9bd27cb9a00481901b0c820707f3a0859309d1dc7098f89fa588e",
       "source_id": "docs:cookbooks/semantic_find",
       "status": "fetched",
       "title": "Line-by-line search"
@@ -396,7 +396,7 @@
     },
     {
       "canonical_url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate",
-      "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+      "sha256": "3f06975fb90fa00eb8208991a141ad356619c40cfd047fa505df928e485dc4b0",
       "source_id": "docs:cookbooks/langchain_safety_gate",
       "status": "fetched",
       "title": "Tool-call safety gate"

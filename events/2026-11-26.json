@@ -154,6 +154,25 @@
       "summary": "Documentation page docs:cookbooks/consistency_choice_cookbook modified in successful discovery."
     },
     {
+      "after_sha256": "556b32deda6f2bacf337bcca56673190bd087927cf50a4ce9edf82458da08834",
+      "before_sha256": "204501b2922975efbef817d908bd314f78bb66e06337aefc6158671e7143f48e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/autoformat",
+      "id": "55cc80b184aef75636c85856",
+      "observed_at": "2026-11-26T21:34:21.957885Z",
+      "previous_event_id": "6f2d78ef5fb2e8db5b743322",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "556b32deda6f2bacf337bcca56673190bd087927cf50a4ce9edf82458da08834",
+          "source_id": "docs:cookbooks/autoformat",
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/autoformat modified in successful discovery."
+    },
+    {
       "after_sha256": "33511b1334d1877ff326bf558369929e847f43053227f1575701b87e8cdbf656",
       "before_sha256": "b84c04d5780a5c857cf63cf59d521e9bdcd15de90940e6da14359e369abcd06c",
       "category": "documentation",
@@ -249,6 +268,25 @@
       "summary": "Documentation page docs:cookbooks/sde_cascade modified in successful discovery."
     },
     {
+      "after_sha256": "3f06975fb90fa00eb8208991a141ad356619c40cfd047fa505df928e485dc4b0",
+      "before_sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/langchain_safety_gate",
+      "id": "6da29b268c4779f82d7da709",
+      "observed_at": "2026-11-26T21:34:21.957885Z",
+      "previous_event_id": "eaae74f3c60337266ee862cc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3f06975fb90fa00eb8208991a141ad356619c40cfd047fa505df928e485dc4b0",
+          "source_id": "docs:cookbooks/langchain_safety_gate",
+          "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/langchain_safety_gate modified in successful discovery."
+    },
+    {
       "after_sha256": "204501b2922975efbef817d908bd314f78bb66e06337aefc6158671e7143f48e",
       "before_sha256": "611bfef9a6fee30ce4df923509bd6970d88569be7963612f02d6c0e7abf7c598",
       "category": "documentation",
@@ -342,6 +380,44 @@
         }
       ],
       "summary": "Documentation page docs:cookbooks/classifying_rag_passages modified in successful discovery."
+    },
+    {
+      "after_sha256": "079ad29748c9bd27cb9a00481901b0c820707f3a0859309d1dc7098f89fa588e",
+      "before_sha256": "16736767e0c3580237b8963935952819a662c8148b4a12ec3aad6bda2fb3002e",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/semantic_find",
+      "id": "91acf1b92e742d2166f5b7c1",
+      "observed_at": "2026-11-26T21:34:21.957885Z",
+      "previous_event_id": "84d3fe07824ecdc958c40aed",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "079ad29748c9bd27cb9a00481901b0c820707f3a0859309d1dc7098f89fa588e",
+          "source_id": "docs:cookbooks/semantic_find",
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/semantic_find modified in successful discovery."
+    },
+    {
+      "after_sha256": "3da75f3dacdfb817ef5f194d3468682303be70bfb5d45b3a44d128ee370a39e0",
+      "before_sha256": "8629c8dfc78244ba14ae16ec3d5d2a91d6e6352e8978a5ddb1c2b67af67fe7c9",
+      "category": "documentation",
+      "change": "modified",
+      "entity": "docs:cookbooks/hierarchical_classification",
+      "id": "9304340856e7fd8f60bdad2c",
+      "observed_at": "2026-11-26T21:34:21.957885Z",
+      "previous_event_id": "cbe9753c5ac16911557a6fbc",
+      "schema_version": 1,
+      "sources": [
+        {
+          "sha256": "3da75f3dacdfb817ef5f194d3468682303be70bfb5d45b3a44d128ee370a39e0",
+          "source_id": "docs:cookbooks/hierarchical_classification",
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification"
+        }
+      ],
+      "summary": "Documentation page docs:cookbooks/hierarchical_classification modified in successful discovery."
     },
     {
       "after_sha256": "3594e6a3bae021734d2dadcd62f59a56fe797f827758951878fc5a9bf97aa40a",

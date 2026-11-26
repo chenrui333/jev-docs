@@ -1,5 +1,5 @@
 {
-  "fingerprint": "57820d20bfc6208ba2ea92a56b4668a9e8f9e5dbc61d8a7759f554f85a8ce678",
+  "fingerprint": "a2e9ed37c29f9dbabcb2c228ecb31fedcc86394c3faa8080439a0885d4e46d86",
   "items": [
     {
       "category": "extraction",
@@ -14,7 +14,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "204501b2922975efbef817d908bd314f78bb66e06337aefc6158671e7143f48e",
+          "sha256": "556b32deda6f2bacf337bcca56673190bd087927cf50a4ce9edf82458da08834",
           "source_id": "docs:cookbooks/autoformat",
           "url": "https://docs.typesafe.ai/cookbooks/autoformat.md"
         }
@@ -300,7 +300,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "8629c8dfc78244ba14ae16ec3d5d2a91d6e6352e8978a5ddb1c2b67af67fe7c9",
+          "sha256": "3da75f3dacdfb817ef5f194d3468682303be70bfb5d45b3a44d128ee370a39e0",
           "source_id": "docs:cookbooks/hierarchical_classification",
           "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification.md"
         }
@@ -378,7 +378,7 @@
       "level": null,
       "provenance": [
         {
-          "sha256": "ca3f0f3bc19a5ebfe8f37924bbc4f57ee57516df6c399995253fa7867affacf6",
+          "sha256": "3f06975fb90fa00eb8208991a141ad356619c40cfd047fa505df928e485dc4b0",
           "source_id": "docs:cookbooks/langchain_safety_gate",
           "url": "https://docs.typesafe.ai/cookbooks/langchain_safety_gate.md"
         }
@@ -554,7 +554,7 @@
           "url": "https://docs.typesafe.ai/cookbooks.md"
         },
         {
-          "sha256": "16736767e0c3580237b8963935952819a662c8148b4a12ec3aad6bda2fb3002e",
+          "sha256": "079ad29748c9bd27cb9a00481901b0c820707f3a0859309d1dc7098f89fa588e",
           "source_id": "docs:cookbooks/semantic_find",
           "url": "https://docs.typesafe.ai/cookbooks/semantic_find.md"
         }
@@ -630,7 +630,7 @@
       "url": "https://docs.typesafe.ai/cookbooks/verify_llm_outputs"
     }
   ],
-  "observed_at": "2026-11-26T08:21:21.884058Z",
+  "observed_at": "2026-11-26T21:34:21.014702Z",
   "schema_version": 1,
   "scope": "Official cookbook navigation; index membership and canonical discovery are independent. Descriptions are upstream claims, not independently verified benchmarks."
 }
